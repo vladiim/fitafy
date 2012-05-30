@@ -1,4 +1,4 @@
 Fitafy::Application.routes.draw do
-  get 'pages/index'
-  root to: "pages#index"
+  get 'pages/home'
+  root to: "pages#home"
 end
