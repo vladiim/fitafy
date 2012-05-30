@@ -2,7 +2,11 @@ module SnapzSayz
 
   class Information
   	def self.title
-  	  "fitafy fly"
+  	  options = [
+        "fitafy fly!",
+        "fitification time!"
+      ]
+      options[rand options.length]
   	end
 
   	def self.description

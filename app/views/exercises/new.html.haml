@@ -1,0 +1,7 @@
+= @snapz
+
+%section
+  = simple_form_for @exercise do |f|
+    = f.error_notification
+
+    = f.submit "Create Exercise", class: "btn btn-primary"
