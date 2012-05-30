@@ -13,5 +13,5 @@
 #     When I visit the exercise list
 #     Then the exercises should be in alphabetical order
 
-#   Scenario: Can't create, update, delete exercises
+#   Scenario: Can't build, create, update, delete exercises
 #   Scenario: Can't see links to create, update, delete exercises

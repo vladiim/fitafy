@@ -3,17 +3,17 @@
   As a fitafy admin
   I want to be able to manage exercises
 
-  @focus
   Scenario: Admin builds new exercise
     Given I want to create a new exercise
     When I click the "New Exercise" new exercise link
     Then Snapz should say "Creatin' a new exercise? Just give me some deets" because I'm on a new exercise page
 
-  Scenario: Admin creates exercises
+  @focus
+  Scenario: Admin creates exercise
     Given I'm on a new exercise page
     When I fill in the exercise form
-    And I click the button "Create Exercise"
-    Then I should see "Boom! New exercise up in this mo fo!" on the page
+    And I click the create exercise button "Create Exercise"
+    Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
 
   Scenario: Admin deletes exercise
     Given I'm on the edit exercise page

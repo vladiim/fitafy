@@ -4,4 +4,10 @@
   = simple_form_for @exercise do |f|
     = f.error_notification
 
+    = f.input :name
+    = f.input :description
+    = f.input :tips
+    = f.input :categories
+    = f.input :equipment
+
     = f.submit "Create Exercise", class: "btn btn-primary"
