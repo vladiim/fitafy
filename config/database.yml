@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: fitafy_development
+  pool: 5
+  username: vladiim
+  password:
+  host: localhost
+
+test: &test
+  adapter: postgresql
+  encoding: utf8
+  database: fitafy_test
+  pool: 5
+  username: vladiim
+  password:
+  host: localhost
+cucumber:
+  <<: *test

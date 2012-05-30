@@ -1,0 +1,13 @@
+!!! 5
+
+%head= render 'layouts/head'
+
+%body#main
+
+  %nav= render 'layouts/navigation'
+
+  %section
+    %header
+      %h1= section_title
+    = render 'layouts/flashes'
+    = yield

@@ -1,0 +1,5 @@
+#flash
+  - flash.each do |key, value|
+    .message{ :class => "alert alert-#{key}" }
+      %a.close{"data-dismiss" => "alert"} x
+      = value
