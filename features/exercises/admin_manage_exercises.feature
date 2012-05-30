@@ -15,17 +15,17 @@
     And I click the create exercise button "Create Exercise"
     Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
 
-  Scenario: Admin deletes exercise
-    Given I'm on the edit exercise page
-    When I delete the exercise by clicking "Delete Exercise"
-    Then Snapz should give "That exercise is gawn!" deleted exercise message
-
   Scenario: Admin gets validation error on title
     Given I'm on a new exercise page
     When I fill in the exercise form
     And I fill in the exercise title with nothing
     And I click the "Create Exercise" button
     Then I should see "can't be blank" on the page
+
+  Scenario: Admin deletes exercise
+    Given I'm on the edit exercise page
+    When I delete the exercise by clicking "Delete Exercise"
+    Then Snapz should give "That exercise is gawn!" deleted exercise message
 
   Scenario: Admin update exercise
     Given I'm on an exercise's update section

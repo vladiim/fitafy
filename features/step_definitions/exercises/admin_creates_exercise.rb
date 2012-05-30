@@ -3,11 +3,7 @@ Given /^I'm on a new exercise page$/ do
 end
 
 When /^I fill in the exercise form$/ do
-  fill_in "exercise_name", 			with: "liquid swords"
-  fill_in "exercise_description", 	with: "wu gambinos"
-  fill_in "exercise_tips", 			with: "protect yo neck"
-  fill_in "exercise_categories",  	with: "shoalin sword style"
-  fill_in "exercise_equipment", 	with: "bobby boulders"
+  fill_in_exercise_form
 end
 
 When /^I click the create exercise button "(.*?)"$/ do |create_exercise|
