@@ -15,4 +15,20 @@ class ExercisesController < ApplicationController
   	  render :new
   	end
   end
+
+  def edit
+    @title    = "Edit Exercise"
+    @snapz    = SnapzSayz::ExerciseSpeak.editing_exsisting_exercise
+    @exercise = Exercise.find(params[:id])
+  end
+
+  def update
+    @exercise = Exercise.find(params[:id])
+    if @exercise.update_attributes(params[:exercise])
+      redirect_to @exercise
+      flash[:success] = SnapzSayz::ExerciseSpeak.updated_exercise
+    else
+      render :new
+    end
+  end
 end
