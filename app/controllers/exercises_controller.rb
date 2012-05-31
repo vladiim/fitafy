@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
 
   def index
+    @title     = "All Exercises"
     @exercises = Exercise.alphabetical_order
   end
 

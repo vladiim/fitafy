@@ -3,7 +3,7 @@ Given /^there are more than one exercise$/ do
   @second_exercise.update_attributes(name: "BBBB")
 
   @first_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
-  @first_exercise.update_attributesc(name: "AAAAA")
+  @first_exercise.update_attributes(name: "AAAAA")
 end
 
 When /^I visit the exercise list$/ do

@@ -5,12 +5,12 @@ class Exercise < ActiveRecord::Base
 
   validates :name, :description, presence: true
 
-  def alphabetical_order
+  def self.alphabetical_order
   	exercises = group_of_exercises
   	exercises.sort! { |a, b| a.name <=> b.name }
   end
 
-  def group_of_exercises
+  def self.group_of_exercises
   	Exercise.find(:all, limit: 20)
   end
 end
