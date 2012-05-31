@@ -16,6 +16,11 @@ class ExercisesController < ApplicationController
   	end
   end
 
+  def show
+    @exercise = Exercise.find(params[:id])
+    @title    = @exercise.name
+  end
+
   def edit
     @title    = "Edit Exercise"
     @snapz    = SnapzSayz::ExerciseSpeak.editing_exsisting_exercise
