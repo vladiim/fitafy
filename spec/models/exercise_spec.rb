@@ -4,6 +4,16 @@ describe Exercise do
 
   subject { Exercise.new }
 
+  describe "#group_of_exercises" do
+  	before do
+  	  @exercises = []
+  	  mock(Exercise).find(:all, limit: 20) { @exercises }
+  	end
+    it "should limit its results to 20 exercises" do
+      subject.group_of_exercises.should eq @exercises
+    end
+  end
+
   describe "#alphabetical_order" do
   	before do
   	  @b = OpenStruct.new(name: "BBBB")  	  

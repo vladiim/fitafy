@@ -11,6 +11,6 @@ class Exercise < ActiveRecord::Base
   end
 
   def group_of_exercises
-  	Exercise.all.limit 20
+  	Exercise.find(:all, limit: 20)
   end
 end
