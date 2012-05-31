@@ -8,19 +8,40 @@
     When I click the "New Exercise" new exercise link
     Then Snapz should say "Creatin' a new exercise? Just give me some deets" because I'm on a new exercise page
 
-  @focus
   Scenario: Admin creates exercise
     Given I'm on a new exercise page
     When I fill in the exercise form
     And I click the create exercise button "Create Exercise"
     Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
 
-  Scenario: Admin gets validation error on title
-    Given I'm on a new exercise page
-    When I fill in the exercise form
-    And I fill in the exercise title with nothing
-    And I click the "Create Exercise" button
-    Then I should see "can't be blank" on the page
+  @focus
+  Scenario Outline: Admin fills in the exercise form incorectly
+    Given I've filled in an exercise form
+    When I fill in the exercise "<field>" with "<value>"
+    And I click the create exercise button "Create Exercise"
+    Then I should get the exercise error message "<error>" on the "<field>"
+
+    Scenarios: blank input
+      | field                  | value | error            |
+      | "exercise_name"        | ""    | "can't be blank" |
+      | "exercise_description" | ""    | "can't be blank" |
+
+  # Scenario: Admin gets validation errors on exercise attrs
+  #   Given I've filled in an exercise form without a name
+  #   When I click the create exercise button "Create Exercise"
+  #   Then the exercise should validate with "can't be blank"
+
+  # Scenario: Admin gets validation errors on exercise attrs
+  # Given I've filled in an exercise form
+  # When I fill in the exercise <field> with <value>:
+  #   | field                  | value |
+  #   | "exercise_name"        | ""    |
+  #   | "exercise_description" | ""    |
+  # And I click the create exercise button "Create Exercise"
+  # Then the exercise should validate with <error> on the <field>:
+  #   | field                  | value            |
+  #   | "exercise_name"        | "can't be blank" |
+  #   | "exercise_description" | "can't be blank" |
 
   Scenario: Admin deletes exercise
     Given I'm on the edit exercise page
