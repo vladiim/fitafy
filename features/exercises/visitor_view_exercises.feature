@@ -3,12 +3,12 @@ Feature: Visitor manages exercises
   As a fitafy visitor
   I want to be able to look at all the exercise's details
 
-  @focus
   Scenario: Visitor views an individual exercise
     Given an exercise has been created
     When I visit the exercise's page
     Then I should see that exercise's details
 
+  @focus
   Scenario: Visitor views exercise list alphabetically
     Given there are more than one exercise
     When I visit the exercise list

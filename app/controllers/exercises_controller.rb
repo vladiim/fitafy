@@ -1,5 +1,9 @@
 class ExercisesController < ApplicationController
 
+  def index
+    @exercises = Exercise.alphabetical_order
+  end
+
   def new
   	@title    = "New Exercise"
   	@snapz 	  = SnapzSayz::ExerciseSpeak.creating_new_exercise
