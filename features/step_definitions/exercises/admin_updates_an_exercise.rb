@@ -5,13 +5,10 @@ end
 
 When /^I change the exercise's "(.*?)" with "(.*?)"$/ do |field, value|
   fill_in field, with: value
+  click_button "Update Exercise"
 end
 
-When /^I click the create exercise button "(.*?)"$/ do |create_exercise_button|
-  click_button create_exercise_button
-end
-
-Then /^I should see the "(.*?)"$/ do |value|
+Then /^I should see the "(.*?)" on the exercise's page$/ do |value|
   page.should have_content value
 end
 

@@ -13,31 +13,32 @@
     When I fill in the exercise form
     Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
 
-  Scenario Outline: Admin fills in the exercise form incorectly
-    Given I've filled in an exercise form
-    When I fill in the exercise "<field>" with "<value>"
-    And I click the create exercise button "Create Exercise"
-    Then I should get the exercise error message "<error>" on the "<field>"
+  Scenario: Admin fills in the exercise form incorrectly
+    Given I've filled in the exercise form
+    When I fill in the exercise "exercise_name" field with ""
+    Then I should get the exercise error message "can't be blank" on the "exercise_name"
 
-    Scenarios: blank input
-      | field                  | value | error            |
-      | "exercise_name"        | ""    | "can't be blank" |
-      | "exercise_description" | ""    | "can't be blank" |
-
-  Scenario Outline: Admin updates an exercise
+  @focus
+  Scenario: Admin updates an exercise
     Given I'm on an exsisting exercise's edit page
-    When I change the exercise's "<field>" with "<value>"
-    And I click the create exercise button "Create Exercise"
-    Then I should see the "<value>"
+    When I change the exercise's "exercise_name" with "shabazz"
+    Then I should see the "shabazz" on the exercise's page
     And Snapz should say "Man you updated the smack outta that exercise!" to let me know I've updated the exercise
 
-    Scenarios: update exercise attribute
-      | field | value |
-      | "exercise_name" | "sunz of man" |
-      | "exercise_description" | "60 second assasin" |
-      | "exercise_tips" | "hell razah" |
-      | "exercise_categories" | "shabazz" |
-      | "exercise_equipment" | "prodigal sunn" |
+  # Scenario Outline: Admin updates an exercise
+  #   Given I'm on an exsisting exercise's edit page
+  #   When I change the exercise's "<field>" with "<value>"
+  #   And I click the create exercise button "Create Exercise"
+  #   Then I should see the "<value>"
+  #   And Snapz should say "Man you updated the smack outta that exercise!" to let me know I've updated the exercise
+
+  #   Scenarios: update exercise attribute
+  #     | field | value |
+  #     | "exercise_name" | "sunz of man" |
+  #     | "exercise_description" | "60 second assasin" |
+  #     | "exercise_tips" | "hell razah" |
+  #     | "exercise_categories" | "shabazz" |
+  #     | "exercise_equipment" | "prodigal sunn" |
 
   Scenario: Admin deletes exercise
     Given I'm on the edit exercise page
