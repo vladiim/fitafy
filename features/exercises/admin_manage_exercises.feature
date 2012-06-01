@@ -1,4 +1,4 @@
- Feature: Admin Manages exercises
+Feature: Admin Manages exercises
   In order to have lots of exercises for our users
   As a fitafy admin
   I want to be able to manage exercises

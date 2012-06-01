@@ -1,6 +1,6 @@
 module SnapzSayz
 
-  class Information
+  module Information
   	def self.title
   	  options = [
         "fitafy fly!",
@@ -14,7 +14,7 @@ module SnapzSayz
   	end
   end
 
-  class ExerciseSpeak
+  module ExerciseSpeak
     def self.all_exercises
       "Exercises up the yoyo!"
     end
@@ -41,6 +41,12 @@ module SnapzSayz
 
     def self.deleted_exercise
       "That's one dead exercise... I'll miss that guy"
+    end
+  end
+
+  module WorkoutSpeak
+    def self.creating_new_workout
+      "W00t! New workout comin'!"
     end
   end
 end
