@@ -30,7 +30,6 @@ Feature: Admin Manages exercises
     Then I should see the "supreme clientel" on the exercise's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
-  @focus
   Scenario: Admin deletes exercise
     Given I'm on the edit exercise page
     When I delete the exercise by clicking "Delete Exercise"

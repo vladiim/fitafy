@@ -22,8 +22,10 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    @title   = "Edit Workout"
-    @workout = Workout.find(params[:id])
+    @title                = "Edit Workout"
+    @snapz                = SnapzSayz::WorkoutSpeak.editing_exsisting_workout
+    @snapz_confirm_delete = SnapzSayz::WorkoutSpeak.deleting_workout_confirmation
+    @workout              = Workout.find(params[:id])
   end
 
   def update
@@ -34,5 +36,11 @@ class WorkoutsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    Workout.destroy(params[:id])
+    redirect_to root_path
+    flash[:success] = SnapzSayz::WorkoutSpeak.deleted_workout
   end
 end

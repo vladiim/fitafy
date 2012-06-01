@@ -13,6 +13,11 @@ Feature: Trainer manages exercises
     When I fill in the workout form
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
 
+  Scenario: Trainer edits a workout
+    Given I want to update a workout's details
+    When I'm on the edit workout page
+    Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
+
   Scenario: Trainer fills in the workout form incorrectly
     Given I've filled in the workout form
     When I fill in the workout "workout_name" field with ""
@@ -24,7 +29,8 @@ Feature: Trainer manages exercises
     Then I should see the "supreme clientel" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
-  # Scenario: Admin deletes exercise
-  #   Given I'm on the edit exercise page
-  #   When I delete the exercise by clicking "Delete Exercise"
-  #   Then Snapz should give "That exercise is gawn!" deleted exercise message
+  @focus
+  Scenario: Trainer deletes workout
+    Given I'm on the edit workout page
+    When I delete the workout by clicking "Delete Workout"
+    Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message

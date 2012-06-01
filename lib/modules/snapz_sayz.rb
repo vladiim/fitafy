@@ -56,9 +56,17 @@ module SnapzSayz
     def self.workout_updated
       "Snip, snap we update workouts like dat!"
     end
-  end
 
-  def self.deleted_workout
+    def self.editing_exsisting_workout
+      "Gonna switch up the workout eh? Nice... nice"
+    end
+
+    def self.deleted_workout
       "That's one dead workout... I'll miss that guy"
     end
+  
+    def self.deleting_workout_confirmation
+      "Hey, let's not be rash... you really gonna kill this workout?"
+    end
+  end
 end
