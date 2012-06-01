@@ -1,5 +1,7 @@
 module CreateWorkout
 
+  WORKOUT_ATTRIBUTES = {name: "no said date", notes: "These military arm' marine, sub machine gun"}
+
   def create_workout
   	fill_in_workout_form
   	click_workout_button
@@ -7,8 +9,8 @@ module CreateWorkout
 
   def fill_in_workout_form
   	visit_new_workout_path
-    fill_in "workout_name", with: "no said date"
-    fill_in "workout_notes", with: "These military arm' marine, sub machine gun"
+    fill_in "workout_name", with: WORKOUT_ATTRIBUTES[:name]
+    fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end
 
   def click_workout_button

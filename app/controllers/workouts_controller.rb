@@ -20,4 +20,19 @@ class WorkoutsController < ApplicationController
   	@workout = Workout.find(params[:id])
   	@title   = @workout.name
   end
+
+  def edit
+    @title   = "Edit Workout"
+    @workout = Workout.find(params[:id])
+  end
+
+  def update
+    @workout = Workout.find(params[:id])
+    if @workout.update_attributes(params[:workout])
+      redirect_to @workout
+      flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
+    else
+      render :new
+    end
+  end
 end

@@ -1,5 +1,5 @@
 Given /^I'm on an exsisting exercise's edit page$/ do
-  @exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
+  @exercise = create_exercise
   visit edit_exercise_path @exercise
 end
 
