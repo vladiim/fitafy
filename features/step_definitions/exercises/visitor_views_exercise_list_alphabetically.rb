@@ -11,5 +11,6 @@ When /^I visit the exercise list$/ do
 end
 
 Then /^the exercises should be in alphabetical order$/ do
-  response.body.should =~ /#{@first_exercise.name}.*#{@second_exercise.name}/m
+  page.should have_selector("section article:nth-child(1) header h3", content: "AAAAA")
+  page.should have_selector("section article:nth-child(2) header h3", content: "BBBB")
 end
