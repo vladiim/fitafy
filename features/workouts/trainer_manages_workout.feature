@@ -8,16 +8,16 @@ Feature: Trainer manages exercises
     When I click the "New Workout" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
-  @focus
   Scenario: Trainer creates workout
     Given I'm on a new workout page
     When I fill in the workout form
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
 
-  # Scenario: Admin fills in the exercise form incorrectly
-  #   Given I've filled in the exercise form
-  #   When I fill in the exercise "exercise_name" field with ""
-  #   Then I should get the exercise error message "can't be blank" on the "exercise_name"
+  @focus
+  Scenario: Trainer fills in the workout form incorrectly
+    Given I've filled in the workout form
+    When I fill in the workout "workout_name" field with ""
+    Then I should get the workout error message "can't be blank"
 
   # Scenario: Admin updates an exercise
   #   Given I'm on an exsisting exercise's edit page

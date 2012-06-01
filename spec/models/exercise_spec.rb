@@ -26,9 +26,21 @@ describe Exercise do
 
   describe "#validations" do
     before { @exercise = create_valid_exercise }
-    context "with name" do
-       it "should be valid" do
+    context "with valid attributes" do
+      it "should be valid" do
+        @exercise.should be_valid
+      end
+    end
+    context "without name" do
+       it "shouldn't be valid" do
          @exercise.name = nil
+         @exercise.should_not be_valid
+       end
+     end
+
+     context "without description" do
+       it "shouldn't be valid" do
+         @exercise.description = nil
          @exercise.should_not be_valid
        end
      end
