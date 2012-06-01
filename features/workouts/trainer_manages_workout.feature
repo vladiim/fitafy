@@ -18,11 +18,10 @@ Feature: Trainer manages exercises
     When I fill in the workout "workout_name" field with ""
     Then I should get the workout error message "can't be blank"
 
-  @focus
   Scenario: Trainer updates a workout
     Given I'm on an exsisting workout's edit page
     When I change the workout's "workout_name" with "supreme clientel"
-    Then I should see the "supreme clientel" on the exercise's page
+    Then I should see the "supreme clientel" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
   # Scenario: Admin deletes exercise

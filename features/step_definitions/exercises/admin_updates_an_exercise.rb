@@ -1,6 +1,6 @@
 Given /^I'm on an exsisting exercise's edit page$/ do
-  @exercise = create_exercise
-  visit edit_exercise_path @exercise
+  create_exercise
+  click_link "Edit Exercise"
 end
 
 When /^I change the exercise's "(.*?)" with "(.*?)"$/ do |field, value|

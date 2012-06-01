@@ -4,7 +4,6 @@
   = simple_form_for @workout do |f|
     = f.error_notification
 
-    = f.input :name
-    = f.input :notes
+    = render partial: 'form', locals: { f: f }
 
     = f.submit "Create Workout", class: "btn btn-primary"

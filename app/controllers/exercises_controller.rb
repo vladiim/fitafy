@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
   def create
   	@exercise = Exercise.new(params[:exercise])
   	if @exercise.save
-  	  redirect_to root_path
+  	  redirect_to @exercise
   	  flash[:success] = SnapzSayz::ExerciseSpeak.created_exercise
   	else
   	  render :new
