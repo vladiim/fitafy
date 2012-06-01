@@ -44,9 +44,8 @@ class ExercisesController < ApplicationController
   end
 
   def destroy
-    @exercise = Exericse.find(params[:id])
-    @exercise.destroy
-    redirect_to :root_path
+    Exercise.destroy(params[:id])
+    redirect_to root_path
     flash[:success] = SnapzSayz::ExerciseSpeak.deleted_exercise
   end
 end

@@ -4,4 +4,8 @@ class Exercise < ActiveRecord::Base
   validates_presence_of :name, :description
 
   scope :alphabetical_order, -> { order :name }
+
+  def delete_exercise!
+  	self.destroy
+  end
 end

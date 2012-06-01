@@ -40,7 +40,7 @@ module SnapzSayz
     end
 
     def self.deleted_exercise
-      "That's one dead exercise... I'll miss that guy"
+      "That exercise is gawn!"
     end
   end
 
@@ -57,4 +57,8 @@ module SnapzSayz
       "Snip, snap we update workouts like dat!"
     end
   end
+
+  def self.deleted_workout
+      "That's one dead workout... I'll miss that guy"
+    end
 end
