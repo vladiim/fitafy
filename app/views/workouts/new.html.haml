@@ -2,5 +2,9 @@
 
 %section
   = simple_form_for @workout do |f|
+    = f.error_notification
+
+    = f.input :name
+    = f.input :notes
 
     = f.submit "Create Workout", class: "btn btn-primary"

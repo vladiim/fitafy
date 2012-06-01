@@ -3,16 +3,16 @@ Feature: Trainer manages exercises
   As a personal trainer
   I want to be able to manage workouts
 
-  @focus
   Scenario: Trainer builds new exercise
     Given I want to create a new workout
     When I click the "New Workout" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
-  # Scenario: Admin creates exercise
-  #   Given I'm on a new exercise page
-  #   When I fill in the exercise form
-  #   Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
+  @focus
+  Scenario: Trainer creates workout
+    Given I'm on a new workout page
+    When I fill in the workout form
+    Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
 
   # Scenario: Admin fills in the exercise form incorrectly
   #   Given I've filled in the exercise form

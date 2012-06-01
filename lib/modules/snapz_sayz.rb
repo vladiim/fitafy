@@ -48,5 +48,9 @@ module SnapzSayz
     def self.creating_new_workout
       "W00t! New workout comin'!"
     end
+
+    def self.created_workout
+      "New workout! You know sumpin'? The world's a better place"
+    end
   end
 end
