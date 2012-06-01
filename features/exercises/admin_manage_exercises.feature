@@ -18,36 +18,13 @@
     When I fill in the exercise "exercise_name" field with ""
     Then I should get the exercise error message "can't be blank" on the "exercise_name"
 
-  @focus
   Scenario: Admin updates an exercise
     Given I'm on an exsisting exercise's edit page
     When I change the exercise's "exercise_name" with "shabazz"
     Then I should see the "shabazz" on the exercise's page
     And Snapz should say "Man you updated the smack outta that exercise!" to let me know I've updated the exercise
 
-  # Scenario Outline: Admin updates an exercise
-  #   Given I'm on an exsisting exercise's edit page
-  #   When I change the exercise's "<field>" with "<value>"
-  #   And I click the create exercise button "Create Exercise"
-  #   Then I should see the "<value>"
-  #   And Snapz should say "Man you updated the smack outta that exercise!" to let me know I've updated the exercise
-
-  #   Scenarios: update exercise attribute
-  #     | field | value |
-  #     | "exercise_name" | "sunz of man" |
-  #     | "exercise_description" | "60 second assasin" |
-  #     | "exercise_tips" | "hell razah" |
-  #     | "exercise_categories" | "shabazz" |
-  #     | "exercise_equipment" | "prodigal sunn" |
-
   Scenario: Admin deletes exercise
     Given I'm on the edit exercise page
     When I delete the exercise by clicking "Delete Exercise"
     Then Snapz should give "That exercise is gawn!" deleted exercise message
-
-  Scenario: Admin update exercise
-    Given I'm on an exercise's update section
-    When I've changed the title to "supreme clientel"
-    And clicked "Update Exercise"
-    Then I should see the new "Supreme Clientel" title
-    And Snapz should give "Man you updated the smack outta that exercise!" updated exercise message

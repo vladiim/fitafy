@@ -38,5 +38,9 @@ module SnapzSayz
     def self.deleting_exercise_confirmation
       "Woah cowboy... you really wanna kill this exercise?"
     end
+
+    def self.deleted_exercise
+      "That's one dead exercise... I'll miss that guy"
+    end
   end
 end
