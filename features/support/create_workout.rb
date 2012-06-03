@@ -1,6 +1,6 @@
 module CreateWorkout
 
-  WORKOUT_ATTRIBUTES = {name: "no said date", notes: "These military arm' marine, sub machine gun"}
+  WORKOUT_ATTRIBUTES = {name: "no said date", notes: "these military arm' marine. sub machine gun"}
 
   def create_workout
   	fill_in_workout_form

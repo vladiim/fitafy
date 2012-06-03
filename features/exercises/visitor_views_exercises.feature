@@ -1,4 +1,4 @@
-Feature: Visitor manages exercises
+Feature: Visitor views exercises
   In order to find out about exercises
   As a fitafy visitor
   I want to be able to look at all the exercise's details
@@ -8,6 +8,7 @@ Feature: Visitor manages exercises
     When I visit the exercise's page
     Then I should see that exercise's details
 
+  @focus
   Scenario: Visitor views exercise list alphabetically
     Given there are more than one exercise
     When I visit the exercise list

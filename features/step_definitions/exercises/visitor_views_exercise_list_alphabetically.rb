@@ -7,7 +7,8 @@ Given /^there are more than one exercise$/ do
 end
 
 When /^I visit the exercise list$/ do
-  visit exercises_path
+  visit root_path
+  click_link "Exercises"
 end
 
 Then /^the exercises should be in alphabetical order$/ do
