@@ -1,9 +1,9 @@
 class WorkoutsController < ApplicationController
 
   def new
+    @workout = Workout.new
   	@title   = "New Workout"
   	@snapz   = SnapzSayz::WorkoutSpeak.creating_new_workout
-  	@workout = Workout.new
   end
 
   def create
@@ -18,14 +18,14 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout = Workout.find(params[:id])
-  	@title   = @workout.name
+  	@title   = @workout.titleize_name
   end
 
   def edit
+    @workout              = Workout.find(params[:id])
     @title                = "Edit Workout"
     @snapz                = SnapzSayz::WorkoutSpeak.editing_exsisting_workout
     @snapz_confirm_delete = SnapzSayz::WorkoutSpeak.deleting_workout_confirmation
-    @workout              = Workout.find(params[:id])
   end
 
   def update

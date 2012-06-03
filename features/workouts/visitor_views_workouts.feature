@@ -3,11 +3,11 @@ Feature: Visitor views workouts
   As a fitafy visitor
   I want to be able to find and view workouts
 
-  # @focus
+  @focus
   Scenario: Visitor views an individual workout
     Given a workout exsists
     When I visit the workout's page
-    Then I should see that workout's details "No Said Date" and "These military arm' marine. Sub machine gun"
+    Then I should see that workout's details "No Said Date" and "These military arm' marine. sub machine gun"
 
 #   Scenario: Visitor views an individual exercise
 #     Given an exercise has been created

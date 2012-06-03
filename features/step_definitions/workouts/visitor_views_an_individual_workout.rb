@@ -3,9 +3,10 @@ Given /^a workout exsists$/ do
 end
 
 When /^I visit the workout's page$/ do
-  visit workout_path(@workout)
+  # already on the workout's page
 end
 
-Then /^I should see that workout's details "(.*?)" and "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see that workout's details "(.*?)" and "(.*?)"$/ do |workout_name, workout_notes|
+  page.should have_content workout_name
+  page.should have_content workout_notes
 end
