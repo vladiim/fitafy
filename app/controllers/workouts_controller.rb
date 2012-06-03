@@ -1,5 +1,10 @@
 class WorkoutsController < ApplicationController
 
+  def index
+    @workouts = Workout.all
+    @title    = "Latest Workouts"
+  end
+
   def new
     @workout = Workout.new
   	@title   = "New Workout"
