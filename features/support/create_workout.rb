@@ -9,6 +9,10 @@ module CreateWorkout
 
   def fill_in_workout_form
   	visit_new_workout_path
+    create_exercise
+    select "3", from: :sets
+    select "15", from: :reps
+    click_link "Next"
     fill_in "workout_name", with: WORKOUT_ATTRIBUTES[:name]
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end

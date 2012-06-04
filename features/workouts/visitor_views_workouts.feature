@@ -14,7 +14,6 @@ Feature: Visitor views workouts
     Then I should see a list of workouts
     And the "Latest Workouts" latest workouts should be listed by default
 
-  @focus
   Scenario: Visitor clicks link to workout from list
     Given there are workouts
     When I visit the list of workouts

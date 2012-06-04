@@ -1,6 +1,6 @@
 class Workout < ActiveRecord::Base
 
-  attr_accessible :name, :notes
+  attr_accessible :name, :notes, :exercises
 
   validates_presence_of :name, :notes
 

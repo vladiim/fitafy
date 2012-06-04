@@ -4,10 +4,14 @@ include CreateArelWorkout
 
 describe Workout do
   subject { Workout.new }
+  let(:exercises) { [{ id: 1, sets: 4, reps: [3,4,5] }, 
+                    { id: 3, sets: 5, reps: [4] }]
+  } # workout.exercises takes a serialized hash of attributes
 
   def create_valid_workout
-    Workout.new(name:  "criminology",
-                 notes: "dealin in my cypher. i revolve around sciences",
+    Workout.new(name:      "criminology",
+                notes:     "dealin in my cypher. i revolve around sciences",
+                exercises: exercises
     )
   end
 
@@ -19,6 +23,10 @@ describe Workout do
 
     it "should capitalize the notes" do
       @it.capitalize_notes.should eq "Dealin in my cypher. i revolve around sciences"
+    end
+
+    it "should accept a hash of exercise attributes" do
+      @it.exercises.should eq exercises
     end
   end
 

@@ -12,6 +12,6 @@ Then /^Snapz should say "(.*?)" to let me know I've updated the workout$/ do |sn
   page.should have_content snapz_sayz
 end
 
-Then /^I should see the "(.*?)" on the workouts's page$/ do |updated_attr|
+Then /^I should see "(.*?)" on the workouts's page$/ do |updated_attr|
   page.should have_content updated_attr
 end
