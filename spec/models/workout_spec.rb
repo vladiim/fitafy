@@ -17,6 +17,7 @@ describe Workout do
 
   describe "#attributes" do
     before { @it = create_valid_workout }
+
     it "should titleize the name" do
       @it.titleize_name.should eq "Criminology"
     end
@@ -31,7 +32,11 @@ describe Workout do
   end
 
   describe "#validations" do
-    before { @it = create_valid_workout }
+    before do
+      @it = create_valid_workout
+      mock(@it).exercises_are_right_type { true }
+    end
+
     context "with valid attributes" do
       it "should be valid" do
         @it.should be_valid
@@ -58,5 +63,19 @@ describe Workout do
          @it.should_not be_valid
        end
      end
+
+     context "exercises are wrong type" do
+       it "souldn't be valid" do
+         mock(@it).exercises_are_right_type { false }
+         @it.should_not be_valid
+       end
+     end
+  end
+
+  describe "#count_number_of_exercises" do
+    it "should return the number of exercises" do
+      subject.exercises = exercises
+      subject.count_number_of_exercises.should eq 2
+    end
   end
 end
