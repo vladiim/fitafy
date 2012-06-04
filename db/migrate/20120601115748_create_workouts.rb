@@ -3,7 +3,7 @@ class CreateWorkouts < ActiveRecord::Migration
     create_table :workouts do |t|
       t.string :name, null: false
       t.text :notes, null: false
-      t.text :exercises
+      t.text :exercises, null: false
 
       t.timestamps
     end

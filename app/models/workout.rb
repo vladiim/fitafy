@@ -2,7 +2,9 @@ class Workout < ActiveRecord::Base
 
   attr_accessible :name, :notes, :exercises
 
-  validates_presence_of :name, :notes
+  serialize :exercises
+
+  validates_presence_of :name, :notes, :exercises
 
   def titleize_name
   	name.titleize

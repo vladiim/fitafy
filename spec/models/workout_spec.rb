@@ -51,5 +51,12 @@ describe Workout do
          @it.should_not be_valid
        end
      end
+
+     context "without exercises" do
+       it "should't be valid" do
+         @it.exercises = nil
+         @it.should_not be_valid
+       end
+     end
   end
 end
