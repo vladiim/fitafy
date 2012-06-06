@@ -19,7 +19,7 @@ describe Workout do
   }
 
   def mock_exercise_is_right_length_checks boolean_variable
-    mock(subject).exercise_right_length?(exercise)        { boolean_variable }
+    mock(subject).exercise_right_size?(exercise)        { boolean_variable }
     mock(subject).exercise_keys_correct?(exercise)        { boolean_variable }
     mock(subject).exercise_value_types_correct?(exercise) { boolean_variable }
   end
@@ -124,6 +124,14 @@ describe Workout do
         it "should return false" do
           subject.exercise_is_right_type?(exercise).should_not be
         end
+      end
+    end
+
+    describe "#exercise_right_length?" do
+      it "should have three attributes" do
+        exercise = OpenStruct.new
+        mock(exercise).size { 3 }
+        subject.exercise_right_size?(exercise).should be
       end
     end
   end

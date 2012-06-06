@@ -48,8 +48,12 @@ class Workout < ActiveRecord::Base
   end
 
   def exercise_is_right_type? exercise
-    exercise_right_length? exercise
+    exercise_right_size? exercise
     exercise_keys_correct? exercise
     exercise_value_types_correct? exercise
+  end
+
+  def exercise_right_size? exercise
+    exercise.size == EXERCISE_ATTRIBUTE_COUNT
   end
 end
