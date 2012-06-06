@@ -18,6 +18,12 @@ describe Workout do
                     { id: 3, sets: 5, reps: [] }]
   }
 
+  def mock_exercise_is_right_length_checks boolean_variable
+    mock(subject).exercise_right_length?(exercise)        { boolean_variable }
+    mock(subject).exercise_keys_correct?(exercise)        { boolean_variable }
+    mock(subject).exercise_value_types_correct?(exercise) { boolean_variable }
+  end
+
   describe "#attributes" do
 
     it "should titleize the name" do
@@ -104,12 +110,20 @@ describe Workout do
     end
 
     describe "#exercise_is_right_type?" do
+      let(:exercise) { Object.new }
+
       context "right type" do
-        it "should return true"
+        before { mock_exercise_is_right_length_checks true }
+        it "should return true" do
+          subject.exercise_is_right_type?(exercise).should be
+        end
       end
 
       context "not right type" do
-        it "should return false"
+        before { mock_exercise_is_right_length_checks false }
+        it "should return false" do
+          subject.exercise_is_right_type?(exercise).should_not be
+        end
       end
     end
   end
