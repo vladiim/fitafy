@@ -23,6 +23,8 @@ class Workout < ActiveRecord::Base
   # TODO: ensure there's always an empty array for reps
 
   def exercises_are_right_type
-    errors.add :exercises, "dere is an error mon"
+    unless each_exercise_is_the_right_type
+      errors.add :exercises, "dere is an error mon"
+    end
   end
 end

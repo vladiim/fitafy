@@ -66,9 +66,17 @@ describe Workout do
 
   describe "#exercises_are_right_type" do
 
-    context "wrong type" do
+    context "one of the exercises is wrong" do
+      before { mock(subject).each_exercise_is_the_right_type { false } }
       it "should not be valid" do
         subject.should_not be_valid
+      end
+    end
+
+    context "all the exercises are right" do
+      before { mock(subject).each_exercise_is_the_right_type { true } }
+      it "should be valid" do
+        subject.should be_valid
       end
     end
   end
