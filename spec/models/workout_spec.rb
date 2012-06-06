@@ -81,9 +81,24 @@ describe Workout do
     end
 
     describe "#each_exercise_is_the_right_type" do
-      it "iterates through each exercise" do
-        mock(subject).each_exercise { subject.exercises }
-        subject.each_exercise_is_the_right_type.should eq subject.exercises
+      it "should check each exercise" do
+        exercise = Object.new
+        mock(subject).each_exercise { [exercise] }
+        subject.each_exercise_is_the_right_type.should be
+      end
+    end
+
+    describe "#each_exercise" do
+      it "should yield each exercise"
+    end
+
+    describe "#exercise_is_right_type?" do
+      context "right type" do
+        it "should return true"
+      end
+
+      context "not right type" do
+        it "should return false"
       end
     end
   end

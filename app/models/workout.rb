@@ -30,6 +30,7 @@ class Workout < ActiveRecord::Base
 
   def each_exercise_is_the_right_type
     each_exercise do |exercise|
+      exercise_is_right_type? exercise
     end
   end
 end
