@@ -27,4 +27,9 @@ class Workout < ActiveRecord::Base
       errors.add :exercises, "dere is an error mon"
     end
   end
+
+  def each_exercise_is_the_right_type
+    each_exercise do |exercise|
+    end
+  end
 end

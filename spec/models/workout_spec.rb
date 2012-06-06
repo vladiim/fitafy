@@ -79,5 +79,12 @@ describe Workout do
         subject.should be_valid
       end
     end
+
+    describe "#each_exercise_is_the_right_type" do
+      it "iterates through each exercise" do
+        mock(subject).each_exercise { subject.exercises }
+        subject.each_exercise_is_the_right_type.should eq subject.exercises
+      end
+    end
   end
 end
