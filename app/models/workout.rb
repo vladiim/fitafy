@@ -7,7 +7,10 @@ class Workout < ActiveRecord::Base
   serialize :exercises
 
   validates_presence_of :name, :notes, :exercises
+
   validate :exercises_are_right_type
+
+  EXERCISE_ATTRIBUTE_COUNT = 3
 
   def titleize_name
   	name.titleize
@@ -17,14 +20,9 @@ class Workout < ActiveRecord::Base
   	notes.capitalize
   end
 
-  def exercises_are_right_type
-    count_number_of_exercises
-    check_exercises_length
-    check_exercise_keys
-    check_exercise_values
-  end
+  # TODO: ensure there's always an empty array for reps
 
-  def count_number_of_exercises
-  	self.exercises.count
+  def exercises_are_right_type
+    errors.add :exercises, "dere is an error mon"
   end
 end
