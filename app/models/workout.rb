@@ -39,6 +39,10 @@ class Workout < ActiveRecord::Base
     end
   end
 
+  def count_number_of_exercises
+    self.exercises.count
+  end
+
   def find_exercise_by_index index
     self.exercises[index]
   end
