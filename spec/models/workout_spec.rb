@@ -89,6 +89,14 @@ describe Workout do
       end
     end
 
+    describe "#find_exercise_by_index" do
+      context "with index 0" do
+        it "should return the first exercise" do
+          subject.find_exercise_by_index(0).should eq subject.exercises[0]
+        end
+      end
+    end
+
     describe "#count_number_of_exercises" do
       it "should return 2"
     end

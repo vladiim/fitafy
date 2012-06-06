@@ -34,8 +34,12 @@ class Workout < ActiveRecord::Base
     # iterate through each exercise and check
     # if it has the right attributes
     (0..exercises_number).each do |n|
-      exercise = self.exercises[n]
+      exercise = find_exercise_by_index n
       exercise_is_right_type? exercise
     end
+  end
+
+  def find_exercise_by_index index
+    self.exercises[index]
   end
 end
