@@ -82,14 +82,15 @@ describe Workout do
 
     describe "#each_exercise_is_the_right_type" do
       it "should check each exercise" do
-        exercise = Object.new
-        mock(subject).each_exercise { [exercise] }
+        mock(subject).count_number_of_exercises { 1 }
+        exercise = subject.exercises[0]
+        mock(subject).exercise_is_right_type?(exercise)
         subject.each_exercise_is_the_right_type.should be
       end
     end
 
-    describe "#each_exercise" do
-      it "should yield each exercise"
+    describe "#count_number_of_exercises" do
+      it "should return 2"
     end
 
     describe "#exercise_is_right_type?" do

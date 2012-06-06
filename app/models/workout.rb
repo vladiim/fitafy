@@ -29,7 +29,12 @@ class Workout < ActiveRecord::Base
   end
 
   def each_exercise_is_the_right_type
-    each_exercise do |exercise|
+    exercises_number = count_number_of_exercises - 1
+
+    # iterate through each exercise and check
+    # if it has the right attributes
+    (0..exercises_number).each do |n|
+      exercise = self.exercises[n]
       exercise_is_right_type? exercise
     end
   end
