@@ -127,11 +127,23 @@ describe Workout do
       end
     end
 
-    describe "#exercise_right_length?" do
+    describe "#exercise_right_size?" do
       it "should have three attributes" do
         exercise = OpenStruct.new
         mock(exercise).size { 3 }
         subject.exercise_right_size?(exercise).should be
+      end
+    end
+
+    describe "#exercise_keys_correct?" do
+      context "with id, sets and reps" do
+        before do
+          @exercise = Hash.new(id: "", sets: "", reps: "")
+        end
+
+        it "should be true" do
+          subject.exercise_keys_correct?(@exercise).should be
+        end
       end
     end
   end

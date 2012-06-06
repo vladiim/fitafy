@@ -10,7 +10,8 @@ class Workout < ActiveRecord::Base
 
   validate :exercises_are_right_type
 
-  EXERCISE_ATTRIBUTE_COUNT = 3
+  EXERCISE_ATTRIBUTE_SIZE = 3
+  EXERCISE_KEYS = %w[id sets reps]
 
   def titleize_name
   	name.titleize
@@ -54,6 +55,12 @@ class Workout < ActiveRecord::Base
   end
 
   def exercise_right_size? exercise
-    exercise.size == EXERCISE_ATTRIBUTE_COUNT
+    exercise.size == EXERCISE_ATTRIBUTE_SIZE
+  end
+
+  def exercise_keys_correct? exercise
+    exercise.each_key do |key|
+      EXERCISE_KEYS.include? key.to_s
+    end
   end
 end
