@@ -136,13 +136,20 @@ describe Workout do
     end
 
     describe "#exercise_keys_correct?" do
-      context "with id, sets and reps" do
-        before do
-          @exercise = Hash.new(id: "", sets: "", reps: "")
-        end
+      before { @exercise = Hash.new(id: "", sets: "", reps: "") }
 
+      context "with id, sets and reps" do
         it "should be true" do
           subject.exercise_keys_correct?(@exercise).should be
+        end
+      end
+
+      context "without an id, set or rep key" do
+        it "should be false" do
+          @exercise.each_key do |key|
+            @exercise[key] = nil
+            subject.exercise_keys_correct?(@exercise).should_not be
+          end
         end
       end
     end
