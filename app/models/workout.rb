@@ -69,11 +69,16 @@ class Workout < ActiveRecord::Base
   def exercise_value_types_correct? exercise
     # the first two values should be an Integer
     # the third value should be an Array of Integers
-    raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value unless exercise.values[0].is_a? Integer
-    raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value unless exercise.values[1].is_a? Integer
-    raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value unless  exercise.values[2].is_a? Array
+
+    raise_wrong_exercise_value unless exercise.values[0].is_a? Integer
+    raise_wrong_exercise_value unless exercise.values[1].is_a? Integer
+    raise_wrong_exercise_value unless  exercise.values[2].is_a? Array
     exercise.values[2].each do |value|
-      raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value unless  value.is_a? Integer
+      raise_wrong_exercise_value unless  value.is_a? Integer
     end
+  end
+
+  def raise_wrong_exercise_value
+    raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value
   end
 end
