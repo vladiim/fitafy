@@ -181,27 +181,22 @@ describe Workout do
         end
       end
 
-      context "first value isn't an Integer" do
-        it "should be false" do
-          exercise = { x: "", y: 1, z: [1,209,999] }
-          lambda { subject.exercise_value_types_correct?(exercise) }.
-                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+      context "with an incorrect value" do
+        before do
+          @exercises = [
+            # first & second  value aren't Integers
+            { x: "", y: 1, z: [1,209,999] },
+            { x: 3, y: "", z: [1,209,999] },
+            # third value isn't array
+            { x: 3, y: 33, z: 999 }
+          ]
         end
-      end
 
-      context "second value isn't an Integer" do
         it "should be false" do
-          exercise = { x: 3, y: "", z: [1,209,999] }
-          lambda { subject.exercise_value_types_correct?(exercise) }.
+          @exercises.each do |exercise|
+            lambda { subject.exercise_value_types_correct?(exercise) }.
                   should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
-        end
-      end
-
-      context "third value isn't an Array" do
-        it "should be false" do
-          exercise = { x: 3, y: 33, z: 999 }
-          lambda { subject.exercise_value_types_correct?(exercise) }.
-                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+          end
         end
       end
 
