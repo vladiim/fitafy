@@ -72,9 +72,11 @@ class Workout < ActiveRecord::Base
 
     first_value = exercise.values[0]
     second_value = exercise.values[1]
+    # third_value = exercise.values[2]
 
     value_is_an_integer? first_value
     value_is_an_integer? second_value
+    # value_is_an_array? third_value
 
     raise_wrong_exercise_value unless  exercise.values[2].is_a? Array
     exercise.values[2].each do |value|
@@ -85,6 +87,10 @@ class Workout < ActiveRecord::Base
   def value_is_an_integer? value
     raise_wrong_exercise_value unless value.is_a? Integer
   end
+
+  # def value_is_an_array? value
+  #   raise_wrong_exercise_value unless value.is_a? Array
+  # end
 
   def raise_wrong_exercise_value
     raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value

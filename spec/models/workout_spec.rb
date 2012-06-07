@@ -181,32 +181,38 @@ describe Workout do
         end
       end
 
-      context "with an incorrect value" do
+      context "without Integers" do
         before do
-          @exercises = [
-            # first & second  value aren't Integers
-            { x: "", y: 1, z: [1,209,999] },
-            { x: 3, y: "", z: [1,209,999] },
-            # third value isn't array
-            { x: 3, y: 33, z: 999 }
-          ]
+          value = Object.new
+          mock(@exercise).value_is_an_integer?(value) { false }
+          mock(@exercise).value_is_an_array?(value) { false }
         end
 
         it "should be false" do
-          @exercises.each do |exercise|
-            lambda { subject.exercise_value_types_correct?(exercise) }.
-                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
-          end
+          subject.exercise_value_types_correct?(@exercise).
+                  should raise_error RuntimeError, 
+                  "Wayda second! That value is wrong hombre!"
         end
       end
 
-      context "third value isn't an Array of Integers" do
-        it "should be false" do
-          exercise = { x: 3, y: 33, z: ["", 44, ""] }
-          lambda { subject.exercise_value_types_correct?(exercise) }.
-                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
-        end
-      end
+      # context "with an incorrect value" do
+      #   before do
+      #     @exercises = [
+      #       # first & second  value aren't Integers
+      #       { x: "", y: 1, z: [1,209,999] },
+      #       { x: 3, y: "", z: [1,209,999] },
+      #       # third value isn't array
+      #       { x: 3, y: 33, z: 999 }
+      #     ]
+      #   end
+
+      #   it "should be false" do
+      #     @exercises.each do |exercise|
+      #       lambda { subject.exercise_value_types_correct?(exercise) }.
+      #             should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+      #     end
+      #   end
+      # end
     end
   end
 end
