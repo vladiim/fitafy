@@ -11,7 +11,7 @@ class Workout < ActiveRecord::Base
   validate :exercises_are_right_type
 
   EXERCISE_ATTRIBUTE_SIZE = 3
-  EXERCISE_KEYS = %w[id sets reps]
+  EXERCISE_KEYS = [:id, :sets, :reps]
 
   def titleize_name
   	name.titleize
@@ -59,8 +59,14 @@ class Workout < ActiveRecord::Base
   end
 
   def exercise_keys_correct? exercise
-    exercise.each_key do |key|
-      EXERCISE_KEYS.include? key.to_s
+    EXERCISE_KEYS.each do |key|
+      unless exercise.has_key? key
+        raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_key
+      end
     end
+  end
+
+  def exercise_value_types_correct? exercise
+    exercise[0].class? Integer
   end
 end

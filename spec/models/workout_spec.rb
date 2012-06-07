@@ -136,7 +136,7 @@ describe Workout do
     end
 
     describe "#exercise_keys_correct?" do
-      before { @exercise = Hash.new(id: "", sets: "", reps: "") }
+      before { @exercise = { id: "", sets: "", reps: "" } }
 
       context "with id, sets and reps" do
         it "should be true" do
@@ -145,13 +145,23 @@ describe Workout do
       end
 
       context "without an id, set or rep key" do
+
         it "should be false" do
-          @exercise.each_key do |key|
-            @exercise[key] = nil
-            subject.exercise_keys_correct?(@exercise).should_not be
-          end
+          exercise = { no_said_date: "", sets: "", reps: "" }
+          lambda { subject.exercise_keys_correct?(exercise) }.
+                  should raise_error RuntimeError, "One o' these keys is messed up!"
         end
       end
     end
+
+    # describe "#exercise_value_types_correct" do
+    #   before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
+
+    #   context "with two integers and an array of integers" do
+    #     it "should be true" do
+    #       subject.exercise_value_types_correct?(@exercise).should be
+    #     end
+    #   end
+    # end
   end
 end

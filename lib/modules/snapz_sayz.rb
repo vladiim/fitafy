@@ -69,4 +69,11 @@ module SnapzSayz
       "Hey, let's not be rash... you really gonna kill this workout?"
     end
   end
+
+  module ErrorSpeak
+
+    def self.wrong_workout_exercise_key
+      "One o' these keys is messed up!"
+    end
+  end
 end
