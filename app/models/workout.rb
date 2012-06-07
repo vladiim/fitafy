@@ -70,12 +70,20 @@ class Workout < ActiveRecord::Base
     # the first two values should be an Integer
     # the third value should be an Array of Integers
 
-    raise_wrong_exercise_value unless exercise.values[0].is_a? Integer
-    raise_wrong_exercise_value unless exercise.values[1].is_a? Integer
+    first_value = exercise.values[0]
+    second_value = exercise.values[1]
+
+    value_is_an_integer? first_value
+    value_is_an_integer? second_value
+
     raise_wrong_exercise_value unless  exercise.values[2].is_a? Array
     exercise.values[2].each do |value|
-      raise_wrong_exercise_value unless  value.is_a? Integer
+      value_is_an_integer? value
     end
+  end
+
+  def value_is_an_integer? value
+    raise_wrong_exercise_value unless value.is_a? Integer
   end
 
   def raise_wrong_exercise_value
