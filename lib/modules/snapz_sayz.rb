@@ -75,5 +75,9 @@ module SnapzSayz
     def self.wrong_workout_exercise_key
       "One o' these keys is messed up!"
     end
+
+    def self.wrong_workout_exercise_value
+      "Wayda second! That value is wrong hombre!"
+    end
   end
 end

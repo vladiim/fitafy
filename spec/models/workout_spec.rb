@@ -144,7 +144,7 @@ describe Workout do
         end
       end
 
-      context "without an id, set or rep key" do
+      context "without an id key" do
 
         it "should be false" do
           exercise = { no_said_date: "", sets: "", reps: "" }
@@ -152,16 +152,66 @@ describe Workout do
                   should raise_error RuntimeError, "One o' these keys is messed up!"
         end
       end
+
+      context "without a sets key" do
+
+        it "should be false" do
+          exercise = { id: "", no_said_date: "", reps: "" }
+          lambda { subject.exercise_keys_correct?(exercise) }.
+                  should raise_error RuntimeError, "One o' these keys is messed up!"
+        end
+      end
+
+      context "without a reps key" do
+
+        it "should be false" do
+          exercise = { id: "", sets: "", no_said_date: "" }
+          lambda { subject.exercise_keys_correct?(exercise) }.
+                  should raise_error RuntimeError, "One o' these keys is messed up!"
+        end
+      end
     end
 
-    # describe "#exercise_value_types_correct" do
-    #   before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
+    describe "#exercise_value_types_correct" do
+      before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
 
-    #   context "with two integers and an array of integers" do
-    #     it "should be true" do
-    #       subject.exercise_value_types_correct?(@exercise).should be
-    #     end
-    #   end
-    # end
+      context "with two integers and an array of integers" do
+        it "should be true" do
+          subject.exercise_value_types_correct?(@exercise).should be
+        end
+      end
+
+      context "first value isn't an Integer" do
+        it "should be false" do
+          exercise = { x: "", y: 1, z: [1,209,999] }
+          lambda { subject.exercise_value_types_correct?(exercise) }.
+                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+        end
+      end
+
+      context "second value isn't an Integer" do
+        it "should be false" do
+          exercise = { x: 3, y: "", z: [1,209,999] }
+          lambda { subject.exercise_value_types_correct?(exercise) }.
+                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+        end
+      end
+
+      context "third value isn't an Array" do
+        it "should be false" do
+          exercise = { x: 3, y: 33, z: 999 }
+          lambda { subject.exercise_value_types_correct?(exercise) }.
+                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+        end
+      end
+
+      context "third value isn't an Array of Integers" do
+        it "should be false" do
+          exercise = { x: 3, y: 33, z: ["", 44, ""] }
+          lambda { subject.exercise_value_types_correct?(exercise) }.
+                  should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
+        end
+      end
+    end
   end
 end
