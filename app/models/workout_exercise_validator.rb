@@ -1,8 +1,10 @@
 require 'active_model'
+require_relative '../../lib/modules/snapz_sayz'
 
 class WorkoutExerciseValidator
 
   include ActiveModel::Validations
+  include SnapzSayz
 
   EXERCISE_ATTRIBUTE_SIZE = 3
   EXERCISE_KEYS 		  = [:id, :sets, :reps]
@@ -11,23 +13,11 @@ class WorkoutExerciseValidator
   	@exercises = exercises
   end
 
-  def exercises_are_right_type
-    each_exercise_is_the_right_type
-  end
-
   def each_exercise_is_the_right_type
-    exercises_number = count_number_of_exercises - 1
-
-    # iterate through each exercise and check
-    # if it has the right attributes
-    (0..exercises_number).each do |n|
+    (0..EXERCISE_ATTRIBUTE_SIZE).each do |n|
       exercise = find_exercise_by_index n
       exercise_is_right_type? exercise
     end
-  end
-
-  def count_number_of_exercises
-    self.exercises.count
   end
 
   def find_exercise_by_index index

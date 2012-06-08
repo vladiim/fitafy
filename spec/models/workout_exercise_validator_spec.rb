@@ -3,8 +3,9 @@ require_relative '../../app/models/workout_exercise_validator'
 
 describe WorkoutExerciseValidator do
   let(:exercises) { Object.new }
-  let(:value) 	  { Object.new }
   subject 		  { WorkoutExerciseValidator.new exercises }
+  let(:value) 	  { Object.new }
+  let(:exercise)  { Object.new }
 
   def wrong_exercise_value_message
     "Wayda second! That value is wrong hombre!"
@@ -14,59 +15,44 @@ describe WorkoutExerciseValidator do
     it "should the method: #exercises_are_right_type"
   end
 
-  describe "#exercises_are_right_type" do
-
-  	context "all the exercises are right" do
-      # before { mock(subject).each_exercise_is_the_right_type { true } }
-      it "should be true" do
-      	mock(subject).each_exercise_is_the_right_type { true }
-        subject.exercises_are_right_type.should be
-      end
-    end
-
-    context "one of the exercises is wrong" do
-      before { mock(subject).each_exercise_is_the_right_type { false } }
-      it "should be false" do
-      	subject.exercises_are_right_type.should_not be
-      end
-    end
-  end
-
   describe "#each_exercise_is_the_right_type" do
-    it "should check each exercise" do
-      mock(subject).count_number_of_exercises { 1 }
-      exercise = subject.exercises[0]
-      mock(subject).exercise_is_right_type?(exercise)
-      subject.each_exercise_is_the_right_type.should be
-    end
-  end
+  	before do
+  	  (0..3).each do |n|
+        mock(subject).find_exercise_by_index(n) { exercise }
+        mock(subject).exercise_is_right_type?(exercise)
+      end
+  	end
 
-  describe "#count_number_of_exercises" do
-    it "should return 2" do
-      subject.count_number_of_exercises.should eq 2
+    it "should check each exercise" do
+      subject.each_exercise_is_the_right_type.should be
     end
   end
 
   describe "#find_exercise_by_index" do
     context "with index 0" do
+      before { mock(subject).exercises { [exercise] } }
       it "should return the first exercise" do
-        subject.find_exercise_by_index(0).should eq subject.exercises[0]
+        subject.find_exercise_by_index(0).should eq exercise
       end
     end
   end
 
   describe "#exercise_is_right_type?" do
-    let(:exercise) { Object.new }
+    def mock_exercise_is_right_type_checks boolean_variable
+      mock(subject).exercise_right_size?(exercise)          { boolean_variable }
+      mock(subject).exercise_keys_correct?(exercise)        { boolean_variable }
+      mock(subject).exercise_value_types_correct?(exercise) { boolean_variable }
+    end
 
     context "right type" do
-      before { mock_exercise_is_right_length_checks true }
+      before { mock_exercise_is_right_type_checks true }
       it "should return true" do
         subject.exercise_is_right_type?(exercise).should be
       end
     end
 
     context "not right type" do
-      before { mock_exercise_is_right_length_checks false }
+      before { mock_exercise_is_right_type_checks false }
       it "should return false" do
         subject.exercise_is_right_type?(exercise).should_not be
       end
@@ -75,7 +61,6 @@ describe WorkoutExerciseValidator do
 
   describe "#exercise_right_size?" do
     it "should have three attributes" do
-      exercise = OpenStruct.new
       mock(exercise).size { 3 }
       subject.exercise_right_size?(exercise).should be
     end
@@ -91,10 +76,9 @@ describe WorkoutExerciseValidator do
     end
 
     context "without an id key" do
-
       it "should be false" do
-        exercise = { no_said_date: "", sets: "", reps: "" }
-        lambda { subject.exercise_keys_correct?(exercise) }.
+        @exercise = { no_said_date: "", sets: "", reps: "" }
+        lambda { subject.exercise_keys_correct? @exercise }.
                 should raise_error RuntimeError, "One o' these keys is messed up!"
       end
     end

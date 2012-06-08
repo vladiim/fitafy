@@ -1,6 +1,7 @@
 module SnapzSayz
 
   module Information
+
   	def self.title
   	  options = [
         "fitafy fly!",
@@ -15,6 +16,7 @@ module SnapzSayz
   end
 
   module ExerciseSpeak
+
     def self.all_exercises
       "Exercises up the yoyo!"
     end
@@ -45,6 +47,7 @@ module SnapzSayz
   end
 
   module WorkoutSpeak
+
     def self.creating_new_workout
       "W00t! New workout comin'!"
     end
@@ -71,10 +74,6 @@ module SnapzSayz
   end
 
   module ErrorSpeak
-
-    def self.
-      
-    end
 
     def self.wrong_workout_exercise_key
       "One o' these keys is messed up!"

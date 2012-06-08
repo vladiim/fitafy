@@ -18,12 +18,6 @@ describe Workout do
                     { id: 3, sets: 5, reps: [] }]
   }
 
-  def mock_exercise_is_right_length_checks boolean_variable
-    mock(subject).exercise_right_size?(exercise)        { boolean_variable }
-    mock(subject).exercise_keys_correct?(exercise)        { boolean_variable }
-    mock(subject).exercise_value_types_correct?(exercise) { boolean_variable }
-  end
-
   describe "#attributes" do
 
     it "should titleize the name" do
