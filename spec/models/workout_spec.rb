@@ -64,10 +64,31 @@ describe Workout do
   end
 
   describe "#exercises_are_right_type" do
+
     context "with an exercise that's the wrong size" do
       before { mock(subject).exercises { [{ id: 1, sets: 4 }] } }
-      it "should raise an error about the " do
-        lambsubject.exercises_are_right_type.should_not be
+      it "should raise a too short error" do
+        lambda { subject.exercises_are_right_type }.
+                 should raise_error,
+                 "Oops, need some more attributes in this exercise!"
+      end
+    end
+
+    context "with an exercise key that's the wrong type" do
+      before { mock(subject).exercises { [{ id: 1, sets: 4, cuban_lynx: [3,4,5] }] } }
+      it "should raise a wrong key error" do
+        lambda { subject.exercises_are_right_type }.
+                 should raise_error,
+                 "One o' these keys is messed up!"
+      end
+    end
+
+    context "with an exercise value that's the wrong type" do
+      before { mock(subject).exercises { [{ id: 1, sets: 4, sets: [3,4,""] }] } }
+      it "should raise a wrong value error" do
+        lambda { subject.exercises_are_right_type }.
+                 should raise_error,
+                 "Wayda second! That value is wrong hombre!"
       end
     end
   end
