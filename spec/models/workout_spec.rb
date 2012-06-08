@@ -172,28 +172,38 @@ describe Workout do
       end
     end
 
-    describe "#exercise_value_types_correct" do
-      before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
-
-      context "with two integers and an array of integers" do
-        it "should be true" do
-          subject.exercise_value_types_correct?(@exercise).should be
+    describe "#exercise_value_types_correct?" do
+      it "should iterate through each value" do
+        exercise = Object.new
+        (0..2).each do |n|
+          mock(subject).check_value(exercise, n)
         end
+        subject.exercise_value_types_correct? exercise
       end
+    end
 
-      context "without Integers" do
-        before do
-          value = Object.new
-          mock(@exercise).value_is_an_integer?(value) { false }
-          mock(@exercise).value_is_an_array?(value) { false }
-        end
+    # describe "#exercise_value_types_correct" do
+    #   before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
 
-        it "should be false" do
-          subject.exercise_value_types_correct?(@exercise).
-                  should raise_error RuntimeError, 
-                  "Wayda second! That value is wrong hombre!"
-        end
-      end
+    #   context "with two integers and an array of integers" do
+    #     it "should be true" do
+    #       subject.exercise_value_types_correct?(@exercise).should be
+    #     end
+    #   end
+
+    #   context "without Integers" do
+    #     before do
+    #       value = Object.new
+    #       mock(@exercise).value_is_an_integer?(value) { false }
+    #       mock(@exercise).value_is_an_array?(value) { false }
+    #     end
+
+    #     it "should be false" do
+    #       subject.exercise_value_types_correct?(@exercise).
+    #               should raise_error RuntimeError, 
+    #               "Wayda second! That value is wrong hombre!"
+    #     end
+    #   end
 
       # context "with an incorrect value" do
       #   before do
@@ -213,7 +223,7 @@ describe Workout do
       #     end
       #   end
       # end
-    end
+    # end
 
     describe "#value_is_an_integer?" do
       it "should be true"

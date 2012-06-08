@@ -67,20 +67,9 @@ class Workout < ActiveRecord::Base
   end
 
   def exercise_value_types_correct? exercise
-    # the first two values should be an Integer
-    # the third value should be an Array of Integers
-
-    first_value = exercise.values[0]
-    second_value = exercise.values[1]
-    # third_value = exercise.values[2]
-
-    value_is_an_integer? first_value
-    value_is_an_integer? second_value
-    # value_is_an_array? third_value
-
-    raise_wrong_exercise_value unless  exercise.values[2].is_a? Array
-    exercise.values[2].each do |value|
-      value_is_an_integer? value
+    last_value = EXERCISE_ATTRIBUTE_SIZE - 1
+    (0..last_value).each do |n|
+      check_value exercise, n
     end
   end
 
