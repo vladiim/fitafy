@@ -11,8 +11,15 @@ describe WorkoutExerciseValidator do
     "Wayda second! That value is wrong hombre!"
   end
 
+
   describe "initialize" do
-    it "should the method: #exercises_are_right_type"
+  	it "should be able to read its own exercises" do
+  	  subject.exercises.should eq exercises
+  	end
+
+    it "should the method: #exercises_are_right_type" do
+      subject.should be
+    end
   end
 
   describe "#each_exercise_is_the_right_type" do
@@ -60,9 +67,29 @@ describe WorkoutExerciseValidator do
   end
 
   describe "#exercise_right_size?" do
-    it "should have three attributes" do
-      mock(exercise).size { 3 }
-      subject.exercise_right_size?(exercise).should be
+  	context "right size" do
+      it "should have three attributes" do
+        mock(exercise).size { 3 }
+        subject.exercise_right_size?(exercise).should be
+      end
+  	end
+
+    context "too short" do
+      it "should raise a too short error" do
+        mock(exercise).size.times(2) { 2 }
+        lambda { subject.exercise_right_size?(exercise) }.
+        		 should raise_error,
+        		 "Oops, need some more attributes in this exercise!"
+      end
+    end
+
+    context "too long" do
+      it "should raise a too long error" do
+        mock(exercise).size.times(2) { 4 }
+        lambda { subject.exercise_right_size?(exercise) }.
+        		 should raise_error,
+        		 "This exercise is too long yo!"
+      end
     end
   end
 

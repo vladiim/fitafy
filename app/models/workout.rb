@@ -19,6 +19,7 @@ class Workout < ActiveRecord::Base
   end
 
   def exercises_are_right_type
-    WorkoutExerciseValidator.new self.exercises
+    checker = WorkoutExerciseValidator.new self.exercises
+    checker.each_exercise_is_the_right_type
   end
 end

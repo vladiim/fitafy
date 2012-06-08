@@ -3,6 +3,8 @@ require_relative '../../lib/modules/snapz_sayz'
 
 class WorkoutExerciseValidator
 
+  attr_reader :exercises
+
   include ActiveModel::Validations
   include SnapzSayz
 
@@ -31,7 +33,11 @@ class WorkoutExerciseValidator
   end
 
   def exercise_right_size? exercise
-    exercise.size == EXERCISE_ATTRIBUTE_SIZE
+    if exercise.size == EXERCISE_ATTRIBUTE_SIZE
+      return true
+    else
+      raise SnapzSayz::ErrorSpeak.wrong_size_exercise exercise.size, EXERCISE_ATTRIBUTE_SIZE
+    end
   end
 
   def exercise_keys_correct? exercise
