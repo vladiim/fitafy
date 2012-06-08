@@ -17,4 +17,8 @@ class Workout < ActiveRecord::Base
   def capitalize_notes
   	notes.capitalize
   end
+
+  def exercises_are_right_type
+    WorkoutExerciseValidator.new self.exercises
+  end
 end

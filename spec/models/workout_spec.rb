@@ -62,4 +62,13 @@ describe Workout do
        end
      end
   end
+
+  describe "#exercises_are_right_type" do
+    context "with an exercise that's the wrong size" do
+      before { mock(subject).exercises { [{ id: 1, sets: 4 }] } }
+      it "should not be valid" do
+        subject.exercises_are_right_type.should_not be
+      end
+    end
+  end
 end
