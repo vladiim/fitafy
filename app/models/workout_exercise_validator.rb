@@ -1,32 +1,18 @@
-class Workout < ActiveRecord::Base
+require 'active_model'
 
-  # comments on how exercises work
+class WorkoutExerciseValidator
 
-  attr_accessible :name, :notes, :exercises
-
-  serialize :exercises
-
-  validates_presence_of :name, :notes, :exercises
-
-  validate :exercises_are_right_type
+  include ActiveModel::Validations
 
   EXERCISE_ATTRIBUTE_SIZE = 3
-  EXERCISE_KEYS = [:id, :sets, :reps]
+  EXERCISE_KEYS 		  = [:id, :sets, :reps]
 
-  def titleize_name
-  	name.titleize
+  def initialize exercises
+  	@exercises = exercises
   end
-
-  def capitalize_notes
-  	notes.capitalize
-  end
-
-  # TODO: ensure there's always an empty array for reps
 
   def exercises_are_right_type
-    unless each_exercise_is_the_right_type
-      errors.add :exercises, "dere is an error mon"
-    end
+    each_exercise_is_the_right_type
   end
 
   def each_exercise_is_the_right_type

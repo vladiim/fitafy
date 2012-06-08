@@ -72,6 +72,10 @@ module SnapzSayz
 
   module ErrorSpeak
 
+    def self.
+      
+    end
+
     def self.wrong_workout_exercise_key
       "One o' these keys is messed up!"
     end
