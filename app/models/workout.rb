@@ -77,6 +77,10 @@ class Workout < ActiveRecord::Base
   def check_value value 
     if value.is_a? Integer
       return true
+    elsif value.is_a? Array
+      value.each do |v|
+        raise_wrong_exercise_value unless value_is_an_integer? v
+      end
     end
   end
 

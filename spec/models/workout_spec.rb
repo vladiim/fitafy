@@ -187,13 +187,22 @@ describe Workout do
     end
 
     describe "#check_value" do
-      context "value is an Integer" do
-        before do
-          @value = Object.new
-          mock(@value).is_a?(Integer) { Integer }
-        end
+      before { @value = Object.new }
 
+      context "value is an Integer" do
+        before { mock(@value).is_a?(Integer) { Integer } }
         it "should be true" do
+          subject.check_value(@value).should be
+        end
+      end
+
+      context "value is an Array" do
+        before do
+          mock(@value).is_a?(Integer) { false }
+          mock(@value).is_a?(Array)   { Array }
+        end
+        it "should iterate through the array" do
+          mock(@value).each { true }
           subject.check_value(@value).should be
         end
       end
