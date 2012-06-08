@@ -190,7 +190,10 @@ describe Workout do
       before { @value = Object.new }
 
       context "value is an Integer" do
-        before { mock(@value).is_a?(Integer) { Integer } }
+        before do
+          mock(subject).value_is_an_integer?(@value) { true }
+        end
+
         it "should be true" do
           subject.check_value(@value).should be
         end
@@ -198,12 +201,24 @@ describe Workout do
 
       context "value is an Array" do
         before do
-          mock(@value).is_a?(Integer) { false }
-          mock(@value).is_a?(Array)   { Array }
+          mock(subject).value_is_an_integer?(@value) { false }
+          mock(@value).is_a?(Array)                  { Array }
         end
         it "should iterate through the array" do
           mock(@value).each { true }
           subject.check_value(@value).should be
+        end
+      end
+
+      context "value is not an Integer or an Array" do
+        before do
+          mock(subject).value_is_an_integer?(@value) { false }
+          mock(@value).is_a?(Array)                  { false }
+        end
+        it "should raise an error" do
+          lambda { subject.check_value(@value) }.
+                  should raise_error RuntimeError, 
+                  "Wayda second! That value is wrong hombre!"
         end
       end
     end

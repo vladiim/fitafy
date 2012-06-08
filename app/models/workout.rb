@@ -75,12 +75,14 @@ class Workout < ActiveRecord::Base
   end
 
   def check_value value 
-    if value.is_a? Integer
+    if value_is_an_integer? value
       return true
     elsif value.is_a? Array
       value.each do |v|
         raise_wrong_exercise_value unless value_is_an_integer? v
       end
+    else
+      raise SnapzSayz::ErrorSpeak.wrong_workout_exercise_value
     end
   end
 
