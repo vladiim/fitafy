@@ -74,8 +74,10 @@ class Workout < ActiveRecord::Base
     end
   end
 
-  def check_value 
-
+  def check_value value 
+    if value.is_a? Integer
+      return true
+    end
   end
 
   def value_is_an_integer? value
