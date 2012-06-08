@@ -173,14 +173,29 @@ describe Workout do
     end
 
     describe "#exercise_value_types_correct?" do
+      before do
+        value = Object.new
+        @exercise = [value, value, value]
+        stub(value).[] { value }
+        mock(@exercise).values.times(3) { value }
+        mock(subject).check_value(value).times(3)
+      end
       it "should iterate through each value" do
-        exercise = Object.new
-        (0..2).each do |n|
-          mock(subject).check_value(exercise, n)
-        end
-        subject.exercise_value_types_correct? exercise
+        subject.exercise_value_types_correct? @exercise
       end
     end
+
+    # describe "#check_value" do
+    #   context "value is an Integer" do
+    #     before do
+    #       @value = Object.new
+    #       mock(@value).is_a? { Integer }
+    #     end
+    #     it "should be true" do
+    #       subject.check_value(@value).should be
+    #     end
+    #   end
+    # end
 
     # describe "#exercise_value_types_correct" do
     #   before { @exercise = { x: 1, y: 900, z: [1,209,999] } }

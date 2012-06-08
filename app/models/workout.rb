@@ -69,8 +69,13 @@ class Workout < ActiveRecord::Base
   def exercise_value_types_correct? exercise
     last_value = EXERCISE_ATTRIBUTE_SIZE - 1
     (0..last_value).each do |n|
-      check_value exercise, n
+      value = exercise.values[n]
+      check_value value
     end
+  end
+
+  def check_value 
+
   end
 
   def value_is_an_integer? value
