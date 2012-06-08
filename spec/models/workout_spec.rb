@@ -214,5 +214,13 @@ describe Workout do
       #   end
       # end
     end
+
+    describe "#value_is_an_integer?" do
+      it "should be true"
+    end
+
+    describe "#value_is_an_array?" do
+      it "should be true"
+    end
   end
 end
