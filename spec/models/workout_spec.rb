@@ -71,6 +71,11 @@ describe Workout do
   end
 
   describe "#exercises_are_right_type" do
+    let(:value) { Object.new }
+
+    def wrong_exercise_value_message
+      "Wayda second! That value is wrong hombre!"
+    end
 
     context "one of the exercises is wrong" do
       before { mock(subject).each_exercise_is_the_right_type { false } }
@@ -187,87 +192,58 @@ describe Workout do
     end
 
     describe "#check_value" do
-      before { @value = Object.new }
 
       context "value is an Integer" do
         before do
-          mock(subject).value_is_an_integer?(@value) { true }
+          mock(subject).value_is_an_integer?(value) { true }
         end
 
         it "should be true" do
-          subject.check_value(@value).should be
+          subject.check_value(value).should be
         end
       end
 
       context "value is an Array" do
         before do
-          mock(subject).value_is_an_integer?(@value) { false }
-          mock(@value).is_a?(Array)                  { Array }
+          mock(subject).value_is_an_integer?(value) { false }
+          mock(value).is_a?(Array)                  { Array }
         end
         it "should iterate through the array" do
-          mock(@value).each { true }
-          subject.check_value(@value).should be
+          mock(value).each { true }
+          subject.check_value(value).should be
         end
       end
 
       context "value is not an Integer or an Array" do
         before do
-          mock(subject).value_is_an_integer?(@value) { false }
-          mock(@value).is_a?(Array)                  { false }
+          mock(subject).value_is_an_integer?(value) { false }
+          mock(value).is_a?(Array)                  { false }
         end
         it "should raise an error" do
-          lambda { subject.check_value(@value) }.
+          lambda { subject.check_value(value) }.
                   should raise_error RuntimeError, 
-                  "Wayda second! That value is wrong hombre!"
+                  wrong_exercise_value_message
         end
       end
     end
 
-    # describe "#exercise_value_types_correct" do
-    #   before { @exercise = { x: 1, y: 900, z: [1,209,999] } }
-
-    #   context "with two integers and an array of integers" do
-    #     it "should be true" do
-    #       subject.exercise_value_types_correct?(@exercise).should be
-    #     end
-    #   end
-
-    #   context "without Integers" do
-    #     before do
-    #       value = Object.new
-    #       mock(@exercise).value_is_an_integer?(value) { false }
-    #       mock(@exercise).value_is_an_array?(value) { false }
-    #     end
-
-    #     it "should be false" do
-    #       subject.exercise_value_types_correct?(@exercise).
-    #               should raise_error RuntimeError, 
-    #               "Wayda second! That value is wrong hombre!"
-    #     end
-    #   end
-
-      # context "with an incorrect value" do
-      #   before do
-      #     @exercises = [
-      #       # first & second  value aren't Integers
-      #       { x: "", y: 1, z: [1,209,999] },
-      #       { x: 3, y: "", z: [1,209,999] },
-      #       # third value isn't array
-      #       { x: 3, y: 33, z: 999 }
-      #     ]
-      #   end
-
-      #   it "should be false" do
-      #     @exercises.each do |exercise|
-      #       lambda { subject.exercise_value_types_correct?(exercise) }.
-      #             should raise_error RuntimeError, "Wayda second! That value is wrong hombre!"
-      #     end
-      #   end
-      # end
-    # end
-
     describe "#value_is_an_integer?" do
-      it "should be true"
+
+      context "value is an Integer" do
+        before { mock(value).is_a?(Integer) { true } }
+        it "should be true" do
+          subject.value_is_an_integer?(value).should be
+        end
+      end
+
+      context "value is not an Integer" do
+        before { mock(value).is_a?(Integer) { false } }
+        it "should not be true" do
+          lambda { subject.value_is_an_integer?(value) }.
+                   should raise_error RuntimeError,
+                   wrong_exercise_value_message
+        end
+      end
     end
 
     describe "#value_is_an_array?" do

@@ -87,7 +87,11 @@ class Workout < ActiveRecord::Base
   end
 
   def value_is_an_integer? value
-    raise_wrong_exercise_value unless value.is_a? Integer
+    if value.is_a? Integer
+      return true
+    else
+      raise_wrong_exercise_value
+    end
   end
 
   # def value_is_an_array? value
