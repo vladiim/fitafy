@@ -63,6 +63,13 @@ describe Workout do
      end
   end
 
+  describe "#all_exercises" do
+    it "should call all exercises" do
+      mock(Exercise).all { exercises }
+      subject.all_exercises.should eq exercises
+    end
+  end
+
   describe "#exercises_are_right_type" do
 
     context "with an exercise that's the wrong size" do
