@@ -6,7 +6,7 @@ class Workout < ActiveRecord::Base
 
   validates_presence_of :name, :notes, :exercises
 
-  validate :exercises_are_right_type
+  # validate :exercises_are_right_type
 
   def titleize_name
   	name.titleize

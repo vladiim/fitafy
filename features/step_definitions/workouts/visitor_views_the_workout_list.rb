@@ -1,6 +1,6 @@
 Given /^there are workouts$/ do
   visit root_path
-  @workout = Workout.create!(CreateWorkout::WORKOUT_ATTRIBUTES)
+  create_workout
 end
 
 When /^I click on the workout's link "(.*?)"$/ do |workout_link|

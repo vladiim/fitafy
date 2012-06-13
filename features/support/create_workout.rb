@@ -9,7 +9,7 @@ module CreateWorkout
 
   def fill_in_workout_form
     fill_in_exercise
-    click_link "Next"
+    # click_link "Next"
     fill_in "workout_name", with: WORKOUT_ATTRIBUTES[:name]
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end

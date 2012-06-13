@@ -3,7 +3,7 @@ require_relative '../../app/models/workout_exercise_validator'
 
 describe WorkoutExerciseValidator do
   let(:exercises) { Object.new }
-  subject 		  { WorkoutExerciseValidator.new exercises }
+  subject 		    { WorkoutExerciseValidator.new exercises }
   let(:value) 	  { Object.new }
   let(:exercise)  { Object.new }
 
