@@ -11,6 +11,9 @@ describe WorkoutExerciseValidator do
     "Wayda second! That value is wrong hombre!"
   end
 
+  def raise_exercise_key_error
+    raise_error RuntimeError, "One o' these keys is messed up!"
+  end
 
   describe "initialize" do
   	it "should be able to read its own exercises" do
@@ -94,7 +97,10 @@ describe WorkoutExerciseValidator do
   end
 
   describe "#exercise_keys_correct?" do
-    before { @exercise = { exercise_id: "", sets: "", reps: "" } }
+    before do
+      exercises = CreateWorkoutExercise.valid_keys
+      @exercise = exercises[0]
+    end
 
     context "with id, sets and reps" do
       it "should be true" do
@@ -104,9 +110,9 @@ describe WorkoutExerciseValidator do
 
     context "without an id key" do
       it "should be false" do
-        @exercise = { no_said_date: "", sets: "", reps: "" }
-        lambda { subject.exercise_keys_correct? @exercise }.
-                should raise_error RuntimeError, "One o' these keys is messed up!"
+        exercise = { no_said_date: "", sets: "", reps: "" }
+        lambda { subject.exercise_keys_correct? exercise }.
+                should raise_exercise_key_error
       end
     end
 
@@ -115,17 +121,16 @@ describe WorkoutExerciseValidator do
       it "should be false" do
         exercise = { exercise_id: "", no_said_date: "", reps: "" }
         lambda { subject.exercise_keys_correct?(exercise) }.
-                should raise_error RuntimeError, "One o' these keys is messed up!"
+                should raise_exercise_key_error
       end
     end
 
     context "without a reps key" do
 
       it "should be false" do
-        exercises = CreateWorkoutExercise.valid_keys
-        exercise = exercises[0]
+        exercise = { exercise_id: "", sets: "", no_said_date: "" }
         lambda { subject.exercise_keys_correct?(exercise) }.
-                should raise_error RuntimeError, "One o' these keys is messed up!"
+                should raise_exercise_key_error
       end
     end
   end

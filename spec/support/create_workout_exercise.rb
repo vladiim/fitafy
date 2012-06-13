@@ -5,6 +5,6 @@ module CreateWorkoutExercise
   end
 
   def self.valid_keys
-  	[{ exercise_id: "", sets: "", no_said_date: "" }]
+  	[{ exercise_id: "", sets: "", reps: "" }]
   end
 end
