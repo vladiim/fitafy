@@ -18,17 +18,26 @@ class Workout < ActiveRecord::Base
 
   def self.serialized_attr_accessor *args
     args.each do |method_name|
-      eval "
-        def #{method_name}
-          (self.exercises || {})[:#{method_name}]
-        end
-
-        def #{method_name}=(value)
-          self.exercises ||= {}
-          self.exercises[:#{method_name}] = value
-        end
-      "
+      serialized_getter method_name
+      serialized_setter method_name
     end
+  end
+
+  def self.serialized_getter method_name
+    eval "
+      def #{method_name}
+        (self.exercises || {})[:#{method_name}]
+      end
+    "    
+  end
+
+  def self.serialized_setter method_name
+    eval "
+      def #{method_name}=(value)
+        self.exercises ||= {}
+        self.exercises[:#{method_name}] = value
+      end
+    "
   end
 
   serialized_attr_accessor :exercise_id, :sets, :reps

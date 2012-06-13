@@ -1,7 +1,8 @@
 module CreateWorkoutExercise
 
   def self.valid
-  	[{ exercise_id: 1, sets: 3, reps: [1,2,3] }]
+  	[{ id: 1, sets: 4, reps: [3,4,5] }, 
+     { id: 3, sets: 5, reps: [] }]
   end
 
   def self.valid_keys

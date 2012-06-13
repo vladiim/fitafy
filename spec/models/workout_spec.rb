@@ -13,9 +13,7 @@ describe Workout do
   end
 
   # workout.exercises takes a serialized hash of attributes
-  let(:exercises) { [{ id: 1, sets: 4, reps: [3,4,5] }, 
-                    { id: 3, sets: 5, reps: [] }]
-  }
+  let(:exercises) { CreateWorkoutExercise.valid }
 
   describe "#attributes" do
 
@@ -54,7 +52,7 @@ describe Workout do
        end
     end
 
-    before { mock(subject).exercises_are_right_type { true } }
+    # before { mock(subject).exercises_are_right_type { true } }
 
     context "without name" do
        it "shouldn't be valid" do
