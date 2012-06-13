@@ -6,16 +6,4 @@
 
     = render partial: 'form', locals: { f: f }
 
-    %table#workout_exercises
-      %tr
-        %th Exercise Name
-        %th Sets
-        %th Reps
-
-      = @workout.all_exercises.each do |exercise|
-        %tr
-          %th= exercise.name
-          %th Sets
-          %th Reps
-
     = f.submit "Create Workout", class: "btn btn-primary"

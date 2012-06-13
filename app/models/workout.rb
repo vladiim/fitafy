@@ -1,7 +1,5 @@
 class Workout < ActiveRecord::Base
 
-  # comments on how exercises work
-
   attr_accessible :name, :notes, :exercises
 
   serialize :exercises

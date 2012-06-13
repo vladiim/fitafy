@@ -1,4 +1,25 @@
-= f.input :exercises
+%section#workout_details
+  = f.input :name
+  = f.input :notes, input_html: {rows: 4}
 
-= f.input :name
-= f.input :notes
+# ----------- Instructions -------------- #
+# 1. Read up on forms (rails guids, rails code)
+# 2. Create a form helper that creates the following
+# field: exercises: [{id: 1, sets: 3, reps: [1,2,3], {id: blah}}]
+
+
+/ %section#workout_exercises
+/   %table
+/     %thead
+/       %tr
+/         %th Name
+/         %th Sets
+/         %th Reps
+
+/     %tbody
+/       - @workout.all_exercises.each do |exercise|
+/         %tr
+/           = f.association :exercises, as: :hidden, input_html: {value: exercise.id}
+/           %td= exercise.name
+/           %td set collection
+/           %td reps collection
