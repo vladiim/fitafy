@@ -16,6 +16,23 @@ class Workout < ActiveRecord::Base
   	notes.capitalize
   end
 
+  def self.serialized_attr_accessor *args
+    args.each do |method_name|
+      eval "
+        def #{method_name}
+          (self.exercises || {})[:#{method_name}]
+        end
+
+        def #{method_name}=(value)
+          self.exercises ||= {}
+          self.exercises[:#{method_name}] = value
+        end
+      "
+    end
+  end
+
+  serialized_attr_accessor :exercise_id, :sets, :reps
+
   def exercises_are_right_type
     checker = WorkoutExerciseValidator.new self.exercises
     checker.each_exercise_is_the_right_type

@@ -9,7 +9,7 @@ class WorkoutExerciseValidator
   include SnapzSayz
 
   EXERCISE_ATTRIBUTE_SIZE = 3
-  EXERCISE_KEYS 		  = [:id, :sets, :reps]
+  EXERCISE_KEYS 		      = [:exercise_id, :sets, :reps]
 
   def initialize exercises
   	@exercises = exercises

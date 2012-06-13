@@ -27,19 +27,34 @@ describe Workout do
       subject.capitalize_notes.should eq "Dealin in my cypher. i revolve around sciences"
     end
 
-    it "should accept a hash of exercise attributes" do
-      subject.exercises.should eq exercises
+    describe "#exercises" do
+      it "should accept a hash of exercise attributes" do
+        subject.exercises.should eq exercises
+      end
+
+      it "should accept an id"
     end
   end
 
   describe "#validate" do
-    before { mock(subject).exercises_are_right_type { true } }
 
-    context "with valid attributes" do
-      it "should be valid" do
-        subject.should be_valid
+    describe "exercises" do
+      context "with valid attributes" do
+        it "should be valid" do
+          subject.exercises = CreateWorkoutExercise.valid
+          subject.should be_valid
+        end
       end
+
+       context "without exercises" do
+         it "should't be valid" do
+           subject.exercises = nil
+           subject.should_not be_valid
+         end
+       end
     end
+
+    before { mock(subject).exercises_are_right_type { true } }
 
     context "without name" do
        it "shouldn't be valid" do
@@ -51,13 +66,6 @@ describe Workout do
      context "without notes" do
        it "shouldn't be valid" do
          subject.notes = nil
-         subject.should_not be_valid
-       end
-     end
-
-     context "without exercises" do
-       it "should't be valid" do
-         subject.exercises = nil
          subject.should_not be_valid
        end
      end

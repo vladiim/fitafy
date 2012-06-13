@@ -94,7 +94,7 @@ describe WorkoutExerciseValidator do
   end
 
   describe "#exercise_keys_correct?" do
-    before { @exercise = { id: "", sets: "", reps: "" } }
+    before { @exercise = { exercise_id: "", sets: "", reps: "" } }
 
     context "with id, sets and reps" do
       it "should be true" do
@@ -113,7 +113,7 @@ describe WorkoutExerciseValidator do
     context "without a sets key" do
 
       it "should be false" do
-        exercise = { id: "", no_said_date: "", reps: "" }
+        exercise = { exercise_id: "", no_said_date: "", reps: "" }
         lambda { subject.exercise_keys_correct?(exercise) }.
                 should raise_error RuntimeError, "One o' these keys is messed up!"
       end
@@ -122,7 +122,8 @@ describe WorkoutExerciseValidator do
     context "without a reps key" do
 
       it "should be false" do
-        exercise = { id: "", sets: "", no_said_date: "" }
+        exercises = CreateWorkoutExercise.valid_keys
+        exercise = exercises[0]
         lambda { subject.exercise_keys_correct?(exercise) }.
                 should raise_error RuntimeError, "One o' these keys is messed up!"
       end
