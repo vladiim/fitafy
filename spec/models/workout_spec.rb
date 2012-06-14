@@ -105,4 +105,14 @@ describe Workout do
       end
     end
   end
+
+  describe "#serialized_attr_accessor" do
+    let(:arg)  { Object.new }
+
+    it "should pass an attribute to the getter & setter" do
+      mock(Workout).serialized_getter arg
+      mock(Workout).serialized_setter arg
+      Workout.serialized_attr_accessor(arg).should be
+    end
+  end
 end
