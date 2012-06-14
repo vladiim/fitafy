@@ -1,8 +1,12 @@
 %section#workout_details
   = f.input :name
-  = f.input :notes, input_html: {rows: 4}
+  = f.input :notes, input_html: { rows: 4 }
 
-  = f.simple_fields_for :exercises do |e|
-    = e.input :exercise_id, as: :integer
-    = e.input :sets, as: :integer
-    = e.input :reps, collection: 0..50
+  = f.simple_fields_for :exercises do |exercise_form|
+
+    - @workout.all_exercises.each do |exercise|
+      %h3= exercise.name
+
+      = exercise_form.input :exercise_id, input_html: {value: exercise.id}, as: :hidden
+      = exercise_form.input :sets, as: :integer, required: false
+      = exercise_form.input :reps, collection: 0..50, required: false
