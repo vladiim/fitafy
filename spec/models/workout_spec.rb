@@ -105,26 +105,4 @@ describe Workout do
       end
     end
   end
-
-  # describe "self#serialized_attr_accessor" do
-  #   let(:arg) { Object.new }
-
-  #   it "should pass an attribute to the getter & setter" do
-  #     mock(Workout).serialized_getter arg
-  #     mock(Workout).serialized_setter arg
-  #     Workout.serialized_attr_accessor(arg).should be
-  #   end
-  # end
-
-  # describe "self#serialized_setter/getter" do
-  #   before do
-  #     @it = Workout.new
-  #     method_one = exercises[0].first.first # get :exercise_id of the first exercise
-  #     Workout.serialized_setter method_one
-  #   end
-
-  #   it "should set and get the exercises attributes " do
-  #     @it.exercises.should eq ["blah"]
-  #   end
-  # end
 end

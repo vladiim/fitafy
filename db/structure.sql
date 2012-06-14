@@ -80,7 +80,6 @@ CREATE TABLE workouts (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     notes text NOT NULL,
-    exercises text NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -147,13 +146,6 @@ CREATE INDEX index_exercises_on_categories ON exercises USING btree (categories)
 --
 
 CREATE INDEX index_exercises_on_name ON exercises USING btree (name);
-
-
---
--- Name: index_workouts_on_exercises; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_workouts_on_exercises ON workouts USING btree (exercises);
 
 
 --
