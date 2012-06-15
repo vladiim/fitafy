@@ -52,4 +52,12 @@ describe Workout do
       subject.new_workout_exercise.class.should eq WorkoutExercise
     end
   end
+
+  # describe "#workout_exercise" do
+  #   it "should add the workout_exercise to its workout_exercises" do
+  #     attrs = Hash.new
+  #     subject.workout_exercise(attrs)
+  #     subject.workout_exercises.should eq [(attrs)]
+  #   end
+  # end
 end
