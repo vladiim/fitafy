@@ -47,9 +47,9 @@ describe Workout do
     end
   end
 
-  describe "#new_exercise" do
+  describe "#new_workout_exercise" do
     it "should create a new WorkoutExercise" do
-      subject.new_exercise.class.should eq WorkoutExercise
+      subject.new_workout_exercise.class.should eq WorkoutExercise
     end
   end
 end
