@@ -6,9 +6,10 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout = Workout.new
-  	@title   = "New Workout"
-  	@snapz   = SnapzSayz::WorkoutSpeak.creating_new_workout
+    @workout  = Workout.new
+    @exercise = @workout.new_exercise
+  	@title    = "New Workout"
+  	@snapz    = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
 
   def create

@@ -7,13 +7,9 @@ describe Workout do
 
   def create_valid_workout
     Workout.new(name:      "criminology",
-                notes:     "dealin in my cypher. i revolve around sciences",
-                exercises: exercises
+                notes:     "dealin in my cypher. i revolve around sciences"
     )
   end
-
-  # workout.exercises takes a serialized hash of attributes
-  let(:exercises) { CreateWorkoutExercise.valid }
 
   describe "#attributes" do
 
@@ -103,6 +99,12 @@ describe Workout do
                  should raise_error,
                  "Wayda second! That value is wrong hombre!"
       end
+    end
+  end
+
+  describe "#new_exercise" do
+    it "should create a new WorkoutExercise" do
+      subject.new_exercise.class.should eq WorkoutExercise
     end
   end
 end

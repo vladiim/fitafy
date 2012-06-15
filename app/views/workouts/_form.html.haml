@@ -3,4 +3,8 @@
   = f.input :notes, input_html: { rows: 4 }
 
   - @workout.all_exercises.each do |exercise|
-    %h3= exercise.name
+    %header
+      %h3= exercise.name
+        %section
+          = f.simple_fields_for @exercise |e|
+            = e.input :sets
