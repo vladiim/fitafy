@@ -1,5 +1,4 @@
-require_relative "../spec_helper_lite"
-require_relative "../../app/models/workout_exercise"
+require_relative "../spec_helper"
 
 describe WorkoutExercise do
   subject { WorkoutExercise.new }

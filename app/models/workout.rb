@@ -12,11 +12,6 @@ class Workout < ActiveRecord::Base
   	notes.capitalize
   end
 
-  # def exercises_are_right_type
-  #   checker = WorkoutExerciseValidator.new self.exercises
-  #   checker.each_exercise_is_the_right_type
-  # end
-
   def all_exercises
     Exercise.all
   end
