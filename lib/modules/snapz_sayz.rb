@@ -91,5 +91,9 @@ module SnapzSayz
     def self.wrong_workout_exercise_value
       "Wayda second! That value is wrong hombre!"
     end
+
+    def self.integer_validator
+      "That's meant to be a number dood"
+    end
   end
 end

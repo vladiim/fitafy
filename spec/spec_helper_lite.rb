@@ -3,6 +3,7 @@ require 'ostruct'
 require 'rr'
 require_relative 'support/stub_helpers'
 require_relative 'support/create_workout_exercise'
+require_relative '../lib/modules/snapz_sayz'
 
 include StubHelpers
 

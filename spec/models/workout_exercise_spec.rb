@@ -70,6 +70,7 @@ describe WorkoutExercise do
       context "present but not the right type" do
         before { valid_subject.workout_id = "u-god"}
         it "should not be valid" do
+          pending "Create IntegerValidator"
           valid_subject.should_not be_valid
         end
       end
@@ -84,8 +85,9 @@ describe WorkoutExercise do
       end
 
       context "present but not the right type" do
-        before { valid_subject.exercise_id = "u-god"}
+        before { valid_subject.exercise_id = "u-god" }
         it "should not be valid" do
+          pending "need IntegerValidator"
           valid_subject.should_not be_valid
         end
       end
@@ -103,12 +105,13 @@ describe WorkoutExercise do
         context "not an Integer" do
           before { valid_subject.sets = "u-god"}
           it "should not be valid" do
+            pending "create IntegerValidator"
           	valid_subject.should_not be_valid
           end
         end
       end
     end
   end
-  it "should have either rep_weith or rep_time"
+  it "should have either rep_weight or rep_time"
   it "rep_weight or rep_time should be as many as there are sets"
 end
