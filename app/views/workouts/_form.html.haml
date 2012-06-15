@@ -5,6 +5,8 @@
   - @workout.all_exercises.each do |exercise|
     %header
       %h3= exercise.name
-        %section
-          = f.simple_fields_for @exercise |e|
-            = e.input :sets
+
+      %section
+        = f.simple_fields_for @exercise do |e|
+          = e.input :exercise_id, input_html: { value: exercise.id }, as: :hidden
+          = e.input :sets, required: false
