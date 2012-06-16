@@ -51,66 +51,10 @@ describe WorkoutExercise do
     end
   end
 
-  describe "#validations" do
-  	context "valid subject" do
-  	  it "should be valid" do
-  	    valid_subject.should be_valid
-  	  end
-  	end
-
-    describe "#workout_id" do
-      context "not present" do
-      	before { valid_subject.workout_id = nil }
-        it "should not be valid" do
-          valid_subject.should_not be_valid
-        end
-      end
-
-      context "present but not the right type" do
-        before { valid_subject.workout_id = "u-god"}
-        it "should not be valid" do
-          pending "Create IntegerValidator"
-          valid_subject.should_not be_valid
-        end
-      end
-    end
-
-    describe "#exercise_id" do
-      context "not present" do
-      	before { valid_subject.exercise_id = nil }
-        it "should not be valid" do
-          valid_subject.should_not be_valid
-        end
-      end
-
-      context "present but not the right type" do
-        before { valid_subject.exercise_id = "u-god" }
-        it "should not be valid" do
-          pending "need IntegerValidator"
-          valid_subject.should_not be_valid
-        end
-      end
-    end
-
-    describe "#sets" do
-      context "not present" do
-      	before { valid_subject.sets = nil }
-        it "should not be valid" do
-          valid_subject.should_not be_valid
-        end
-      end
-
-      context "present" do
-        context "not an Integer" do
-          before { valid_subject.sets = "u-god"}
-          it "should not be valid" do
-            pending "create IntegerValidator"
-          	valid_subject.should_not be_valid
-          end
-        end
-      end
+  describe "#exercise_name" do
+    it "should give the exercise name titleized" do
+      mock(Exercise).find(4) { OpenStruct.new name: "rebel ins"}
+      valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end
-  it "should have either rep_weight or rep_time"
-  it "rep_weight or rep_time should be as many as there are sets"
 end

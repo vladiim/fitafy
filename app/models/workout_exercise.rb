@@ -2,8 +2,11 @@ class WorkoutExercise < ActiveRecord::Base
 
   attr_accessible :workout_id, :exercise_id, :sets, :rep_weight, :rep_time
 
-  belongs_to :workout
   belongs_to :exercise
+  belongs_to :workout
 
-  validates_presence_of :workout_id, :exercise_id, :sets
+  def exercise_name
+  	exercise = Exercise.find exercise_id
+  	exercise.name.titleize
+  end
 end

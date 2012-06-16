@@ -3,14 +3,10 @@ class Workout < ActiveRecord::Base
   attr_accessible :name, :notes, :workout_exercises_attributes
 
   has_many :workout_exercises, dependent: :destroy
-  accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
+  accepts_nested_attributes_for :workout_exercises #, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises
 
-  attr_accessor :workout_exercises_attributes
-
   validates_presence_of :name, :notes
-
-  # before_save :clean_workout_exercises_attributes
 
   def titleize_name
   	name.titleize
@@ -19,17 +15,6 @@ class Workout < ActiveRecord::Base
   def capitalize_notes
   	notes.capitalize
   end
-
-  # def clean_workout_exercises_attributes
-  #   workout_exercises_attributes.each_key do |key|
-  #     workout_exercises_attributes.delete key
-  #   end
-  # end
-
-  # def save_and_create_workout_exercises
-  #   save
-  #   create_workout_exercises
-  # end
 
   def all_exercises
     Exercise.all
@@ -51,9 +36,9 @@ class Workout < ActiveRecord::Base
   #   end
   # end
 
-  def w_e_set_blank? attributed
-    attributed['sets'].blank?
-  end
+  # def w_e_set_blank? attributed
+  #   attributed['sets'].blank?
+  # end
 
   # def create_workout_exercises
   #   workout_exercises_attributes.each do |exercise_attr|

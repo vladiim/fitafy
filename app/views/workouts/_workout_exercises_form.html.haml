@@ -1,9 +1,12 @@
 %section#workout_exercises_form
   - @workout.all_exercises.each do |exercise|
     %h3
+      Exercise:
       = exercise.name
 
-      = f.simple_fields_for :workout_exercises, @workout.new_workout_exercise do |e|
+      = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
+        = e.hidden_field :exercise_id, value: exercise.id
+        = e.input :sets
 
-        = e.input :exercise_id, input_html: { value: exercise.id }, as: :hidden
-        = e.input :sets, required: false
+        / = e.input :exercise_id, input_html: { value: exercise.id }, as: :hidden
+        / = e.input :sets, required: false
