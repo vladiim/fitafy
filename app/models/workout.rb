@@ -1,6 +1,6 @@
 class Workout < ActiveRecord::Base
 
-  attr_accessible :name, :notes
+  attr_accessible :name, :notes, :workout_exercises_attributes
 
   has_many :workout_exercises
   accepts_nested_attributes_for :workout_exercises
@@ -21,6 +21,7 @@ class Workout < ActiveRecord::Base
   end
 
   def save_and_create_workout_exercises
+    add_workout_exercises_to_memory
     save
     create_workout_exercises
   end
@@ -39,7 +40,7 @@ class Workout < ActiveRecord::Base
     @workout_exercise_memory ||= []
   end
 
-  def add_to_workout_exercise_memory exercise
+  def add_exercise_to_workout_exercise_memory exercise
     workout_exercise_memory << exercise
   end
 
@@ -47,10 +48,10 @@ class Workout < ActiveRecord::Base
   # Hash. This iterates over the Hash saving the
   # exercises in the workout_exercise_memory
 
-  def workout_exercise_attributes attrs={}
-    attrs.each do |attr|
-      exercise = attr[1] # first value is the enumerator
-      add_to_workout_exercise_memory exercise
+  def add_workout_exercises_to_memory
+    workout_exercises_attributes.each do |exercise_attrs|
+      exercise = exercise_attrs[1] # first value is the enumerator
+      add_exercise_to_workout_exercise_memory exercise
     end
   end
 end
