@@ -1,10 +1,14 @@
 class Workout < ActiveRecord::Base
 
-  attr_accessible :name, :notes
+  attr_accessible :name, :notes, :workout_exercises_details
 
   has_many :workout_exercises, dependent: :destroy
   accepts_nested_attributes_for :workout_exercises
   has_many :exercises, through: :workout_exercises
+
+  attr_accessor :workout_exercises_details
+
+  after_save :create_workout_exercises
 
   validates_presence_of :name, :notes
 
@@ -20,46 +24,20 @@ class Workout < ActiveRecord::Base
     Exercise.all
   end
 
-  def save_and_create_workout_exercises
-    save
-    create_workout_exercises
-  end
-
   def create_workout_exercises
-    @workout_exercises_memory.each do |exercise_attrs|
-      workout_exercises.create exercise_attrs
+    if @workout_exercises_details
+      @workout_exercises_details.each do |exercise_attr|
+        exercise = exercise_attr[1] # saved as hash ie "0" => {"exericse_id" => 2, "blah" => "blah"}
+        workout_exercises.create(exercise_id: exercise['exercise_id'],
+                                 sets:        exercise['sets'],
+                                 rep_weight:  exercise['rep_weight'],
+                                 rep_time:    exercise['rep_time']
+        )
+      end
     end
   end
 
   def new_workout_exercise
     workout_exercises.build
   end
-
-  def workout_exercises_attributes= *attrs
-    @workout_exercises_memory ||= []
-    attrs.each do |attr|
-      exercise = attr[1] # first value is the enumerator
-      @workout_exercises_memory << exercise
-    end
-  end
-
-  # def workout_exercise_memory
-  #   @workout_exercise_memory ||= []
-  # end
-
-  # def add_exercise_to_workout_exercise_memory exercise
-  #   workout_exercise_memory << exercise
-  # end
-
-  # WorkoutExercises are taken as Enumerated
-  # Hash. This iterates over the Hash saving the
-  # exercises in the workout_exercise_memory
-
-  # def add_workout_exercises_to_memory
-  #   # workout_exercises_attributes.each do |exercise_attrs|
-  #   workout_exercises.each do |exercise_attrs|
-  #     exercise = exercise_attrs[1] # first value is the enumerator
-  #     add_exercise_to_workout_exercise_memory exercise
-  #   end
-  # end
 end

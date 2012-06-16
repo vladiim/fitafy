@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
 
   def create
   	@workout = Workout.new(params[:workout])
-  	if @workout.save_and_create_workout_exercises
+  	if @workout.save
   	  redirect_to @workout
   	  flash[:success] = SnapzSayz::WorkoutSpeak.created_workout
   	else
