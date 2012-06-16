@@ -3,8 +3,10 @@ require_relative '../spec_helper'
 include CreateArelWorkout
 
 describe Workout do
-  let(:exercise) { Object.new }
   subject { create_valid_workout }
+
+  let(:exercise)  { Object.new }
+  let(:exercises) { [exercise] }
 
   def create_valid_workout
     Workout.new(name:      "criminology",
@@ -41,13 +43,10 @@ describe Workout do
   end
 
   describe "#all_exercises" do
-    before do
-      @exercises = Object.new
-      mock(Exercise).all { @exercises }
-    end
+    before { mock(Exercise).all { exercises } }
 
     it "should call all exercises" do
-      subject.all_exercises.should eq @exercises
+      subject.all_exercises.should eq exercises
     end
   end
 
@@ -56,6 +55,14 @@ describe Workout do
       mock(subject).save { true }
       mock(subject).create_workout_exercises { true }
       subject.save_and_create_workout_exercises.should be
+    end
+  end
+
+  describe "#create_workout_exercises" do
+    it "should create a workout_exercise for each workout_exercise in memory" do
+      mock(subject).workout_exercise_memory { exercises }
+      mock(subject.workout_exercises).create(exercise) { exercise }
+      subject.create_workout_exercises.should eq exercises
     end
   end
 

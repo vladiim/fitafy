@@ -25,6 +25,12 @@ class Workout < ActiveRecord::Base
     create_workout_exercises
   end
 
+  def create_workout_exercises
+    workout_exercise_memory.each do |exercise_attrs|
+      workout_exercises.create exercise_attrs
+    end
+  end
+
   def new_workout_exercise
     workout_exercises.build
   end
