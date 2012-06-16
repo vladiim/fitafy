@@ -50,12 +50,19 @@ describe Workout do
     end
   end
 
+  describe "#save_and_create_workout_exercises" do
+    it "should description"
+  end
+
+  describe "#w_e_set_blank?" do
+    it "should description"
+  end
+
   describe "#create_workout_exercises" do
     it "should create a workout_exercise for each workout_exercise in memory" do
-      pending "This is ugly as fuck"
-      mock(subject).workout_exercise_memory { exercises }
-      mock(subject.workout_exercises).create(exercise) { exercise }
-      subject.create_workout_exercises.should eq exercises
+      mock(subject).workout_exercises_details { exercises }
+
+      subject.create_workout_exercises.should be
     end
   end
 

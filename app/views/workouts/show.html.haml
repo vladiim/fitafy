@@ -1,7 +1,9 @@
 %article
   = @workout.titleize_name
   = @workout.capitalize_notes
-  = @workout.list_exercises.each do |exercise|
-    = exercise.titleize_name
+
+  #workout_exercises
+    - @workout.list_exercises.each do |exercise|
+      = exercise.titleize_name
 
 %section= link_to "Edit Workout", edit_workout_path(@workout)

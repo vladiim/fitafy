@@ -2,6 +2,8 @@
   - @workout.all_exercises.each do |exercise|
     %h3
       = exercise.name
-      = f.simple_fields_for :workout_exercises_details, @workout.new_workout_exercise do |e|
+
+      = f.simple_fields_for :workout_exercises, @workout.new_workout_exercise do |e|
+
         = e.input :exercise_id, input_html: { value: exercise.id }, as: :hidden
         = e.input :sets, required: false

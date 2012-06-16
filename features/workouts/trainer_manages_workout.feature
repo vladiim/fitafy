@@ -8,6 +8,7 @@ Feature: Trainer manages exercises
     When I click the "New Workout" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
+  @focus
   Scenario: Trainer creates workout
     Given I'm on a new workout page
     When I fill in the workout form
