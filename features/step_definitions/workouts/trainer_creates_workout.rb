@@ -9,3 +9,11 @@ end
 Then /^Snapz should give the created workout message "(.*?)"$/ do |snapz_sayz|
   page.should have_content snapz_sayz
 end
+
+Then /^I can see the workout name$/ do
+  page.should have_content "No Said Date"
+end
+
+Then /^I can see the exercise name$/ do
+  page.should have_content "Liquid Swords"
+end

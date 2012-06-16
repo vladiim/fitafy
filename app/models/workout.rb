@@ -24,6 +24,10 @@ class Workout < ActiveRecord::Base
     Exercise.all
   end
 
+  def list_exercises
+    workout_exercises
+  end
+
   def create_workout_exercises
     if @workout_exercises_details
       @workout_exercises_details.each do |exercise_attr|

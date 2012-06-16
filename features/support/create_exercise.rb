@@ -8,12 +8,12 @@ module CreateExercise
   }
 
   def create_exercise
+    visit_new_exercise
     fill_in_exercise_form
     click_create_exercise
   end
 
   def fill_in_exercise_form
-    visit_new_exercise
   	fill_in "exercise_name", 			    with: EXERCISE_ATTRIBUTES[:name]
     fill_in "exercise_description", 	with: EXERCISE_ATTRIBUTES[:description]
     fill_in "exercise_tips", 			    with: EXERCISE_ATTRIBUTES[:tips]

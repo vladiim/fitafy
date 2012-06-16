@@ -64,4 +64,11 @@ describe Workout do
       subject.new_workout_exercise.class.should eq WorkoutExercise
     end
   end
+
+  describe "#list_exercises" do
+    it "should list all of its exercises" do
+      mock(subject).workout_exercises { exercises }
+      subject.list_exercises.should eq exercises
+    end
+  end
 end
