@@ -28,7 +28,18 @@ class Workout < ActiveRecord::Base
     @workout_exercise_memory ||= []
   end
 
-  def workout_exercise_attributes attrs={}
+  def add_to_workout_exercise_memory exercise
+    workout_exercise_memory << exercise
+  end
 
+  # WorkoutExercises are taken as Enumerated
+  # Hash. This iterates over the Hash saving the
+  # exercises in the workout_exercise_memory
+
+  def workout_exercise_attributes attrs={}
+    attrs.each do |attr|
+      exercise = attr[1] # first value is the enumerator
+
+    end
   end
 end

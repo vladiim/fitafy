@@ -57,10 +57,18 @@ describe Workout do
   end
 
   describe "#workout_exercise_memory" do
+    it "should be an array" do
+      subject.workout_exercise_memory.should eq []
+    end
+  end
+
+  describe "#add_to_workout_exercise_memory" do
+    before do
+      @exercise = Object.new
+      subject.add_to_workout_exercise_memory @exercise
+    end
     it "should remember the workout exercise attributes" do
-      exercise = Object.new
-      subject.workout_exercise_memory << exercise
-      subject.workout_exercise_memory.should eq [exercise]
+      subject.workout_exercise_memory.should eq [@exercise]
     end
   end
 end
