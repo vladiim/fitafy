@@ -95,4 +95,12 @@ describe Workout do
       subject.add_workout_exercises_to_memory.should eq [exercise]
     end
   end
+
+  describe "#workout_exercises_attributes=" do
+    it "should set the #workout_exercises" do
+      attrs = [Object.new, Object.new]
+
+      subject.workout_exercises_attributes=(attrs).should be
+    end
+  end
 end

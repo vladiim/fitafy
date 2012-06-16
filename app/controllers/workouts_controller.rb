@@ -7,7 +7,6 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout  = Workout.new
-    # 3.times { @workout.new_workout_exercise }
   	@title    = "New Workout"
   	@snapz    = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
