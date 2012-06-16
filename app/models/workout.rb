@@ -1,6 +1,6 @@
 class Workout < ActiveRecord::Base
 
-  attr_accessible :name, :notes, :workout_exercise
+  attr_accessible :name, :notes
 
   has_many :workout_exercises
   accepts_nested_attributes_for :workout_exercises
@@ -24,7 +24,11 @@ class Workout < ActiveRecord::Base
     workout_exercises.build
   end
 
-  # def workout_exercise attrs={}
-  #   self.workout_exercises << workout_exercise.build attrs
-  # end
+  def workout_exercise_memory
+    @workout_exercise_memory ||= []
+  end
+
+  def workout_exercise_attributes attrs={}
+
+  end
 end

@@ -40,9 +40,12 @@ describe Workout do
   end
 
   describe "#all_exercises" do
-    it "should call all exercises" do
+    before do
       exercises = Object.new
       mock(Exercise).all { exercises }
+    end
+
+    it "should call all exercises" do
       subject.all_exercises.should eq exercises
     end
   end
@@ -53,11 +56,11 @@ describe Workout do
     end
   end
 
-  # describe "#workout_exercise" do
-  #   it "should add the workout_exercise to its workout_exercises" do
-  #     attrs = Hash.new
-  #     subject.workout_exercise(attrs)
-  #     subject.workout_exercises.should eq [(attrs)]
-  #   end
-  # end
+  describe "#workout_exercise_memory" do
+    it "should remember the workout exercise attributes" do
+      exercise = Object.new
+      subject.workout_exercise_memory << exercise
+      subject.workout_exercise_memory.should eq [exercise]
+    end
+  end
 end
