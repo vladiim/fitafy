@@ -9,6 +9,10 @@ class Exercise < ActiveRecord::Base
 
   scope :alphabetical_order, -> { order :name }
 
+  def titleize_name
+  	name.titleize
+  end
+
   def delete_exercise!
   	self.destroy
   end

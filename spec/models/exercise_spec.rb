@@ -45,4 +45,10 @@ describe Exercise do
        end
      end
   end
+
+  describe "#titleize_name" do
+    it "should titleize the name" do
+      subject.titleize_name.should eq "Robert Diggs"
+    end
+  end
 end
