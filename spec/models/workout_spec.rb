@@ -3,6 +3,7 @@ require_relative '../spec_helper'
 include CreateArelWorkout
 
 describe Workout do
+  let(:exercise) { Object.new }
   subject { create_valid_workout }
 
   def create_valid_workout
@@ -41,12 +42,20 @@ describe Workout do
 
   describe "#all_exercises" do
     before do
-      exercises = Object.new
-      mock(Exercise).all { exercises }
+      @exercises = Object.new
+      mock(Exercise).all { @exercises }
     end
 
     it "should call all exercises" do
-      subject.all_exercises.should eq exercises
+      subject.all_exercises.should eq @exercises
+    end
+  end
+
+  describe "#save_and_create_workout_exercises" do
+    it "should save itself and create_workout_exercises" do
+      mock(subject).save { true }
+      mock(subject).create_workout_exercises { true }
+      subject.save_and_create_workout_exercises.should be
     end
   end
 
@@ -63,12 +72,19 @@ describe Workout do
   end
 
   describe "#add_to_workout_exercise_memory" do
-    before do
-      @exercise = Object.new
-      subject.add_to_workout_exercise_memory @exercise
-    end
+    before { subject.add_to_workout_exercise_memory exercise }
+
     it "should remember the workout exercise attributes" do
-      subject.workout_exercise_memory.should eq [@exercise]
+      subject.workout_exercise_memory.should eq [exercise]
+    end
+  end
+
+  describe "#workout_exercise_attributes" do
+    it "should iterate over each exercise and add it to the memory" do
+      attr = {x: 1, y: 2}
+      attrs = {"0" => attr, "1" => attr}
+      mock(subject).add_to_workout_exercise_memory(attr).times 2
+      subject.workout_exercise_attributes(attrs).should be
     end
   end
 end

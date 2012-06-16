@@ -20,6 +20,11 @@ class Workout < ActiveRecord::Base
     Exercise.all
   end
 
+  def save_and_create_workout_exercises
+    save
+    create_workout_exercises
+  end
+
   def new_workout_exercise
     workout_exercises.build
   end
@@ -39,7 +44,7 @@ class Workout < ActiveRecord::Base
   def workout_exercise_attributes attrs={}
     attrs.each do |attr|
       exercise = attr[1] # first value is the enumerator
-
+      add_to_workout_exercise_memory exercise
     end
   end
 end
