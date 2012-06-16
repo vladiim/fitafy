@@ -50,17 +50,9 @@ describe Workout do
     end
   end
 
-  describe "#save_and_create_workout_exercises" do
-    it "should save itself and create_workout_exercises" do
-      mock(subject).add_workout_exercises_to_memory { true }
-      mock(subject).save                            { true }
-      mock(subject).create_workout_exercises        { true }
-      subject.save_and_create_workout_exercises.should be
-    end
-  end
-
   describe "#create_workout_exercises" do
     it "should create a workout_exercise for each workout_exercise in memory" do
+      pending "This is ugly as fuck"
       mock(subject).workout_exercise_memory { exercises }
       mock(subject.workout_exercises).create(exercise) { exercise }
       subject.create_workout_exercises.should eq exercises
@@ -70,37 +62,6 @@ describe Workout do
   describe "#new_workout_exercise" do
     it "should create a new WorkoutExercise" do
       subject.new_workout_exercise.class.should eq WorkoutExercise
-    end
-  end
-
-  describe "#workout_exercise_memory" do
-    it "should be an array" do
-      subject.workout_exercise_memory.should eq []
-    end
-  end
-
-  describe "#add_exercise_to_workout_exercise_memory" do
-    before { subject.add_exercise_to_workout_exercise_memory exercise }
-
-    it "should remember the workout exercise attributes" do
-      subject.workout_exercise_memory.should eq [exercise]
-    end
-  end
-
-  describe "#add_workout_exercises_to_memory" do
-    it "should iterate over each workout_exercise and add it to the memory" do
-      exercise = ["0" => { x: 2 }]
-      mock(subject).workout_exercises_attributes { [exercise] }
-      mock(subject).add_exercise_to_workout_exercise_memory(exercise[1]) { exercises }
-      subject.add_workout_exercises_to_memory.should eq [exercise]
-    end
-  end
-
-  describe "#workout_exercises_attributes=" do
-    it "should set the #workout_exercises" do
-      attrs = [Object.new, Object.new]
-
-      subject.workout_exercises_attributes=(attrs).should be
     end
   end
 end
