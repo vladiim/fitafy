@@ -3,6 +3,7 @@ Feature: Visitor navigates site
   As a fitafy visitor
   I want UX elements that help me navigate easily
 
+<<<<<<< HEAD
   @focus
   Scenario: Visitor gets homepage intro
     Given I'm new to fitafy
@@ -11,6 +12,17 @@ Feature: Visitor navigates site
     And I should have a CTA to find workouts
     And I should have a CTA to create workouts
     And I should see some trending workouts
+=======
+  Scenario: Visitor reads fitafy USP on homepage
+    Given I've never been to fitafy before
+    When I visit the homepage
+    Then I should see the fitafy USP message
+    And I should get a CTA to find workouts
+    And I should get a CTA to create workouts
+
+  @focus
+  Scenario: Visitor sees trending workouts on homepage  
+>>>>>>> branch
 
   Scenario: Visitor navigates to the homepage
     Given I'm on the workouts page

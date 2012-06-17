@@ -12,7 +12,11 @@ module SnapzSayz
 
   	def self.usp
       "Gazillions of workouts and exercises to help you manage your Personal Training clients!"
+<<<<<<< HEAD
   	  # "fitafy helps personal trainers keep track of their client's workouts and stay fly"
+=======
+  	  #"fitafy helps personal trainers keep track of their client's workouts and stay fly"
+>>>>>>> branch
   	end
   end
 
