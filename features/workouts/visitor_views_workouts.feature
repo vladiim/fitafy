@@ -8,7 +8,6 @@ Feature: Visitor views workouts
     When I visit the workout's page
     Then I should see that workout's details "No Said Date" and "These military arm' marine. sub machine gun"
 
-  @focus
   Scenario: Visitor views the workout list
     Given there are workouts
     When I click on the workout's link "Workouts"
