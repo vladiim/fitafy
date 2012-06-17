@@ -5,7 +5,7 @@ Feature: Visitor navigates site
 
   Scenario: Visitor reads fitafy USP on homepage
     Given I've never been to fitafy before
-    When I visit the homepage
+    When I visit the homepage usp
     Then I should see the fitafy USP message
     And I should get a CTA to find workouts
     And I should get a CTA to create workouts
