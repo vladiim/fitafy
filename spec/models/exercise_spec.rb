@@ -3,6 +3,7 @@ include CreateArelExercise
 
 describe Exercise do
   subject { Exercise.new }
+  let(:valid_subject) { create_valid_exercise }
 
   def create_valid_exercise
     Exercise.new(name:        "robert diggs",
@@ -48,7 +49,7 @@ describe Exercise do
 
   describe "#titleize_name" do
     it "should titleize the name" do
-      subject.titleize_name.should eq "Robert Diggs"
+      valid_subject.titleize_name.should eq "Robert Diggs"
     end
   end
 end
