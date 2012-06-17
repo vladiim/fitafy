@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+%p#home_page_usp= @snapz.usp
+=======
+=======
+>>>>>>> branch
+%section#home_usp
+  %p#usp_copy
+    = @snapz.usp
+
+  #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
+<<<<<<< HEAD
+  #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+>>>>>>> branch
+=======
+  #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+>>>>>>> branch
