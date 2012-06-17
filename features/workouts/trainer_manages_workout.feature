@@ -3,12 +3,11 @@ Feature: Trainer manages exercises
   As a personal trainer
   I want to be able to manage workouts
 
-  Scenario: Trainer builds new exercise
+  Scenario: Trainer builds new workout
     Given I want to create a new workout
     When I click the "New Workout" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
-  @focus
   Scenario: Trainer creates workout
     Given I'm on a new workout page
     When I fill in the workout form

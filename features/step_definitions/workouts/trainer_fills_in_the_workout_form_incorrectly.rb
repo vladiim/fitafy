@@ -1,4 +1,5 @@
 Given /^I've filled in the workout form$/ do
+  visit new_workout_path
   fill_in_workout_form
 end
 
