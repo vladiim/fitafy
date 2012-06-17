@@ -16,8 +16,8 @@ module CreateWorkout
   end
 
   def fill_in_exercise_details
-    fill_in :workout_workout_exercises_attributes_0_sets, with: "3"
-    fill_in :workout_workout_exercises_attributes_0_reps, with: "15"
+    fill_in "workout_workout_exercises_attributes_0_sets", with: "3"
+    # fill_in "workout_workout_exercises_attributes_0_reps", with: "15"
   end
 
   def click_workout_button
