@@ -8,11 +8,13 @@ Feature: Visitor views workouts
     When I visit the workout's page
     Then I should see that workout's details "No Said Date" and "These military arm' marine. sub machine gun"
 
+  @focus
   Scenario: Visitor views the workout list
     Given there are workouts
     When I click on the workout's link "Workouts"
     Then I should see a list of workouts
     And the "Latest Workouts" latest workouts should be listed by default
+    And I should see how many exercises the workout has
 
   Scenario: Visitor clicks link to workout from list
     Given there are workouts

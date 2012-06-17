@@ -31,4 +31,8 @@ class Workout < ActiveRecord::Base
   def w_e_set_blank? attributed
     attributed['sets'].blank?
   end
+
+  def exercises_count
+    workout_exercises.count
+  end
 end

@@ -81,4 +81,11 @@ describe Workout do
       end
     end
   end
+
+  describe "#exercise_count" do
+    it "should return the number of exercises in the workout" do
+      mock(subject.workout_exercises).count { 5 }
+      subject.exercises_count.should eq 5
+    end
+  end
 end
