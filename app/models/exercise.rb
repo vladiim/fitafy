@@ -1,6 +1,6 @@
 class Exercise < ActiveRecord::Base
 
-  attr_accessible :categories, :description, :equipment, :name, :tips
+  attr_accessible :name, :categories, :description, :equipment, :tips
 
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises
