@@ -10,8 +10,9 @@ module SnapzSayz
       options[rand options.length]
   	end
 
-  	def self.description
-  	  "fitafy helps personal trainers keep track of their client's workouts and stay fly"
+  	def self.usp
+      "Gazillions of workouts and exercises to help you manage your Personal Training clients!"
+  	  #"fitafy helps personal trainers keep track of their client's workouts and stay fly"
   	end
   end
 
