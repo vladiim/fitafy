@@ -15,7 +15,6 @@ Feature: Visitor views workouts
     And the "Latest Workouts" latest workouts should be listed by default
     And I should see how many exercises the workout has
 
-  @focus
   Scenario: Vistor filters workouts by name
     Given I'm on the workouts page with workouts
     When I click view by name
