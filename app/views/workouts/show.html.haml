@@ -1,8 +1,20 @@
-%article
-  = @workout.capitalize_notes
+%section.row
+  %article.span8
 
-  #workout_exercises
-    - @workout.list_exercises.each do |workout_exercise|
-      = workout_exercise.exercise_name
+    %table#workout_exercises.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th EXERCISE
+          %th SETS
+          %th NOTES
+      %tbody
+        - @workout.list_exercises.each do |workout_exercise|
+          %tr
+            %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
+            %th= workout_exercise.sets
+            %th NEED WORKOUT_EXERCISE NOTES
 
-%section= link_to "Edit Workout", edit_workout_path(@workout)
+    %h5 Notes
+    %p= @workout.capitalize_notes
+  
+%section= link_to "Edit Workout", edit_workout_path(@workout)  

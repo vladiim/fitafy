@@ -1,7 +1,15 @@
-%article
-  = @exercise.description
-  = @exercise.tips
-  = @exercise.categories
-  = @exercise.equipment
+%section.row
+  %article.span8
+    %h5 Description
+    %p= @exercise.description
 
-= link_to "Edit Exercise", edit_exercise_path(@exercise)
+    %h5 Tips
+    %p= @exercise.tips
+
+    %h5 Categories
+    %p= @exercise.categories
+
+    %h5 Equipment
+    %p= @exercise.equipment
+  
+%section= link_to "Edit Exercise", edit_exercise_path(@exercise)
