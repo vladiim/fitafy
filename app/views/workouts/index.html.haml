@@ -1,2 +1,7 @@
+%section#workout_filters
+  %p 
+    Filter by
+    = link_to "NAME", "#"
+
 %section#workouts
-  = render @workouts
+  %ul#workout_list= render @workouts

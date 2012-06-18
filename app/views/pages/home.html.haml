@@ -2,6 +2,9 @@
   %p#usp_copy
     = @snapz.usp
 
-  #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
-
-  #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+  %table#homepage_cta
+    %tr
+      %td
+        #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
+      %td
+        #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"

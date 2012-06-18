@@ -10,7 +10,6 @@ Feature: Visitor navigates site
     And I should get a CTA to find workouts
     And I should get a CTA to create workouts
 
-  @focus
   Scenario: Visitor sees trending workouts on homepage  
 
   Scenario: Visitor navigates to the homepage

@@ -9,5 +9,6 @@
   %section#main_content
     = render 'layouts/flashes'
     %header
-      %h1= section_title
+      // don't have h1 on homepage
+      %h1= section_title unless params[:action] == 'home'
     = yield

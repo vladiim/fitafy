@@ -4,8 +4,8 @@ module SnapzSayz
 
   	def self.title
   	  options = [
-        "fitafy fly!",
-        "fitification time!"
+        "FITAFY FLY!",
+        "FITIFICATION TIME!"
       ]
       options[rand options.length]
   	end

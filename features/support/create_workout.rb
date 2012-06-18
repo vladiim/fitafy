@@ -1,17 +1,20 @@
 module CreateWorkout
 
   WORKOUT_ATTRIBUTES = {name: "no said date", notes: "these military arm' marine. sub machine gun"}
+  ALPHABET           = ("A".."Z").to_a.reverse # reverse order to ensure alphabetical sorting
 
-  def create_workout
+  def create_workout number_of_w=1
     create_exercise
-    visit_new_workout_path
-    fill_in_exercise_details
-  	fill_in_workout_form
-  	click_workout_button
+    number_of_w.times do |n|
+      visit_new_workout_path
+      fill_in_exercise_details
+  	  fill_in_workout_form name=ALPHABET[n]
+  	  click_workout_button
+    end
   end
 
-  def fill_in_workout_form
-    fill_in "workout_name", with: WORKOUT_ATTRIBUTES[:name]
+  def fill_in_workout_form name=nil
+    fill_in "workout_name", with: name + WORKOUT_ATTRIBUTES[:name]
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end
 

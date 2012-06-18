@@ -1,7 +1,8 @@
-%article#workout_list
-  %header
-    %h5= link_to workout.titleize_name, workout_path(workout)
-
-  %p
-    = workout.exercises_count
-    exercises
+%li
+  %article
+    %header
+      %h5= link_to workout.titleize_name, workout_path(workout)
+  
+    %p
+      = workout.exercises_count
+      exercises
