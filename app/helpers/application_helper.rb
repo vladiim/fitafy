@@ -1,7 +1,11 @@
 module ApplicationHelper
 
   def section_title
-    @title.upcase ||= SnapzSayz::Information.title
+    if @title 
+      @title.upcase
+    else 
+      SnapzSayz::Information.title
+    end
   end
 
   def logo
