@@ -1,5 +1,5 @@
 %section.row
-  %article.span8
+  %article.span7
 
     %table#workout_exercises.table.table-bordered.table-striped
       %thead
@@ -16,5 +16,8 @@
 
     %h5 Notes
     %p= @workout.capitalize_notes
-  
-%section= link_to "Edit Workout", edit_workout_path(@workout)  
+
+  %aside.span3.well
+    = render "workout_aside"
+
+%section= link_to "Edit Workout", edit_workout_path(@workout)

@@ -1,15 +1,18 @@
 %section.row
-  %article.span8
+  %article.span7
     %h5 Description
-    %p= @exercise.description
+    %p= @exercise.description.humanize
 
     %h5 Tips
-    %p= @exercise.tips
+    %p= @exercise.tips.humanize
 
     %h5 Categories
-    %p= @exercise.categories
+    %p= @exercise.categories.titleize
 
     %h5 Equipment
-    %p= @exercise.equipment
-  
+    %p= @exercise.equipment.titleize
+
+  %aside.span3.well
+    = render "exercise_aside"
+
 %section= link_to "Edit Exercise", edit_exercise_path(@exercise)
