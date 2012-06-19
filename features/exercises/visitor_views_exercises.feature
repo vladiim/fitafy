@@ -3,6 +3,7 @@ Feature: Visitor views exercises
   As a fitafy visitor
   I want to be able to look at all the exercise's details
 
+  @focus
   Scenario: Visitor views an individual exercise
     Given an exercise has been created
     When I visit the exercise's page

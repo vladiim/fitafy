@@ -5,12 +5,15 @@ Feature: Visitor navigates site
 
   Scenario: Visitor reads fitafy USP on homepage
     Given I've never been to fitafy before
-    When I visit the homepage usp
+    When I visit the homepage (usp)
     Then I should see the fitafy USP message
     And I should get a CTA to find workouts
     And I should get a CTA to create workouts
 
-  Scenario: Visitor sees trending workouts on homepage  
+  Scenario: Visitor sees trending workouts on homepage
+    Given I need incentive to click on
+    When I visit the homepage (trend)
+    Then I should see trending topics
 
   Scenario: Visitor navigates to the homepage
     Given I'm on the workouts page

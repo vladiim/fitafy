@@ -1,5 +1,5 @@
 Given /^an exercise has been created$/ do
-  @exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
+  create_exercise
 end
 
 When /^I visit the exercise's page$/ do
@@ -7,8 +7,9 @@ When /^I visit the exercise's page$/ do
 end
 
 Then /^I should see that exercise's details$/ do
-  attributes = %w[name description tips categories equipment]
-  attributes.each do |attribute|
-  	page.should have_content @exercise.send attribute
-  end
+  page.should have_css "h1", @exercise.name.capitalize
+  page.should have_css "p", @exercise.description.humanize
+  page.should have_css "p", @exercise.tips.humanize
+  page.should have_css "p", @exercise.categories.humanize
+  page.should have_css "p", @exercise.equipment.humanize
 end

@@ -11,6 +11,7 @@ module CreateExercise
     visit_new_exercise
     fill_in_exercise_form
     click_create_exercise
+    @exercise = Exercise.find_by_name("liquid swords")
   end
 
   def fill_in_exercise_form
