@@ -18,7 +18,6 @@ Feature: Visitor views exercises
     When I click on an exercise
     Then I should be on the exercise's show page
 
-  @focus
   Scenario: Visitor goes to exercise page from workout
      Given I've gone to a workout show page
      When I click on an exercise in the workout's list

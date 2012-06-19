@@ -13,7 +13,6 @@ Feature: Trainer manages exercises
     When I fill in the workout form
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
     And I can see the workout name
-    And I can see the exercise name
 
   Scenario: Trainer edits a workout
     Given I want to update a workout's details
