@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-  	# @title = "" # don't want to show
-  	@snapz = SnapzSayz::Information
+  	@snapz 	  = SnapzSayz::Information
+  	@workouts = Workout.trending
   end
 end

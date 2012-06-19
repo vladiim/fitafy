@@ -2,7 +2,7 @@ Given /^I've never been to fitafy before$/ do
   # nothing to see here
 end
 
-When /^I visit the homepage usp$/ do
+When /^I visit the homepage \(usp\)$/ do
   visit root_path
 end
 

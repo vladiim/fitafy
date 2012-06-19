@@ -8,10 +8,12 @@ describe Workout do
   let(:exercise)  { Object.new }
   let(:exercises) { [exercise] }
 
-  def create_valid_workout
-    Workout.new(name:      "criminology",
-                notes:     "dealin in my cypher. i revolve around sciences"
-    )
+  def create_valid_workout n=1
+    n.times do
+      Workout.new(name:      "criminology #{n}",
+                  notes:     "dealin in my cypher. i revolve around sciences #{n}"
+      )
+    end
   end
 
   describe "#attributes" do
@@ -86,6 +88,13 @@ describe Workout do
     it "should return the number of exercises in the workout" do
       mock(subject.workout_exercises).count { 5 }
       subject.exercises_count.should eq 5
+    end
+  end
+
+  describe "#trending" do
+    it "should return 5 workouts" do
+      create_valid_workout 4
+      Workout.trending.count.should eq 4
     end
   end
 end

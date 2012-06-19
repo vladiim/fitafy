@@ -16,6 +16,11 @@ class Workout < ActiveRecord::Base
   	notes.capitalize
   end
 
+  def self.trending
+    # TODO: actually immplement trending algo
+    limit 4
+  end
+
   def all_exercises
     Exercise.all
   end

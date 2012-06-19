@@ -8,3 +8,11 @@
         #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
       %td
         #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+
+%aside
+  %header#trending
+    %h5 TRENDING WORKOUTS
+
+  %ul#trending_workouts.row
+    - @workouts.each do |workout|
+      = render "workouts/workout", workout: workout

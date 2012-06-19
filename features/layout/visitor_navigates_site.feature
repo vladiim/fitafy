@@ -10,10 +10,11 @@ Feature: Visitor navigates site
     And I should get a CTA to find workouts
     And I should get a CTA to create workouts
 
+  @focus
   Scenario: Visitor sees trending workouts on homepage
     Given I need incentive to click on
     When I visit the homepage (trend)
-    Then I should see trending topics
+    Then I should see trending workouts
 
   Scenario: Visitor navigates to the homepage
     Given I'm on the workouts page
