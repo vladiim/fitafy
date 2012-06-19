@@ -8,10 +8,18 @@ describe Workout do
   let(:exercise)  { Object.new }
   let(:exercises) { [exercise] }
 
-  def create_valid_workout n=1
+  def create_valid_workout
     n.times do
-      Workout.new(name:      "criminology #{n}",
-                  notes:     "dealin in my cypher. i revolve around sciences #{n}"
+      Workout.new(name:      "criminology",
+                  notes:     "dealin in my cypher. i revolve around sciences"
+      )
+    end
+  end
+
+  def really_create_workouts n=1
+    n.times do
+      Workout.create(name:  "one",
+                     notes: "Rhymes is made of garlic, never in the target"
       )
     end
   end
@@ -93,7 +101,7 @@ describe Workout do
 
   describe "#trending" do
     it "should return 5 workouts" do
-      create_valid_workout 4
+      really_create_workouts 4
       Workout.trending.count.should eq 4
     end
   end
