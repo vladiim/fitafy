@@ -1,11 +1,11 @@
 Given /^I'm on an exsisting exercise's edit page$/ do
   create_exercise
-  click_link "Edit Exercise"
+  click_link "EDIT EXERCISE"
 end
 
 When /^I change the exercise's "(.*?)" with "(.*?)"$/ do |field, value|
   fill_in field, with: value
-  click_button "Update Exercise"
+  click_button "UPDATE EXERCISE"
 end
 
 Then /^I should see the "(.*?)" on the exercise's page$/ do |value|
