@@ -1,5 +1,5 @@
 When /^I visit the list of workouts$/ do
-  click_link "Workouts"
+  click_link "WORKOUTS"
 end
 
 Then /^I can click on the workout "(.*?)"$/ do |workout_link|

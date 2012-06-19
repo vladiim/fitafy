@@ -8,7 +8,7 @@ end
 
 When /^I visit the exercise list$/ do
   visit root_path
-  click_link "Exercises"
+  click_link "EXERCISES"
 end
 
 Then /^the exercises should be in alphabetical order$/ do

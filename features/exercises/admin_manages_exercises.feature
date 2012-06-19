@@ -5,7 +5,7 @@ Feature: Admin Manages exercises
 
   Scenario: Admin builds new exercise
     Given I want to create a new exercise
-    When I click the "New Exercise" new exercise link
+    When I click the "NEW EXERCISE" new exercise link
     Then Snapz should say "Creatin' a new exercise? Just give me some deets" because I'm on a new exercise page
 
   Scenario: Admin creates exercise

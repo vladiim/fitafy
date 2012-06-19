@@ -10,7 +10,7 @@ Feature: Visitor views workouts
 
   Scenario: Visitor views the workout list
     Given there are workouts
-    When I click on the workout's link "Workouts"
+    When I click on the workout's link "WORKOUTS"
     Then I should see a list of workouts
     And I should see how many exercises the workout has
 
