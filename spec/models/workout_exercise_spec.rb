@@ -9,8 +9,7 @@ describe WorkoutExercise do
   		workout_id: 3,
   		exercise_id: 4,
   		sets: 3,
-  		rep_weight: 30,
-  		rep_time: "00:00:05"
+  		notes: "notes"
   	)
   end
 
@@ -36,17 +35,10 @@ describe WorkoutExercise do
       end
     end
 
-    describe "#rep_weigth" do
-      it "should be able to set and read rep_weight" do
-        subject.rep_weight = [4,5,4]
-        subject.rep_weight.should eq [4,5,4]
-      end
-    end
-
-    describe "#rep_time" do
-      it "should be able to set and read rep_time" do
-        subject.rep_time = "00:00:15"
-        subject.rep_time.should eq "00:00:15"
+    describe "#notes" do
+      it "should be able to set and read notes" do
+        subject.notes = "notes"
+        subject.notes.should eq "notes"
       end
     end
   end

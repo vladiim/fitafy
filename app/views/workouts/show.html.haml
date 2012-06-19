@@ -12,7 +12,7 @@
           %tr
             %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
             %th= workout_exercise.sets
-            %th NEED WORKOUT_EXERCISE NOTES
+            %th= workout_exercise.notes.humanize
 
     %h5 Notes
     %p= @workout.capitalize_notes

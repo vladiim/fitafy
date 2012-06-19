@@ -1,12 +1,15 @@
-%section#workout_exercises_form
-  - @workout.all_exercises.each do |exercise|
-    %h3
-      Exercise:
-      = exercise.name
+%table.table
+  %thead
+    %tr
+      %th Exercise Name
+      %th Sets
+      %th Notes
 
+  %tbody
+    - @workout.all_exercises.each do |exercise|
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
-        = e.hidden_field :exercise_id, value: exercise.id
-        = e.input :sets
-
-        / = e.input :exercise_id, input_html: { value: exercise.id }, as: :hidden
-        / = e.input :sets, required: false
+        %tr
+          = e.hidden_field :exercise_id, value: exercise.id
+          %td= exercise.name
+          %td= e.input :sets
+          %td Notes

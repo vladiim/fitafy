@@ -9,11 +9,9 @@ describe Workout do
   let(:exercises) { [exercise] }
 
   def create_valid_workout
-    n.times do
-      Workout.new(name:      "criminology",
-                  notes:     "dealin in my cypher. i revolve around sciences"
-      )
-    end
+    Workout.new(name:      "criminology",
+                notes:     "dealin in my cypher. i revolve around sciences"
+    )
   end
 
   def really_create_workouts n=1

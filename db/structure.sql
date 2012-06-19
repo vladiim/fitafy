@@ -81,8 +81,7 @@ CREATE TABLE workout_exercises (
     workout_id integer NOT NULL,
     exercise_id integer NOT NULL,
     sets integer NOT NULL,
-    rep_weight character varying(255),
-    rep_time character varying(255),
+    notes character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
