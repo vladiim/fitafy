@@ -13,7 +13,7 @@ module CreateWorkout
     end
   end
 
-  def fill_in_workout_form name=nil
+  def fill_in_workout_form name=""
     fill_in "workout_name", with: name + WORKOUT_ATTRIBUTES[:name]
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end

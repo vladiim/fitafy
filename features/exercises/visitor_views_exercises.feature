@@ -8,7 +8,6 @@ Feature: Visitor views exercises
     When I visit the exercise's page
     Then I should see that exercise's details
 
-  @focus
   Scenario: Visitor views exercise list alphabetically
     Given there are more than one exercise
     When I visit the exercise list
