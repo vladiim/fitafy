@@ -23,7 +23,7 @@ module CreateExercise
   end
 
   def click_create_exercise
-    click_button "Create Exercise"
+    click_button "CREATE EXERCISE"
   end
 
   def visit_new_exercise

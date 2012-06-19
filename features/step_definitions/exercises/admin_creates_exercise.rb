@@ -4,7 +4,7 @@ end
 
 When /^I fill in the exercise form$/ do
   fill_in_exercise_form
-  click_button "Create Exercise"
+  click_button "CREATE EXERCISE"
 end
 
 Then /^Snapz should give the created exercise message "(.*?)"$/ do |snapz_message|

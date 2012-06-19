@@ -19,7 +19,6 @@ Feature: Trainer manages exercises
     When I'm on the edit workout page
     Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
 
-  @focus
   Scenario: Trainer fills in the workout form incorrectly
     Given I've filled in the workout form
     When I fill in the workout "workout_name" field with ""
@@ -27,8 +26,8 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer updates a workout
     Given I'm on an exsisting workout's edit page
-    When I change the workout's "workout_name" with "supreme clientel"
-    Then I should see "Supreme Clientel" on the workouts's page
+    When I change the workout's "workout_name" with "SUPREME CLIENTEL"
+    Then I should see "SUPREME CLIENTEL" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
   Scenario: Trainer deletes workout

@@ -5,7 +5,7 @@ end
 
 When /^I fill in the exercise "(.*?)" field with "(.*?)"$/ do |field, value|
   fill_in field, with: value
-  click_button "Create Exercise"
+  click_button "CREATE EXERCISE"
 end
 
 Then /^I should get the exercise error message "(.*?)" on the "(.*?)"$/ do |error_message, field|

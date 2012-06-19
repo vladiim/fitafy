@@ -24,7 +24,7 @@ module CreateWorkout
   end
 
   def click_workout_button
-  	click_button "Create Workout"
+  	click_button "CREATE WORKOUT"
   end
 
   def visit_new_workout_path
