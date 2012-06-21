@@ -6,7 +6,7 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises
 
-  validates_presence_of :name, :notes
+  validates_presence_of :name
 
   def titleize_name
   	name.titleize

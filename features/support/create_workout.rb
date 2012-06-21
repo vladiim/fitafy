@@ -15,11 +15,12 @@ module CreateWorkout
 
   def fill_in_workout_form name=""
     fill_in "workout_name", with: name + WORKOUT_ATTRIBUTES[:name]
+    # click_link "ADD NOTES" TODO: make notes a modal pop up
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
   end
 
   def fill_in_exercise_details
-    fill_in "workout_workout_exercises_attributes_0_sets", with: "3"
+    select "3", from: "workout_workout_exercises_attributes_0_sets"
     fill_in "workout_workout_exercises_attributes_0_notes", with: "wu tang is the cd that i travel with"
   end
 

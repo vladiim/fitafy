@@ -41,13 +41,6 @@ describe Workout do
          subject.should_not be_valid
        end
      end
-
-     context "without notes" do
-       it "shouldn't be valid" do
-         subject.notes = nil
-         subject.should_not be_valid
-       end
-     end
   end
 
   describe "#all_exercises" do
