@@ -1,4 +1,4 @@
-%table.table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %th Exercise Name
@@ -10,6 +10,6 @@
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
         %tr
           = e.hidden_field :exercise_id, value: exercise.id
-          %td= exercise.name
+          %td= exercise.titleize_name
           %td= e.input :sets
-          %td Notes
+          %td= e.input :notes

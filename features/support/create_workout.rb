@@ -20,7 +20,7 @@ module CreateWorkout
 
   def fill_in_exercise_details
     fill_in "workout_workout_exercises_attributes_0_sets", with: "3"
-    # fill_in "workout_workout_exercises_attributes_0_reps", with: "15"
+    fill_in "workout_workout_exercises_attributes_0_notes", with: "wu tang is the cd that i travel with"
   end
 
   def click_workout_button
