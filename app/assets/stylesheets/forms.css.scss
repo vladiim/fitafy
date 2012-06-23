@@ -1,5 +1,10 @@
-// ensure workout exercises sets dropdown isn't crazy wide
-tr#workout_exercises_fields td#workout_exercises_sets select { width: 80%; }
+tr#workout_exercises_fields {
+    // workout exercise names field is too wide
+    td#workout_exercise_name { width: 20px}
 
-// workout exercise names field is too wide
-tr#workout_exercises_fields td#workout_exercise_name { width: 20px}
+    // workout exercises sets dropdown is crazy wide
+	td#workout_exercises_sets select { width: 80%; }
+
+    // workout exercise notes td is too wide
+    td#workout_exercise_notes { width: 60px }
+}

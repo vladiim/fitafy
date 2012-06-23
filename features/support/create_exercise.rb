@@ -1,25 +1,42 @@
 module CreateExercise
 
-  EXERCISE_ATTRIBUTES = { name:         "liquid swords",
-  						            description:  "wu gambinos",
-  						            tips:  		    "protect yo neck",
-  						            categories:   "shoalin sword style",
-  						            equipment: 	  "bobby boulders"
-  }
+  EXERCISE_ATTRIBUTES = [{ name:         "liquid swords",
+  						             description:  "wu gambinos",
+  						             tips:  		    "protect yo neck",
+  						             categories:   "shoalin sword style",
+  						             equipment: 	  "bobby boulders"
+  }]
 
-  def create_exercise
-    visit_new_exercise
-    fill_in_exercise_form
-    click_create_exercise
+  def exercise_type_attrs
+    names = WorkoutExercise::EXERCISE_TYPE
+    @attrs = []
+    names.each do |name|
+      attr = { name:         "#{name} title",
+               description:  "wu gambinos",
+               tips:         "protect yo neck",
+               categories:   name,
+               equipment:    "bobby boulders"
+              }
+      @attrs << attr
+    end
+    @attrs
+  end
+
+  def create_exercise attrs=EXERCISE_ATTRIBUTES
+    make_exercise attrs
     @exercise = Exercise.find_by_name("liquid swords")
   end
 
-  def fill_in_exercise_form
-  	fill_in "exercise_name", 			    with: EXERCISE_ATTRIBUTES[:name]
-    fill_in "exercise_description", 	with: EXERCISE_ATTRIBUTES[:description]
-    fill_in "exercise_tips", 			    with: EXERCISE_ATTRIBUTES[:tips]
-    fill_in "exercise_categories",  	with: EXERCISE_ATTRIBUTES[:categories]
-    fill_in "exercise_equipment", 		with: EXERCISE_ATTRIBUTES[:equipment]
+  def make_exercise attrs
+    attrs.each do |attr|
+      visit_new_exercise
+  	  fill_in "exercise_name", 			    with: attr[:name]
+      fill_in "exercise_description", 	with: attr[:description]
+      fill_in "exercise_tips", 			    with: attr[:tips]
+      fill_in "exercise_categories",  	with: attr[:categories]
+      fill_in "exercise_equipment", 		with: attr[:equipment]
+      click_create_exercise
+    end
   end
 
   def click_create_exercise

@@ -25,3 +25,4 @@ Feature: Visitor views exercises
 
   Scenario: Can't build, create, update, delete exercises
   Scenario: Can't see links to create, update, delete exercises
+  Scenario: Can't see exercise list

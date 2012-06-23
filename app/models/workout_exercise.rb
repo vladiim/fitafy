@@ -1,5 +1,7 @@
 class WorkoutExercise < ActiveRecord::Base
 
+  EXERCISE_TYPE = %w(abs back biceps chest forearms legs shoulders tricep)
+
   attr_accessible :workout_id, :exercise_id, :sets, :notes
 
   belongs_to :exercise

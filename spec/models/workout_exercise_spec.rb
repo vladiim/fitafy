@@ -49,4 +49,10 @@ describe WorkoutExercise do
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end
+
+  describe "#exercise_type" do
+    it "should have an array of exercise types" do
+      WorkoutExercise::EXERCISE_TYPE.should eq %w(abs back biceps chest forearms legs shoulders tricep)
+    end
+  end
 end

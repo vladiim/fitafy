@@ -1,7 +1,13 @@
+%p
+  SORT BY:
+  - WorkoutExercise::EXERCISE_TYPE.each do |exercise_type|
+    = link_to exercise_type.upcase, "#"
+    |
+
 %table.table.table-bordered.table-striped
   %thead
     %tr
-      %th Exercise Name
+      %th Exercise
       %th Sets
       %th Notes
 
@@ -12,4 +18,4 @@
           = e.hidden_field :exercise_id, value: exercise.id
           %td#workout_exercise_name= exercise.titleize_name
           %td#workout_exercises_sets= e.input :sets, collection: 1..10
-          %td= e.input :notes
+          %td#workout_exercise_notes= e.input :notes, input_html: { rows: 4 }

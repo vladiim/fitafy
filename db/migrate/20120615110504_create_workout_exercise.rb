@@ -4,7 +4,7 @@ class CreateWorkoutExercise < ActiveRecord::Migration
       t.integer :workout_id, null: false
       t.integer :exercise_id, null: false
       t.integer :sets, null: false
-      t.string :notes
+      t.text :notes
       t.timestamps
   	end
   	add_index :workout_exercises, :workout_id
