@@ -1,7 +1,7 @@
-%p
+%p#workout_exercise_sort_by
   SORT BY:
   - WorkoutExercise::EXERCISE_TYPE.each do |exercise_type|
-    = link_to exercise_type.upcase, "#"
+    = link_to exercise_type.upcase, "#", id: exercise_type
     |
 
 %table.table.table-bordered.table-striped
@@ -19,3 +19,13 @@
           %td#workout_exercise_name= exercise.titleize_name
           %td#workout_exercises_sets= e.input :sets, collection: 1..10
           %td#workout_exercise_notes= e.input :notes, input_html: { rows: 4 }
+
+/ loader message
+/ - WorkoutExercise::EXERCISE_TYPE.each do |exercise_type|
+/   %div{id: "#{exercise_type}_loader"}
+/     %strong
+/       Loading
+/       = exercise_type
+/       exercises...
+/     .progress.progress-striped.active
+/       .bar{style: "width: 80%;"}

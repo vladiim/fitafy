@@ -53,3 +53,9 @@ Feature: Trainer manages exercises
       | "LEGS"      | "Legs Title"      | "Lower Back Title"  |
       | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
       | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
+
+  Scenario: Trainer changes exercise tabs
+    Given I'm creating a new working
+    And I'm sorting through exercises
+    When I click on an exercise sort tab
+    Then that tab should be active #https://github.com/thoughtbot/capybara-webkit https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
