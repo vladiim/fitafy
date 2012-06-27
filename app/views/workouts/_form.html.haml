@@ -1,6 +1,7 @@
-%section#workout_form
-  = f.input :name
-  = f.input :notes, input_html: { rows: 4 }
-
-  %section.row
-    #workout_exercises_form.span7= render "workout_exercises_form", f: f
+#new_workout_form.row
+  %section.span7
+    #workout_exercises_form.span= render "workout_exercises_form", f: f
+  
+  %section#workout_form.span2
+    = f.input :name
+    = f.input :notes, input_html: { rows: 4 }

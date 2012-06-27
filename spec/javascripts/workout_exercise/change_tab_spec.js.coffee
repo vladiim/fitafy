@@ -9,8 +9,9 @@ describe 'ChangeTab', ->
   	  # recognise the tests otherwise?!
   	  with_link				   = new Object
   	  with_link.preventDefault = null
-  	  remove  				   = spyOn $.fn, 'removeClass'
-  	  add					   = spyOn $.fn, 'addClass'
+  	  removeClass			   = spyOn $.fn, 'removeClass'
+  	  addClass				   = spyOn $.fn, 'addClass'
+  	  hideContent			   = spyOn $.fn, 'hide'
 
   	  spyOn with_link, 'preventDefault'
   	  ChangeTab with_link
@@ -19,7 +20,10 @@ describe 'ChangeTab', ->
   	  expect( with_link.preventDefault ).toHaveBeenCalled
 
   	  # remove active class
-  	  expect( remove ).toHaveBeenCalledWith('active')
+  	  expect( removeClass ).toHaveBeenCalledWith('active')
 
   	  # add active class to this
-  	  expect( add ).toHaveBeenCalledWith('active')
+  	  expect( addClass ).toHaveBeenCalledWith('active')
+
+  	  # hide content in tab
+  	  expect( hideContent ).toHaveBeenCalled()
