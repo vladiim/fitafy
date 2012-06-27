@@ -2,12 +2,24 @@
 
 describe 'ChangeTab', ->
 
-  beforeEach ->
-  	@caller = new Object
-  	@subject = new ChangeTab @caller
+  describe 'click sort by', ->
 
-  describe 'active class', ->
-  	it 'should remove active from the current class', ->
-  	  loadFixtures 'workout_exercise_sort_by_active'
-  	  spyOn($.fn, "removeClass")
-  	  expect($.fn.removeClass).toHaveBeenCalled
+  	it 'should remove class from active', ->
+  	  # i've got all this clumped in one test because jasmine doesn't
+  	  # recognise the tests otherwise?!
+  	  with_link				   = new Object
+  	  with_link.preventDefault = null
+  	  remove  				   = spyOn $.fn, 'removeClass'
+  	  add					   = spyOn $.fn, 'addClass'
+
+  	  spyOn with_link, 'preventDefault'
+  	  ChangeTab with_link
+
+  	  # prevent default
+  	  expect( with_link.preventDefault ).toHaveBeenCalled
+
+  	  # remove active class
+  	  expect( remove ).toHaveBeenCalledWith('active')
+
+  	  # add active class to this
+  	  expect( add ).toHaveBeenCalledWith('active')
