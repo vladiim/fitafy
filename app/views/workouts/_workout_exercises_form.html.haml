@@ -5,27 +5,18 @@
     |
 
 %table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Exercise
-      %th Sets
-      %th Notes
+  / %thead
+  /   %tr
+  /     %th Exercise
+  /     %th Sets
+  /     %th Notes
 
   %tbody
     - @workout.all_exercises.each do |exercise|
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
         %tr#workout_exercises_fields
           = e.hidden_field :exercise_id, value: exercise.id
-          %td#workout_exercise_name= exercise.titleize_name
-          %td#workout_exercises_sets= e.input :sets, collection: 1..10
+          %td#workout_exercises_sets
+            %h4= exercise.name.titleize
+            %br= e.input :sets, collection: 1..10, label: "Add Sets:"
           %td#workout_exercise_notes= e.input :notes, input_html: { rows: 4 }
-
-/ loader message
-/ - WorkoutExercise::EXERCISE_TYPE.each do |exercise_type|
-/   %div{id: "#{exercise_type}_loader"}
-/     %strong
-/       Loading
-/       = exercise_type
-/       exercises...
-/     .progress.progress-striped.active
-/       .bar{style: "width: 80%;"}
