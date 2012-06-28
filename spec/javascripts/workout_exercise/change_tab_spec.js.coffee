@@ -2,28 +2,30 @@
 
 describe 'ChangeTab', ->
 
-  describe 'click sort by', ->
+  beforeEach ->
+      @with_link = new Object
+      @with_link.preventDefault = null
+      spyOn @with_link, 'preventDefault'
 
+  describe 'preventDefault', ->
+    it 'should prevent the default on the link', ->
+      ChangeTab @with_link
+      expect( @with_link.preventDefault ).toHaveBeenCalled()
+
+  describe 'removeClass', ->
   	it 'should remove class from active', ->
-  	  # i've got all this clumped in one test because jasmine doesn't
-  	  # recognise the tests otherwise?!
-  	  with_link				   = new Object
-  	  with_link.preventDefault = null
-  	  removeClass			   = spyOn $.fn, 'removeClass'
-  	  addClass				   = spyOn $.fn, 'addClass'
-  	  hideContent			   = spyOn $.fn, 'hide'
+      removeClass = spyOn $.fn, 'removeClass'
+      ChangeTab @with_link
+      expect( removeClass ).toHaveBeenCalledWith('active')
 
-  	  spyOn with_link, 'preventDefault'
-  	  ChangeTab with_link
+  describe 'addClass', ->
+    it 'should add the active class to the passed in link', ->
+      addClass = spyOn $.fn, 'addClass'
+      ChangeTab @with_link
+      expect( addClass ).toHaveBeenCalledWith('active')
 
-  	  # prevent default
-  	  expect( with_link.preventDefault ).toHaveBeenCalled
-
-  	  # remove active class
-  	  expect( removeClass ).toHaveBeenCalledWith('active')
-
-  	  # add active class to this
-  	  expect( addClass ).toHaveBeenCalledWith('active')
-
-  	  # hide content in tab
-  	  expect( hideContent ).toHaveBeenCalled()
+  describe 'hide tab content', ->
+    it 'should hide the current tabs content', ->
+      hideContent = spyOn $.fn, 'hide'
+      ChangeTab @with_link
+      expect( hideContent ).toHaveBeenCalled()
