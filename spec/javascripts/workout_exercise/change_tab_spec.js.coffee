@@ -2,30 +2,16 @@
 
 describe 'ChangeTab', ->
 
-  beforeEach ->
-      @with_link = new Object
-      @with_link.preventDefault = null
-      spyOn @with_link, 'preventDefault'
+  # it 'should prevent the default on the link', ->
+  #   new ChangeTab @with_link
+  #   expect( @with_link.preventDefault ).toHaveBeenCalled()
 
-  describe 'preventDefault', ->
-    it 'should prevent the default on the link', ->
-      ChangeTab @with_link
-      expect( @with_link.preventDefault ).toHaveBeenCalled()
+  it 'should remove class from active', ->
+    remove_klass = spyOn $.fn, 'removeClass'
+    new ChangeTab
+    expect( remove_klass ).toHaveBeenCalledWith('active')
 
-  describe 'removeClass', ->
-  	it 'should remove class from active', ->
-      removeClass = spyOn $.fn, 'removeClass'
-      ChangeTab @with_link
-      expect( removeClass ).toHaveBeenCalledWith('active')
-
-  describe 'addClass', ->
-    it 'should add the active class to the passed in link', ->
-      addClass = spyOn $.fn, 'addClass'
-      ChangeTab @with_link
-      expect( addClass ).toHaveBeenCalledWith('active')
-
-  describe 'hide tab content', ->
-    it 'should hide the current tabs content', ->
-      hideContent = spyOn $.fn, 'hide'
-      ChangeTab @with_link
-      expect( hideContent ).toHaveBeenCalled()
+  it 'should add the active class to this.link', ->
+    add_klass = spyOn $.fn, 'addClass'
+    new ChangeTab
+    expect( add_klass ).toHaveBeenCalledWith('active')

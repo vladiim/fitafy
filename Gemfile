@@ -31,4 +31,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.9.0'
   gem 'jasminerice', '~> 0.0.9'
+  gem 'guard-jasmine'
 end
