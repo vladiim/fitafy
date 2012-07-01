@@ -15,3 +15,8 @@ describe 'ChangeTab', ->
     add_klass = spyOn $.fn, 'addClass'
     new ChangeTab
     expect( add_klass ).toHaveBeenCalledWith('active')
+
+  it 'should had the table body', ->
+    hide_table = spyOn $.fn, 'hide'
+    new ChangeTab
+    expect( hide_table ).toHaveBeenCalled()

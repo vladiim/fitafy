@@ -6,7 +6,7 @@
 
 %table.table.table-bordered.table-striped
 
-  %tbody
+  %tbody#workout_exercises
     - @workout.all_exercises.each do |exercise|
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
         %tr#workout_exercises_fields
