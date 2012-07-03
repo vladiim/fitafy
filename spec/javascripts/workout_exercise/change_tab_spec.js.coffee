@@ -2,21 +2,30 @@
 
 describe 'ChangeTab', ->
 
-  # it 'should prevent the default on the link', ->
-  #   new ChangeTab @with_link
-  #   expect( @with_link.preventDefault ).toHaveBeenCalled()
-
   it 'should remove class from active', ->
-    remove_klass = spyOn $.fn, 'removeClass'
-    new ChangeTab
-    expect( remove_klass ).toHaveBeenCalledWith('active')
+    loadFixtures "tab_sort_by_active"
+    spyOn $.fn, 'removeClass'
+    tab = $('p#tab_sort_by a.active')
+    new ChangeTab(tab)
+    expect( tab.removeClass ).toHaveBeenCalledWith('active')
 
-  it 'should add the active class to this.link', ->
-    add_klass = spyOn $.fn, 'addClass'
-    new ChangeTab
-    expect( add_klass ).toHaveBeenCalledWith('active')
+  describe 'inactive tab', ->
+    beforeEach ->
+      loadFixtures "tab_sort_by"
 
-  it 'should had the table body', ->
-    hide_table = spyOn $.fn, 'hide'
+    it 'should add the active class to this.link', ->
+      spyOn $.fn, 'addClass'
+      tab = $('p#tab_sort_by a')
+      new ChangeTab(tab)
+      expect( tab.addClass ).toHaveBeenCalledWith('active')
+  
+    it 'should had the table body', ->
+      spyOn $.fn, 'hide'
+      tab = $('tbody#workout_exercises')
+      new ChangeTab
+      expect( tab.hide ).toHaveBeenCalled()
+
+  it 'should pass the active tab to show exercises', ->
+    spyOn(@, 'showExercises').andCallFake ->
     new ChangeTab
-    expect( hide_table ).toHaveBeenCalled()
+    expect( showExercises ).toHaveBeenCalled()

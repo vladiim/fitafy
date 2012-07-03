@@ -1,8 +1,9 @@
 Given /^there are more than one exercise$/ do
-  @second_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
+  # CreateExercise::EXERCISE_ATTRIBUTES called with [0] because it's an array
+  @second_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES[0])
   @second_exercise.update_attributes(name: "BBBB")
 
-  @first_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
+  @first_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES[0])
   @first_exercise.update_attributes(name: "AAAA")
 end
 

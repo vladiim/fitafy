@@ -1,11 +1,9 @@
-Given /^I've filled in the exercise form$/ do
+Given /^I'm creating a new exercise$/ do
   visit new_exercise_path
-  fill_in_exercise_form
 end
 
-When /^I fill in the exercise "(.*?)" field with "(.*?)"$/ do |field, value|
-  fill_in field, with: value
-  click_button "CREATE EXERCISE"
+When /^I fill in the exercise name with a blank field%/ do
+  create_exercise CreateExercise::NO_NAME_ATTRS
 end
 
 Then /^I should get the exercise error message "(.*?)" on the "(.*?)"$/ do |error_message, field|

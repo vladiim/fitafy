@@ -7,6 +7,13 @@ module CreateExercise
   						             equipment: 	  "bobby boulders"
   }]
 
+  NO_NAME_ATTRS = [{ name:         "",
+                     description:  "wu gambinos",
+                     tips:          "protect yo neck",
+                     categories:   "shoalin sword style",
+                     equipment:     "bobby boulders"
+  }]
+
   def exercise_type_attrs
     names = WorkoutExercise::EXERCISE_TYPE
     @attrs = []
@@ -20,6 +27,15 @@ module CreateExercise
       @attrs << attr
     end
     @attrs
+  end
+
+  def no_name_attrs
+      { name:         "#{name} title",
+        description:  "wu gambinos",
+        tips:         "protect yo neck",
+        categories:   name,
+        equipment:    "bobby boulders"
+      }
   end
 
   def create_exercise attrs=EXERCISE_ATTRIBUTES

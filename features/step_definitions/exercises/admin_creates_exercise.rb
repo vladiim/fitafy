@@ -3,8 +3,7 @@ Given /^I'm on a new exercise page$/ do
 end
 
 When /^I fill in the exercise form$/ do
-  fill_in_exercise_form
-  click_button "CREATE EXERCISE"
+  create_exercise
 end
 
 Then /^Snapz should give the created exercise message "(.*?)"$/ do |snapz_message|
