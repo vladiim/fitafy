@@ -1,13 +1,13 @@
 %p#tab_sort_by
   SORT BY:
   - WorkoutExercise::EXERCISE_TYPE.each do |exercise_type|
-    = link_to exercise_type.upcase, "#", id: exercise_type
+    = link_to exercise_type.upcase, sort: exercise_type
     |
 
 %table.table.table-bordered.table-striped
 
   %tbody#workout_exercises
-    - @workout.all_exercises.each do |exercise|
+    - @exercises.each do |exercise|
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
         %tr#workout_exercises_fields
           = e.hidden_field :exercise_id, value: exercise.id
@@ -15,5 +15,3 @@
             %h4= exercise.name.titleize
             %br= e.input :sets, collection: 1..10, label: "Add Sets:"
           %td#workout_exercise_notes= e.input :notes, input_html: { rows: 4 }
-
-#abs I'm abs

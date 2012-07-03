@@ -7,6 +7,7 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout        = Workout.new
+    # @exercises      = @workout.order_by_category(params[:sort])
   	@title          = "New Workout"
   	@snapz          = SnapzSayz::WorkoutSpeak.creating_new_workout
   end

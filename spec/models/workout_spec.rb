@@ -51,6 +51,15 @@ describe Workout do
     end
   end
 
+  describe "#exercises_by_category" do
+    let(:ab_exercises) { Object.new}
+    before { mock(Exercise).where("categories LIKE ?", "%abs%") { ab_exercises } }
+
+    it "should order the exercises by category" do
+      subject.exercises_by_category("abs").should eq ab_exercises
+    end
+  end
+
   describe "#new_workout_exercise" do
     it "should create a new WorkoutExercise" do
       subject.new_workout_exercise.class.should eq WorkoutExercise

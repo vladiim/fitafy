@@ -25,6 +25,10 @@ class Workout < ActiveRecord::Base
     Exercise.all
   end
 
+  def exercises_by_category category
+    Exercise.where("categories LIKE ?", "%#{category}%")
+  end
+
   def list_exercises
     workout_exercises
   end
