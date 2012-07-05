@@ -24,6 +24,7 @@ Feature: Trainer manages exercises
     When I fill in the workout "workout_name" field with ""
     Then I should get the workout error message "can't be blank"
 
+  @focus
   Scenario: Trainer updates a workout
     Given I'm on an exsisting workout's edit page
     When I change the workout's "workout_name" with "SUPREME CLIENTEL"
@@ -32,10 +33,9 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer deletes workout
     Given I'm on the edit workout page
-    When I delete the workout by clicking "Delete Workout"
+    When I delete the workout by clicking "DELETE WORKOUT"
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
 
-  @focus
   Scenario Outline: Trainer sorts exercise list
     Given there's exercises
     And I'm creating a new workout

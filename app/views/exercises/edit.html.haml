@@ -1,10 +1,8 @@
-= @snapz
+%section#snapz_sayz= @snapz
 
 %section
   = simple_form_for @exercise do |f|
     = f.error_notification
-
-    = render partial: "form", locals: { f: f }
 
     = f.submit "UPDATE EXERCISE", class: "btn btn-primary"
 

@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  before_filter :create_exercise_variables, only: [:new, :edit]
 
   def index
     @workouts = Workout.all
@@ -7,8 +8,6 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout        = Workout.new
-    @exercises      = @workout.exercises_by_category(params[:sort])
-    @exercise_types = WorkoutExercise::EXERCISE_TYPE
   	@title          = "New Workout"
   	@snapz          = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
@@ -50,4 +49,11 @@ class WorkoutsController < ApplicationController
     redirect_to root_path
     flash[:success] = SnapzSayz::WorkoutSpeak.deleted_workout
   end
+
+  private
+
+    def create_exercise_variables
+      @exercises      = Workout.exercises_by_category(params[:sort])
+      @exercise_types = Workout.exercise_types
+    end
 end

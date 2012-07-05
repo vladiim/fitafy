@@ -6,4 +6,9 @@
     = f.input :name
     = f.input :notes, input_html: { rows: 4 }
 
-    = f.submit "CREATE WORKOUT", class: "btn btn-primary"
+    = f.submit cta, class: "btn btn-primary"
+
+    - if delete
+      %br
+      %br
+      %section#delete= button_to "DELETE WORKOUT", @workout, class: "btn btn-danger", confirm: @snapz_confirm_delete, method: :delete

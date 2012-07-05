@@ -3,16 +3,11 @@ module CreateExercise
   EXERCISE_ATTRIBUTES = [{ name:         "liquid swords",
   						             description:  "wu gambinos",
   						             tips:  		    "protect yo neck",
-  						             categories:   "shoalin sword style",
+  						             categories:   "shoalin back sword style",
   						             equipment: 	  "bobby boulders"
   }]
 
-  NO_NAME_ATTRS = [{ name:         "",
-                     description:  "wu gambinos",
-                     tips:          "protect yo neck",
-                     categories:   "shoalin sword style",
-                     equipment:     "bobby boulders"
-  }]
+  NO_NAME_ATTRS = EXERCISE_ATTRIBUTES[0].merge(name: "")
 
   def exercise_type_attrs
     names = WorkoutExercise::EXERCISE_TYPE

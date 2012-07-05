@@ -52,13 +52,11 @@ describe Workout do
   end
 
   describe "#exercises_by_category" do
-    context "with category" do
-      let(:ab_exercises) { Object.new}
-      before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
+    let(:ab_exercises) { Object.new}
+    before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
   
-      it "should order the exercises by category" do
-        subject.exercises_by_category("abs").should eq ab_exercises
-      end      
+    it "should order the exercises by category" do
+      Workout.exercises_by_category("abs").should eq ab_exercises
     end
   end
 
@@ -98,6 +96,12 @@ describe Workout do
     it "should return the number of exercises in the workout" do
       mock(subject.workout_exercises).count { 5 }
       subject.exercises_count.should eq 5
+    end
+  end
+
+  describe "#exercise_types" do
+    it "should return the WorkoutExercise EXERCISE_TYPEs" do
+      Workout.exercise_types.should eq WorkoutExercise::EXERCISE_TYPE
     end
   end
 
