@@ -5,7 +5,7 @@ jQuery ($) ->
   # choose the first muscle tab by default
   $("p#tab_sort_by a:eq(0)").click()
 
-# class @ChangeTab
+class @ChangeTab
   constructor: ->
     $tab = $(@)
     $('p#tab_sort_by a.active').removeClass('active')
