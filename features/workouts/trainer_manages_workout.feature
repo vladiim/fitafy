@@ -19,18 +19,19 @@ Feature: Trainer manages exercises
     When I'm on the edit workout page
     Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
 
+  @pending
   Scenario: Trainer fills in the workout form incorrectly
     Given I've filled in the workout form
     When I fill in the workout "workout_name" field with ""
     Then I should get the workout error message "can't be blank"
 
-  @focus
   Scenario: Trainer updates a workout
     Given I'm on an exsisting workout's edit page
     When I change the workout's "workout_name" with "SUPREME CLIENTEL"
     Then I should see "SUPREME CLIENTEL" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
+  @pending
   Scenario: Trainer deletes workout
     Given I'm on the edit workout page
     When I delete the workout by clicking "DELETE WORKOUT"
@@ -54,8 +55,9 @@ Feature: Trainer manages exercises
       | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
       | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
 
-  Scenario: Trainer changes exercise tabs
-    Given I'm creating a new working
-    And I'm sorting through exercises
-    When I click on an exercise sort tab
-    Then that tab should be active #https://github.com/thoughtbot/capybara-webkit https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+  @focus
+  Scenario: Trainer sorts alphabetical exercise list
+    Given there's alphabetical exercises
+    And I'm going to create a workout
+    When I sort the exercises
+    Then I should see them in alphabetical order

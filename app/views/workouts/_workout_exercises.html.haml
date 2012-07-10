@@ -1,16 +1,19 @@
 %p#tab_sort_by
   SORT BY:
   - @exercise_types.each do |type|
-    = link_to type.upcase, sort: type
+    = link_to type.upcase, sort: type, class: "nav.nav-pills"
     |
 
-%table.table.table-bordered.table-striped
 
-  %tbody#workout_exercises
+%table.table.table-bordered.table-striped
+  %tbody
     - @exercises.each do |exercise|
+
       = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
+
         %tr#workout_exercises_fields
           = e.hidden_field :exercise_id, value: exercise.id
+
           %td#workout_exercises_sets
             %h4= exercise.name.titleize
             %br= e.input :sets, collection: 1..10, label: "Add Sets:"

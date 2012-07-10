@@ -25,6 +25,27 @@ describe Exercise do
     end
   end
 
+  describe "#by_category" do
+    let(:ab_exercises) { Object.new }
+    before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
+
+    it "should return a list of exercises by category" do
+      Exercise.by_category("abs").should eq ab_exercises
+    end
+  end
+
+  describe "#by_alphabetical_category" do
+    let(:alphabetical_abs) { Object.new }
+    before do
+      mock(Exercise).by_category("abs") { alphabetical_abs }
+      mock(alphabetical_abs).alphabetical_order { alphabetical_abs }
+    end
+
+    it "should return the exercises by alphabetical category" do
+      Exercise.by_alphabetical_category("abs").should eq alphabetical_abs
+    end
+  end
+
   describe "#validations" do
     before { @exercise = create_valid_exercise }
     context "with valid attributes" do

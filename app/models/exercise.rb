@@ -16,4 +16,12 @@ class Exercise < ActiveRecord::Base
   def delete_exercise!
   	self.destroy
   end
+
+  def self.by_alphabetical_category category
+    by_category(category).alphabetical_order
+  end
+
+  def self.by_category category
+    where("categories ILIKE ?", "%#{category}%")
+  end
 end

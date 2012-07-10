@@ -29,8 +29,8 @@ class Workout < ActiveRecord::Base
     WorkoutExercise::EXERCISE_TYPE
   end
 
-  def self.exercises_by_category category
-    Exercise.where("categories ILIKE ?", "%#{category}%")
+  def self.exercises_by_alphabetical_category category
+    Exercise.by_alphabetical_category category
   end
 
   def list_exercises

@@ -53,10 +53,10 @@ describe Workout do
 
   describe "#exercises_by_category" do
     let(:ab_exercises) { Object.new}
-    before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
+    before { mock(Exercise).by_alphabetical_category("abs") { ab_exercises } }
   
     it "should order the exercises by category" do
-      Workout.exercises_by_category("abs").should eq ab_exercises
+      Workout.exercises_by_alphabetical_category("abs").should eq ab_exercises
     end
   end
 

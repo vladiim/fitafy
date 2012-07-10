@@ -1,0 +1,1 @@
+# $("#workout_exercises").html(<%= escape_javascript(render("workout_exercises"))%>)

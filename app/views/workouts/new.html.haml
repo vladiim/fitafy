@@ -4,4 +4,4 @@
   = simple_form_for @workout do |f|
     = f.error_notification
 
-    = render partial: "form", locals: { f: f, cta: "CREATE WORKOUT", delete: false }
+    = render partial: "form", locals: { f: f, cta: "CREATE WORKOUT", edit_workout: false }

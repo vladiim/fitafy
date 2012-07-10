@@ -24,13 +24,29 @@ module CreateExercise
     @attrs
   end
 
-  def no_name_attrs
-      { name:         "#{name} title",
-        description:  "wu gambinos",
-        tips:         "protect yo neck",
-        categories:   name,
-        equipment:    "bobby boulders"
+  def alphabetical_exercises
+    [{
+      name:        "bbbb",
+      description: "bbbb",
+      tips:        "bbbb",
+      categories:  "abs",
+      equipment:   "bbbb",
+      },
+      {
+      name:        "cccc",
+      description: "cccc",
+      tips:        "cccc",
+      categories:  "abs",
+      equipment:   "cccc",
+      },
+      {
+      name:        "aaaa",
+      description: "aaaa",
+      tips:        "aaaa",
+      categories:  "abs",
+      equipment:   "aaaa",
       }
+    ]
   end
 
   def create_exercise attrs=EXERCISE_ATTRIBUTES

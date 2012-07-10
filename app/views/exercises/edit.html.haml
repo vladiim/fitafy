@@ -4,6 +4,8 @@
   = simple_form_for @exercise do |f|
     = f.error_notification
 
+    = render partial: "form", locals: { f: f }
+
     = f.submit "UPDATE EXERCISE", class: "btn btn-primary"
 
 %section#delete= button_to "DELETE EXERCISE", @exercise, class: "btn btn-danger", confirm: @snapz_confirm_delete, method: :delete

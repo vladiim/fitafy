@@ -53,7 +53,7 @@ class WorkoutsController < ApplicationController
   private
 
     def create_exercise_variables
-      @exercises      = Workout.exercises_by_category(params[:sort])
+      @exercises      = Workout.exercises_by_alphabetical_category(params[:sort])
       @exercise_types = Workout.exercise_types
     end
 end

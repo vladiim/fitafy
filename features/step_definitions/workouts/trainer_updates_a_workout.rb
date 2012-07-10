@@ -5,7 +5,6 @@ end
 
 When /^I change the workout's "(.*?)" with "(.*?)"$/ do |field, value|
   fill_in field, with: value
-  save_and_open_page
   click_button "UPDATE WORKOUT"
 end
 
