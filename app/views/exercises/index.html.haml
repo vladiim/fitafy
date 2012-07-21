@@ -17,5 +17,5 @@
 
       %tr
         %td= link_to exercise.name.titleize, exercise_path(exercise)
-        %td= exercise.description.truncate(80)
+        %td= exercise.description.truncate(60)
         %td= link_to "EDIT", edit_exercise_path(exercise)

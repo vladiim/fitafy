@@ -23,7 +23,7 @@ def random_exercise_id
 end
 
 def random_set
-  Random.rand(2..8)
+  Random.rand 8
 end
 
 def create_workout_exercises workout
