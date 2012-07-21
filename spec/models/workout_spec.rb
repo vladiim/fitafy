@@ -11,8 +11,8 @@ describe Workout do
   def create_valid_workout
     Workout.new(name:         "criminology",
                 notes:        "dealin in my cypher. i revolve around sciences",
-                client_level: "beginner",
-                difficulty:   "easy"
+                client_level: "Beginner",
+                difficulty:   "Easy"
     )
   end
 
@@ -20,17 +20,6 @@ describe Workout do
     n.times do
       workout = create_valid_workout
       workout.save!
-    end
-  end
-
-  describe "#attributes" do
-
-    it "should titleize the name" do
-      subject.titleize_name.should eq "Criminology"
-    end
-
-    it "should capitalize the notes" do
-      subject.capitalize_notes.should eq "Dealin in my cypher. i revolve around sciences"
     end
   end
 
@@ -44,7 +33,7 @@ describe Workout do
      end
 
     context "with the right client_level" do
-      before { @client_levels = %w{beginner regular pro}}
+      before { @client_levels = %w{Beginner Regular Pro}}
       it "should be valid" do
         @client_levels.each do |client_level|
           subject.client_level = client_level
@@ -64,7 +53,7 @@ describe Workout do
     end
 
     context "with the right difficulty" do
-      before { @difficulty = %w{easy medium hard}}
+      before { @difficulty = %w{Easy Medium Hard}}
       it "should be valid" do
         @difficulty.each do |difficulty|
           subject.difficulty = difficulty

@@ -17,6 +17,8 @@ module CreateWorkout
     fill_in "workout_name", with: name + WORKOUT_ATTRIBUTES[:name]
     # click_link "ADD NOTES" TODO: make notes a modal pop up
     fill_in "workout_notes", with: WORKOUT_ATTRIBUTES[:notes]
+    select Workout::CLIENT_LEVELS.first, from: "workout_client_level"
+    select Workout::DIFFICULTY.last, from: "workout_difficulty"
   end
 
   def fill_in_exercise_details

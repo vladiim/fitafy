@@ -12,5 +12,5 @@ Then /^I should see a list of workouts$/ do
 end
 
 Then /^I should see how many exercises the workout has$/ do
-  page.should have_content "1 exercise"
+  page.should have_content "1 EXERCISE"
 end

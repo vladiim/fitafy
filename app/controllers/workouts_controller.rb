@@ -9,6 +9,8 @@ class WorkoutsController < ApplicationController
   def new
     @workout        = Workout.new
   	@title          = "New Workout"
+    @client_level   = Workout::CLIENT_LEVELS
+    @difficulty     = Workout::DIFFICULTY
   	@snapz          = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
 

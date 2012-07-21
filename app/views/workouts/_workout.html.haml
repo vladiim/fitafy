@@ -1,7 +1,7 @@
 %li#box_list.well.span2
   %article
     %header
-      %h5= link_to workout.titleize_name, workout_path(workout)
+      %h5= link_to workout.name.titleize, workout_path(workout)
 
     %p
       = workout.client_level.upcase

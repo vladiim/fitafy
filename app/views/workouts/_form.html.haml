@@ -4,6 +4,8 @@
     
     %section#workout_form.span3
       = f.input :name
+      = f.input :client_level, collection: @client_level
+      = f.input :difficulty, collection: @difficulty
       = f.input :notes, input_html: { rows: 4 }
   
       = f.submit cta, class: "btn btn-primary"
