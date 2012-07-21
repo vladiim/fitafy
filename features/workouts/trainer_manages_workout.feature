@@ -55,7 +55,6 @@ Feature: Trainer manages exercises
       | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
       | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
 
-  @focus
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises
     And I'm going to create a workout

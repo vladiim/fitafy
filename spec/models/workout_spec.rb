@@ -130,8 +130,8 @@ describe Workout do
   end
 
   describe "#exercise_types" do
-    it "should return the WorkoutExercise EXERCISE_TYPEs" do
-      Workout.exercise_types.should eq WorkoutExercise::EXERCISE_TYPE
+    it "should return the Exercise EXERCISE_TYPES" do
+      Workout.exercise_types.should eq Exercise::EXERCISE_TYPES
     end
   end
 

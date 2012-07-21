@@ -1,2 +1,21 @@
-%section#exercises.row
-  %ul#exercise_list= render @exercises
+%p#tab_sort_by
+  SORT BY:
+  / TODO: get /exercises sort_by working, refactor a sort_by partial for this and for workouts/new
+  - Exercise::EXERCISE_TYPES.each do |type|
+    = link_to type.upcase, sort: type, class: "nav.nav-pills"
+    |
+
+
+%table.table.table-bordered.table-striped
+  %thead
+    %th EXERCISE
+    %th DESCRIPTION
+    %th
+
+  %tbody#exercises_list
+    - @exercises.each do |exercise|
+
+      %tr
+        %td= link_to exercise.name.titleize, exercise_path(exercise)
+        %td= exercise.description.truncate(80)
+        %td= link_to "EDIT", edit_exercise_path(exercise)

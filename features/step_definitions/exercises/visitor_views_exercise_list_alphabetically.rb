@@ -13,6 +13,6 @@ When /^I visit the exercise list$/ do
 end
 
 Then /^the exercises should be in alphabetical order$/ do
-  page.should have_selector("ul#exercise_list li#box_list:nth-child(1) article a", content: "Aaaa")
-  page.should have_selector("ul#exercise_list li#box_list:nth-child(1) article a", content: "Baaa")
+  page.should have_selector("tbody#exercises_list tr:nth-child(1) td a", content: "Aaaa")
+  page.should have_selector("tbody#exercises_list tr:nth-child(2) td a", content: "Baaa")
 end

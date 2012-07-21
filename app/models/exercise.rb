@@ -2,16 +2,14 @@ class Exercise < ActiveRecord::Base
 
   attr_accessible :name, :categories, :description, :equipment, :tips
 
+  EXERCISE_TYPES = %w(abs back biceps chest forearms legs shoulders tricep)
+
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises
 
   validates_presence_of :name, :description
 
   scope :alphabetical_order, -> { order :name }
-
-  def titleize_name
-  	name.titleize
-  end
 
   def delete_exercise!
   	self.destroy

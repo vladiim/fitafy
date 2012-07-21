@@ -14,6 +14,12 @@ describe Exercise do
     )
   end
 
+  describe "#exercise_type" do
+    it "should have an array of exercise types" do
+      Exercise::EXERCISE_TYPES.should eq %w(abs back biceps chest forearms legs shoulders tricep)
+    end
+  end
+
   describe "#alphabetical_order" do
     before do
       @b = create_exercise "BBBB"
@@ -66,11 +72,5 @@ describe Exercise do
          @exercise.should_not be_valid
        end
      end
-  end
-
-  describe "#titleize_name" do
-    it "should titleize the name" do
-      valid_subject.titleize_name.should eq "Robert Diggs"
-    end
   end
 end

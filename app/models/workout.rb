@@ -25,7 +25,7 @@ class Workout < ActiveRecord::Base
   end
 
   def self.exercise_types
-    WorkoutExercise::EXERCISE_TYPE
+    Exercise::EXERCISE_TYPES
   end
 
   def self.exercises_by_alphabetical_category category

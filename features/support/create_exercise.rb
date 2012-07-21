@@ -10,7 +10,7 @@ module CreateExercise
   NO_NAME_ATTRS = EXERCISE_ATTRIBUTES[0].merge(name: "")
 
   def exercise_type_attrs
-    names = WorkoutExercise::EXERCISE_TYPE
+    names = Exercise::EXERCISE_TYPES
     @attrs = []
     names.each do |name|
       attr = { name:         "#{name} title",

@@ -1,7 +1,0 @@
-%li#box_list.well.span2
-  %article
-    %header
-      %h5= link_to exercise.titleize_name, exercise_path(exercise)
-  
-    %p
-      = truncate "#{exercise.description}...", length: 80
