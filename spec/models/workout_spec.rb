@@ -53,11 +53,31 @@ describe Workout do
       end
     end
 
-    context "with the wrong client_level" do
-      before { @client_levels = %w{blah di blah}}
+    context "with the wrong/no client_level" do
+      before { @client_levels = %w{blah di blah "" nil " "}}
       it "should not be valid" do
         @client_levels.each do |client_level|
           subject.client_level = client_level
+          subject.should be_invalid
+        end
+      end
+    end
+
+    context "with the right difficulty" do
+      before { @difficulty = %w{easy medium hard}}
+      it "should be valid" do
+        @difficulty.each do |difficulty|
+          subject.difficulty = difficulty
+          subject.should be_valid
+        end
+      end
+    end
+
+    context "with the wrong/no difficulty" do
+      before { @difficulty = %w{blah di blah "" nil " "}}
+      it "should not be valid" do
+        @difficulty.each do |difficulty|
+          subject.difficulty = difficulty
           subject.should be_invalid
         end
       end

@@ -3,6 +3,7 @@ class Workout < ActiveRecord::Base
   attr_accessible :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
   CLIENT_LEVELS = %w{beginner regular pro}
+  DIFFICULTY    = %w{easy medium hard}
 
   has_many :workout_exercises, dependent: :destroy
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
@@ -11,6 +12,8 @@ class Workout < ActiveRecord::Base
   validates_presence_of :name #, :client_level, :difficulty
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }
+
+  validates :difficulty, inclusion: { in: DIFFICULTY }
 
   def titleize_name
   	name.titleize
