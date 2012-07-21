@@ -4,8 +4,8 @@
       %h5= link_to workout.titleize_name, workout_path(workout)
 
     %p
-      = workout.client_level
-      / = workout.difficulty
+      = workout.client_level.upcase
+      = workout.difficulty.upcase
 
     %p
       By: CLUB_RYNO

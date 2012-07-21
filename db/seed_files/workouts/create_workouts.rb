@@ -3,7 +3,7 @@ NOTES 	   = "Keep the workout popin' or be dropin'"
 
 def random_exercise_note
   options = [
-    "and mic bites I swing swords and cut clowns",
+    "And mic bites I swing swords and cut clowns",
     "They bubble weight in Far Rockaway with Blake Carrington",
     "Watch for taped conversations, Jakes and dollar bands",
     "Hip hop, like socialize",
@@ -38,10 +38,16 @@ end
 
 def create_workouts
   @names.each do |name|
-    workout = Workout.find_or_create_by_name(
-    	name:  name,
-    	notes: NOTES,
-    )
-    create_workout_exercises workout
+    Workout::CLIENT_LEVELS.each do |client_level|
+      Workout::DIFFICULTY.each do |difficulty|
+        workout = Workout.create(
+        	name:         name,
+        	notes:        NOTES,
+          client_level: client_level,
+          difficulty:   difficulty
+        )
+        create_workout_exercises workout
+      end
+    end
   end
 end
