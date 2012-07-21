@@ -15,13 +15,13 @@ class Workout < ActiveRecord::Base
 
   validates :difficulty, inclusion: { in: DIFFICULTY }
 
-  def titleize_name
-  	name.titleize
-  end
+  # def titleize_name
+  # 	name.titleize
+  # end
 
-  def capitalize_notes
-  	notes.capitalize
-  end
+  # def capitalize_notes
+  # 	notes.capitalize
+  # end
 
   def self.trending
     # TODO: actually immplement trending algo

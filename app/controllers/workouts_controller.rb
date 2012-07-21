@@ -24,7 +24,7 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout = Workout.find(params[:id])
-  	@title   = @workout.titleize_name
+  	@title   = @workout.name.titleize
   end
 
   def edit
