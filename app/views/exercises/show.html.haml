@@ -1,13 +1,22 @@
 %section.row
-  %article.span7
+
+  %figure.span3
+    = image_tag 'shoulder_press.png'
+
+  %article.span4
+    %br
+
     %h5 Description
     %p= @exercise.description.humanize
+    %br
 
     %h5 Tips
     %p= @exercise.tips.humanize
+    %br
 
     %h5 Categories
     %p= @exercise.categories.titleize
+    %br
 
     %h5 Equipment
     %p= @exercise.equipment.titleize
