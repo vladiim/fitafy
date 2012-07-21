@@ -2,7 +2,14 @@
   %article
     %header
       %h5= link_to workout.titleize_name, workout_path(workout)
-  
+
+    %p
+      = workout.client_level
+      / = workout.difficulty
+
+    %p
+      By: CLUB_RYNO
+
     %p
       = workout.exercises_count
-      exercises
+      EXERCISES

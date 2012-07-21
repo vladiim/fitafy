@@ -14,10 +14,8 @@
             %th= workout_exercise.sets
             %th= workout_exercise.notes.humanize
 
-    %h5 Notes
+    %h5 WORKOUT NOTES
     %p= @workout.capitalize_notes
 
   %aside.span3.well
     = render "workout_aside"
-
-%section= link_to "EDIT WORKOUT", edit_workout_path(@workout)

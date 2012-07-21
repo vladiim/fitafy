@@ -115,7 +115,9 @@ CREATE TABLE workouts (
     name character varying(255) NOT NULL,
     notes text NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    client_level character varying(255) NOT NULL,
+    difficulty character varying(255) NOT NULL
 );
 
 
@@ -234,3 +236,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120530212556');
 INSERT INTO schema_migrations (version) VALUES ('20120601115748');
 
 INSERT INTO schema_migrations (version) VALUES ('20120615110504');
+
+INSERT INTO schema_migrations (version) VALUES ('20120721085638');

@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = Workout.all
-    @title    = "Latest Workout"
+    @title    = "Latest Workouts"
   end
 
   def new

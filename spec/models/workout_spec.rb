@@ -9,16 +9,17 @@ describe Workout do
   let(:exercises) { [exercise] }
 
   def create_valid_workout
-    Workout.new(name:      "criminology",
-                notes:     "dealin in my cypher. i revolve around sciences"
+    Workout.new(name:         "criminology",
+                notes:        "dealin in my cypher. i revolve around sciences",
+                client_level: "beginner",
+                difficulty:   "easy"
     )
   end
 
-  def really_create_workouts n=1
+  def create_ar_workouts n=1
     n.times do
-      Workout.create(name:  "one",
-                     notes: "Rhymes is made of garlic, never in the target"
-      )
+      workout = create_valid_workout
+      workout.save!
     end
   end
 
@@ -41,6 +42,26 @@ describe Workout do
          subject.should_not be_valid
        end
      end
+
+    context "with the right client_level" do
+      before { @client_levels = %w{beginner regular pro}}
+      it "should be valid" do
+        @client_levels.each do |client_level|
+          subject.client_level = client_level
+          subject.should be_valid
+        end
+      end
+    end
+
+    context "with the wrong client_level" do
+      before { @client_levels = %w{blah di blah}}
+      it "should not be valid" do
+        @client_levels.each do |client_level|
+          subject.client_level = client_level
+          subject.should be_invalid
+        end
+      end
+    end
   end
 
   describe "#all_exercises" do
@@ -107,7 +128,7 @@ describe Workout do
 
   describe "#trending" do
     it "should return 5 workouts" do
-      really_create_workouts 4
+      create_ar_workouts 4
       Workout.trending.count.should eq 4
     end
   end
