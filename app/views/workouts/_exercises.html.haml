@@ -1,0 +1,9 @@
+= f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
+
+  %tr#workout_exercises_fields
+    = e.hidden_field :exercise_id, value: exercise.id
+
+    %td#sets= e.input :sets, collection: 1..10, prompt: "0 sets", label: false
+    %td
+      %h4= exercise.name.titleize
+    %td= e.input :notes, input_html: { rows: 4 }

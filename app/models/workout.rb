@@ -9,7 +9,7 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises
 
-  validates_presence_of :name #, :client_level, :difficulty
+  validates_presence_of :name
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }
 
@@ -18,6 +18,10 @@ class Workout < ActiveRecord::Base
   def self.trending
     # TODO: actually immplement trending algo
     limit 4
+  end
+
+  def new_workout_exercises
+    all_exercises
   end
 
   def all_exercises
