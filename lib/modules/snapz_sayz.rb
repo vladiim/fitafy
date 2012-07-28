@@ -82,6 +82,14 @@ module SnapzSayz
     def self.update_user
       "Your profile was updated like a bawse."
     end
+
+    def self.delete_confirmation
+      "Deleting your account is permanent yo... no going back!"
+    end
+
+    def self.destroy
+      "Your account is goooone... I'm seriously sad right now."
+    end
   end
 
   module ErrorSpeak
@@ -105,6 +113,17 @@ module SnapzSayz
 
     def self.integer_validator
       "That's meant to be a number dood"
+    end
+  end
+
+  module UserSessionSpeak
+
+    def self.logout
+      "Logged out yo!"
+    end
+
+    def self.login
+      "Welcome back yo!"
     end
   end
 end

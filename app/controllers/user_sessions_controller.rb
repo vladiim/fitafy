@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
   def create
   	@user_session = UserSession.new(params[:user_session])
   	if @user_session.save
-  		flash[:success] = "Welcome back yo!"
+  		flash[:success] = SnapzSayz::UserSessionSpeak.login
   		redirect_to root_url
   	else
   		render action: :new
@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
   	current_user_session.destroy
-  	flash[:success] = "Logged out yo!"
+  	flash[:success] = SnapzSayz::UserSessionSpeak.logout
   	redirect_to root_url
   end
 end

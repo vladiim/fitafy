@@ -15,6 +15,13 @@ class UsersController < ApplicationController
   	end
   end
 
+  def show
+    @user               = User.find(params[:id])
+    # @user = User.find_by_params(params[:id])
+    @title               = @user.username
+    @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
+  end
+
   def edit
     @title = "Edit Profile"
     @user  = current_user
@@ -29,9 +36,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user  = User.find(params[:id])
-    # @user = User.find_by_params(params[:id])
-    @title = @user.username
+  def destroy
+    current_user.destroy
+    current_user_session.destroy
+    flash[:success] = SnapzSayz::UserSpeak.destroy
+    redirect_to root_url
   end
 end

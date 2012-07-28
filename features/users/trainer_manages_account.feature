@@ -26,9 +26,16 @@ Feature: Trainer manages account
     When I visit my profile page
     Then I should see my account details
 
-  @focus
   Scenario: Trainer edits profile
     Given I'm signed in
     When I edit my profile
     Then my profile should change
     And Snapz should give me a message
+
+  @focus
+  Scenario: Trainer deletes profile
+    Given I'm signed in
+    And on my profile page
+    When I click delete account
+    Then my account will be permanantly deleted
+    
