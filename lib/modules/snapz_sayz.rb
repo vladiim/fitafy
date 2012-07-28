@@ -78,6 +78,10 @@ module SnapzSayz
     def self.created_user
       "Yea, yea, yea! Welcome to the fitification!"
     end
+
+    def self.update_user
+      "Your profile was updated like a bawse."
+    end
   end
 
   module ErrorSpeak

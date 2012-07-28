@@ -21,13 +21,14 @@ Feature: Trainer manages account
     When I log in
     Then I should see the logout link
 
-  @focus
   Scenario: Trainer has profile page
     Given I'm signed in
     When I visit my profile page
     Then I should see my account details
 
+  @focus
   Scenario: Trainer edits profile
     Given I'm signed in
     When I edit my profile
     Then my profile should change
+    And Snapz should give me a message
