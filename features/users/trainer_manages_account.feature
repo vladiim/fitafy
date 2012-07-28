@@ -10,8 +10,13 @@ Feature: Trainer manages account
     Then I should have a new account
     And Snapz should have a message for creating an account
 
-  @focus
   Scenario: Trainer create account fails
     Given I've filled my sign up details wrong
     When I try to sign up
     Then I should get a sign up fail message
+
+  @focus
+  Scenario: Signed in user has profile page
+    Given I'm signed in
+    When I visit my profile page
+    Then I should see my account details
