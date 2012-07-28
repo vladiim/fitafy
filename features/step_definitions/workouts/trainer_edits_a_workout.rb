@@ -1,9 +1,10 @@
 Given /^I want to update a workout's details$/ do
-  # express the regexp above with the code you wish you had
+  create_workout
 end
 
 When /^I'm on the edit workout page$/ do
-  visit edit_workout_path
+  workout = Workout.last
+  visit edit_workout_path(workout)
 end
 
 Then /^Snapz should give me the "(.*?)" edit workout message$/ do |snapz_sayz|

@@ -7,7 +7,7 @@ module CreateExercise
   						             equipment: 	  "bobby boulders"
   }]
 
-  NO_NAME_ATTRS = EXERCISE_ATTRIBUTES[0].merge(name: "")
+  NO_NAME_ATTRS = EXERCISE_ATTRIBUTES[0].merge(name: " ")
 
   def exercise_type_attrs
     names = Exercise::EXERCISE_TYPES

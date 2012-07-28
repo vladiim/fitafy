@@ -25,7 +25,6 @@ Feature: Trainer manages exercises
     Then I should see "SUPREME CLIENTEL" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
-  @focus
   Scenario: Trainer deletes workout
     Given There's a workout
     When I delete the workout by clicking "DELETE WORKOUT"
