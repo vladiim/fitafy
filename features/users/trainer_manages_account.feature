@@ -16,7 +16,18 @@ Feature: Trainer manages account
     Then I should get a sign up fail message
 
   @focus
-  Scenario: Signed in user has profile page
+  Scenario: Trainer logs in
+    Given I have an account
+    And I'm logged out
+    When I log in
+    Then I should see the logout link
+
+  Scenario: Trainer has profile page
     Given I'm signed in
     When I visit my profile page
     Then I should see my account details
+
+  Scenario: Trainer edits profile
+    Given I'm signed in
+    When I edit my profile
+    Then my profile should change

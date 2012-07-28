@@ -10,4 +10,9 @@
 
         %li#nav_link= link_to "EXERCISES", exercises_path
         %li#nav_link= link_to "NEW EXERCISE", new_exercise_path
-        %li#nav_link= link_to "SIGN UP", sign_up_path
+
+        - if current_user
+          %li#nav_link= link_to "LOGOUT", logout_path
+        - else
+          %li#nav_link= link_to "SIGN UP", sign_up_path
+          %li#nav_link= link_to "LOGIN", login_path

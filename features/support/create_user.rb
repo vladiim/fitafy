@@ -5,6 +5,7 @@ module CreateUser
   def create_user
     create_username
     create_email
+    visit sign_up_url
   	fill_in "user_username", 			        with: @username
   	fill_in "user_email", 	  			      with: @email
   	fill_in "user_password",  			      with: "wuwear"
