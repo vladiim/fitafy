@@ -73,6 +73,42 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    crypted_password character varying(255) NOT NULL,
+    password_salt character varying(255),
+    persistence_token character varying(255),
+    login_count integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
 -- Name: workout_exercises; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -151,6 +187,13 @@ ALTER TABLE ONLY exercises ALTER COLUMN id SET DEFAULT nextval('exercises_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY workout_exercises ALTER COLUMN id SET DEFAULT nextval('workout_exercises_id_seq'::regclass);
 
 
@@ -167,6 +210,14 @@ ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq':
 
 ALTER TABLE ONLY exercises
     ADD CONSTRAINT exercises_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -197,6 +248,20 @@ CREATE INDEX index_exercises_on_categories ON exercises USING btree (categories)
 --
 
 CREATE INDEX index_exercises_on_name ON exercises USING btree (name);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_username ON users USING btree (username);
 
 
 --
@@ -238,3 +303,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120601115748');
 INSERT INTO schema_migrations (version) VALUES ('20120615110504');
 
 INSERT INTO schema_migrations (version) VALUES ('20120721085638');
+
+INSERT INTO schema_migrations (version) VALUES ('20120726111346');

@@ -7,11 +7,12 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout        = Workout.new
-  	@title          = "New Workout"
-    @client_level   = Workout::CLIENT_LEVELS
-    @difficulty     = Workout::DIFFICULTY
-  	@snapz          = SnapzSayz::WorkoutSpeak.creating_new_workout
+    @workout           = Workout.new
+    @workout.exercises = [Exercise.first, Exercise.last]
+  	@title             = "New Workout"
+    @client_level      = Workout::CLIENT_LEVELS
+    @difficulty        = Workout::DIFFICULTY
+  	@snapz             = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
 
   def create
@@ -53,7 +54,6 @@ class WorkoutsController < ApplicationController
   end
 
   private
-
     def create_exercise_variables
       @exercises      = Workout.exercises_by_alphabetical_category(params[:sort])
       @exercise_types = Workout.exercise_types

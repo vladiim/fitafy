@@ -6,6 +6,8 @@ gem 'pg', '~> 0.13.0'
 gem 'heroku', '~> 2.21.0'
 gem 'simple_form', '~> 2.0.0'
 gem 'pry', '~> 0.9.9.0'
+gem 'authlogic', '~> 3.1.3'
+gem 'cancan', '~> 1.6.8'
 
 # ------------ ASSETS ------------ #
 

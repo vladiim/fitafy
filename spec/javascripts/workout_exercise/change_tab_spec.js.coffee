@@ -19,11 +19,11 @@ describe 'ChangeTab', ->
       new ChangeTab(tab)
       expect( tab.addClass ).toHaveBeenCalledWith('active')
   
-    it 'should had the table body', ->
-      spyOn $.fn, 'hide'
-      tab = $('tbody#workout_exercises')
-      new ChangeTab
-      expect( tab.hide ).toHaveBeenCalled()
+    # it 'should hide the table body', ->
+    #   spyOn $.fn, 'hide'
+    #   tab = $('tbody#workout_exercises')
+    #   new ChangeTab
+    #   expect( tab.hide ).toHaveBeenCalled()
 
   it 'should pass the active tab to show exercises', ->
     spyOn(@, 'showExercises').andCallFake ->

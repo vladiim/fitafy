@@ -7,6 +7,9 @@
       = f.input :client_level, collection: @client_level
       = f.input :difficulty, collection: @difficulty
       = f.input :notes, input_html: { rows: 4 }
+
+      %h4 Exercises
+      = render partial: "exercise_list", collection: @workout.exercises, as: :exercise
   
       = f.submit cta, class: "btn btn-primary"
 
@@ -19,4 +22,4 @@
       = render partial: "exercises/sort_by"
       %table.table.table-bordered.table-striped
         %tbody
-          = render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }
+          #exercise_list= render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

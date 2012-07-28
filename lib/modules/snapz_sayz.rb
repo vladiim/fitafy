@@ -74,6 +74,12 @@ module SnapzSayz
     end
   end
 
+  module UserSpeak
+    def self.created_user
+      "Yea, yea, yea! Welcome to the fitification!"
+    end
+  end
+
   module ErrorSpeak
 
     def self.wrong_size_exercise size, proper_size
