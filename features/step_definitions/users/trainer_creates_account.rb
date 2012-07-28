@@ -2,7 +2,7 @@ Given /^I want to create a new fitafy account$/ do
   visit root_path
 end
 
-When /^I click login$/ do
+When /^I click sign up$/ do
   click_link 'SIGN UP'
 end
 
