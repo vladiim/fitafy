@@ -12,6 +12,7 @@
         %li#nav_link= link_to "NEW EXERCISE", new_exercise_path
 
         - if current_user
+          %li#nav_link= link_to current_user.username.upcase, user_path(current_user)
           %li#nav_link= link_to "LOGOUT", logout_path
         - else
           %li#nav_link= link_to "SIGN UP", sign_up_path

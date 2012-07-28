@@ -15,7 +15,9 @@ module CreateUser
   end
 
   def create_username
-    @username = "rza-#{Digest::MD5.hexdigest('wu')}"
+    hash       = Digest::MD5.hexdigest('wu')
+    short_hash = hash[1..5]
+    @username = "rza-#{short_hash}"
   end
 
   def create_email

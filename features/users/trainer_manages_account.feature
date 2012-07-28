@@ -15,13 +15,13 @@ Feature: Trainer manages account
     When I try to sign up
     Then I should get a sign up fail message
 
-  @focus
   Scenario: Trainer logs in
     Given I have an account
     And I'm logged out
     When I log in
     Then I should see the logout link
 
+  @focus
   Scenario: Trainer has profile page
     Given I'm signed in
     When I visit my profile page
