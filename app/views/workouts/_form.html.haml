@@ -9,14 +9,12 @@
       = f.input :notes, input_html: { rows: 4 }
 
       %h4 Exercises
-      = render partial: "exercise_list", collection: @workout.exercises, as: :exercise
+      / = render partial: "exercise_list", collection: @side_ex, as: :exercise
   
       = f.submit cta, class: "btn btn-primary"
 
-    / - if edit_action
-    /   %br
-    /   %br
-    /   #delete_workout= button_to "DELETE WORKOUT", @workout, class:   "btn btn-danger", confirm: @snapz_confirm_delete, method: :delete
+      - if cta == "UPDATE WORKOUT"
+        %p= link_to "DELETE WORKOUT", workout_path(@workout), method: :delete, class: "btn btn-danger", confirm: @snapz_confirm_delete
 
     %section.span7#workout_exercises
       = render partial: "exercises/sort_by"

@@ -16,8 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user               = User.find(params[:id])
-    # @user = User.find_by_params(params[:id])
+    @user                = User.find(params[:id])
     @title               = @user.username
     @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
   end

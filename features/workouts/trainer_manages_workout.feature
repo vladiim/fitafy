@@ -19,21 +19,15 @@ Feature: Trainer manages exercises
     When I'm on the edit workout page
     Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
 
-  @pending
-  Scenario: Trainer fills in the workout form incorrectly
-    Given I've filled in the workout form
-    When I fill in the workout "workout_name" field with ""
-    Then I should get the workout error message "can't be blank"
-
   Scenario: Trainer updates a workout
     Given I'm on an exsisting workout's edit page
     When I change the workout's "workout_name" with "SUPREME CLIENTEL"
     Then I should see "SUPREME CLIENTEL" on the workouts's page
     And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
-  @pending
+  @focus
   Scenario: Trainer deletes workout
-    Given I'm on the edit workout page
+    Given There's a workout
     When I delete the workout by clicking "DELETE WORKOUT"
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
 

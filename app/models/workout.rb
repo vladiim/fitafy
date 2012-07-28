@@ -16,7 +16,7 @@ class Workout < ActiveRecord::Base
   validates :difficulty, inclusion: { in: DIFFICULTY }
 
   def self.trending
-    # TODO: actually immplement trending algo
+    # TODO: actually immplement trending algo based on twitter reputation gem
     limit 4
   end
 

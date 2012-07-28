@@ -10,11 +10,6 @@ Feature: Trainer manages account
     Then I should have a new account
     And Snapz should have a message for creating an account
 
-  Scenario: Trainer create account fails
-    Given I've filled my sign up details wrong
-    When I try to sign up
-    Then I should get a sign up fail message
-
   Scenario: Trainer logs in
     Given I have an account
     And I'm logged out
@@ -32,7 +27,6 @@ Feature: Trainer manages account
     Then my profile should change
     And Snapz should give me a message
 
-  @focus
   Scenario: Trainer deletes profile
     Given I'm signed in
     And on my profile page

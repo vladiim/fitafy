@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout           = Workout.new
-    @workout.exercises = [Exercise.first, Exercise.last]
+    @side_ex           = [Exercise.first, Exercise.last]
   	@title             = "New Workout"
     @client_level      = Workout::CLIENT_LEVELS
     @difficulty        = Workout::DIFFICULTY
