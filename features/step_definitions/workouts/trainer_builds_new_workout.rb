@@ -1,4 +1,5 @@
 Given /^I want to create a new workout$/ do
+  create_user
   visit root_path
 end
 
