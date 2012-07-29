@@ -8,8 +8,9 @@
         %li#nav_link= link_to "WORKOUTS", workouts_path
         %li#nav_link= link_to "NEW WORKOUT", new_workout_path
 
-        %li#nav_link= link_to "EXERCISES", exercises_path
-        %li#nav_link= link_to "NEW EXERCISE", new_exercise_path
+        - if can? :manage, Exercise
+          %li#nav_link= link_to "EXERCISES", exercises_path
+          %li#nav_link= link_to "NEW EXERCISE", new_exercise_path
 
         - if current_user
           %li#nav_link= link_to current_user.username.upcase, user_path(current_user)

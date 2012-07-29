@@ -87,7 +87,8 @@ CREATE TABLE users (
     login_count integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    slug character varying(255)
+    slug character varying(255),
+    role character varying(255)
 );
 
 
@@ -325,3 +326,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120726111346');
 INSERT INTO schema_migrations (version) VALUES ('20120728232807');
 
 INSERT INTO schema_migrations (version) VALUES ('20120728234352');
+
+INSERT INTO schema_migrations (version) VALUES ('20120729013357');

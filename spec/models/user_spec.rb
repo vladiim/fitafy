@@ -11,6 +11,28 @@ describe User do
     )
   end
 
+  describe "trainer?" do
+
+    it "should save the user as a trainer" do
+      subject.save!
+      subject.should be_trainer
+    end
+
+    context "user is a trainer" do
+      before { mock(subject).role { "trainer" } }
+
+      it "should be true" do
+        subject.trainer?.should be
+      end
+    end
+
+    context "user is not a trainer" do
+      it "should be false" do
+        subject.trainer?.should be_false
+      end
+    end
+  end
+
   describe "abilities" do
   	subject 	  { ability }
   	let(:ability) { Ability.new(user) }
@@ -22,7 +44,8 @@ describe User do
       	mock(user).admin?   { true }
       end
 
-      it { should be_able_to(:manage, :all) }
+	  it { should be_able_to(:manage, Workout.new) }
+      it { should be_able_to(:manage, Exercise.new) }
     end
 
     context "trainer" do

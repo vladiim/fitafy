@@ -6,9 +6,10 @@ class Ability
     user ||= User.new
 
     if user.trainer?
-      can :manage, Workout
+      can :manage, Workout, user_id: user.id
     elsif user.admin?
-      can :manage, :all
+      can :manage, Workout, user_id: user.id
+      can :manage, Exercise
     else
       can :read, :all
     end
