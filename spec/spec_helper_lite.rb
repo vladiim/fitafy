@@ -1,6 +1,7 @@
 require 'rspec/autorun'
 require 'ostruct'
 require 'rr'
+require 'cancan/matchers'
 require_relative 'support/stub_helpers'
 require_relative '../lib/modules/snapz_sayz'
 

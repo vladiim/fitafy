@@ -10,4 +10,15 @@ describe User do
              password_confirmation:   "immobilarity"
     )
   end
+
+  describe "abilities" do
+  	subject 	  { ability }
+  	let(:ability) { Ability.new(user) }
+
+    context "trainer" do
+      let(:user) { create_valid_user }
+      before 	 { mock(user).trainer? { true } }
+      it 		 { should be_able_to(:manage, Workout.new) }
+    end
+  end
 end
