@@ -25,4 +25,10 @@ Feature: Visitor views workouts
     Then I can click on the workout "Zno Said Date"
     And I will be on that workout's page
 
+  @focus
+  Scenario: Visitor cant see new workout link
+    Given I'm a visitor
+    When I visit the homepage
+    Then I should see the new workout link
+
   Scenario: Can't build, create, update, delete workouts

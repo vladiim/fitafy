@@ -23,11 +23,11 @@ Feature: Visitor views exercises
      When I click on an exercise in the workout's list
      Then I should go the that exercise's page
 
-  @focus
   Scenario: Visitor can't see exercise links
     Given I'm not an administrator
     When I go to the homepage
     Then I shouldn't see links to exercises
 
+
+
   Scenario: Can't build, create, update, delete exercises
-  Scenario: Can't see links to create, update, delete exercises
