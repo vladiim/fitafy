@@ -3,7 +3,6 @@ Feature: Trainer manages exercises
   As a personal trainer
   I want to be able to manage workouts
 
-  @focus
   Scenario: Trainer builds new workout
     Given I want to create a new workout
     When I click the "NEW WORKOUT" new workout link

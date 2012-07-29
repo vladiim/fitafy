@@ -3,6 +3,7 @@ Given /^there's exercises$/ do
 end
 
 Given /^I'm creating a new workout$/ do
+  create_user
   click_link "NEW WORKOUT"
 end
 
