@@ -33,6 +33,22 @@ describe User do
     end
   end
 
+  describe "admin?" do
+    context "user is an admin" do
+      before { mock(subject).role { "admin" } }
+
+      it "should be true" do
+        subject.admin?.should be
+      end
+    end
+
+    context "user is not an admin" do
+      it "should be false" do
+        subject.admin?.should be_false
+      end
+    end
+  end
+
   describe "abilities" do
   	subject 	  { ability }
   	let(:ability) { Ability.new(user) }

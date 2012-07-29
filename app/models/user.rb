@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   	role == "trainer"
   end
 
+  def admin?
+  	role == "admin"
+  end
+
   private
 
     def make_user_trainer
