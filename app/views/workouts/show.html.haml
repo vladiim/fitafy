@@ -4,9 +4,11 @@
   workout for
   = @workout.client_level.pluralize
 
+%h5 WORKOUT NOTES
+%p= @workout.notes.capitalize
+
 %section.row
   %article.span7
-
     %table#workout_exercises.table.table-bordered.table-striped
       %thead
         %tr
@@ -19,10 +21,6 @@
             %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
             %th= workout_exercise.sets
             %th= workout_exercise.notes.humanize
-
-    %h5 WORKOUT NOTES
-    %p= @workout.notes.capitalize
-  
   
   %aside.span3.well
     = render "workout_aside"

@@ -14,10 +14,10 @@ Then /^the "(.*?)" tab should be active$/ do |sort_by_link|
   page.should have_css "p#workout_exercise_sort_by a.active", content: sort_by_link
 end
 
-Then /^I should see "(.*?)"$/ do |chest_title|
-  page.should have_content chest_title
+Then /^I should see "(.*?)"$/ do |exercise_name|
+  page.should have_content exercise_name
 end
 
-Then /^I shouldn't see "(.*?)"$/ do |back_title|
-  page.should_not have_content back_title
+Then /^I shouldn't see "(.*?)"$/ do |exercise_name|
+  page.should_not have_content exercise_name
 end

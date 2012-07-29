@@ -3,6 +3,7 @@ Feature: Admin Manages exercises
   As a fitafy admin
   I want to be able to manage exercises
 
+  @focus
   Scenario: Admin builds new exercise
     Given I want to create a new exercise
     When I click the "NEW EXERCISE" new exercise link

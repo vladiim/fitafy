@@ -3,6 +3,7 @@ Feature: Visitor views exercises
   As a fitafy visitor
   I want to be able to look at all the exercise's details
 
+  @focus
   Scenario: Visitor views an individual exercise
     Given an exercise has been created
     When I visit the exercise's page
@@ -28,6 +29,14 @@ Feature: Visitor views exercises
     When I go to the homepage
     Then I shouldn't see links to exercises
 
+  Scenario Outline: Visitor can't visit exercise pages
+    Given I'm not an administrator
+    When I try to visit <path>
+    Then I should get an unauthorized message
 
+    Examples:
+      | path                           |
+      | 'exercises/new'                |
+      | 'exercises/liquid-swords/edit' |
 
   Scenario: Can't build, create, update, delete exercises

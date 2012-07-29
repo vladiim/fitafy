@@ -2,6 +2,12 @@ require 'digest/md5'
 
 module CreateUser
 
+  def create_admin_user
+    admin = create_user
+    admin.role = "admin"
+    admin.save!
+  end
+
   def create_user
     create_username
     create_email
