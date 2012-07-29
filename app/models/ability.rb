@@ -7,6 +7,8 @@ class Ability
 
     if user.trainer?
       can :manage, Workout
+    elsif user.admin?
+      can :manage, :all
     else
       can :read, :all
     end
