@@ -1,6 +1,6 @@
 Given /^I'm on the edit exercise page$/ do
-  @exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES)
-  visit edit_exercise_path @exercise
+  create_exercise
+  visit edit_exercise_path(@exercise)
 end
 
 When /^I delete the exercise by clicking "(.*?)"$/ do |delete_exercise|

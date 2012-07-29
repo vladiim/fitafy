@@ -28,7 +28,6 @@ Feature: Visitor views exercises
     When I go to the homepage
     Then I shouldn't see links to exercises
 
-  @focus
   Scenario: Visitor can't visit exercise pages
     Given I'm not an administrator
     When I visit the new exercise path

@@ -50,6 +50,7 @@ module CreateExercise
   end
 
   def create_exercise attrs=EXERCISE_ATTRIBUTES
+    create_admin_user
     make_exercise attrs
     @exercise = Exercise.find_by_name("liquid swords")
   end

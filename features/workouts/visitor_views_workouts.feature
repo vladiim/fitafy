@@ -30,4 +30,9 @@ Feature: Visitor views workouts
     When I visit the homepage
     Then I should see the new workout link
 
-  Scenario: Can't build, create, update, delete workouts
+  @focus
+  Scenario: Visitor cant access the workout new page
+    Given I'm a visitor
+    When I try to create a new workout
+    Then I get redirected to the homepage
+    And I get a unauthorized message from snapz
