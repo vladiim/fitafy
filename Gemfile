@@ -8,6 +8,7 @@ gem 'simple_form', '~> 2.0.0'
 gem 'pry', '~> 0.9.9.0'
 gem 'authlogic', '~> 3.1.3'
 gem 'cancan', '~> 1.6.8'
+gem 'friendly_id', '~> 4.0.1'
 
 # ------------ ASSETS ------------ #
 

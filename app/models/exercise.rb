@@ -1,4 +1,5 @@
 class Exercise < ActiveRecord::Base
+  extend FriendlyId
 
   attr_accessible :name, :categories, :description, :equipment, :tips
 
@@ -8,8 +9,11 @@ class Exercise < ActiveRecord::Base
   has_many :workouts, through: :workout_exercises
 
   validates_presence_of :name, :description
+  validates :name, uniqueness: true
 
   scope :alphabetical_order, -> { order :name }
+
+  friendly_id :name, use: :slugged
 
   def delete_exercise!
   	self.destroy

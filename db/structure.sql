@@ -40,7 +40,8 @@ CREATE TABLE exercises (
     categories character varying(255),
     equipment character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying(255)
 );
 
 
@@ -85,7 +86,8 @@ CREATE TABLE users (
     persistence_token character varying(255),
     login_count integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying(255)
 );
 
 
@@ -251,10 +253,24 @@ CREATE INDEX index_exercises_on_name ON exercises USING btree (name);
 
 
 --
+-- Name: index_exercises_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_exercises_on_slug ON exercises USING btree (slug);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_slug ON users USING btree (slug);
 
 
 --
@@ -305,3 +321,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120615110504');
 INSERT INTO schema_migrations (version) VALUES ('20120721085638');
 
 INSERT INTO schema_migrations (version) VALUES ('20120726111346');
+
+INSERT INTO schema_migrations (version) VALUES ('20120728232807');
+
+INSERT INTO schema_migrations (version) VALUES ('20120728234352');

@@ -59,6 +59,21 @@ describe Exercise do
         @exercise.should be_valid
       end
     end
+
+    context "with same name as another exercise" do
+      before do
+        # subject.save
+        # @new_exercise = create_valid_exercise
+        # mock(subject.name).unique? { false }
+      end
+      it "should be invalid" do
+        pending "workout how to stub uniqueness callback"
+        # @new_exercise.should be_invalid
+        # subject.name.errors.should eq "has already been taken"
+        subject.should have(1).error_on(:name)
+      end
+    end
+
     context "without name" do
        it "shouldn't be valid" do
          @exercise.name = nil
