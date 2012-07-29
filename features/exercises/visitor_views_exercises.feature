@@ -28,14 +28,10 @@ Feature: Visitor views exercises
     When I go to the homepage
     Then I shouldn't see links to exercises
 
-  Scenario Outline: Visitor can't visit exercise pages
+  @focus
+  Scenario: Visitor can't visit exercise pages
     Given I'm not an administrator
-    When I try to visit <path>
+    When I visit the new exercise path
     Then I should get an unauthorized message
-
-    Examples:
-      | path                           |
-      | 'exercises/new'                |
-      | 'exercises/liquid-swords/edit' |
 
   Scenario: Can't build, create, update, delete exercises

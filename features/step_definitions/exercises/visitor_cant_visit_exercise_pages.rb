@@ -1,6 +1,5 @@
-When /^I try to visit "(.*?)"$/ do |exercise_link|
-  create_exercise
-  visit exercise_link
+When /^I visit the new exercise path$/ do
+  visit new_exercise_path
 end
 
 Then /^I should get an unauthorized message$/ do

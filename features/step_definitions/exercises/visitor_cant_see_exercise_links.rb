@@ -2,7 +2,7 @@ Given /^I'm not an administrator$/ do
   #
 end
 
-When /^I go to the homepage$/ do
+When /^I try to create a new exercise$/ do
   visit root_path
 end
 

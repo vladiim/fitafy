@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_url, alert: SnapzSayz::Information.unauthorized
+  end
+
   private
 
     def current_user_session

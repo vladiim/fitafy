@@ -14,6 +14,10 @@ module SnapzSayz
       "Gazillions of workouts and exercises to help you manage your Personal Training clients!"
   	  #"fitafy helps personal trainers keep track of their client's workouts and stay fly"
   	end
+
+    def self.unauthorized
+      "Sorry d00d I can't show you that page!"
+    end
   end
 
   module ExerciseSpeak
