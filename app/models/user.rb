@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   before_create :make_user_trainer
 
+  has_many :workouts
+
   def trainer?
   	role == "trainer"
   end

@@ -66,13 +66,10 @@ describe User do
 
     context "trainer" do
       let(:user) { create_valid_user }
-      before do
-      	mock(user).trainer? { true }
-      	mock(user).trainer? { false }
-      end
+      before     { mock(user).trainer? { true } }
 
       it 		 { should be_able_to(:manage, Workout.new) }
-      it         { should_not be_able_to(:manage, Exercise.new) }
+      it     { should_not be_able_to(:manage, Exercise.new) }
     end
 
     context "client" do

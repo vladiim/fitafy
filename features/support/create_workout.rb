@@ -31,7 +31,7 @@ module CreateWorkout
   end
 
   def visit_new_workout_path
-  	visit new_workout_path
+    click_link "NEW WORKOUT"
   end
 end
 

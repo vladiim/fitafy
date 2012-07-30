@@ -156,7 +156,9 @@ CREATE TABLE workouts (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     client_level character varying(255) NOT NULL,
-    difficulty character varying(255) NOT NULL
+    difficulty character varying(255) NOT NULL,
+    user_id integer NOT NULL,
+    slug character varying(255)
 );
 
 
@@ -303,6 +305,20 @@ CREATE INDEX index_workouts_on_name ON workouts USING btree (name);
 
 
 --
+-- Name: index_workouts_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_workouts_on_slug ON workouts USING btree (slug);
+
+
+--
+-- Name: index_workouts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_workouts_on_user_id ON workouts USING btree (user_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -328,3 +344,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120728232807');
 INSERT INTO schema_migrations (version) VALUES ('20120728234352');
 
 INSERT INTO schema_migrations (version) VALUES ('20120729013357');
+
+INSERT INTO schema_migrations (version) VALUES ('20120729051917');
+
+INSERT INTO schema_migrations (version) VALUES ('20120730103432');

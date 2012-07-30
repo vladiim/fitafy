@@ -1,9 +1,12 @@
 Fitafy::Application.routes.draw do
 
-  resources :workouts
   resources :exercises
-  resources :users
   resources :user_sessions
+  resources :workouts, only: :index
+
+  resources :users do
+    resources :workouts
+  end
 
   match 'sign_up', to: 'users#new'
   match 'login',   to: 'user_sessions#new'

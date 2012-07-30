@@ -1,5 +1,7 @@
 Given /^I'm on a new workout page$/ do
-  visit new_workout_path
+  create_user
+  visit root_path
+  click_link "NEW WORKOUT"
 end
 
 When /^I fill in the workout form$/ do

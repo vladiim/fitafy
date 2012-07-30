@@ -1,25 +1,26 @@
 .container
-
-  #new_workout_form.row
-    
-    %section#workout_form.span3
-      = f.input :name
-      = f.input :client_level, collection: @client_level
-      = f.input :difficulty, collection: @difficulty
-      = f.input :notes, input_html: { rows: 4 }
-
-      / %h4 Exercises
-      / = render partial: "exercise_list", collection: @side_ex, as: :exercise
+  = simple_form_for [current_user, @workout] do |f|
+    = f.error_notification
+    #new_workout_form.row
+      
+      %section#workout_form.span3
+        = f.input :name
+        = f.input :client_level, collection: @client_level
+        = f.input :difficulty, collection: @difficulty
+        = f.input :notes, input_html: { rows: 4 }
   
-      = f.submit cta, class: "btn btn-primary"
-      %br
-      %br
-
-      - if cta == "UPDATE WORKOUT"
-        %p= link_to "DELETE WORKOUT", workout_path(@workout), method: :delete, class: "btn btn-danger", data: { confirm: @snapz_confirm_delete }
-
-    %section.span7#workout_exercises
-      = render partial: "exercises/sort_by"
-      %table.table.table-bordered.table-striped
-        %tbody
-          #exercise_list= render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }
+        / %h4 Exercises
+        / = render partial: "exercise_list", collection: @side_ex,   as: :exercise
+    
+        = f.submit cta, class: "btn btn-primary"
+        %br
+        %br
+  
+        - if cta == "UPDATE WORKOUT"
+          %p= link_to "DELETE WORKOUT", user_workout_path(current_user, @workout),   method: :delete, class: "btn btn-danger", data: {   confirm: @snapz_confirm_delete }
+  
+      %section.span7#workout_exercises
+        = render partial: "exercises/sort_by"
+        %table.table.table-bordered.table-striped
+          %tbody
+            #exercise_list= render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

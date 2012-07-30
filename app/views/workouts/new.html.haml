@@ -1,7 +1,3 @@
 %section#snapz_sayz= @snapz
 
-%section
-  = simple_form_for @workout do |f|
-    = f.error_notification
-
-    = render partial: "form", locals: { f: f, cta: "CREATE WORKOUT", edit_workout: false }
+%section= render partial: "form", locals: { cta: "CREATE WORKOUT", edit_workout: false }

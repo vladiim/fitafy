@@ -8,7 +8,8 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout           = Workout.new
+    # @workout           = Workout.new
+    @workout           = current_user.workouts.build
     @side_ex           = [Exercise.first, Exercise.last]
   	@title             = "New Workout"
     @client_level      = Workout::CLIENT_LEVELS
@@ -17,9 +18,10 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-  	@workout = Workout.new(params[:workout])
+  	# @workout = Workout.new(params[:workout])
+    @workout = current_user.workouts.build(params[:workout])
   	if @workout.save
-  	  redirect_to @workout
+  	  redirect_to user_workout_path(current_user, @workout)
   	  flash[:success] = SnapzSayz::WorkoutSpeak.created_workout
   	else
   	  render :new
@@ -27,21 +29,21 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-  	@workout = Workout.find(params[:id])
+  	@workout = current_user.workouts.find(params[:id])
   	@title   = @workout.name.titleize
   end
 
   def edit
-    @workout              = Workout.find(params[:id])
+    @workout              = current_user.workouts.find(params[:id])
     @title                = "Edit Workout"
     @snapz                = SnapzSayz::WorkoutSpeak.editing_exsisting_workout
     @snapz_confirm_delete = SnapzSayz::WorkoutSpeak.deleting_workout_confirmation
   end
 
   def update
-    @workout = Workout.find(params[:id])
+    @workout = current_user.workouts.find(params[:id])
     if @workout.update_attributes(params[:workout])
-      redirect_to @workout
+      redirect_to user_workout_path(current_user, @workout)
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
     else
       render :new
@@ -49,7 +51,7 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
-    Workout.destroy(params[:id])
+    current_user.workouts.destroy(params[:id])
     redirect_to root_path
     flash[:success] = SnapzSayz::WorkoutSpeak.deleted_workout
   end
