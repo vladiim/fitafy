@@ -1,4 +1,6 @@
 %aside
   %p= link_to "USE IN WORKOUT", "#", class: "btn btn-success"
   %br
-  %p= link_to "EDIT EXERCISE", edit_exercise_path(@exercise), class: "btn btn-info"
+
+  - if can? :manage, Exercise
+    %p= link_to "EDIT EXERCISE", edit_exercise_path(@exercise), class: "btn btn-info"

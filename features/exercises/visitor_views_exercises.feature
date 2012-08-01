@@ -23,14 +23,18 @@ Feature: Visitor views exercises
      When I click on an exercise in the workout's list
      Then I should go the that exercise's page
 
-  Scenario: Visitor can't see exercise links
+  Scenario: Visitor can't see new exercise links
     Given I'm not an administrator
     When I go to the homepage
     Then I shouldn't see links to exercises
 
-  Scenario: Visitor can't visit exercise pages
+  Scenario: Visitor can't visit new exercise pages
     Given I'm not an administrator
     When I visit the new exercise path
     Then I should get an unauthorized message
 
-  Scenario: Can't build, create, update, delete exercises
+  @focus
+  Scenario: Visitor can't see edit exercise link
+    Given I'm not an administrator
+    When I visit an exercise's page
+    Then I should not see the edit exercise link
