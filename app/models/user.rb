@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   	role == "admin"
   end
 
+  def copy_workout workout
+    new_workout = workout.dup
+    new_workout.user_id = self.id
+    new_workout.save!
+  end
+
   private
 
     def make_user_trainer

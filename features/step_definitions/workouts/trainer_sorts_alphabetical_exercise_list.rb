@@ -3,7 +3,7 @@ Given /^there's alphabetical exercises$/ do
 end
 
 Given /^I'm going to create a workout$/ do
-  visit new_workout_path
+  click_link "NEW WORKOUT"
 end
 
 When /^I sort the exercises$/ do

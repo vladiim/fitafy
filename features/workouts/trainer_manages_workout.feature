@@ -53,3 +53,11 @@ Feature: Trainer manages exercises
     And I'm going to create a workout
     When I sort the exercises
     Then I should see them in alphabetical order
+
+  @focus
+  Scenario: Trainer creates a copy of another trainer's workout
+    Given another trainer has created a workout
+    When I go to the workout's page
+    And click create copy
+    Then I should have a copy of the workout I can edit
+    And Snapz should let me know I've copied the workout

@@ -29,6 +29,7 @@ group :test do
   gem 'rr', '~> 1.0.4'
   gem 'turn', :require => false
   gem 'database_cleaner', '~> 0.7.2'
+  gem 'factory_girl_rails', '~> 3.0'
 end
 
 group :development, :test do

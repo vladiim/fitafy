@@ -1,5 +1,6 @@
 require 'cucumber/rails'
 require 'capybara/rails'
+require 'factory_girl/step_definitions'
 
 Capybara.default_selector = :css
 

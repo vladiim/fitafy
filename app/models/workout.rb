@@ -1,5 +1,4 @@
 class Workout < ActiveRecord::Base
-  extend FriendlyId
 
   attr_accessible :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
@@ -17,8 +16,6 @@ class Workout < ActiveRecord::Base
   validates :difficulty, inclusion: { in: DIFFICULTY }
 
   belongs_to :user
-
-  friendly_id :name, use: :slugged
 
   def self.trending
     # TODO: actually immplement trending algo based on twitter reputation gem

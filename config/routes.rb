@@ -8,6 +8,8 @@ Fitafy::Application.routes.draw do
     resources :workouts
   end
 
+  # match 'copy_workout', to: "workouts#copy", method: "post"
+  resources :copy_workouts, only: :create
   match 'sign_up', to: 'users#new'
   match 'login',   to: 'user_sessions#new'
   match 'logout',  to: 'user_sessions#destroy'

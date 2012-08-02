@@ -33,7 +33,6 @@ Feature: Visitor views exercises
     When I visit the new exercise path
     Then I should get an unauthorized message
 
-  @focus
   Scenario: Visitor can't see edit exercise link
     Given I'm not an administrator
     When I visit an exercise's page

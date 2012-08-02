@@ -29,12 +29,12 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-  	@workout = current_user.workouts.find(params[:id])
+  	@workout = Workout.find(params[:id])
   	@title   = @workout.name.titleize
   end
 
   def edit
-    @workout              = current_user.workouts.find(params[:id])
+    @workout              = Workout.find(params[:id])
     @title                = "Edit Workout"
     @snapz                = SnapzSayz::WorkoutSpeak.editing_exsisting_workout
     @snapz_confirm_delete = SnapzSayz::WorkoutSpeak.deleting_workout_confirmation

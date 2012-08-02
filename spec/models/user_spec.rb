@@ -49,6 +49,20 @@ describe User do
     end
   end
 
+  describe "#copy_workout" do
+    let(:workout) { OpenStruct.new(name: "capadona", description: "the struggle")}
+    let(:user)    { subject.dup }
+    before do
+      user.save!
+      mock(workout).dup   { workout }
+      mock(workout).save! { workout }
+    end
+
+    it "should copy a workout to itself" do
+      subject.copy_workout(workout).should eq workout
+    end
+  end
+
   describe "abilities" do
   	subject 	  { ability }
   	let(:ability) { Ability.new(user) }
