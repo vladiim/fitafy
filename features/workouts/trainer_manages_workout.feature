@@ -54,7 +54,6 @@ Feature: Trainer manages exercises
     When I sort the exercises
     Then I should see them in alphabetical order
 
-  @focus
   Scenario: Trainer creates a copy of another trainer's workout
     Given another trainer has created a workout
     When I go to the workout's page
