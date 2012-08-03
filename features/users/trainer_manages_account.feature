@@ -15,19 +15,17 @@ Feature: Trainer manages account
     And Snapz should have a message for creating an account
 
   Scenario: Trainer has profile page
-    Given I'm signed in
+    Given I'm on the hompage
     When I visit my profile page
     Then I should see my account details
 
   Scenario: Trainer edits profile
-    Given I'm signed in
-    When I edit my profile
+    Given I edit my profile
     Then my profile should change
     And Snapz should give me a message
 
   Scenario: Trainer deletes profile
-    Given I'm signed in
-    And on my profile page
+    Given on my profile page
     When I click delete account
     Then my account will be permanantly deleted
     
