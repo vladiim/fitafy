@@ -1,5 +1,5 @@
-Given /^I want to create a new fitafy account$/ do
-  visit root_path
+Given /^I'm not logged in$/ do
+  click_link "LOGOUT"
 end
 
 When /^I click sign up$/ do

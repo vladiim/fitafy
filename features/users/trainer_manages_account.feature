@@ -3,19 +3,16 @@ Feature: Trainer manages account
   As a fitafy trainer
   I want to be able to have a fitafy account
 
-  @focus
+  Background:
+    Given I have an account
+    And I'm sigen in
+
   Scenario: Trainer creates account
-    Given I want to create a new fitafy account
+    Given I'm not logged in
     When I click sign up
     And fill in my details
     Then I should have a new account
     And Snapz should have a message for creating an account
-
-  Scenario: Trainer logs in
-    Given I have an account
-    And I'm logged out
-    When I log in
-    Then I should see the logout link
 
   Scenario: Trainer has profile page
     Given I'm signed in
