@@ -3,6 +3,7 @@ Feature: Trainer manages account
   As a fitafy trainer
   I want to be able to have a fitafy account
 
+  @focus
   Scenario: Trainer creates account
     Given I want to create a new fitafy account
     When I click sign up

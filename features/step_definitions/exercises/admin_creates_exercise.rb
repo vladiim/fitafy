@@ -1,5 +1,4 @@
 Given /^I'm on a new exercise page$/ do
-  create_admin
   visit new_exercise_path
 end
 

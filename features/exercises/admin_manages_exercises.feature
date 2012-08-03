@@ -3,12 +3,14 @@ Feature: Admin Manages exercises
   As a fitafy admin
   I want to be able to manage exercises
 
+  Background:
+    Given I'm an admin
+
   Scenario: Admin builds new exercise
     Given I want to create a new exercise
     When I click the "NEW EXERCISE" new exercise link
     Then Snapz should say "Creatin' a new exercise? Just give me some deets" because I'm on a new exercise page
 
-  @focus
   Scenario: Admin creates exercise
     Given I'm on a new exercise page
     When I fill in the exercise form
