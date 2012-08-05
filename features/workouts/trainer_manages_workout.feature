@@ -34,9 +34,9 @@ Feature: Trainer manages exercises
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
 
-  @focus
   Scenario Outline: Trainer sorts exercise list
     Given there's exercises
+    And I'm a logged in trainer
     And I'm creating a new workout
     When I click <sort>
     Then I should see <true_name>
@@ -55,12 +55,14 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises
-    And I'm going to create a workout
+    And I'm a logged in trainer
+    And I'm creating a new workout
     When I sort the exercises
     Then I should see them in alphabetical order
 
+  @focus
   Scenario: Trainer creates a copy of another trainer's workout
-    Given another trainer has created a workout
+    Given a workout exercise
     When I go to the workout's page
     And click create copy
     Then I should have a copy of the workout I can edit

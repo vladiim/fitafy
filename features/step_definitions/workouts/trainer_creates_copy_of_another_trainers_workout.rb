@@ -1,10 +1,10 @@
-Given /^another trainer has created a workout$/ do
-  create_workout
-  click_link "LOGOUT"
-end
+# Given /^another trainer has created a workout$/ do
+#   create_workout
+#   click_link "LOGOUT"
+# end
 
 When /^I go to the workout's page$/ do
-  @me = create_user
+  @me = FactoryGirl.create :trainer
   workout = Workout.first
   visit workouts_path
   click_link workout.name.titleize
