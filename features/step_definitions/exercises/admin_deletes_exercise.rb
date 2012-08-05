@@ -1,5 +1,5 @@
 Given /^I'm on the edit exercise page$/ do
-  create_exercise
+  @exercise = FactoryGirl.create :exercise
   visit edit_exercise_path(@exercise)
 end
 

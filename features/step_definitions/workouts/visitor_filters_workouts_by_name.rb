@@ -1,8 +1,6 @@
 Given /^I'm on the workouts page with workouts$/ do
-  create_workout 10
+  10.times { FactoryGirl.create :workout }
   visit workouts_path
-  page.should have_selector("ul#workout_list li:nth-child(1)", 
-  							content: "Zno Said Date")
 end
 
 When /^I click view by name$/ do

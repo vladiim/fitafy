@@ -1,5 +1,5 @@
 Given /^I need incentive to click on$/ do
-  create_workout 5
+  5.times { FactoryGirl.create :workout }
 end
 
 When /^I visit the homepage \(trend\)$/ do
@@ -8,5 +8,5 @@ end
 
 Then /^I should see trending workouts$/ do
   page.should have_content "TRENDING WORKOUTS"
-  page.should have_content "Zno Said Date"
+  page.should have_content "No Said Date"
 end

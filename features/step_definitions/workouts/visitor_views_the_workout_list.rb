@@ -1,8 +1,3 @@
-Given /^there are workouts$/ do
-  visit root_path
-  create_workout
-end
-
 When /^I click on the workout's link "(.*?)"$/ do |workout_link|
   click_link workout_link
 end
