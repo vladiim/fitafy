@@ -4,7 +4,8 @@ Feature: Trainer manages exercises
   I want to be able to manage workouts
 
   Scenario: Trainer builds new workout
-    Given I want to create a new workout
+    Given I'm a logged in trainer
+    And I want to create a new workout
     When I click the "NEW WORKOUT" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
@@ -14,6 +15,7 @@ Feature: Trainer manages exercises
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
     And I can see the workout name
 
+  @focus
   Scenario: Trainer edits a workout
     Given I want to update a workout's details
     When I'm on the edit workout page
