@@ -10,7 +10,8 @@ Feature: Trainer manages exercises
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
   Scenario: Trainer creates workout
-    Given I'm on a new workout page
+    Given I'm a logged in trainer
+    And I'm on a new workout page
     When I fill in the workout form
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
     And I can see the workout name
@@ -60,7 +61,6 @@ Feature: Trainer manages exercises
     When I sort the exercises
     Then I should see them in alphabetical order
 
-  @focus
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise
     When I go to the workout's page

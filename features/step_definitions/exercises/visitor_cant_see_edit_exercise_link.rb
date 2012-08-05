@@ -1,8 +1,7 @@
 When /^I visit an exercise's page$/ do
-  create_exercise
-  click_link "LOGOUT"
-  ex = Exercise.first
-  visit exercise_path(ex)
+  FactoryGirl.create :exercise
+  exercise = Exercise.last
+  visit exercise_path(exercise)
 end
 
 Then /^I should not see the edit exercise link$/ do

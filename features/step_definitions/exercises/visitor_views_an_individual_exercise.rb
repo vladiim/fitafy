@@ -1,5 +1,5 @@
-Given /^an exercise has been created$/ do
-  create_exercise
+Given /^I find an exercise$/ do
+  #
 end
 
 When /^I visit the exercise's page$/ do

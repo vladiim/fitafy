@@ -13,7 +13,6 @@ When /^I sort the exercises$/ do
 end
 
 Then /^I should see them in alphabetical order$/ do
-  save_and_open_page
   page.should have_selector "tr#workout_exercises_fields:nth-child(1)", content: "Aaaa"
   page.should have_selector "tr#workout_exercises_fields:nth-child(2)", content: "Bbbb"
   page.should have_selector "tr#workout_exercises_fields:nth-child(3)", content: "Cccc"

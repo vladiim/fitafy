@@ -5,6 +5,6 @@ module WuTangIpsum
   def self.generate
   	start = rand WUSTYLE.length
   	finish = start + (rand(30))
-  	WUSTYLE[start..finish]
+  	WUSTYLE[start..finish].gsub(/\s+/, "")
   end
 end

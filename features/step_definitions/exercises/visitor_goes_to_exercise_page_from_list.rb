@@ -1,10 +1,9 @@
-Given /^there are exercises and I go to the exercise list$/ do
-  create_exercise
+Given /^I'm on the exercises page$/ do
   visit exercises_path
 end
 
 When /^I click on an exercise$/ do
-  click_link "Liquid Swords"
+  click_link "Liquid"
 end
 
 Then /^I should be on the exercise's show page$/ do

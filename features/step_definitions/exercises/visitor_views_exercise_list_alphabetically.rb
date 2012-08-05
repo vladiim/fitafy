@@ -1,10 +1,7 @@
 Given /^there are more than one exercise$/ do
-  # CreateExercise::EXERCISE_ATTRIBUTES called with [0] because it's an array
-  @second_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES[0])
-  @second_exercise.update_attributes(name: "BBBB")
-
-  @first_exercise = Exercise.create!(CreateExercise::EXERCISE_ATTRIBUTES[0])
-  @first_exercise.update_attributes(name: "AAAA")
+  ["ccc", "aaa", "bbb"].each do |name|
+  	FactoryGirl.create :exercise, name: name
+  end
 end
 
 When /^I visit the exercise list$/ do
@@ -13,6 +10,12 @@ When /^I visit the exercise list$/ do
 end
 
 Then /^the exercises should be in alphabetical order$/ do
-  page.should have_selector("tbody#exercises_list tr:nth-child(1) td a", content: "Aaaa")
-  page.should have_selector("tbody#exercises_list tr:nth-child(2) td a", content: "Baaa")
+  exercise_1 = find "tbody#exercises_list tr:nth-child(1) td a"
+  exercise_1.should have_content "Aaa"
+
+  exercise_2 = find "tbody#exercises_list tr:nth-child(2) td a"
+  exercise_2.should have_content "Bbb"
+
+  exercise_3 = find "tbody#exercises_list tr:nth-child(3) td a"
+  exercise_3.should have_content "Ccc"
 end

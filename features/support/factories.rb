@@ -2,17 +2,17 @@ require 'factory_girl'
 
 FactoryGirl.define do
 
-  sequence(:string) { WuTangIpsum.generate }
+  sequence(:string) { |n| WuTangIpsum.generate }
 
   factory :user, aliases: [:trainer] do
-  	username              { "johnny #{:string}" }
+  	username              { "johnny #{ generate :string }" }
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
   	password_confirmation "password"
   end
 
   factory :exercise do
-    name        { "liquid #{:string}" }
+    name        { "liquid #{ generate :string }" }
   	description "wu gambinos"
   	tips  		  "protect yo neck"
   	categories  { "shoalin #{name} sword style abs" }
@@ -20,7 +20,7 @@ FactoryGirl.define do
   end
 
   factory :workout do
-    name         { "no said date #{:string}" }
+    name         { "no said date #{ generate :string }" }
     notes        "these military arm' marine. sub machine gun"
     client_level "Beginner"
     difficulty   "Easy"

@@ -1,5 +1,5 @@
 Given /^on my profile page$/ do
-  click_link @user.username.upcase
+  click_link @trainer.username.upcase
 end
 
 When /^I click delete account$/ do
@@ -7,5 +7,5 @@ When /^I click delete account$/ do
 end
 
 Then /^my account will be permanantly deleted$/ do
-  User.find_by_username(@user.username).should_not be
+  User.find_by_username(@trainer.username).should_not be
 end

@@ -5,7 +5,7 @@ Feature: Trainer manages account
 
   Background:
     Given I have an account
-    And I'm sigen in
+    And I'm signed in
 
   Scenario: Trainer creates account
     Given I'm not logged in
@@ -28,4 +28,3 @@ Feature: Trainer manages account
     Given on my profile page
     When I click delete account
     Then my account will be permanantly deleted
-    
