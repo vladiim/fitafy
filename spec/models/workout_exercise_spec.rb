@@ -1,17 +1,8 @@
 require_relative "../spec_helper"
 
 describe WorkoutExercise do
-  subject { WorkoutExercise.new }
-  let(:valid_subject) { create_valid_subject }
-
-  def create_valid_subject
-  	WorkoutExercise.new(
-  		workout_id: 3,
-  		exercise_id: 4,
-  		sets: 3,
-  		notes: "notes"
-  	)
-  end
+  subject             { WorkoutExercise.new }
+  let(:valid_subject) { FactoryGirl.create :workout_exercise }
 
   describe "#attributes" do
     describe "#workout_id" do
@@ -45,7 +36,7 @@ describe WorkoutExercise do
 
   describe "#exercise_name" do
     it "should give the exercise name titleized" do
-      mock(Exercise).find(4) { OpenStruct.new name: "rebel ins"}
+      mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"}
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end

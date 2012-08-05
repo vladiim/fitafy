@@ -32,7 +32,6 @@ Feature: Visitor views workouts
     When I visit the workout's page
     Then I can't see the edit workout link
 
-  @focus
   Scenario: Visitor is prompted to login if they copy a workout
     Given I visit the workout's page
     When I click copy workout

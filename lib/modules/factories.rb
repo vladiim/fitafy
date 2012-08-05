@@ -4,7 +4,7 @@ FactoryGirl.define do
 
   sequence(:string) { |n| WuTangIpsum.generate }
 
-  factory :user, aliases: [:trainer] do
+  factory :user, class: User, aliases: [:trainer] do
   	username              { "johnny #{ generate :string }" }
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
@@ -24,12 +24,12 @@ FactoryGirl.define do
     notes        "these military arm' marine. sub machine gun"
     client_level "Beginner"
     difficulty   "Easy"
-    association  :user
+    association  :user, factory: :user
   end
 
   factory :workout_exercise do
-  	association :workout
-  	association :exercise
+  	association :workout, factory: :workout
+  	association :exercise, factory: :exercise
   	sets "3"
   end
 end

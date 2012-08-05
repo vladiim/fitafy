@@ -1,18 +1,8 @@
 require_relative '../spec_helper'
-include CreateArelExercise
 
 describe Exercise do
-  subject { Exercise.new }
-  let(:valid_subject) { create_valid_exercise }
-
-  def create_valid_exercise
-    Exercise.new(name:        "robert diggs",
-                 description: "rza",
-                 tips:        "shine 7 in the sun",
-                 categories:  "chessboxing",
-                 equipment:   "phaser on stun"
-    )
-  end
+  subject             { Exercise.new }
+  let(:valid_subject) { FactoryGirl.create :exercise }
 
   describe "#exercise_type" do
     it "should have an array of exercise types" do
@@ -22,9 +12,9 @@ describe Exercise do
 
   describe "#alphabetical_order" do
     before do
-      @b = create_exercise "BBBB"
-      @c = create_exercise "CCCC"
-      @a = create_exercise "AAAA"
+      @b = FactoryGirl.create :exercise, name: "BBBB"
+      @c = FactoryGirl.create :exercise, name: "CCCC"
+      @a = FactoryGirl.create :exercise, name: "AAAA"
     end
     it "should return an exercise list in alphabetical order" do
       Exercise.alphabetical_order.should eq [@a, @b, @c]
@@ -53,38 +43,29 @@ describe Exercise do
   end
 
   describe "#validations" do
-    before { @exercise = create_valid_exercise }
+    # before { @exercise = create_valid_exercise }
     context "with valid attributes" do
       it "should be valid" do
-        @exercise.should be_valid
+        valid_subject.should be_valid
       end
     end
 
     context "with same name as another exercise" do
-      before do
-        # subject.save
-        # @new_exercise = create_valid_exercise
-        # mock(subject.name).unique? { false }
-      end
-      it "should be invalid" do
-        pending "workout how to stub uniqueness callback"
-        # @new_exercise.should be_invalid
-        # subject.name.errors.should eq "has already been taken"
-        subject.should have(1).error_on(:name)
-      end
+      before { valid_subject }
+      it     { should validate_uniqueness_of :name }
     end
 
     context "without name" do
        it "shouldn't be valid" do
-         @exercise.name = nil
-         @exercise.should_not be_valid
+         valid_subject.name = nil
+         valid_subject.should_not be_valid
        end
      end
 
      context "without description" do
        it "shouldn't be valid" do
-         @exercise.description = nil
-         @exercise.should_not be_valid
+         valid_subject.description = nil
+         valid_subject.should_not be_valid
        end
      end
   end

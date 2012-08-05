@@ -5,12 +5,11 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require_relative 'spec_helper_lite'
+require_relative '../lib/modules/factories'
 
 #-------------------------------------#
 # helpers
 #-------------------------------------#
-require_relative 'support/create_arel_exercise'
-require_relative 'support/create_arel_workout'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

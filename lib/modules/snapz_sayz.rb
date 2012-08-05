@@ -77,7 +77,7 @@ module SnapzSayz
     end
 
     def self.copy workout_name
-      "#{workout_name.titleize} has bee copied to your workouts, like Wu said: it's yourz!"
+      "#{workout_name.titleize} has been copied to your workouts, like Wu said: it's yourz!"
     end
 
     def self.copy_redirect

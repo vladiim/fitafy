@@ -6,7 +6,7 @@ class Exercise < ActiveRecord::Base
   EXERCISE_TYPES = %w(abs back biceps chest forearms legs shoulders tricep)
 
   has_many :workout_exercises, dependent: :destroy
-  has_many :workouts, through: :workout_exercises
+  has_many :workouts, through: :workout_exercises, uniq: true
 
   validates_presence_of :name, :description
   validates :name, uniqueness: true

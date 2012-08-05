@@ -7,13 +7,12 @@ class Workout < ActiveRecord::Base
 
   has_many :workout_exercises, dependent: :destroy
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
-  has_many :exercises, through: :workout_exercises
+  has_many :exercises, through: :workout_exercises, uniq: true
 
   validates_presence_of :name
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }
-
-  validates :difficulty, inclusion: { in: DIFFICULTY }
+  validates :difficulty, inclusion:   { in: DIFFICULTY }
 
   belongs_to :user
 

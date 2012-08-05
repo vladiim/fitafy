@@ -17,7 +17,7 @@ Feature: Trainer manages exercises
     And I can see the workout name
 
   Scenario: Trainer edits a workout
-    Given a workout exercise
+    Given a workout exercise exists
     When I'm on the edit workout page
     Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
 

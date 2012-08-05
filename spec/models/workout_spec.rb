@@ -1,29 +1,10 @@
 require_relative '../spec_helper'
-require_relative '../../lib/modules/factories'
-
-include CreateArelWorkout
 
 describe Workout do
-  subject { create_valid_workout }
+  subject { FactoryGirl.create :workout }
 
   let(:exercise)  { Object.new }
   let(:exercises) { [exercise] }
-
-  def create_valid_workout
-    trainer = FactoryGirl.create :trainer
-    trainer.workouts.build(name:         "criminology",
-                notes:        "dealin in my cypher. i revolve around sciences",
-                client_level: "Beginner",
-                difficulty:   "Easy"
-    )
-  end
-
-  def create_ar_workouts n=1
-    n.times do
-      workout = create_valid_workout
-      workout.save!
-    end
-  end
 
   describe "#validate" do
 
@@ -138,8 +119,8 @@ describe Workout do
   end
 
   describe "#trending" do
-    it "should return 5 workouts" do
-      create_ar_workouts 4
+    it "should return 4 workouts" do
+      6.times { FactoryGirl.create :workout }
       Workout.trending.count.should eq 4
     end
   end
@@ -151,7 +132,7 @@ describe Workout do
     before do
       mock(other_workout).exercises         { exercises }
       mock(other_workout).workout_exercises { workout_exercises }
-      mock(subject).exercises { exercises }
+      mock(subject).exercises               { exercises }
     end
 
     it "should copy another workout's exercises" do
