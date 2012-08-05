@@ -53,4 +53,14 @@ class Workout < ActiveRecord::Base
   def exercises_count
     workout_exercises.count
   end
+
+  def copy_workout_exercises workout
+    workout.exercises.each do |exercise|
+      workout.workout_exercises.each do |workout_exercise|
+        self.workout_exercises.create(exercise_id: exercise.id, 
+                                      sets: workout_exercise.sets, 
+                                      notes: workout_exercise.notes)
+      end
+    end
+  end
 end

@@ -12,7 +12,6 @@ module SnapzSayz
 
   	def self.usp
       "Gazillions of workouts and exercises to help you manage your Personal Training clients!"
-  	  #"fitafy helps personal trainers keep track of their client's workouts and stay fly"
   	end
 
     def self.unauthorized
@@ -75,6 +74,10 @@ module SnapzSayz
   
     def self.deleting_workout_confirmation
       "Hey, let's not be rash... you really gonna kill this workout?"
+    end
+
+    def self.copy workout_name
+      "#{workout_name.titleize} has bee copied to your workouts, like Wu said: it's yourz!"
     end
   end
 

@@ -1,4 +1,5 @@
 require_relative '../spec_helper'
+require_relative '../../lib/modules/factories'
 
 include CreateArelWorkout
 
@@ -9,7 +10,8 @@ describe Workout do
   let(:exercises) { [exercise] }
 
   def create_valid_workout
-    Workout.new(name:         "criminology",
+    trainer = FactoryGirl.create :trainer
+    trainer.workouts.build(name:         "criminology",
                 notes:        "dealin in my cypher. i revolve around sciences",
                 client_level: "Beginner",
                 difficulty:   "Easy"
@@ -139,6 +141,22 @@ describe Workout do
     it "should return 5 workouts" do
       create_ar_workouts 4
       Workout.trending.count.should eq 4
+    end
+  end
+
+  describe "#copy_wokrout_exercises" do
+    let(:other_workout)     { Object.new }
+    let(:workout_exercises) { OpenStruct.new(exercise_id: 2, sets: 5, notes: "") }
+
+    before do
+      mock(other_workout).exercises         { exercises }
+      mock(other_workout).workout_exercises { workout_exercises }
+      mock(subject).exercises { exercises }
+    end
+
+    it "should copy another workout's exercises" do
+      subject.copy_workout_exercises(other_workout)
+      subject.exercises.should eq exercises
     end
   end
 end

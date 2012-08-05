@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     new_workout = workout.dup
     new_workout.user_id = self.id
     new_workout.save!
+    new_workout.copy_workout_exercises workout
   end
 
   private

@@ -52,14 +52,16 @@ describe User do
   describe "#copy_workout" do
     let(:workout) { OpenStruct.new(name: "capadona", description: "the struggle")}
     let(:user)    { subject.dup }
+
     before do
       user.save!
-      mock(workout).dup   { workout }
-      mock(workout).save! { workout }
+      mock(workout).dup          { workout }
+      mock(workout).save!        { workout }
+      mock(workout).copy_workout_exercises(workout) { true }
     end
 
     it "should copy a workout to itself" do
-      subject.copy_workout(workout).should eq workout
+      subject.copy_workout(workout).should be
     end
   end
 

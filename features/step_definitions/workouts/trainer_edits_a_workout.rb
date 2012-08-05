@@ -1,4 +1,4 @@
-Given /^a workout exercise$/ do
+Given /^a workout exercise exists$/ do
   FactoryGirl.create :workout_exercise
   @trainer = User.last
   login @trainer
