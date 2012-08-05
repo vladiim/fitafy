@@ -1,7 +1,8 @@
 %p= link_to "ADD TO FAVORITES", "#", class: "btn btn-inverse"
 %br
 
-%p= link_to "EDIT WORKOUT", edit_user_workout_path(@workout.user_id, @workout), class: "btn btn-info"
+- if can? :update, @workout
+  %p= link_to "EDIT WORKOUT", edit_user_workout_path(@workout.user_id, @workout), class: "btn btn-info"
 %br
 
 / %p= link_to "CREATE COPY", copy_workouts_path(current_user, @workout.id), class: "btn btn-primary", method: :post

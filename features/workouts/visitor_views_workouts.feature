@@ -26,3 +26,9 @@ Feature: Visitor views workouts
     Given I'm a visitor
     When I visit the homepage
     Then I should see the new workout link
+
+  @focus
+  Scenario: Visitor cant see edit workout link
+    Given I'm a visitor
+    When I visit the workout's page
+    Then I can't see the edit workout link
