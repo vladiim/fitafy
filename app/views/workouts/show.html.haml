@@ -20,7 +20,8 @@
           %tr
             %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
             %th= workout_exercise.sets
-            %th= workout_exercise.notes.humanize
+            - if workout_exercise.notes
+              %th= workout_exercise.notes.humanize
   
   %aside.span3.well
     = render "workout_aside"

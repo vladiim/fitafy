@@ -10,11 +10,11 @@ FactoryGirl.define do
   end
 
   factory :exercise do
-    name         "liquid swords"
-  	description  "wu gambinos"
-  	tips  		 "protect yo neck"
-  	categories   "shoalin back sword style"
-  	equipment 	 "bobby boulders"
+    name        "liquid swords"
+  	description "wu gambinos"
+  	tips  		  "protect yo neck"
+  	categories  { "shoalin #{name} sword style" }
+  	equipment 	"bobby boulders"
   end
 
   factory :workout do

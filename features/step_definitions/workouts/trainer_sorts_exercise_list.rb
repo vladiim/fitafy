@@ -1,9 +1,12 @@
 Given /^there's exercises$/ do
-  create_exercise exercise_type_attrs
+  Exercise::EXERCISE_TYPES.each do |type|
+  	FactoryGirl.create :exercise, name: "#{type} title"
+  end
 end
 
 Given /^I'm creating a new workout$/ do
-  create_user
+  trainer = FactoryGirl.create :trainer
+  login trainer
   click_link "NEW WORKOUT"
 end
 

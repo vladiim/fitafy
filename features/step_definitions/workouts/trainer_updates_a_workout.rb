@@ -1,8 +1,3 @@
-Given /^I'm on an exsisting workout's edit page$/ do
-  create_workout
-  click_link "EDIT WORKOUT"
-end
-
 When /^I change the workout's "(.*?)" with "(.*?)"$/ do |field, value|
   fill_in field, with: value
   click_button "UPDATE WORKOUT"

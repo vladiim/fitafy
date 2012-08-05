@@ -1,12 +1,12 @@
-Given /^I want to update a workout's details$/ do
+Given /^a workout exercise$/ do
   FactoryGirl.create :workout_exercise
+  @trainer = User.last
+  login @trainer
+  @workout = Workout.last
 end
 
 When /^I'm on the edit workout page$/ do
-  trainer = User.last
-  login trainer
-  workout = Workout.last
-  visit edit_user_workout_path(trainer, workout)
+  visit edit_user_workout_path(@trainer, @workout)
 end
 
 Then /^Snapz should give me the "(.*?)" edit workout message$/ do |snapz_sayz|
