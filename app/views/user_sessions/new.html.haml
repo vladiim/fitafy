@@ -4,3 +4,9 @@
   = f.input :email
   = f.input :password
   = f.submit "LOGIN", class: "btn btn-primary"
+
+%aside
+  %p 
+    No account?
+    = link_to "Sign up", sign_up_path
+    here

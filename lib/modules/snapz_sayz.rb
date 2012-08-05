@@ -79,6 +79,10 @@ module SnapzSayz
     def self.copy workout_name
       "#{workout_name.titleize} has bee copied to your workouts, like Wu said: it's yourz!"
     end
+
+    def self.copy_redirect
+      "Wanna copy a workout? No problems! You just need to login first yo!"
+    end
   end
 
   module UserSpeak

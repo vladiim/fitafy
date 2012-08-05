@@ -10,4 +10,9 @@ class CopyWorkoutsController < ApplicationController
       render @workout
     end
   end
+
+  def new_user
+    redirect_to login_path
+    flash[:message] = SnapzSayz::WorkoutSpeak.copy_redirect
+  end
 end

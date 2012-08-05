@@ -10,6 +10,8 @@ Fitafy::Application.routes.draw do
 
   # match 'copy_workout', to: "workouts#copy", method: "post"
   resources :copy_workouts, only: :create
+  match 'copy-workouts-redirect', to: "copy_workouts#new_user"
+
   match 'sign_up', to: 'users#new'
   match 'login',   to: 'user_sessions#new'
   match 'logout',  to: 'user_sessions#destroy'

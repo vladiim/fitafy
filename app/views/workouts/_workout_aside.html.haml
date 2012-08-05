@@ -7,6 +7,8 @@
 
 - if current_user
   %p= link_to "CREATE COPY", copy_workouts_path({id: @workout.id}), class: "btn btn-primary", method: :post
-  %br
+- else
+  %p= link_to "CREATE COPY", '/copy-workouts-redirect', class: "btn btn-primary"
+%br
 
 %p= link_to "DOWNLOAD AS PDF", "#", class: "btn btn-success"
