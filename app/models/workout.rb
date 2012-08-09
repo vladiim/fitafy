@@ -1,6 +1,6 @@
 class Workout < ActiveRecord::Base
 
-  attr_accessible :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
+  attr_accessible :user_id, :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
@@ -9,7 +9,7 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises, uniq: true
 
-  validates_presence_of :name
+  validates_presence_of :name, :user_id
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }
   validates :difficulty, inclusion:   { in: DIFFICULTY }

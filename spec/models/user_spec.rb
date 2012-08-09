@@ -4,11 +4,34 @@ describe User do
   subject { create_valid_user }
 
   def create_valid_user
-    User.new(username:     			 "chef",
-             email:        			 "lex@diamond.com",
-             password: 				 "immobilarity",
-             password_confirmation:   "immobilarity"
+    User.new(username:     			    "chef",
+             email:        			    "lex@diamond.com",
+             password: 				      "immobilarity",
+             password_confirmation: "immobilarity"
     )
+  end
+
+  describe "#build_workout" do
+    let(:params)  { OpenStruct.new user_id: subject.username }
+    let(:workout) { Object.new }
+
+    context "with params" do
+      before do
+        mock(params).merge(user_id: subject.id) { subject }
+        mock(subject.workouts).build(params)    { workout }
+      end
+
+      it "should return a workout with the params and user_id" do
+        subject.build_workout(params).should eq workout
+      end
+    end
+
+    context "without params" do
+      before { mock(subject.workouts).build(user_id: subject.id) { workout } }
+      it "should return a workout" do
+        subject.build_workout.should eq workout
+      end
+    end
   end
 
   describe "trainer?" do

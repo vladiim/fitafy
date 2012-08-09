@@ -9,7 +9,8 @@ class WorkoutsController < ApplicationController
 
   def new
     # @workout           = Workout.new
-    @workout           = current_user.workouts.build
+    # @workout           = current_user.workouts.build
+    @workout           = current_user.build_workout
     @side_ex           = [Exercise.first, Exercise.last]
   	@title             = "New Workout"
     @client_level      = Workout::CLIENT_LEVELS
@@ -18,8 +19,8 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-  	# @workout = Workout.new(params[:workout])
-    @workout = current_user.workouts.build(params[:workout])
+    # @workout = current_user.workouts.build(params[:workout])
+    @workout = current_user.build_workout(params[:workout])
   	if @workout.save
   	  redirect_to user_workout_path(current_user, @workout)
   	  flash[:success] = SnapzSayz::WorkoutSpeak.created_workout

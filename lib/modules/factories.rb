@@ -20,16 +20,16 @@ FactoryGirl.define do
   end
 
   factory :workout do
+    user
     name         { "no said date #{ generate :string }" }
     notes        "these military arm' marine. sub machine gun"
     client_level "Beginner"
     difficulty   "Easy"
-    association  :user, factory: :user
   end
 
   factory :workout_exercise do
-  	association :workout, factory: :workout
-  	association :exercise, factory: :exercise
+    workout
+    exercise
   	sets "3"
   end
 end

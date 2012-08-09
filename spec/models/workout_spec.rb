@@ -54,6 +54,8 @@ describe Workout do
         end
       end
     end
+
+    it { should validate_presence_of :user_id }
   end
 
   describe "#all_exercises" do

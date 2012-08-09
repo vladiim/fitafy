@@ -13,6 +13,15 @@ class User < ActiveRecord::Base
 
   has_many :workouts
 
+  def build_workout params=nil
+    if params == nil
+      workouts.build user_id: self.id
+    else
+      params.merge user_id: self.id
+      self.workouts.build params
+    end
+  end
+
   def trainer?
   	role == "trainer"
   end
