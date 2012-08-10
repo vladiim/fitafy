@@ -5,6 +5,6 @@ class WorkoutExercisesController < ApplicationController
     @workout = Workout.find(@workout_exercise.workout_id)
     @workout_exercise.destroy
     redirect_to user_workout_path(@workout.user_id, @workout)
-    flash[:success] = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+    flash[:success] = SnapzSayz::WorkoutExerciseSpeak.delete
   end
 end

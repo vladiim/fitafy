@@ -10,5 +10,9 @@ create_legs
 create_shoulders
 create_triceps
 
+@rza = User.find_or_create_by_email "rza@wu.com", username: "rza", password: "password", password_confirmation: "password"
+@rza.role = "admin"
+@rza.save!
+
 # Then create workouts which rely on Exercises to exsist
 create_workouts

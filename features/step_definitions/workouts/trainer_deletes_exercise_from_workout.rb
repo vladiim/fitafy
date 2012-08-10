@@ -9,5 +9,5 @@ When /^I click delete exercise$/ do
 end
 
 Then /^that exercise should be removed$/ do
-  page.should have_content "You sure you want to delete this exercise?"
+  page.should have_content "You trim down super easy!"
 end

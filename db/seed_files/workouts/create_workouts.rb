@@ -28,7 +28,7 @@ end
 
 def create_workout_exercises workout
   5.times do
-    workout.workout_exercises.create(
+    workout.workout_exercises.create!(
       exercise_id: random_exercise_id,
       sets: 	     random_set,
       notes:       random_exercise_note         
@@ -40,11 +40,12 @@ def create_workouts
   @names.each do |name|
     Workout::CLIENT_LEVELS.each do |client_level|
       Workout::DIFFICULTY.each do |difficulty|
-        workout = Workout.create(
+        workout = Workout.create!(
         	name:         name,
         	notes:        NOTES,
           client_level: client_level,
-          difficulty:   difficulty
+          difficulty:   difficulty,
+          user_id:      @rza.id
         )
         create_workout_exercises workout
       end

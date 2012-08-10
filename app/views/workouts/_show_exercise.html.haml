@@ -4,7 +4,8 @@
       %th EXERCISE
       %th SETS
       %th NOTES
-      %th
+      - if can? :delete, @workout
+        %th
   %tbody
     - @workout.list_exercises.each do |workout_exercise|
       %tr
@@ -13,4 +14,5 @@
         - if workout_exercise.notes
           %th= workout_exercise.notes.humanize
 
-        %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), method: :delete, confirm: @snaz_confirm
+        - if can? :delete, @workout
+          %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), method: :delete, confirm: @snaz_confirm
