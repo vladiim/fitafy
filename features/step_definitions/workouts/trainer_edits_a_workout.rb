@@ -1,8 +1,6 @@
 Given /^a workout exercise exists$/ do
-  FactoryGirl.create :workout_exercise
-  @trainer = User.last
-  login @trainer
-  @workout = Workout.last
+  @workout = FactoryGirl.create :workout, user_id: @trainer.id
+  FactoryGirl.create :workout_exercise, workout_id: @workout.id
 end
 
 When /^I'm on the edit workout page$/ do

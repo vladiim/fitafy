@@ -3,15 +3,16 @@ Feature: Trainer manages exercises
   As a personal trainer
   I want to be able to manage workouts
 
+  Background:
+    When I'm a logged in trainer
+
   Scenario: Trainer builds new workout
-    Given I'm a logged in trainer
-    And I want to create a new workout
+    Given I want to create a new workout
     When I click the "NEW WORKOUT" new workout link
     Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
 
   Scenario: Trainer creates workout
-    Given I'm a logged in trainer
-    And I'm on a new workout page
+    Given I'm on a new workout page
     When I fill in the workout form
     Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
     And I can see the workout name
@@ -20,6 +21,12 @@ Feature: Trainer manages exercises
     Given a workout exercise exists
     When I'm on the edit workout page
     Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
+
+  Scenario: Trainer deletes exercise from workout
+    Given a workout exercise exists
+    And I'm on the workout's page
+    When I click delete exercise
+    Then that exercise should be removed
 
   Scenario: Trainer updates a workout
     Given a workout exercise exists
@@ -37,7 +44,6 @@ Feature: Trainer manages exercises
 
   Scenario Outline: Trainer sorts exercise list
     Given there's exercises
-    And I'm a logged in trainer
     And I'm creating a new workout
     When I click <sort>
     Then I should see <true_name>
@@ -56,12 +62,10 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises
-    And I'm a logged in trainer
     And I'm creating a new workout
     When I sort the exercises
     Then I should see them in alphabetical order
 
-  @focus
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise exists
     When I go to the workout's page

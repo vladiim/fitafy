@@ -1,8 +1,3 @@
-Given /^I'm a logged in trainer$/ do
-  @trainer = FactoryGirl.create :trainer
-  login @trainer
-end
-
 Given /^I want to create a new workout$/ do
   visit root_path
 end

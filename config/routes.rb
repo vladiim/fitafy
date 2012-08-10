@@ -3,6 +3,7 @@ Fitafy::Application.routes.draw do
   resources :exercises
   resources :user_sessions
   resources :workouts, only: :index
+  resources :workout_exercises
 
   resources :users do
     resources :workouts

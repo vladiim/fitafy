@@ -8,8 +8,6 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    # @workout           = Workout.new
-    # @workout           = current_user.workouts.build
     @workout           = current_user.build_workout
     @side_ex           = [Exercise.first, Exercise.last]
   	@title             = "New Workout"
@@ -19,7 +17,6 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    # @workout = current_user.workouts.build(params[:workout])
     @workout = current_user.build_workout(params[:workout])
   	if @workout.save
   	  redirect_to user_workout_path(current_user, @workout)
@@ -30,8 +27,9 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-  	@workout = Workout.find(params[:id])
-  	@title   = @workout.name.titleize
+  	@workout       = Workout.find(params[:id])
+  	@title         = @workout.name.titleize
+    @snapz_warning = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
   end
 
   def edit

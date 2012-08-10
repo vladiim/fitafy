@@ -1,0 +1,16 @@
+%table#workout_exercises.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th EXERCISE
+      %th SETS
+      %th NOTES
+      %th
+  %tbody
+    - @workout.list_exercises.each do |workout_exercise|
+      %tr
+        %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
+        %th= workout_exercise.sets
+        - if workout_exercise.notes
+          %th= workout_exercise.notes.humanize
+
+        %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), method: :delete, confirm: @snaz_confirm

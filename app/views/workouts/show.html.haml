@@ -8,20 +8,7 @@
 %p= @workout.notes.capitalize
 
 %section.row
-  %article.span7
-    %table#workout_exercises.table.table-bordered.table-striped
-      %thead
-        %tr
-          %th EXERCISE
-          %th SETS
-          %th NOTES
-      %tbody
-        - @workout.list_exercises.each do |workout_exercise|
-          %tr
-            %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
-            %th= workout_exercise.sets
-            - if workout_exercise.notes
-              %th= workout_exercise.notes.humanize
-  
-  %aside.span3.well
-    = render "workout_aside"
+
+  %article.span7= render 'show_exercise'
+
+  %aside.span3.well= render "workout_aside"

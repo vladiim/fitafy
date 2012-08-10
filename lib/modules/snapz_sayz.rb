@@ -137,4 +137,10 @@ module SnapzSayz
       "Welcome back yo!"
     end
   end
+
+  module WorkoutExerciseSpeak
+    def self.confirm_delete
+      "You sure you want to delete this exercise? Super dooper sure?"
+    end
+  end
 end
