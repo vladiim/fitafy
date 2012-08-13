@@ -2,8 +2,9 @@ class ExercisesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @title     = "All Exercises"
-    @exercises = Exercise.alphabetical_order
+    @title          = "All Exercises"
+    @exercises      = Workout.exercises_by_alphabetical_category(params[:sort])
+    @exercise_types = Workout.exercise_types
   end
 
   def new

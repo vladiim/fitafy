@@ -31,3 +31,22 @@ Feature: Admin Manages exercises
     Given I'm on the edit exercise page
     When I delete the exercise by clicking "DELETE EXERCISE"
     Then Snapz should give "That exercise is gawn!" deleted exercise message
+
+  @focus
+  Scenario Outline: Admin sorts exercises from index
+    Given there's exercises
+    And I'm on the exercise index
+    When I click <sort>
+    Then I should see <true_name>
+    And I shouldn't see <false_name>
+
+    Examples:
+      | sort        | true_name         | false_name          |
+      | "ABS"       | "Abs Title"       | "Back Title"        |
+      | "BACK"      | "Back Title"      | "Bicep Title"       |
+      | "BICEPS"    | "Biceps Title"    | "Chest Title"       |
+      | "CHEST"     | "Chest Title"     | "Forearms Title"    |
+      | "FOREARMS"  | "Forearms Title"  | "Legs Title"        |
+      | "LEGS"      | "Legs Title"      | "Lower Back Title"  |
+      | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
+      | "TRICEP"    | "Tricep Title"    | "Ab Title"          |

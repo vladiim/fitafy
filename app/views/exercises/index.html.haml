@@ -1,10 +1,4 @@
-%p#tab_sort_by
-  SORT BY:
-  / TODO: get /exercises sort_by working, refactor a sort_by partial for this and for workouts/new
-  - Exercise::EXERCISE_TYPES.each do |type|
-    = link_to type.upcase, sort: type, class: "nav.nav-pills"
-    |
-
+= render 'sort_by'
 
 %table.table.table-bordered.table-striped
   %thead
