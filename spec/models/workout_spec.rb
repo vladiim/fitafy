@@ -132,7 +132,6 @@ describe Workout do
     let(:workout_exercises) { OpenStruct.new(exercise_id: 2, sets: 5, notes: "") }
 
     before do
-      mock(other_workout).exercises         { exercises }
       mock(other_workout).workout_exercises { workout_exercises }
       mock(subject).exercises               { exercises }
     end

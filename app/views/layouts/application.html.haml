@@ -2,13 +2,13 @@
 
 %head= render 'layouts/head'
 
-%body#main
+%body#main.container
 
   %nav= render 'layouts/navigation'
 
   %section#main_content
     = render 'layouts/flashes'
+
     %header
-      // don't have h1 on homepage
       %h1= section_title unless params[:action] == 'home'
     = yield

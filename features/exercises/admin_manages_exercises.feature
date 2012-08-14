@@ -32,7 +32,6 @@ Feature: Admin Manages exercises
     When I delete the exercise by clicking "DELETE EXERCISE"
     Then Snapz should give "That exercise is gawn!" deleted exercise message
 
-  @focus
   Scenario Outline: Admin sorts exercises from index
     Given there's exercises
     And I'm on the exercise index
