@@ -40,4 +40,21 @@ describe WorkoutExercise do
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end
+
+  describe "#updates_workout_tags" do
+    let(:exercise) { Object.new }
+    let(:tag)      { Object.new }
+    let(:workout)  { Object.new }
+
+    before do
+      mock(subject).exercise { exercise }
+      mock(subject).workout { workout }
+      mock(exercise).categories { [tag] }
+      mock(workout).update_tags tag
+    end
+
+    it "should update the workout with the exercise's tags" do
+      subject.updates_workout_tags.should be
+    end
+  end
 end

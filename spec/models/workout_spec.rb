@@ -58,6 +58,16 @@ describe Workout do
     it { should validate_presence_of :user_id }
   end
 
+  describe "#update_tags" do
+    let(:tag) { Object.new }
+    before    { mock(subject).save! { subject } }
+
+    it "should update the workout's tags" do
+      subject.update_tags tag
+      subject.tag_list.should include tag
+    end
+  end
+
   describe "#tag_list" do
     let(:tag) { "ol dirdy bizza" }
     it "should store tags" do

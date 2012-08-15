@@ -24,7 +24,12 @@ class Workout < ActiveRecord::Base
   end
 
   def self.all_sorted params
-    self.tag_list params
+    Workout.tagged_with("params")
+  end
+
+  def update_tags tag
+    tag_list << tag
+    save!
   end
 
   def new_workout_exercises
