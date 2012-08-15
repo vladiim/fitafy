@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
 
   has_many :workouts
 
+  def trainer?
+  	role == "trainer"
+  end
+
+  def admin?
+  	role == "admin"
+  end
+
   def build_workout params=nil
     if params == nil
       workouts.build user_id: self.id
@@ -22,19 +30,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def trainer?
-  	role == "trainer"
-  end
-
-  def admin?
-  	role == "admin"
-  end
-
   def copy_workout workout
     new_workout = workout.dup
     new_workout.user_id = self.id
     new_workout.save!
     new_workout.copy_workout_exercises workout
+  end
+
+  def all_workouts
+    self.workouts
+  end
+
+  def workouts_count
+    self.workouts.count
   end
 
   private

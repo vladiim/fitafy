@@ -1,5 +1,23 @@
-- if @user = current_user
-  = render "my_profile"
+.container
 
-- else
-  = render "different_profile"
+  %aside.span3
+    #profile= image_tag('das_boot.png', size: "150x200")
+    %br
+    %strong= @user.username.titleize
+    %p
+      = @user.workouts_count
+      Workouts
+
+    - if @user = current_user
+      = render 'edit_profile_buttons'
+
+  %section.span8
+    %h4
+      - if @user = current_user
+        Your workouts
+      - else
+        = "#{@user.username.titleize}'s"
+        Workouts
+
+    %br
+    = render partial: "workouts/workout", collection: @workouts

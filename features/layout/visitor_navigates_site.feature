@@ -19,3 +19,10 @@ Feature: Visitor navigates site
     Given I'm on the workouts page
     When I click the fitafy logo
     Then I should be on the homepage
+
+  Scenario: Visitor views trainer page
+    Given I'm on a workout
+    When I click the trainer's name
+    Then I should be on the trainer's profile
+    And I should see the trainer's stats
+    And I should see the trainer's workouts

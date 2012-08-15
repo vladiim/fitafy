@@ -1,0 +1,4 @@
+= link_to "EDIT PROFILE", edit_user_path(current_user), class: "  btn btn-info"
+%br
+%br
+= link_to "DELETE ACCOUNT", user_path(current_user), method: :delete, data: { confirm: @delete_confirmation }, class: "btn btn-danger"

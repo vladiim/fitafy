@@ -28,7 +28,8 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout       = Workout.find(params[:id])
-  	@title         = @workout.name.titleize
+    @trainer       = User.find @workout.user_id
+  	@title         = @workout.name
     @snapz_warning = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
   end
 

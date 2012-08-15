@@ -72,6 +72,13 @@ describe User do
     end
   end
 
+  describe "#workouts_count" do
+    before { mock(subject.workouts).count { 3 } }
+    it "should count the number of workouts" do
+      subject.workouts_count.should eq 3
+    end
+  end
+
   describe "#copy_workout" do
     let(:workout) { OpenStruct.new(name: "capadona", description: "the struggle")}
     let(:user)    { subject.dup }
@@ -85,6 +92,14 @@ describe User do
 
     it "should copy a workout to itself" do
       subject.copy_workout(workout).should be
+    end
+  end
+
+  describe "#all_workouts" do
+    let(:workout) { Object.new }
+    before { mock(subject).workouts { [workout] } }
+    it "should return all the user's workouts" do
+      subject.all_workouts.should eq [workout]
     end
   end
 
