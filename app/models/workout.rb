@@ -2,6 +2,8 @@ class Workout < ActiveRecord::Base
 
   attr_accessible :user_id, :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
+  acts_as_taggable
+
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
 
@@ -19,6 +21,10 @@ class Workout < ActiveRecord::Base
   def self.trending
     # TODO: actually immplement trending algo based on twitter reputation gem
     limit 4
+  end
+
+  def self.all_sorted params
+    self.tag_list params
   end
 
   def new_workout_exercises

@@ -8,12 +8,12 @@
       = @user.workouts_count
       Workouts
 
-    - if @user = current_user
+    - if @user == current_user
       = render 'edit_profile_buttons'
 
   %section.span8
     %h4
-      - if @user = current_user
+      - if @user == current_user
         Your workouts
       - else
         = "#{@user.username.titleize}'s"

@@ -58,6 +58,27 @@ describe Workout do
     it { should validate_presence_of :user_id }
   end
 
+  describe "#tag_list" do
+    let(:tag) { "ol dirdy bizza" }
+    it "should store tags" do
+      subject.tag_list = tag
+      subject.save!
+      subject.tags[0].name.should eq tag
+    end
+  end
+
+  describe "#all_sorted" do
+    let(:params)      { Object.new }
+    let(:sorted_list) { Object.new }
+
+    before do
+      mock(Workout).tag_list(params) { sorted_list }
+    end
+    it "should return a list of workouts sorted by the variable" do
+      Workout.all_sorted(params).should eq sorted_list
+    end
+  end
+
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
 

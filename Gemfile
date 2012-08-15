@@ -1,13 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails',        '~> 3.2.0'
-gem 'pg',           '~> 0.13.0'
-gem 'heroku',       '~> 2.21.0'
-gem 'simple_form',  '~> 2.0.0'
-gem 'pry',          '~> 0.9.9.0'
-gem 'authlogic',    '~> 3.1.3'
-gem 'cancan',       '~> 1.6.8'
-gem 'friendly_id',  '~> 4.0.1'
+gem 'rails',               '~> 3.2.0'
+gem 'pg',                  '~> 0.13.0'
+gem 'heroku',              '~> 2.21.0'
+gem 'simple_form',         '~> 2.0.0'
+gem 'pry',                 '~> 0.9.9.0'
+gem 'authlogic',           '~> 3.1.3'
+gem 'cancan',              '~> 1.6.8'
+gem 'friendly_id',         '~> 4.0.1'
+gem 'acts-as-taggable-on', '~> 2.3.3'
 
 # ------------ ASSETS ------------ #
 

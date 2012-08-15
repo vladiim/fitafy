@@ -17,10 +17,25 @@ Feature: Visitor views workouts
     Then I should see a list of workouts
     And I should see how many exercises the workout has
 
-  Scenario: Vistor filters workouts by name
-    Given I'm on the workouts page with workouts
-    When I click view by name
-    Then the workouts should be ordered by name
+  @focus
+  Scenario Outline: Vistor sorts workouts
+    Given there's workouts 
+    And I'm on the workouts page with workouts
+    When I click <sort>
+    Then I should see <true_name>
+    And I shouldn't see <false_name>
+
+    Examples:
+      | sort        | true_name         | false_name          |
+      | "ABS"       | "Abs Title"       | "Back Title"        |
+      | "BACK"      | "Back Title"      | "Bicep Title"       |
+      | "BICEPS"    | "Biceps Title"    | "Chest Title"       |
+      | "CHEST"     | "Chest Title"     | "Forearms Title"    |
+      | "FOREARMS"  | "Forearms Title"  | "Legs Title"        |
+      | "LEGS"      | "Legs Title"      | "Lower Back Title"  |
+      | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
+      | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
+
 
   Scenario: Visitor cant see new workout link
     Given I'm a visitor

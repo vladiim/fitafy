@@ -1,12 +1,5 @@
 %section#workout_filters
-  %p 
-    FILTER BY
-    = link_to "FAVORITE", "#"
-    |
-    = link_to "NAME", "#"
-    |
-    = link_to "LATEST", "#"
-
+  = render 'exercises/sort_by'
 
 %section#workouts.row
   %ul#workout_list= render @workouts
