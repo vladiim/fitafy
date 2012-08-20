@@ -12,11 +12,9 @@ class WorkoutExercise < ActiveRecord::Base
   	exercise.name.titleize
   end
 
-  private
-
-    def updates_workout_tags
-      self.exercise.categories.each do |tag|
-      self.workout.update_tags tag
-      end
+  def updates_workout_tags
+    self.exercise.categories.each do |tag|
+    self.workout.update_tags tag
     end
+  end
 end

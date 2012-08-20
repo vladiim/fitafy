@@ -35,8 +35,8 @@ describe WorkoutExercise do
   end
 
   describe "#exercise_name" do
+    before { mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"} }
     it "should give the exercise name titleized" do
-      mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"}
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end

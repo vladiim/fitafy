@@ -9,6 +9,7 @@ gem 'authlogic',           '~> 3.1.3'
 gem 'cancan',              '~> 1.6.8'
 gem 'friendly_id',         '~> 4.0.1'
 gem 'acts-as-taggable-on', '~> 2.3.3'
+# gem 'activerecord-postgres-hstore'
 
 # ------------ ASSETS ------------ #
 

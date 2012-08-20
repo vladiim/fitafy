@@ -21,6 +21,42 @@ describe Exercise do
     end
   end
 
+  describe "#tags" do
+    before do
+      @tags = "mef"
+      valid_subject.tag_list = @tags
+      valid_subject.save!
+    end
+
+    it "should be able to set and find tags" do
+      valid_subject.tags.each do |tag|
+        tag.name.should eq @tags
+      end
+    end
+  end
+
+  describe "#equipment_list" do
+    before do
+      @equipment = "swordstyle"
+      valid_subject.equipment_list = @equipment_list
+      valid_subject.save!
+    end
+    it "should be able to set and find equipment_list" do
+      valid_subject.equipment_list.each do |tag|
+        tag.name.should eq @equipment
+      end
+    end
+  end
+
+  # describe "#category_list" do
+  #   it "should be able to set and find category tags" do
+  #     list = %w{i came to bring the pain hardcore to the brain}
+  #     subject.categories_list = "i came to bring the pain hardcore to the brain"
+  #     subject.categories_list.should eq list
+  #     subject.tags.should eq list
+  #   end
+  # end
+
   describe "#by_category" do
     let(:ab_exercises) { Object.new }
     before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
@@ -43,7 +79,6 @@ describe Exercise do
   end
 
   describe "#validations" do
-    # before { @exercise = create_valid_exercise }
     context "with valid attributes" do
       it "should be valid" do
         valid_subject.should be_valid

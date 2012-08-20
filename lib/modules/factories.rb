@@ -12,11 +12,12 @@ FactoryGirl.define do
   end
 
   factory :exercise do
-    name        { "liquid #{ generate :string }" }
-  	description "wu gambinos"
-  	tips  		  "protect yo neck"
-  	categories  { "shoalin #{name} sword style abs" }
-  	equipment 	"bobby boulders"
+    name            { "liquid #{ generate :string }" }
+  	description     "wu gambinos"
+  	tips  		      "protect yo neck"
+    tag_list        :tag
+  	category_list   {"abs #{name}"}
+  	equipment_list 	"bobby bolders"
   end
 
   factory :workout do
@@ -31,5 +32,9 @@ FactoryGirl.define do
     workout
     exercise
   	sets "3"
+  end
+
+  factory :tag, class: ActsAsTaggableOn::Tag do
+    name "cuban linx"
   end
 end
