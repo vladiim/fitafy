@@ -8,8 +8,8 @@ end
 
 Then /^I should see that exercise's details$/ do
   page.should have_css "h1", @exercise.name.capitalize
-  page.should have_css "p", @exercise.description.humanize
-  page.should have_css "p", @exercise.tips.humanize
-  page.should have_css "p", @exercise.categories.humanize
-  page.should have_css "p", @exercise.equipment.humanize
+  page.should have_css "p",  @exercise.description.humanize
+  page.should have_css "p",  @exercise.tips.humanize
+  page.should have_css "p",  @exercise.categories.each { |cat| cat.name.humanize }
+  page.should have_css "p",  @exercise.equipment.each  { |equ| equ.name.humanize }
 end
