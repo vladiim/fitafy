@@ -15,7 +15,7 @@ FactoryGirl.define do
     name            { "liquid #{ generate :string }" }
   	description     "wu gambinos"
   	tips  		      "protect yo neck"
-  	category_list   {"abs #{name}"}
+    category_list   { name }
   	equipment_list 	"bobby bolders"
   end
 

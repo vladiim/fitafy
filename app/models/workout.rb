@@ -23,14 +23,18 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
-  def self.all_sorted params
-    Workout.tagged_with("params")
+  def self.with_tags tags=nil
+    if tags
+      Workout.tagged_with tags
+    else
+      Workout.all
+    end
   end
 
-  # def update_tags tag
-  #   tag_list << tag
-  #   save!
-  # end
+  def update_tags tag
+    self.tag_list = tag
+    save!
+  end
 
   def new_workout_exercises
     all_exercises

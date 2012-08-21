@@ -17,7 +17,6 @@ Feature: Visitor views workouts
     Then I should see a list of workouts
     And I should see how many exercises the workout has
 
-  @focus
   Scenario Outline: Vistor sorts workouts
     Given there's workouts 
     And I'm on the workouts page with workouts

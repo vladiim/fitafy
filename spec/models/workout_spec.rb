@@ -59,12 +59,11 @@ describe Workout do
   end
 
   describe "#update_tags" do
-    let(:tag) { Object.new }
-    before    { mock(subject).save! { subject } }
+    let(:tag) { "ason" }
+    before    { subject.update_tags tag }
 
     it "should update the workout's tags" do
-      subject.update_tags tag
-      subject.tag_list.should include tag
+      subject.tag_list.should eq [tag]
     end
   end
 
@@ -77,15 +76,24 @@ describe Workout do
     end
   end
 
-  describe "#all_sorted" do
-    let(:params)      { Object.new }
-    let(:sorted_list) { Object.new }
+  describe "#with_tags" do
+    before { 4.times { FactoryGirl.create :workout } }
 
-    before do
-      mock(Workout).tag_list(params) { sorted_list }
+    context "without tag varibles/s" do
+      it "should return all the workouts" do
+        Workout.with_tags.should eq Workout.all
+      end
     end
-    it "should return a list of workouts sorted by the variable" do
-      Workout.all_sorted(params).should eq sorted_list
+
+    context "with tag variable/s" do
+      before do
+        subject.tag_list = "odb"
+        subject.save!
+      end
+
+      it "should return only the workout tagged with the params" do
+        Workout.with_tags("odb").should eq [subject]
+      end
     end
   end
 
