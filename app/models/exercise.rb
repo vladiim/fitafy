@@ -1,7 +1,6 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  acts_as_taggable
   acts_as_taggable_on :categories, :equipment
 
   attr_accessible :name, :categories, :description, :equipment, :tips
@@ -14,7 +13,7 @@ class Exercise < ActiveRecord::Base
   validates_presence_of :name, :description
   validates :name, uniqueness: true
 
-  scope :alphabetical_order, -> { order :name }
+  # scope :alphabetical_order, -> { order :name }
 
   friendly_id :name, use: :slugged
 
@@ -22,11 +21,16 @@ class Exercise < ActiveRecord::Base
   	self.destroy
   end
 
-  def self.by_alphabetical_category category
-    by_category(category).alphabetical_order
+  def self.by_alphabetical_category categories=nil
+    by_category(categories).sort_by { |exercise| exercise["name"] }
   end
 
-  def self.by_category category
-    where("categories ILIKE ?", "%#{category}%")
+  def self.by_category categories=nil
+    # where("categories ILIKE ?", "%#{categories}%")
+    if categories
+      Exercise.tagged_with(categories, on: :categories)
+    else
+      Exercise.all
+    end
   end
 end

@@ -27,10 +27,10 @@ class Workout < ActiveRecord::Base
     Workout.tagged_with("params")
   end
 
-  def update_tags tag
-    tag_list << tag
-    save!
-  end
+  # def update_tags tag
+  #   tag_list << tag
+  #   save!
+  # end
 
   def new_workout_exercises
     all_exercises

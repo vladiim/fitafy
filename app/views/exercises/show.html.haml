@@ -15,11 +15,15 @@
     %br
 
     %h5 Categories
-    %p= @exercise.categories.titleize
+    %p
+      - @exercise.category_list.each do |category|
+        = category.titleize
     %br
 
     %h5 Equipment
-    %p= @exercise.equipment.titleize
+    %p
+      - @exercise.equipment_list.each do |equipment|
+        = equipment.titleize
 
   %aside.span3.well
     = render "exercise_aside"

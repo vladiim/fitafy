@@ -10,71 +10,65 @@ describe Exercise do
     end
   end
 
-  describe "#alphabetical_order" do
-    before do
-      @b = FactoryGirl.create :exercise, name: "BBBB"
-      @c = FactoryGirl.create :exercise, name: "CCCC"
-      @a = FactoryGirl.create :exercise, name: "AAAA"
-    end
-    it "should return an exercise list in alphabetical order" do
-      Exercise.alphabetical_order.should eq [@a, @b, @c]
-    end
-  end
-
   describe "#tags" do
-    before do
-      @tags = "mef"
-      valid_subject.tag_list = @tags
-      valid_subject.save!
+    describe "#equipment_list" do
+      before do
+        @equipment = "swordstyle"
+        valid_subject.equipment_list = @equipment_list
+        valid_subject.save!
+      end
+  
+      it "should be able to set and find equipment_list tags" do
+        valid_subject.equipment_list.each do |tag|
+          tag.name.should eq @equipment
+        end
+      end
     end
-
-    it "should be able to set and find tags" do
-      valid_subject.tags.each do |tag|
-        tag.name.should eq @tags
+  
+    describe "#category_list" do
+      before do
+        @category = "swordstyle"
+        valid_subject.category_list = @category
+        valid_subject.save!
+      end
+  
+      it "should be able to set and find category_list tags" do
+        valid_subject.category_list.each do |tag|
+          tag.should eq @category
+        end
       end
     end
   end
-
-  describe "#equipment_list" do
-    before do
-      @equipment = "swordstyle"
-      valid_subject.equipment_list = @equipment_list
-      valid_subject.save!
-    end
-    it "should be able to set and find equipment_list" do
-      valid_subject.equipment_list.each do |tag|
-        tag.name.should eq @equipment
-      end
-    end
-  end
-
-  # describe "#category_list" do
-  #   it "should be able to set and find category tags" do
-  #     list = %w{i came to bring the pain hardcore to the brain}
-  #     subject.categories_list = "i came to bring the pain hardcore to the brain"
-  #     subject.categories_list.should eq list
-  #     subject.tags.should eq list
-  #   end
-  # end
 
   describe "#by_category" do
-    let(:ab_exercises) { Object.new }
-    before { mock(Exercise).where("categories ILIKE ?", "%abs%") { ab_exercises } }
+    context "with categories variable" do
+      before do
+        valid_subject.category_list = "tag"
+        valid_subject.save!
+      end
+      it "should return the exercise with the variable" do
+        Exercise.by_category("tag").should eq [valid_subject]
+      end
+    end
 
-    it "should return a list of exercises by category" do
-      Exercise.by_category("abs").should eq ab_exercises
+    context "without categories variable" do
+      it "should return all exercises" do
+        Exercise.by_category.should eq Exercise.all
+      end
     end
   end
 
   describe "#by_alphabetical_category" do
-    let(:alphabetical_abs) { Object.new }
     before do
-      mock(Exercise).by_category("abs") { alphabetical_abs }
-      mock(alphabetical_abs).alphabetical_order { alphabetical_abs }
+      ["bbb", "ccc", "aaa"].each do |name|
+        FactoryGirl.create :exercise, name: name
+      end
     end
 
     it "should return the exercises by alphabetical category" do
-      Exercise.by_alphabetical_category("abs").should eq alphabetical_abs
+      ["aaa", "bbb", "ccc"].each_with_index do |name, index|
+        Exercise.by_alphabetical_category[index].name.should eq name
+      end
     end
   end
 
