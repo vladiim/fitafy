@@ -6,8 +6,8 @@ When /^I fill in the exercise form$/ do
   fill_in "exercise_name", with: "liquid swords"
   fill_in "exercise_description", with: "wu gambinos"
   fill_in "exercise_tips", with: "protect yo neck"
-  fill_in "exercise_categories", with: "shoalin back sword style"
-  fill_in "exercise_equipment", with: "bobby boulders"
+  fill_in "exercise_category_list", with: "shoalin back sword style"
+  fill_in "exercise_equipment_list", with: "bobby boulders"
   click_button "CREATE EXERCISE"
 end
 

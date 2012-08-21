@@ -3,7 +3,7 @@ class Exercise < ActiveRecord::Base
 
   acts_as_taggable_on :categories, :equipment
 
-  attr_accessible :name, :categories, :description, :equipment, :tips
+  attr_accessible :name, :description, :tips, :category_list, :equipment_list # , :categories, :eqipment
 
   EXERCISE_TYPES = %w(abs back biceps chest forearms legs shoulders tricep)
 
