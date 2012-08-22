@@ -1,11 +1,11 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  acts_as_taggable_on :categories, :equipment
+  acts_as_taggable_on :muscles, :equipment
 
-  attr_accessible :name, :description, :tips, :category_list, :equipment_list # , :categories, :eqipment
+  attr_accessible :name, :description, :tips, :muscle_list, :equipment_list
 
-  EXERCISE_TYPES = %w(abs back biceps chest forearms legs shoulders tricep)
+  MUSCLES = %w(abs back biceps chest forearms legs shoulders tricep)
 
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises, uniq: true
@@ -13,22 +13,19 @@ class Exercise < ActiveRecord::Base
   validates_presence_of :name, :description
   validates :name, uniqueness: true
 
-  # scope :alphabetical_order, -> { order :name }
-
   friendly_id :name, use: :slugged
 
   def delete_exercise!
   	self.destroy
   end
 
-  def self.by_alphabetical_category categories=nil
-    by_category(categories).sort_by { |exercise| exercise["name"] }
+  def self.by_alphabetical_tags tags=nil
+    by_tags(tags).sort_by { |exercise| exercise["name"] }
   end
 
-  def self.by_category categories=nil
-    # where("categories ILIKE ?", "%#{categories}%")
-    if categories
-      Exercise.tagged_with(categories, on: :categories)
+  def self.by_tags tags=nil
+    if tags
+      Exercise.tagged_with(tags, on: :muscles)
     else
       Exercise.all
     end

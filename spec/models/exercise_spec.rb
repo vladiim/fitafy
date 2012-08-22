@@ -6,7 +6,7 @@ describe Exercise do
 
   describe "#exercise_type" do
     it "should have an array of exercise types" do
-      Exercise::EXERCISE_TYPES.should eq %w(abs back biceps chest forearms legs shoulders tricep)
+      Exercise::MUSCLES.should eq %w(abs back biceps chest forearms legs shoulders tricep)
     end
   end
 
@@ -25,40 +25,40 @@ describe Exercise do
       end
     end
   
-    describe "#category_list" do
+    describe "#muscle_list" do
       before do
-        @category = "swordstyle"
-        valid_subject.category_list = @category
+        @muscle = "golden_arms"
+        valid_subject.muscle_list = @muscle
         valid_subject.save!
       end
   
       it "should be able to set and find category_list tags" do
-        valid_subject.category_list.each do |tag|
-          tag.should eq @category
+        valid_subject.muscles.each do |muscle|
+          muscle.name.should eq @muscle
         end
       end
     end
   end
 
-  describe "#by_category" do
+  describe "#by_tags" do
     context "with categories variable" do
       before do
-        valid_subject.category_list = "tag"
+        valid_subject.muscle_list = "tag"
         valid_subject.save!
       end
       it "should return the exercise with the variable" do
-        Exercise.by_category("tag").should eq [valid_subject]
+        Exercise.by_tags("tag").should eq [valid_subject]
       end
     end
 
     context "without categories variable" do
       it "should return all exercises" do
-        Exercise.by_category.should eq Exercise.all
+        Exercise.by_tags.should eq Exercise.all
       end
     end
   end
 
-  describe "#by_alphabetical_category" do
+  describe "#by_alphabetical_tags" do
     before do
       ["bbb", "ccc", "aaa"].each do |name|
         FactoryGirl.create :exercise, name: name
@@ -67,7 +67,7 @@ describe Exercise do
 
     it "should return the exercises by alphabetical category" do
       ["aaa", "bbb", "ccc"].each_with_index do |name, index|
-        Exercise.by_alphabetical_category[index].name.should eq name
+        Exercise.by_alphabetical_tags[index].name.should eq name
       end
     end
   end

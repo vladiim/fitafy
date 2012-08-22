@@ -58,44 +58,26 @@ describe Workout do
     it { should validate_presence_of :user_id }
   end
 
-  describe "#update_tags" do
-    let(:tag) { "ason" }
-    before    { subject.update_tags tag }
+  # describe "#with_tags" do
+  #   before { 4.times { FactoryGirl.create :workout } }
 
-    it "should update the workout's tags" do
-      subject.tag_list.should eq [tag]
-    end
-  end
+  #   context "without tag varibles/s" do
+  #     it "should return all the workouts" do
+  #       Workout.with_tags.should eq Workout.all
+  #     end
+  #   end
 
-  describe "#tag_list" do
-    let(:tag) { "ol dirdy bizza" }
-    it "should store tags" do
-      subject.tag_list = tag
-      subject.save!
-      subject.tags[0].name.should eq tag
-    end
-  end
+  #   context "with tag variable/s" do
+  #     before do
+  #       subject.tag_list = "odb"
+  #       subject.save!
+  #     end
 
-  describe "#with_tags" do
-    before { 4.times { FactoryGirl.create :workout } }
-
-    context "without tag varibles/s" do
-      it "should return all the workouts" do
-        Workout.with_tags.should eq Workout.all
-      end
-    end
-
-    context "with tag variable/s" do
-      before do
-        subject.tag_list = "odb"
-        subject.save!
-      end
-
-      it "should return only the workout tagged with the params" do
-        Workout.with_tags("odb").should eq [subject]
-      end
-    end
-  end
+  #     it "should return only the workout tagged with the params" do
+  #       Workout.with_tags("odb").should eq [subject]
+  #     end
+  #   end
+  # end
 
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
@@ -153,9 +135,9 @@ describe Workout do
     end
   end
 
-  describe "#exercise_types" do
-    it "should return the Exercise EXERCISE_TYPES" do
-      Workout.exercise_types.should eq Exercise::EXERCISE_TYPES
+  describe "#muscles" do
+    it "should return the Exercise::MUSCLES" do
+      Workout.muscles.should eq Exercise::MUSCLES
     end
   end
 

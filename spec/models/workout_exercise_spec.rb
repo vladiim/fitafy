@@ -41,19 +41,19 @@ describe WorkoutExercise do
     end
   end
 
-  describe "#updates_workout_tags" do
-    let(:tag)      { OpenStruct.new name: "ghostdini" }
-    let(:workout)  { Object.new }
+  # describe "#updates_workout_tags" do
+  #   let(:tag)      { OpenStruct.new name: "ghostdini" }
+  #   let(:workout)  { Object.new }
 
-    before do
-      mock(valid_subject).workout             { workout }
-      mock(valid_subject.exercise).categories { [tag] }
-      mock(workout).update_tags(tag.name)
-    end
+  #   before do
+  #     mock(valid_subject).workout             { workout }
+  #     mock(valid_subject.exercise).categories { [tag] }
+  #     mock(workout).update_tags(tag.name)
+  #   end
 
-    it "should update the workout with the exercise's tags" do
-      valid_subject.updates_workout_tags.should be
-    end
-  end
+  #   it "should update the workout with the exercise's tags" do
+  #     valid_subject.updates_workout_tags.should be
+  #   end
+  # end
 
 end

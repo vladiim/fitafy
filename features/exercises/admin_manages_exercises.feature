@@ -16,11 +16,6 @@ Feature: Admin Manages exercises
     When I fill in the exercise form
     Then Snapz should give the created exercise message "Boom! New exercise up in this mo fo!"
 
-  Scenario: Admin fills in the exercise form incorrectly
-    Given I'm creating a new exercise
-    When I fill in the exercise name with a blank field
-    Then I should get the exercise error message "can't be blank" on the "exercise_name"
-
   Scenario: Admin updates an exercise
     Given I'm on an exsisting exercise's edit page
     When I change the exercise's "exercise_name" with "shabazz"

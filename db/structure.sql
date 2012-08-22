@@ -37,11 +37,11 @@ CREATE TABLE exercises (
     name character varying(255) NOT NULL,
     description text NOT NULL,
     tips text,
-    categories character varying(255),
     equipment character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    slug character varying(255)
+    slug character varying(255),
+    muscles character varying(255)
 );
 
 
@@ -336,13 +336,6 @@ ALTER TABLE ONLY workouts
 
 
 --
--- Name: index_exercises_on_categories; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_exercises_on_categories ON exercises USING btree (categories);
-
-
---
 -- Name: index_exercises_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -458,3 +451,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120729051917');
 INSERT INTO schema_migrations (version) VALUES ('20120730103432');
 
 INSERT INTO schema_migrations (version) VALUES ('20120815113642');
+
+INSERT INTO schema_migrations (version) VALUES ('20120822090359');

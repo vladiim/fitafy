@@ -23,18 +23,13 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
-  def self.with_tags tags=nil
-    if tags
-      Workout.tagged_with tags
-    else
-      Workout.all
-    end
-  end
-
-  def update_tags tag
-    self.tag_list = tag
-    save!
-  end
+  # def self.with_tags tags=nil
+  #   if tags
+  #     Workout.tagged_with tags
+  #   else
+  #     Workout.all
+  #   end
+  # end
 
   def new_workout_exercises
     all_exercises
@@ -44,8 +39,8 @@ class Workout < ActiveRecord::Base
     Exercise.all
   end
 
-  def self.exercise_types
-    Exercise::EXERCISE_TYPES
+  def self.muscles
+    Exercise::MUSCLES
   end
 
   def self.exercises_by_alphabetical_category category
