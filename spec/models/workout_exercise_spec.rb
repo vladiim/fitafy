@@ -40,20 +40,4 @@ describe WorkoutExercise do
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end
-
-  # describe "#updates_workout_tags" do
-  #   let(:tag)      { OpenStruct.new name: "ghostdini" }
-  #   let(:workout)  { Object.new }
-
-  #   before do
-  #     mock(valid_subject).workout             { workout }
-  #     mock(valid_subject.exercise).categories { [tag] }
-  #     mock(workout).update_tags(tag.name)
-  #   end
-
-  #   it "should update the workout with the exercise's tags" do
-  #     valid_subject.updates_workout_tags.should be
-  #   end
-  # end
-
 end

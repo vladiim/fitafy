@@ -1,6 +1,6 @@
 Given /^there's alphabetical exercises$/ do
   ["cccc", "aaaa", "cccc"].each do |name|
-    FactoryGirl.create :exercise, name: "#{name} #{rand(10000).to_s}", category_list: "abs"
+    FactoryGirl.create :exercise, name: "#{name} #{rand(10000).to_s}", muscle_list: "abs"
   end
 end
 

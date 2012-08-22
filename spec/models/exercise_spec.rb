@@ -32,7 +32,7 @@ describe Exercise do
         valid_subject.save!
       end
   
-      it "should be able to set and find category_list tags" do
+      it "should be able to set and find muscle_list tags" do
         valid_subject.muscles.each do |muscle|
           muscle.name.should eq @muscle
         end
@@ -40,20 +40,20 @@ describe Exercise do
     end
   end
 
-  describe "#by_tags" do
+  describe "#with_tags" do
     context "with categories variable" do
       before do
         valid_subject.muscle_list = "tag"
         valid_subject.save!
       end
       it "should return the exercise with the variable" do
-        Exercise.by_tags("tag").should eq [valid_subject]
+        Exercise.with_tags("tag").should eq [valid_subject]
       end
     end
 
     context "without categories variable" do
       it "should return all exercises" do
-        Exercise.by_tags.should eq Exercise.all
+        Exercise.with_tags.should eq Exercise.all
       end
     end
   end

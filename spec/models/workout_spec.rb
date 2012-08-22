@@ -58,26 +58,40 @@ describe Workout do
     it { should validate_presence_of :user_id }
   end
 
-  # describe "#with_tags" do
-  #   before { 4.times { FactoryGirl.create :workout } }
+  describe "#with_tags" do
+    before { 4.times { FactoryGirl.create :workout } }
 
-  #   context "without tag varibles/s" do
-  #     it "should return all the workouts" do
-  #       Workout.with_tags.should eq Workout.all
-  #     end
-  #   end
+    context "without tag varibles/s" do
+      it "should return all the workouts" do
+        Workout.with_tags.should eq Workout.all
+      end
+    end
 
-  #   context "with tag variable/s" do
-  #     before do
-  #       subject.tag_list = "odb"
-  #       subject.save!
-  #     end
+    # context "with tag variable/s" do
+    #   before do
+    #     subject.tag_list = "odb"
+    #     subject.save!
+    #   end
 
-  #     it "should return only the workout tagged with the params" do
-  #       Workout.with_tags("odb").should eq [subject]
-  #     end
-  #   end
-  # end
+    #   it "should return only the workout tagged with the params" do
+    #     Workout.with_tags("odb").should eq [subject]
+    #   end
+    # end
+
+    context "with exercise tags" do
+      before do
+        exercise = FactoryGirl.create :exercise, muscle_list: "abs"
+        @subject = FactoryGirl.create :workout
+        @we = FactoryGirl.create :workout_exercise, 
+              workout_id: @subject.id, 
+              exercise_id: exercise.id
+      end
+
+      it "should return the workout" do
+        Workout.with_tags("abs").should eq [@subject]
+      end
+    end
+  end
 
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
@@ -87,12 +101,12 @@ describe Workout do
     end
   end
 
-  describe "#exercises_by_category" do
+  describe "#exercises_by_tags" do
     let(:ab_exercises) { Object.new}
-    before { mock(Exercise).by_alphabetical_category("abs") { ab_exercises } }
+    before { mock(Exercise).by_alphabetical_tags("abs") { ab_exercises } }
   
-    it "should order the exercises by category" do
-      Workout.exercises_by_alphabetical_category("abs").should eq ab_exercises
+    it "should order the exercises by tags" do
+      Workout.exercises_by_alphabetical_tags("abs").should eq ab_exercises
     end
   end
 

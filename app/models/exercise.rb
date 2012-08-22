@@ -20,10 +20,10 @@ class Exercise < ActiveRecord::Base
   end
 
   def self.by_alphabetical_tags tags=nil
-    by_tags(tags).sort_by { |exercise| exercise["name"] }
+    with_tags(tags).sort_by { |exercise| exercise["name"] }
   end
 
-  def self.by_tags tags=nil
+  def self.with_tags tags=nil
     if tags
       Exercise.tagged_with(tags, on: :muscles)
     else

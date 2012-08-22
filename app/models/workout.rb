@@ -2,7 +2,7 @@ class Workout < ActiveRecord::Base
 
   attr_accessible :user_id, :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
-  acts_as_taggable
+  # acts_as_taggable
 
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
@@ -23,13 +23,20 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
-  # def self.with_tags tags=nil
-  #   if tags
-  #     Workout.tagged_with tags
-  #   else
-  #     Workout.all
-  #   end
-  # end
+  def self.with_tags tags=nil
+    if tags
+      tagged_workouts = []
+      exercises = Exercise.with_tags tags
+      exercises.each do |exercise|
+        we = WorkoutExercise.find_by_exercise_id exercise.id
+        workout = Workout.find we.workout_id
+        tagged_workouts << workout
+      end
+      tagged_workouts
+    else
+      Workout.all
+    end
+  end
 
   def new_workout_exercises
     all_exercises
@@ -43,8 +50,8 @@ class Workout < ActiveRecord::Base
     Exercise::MUSCLES
   end
 
-  def self.exercises_by_alphabetical_category category
-    Exercise.by_alphabetical_category category
+  def self.exercises_by_alphabetical_tags tags
+    Exercise.by_alphabetical_tags tags
   end
 
   def list_exercises

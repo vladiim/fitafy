@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
 
   def index
     @title          = "All Exercises"
-    @exercises      = Workout.exercises_by_alphabetical_category(params[:sort])
+    @exercises      = Workout.exercises_by_alphabetical_tags(params[:sort])
     @muscles        = Workout.muscles
   end
 
