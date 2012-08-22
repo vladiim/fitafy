@@ -25,14 +25,12 @@ class Workout < ActiveRecord::Base
 
   def self.with_tags tags=nil
     if tags
-      tagged_workouts = []
       exercises = Exercise.with_tags tags
-      exercises.each do |exercise|
-        we = WorkoutExercise.find_by_exercise_id exercise.id
-        workout = Workout.find we.workout_id
+      exercises.inject([]) do |tagged_workouts, exercise|
+        workout_exercise = WorkoutExercise.find_by_exercise_id exercise.id
+        workout = Workout.find workout_exercise.workout_id
         tagged_workouts << workout
       end
-      tagged_workouts
     else
       Workout.all
     end

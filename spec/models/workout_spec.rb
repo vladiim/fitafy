@@ -67,17 +67,6 @@ describe Workout do
       end
     end
 
-    # context "with tag variable/s" do
-    #   before do
-    #     subject.tag_list = "odb"
-    #     subject.save!
-    #   end
-
-    #   it "should return only the workout tagged with the params" do
-    #     Workout.with_tags("odb").should eq [subject]
-    #   end
-    # end
-
     context "with exercise tags" do
       before do
         exercise = FactoryGirl.create :exercise, muscle_list: "abs"
