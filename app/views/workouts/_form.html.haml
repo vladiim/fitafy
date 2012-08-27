@@ -22,5 +22,5 @@
       %section.span7#workout_exercises
         = render partial: "exercises/sort_by"
         %table.table.table-bordered.table-striped
-          %tbody
-            #exercise_list= render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }
+          %tbody#exercise_list
+            = render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

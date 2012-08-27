@@ -40,3 +40,14 @@ Feature: Visitor views exercises
     Given I'm not an administrator
     When I visit an exercise's page
     Then I should not see the edit exercise link
+
+  Scenario: Visitor filters by multiple tags
+    Given more than one exercise
+    When I click on more than one tag
+    Then I should see the exercise filtered by the tags
+
+  @focus
+  Scenario: Visitor removes a tag from the filter
+    Given a filtered list of exercises
+    When I click remove tag
+    Then the exercises shouldn't be filtered by that tag
