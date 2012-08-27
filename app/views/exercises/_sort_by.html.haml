@@ -1,5 +1,6 @@
 %p#tab_sort_by
   SORT BY:
-  - @muscles.each do |type|
-    = link_to type.upcase, sort: type
+  - @muscles.each do |tag|
+    / = link_to_tag tag.upcase, sort: tag
+    = link_to_tag tag
     |

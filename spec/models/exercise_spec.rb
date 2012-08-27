@@ -13,28 +13,26 @@ describe Exercise do
   describe "#tags" do
     describe "#equipment_list" do
       before do
-        @equipment = "swordstyle"
-        valid_subject.equipment_list = @equipment_list
+        valid_subject.equipment_list = "swordstyle"
         valid_subject.save!
       end
   
       it "should be able to set and find equipment_list tags" do
         valid_subject.equipment_list.each do |tag|
-          tag.name.should eq @equipment
+          tag.name.should eq "swordstyle"
         end
       end
     end
   
     describe "#muscle_list" do
       before do
-        @muscle = "golden_arms"
-        valid_subject.muscle_list = @muscle
+        valid_subject.muscle_list = "golden_arms"
         valid_subject.save!
       end
   
       it "should be able to set and find muscle_list tags" do
         valid_subject.muscles.each do |muscle|
-          muscle.name.should eq @muscle
+          muscle.name.should eq "golden_arms"
         end
       end
     end

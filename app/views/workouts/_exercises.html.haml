@@ -1,6 +1,6 @@
 = f.fields_for :workout_exercises, @workout.new_workout_exercise do |e|
 
-  %tr#workout_exercises_fields
+  %tr
     = e.hidden_field :exercise_id, value: exercise.id
 
     %td#sets= e.input :sets, collection: 1..10, prompt: "0 Sets", label: false
