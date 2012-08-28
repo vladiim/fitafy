@@ -19,7 +19,7 @@ describe Exercise do
   
       it "should be able to set and find equipment_list tags" do
         valid_subject.equipment_list.each do |tag|
-          tag.name.should eq "swordstyle"
+          tag.should eq "swordstyle"
         end
       end
     end
@@ -78,8 +78,7 @@ describe Exercise do
     end
 
     context "with same name as another exercise" do
-      before { valid_subject }
-      it     { should validate_uniqueness_of :name }
+      it     { valid_subject.should validate_uniqueness_of :name }
     end
 
     context "without name" do

@@ -39,6 +39,7 @@ Feature: Visitor views exercises
   Scenario: Visitor can't see edit exercise link
     Given I'm not an administrator
     When I visit an exercise's page
+<<<<<<< HEAD
     Then I should not see the edit exercise link
 
   Scenario: Visitor filters by multiple tags
@@ -51,3 +52,6 @@ Feature: Visitor views exercises
     Given a filtered list of exercises
     When I click remove tag
     Then the exercises shouldn't be filtered by that tag
+=======
+    Then I should not see the edit exercise link
+>>>>>>> branch2
