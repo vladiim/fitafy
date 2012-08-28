@@ -62,8 +62,7 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises
-    And I'm creating a new workout
-    When I sort the exercises
+    When I visit the new workout page
     Then I should see them in alphabetical order
 
   Scenario: Trainer creates a copy of another trainer's workout
@@ -78,3 +77,17 @@ Feature: Trainer manages exercises
     Given a workout exercise exists
     When I go to the workout's page
     Then I shouldn't see the edit workout link
+
+  Scenario: trainer filters by multiple tags
+    Given more than one exercise
+    And I'm a logged in trainer
+    And I'm on the new workout page
+    When I click on more than one tag
+    Then I should see the exercise filtered by the tags
+
+  Scenario: trainer clicks tag twice
+    Given more than one exercise
+    And I'm a logged in trainer
+    And I'm on the new workout page
+    When I click on the same tag twice
+    Then the tag should only appear in the params once

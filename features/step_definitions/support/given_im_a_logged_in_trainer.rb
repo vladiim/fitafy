@@ -1,4 +1,4 @@
 Given /^I'm a logged in trainer$/ do
-  @trainer = FactoryGirl.create :trainer
+  @trainer = create :trainer
   login @trainer
 end

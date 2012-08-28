@@ -13,6 +13,7 @@ module TagsHelper
   	filter_tags = params[:sort]
   	  filter_tags.each do |filter_tag|
   	    filter << filter_tag
+        filter.uniq!
   	end
   end
 end

@@ -5,18 +5,18 @@
 
         %li#logo= link_to logo, root_path, id: "fitafy_logo"
 
-        %li#nav_link= link_to "WORKOUTS", workouts_path
+        %li= link_to "WORKOUTS", workouts_path
 
         - if can? :manage, Workout
-          %li#nav_link= link_to "NEW WORKOUT", new_user_workout_path(current_user)
+          %li= link_to "NEW WORKOUT", new_user_workout_path(current_user)
 
         - if can? :manage, Exercise
-          %li#nav_link= link_to "EXERCISES", exercises_path
-          %li#nav_link= link_to "NEW EXERCISE", new_exercise_path
+          %li= link_to "EXERCISES", exercises_path
+          %li= link_to "NEW EXERCISE", new_exercise_path
 
         - if current_user
-          %li#nav_link= link_to current_user.username.upcase, user_path(current_user)
-          %li#nav_link= link_to "LOGOUT", logout_path
+          %li= link_to current_user.username.upcase, user_path(current_user)
+          %li= link_to "LOGOUT", logout_path
         - else
-          %li#nav_link= link_to "SIGN UP", sign_up_path
-          %li#nav_link= link_to "LOGIN", login_path
+          %li= link_to "SIGN UP", sign_up_path
+          %li#login_nav= link_to "LOGIN", login_path
