@@ -92,7 +92,6 @@ Feature: Trainer manages exercises
     When I click on the same tag twice
     Then the tag should only appear in the params once
 
-  @focus
   Scenario: trainer removes exercise tag
     Given more than one exercise
     And I'm a logged in trainer
