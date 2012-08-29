@@ -40,4 +40,46 @@ describe WorkoutExercise do
       valid_subject.exercise_name.should eq "Rebel Ins"
     end
   end
+
+  describe "#find_by_exercises" do
+
+    context "where exercise is in workout exercise" do
+      let(:exercise)         { OpenStruct.new id: 1 }
+      let(:exercises)        { [exercise] }
+      let(:workout_exercise) { Object.new }
+
+      before { mock(WorkoutExercise).find_by_exercise_id(exercise.id) { workout_exercise } }
+  
+      it "returns all workout exercises in the exercise array" do
+        WorkoutExercise.find_by_exercises(exercises).should eq [workout_exercise]
+      end
+    end
+
+    context "where exercise isn't in workout exercise" do
+      let(:exercise_1)       { OpenStruct.new id: 1 }
+      let(:exercise_2)       { OpenStruct.new id: 2 }
+      let(:exercises)        { [exercise_1, exercise_2] }
+      let(:workout_exercise) { Object.new }
+
+      before do
+        mock(WorkoutExercise).find_by_exercise_id(exercise_1.id) { workout_exercise }
+        mock(WorkoutExercise).find_by_exercise_id(exercise_2.id) { nil }
+      end
+  
+      it "skips over nil" do
+        WorkoutExercise.find_by_exercises(exercises).should eq [workout_exercise]
+      end
+    end
+  end
+
+  describe "#return_workouts_from" do
+    let(:workout)           { OpenStruct.new id: 1 }
+    let(:workout_exercises) { [subject] }
+
+    before { mock(Workout).find(subject.workout_id) { workout } }
+
+    it "returns an array of workouts" do
+      WorkoutExercise.return_workouts_from(workout_exercises).should eq [workout]
+    end
+  end
 end

@@ -23,20 +23,6 @@ class Exercise < ActiveRecord::Base
     with_tags(tags).sort_by { |exercise| exercise["name"] }
   end
 
-  # def self.with_tags tags=[]
-  #   return Exercise.all if tags=[]
-  #   tagged_exercises = []
-  #   tags.each do |tag|
-  #     case tag
-  #     when tag == :sort
-  #       tagged_exercises << Exercise.tagged_with(tag, on: :muscles)
-  #     when tag == :remove
-  #       tagged_exercises.delete_if { |x| x == tag }
-  #     end
-  #   end
-  #   tagged_exercises
-  # end
-
   def self.with_tags tags=nil
     if tags
       Exercise.tagged_with(tags, on: :muscles)

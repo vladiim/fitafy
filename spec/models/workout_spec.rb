@@ -58,29 +58,28 @@ describe Workout do
     it { should validate_presence_of :user_id }
   end
 
-  # describe "#with_tags" do
-  #   before { 4.times { FactoryGirl.create :workout } }
+  describe "#filter_by_tags" do
+    context "with tags" do
+      let(:tags)              { Object.new }
+      let(:filtered_workouts) { Object.new }
+  
+      before do
+        mock(Exercise).with_tags tags
+        mock(WorkoutExercise).find_by_exercises anything
+        mock(WorkoutExercise).return_workouts_from(anything) { filtered_workouts }
+      end
+  
+      it "returns an array of filtered workouts" do
+        Workout.filter_by_tags(tags).should eq filtered_workouts
+      end
+    end
 
-  #   context "without tag varibles/s" do
-  #     it "should return all the workouts" do
-  #       Workout.with_tags.should eq Workout.all
-  #     end
-  #   end
-
-  #   context "with exercise tags" do
-  #     before do
-  #       exercise = FactoryGirl.create :exercise, muscle_list: "abs"
-  #       @subject = FactoryGirl.create :workout
-  #       @we = FactoryGirl.create :workout_exercise, 
-  #             workout_id: @subject.id, 
-  #             exercise_id: exercise.id
-  #     end
-
-  #     it "should return the workout" do
-  #       Workout.with_tags("abs").should eq [@subject]
-  #     end
-  #   end
-  # end
+    context "without tags" do
+      it "returns all workouts" do
+        Workout.filter_by_tags.should eq Workout.all
+      end
+    end
+  end
 
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
