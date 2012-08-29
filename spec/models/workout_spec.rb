@@ -65,8 +65,7 @@ describe Workout do
   
       before do
         mock(Exercise).with_tags tags
-        mock(WorkoutExercise).find_by_exercises anything
-        mock(WorkoutExercise).return_workouts_from(anything) { filtered_workouts }
+        mock(WorkoutExercise).return_workouts_from_exercises(anything) { filtered_workouts }
       end
   
       it "returns an array of filtered workouts" do
@@ -150,7 +149,7 @@ describe Workout do
     end
   end
 
-  describe "#copy_wokrout_exercises" do
+  describe "#copy_workout_exercises" do
     let(:other_workout)     { Object.new }
     let(:workout_exercises) { OpenStruct.new(exercise_id: 2, sets: 5, notes: "") }
 

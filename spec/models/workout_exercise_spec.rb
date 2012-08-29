@@ -82,4 +82,19 @@ describe WorkoutExercise do
       WorkoutExercise.return_workouts_from(workout_exercises).should eq [workout]
     end
   end
+
+  describe "#return_workouts_from_exercises" do
+    let(:exercise)  { Object.new }
+    let(:exercises) { [exercise] }
+    let(:workout)   { Object.new }
+
+    before do
+      mock(WorkoutExercise).find_by_exercises(exercises)     { [subject] }
+      mock(WorkoutExercise).return_workouts_from([subject]) { [workout] }
+    end
+
+    it "returns an array of workouts based on the exercises passed in" do
+      WorkoutExercise.return_workouts_from_exercises(exercises).should eq [workout]
+    end
+  end
 end

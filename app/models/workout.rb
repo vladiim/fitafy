@@ -26,9 +26,7 @@ class Workout < ActiveRecord::Base
   def self.filter_by_tags tags=nil
     Workout.all if tags == nil
     exercises         = Exercise.with_tags tags
-    # WorkoutExercise.return_workouts_from_exercises exercises
-    workout_exercises = WorkoutExercise.find_by_exercises exercises
-    workouts          = WorkoutExercise.return_workouts_from workout_exercises
+    WorkoutExercise.return_workouts_from_exercises exercises
   end
 
   def new_workout_exercises

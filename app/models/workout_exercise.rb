@@ -10,6 +10,11 @@ class WorkoutExercise < ActiveRecord::Base
   	exercise.name.titleize
   end
 
+  def self.return_workouts_from_exercises exercises
+  	workout_exercises = WorkoutExercise.find_by_exercises(exercises)
+    WorkoutExercise.return_workouts_from workout_exercises
+  end
+
   def self.find_by_exercises exercises
   	workout_exercises = []
   	exercises.each do |exercise|
