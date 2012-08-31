@@ -99,3 +99,9 @@ Feature: Trainer manages exercises
     When I click on a tag
     And I click remove tag
     Then the tag shouldn't be in the url
+
+  @focus
+  Scenario: trainer creates pdf of workout
+    Given I'm on the workout page
+    When I click download as pdf
+    Then I should get a pdf

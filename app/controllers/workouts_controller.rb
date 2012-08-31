@@ -32,6 +32,17 @@ class WorkoutsController < ApplicationController
     @trainer       = User.find @workout.user_id
   	@title         = @workout.name
     @snapz_warning = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = WorkoutPdf.new @workout
+        send_data pdf.render,
+                      filename:    "workout_#{@workout.name.gsub(/\s+/, '_')}.pdf",
+                      type:        "application/pdf",
+                      disposition: "inline"
+      end
+    end
   end
 
   def edit
