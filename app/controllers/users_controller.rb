@@ -19,12 +19,12 @@ class UsersController < ApplicationController
     @user                = User.find(params[:id])
     @workouts            = @user.all_workouts
     @title               = @user.username
-    @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
   end
 
   def edit
     @title = "Edit Profile"
     @user  = current_user
+    @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
   end
 
   def update

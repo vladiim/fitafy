@@ -6,6 +6,14 @@ describe Workout do
   let(:exercise)  { Object.new }
   let(:exercises) { [exercise] }
 
+  describe "#associations" do
+    it { should have_many :workout_exercises }
+    it { should accept_nested_attributes_for :workout_exercises }
+    it { should have_many :exercises }
+    it { should have_many :favorite_workouts }
+    it { should have_many(:users).through(:favorite_workouts) }
+  end
+
   describe "#validate" do
 
     context "without name" do

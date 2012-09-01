@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   before_create :make_user_trainer
 
   has_many :workouts
+  has_many :favorite_workouts
+  has_many :workouts, through: :favorite_workouts
 
   def trainer?
   	role == "trainer"

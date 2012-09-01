@@ -25,6 +25,6 @@ Feature: Trainer manages account
     And Snapz should give me a message
 
   Scenario: Trainer deletes profile
-    Given on my profile page
+    Given on my edit profile page
     When I click delete account
     Then my account will be permanantly deleted

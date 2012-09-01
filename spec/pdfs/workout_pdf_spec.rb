@@ -29,9 +29,9 @@ describe WorkoutPdf do
 
   describe "#exercise_rows" do
   	let(:exercise)         { OpenStruct.new name: "exercise name" }
-  	let(:workout_exercise) { OpenStruct.new exercise_id: 1,
-  											sets:        "sets",
-  	                                        notes:       "notes"}
+  	let(:workout_exercise) { OpenStruct.new exercise_id:  1,
+  											                    sets:         "sets",
+  	                                        instructions: "instructions"}
 
     before do
       mock(workout).workout_exercises { [workout_exercise] }
@@ -39,7 +39,7 @@ describe WorkoutPdf do
     end
 
     it "returns a 2D array of the workout_exercise details" do
-      pdf.exercise_rows.should eq [["exercise name", "sets", "notes", ""]]
+      pdf.exercise_rows.should eq [["exercise name", "sets", "instructions", ""]]
     end
   end
 

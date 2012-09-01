@@ -11,6 +11,12 @@ describe User do
     )
   end
 
+  describe "#associations" do
+    it { should have_many :workouts }
+    it { should have_many :favorite_workouts }
+    it { should have_many(:workouts).through(:favorite_workouts) }
+  end
+
   describe "#build_workout" do
     let(:params)  { OpenStruct.new user_id: subject.username }
     let(:workout) { Object.new }

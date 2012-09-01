@@ -1,5 +1,6 @@
-Given /^on my profile page$/ do
+Given /^on my edit profile page$/ do
   click_link @trainer.username.upcase
+  click_link "EDIT PROFILE"
 end
 
 When /^I click delete account$/ do

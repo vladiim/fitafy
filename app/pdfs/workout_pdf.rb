@@ -43,7 +43,7 @@ class WorkoutPdf < Prawn::Document
   def exercise_rows
     @workout.workout_exercises.map do |workout_exercise|
   	  exercise = Exercise.find workout_exercise.exercise_id
-  	  [exercise.name, workout_exercise.sets, workout_exercise.notes, ""]
+  	  [exercise.name, workout_exercise.sets, workout_exercise.instructions, ""]
     end
   end
 end

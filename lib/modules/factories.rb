@@ -36,4 +36,9 @@ FactoryGirl.define do
   factory :tag, class: ActsAsTaggableOn::Tag do
     name "cuban linx"
   end
+
+  factory :favorite_workout do
+    user
+    workout
+  end
 end

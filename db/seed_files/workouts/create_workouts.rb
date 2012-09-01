@@ -29,9 +29,9 @@ end
 def create_workout_exercises workout
   5.times do
     workout.workout_exercises.create!(
-      exercise_id: random_exercise_id,
-      sets: 	     random_set,
-      notes:       random_exercise_note         
+      exercise_id:  random_exercise_id,
+      sets: 	      random_set,
+      instructions: random_exercise_note         
     )
   end
 end

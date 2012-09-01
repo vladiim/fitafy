@@ -65,6 +65,38 @@ ALTER SEQUENCE exercises_id_seq OWNED BY exercises.id;
 
 
 --
+-- Name: favorite_workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE favorite_workouts (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    workout_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: favorite_workouts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE favorite_workouts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: favorite_workouts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE favorite_workouts_id_seq OWNED BY favorite_workouts.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -256,6 +288,13 @@ ALTER TABLE ONLY exercises ALTER COLUMN id SET DEFAULT nextval('exercises_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY favorite_workouts ALTER COLUMN id SET DEFAULT nextval('favorite_workouts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
 
 
@@ -293,6 +332,14 @@ ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq':
 
 ALTER TABLE ONLY exercises
     ADD CONSTRAINT exercises_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: favorite_workouts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY favorite_workouts
+    ADD CONSTRAINT favorite_workouts_pkey PRIMARY KEY (id);
 
 
 --
@@ -347,6 +394,20 @@ CREATE INDEX index_exercises_on_name ON exercises USING btree (name);
 --
 
 CREATE INDEX index_exercises_on_slug ON exercises USING btree (slug);
+
+
+--
+-- Name: index_favorite_workouts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_favorite_workouts_on_user_id ON favorite_workouts USING btree (user_id);
+
+
+--
+-- Name: index_favorite_workouts_on_workout_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_favorite_workouts_on_workout_id ON favorite_workouts USING btree (workout_id);
 
 
 --
@@ -455,3 +516,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120815113642');
 INSERT INTO schema_migrations (version) VALUES ('20120822090359');
 
 INSERT INTO schema_migrations (version) VALUES ('20120901035319');
+
+INSERT INTO schema_migrations (version) VALUES ('20120901060140');

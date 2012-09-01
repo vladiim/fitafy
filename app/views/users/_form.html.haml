@@ -6,3 +6,8 @@
   = f.input :password_confirmation
 
   = f.submit cta, class: "btn btn-primary"
+
+- if current_user
+  %br
+  %br
+  = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"

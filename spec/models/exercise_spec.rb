@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 
 describe Exercise do
   subject             { Exercise.new }
-  let(:valid_subject) { FactoryGirl.create :exercise }
+  let(:valid_subject) { create :exercise }
 
   describe "#exercise_type" do
     it "should have an array of exercise types" do
