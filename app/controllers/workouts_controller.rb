@@ -35,13 +35,7 @@ class WorkoutsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.pdf do
-        pdf = WorkoutPdf.new @workout
-        send_data pdf.render,
-                      filename:    "workout_#{@workout.name.gsub(/\s+/, '_')}.pdf",
-                      type:        "application/pdf",
-                      disposition: "inline"
-      end
+      format.pdf { create_and_generate_pdf }
     end
   end
 
@@ -72,5 +66,11 @@ class WorkoutsController < ApplicationController
     def create_exercise_variables
       @exercises      = Workout.exercises_by_alphabetical_tags(params[:sort])
       @muscles        = Workout.muscles
+    end
+
+    def create_and_generate_pdf
+      pdf = WorkoutPdf.new @workout
+      pdf.generate_content
+      send_data pdf.render, pdf.render_details
     end
 end

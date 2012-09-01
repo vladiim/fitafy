@@ -3,8 +3,15 @@ class WorkoutPdf < Prawn::Document
   def initialize workout
   	super()
   	@workout = workout
+  end
+
+  def generate_content
   	workout_name
   	exercise_list
+  end
+
+  def render_details
+  	{ filename: "workout_8_diagrams.pdf", type: "application/pdf", disposition: "inline" }
   end
 
   def workout_name
@@ -35,7 +42,7 @@ class WorkoutPdf < Prawn::Document
 
   def exercise_rows
     @workout.workout_exercises.map do |workout_exercise|
-  	  exercise = Exercise.find(workout_exercise.exercise_id)
+  	  exercise = Exercise.find workout_exercise.exercise_id
   	  [exercise.name, workout_exercise.sets, workout_exercise.notes, ""]
     end
   end

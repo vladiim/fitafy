@@ -9,5 +9,4 @@ end
 
 Then /^I should get a pdf$/ do
   current_url.should eq "http://www.example.com/users/#{@trainer.id}/workouts/#{@workout.id}.pdf"
-  page.should have_content @workout.name.titleize
 end
