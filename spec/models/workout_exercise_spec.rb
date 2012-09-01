@@ -26,10 +26,10 @@ describe WorkoutExercise do
       end
     end
 
-    describe "#notes" do
-      it "should be able to set and read notes" do
-        subject.notes = "notes"
-        subject.notes.should eq "notes"
+    describe "#instructions" do
+      it "should be able to set and read instructions" do
+        subject.instructions = "instructions"
+        subject.instructions.should eq "instructions"
       end
     end
   end

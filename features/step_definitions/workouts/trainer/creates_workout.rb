@@ -11,7 +11,7 @@ When /^I fill in the workout form$/ do
   select Workout::CLIENT_LEVELS.first, from: "workout_client_level"
   select Workout::DIFFICULTY.last, 		 from: "workout_difficulty"
   select "3", 											   from: "workout_workout_exercises_attributes_0_sets"
-  fill_in "workout_workout_exercises_attributes_0_notes", 
+  fill_in "workout_workout_exercises_attributes_0_instructions", 
                                        with: "wu tang is the cd that i travel with"
   click_button "CREATE WORKOUT"
 end

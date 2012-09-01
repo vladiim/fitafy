@@ -1,6 +1,6 @@
 class WorkoutExercise < ActiveRecord::Base
 
-  attr_accessible :workout_id, :exercise_id, :sets, :notes
+  attr_accessible :workout_id, :exercise_id, :sets, :instructions
 
   belongs_to :exercise
   belongs_to :workout

@@ -11,8 +11,8 @@
       %tr
         %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
         %th= workout_exercise.sets
-        - if workout_exercise.notes
-          %th= workout_exercise.notes.humanize
+        - if workout_exercise.instructions
+          %th= workout_exercise.instructions.humanize
 
         - if can? :delete, @workout
           %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), confirm: @snaz_confirm, method: :delete

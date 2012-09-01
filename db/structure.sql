@@ -184,9 +184,9 @@ CREATE TABLE workout_exercises (
     workout_id integer NOT NULL,
     exercise_id integer NOT NULL,
     sets integer NOT NULL,
-    notes text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    instructions text
 );
 
 
@@ -453,3 +453,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120730103432');
 INSERT INTO schema_migrations (version) VALUES ('20120815113642');
 
 INSERT INTO schema_migrations (version) VALUES ('20120822090359');
+
+INSERT INTO schema_migrations (version) VALUES ('20120901035319');
