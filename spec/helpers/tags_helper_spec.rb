@@ -9,6 +9,7 @@ describe "TagsHelper" do
 
     context "without current_filter" do
       before { mock(helper).params { { sort: false } } }
+
       it "links to the current page" do
         mock(helper).link_to(anything, anything) { "CURRENT PAGE" }
         result.should eq "CURRENT PAGE"
@@ -26,6 +27,7 @@ describe "TagsHelper" do
     end
 
     context "with current_filter" do
+
       it "includes the current_filter" do
         mock(helper).link_to anything, sort: ["chest", "abs", "shoulders"]
         mock(helper).params.times(2) { { sort: ["abs", "shoulders"] } }
@@ -35,6 +37,7 @@ describe "TagsHelper" do
   end
 
   describe "#link_to_remove_tag" do
+
     context "without current_filter" do
       it "creates a blank link" do
         mock(helper).link_to anything, sort: []
@@ -44,6 +47,7 @@ describe "TagsHelper" do
     end
 
     context "with tag in current_filter" do
+
       it "removes the tag from the filter" do
         mock(helper).link_to anything, sort: ["chest"]
         mock(helper).params.times(2) { { sort: ["chest", "abs"] } }
@@ -53,6 +57,7 @@ describe "TagsHelper" do
   end
 
   describe "#add_param_tags_to_filter" do
+
     it "creates an array of filter tags" do
       mock(helper).params { { sort: ['chest'] } } 
       helper.add_param_tags_to_filter([]).should eq ['chest']

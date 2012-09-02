@@ -9,11 +9,11 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout           = current_user.build_workout
-  	@title             = "New Workout"
-    @client_level      = Workout::CLIENT_LEVELS
-    @difficulty        = Workout::DIFFICULTY
-  	@snapz             = SnapzSayz::WorkoutSpeak.creating_new_workout
+    @workout      = current_user.build_workout
+  	@title        = "New Workout"
+    @client_level = Workout::CLIENT_LEVELS
+    @difficulty   = Workout::DIFFICULTY
+  	@snapz        = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
 
   def create
@@ -29,6 +29,7 @@ class WorkoutsController < ApplicationController
   def show
   	@workout       = Workout.find(params[:id])
     @trainer       = User.find @workout.user_id
+    @current_user  = current_user ? current_user : nil
   	@title         = @workout.name
     @snapz_warning = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
 

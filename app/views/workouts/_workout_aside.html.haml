@@ -1,8 +1,11 @@
 %aside
-  - if can? :create, FavoriteWorkout
-    %p= link_to "ADD TO FAVORITES", favorite_workouts_path({workout_id: @workout.id}), method: :post, class: "btn btn-inverse"
-  - else
-    %p= link_to "ADD TO FAVORITES", '/favorite_workouts_redirect', class: "btn btn-inverse"
+  = link_to_favorite_workout @current_user, @workout
+  %br
+
+  / - if can? :create, FavoriteWorkout
+  /   %p= link_to "ADD TO FAVORITES", favorite_workouts_path({workout_id: @workout.id}), method: :post, class: "btn btn-inverse"
+  / - else
+  /   %p= link_to "ADD TO FAVORITES", '/favorite_workouts_redirect', class: "btn btn-inverse"
 
   %br
   
