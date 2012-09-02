@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     self.favorite_workouts.count
   end
 
+  def build_favorite_workout workout_id
+    self.favorite_workouts.build workout_id: workout_id
+  end
+
   def workouts_from_favorites favorite_workouts
     workouts = []
     favorite_workouts.each do |favorite_workout|

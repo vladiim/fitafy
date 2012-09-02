@@ -202,4 +202,16 @@ describe User do
       end
     end
   end
+
+  describe "#build_favorite_workout" do
+    let(:workout_id)  { 1 }
+    let(:workout)     { Object.new }
+    before            { subject.save! }
+
+    it "builds a new favorite workout" do
+      favorite_workout = subject.build_favorite_workout workout_id
+      favorite_workout.user_id.should eq subject.id
+      favorite_workout.workout_id.should eq 1
+    end
+  end
 end

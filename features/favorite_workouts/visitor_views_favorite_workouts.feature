@@ -18,7 +18,6 @@ Feature: Visitor Views Favorite Workouts
     When I want to look at their favorite workouts
     Then I shouldn't see a link to their favorites
 
-  @focus
   Scenario: Visitor must sign up to add workout to favorites
     Given a workout exsists
     And I'm on a workout's page
