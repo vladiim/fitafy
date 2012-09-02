@@ -3,10 +3,7 @@
   %aside.span3
     #profile= image_tag('das_boot.png', size: "150x200")
     %br
-    %strong= @user.username.titleize
-    %p
-      = @user.workouts_count
-      Workouts
+    = render 'stats'
 
     - if @user == current_user
       = render 'edit_profile_buttons'

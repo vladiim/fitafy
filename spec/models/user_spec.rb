@@ -14,7 +14,6 @@ describe User do
   describe "#associations" do
     it { should have_many :workouts }
     it { should have_many :favorite_workouts }
-    it { should have_many(:workouts).through(:favorite_workouts) }
   end
 
   describe "#build_workout" do
@@ -101,11 +100,42 @@ describe User do
     end
   end
 
-  describe "#all_workouts" do
-    let(:workout) { Object.new }
-    before { mock(subject).workouts { [workout] } }
-    it "should return all the user's workouts" do
-      subject.all_workouts.should eq [workout]
+  describe "#my_workouts" do
+    context "no tags" do
+      let(:workout) { Object.new }
+      before        { mock(subject).workouts { [workout] } }
+
+      it "should return all the user's workouts" do
+        subject.my_workouts.should eq [workout]
+      end      
+    end
+
+    context "with favorite tags" do
+      let(:params)            { OpenStruct.new tags: "favorite" }
+      let(:favorite_workouts) { Object.new }
+
+      before do
+        mock(subject).favorite_workouts { favorite_workouts }
+        mock(subject).workouts_from_favorites(favorite_workouts) { favorite_workouts }
+      end
+
+       it "returns the favorite workouts" do
+         subject.my_workouts(params).should eq favorite_workouts
+       end
+    end
+  end
+
+  describe "#workouts_from_favorites" do
+    let(:workout)           { Object.new }
+    let(:favorite_workout)  { OpenStruct.new workout_id: 1 }
+    let(:favorite_workouts) { [favorite_workout]}
+
+    before do
+      mock(Workout).find(1) { workout }
+    end
+
+    it "returns an array of workouts from an array of favorites" do
+      subject.workouts_from_favorites(favorite_workouts).should eq [workout]
     end
   end
 
@@ -142,6 +172,13 @@ describe User do
       it         { should be_able_to(:read, :all) }
       it         { should_not be_able_to(:manage, Workout.new) }
       it         { should_not be_able_to(:manage, Exercise.new) }
+    end
+  end
+
+  describe "#count_favorite_workouts" do
+    it "counts the user's favorite workouts" do
+      mock(subject.favorite_workouts).count { 3 }
+      subject.count_favorite_workouts.should eq 3
     end
   end
 end

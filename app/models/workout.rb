@@ -2,8 +2,6 @@ class Workout < ActiveRecord::Base
 
   attr_accessible :user_id, :name, :notes, :workout_exercises_attributes, :client_level, :difficulty
 
-  # acts_as_taggable
-
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
 
@@ -27,7 +25,7 @@ class Workout < ActiveRecord::Base
 
   def self.filter_by_tags tags=nil
     Workout.all if tags == nil
-    exercises         = Exercise.with_tags tags
+    exercises = Exercise.with_tags tags
     WorkoutExercise.return_workouts_from_exercises exercises
   end
 

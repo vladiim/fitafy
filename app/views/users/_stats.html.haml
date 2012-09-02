@@ -1,0 +1,8 @@
+%p
+  = @user.workouts_count
+  Workouts
+
+= link_to pluralize(@user.count_favorite_workouts, "Favorite"), tags: :favorite
+
+%br
+%br

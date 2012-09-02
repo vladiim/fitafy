@@ -14,7 +14,7 @@ Feature: Visitor Views Trainer Profile
     Then I should see their favorites
     And I shouldn't see their other workouts
 
-  Scenario: Visitor can't look at trainer's favorites
-    Given the trainer has no favorite workouts
-    When I want to look at their favorite workouts
-    Then I shouldn't see a link to their favorites
+  # Scenario: Visitor can't look at trainer's favorites
+  #   Given the trainer has no favorite workouts
+  #   When I want to look at their favorite workouts
+  #   Then I shouldn't see a link to their favorites

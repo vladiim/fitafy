@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
 
   has_many :workouts
   has_many :favorite_workouts
-  has_many :workouts, through: :favorite_workouts
 
   def trainer?
   	role == "trainer"
@@ -39,12 +38,29 @@ class User < ActiveRecord::Base
     new_workout.copy_workout_exercises workout
   end
 
-  def all_workouts
-    self.workouts
+  def my_workouts params=nil
+    if params == nil
+      self.workouts
+    else
+      self.workouts_from_favorites self.favorite_workouts
+    end
   end
 
   def workouts_count
     self.workouts.count
+  end
+
+  def count_favorite_workouts
+    self.favorite_workouts.count
+  end
+
+  def workouts_from_favorites favorite_workouts
+    workouts = []
+    favorite_workouts.each do |favorite_workout|
+      workout = Workout.find favorite_workout.workout_id
+      workouts << workout
+    end
+    workouts
   end
 
   private

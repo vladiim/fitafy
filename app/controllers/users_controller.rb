@@ -16,14 +16,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user                = User.find(params[:id])
-    @workouts            = @user.all_workouts
-    @title               = @user.username
+    @user     = User.find(params[:id])
+    @workouts = @user.my_workouts(params[:tags])
+    @title    = @user.username
   end
 
   def edit
-    @title = "Edit Profile"
-    @user  = current_user
+    @title               = "Edit Profile"
+    @user                = current_user
     @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
   end
 
