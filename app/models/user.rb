@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
     workouts
   end
 
+  def has_favorite_workouts?
+    self.favorite_workouts.any?
+  end
+
   private
 
     def make_user_trainer

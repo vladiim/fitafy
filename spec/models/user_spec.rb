@@ -181,4 +181,23 @@ describe User do
       subject.count_favorite_workouts.should eq 3
     end
   end
+
+  describe "#has_favorite_workouts?" do
+    context "no favorite workouts" do
+      before { mock(subject).favorite_workouts { [] } }
+
+      it "returns false" do
+        subject.has_favorite_workouts?.should eq false
+      end
+    end
+
+    context "with favorite workouts" do
+      let(:workout) { Object.new }
+      before { mock(subject).favorite_workouts { [workout] } }
+
+      it "returns false" do
+        subject.has_favorite_workouts?.should eq true
+      end
+    end
+  end
 end
