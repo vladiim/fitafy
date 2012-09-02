@@ -1,14 +1,19 @@
-%p= link_to "ADD TO FAVORITES", "#", class: "btn btn-inverse"
-%br
+%aside
+  - if can? :create, FavoriteWorkout
+    %p= link_to "ADD TO FAVORITES", '/favorite_workouts_redirect', class: "btn btn-inverse"
+  - else
+    %p= link_to "ADD TO FAVORITES", '/favorite_workouts_redirect', class: "btn btn-inverse"
 
-- if can? :update, @workout
-  %p= link_to "EDIT WORKOUT", edit_user_workout_path(@workout.user_id, @workout), class: "btn btn-info"
-
-- elsif current_user
-  %p= link_to "CREATE COPY", copy_workouts_path({id: @workout.id}), class: "btn btn-primary", method: :post
-
-- else
-  %p= link_to "CREATE COPY", '/copy-workouts-redirect', class: "btn btn-primary"
-%br
-
-%p= link_to "DOWNLOAD AS PDF", user_workout_path(@workout.user_id, @workout, format: "pdf"), class: "btn btn-success"
+  %br
+  
+  - if can? :update, @workout
+    %p= link_to "EDIT WORKOUT", edit_user_workout_path(@workout.user_id, @workout), class: "btn btn-info"
+  
+  - elsif current_user
+    %p= link_to "CREATE COPY", copy_workouts_path({id: @workout.id}), class: "btn btn-primary", method: :post
+  
+  - else
+    %p= link_to "CREATE COPY", '/copy-workouts-redirect', class: "btn btn-primary"
+  %br
+  
+  %p= link_to "DOWNLOAD AS PDF", user_workout_path(@workout.user_id, @workout, format: "pdf"), class: "btn btn-success"

@@ -150,7 +150,7 @@ describe User do
       	mock(user).admin?   { true }
       end
 
-	  it { should be_able_to(:manage, Workout.new) }
+	    it { should be_able_to(:manage, Workout.new) }
       it { should be_able_to(:manage, Exercise.new) }
     end
 
@@ -158,8 +158,9 @@ describe User do
       let(:user) { create_valid_user }
       before     { mock(user).trainer? { true } }
 
-      it 		 { should be_able_to(:manage, Workout.new) }
-      it     { should_not be_able_to(:manage, Exercise.new) }
+      it { should be_able_to(:manage, Workout.new) }
+      it { should_not be_able_to(:manage, Exercise.new) }
+      it { should be_able_to(:manage, FavoriteWorkout.new) }
     end
 
     context "client" do
@@ -169,9 +170,10 @@ describe User do
       	mock(user).admin?	{ false }
       end
 
-      it         { should be_able_to(:read, :all) }
-      it         { should_not be_able_to(:manage, Workout.new) }
-      it         { should_not be_able_to(:manage, Exercise.new) }
+      it { should be_able_to(:read, :all) }
+      it { should_not be_able_to(:manage, Workout.new) }
+      it { should_not be_able_to(:manage, Exercise.new) }
+      it { should_not be_able_to(:manage, FavoriteWorkout.new) }
     end
   end
 

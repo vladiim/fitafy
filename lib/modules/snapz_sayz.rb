@@ -147,4 +147,10 @@ module SnapzSayz
       "You trim down super easy! Exercise gone!"
     end
   end
+
+  module FavoriteWorkoutSpeak
+    def self.new_user
+      "Snip Snap! You need to sign up before making a workout a favorite!"
+    end
+  end
 end
