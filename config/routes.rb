@@ -18,7 +18,7 @@ Fitafy::Application.routes.draw do
 
 #---------- REDIRECTS ----------#
 
-  match 'copy-workouts-redirect',     to: "copy_workouts#new_user"
+  match 'copy_workouts_redirect',     to: "copy_workouts#new_user"
   match 'favorite_workouts_redirect', to: "favorite_workouts#new_user"
 
 

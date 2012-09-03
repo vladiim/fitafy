@@ -1,17 +1,6 @@
 %aside
   = link_to_favorite_workout @current_user, @workout
 
-  %br
-  %br
-  
-  - if can? :update, @workout
-    %p= link_to "EDIT WORKOUT", edit_user_workout_path(@workout.user_id, @workout), class: "btn btn-info"
-  
-  - elsif current_user
-    %p= link_to "CREATE COPY", copy_workouts_path({id: @workout.id}), class: "btn btn-primary", method: :post
-  
-  - else
-    %p= link_to "CREATE COPY", '/copy-workouts-redirect', class: "btn btn-primary"
-  %br
-  
-  %p= link_to "DOWNLOAD AS PDF", user_workout_path(@workout.user_id, @workout, format: "pdf"), class: "btn btn-success"
+  = link_to_edit_or_copy_workout @current_user, @workout
+
+  = link_to_download_workout_pdf @workout

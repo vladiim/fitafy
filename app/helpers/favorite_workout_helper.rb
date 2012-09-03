@@ -23,6 +23,6 @@ module FavoriteWorkoutHelper
   end
 
   def bootstrap_class
-    "btn btn-inverse"
+    "btn btn-inverse button_space"
   end
 end
