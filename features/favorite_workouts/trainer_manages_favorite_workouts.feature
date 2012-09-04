@@ -13,7 +13,6 @@ Feature: Trainer Mangaes Favorite Workouts
     Then the workout should be added to my favorites
     And snapz should tell me I've added a workout to my favorite
 
-  @focus
   Scenario: Trainer removes workout from favorite from workout page
     Given I've favorited a workout
     And I'm on the workout's page

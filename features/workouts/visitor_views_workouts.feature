@@ -46,7 +46,15 @@ Feature: Visitor views workouts
     When I visit the workout's page
     Then I can't see the edit workout link
 
-  Scenario: Visitor is prompted to login if they copy a workout
+  @focus
+  Scenario: Visitor copies workout once signed up
     Given I visit the workout's page
     When I click copy workout
-    Then I'm prompted to login
+    And I sign up
+    Then I should have the workout copied
+
+  Scenario: Visitor favorites workout once signed up
+    Given I visit the workout's page
+    When I click favorite workout
+    And I sign up
+    Then I should have the workout in my favorites

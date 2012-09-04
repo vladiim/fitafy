@@ -21,6 +21,7 @@ module WorkoutHelper
 
   def link_to_create_copy workout
   	link_to "CREATE COPY", copy_workouts_path({id: workout.id}), 
+                           method: :post,
   	                       class: "btn btn-primary button_space"
   end
 
@@ -29,4 +30,3 @@ module WorkoutHelper
   	                           class: "btn btn-success button_space"
   end
 end
-#  %p= link_to "DOWNLOAD AS PDF", user_workout_path(@workout.user_id, @workout, format: "pdf"), class: "btn btn-success button_space"
