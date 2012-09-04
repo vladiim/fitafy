@@ -12,5 +12,9 @@ module SnapzSayz
     def self.didnt_create
       "Not sure what happened there but I couldn't save that to your favorites... try again later."
     end
+
+    def self.delete_favorite_workout
+      "That Workout is Off. The. Radaaar."
+    end
   end
 end

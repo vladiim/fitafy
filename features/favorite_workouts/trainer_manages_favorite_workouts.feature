@@ -3,14 +3,22 @@ Feature: Trainer Mangaes Favorite Workouts
   As a fitafy trainer
   I want to be able to mark and find my favorite workouts
 
-  Scenario: Trainer adds workout to favorite
+  Background:
     Given a workout exsists
     And I'm a logged in trainer
-    And I'm on the workout's page
+
+  Scenario: Trainer adds workout to favorite
+    Given I'm on the workout's page
     When I click add workout to favorite
     Then the workout should be added to my favorites
-    And snapz should tell me i'v added a workout to my favorite
+    And snapz should tell me I've added a workout to my favorite
 
+  @focus
   Scenario: Trainer removes workout from favorite from workout page
+    Given I've favorited a workout
+    And I'm on the workout's page
+    When I click remove favorite
+    Then the workout shouldn't be one of my favorites
+    And snapz should tell me I've relmoved the workout from my favorites
 
   Scenario: Trainer removes workout from favorite from their profile

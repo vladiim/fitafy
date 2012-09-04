@@ -24,3 +24,5 @@ Feature: Visitor Views Favorite Workouts
     When I click add to favorites
     Then I should be redirected to the sign up page
     And Snapz should give me the favorite workout redirect message
+
+  Scenario: Visitor adds workout to favorite once they sign up or log in

@@ -6,9 +6,30 @@ describe "FavoriteWorkoutHelper" do
   let(:workout) { OpenStruct.new id: 1 }
 
   describe "#link_to_favorite_workout" do
+
+    context "workout is alread favorte" do
+      let(:trainer)          { Object.new }
+      let(:favorite_workout) { Object.new }
+      let(:unfavorite_link)  { "UNFAVORITE LINK" }
+
+      before do
+        mock(trainer).workout_in_favorites?(workout) { true }
+        mock(trainer).find_favorite_workout(workout.id) { favorite_workout }
+        mock(helper).link_to_unfavorite_workout(favorite_workout) { unfavorite_link }
+      end
+
+      it "creates unfavorite link" do
+        helper.link_to_favorite_workout(trainer, workout).should eq "UNFAVORITE LINK"
+      end
+    end
+
     context "trainer logged in" do
       let(:trainer) { true }
-      before { mock(helper).create_favorite_workout_link(workout) { "FAVORITE WORKOUT LINK" } }
+
+      before do
+        mock(trainer).workout_in_favorites?(workout) { false }
+        mock(helper).create_favorite_workout_link(workout) { "FAVORITE WORKOUT LINK" }
+      end
 
       it "creates a link to create a favorte workout" do
         helper.link_to_favorite_workout(trainer, workout).should eq "FAVORITE WORKOUT LINK"
@@ -47,6 +68,19 @@ describe "FavoriteWorkoutHelper" do
     end
   end
 
+  describe "#link_to_unfavorite_workout" do
+    let(:unfavorite_link) { "UNFAVORITE LINK" }
+
+    before do
+      mock(helper).favorite_workout_path({id: 1})
+      mock(helper).link_to("REMOVE FROM FAVORITES", anything, anything) { unfavorite_link }
+    end
+
+    it "creates a link to remove the workout from favorites" do
+      helper.link_to_unfavorite_workout(workout).should eq "UNFAVORITE LINK"
+    end
+  end
+
   describe "#title" do
     it "returns add to favorites" do
       helper.title.should eq "ADD TO FAVORITES"
@@ -55,7 +89,7 @@ describe "FavoriteWorkoutHelper" do
 
   describe "#class" do
     it "returns the bootstrap class" do
-      helper.bootstrap_class.should eq "btn btn-inverse"
+      helper.bootstrap_class.should eq "btn btn-inverse button_space"
     end
   end
 end

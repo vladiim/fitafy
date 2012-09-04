@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   before_create :make_user_trainer
 
   has_many :workouts
-  has_many :favorite_workouts
+  has_many :favorite_workouts, dependent: :destroy
 
   def trainer?
   	role == "trainer"
@@ -61,14 +61,32 @@ class User < ActiveRecord::Base
   def workouts_from_favorites favorite_workouts
     workouts = []
     favorite_workouts.each do |favorite_workout|
-      workout = Workout.find favorite_workout.workout_id
+      workout = Workout.find(favorite_workout.workout_id)
       workouts << workout
     end
     workouts
   end
 
+  def workout_in_favorites? workout
+    self.favorite_workouts.each do |favorite_workout|
+      if favorite_workout.workout_id == workout.id
+        return true
+      end
+    end
+    return false  
+  end
+
   def has_favorite_workouts?
     self.favorite_workouts.any?
+  end
+
+  def find_favorite_workout workout_id
+    self.favorite_workouts.each do |favorite_workout|
+      if favorite_workout.workout_id == workout_id
+        return favorite_workout
+      end
+    end
+    raise "#{self.username} hasn't favorited that workout"
   end
 
   private

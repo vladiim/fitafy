@@ -10,6 +10,12 @@ class FavoriteWorkoutsController < ApplicationController
   	end
   end
 
+  def destroy
+    FavoriteWorkout.find(params[:id]).delete
+    flash[:success] = SnapzSayz::FavoriteWorkoutSpeak.delete_favorite_workout
+    redirect_to :back
+  end
+
   def new_user
   	redirect_to sign_up_path
   	flash[:message] = SnapzSayz::FavoriteWorkoutSpeak.new_user

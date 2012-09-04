@@ -214,4 +214,47 @@ describe User do
       favorite_workout.workout_id.should eq 1
     end
   end
+
+  describe "#workout_in_favorites?" do
+    let(:workout) { OpenStruct.new id: 1 }
+
+    context "workout is in favorites" do
+      let(:favorite_workout) { OpenStruct.new user_id: subject.id, workout_id: workout.id }
+      before { mock(subject).favorite_workouts { [favorite_workout] } }
+  
+      it "returns true" do
+        subject.workout_in_favorites?(workout).should eq true
+      end
+    end
+
+    context "workout is not in favorites" do
+      let(:favorite_workout) { OpenStruct.new user_id: subject.id, workout_id: 2 }
+      before { mock(subject).favorite_workouts { [favorite_workout] } }
+  
+      it "returns false" do
+        subject.workout_in_favorites?(workout).should eq false
+      end
+    end
+  end
+
+  describe "#find_favorite_workout" do
+    let(:workout_id)       { 1 }
+    let(:favorite_workout) { OpenStruct.new workout_id: workout_id }
+
+    context "user has favorited workout" do
+      before { mock(subject).favorite_workouts { [favorite_workout] } }
+  
+      it "returns the workout" do
+        subject.find_favorite_workout(workout_id).should eq favorite_workout
+      end      
+    end
+
+    context "user hasn't favorited workout" do
+      before { mock(subject).favorite_workouts { [] } }
+
+      it "raises an error" do
+        subject.find_favorite_workout(workout_id).should raise_error(RuntimeError, "#{subject.username} hasn't favorited that workout")
+      end
+    end
+  end
 end

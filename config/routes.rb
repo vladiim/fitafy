@@ -7,7 +7,8 @@ Fitafy::Application.routes.draw do
   resources :user_sessions
   resources :workouts, only: :index
   resources :workout_exercises
-  resources :favorite_workouts, only: :create
+  resources :favorite_workouts, only: [:create, :destroy]
+  # resources :favorite_workouts
 
   resources :users do
     resources :workouts

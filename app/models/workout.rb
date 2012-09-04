@@ -8,7 +8,7 @@ class Workout < ActiveRecord::Base
   has_many :workout_exercises, dependent: :destroy
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises, uniq: true
-  has_many :favorite_workouts
+  has_many :favorite_workouts, dependent: :destroy
   has_many :users, through: :favorite_workouts
 
   validates_presence_of :name, :user_id
