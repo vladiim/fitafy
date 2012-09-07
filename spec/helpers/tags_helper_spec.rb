@@ -2,8 +2,8 @@ require_relative "../spec_helper_lite"
 require_relative '../../app/helpers/tags_helper'
 
 describe "TagsHelper" do
-  let(:helper) { Object.new.extend TagsHelper }
-  let(:result) { helper.link_to_tag "abs" }
+  let(:helper)   { Object.new.extend TagsHelper }
+  let(:result)   { helper.link_to_tag "abs", :muscles }
 
   describe "#link_to_tag" do
 
@@ -16,22 +16,22 @@ describe "TagsHelper" do
       end
   
       it "appends the uppercase tag name to the current url" do
-        mock(helper).link_to anything, sort: ["abs"]
-        helper.link_to_tag "abs"
+        mock(helper).link_to anything, muscles: ["abs"]
+        helper.link_to_tag "abs", :muscles
       end
   
       it "uses an uppercase tag name as the link text" do
         mock(helper).link_to "ABS", anything
-        helper.link_to_tag "abs"
+        helper.link_to_tag "abs", :muscles
       end
     end
 
     context "with current_filter" do
 
       it "includes the current_filter" do
-        mock(helper).link_to anything, sort: ["chest", "abs", "shoulders"]
-        mock(helper).params.times(2) { { sort: ["abs", "shoulders"] } }
-        helper.link_to_tag "chest"
+        mock(helper).link_to anything, muscles: ["chest", "abs", "shoulders"]
+        mock(helper).params.times(2) { { muscles: ["abs", "shoulders"] } }
+        helper.link_to_tag "chest", :muscles
       end
     end
   end
@@ -49,9 +49,9 @@ describe "TagsHelper" do
     context "with tag in current_filter" do
 
       it "removes the tag from the filter" do
-        mock(helper).link_to anything, sort: ["chest"]
-        mock(helper).params.times(2) { { sort: ["chest", "abs"] } }
-        helper.link_to_remove_tag "abs"
+        mock(helper).link_to anything, muscles: ["chest"]
+        mock(helper).params.times(2) { { muscles: ["chest", "abs"] } }
+        helper.link_to_remove_tag "abs", :muscles
       end
     end
   end
@@ -59,7 +59,7 @@ describe "TagsHelper" do
   describe "#add_param_tags_to_filter" do
 
     it "creates an array of filter tags" do
-      mock(helper).params { { sort: ['chest'] } } 
+      mock(helper).params { { muscles: ['chest'] } } 
       helper.add_param_tags_to_filter([]).should eq ['chest']
     end
   end
