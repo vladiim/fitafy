@@ -24,6 +24,15 @@ describe "TagsHelper" do
         mock(helper).link_to "ABS", anything
         helper.link_to_tag "abs", :muscles
       end
+
+      context "with any tag/tag_type" do
+        let(:result)   { helper.link_to_tag "dumbbells", :equipment }
+
+        it "renders the correct link" do
+          mock(helper).link_to "DUMBBELLS", { equipment: ["dumbbells"] }
+          helper.link_to_tag "dumbbells", :equipment
+        end
+      end
     end
 
     context "with current_filter" do
@@ -40,9 +49,9 @@ describe "TagsHelper" do
 
     context "without current_filter" do
       it "creates a blank link" do
-        mock(helper).link_to anything, sort: []
-        mock(helper).params { { sort: nil } }
-        helper.link_to_remove_tag "abs"
+        mock(helper).link_to anything, muscles: []
+        mock(helper).params { { muscles: nil } }
+        helper.link_to_remove_tag "abs", :muscles
       end      
     end
 
@@ -60,7 +69,7 @@ describe "TagsHelper" do
 
     it "creates an array of filter tags" do
       mock(helper).params { { muscles: ['chest'] } } 
-      helper.add_param_tags_to_filter([]).should eq ['chest']
+      helper.add_param_tags_to_filter([], :muscles).should eq ['chest']
     end
   end
 end
