@@ -23,3 +23,8 @@ end
 Then /^Snapz should have a message for creating an account$/ do
   page.should have_content "Yea, yea, yea! Welcome to the fitification!"
 end
+
+Then /^I should get a sign up email$/ do
+  last_email.to.should eq ["bobby@bolders.com"]
+  last_email.subject.should eq SnapzSayz::EmailSpeak.sign_up_welcome_title
+end

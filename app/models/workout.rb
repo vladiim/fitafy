@@ -23,10 +23,9 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
-  def self.filter_by_tags tags=nil
-    Workout.all if tags == nil
-    exercises = Exercise.with_tags tags
-    WorkoutExercise.return_workouts_from_exercises exercises
+  def self.filter_by_tags tags=nil, tag_types=nil
+    Workout.all if tags == nil || tag_types == nil
+    Exercise.with_tags(tags, tag_types).includes(:workouts).map(&:workouts).flatten
   end
 
   def new_workout_exercises

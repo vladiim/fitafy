@@ -68,16 +68,20 @@ describe Workout do
 
   describe "#filter_by_tags" do
     context "with tags" do
-      let(:tags)              { Object.new }
-      let(:filtered_workouts) { Object.new }
-  
+      let(:tags)      { Object.new }
+      let(:tag_type)  { Object.new }
+      let(:exercises) { Object.new }
+      let(:workout)   { "FILTERED WORKOUTS" }
+
       before do
-        mock(Exercise).with_tags tags
-        mock(WorkoutExercise).return_workouts_from_exercises(anything) { filtered_workouts }
+        mock(Exercise).with_tags(tags, tag_type) { exercises }
+        mock(exercises).includes(:workouts)      { [workout] }
+        mock(workout).workouts                   { [workout] }
+        mock(workout).to_ary # gets called before flatten
       end
-  
-      it "returns an array of filtered workouts" do
-        Workout.filter_by_tags(tags).should eq filtered_workouts
+
+      it "return a set of filtered workouts" do
+        Workout.filter_by_tags(tags, tag_type) { "FILTERED WORKOUTS" }
       end
     end
 

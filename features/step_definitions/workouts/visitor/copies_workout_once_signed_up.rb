@@ -1,8 +1,4 @@
-When /^I click copy workout$/ do
-  click_link "CREATE COPY"
-end
-
-Then /^I'm prompted to login$/ do
-  page.should have_content "Wanna copy a workout? No problems! You just need to login first yo!"
-  click_link "Sign up"
+Then /^I should have the workout copied$/ do
+  @copied_workout = Workout.last
+  current_path.should eq edit_user_workout_path(@trainer, @copied_workout)
 end

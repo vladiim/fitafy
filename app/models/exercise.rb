@@ -23,11 +23,11 @@ class Exercise < ActiveRecord::Base
     with_tags(tags).sort_by { |exercise| exercise["name"] }
   end
 
-  def self.with_tags tags=nil
+  def self.with_tags tags=nil, category=:muscles
     if tags
-      Exercise.tagged_with(tags, on: :muscles)
+      tagged_with(tags, on: category)
     else
-      Exercise.all
+      scoped
     end
   end
 end

@@ -10,7 +10,8 @@ Fitafy::Application.routes.draw do
   resources :favorite_workouts, only: [:create, :destroy]
   # resources :favorite_workouts
 
-  resources :users do
+  # ordering is big issue, this needs to be low. So the routes tries explicit first
+  resources :users, path: "" do
     resources :workouts
   end
 

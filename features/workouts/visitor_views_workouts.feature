@@ -8,7 +8,7 @@ Feature: Visitor views workouts
 
   Scenario: Visitor views an individual workout
     Given I'm on the homepage
-    When I visit the workout's page
+    When I'm on a workout's page
     Then I should see that workout's details "NO SAID DATE" and "These military arm' marine. sub machine gun"
 
   Scenario: Visitor views the workout list
@@ -43,18 +43,20 @@ Feature: Visitor views workouts
 
   Scenario: Visitor cant see edit workout link
     Given I'm a visitor
-    When I visit the workout's page
+    When I'm on the workout's page
     Then I can't see the edit workout link
 
   @focus
-  Scenario: Visitor copies workout once signed up
-    Given I visit the workout's page
+  Scenario: Visitor copies workout once logged in
+    note - create log in & sign up as modal (like in wires) to acheive this
+    Given a trainer exists 
+    And I'm on a workout's page
     When I click copy workout
-    And I sign up
+    And I log in
     Then I should have the workout copied
 
   Scenario: Visitor favorites workout once signed up
-    Given I visit the workout's page
+    Given I'm on a workout's page
     When I click favorite workout
     And I sign up
     Then I should have the workout in my favorites

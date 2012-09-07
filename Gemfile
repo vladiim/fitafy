@@ -10,6 +10,8 @@ gem 'cancan',              '~> 1.6.8'
 gem 'friendly_id',         '~> 4.0.1'
 gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'prawn',               '~> 0.12.0'
+gem 'resque',              '~> 1.22.0'
+gem 'resque_mailer',       '~> 2.1.0'
 
 # ------------ ASSETS ------------ #
 

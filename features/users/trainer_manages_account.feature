@@ -13,6 +13,11 @@ Feature: Trainer manages account
     And fill in my details
     Then I should have a new account
     And Snapz should have a message for creating an account
+    And I should get a sign up email
+
+  Scenario: Trainer agrees to terms & conditions
+
+  Scenario: Trainer forgets password
 
   Scenario: Trainer has profile page
     Given I'm on the hompage

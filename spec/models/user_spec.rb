@@ -16,6 +16,21 @@ describe User do
     it { should have_many :favorite_workouts }
   end
 
+  describe "#create_account" do
+    let(:trainer)       { build :trainer }
+    let(:welcome_email) { Object.new }
+
+    before do
+      mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
+      mock(welcome_email).deliver { welcome_email }
+    end
+
+    it "saves the user and sends them an email" do
+      trainer.create_account.should eq welcome_email
+      User.last.should eq trainer
+    end
+  end
+
   describe "#build_workout" do
     let(:params)  { OpenStruct.new user_id: subject.username }
     let(:workout) { Object.new }

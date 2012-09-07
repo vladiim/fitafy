@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
   has_many :workouts
   has_many :favorite_workouts, dependent: :destroy
 
+  def create_account
+    save!
+    UserMailer.sign_up_welcome(self).deliver
+  end
+
   def trainer?
   	role == "trainer"
   end
