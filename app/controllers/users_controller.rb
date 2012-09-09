@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_filter :authorize, only: [:new, :create, :show]
 
   def new
   	@title = "Sign Up"
@@ -8,7 +9,8 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.create_account
-  	  redirect_to @user
+  	  # redirect_to @user
+      redirect_back @user
   	  flash[:success] = SnapzSayz::UserSpeak.created_user
     else
       render :new

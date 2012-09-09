@@ -1,5 +1,7 @@
 class WorkoutsController < ApplicationController
+
   load_and_authorize_resource except: [:index, :show]
+  skip_filter :authorize, only: [:index, :show]
   before_filter :create_exercise_variables, only: [:new, :edit]
 
   def index

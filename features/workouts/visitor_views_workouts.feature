@@ -46,17 +46,17 @@ Feature: Visitor views workouts
     When I'm on a workout's page
     Then I can't see the edit workout link
 
-  @focus
   Scenario: Visitor copies workout once logged in
     note - create log in & sign up as modal (like in wires) to acheive this
     Given a trainer exists 
     And I'm on a workout's page
     When I click copy workout
     And I log in
-    Then I should have the workout copied
+    Then I should be back on the workout
 
+  @focus
   Scenario: Visitor favorites workout once signed up
     Given I'm on a workout's page
     When I click favorite workout
     And I sign up
-    Then I should have the workout in my favorites
+    Then I should be back on the workout

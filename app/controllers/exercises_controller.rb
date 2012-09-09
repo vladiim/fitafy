@@ -1,6 +1,8 @@
 class ExercisesController < ApplicationController
   load_and_authorize_resource
 
+  skip_filter :authorize, only: [:index, :show]
+
   def index
     @title     = "All Exercises"
     @exercises = Exercise.by_alphabetical_tags(params[:muscles])
