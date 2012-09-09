@@ -23,4 +23,13 @@ module WorkoutHelper
   	link_to "DOWNLOAD AS PDF", user_workout_path(workout.user_id, workout, format: "pdf"), 
   	                           class: "btn btn-success button_space"
   end
+
+  def link_to_delete_workout workout, snapz_message, cta=nil
+    return if cta == nil
+
+    link_to "DELETE WORKOUT", user_workout_path(current_user, workout), 
+                              method: :delete,
+                              class: "btn btn-danger",
+                              data: { confirm: snapz_message }
+  end
 end

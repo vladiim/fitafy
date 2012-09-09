@@ -35,8 +35,8 @@ describe "WorkoutHelper" do
       let(:current_user) { nil }
 
       before do
-        mock(helper).can?(:update, workout) { false }
-        mock(helper).link_to_redirect { "REDIRECT LINK" }
+        mock(helper).can?(:update, workout)       { false }
+        mock(helper).link_to_create_copy(workout) { "REDIRECT LINK" }
       end
 
       it "redirects to sign up" do
@@ -56,19 +56,6 @@ describe "WorkoutHelper" do
 
     it "creates an edit workout link" do
       helper.link_to_edit_workout(workout).should eq "EDIT WORKOUT LINK"
-    end
-  end
-
-  describe "#link_to_redirect" do
-    let(:redirect_link) { "REDIRECT LINK" }
-
-    before do
-      mock(helper).copy_workouts_redirect_path
-      mock(helper).link_to("CREATE COPY", anything, anything) { redirect_link }
-    end
-
-    it "creates a redirect link" do
-      helper.link_to_redirect.should eq "REDIRECT LINK"
     end
   end
 
@@ -96,6 +83,27 @@ describe "WorkoutHelper" do
 
     it "creates a download pdf link" do
       helper.link_to_download_workout_pdf(workout).should eq "DOWNLOAD LINK"
+    end
+  end
+
+  describe "#link_to_delete_workout" do
+    let(:workout)       { Object.new }
+    let(:user)          { Object.new }
+    let(:snapz_message) { Object.new }
+
+    context "with update cta" do
+      it "links to destroy the workout" do
+        mock(helper).current_user { user }
+        mock(helper).user_workout_path(user, workout)
+        mock(helper).link_to("DELETE WORKOUT", anything, anything) { "DESTROY WORKOUT" }
+        helper.link_to_delete_workout(workout, snapz_message, "UPDATE WORKOUT").should eq "DESTROY WORKOUT"
+      end
+    end
+
+    context "with no cta" do
+      it "doesn't render anything" do
+        helper.link_to_delete_workout(workout, snapz_message).should eq nil
+      end
     end
   end
 end

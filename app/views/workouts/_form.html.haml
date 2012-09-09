@@ -1,23 +1,21 @@
 .container
   = simple_form_for [current_user, @workout] do |f|
     = f.error_notification
-    #new_workout_form.row
-      
-      %section#workout_form.span3
+
+    .row      
+      %section.span3
         = f.input :name
         = f.input :client_level, collection: @client_level
         = f.input :difficulty, collection: @difficulty
         = f.input :notes, input_html: { rows: 4 }
     
-        = f.submit cta, class: "btn btn-primary"
-        %br
-        %br
+        = f.submit cta, class: "btn btn-primary", class: "button_space"
+
+        = link_to_delete_workout @workout, cta, @snapz_confirm_delete
   
-        - if cta == "UPDATE WORKOUT"
-          %p= link_to "DELETE WORKOUT", user_workout_path(current_user, @workout),   method: :delete, class: "btn btn-danger", data: { confirm: @snapz_confirm_delete }
-  
-      %section.span7#workout_exercises
+      %section.span7
         = render partial: "exercises/sort_by"
+
         %table.table.table-bordered.table-striped
-          %tbody#exercise_list
+          %tbody
             = render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

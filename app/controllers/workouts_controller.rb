@@ -66,8 +66,8 @@ class WorkoutsController < ApplicationController
 
   private
     def create_exercise_variables
-      @exercises      = Workout.exercises_by_alphabetical_tags(params[:muscles])
-      @muscles        = Workout.muscles
+      @exercises = Workout.exercises_by_alphabetical_tags(params[:muscles])
+      @muscles   = Workout.muscles
     end
 
     def create_and_generate_pdf

@@ -78,6 +78,7 @@ Feature: Trainer manages exercises
     When I go to the workout's page
     Then I shouldn't see the edit workout link
 
+  @focus
   Scenario: trainer filters by multiple tags
     Given more than one exercise
     And I'm a logged in trainer
