@@ -17,12 +17,3 @@ Feature: Visitor Views Favorite Workouts
     And the trainer has no favorite workouts
     When I want to look at their favorite workouts
     Then I shouldn't see a link to their favorites
-
-  Scenario: Visitor must sign up to add workout to favorites
-    Given a workout exsists
-    And I'm on a workout's page
-    When I click add to favorites
-    Then I should be redirected to the sign up page
-    And Snapz should give me the favorite workout redirect message
-
-  Scenario: Visitor adds workout to favorite once they sign up or log in

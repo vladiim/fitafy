@@ -6,8 +6,7 @@ class ExercisesController < ApplicationController
   def index
     @title     = "All Exercises"
     @exercises = Exercise.by_alphabetical_tags(params[:muscles])
-    # @exercises = Workout.exercises_by_alphabetical_tags(params[:sort])
-               # = Exercise.with_tags(params[:muslces], :muslces).with_tags(params[:equipment], :equipment).order("name")
+    # = Exercise.with_tags(params[:muslces], :muslces).with_tags(params[:equipment], :equipment).order("name")
     @muscles   = Workout.muscles
   end
 

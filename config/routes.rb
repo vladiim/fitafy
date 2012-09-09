@@ -8,19 +8,12 @@ Fitafy::Application.routes.draw do
   resources :workouts, only: :index
   resources :workout_exercises
   resources :favorite_workouts, only: [:create, :destroy]
-  # resources :favorite_workouts
 
   resources :copy_workouts, only: :create
 
   resources :users do
     resources :workouts
   end
-
-#---------- REDIRECTS ----------#
-
-  # match 'copy_workouts_redirect',     to: "copy_workouts#new_user"
-  match 'favorite_workouts_redirect', to: "favorite_workouts#new_user"
-
 
 #---------- PRETTY URLS ----------#
 

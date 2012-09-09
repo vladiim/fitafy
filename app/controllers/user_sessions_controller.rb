@@ -10,7 +10,6 @@ class UserSessionsController < ApplicationController
   	@user_session = UserSession.new(params[:user_session])
   	if @user_session.save
   		flash[:success] = SnapzSayz::UserSessionSpeak.login
-  		# redirect_to root_url
       redirect_back root_url
   	else
   		render action: :new

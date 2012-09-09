@@ -35,15 +35,6 @@ describe "FavoriteWorkoutHelper" do
         helper.link_to_favorite_workout(trainer, workout).should eq "FAVORITE WORKOUT LINK"
       end
     end
-
-    context "not trainer" do
-      let(:trainer) { nil }
-      before { mock(helper).redirect_to_sign_up_link { "REDIRECT LINK" } }
-
-      it "creates link to redirect the user to sign up" do
-        helper.link_to_favorite_workout(trainer, workout).should eq "REDIRECT LINK"
-      end
-    end
   end
 
   describe "#create_favorite_workout_link" do
@@ -54,17 +45,6 @@ describe "FavoriteWorkoutHelper" do
 
     it "creates a create favorite workout link with the workout's id" do
       helper.create_favorite_workout_link(workout).should eq "FAVORITE LINK"
-    end
-  end
-
-  describe "#redirect_to_sign_up_link" do
-  	before do
-  	  mock(helper).favorite_workouts_redirect_path
-  	  mock(helper).link_to(anything, anything, anything) { "REDIRECT LINK" }
-  	end
-
-    it "redirects through favorite workouts controller" do
-      helper.redirect_to_sign_up_link.should eq "REDIRECT LINK"
     end
   end
 

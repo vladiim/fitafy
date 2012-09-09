@@ -3,5 +3,5 @@ When /^I visit the new exercise path$/ do
 end
 
 Then /^I should get an unauthorized message$/ do
-  page.should have_content "Sorry d00d I can't show you that page!"
+  page.should have_content SnapzSayz::AuthSpeak.need_to_login
 end

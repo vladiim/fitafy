@@ -10,7 +10,7 @@ describe "ApplicationHelper" do
 
       before do
       	mock(controller).current_user { true }
-      	mock(controller).session.times(2) { session }
+      	mock(controller).session.times(3) { session }
       	mock(controller).redirect_to(request_referrer)
       end
 

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back params=nil
-    if current_user
+    if current_user && session[:redirect_to]
       redirect_to session[:redirect_to]
       session[:redirect_to] = nil
     elsif params != nil
