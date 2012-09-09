@@ -43,7 +43,7 @@ Feature: Visitor views workouts
 
   Scenario: Visitor cant see edit workout link
     Given I'm a visitor
-    When I'm on the workout's page
+    When I'm on a workout's page
     Then I can't see the edit workout link
 
   @focus

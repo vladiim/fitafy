@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :favorite_workouts, dependent: :destroy
 
   def create_account
-    save!
+    self.save!
     UserMailer.sign_up_welcome(self).deliver
   end
 

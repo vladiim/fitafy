@@ -2,10 +2,11 @@ class ExercisesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @title          = "All Exercises"
-    @exercises      = Workout.exercises_by_alphabetical_tags(params[:sort])
-                    # = Exercise.with_tags(params[:muslces], :muslces).with_tags(params[:equipment], :equipment).order("name")
-    @muscles        = Workout.muscles
+    @title     = "All Exercises"
+    @exercises = Exercise.by_alphabetical_tags(params[:muscles])
+    # @exercises = Workout.exercises_by_alphabetical_tags(params[:sort])
+               # = Exercise.with_tags(params[:muslces], :muslces).with_tags(params[:equipment], :equipment).order("name")
+    @muscles   = Workout.muscles
   end
 
   def new

@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
   before_filter :create_exercise_variables, only: [:new, :edit]
 
   def index
-    @workouts = Workout.filter_by_tags(params[:sort])
+    @workouts = Workout.filter_by_tags(params[:muscles]) #.filter_by_tags(params[:equipment])
     @muscles  = Workout.muscles
     @title    = "Latest Workouts"
   end
@@ -64,7 +64,7 @@ class WorkoutsController < ApplicationController
 
   private
     def create_exercise_variables
-      @exercises      = Workout.exercises_by_alphabetical_tags(params[:sort])
+      @exercises      = Workout.exercises_by_alphabetical_tags(params[:muscles])
       @muscles        = Workout.muscles
     end
 

@@ -10,13 +10,11 @@ Fitafy::Application.routes.draw do
   resources :favorite_workouts, only: [:create, :destroy]
   # resources :favorite_workouts
 
-  # ordering is big issue, this needs to be low. So the routes tries explicit first
-  resources :users, path: "" do
-    resources :workouts
-  end
-
   resources :copy_workouts, only: :create
 
+  resources :users do
+    resources :workouts
+  end
 
 #---------- REDIRECTS ----------#
 
@@ -39,5 +37,12 @@ Fitafy::Application.routes.draw do
 #---------- HOME ----------#
 
   root to: "pages#home"
+
+#---------- USERS ----------#
+
+  # ordering is big issue, this needs to be low. So the routes tries explicit first
+  # resources :users, path: "" do
+  #   resources :workouts
+  # end
 
 end
