@@ -13,7 +13,8 @@ Feature: Admin manages equipment
 
   @focus
   Scenario: Admin updates equipment
-    Given I'm on an exsisting equipment's edit page
+    Given equipment exists
+    And I'm on an exsisting equipment's edit page
     When I change the equipment's name
     Then I should see the new name on the exercise's page
     And Snapz should given me the updated the equipment message

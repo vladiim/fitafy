@@ -19,9 +19,21 @@ class EquipmentController < ApplicationController
 
   def show
   	@equipment = Equipment.find(params[:id])
+  	@title     = @equipment.name
   end
 
   def edit
+  	@title     = "EDIT EQUIPMENT"
   	@equipment = Equipment.find(params[:id])
+  end
+
+  def update
+  	@equipment = Equipment.find(params[:id])
+  	if @equipment.update_attributes(params[:equipment])
+      flash[:success] = SnapzSayz::EquipmentSpeak.update
+      redirect_to @equipment
+  	else
+      render :edit
+  	end
   end
 end
