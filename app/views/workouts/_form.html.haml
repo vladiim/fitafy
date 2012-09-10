@@ -16,6 +16,6 @@
       %section.span7
         = render partial: "exercises/sort_by"
 
-        %table.table.table-bordered.table-striped
+        %table#exercise_list.table.table-bordered.table-striped
           %tbody
             = render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

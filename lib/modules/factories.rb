@@ -37,6 +37,10 @@ FactoryGirl.define do
     name "cuban linx"
   end
 
+  factory :equipment do
+    name "liquid swords"
+  end
+
   factory :favorite_workout do
     user
     workout

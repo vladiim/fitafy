@@ -1,13 +1,13 @@
 %p#tab_sort_by
-
   Muscles:
   - @muscles.each do |tag|
     = link_to_tag tag, :muscles
     = link_to_remove_tag tag, :muscles
     |
 
-  / Equipment:
-  / - @equipment.each do |tag|
-  /   = link_to_tag tag, :equipment
-  /   = link_to_remove_tag tag, :equipment
-  /   |
+%p
+  Equipment:
+  - @equipment.each do |tag|
+    = link_to_tag tag, :equipment
+    = link_to_remove_tag tag, :equipment
+    |

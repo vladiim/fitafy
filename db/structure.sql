@@ -29,6 +29,37 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: equipment; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE equipment (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE equipment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: equipment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE equipment_id_seq OWNED BY equipment.id;
+
+
+--
 -- Name: exercises; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -281,6 +312,13 @@ ALTER SEQUENCE workouts_id_seq OWNED BY workouts.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY equipment ALTER COLUMN id SET DEFAULT nextval('equipment_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY exercises ALTER COLUMN id SET DEFAULT nextval('exercises_id_seq'::regclass);
 
 
@@ -324,6 +362,14 @@ ALTER TABLE ONLY workout_exercises ALTER COLUMN id SET DEFAULT nextval('workout_
 --
 
 ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq'::regclass);
+
+
+--
+-- Name: equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment
+    ADD CONSTRAINT equipment_pkey PRIMARY KEY (id);
 
 
 --
@@ -518,3 +564,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120822090359');
 INSERT INTO schema_migrations (version) VALUES ('20120901035319');
 
 INSERT INTO schema_migrations (version) VALUES ('20120901060140');
+
+INSERT INTO schema_migrations (version) VALUES ('20120909071940');

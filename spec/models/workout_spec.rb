@@ -175,4 +175,13 @@ describe Workout do
       subject.exercises.should eq exercises
     end
   end
+
+  describe "#equipment_names" do
+    let(:equipment) { "ALL EQUIPMENT NAMES" }
+
+    it "renders all the equipment" do
+      mock(Equipment).all_names { equipment }
+      Workout.equipment_names.should eq "ALL EQUIPMENT NAMES"
+    end
+  end
 end

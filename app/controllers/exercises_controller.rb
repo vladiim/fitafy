@@ -8,6 +8,7 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.by_alphabetical_tags(params[:muscles])
     # = Exercise.with_tags(params[:muslces], :muslces).with_tags(params[:equipment], :equipment).order("name")
     @muscles   = Workout.muscles
+    @equipment = Workout.equipment_names
   end
 
   def new

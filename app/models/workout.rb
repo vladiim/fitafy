@@ -67,4 +67,8 @@ class Workout < ActiveRecord::Base
                                     instructions: workout_exercise.instructions)
     end
   end
+
+  def self.equipment_names
+    Equipment.all_names
+  end
 end
