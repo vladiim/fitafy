@@ -23,8 +23,9 @@ class EquipmentController < ApplicationController
   end
 
   def edit
-  	@title     = "EDIT EQUIPMENT"
-  	@equipment = Equipment.find(params[:id])
+  	@title         = "EDIT EQUIPMENT"
+  	@snapz_message = SnapzSayz::EquipmentSpeak.confirm_delete
+  	@equipment     = Equipment.find(params[:id])
   end
 
   def update
@@ -35,5 +36,11 @@ class EquipmentController < ApplicationController
   	else
       render :edit
   	end
+  end
+
+  def destroy
+  	Equipment.find(params[:id]).destroy
+  	flash[:success] = SnapzSayz::EquipmentSpeak.delete
+  	redirect_to root_path
   end
 end

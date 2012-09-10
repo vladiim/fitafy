@@ -11,7 +11,6 @@ Feature: Admin manages equipment
     When I fill in the equipment form
     Then Snapz should give the created equipment message
 
-  @focus
   Scenario: Admin updates equipment
     Given equipment exists
     And I'm on an exsisting equipment's edit page
@@ -19,8 +18,10 @@ Feature: Admin manages equipment
     Then I should see the new name on the exercise's page
     And Snapz should given me the updated the equipment message
 
+  @focus
   Scenario: Admin deletes equipment
-    Given I'm on the edit equipment page
+    Given equipment exists
+    And I'm on an exsisting equipment's edit page    
     When I click the delete equipment link
     Then the equipment should be gone
     And Snapz should give the deleted equipment message

@@ -1,3 +1,5 @@
 = simple_form_for @equipment do |f|
 
   = render partial: "form", locals: { f: f, cta: "UPDATE EQUIPMENT" }
+
+= link_to "DELETE EQUIPMENT", equipment_path(@equipment), method: :delete, class: "btn btn-danger", data: { confirm: @snapz_message }
