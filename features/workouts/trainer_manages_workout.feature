@@ -24,7 +24,7 @@ Feature: Trainer manages exercises
 
   Scenario: Trainer deletes exercise from workout
     Given a workout exercise exists
-    And I'm on the workout's page
+    And I'm on a workout's page
     When I click delete exercise
     Then that exercise should be removed
 

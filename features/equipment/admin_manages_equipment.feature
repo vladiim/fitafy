@@ -18,7 +18,6 @@ Feature: Admin manages equipment
     Then I should see the new name on the exercise's page
     And Snapz should given me the updated the equipment message
 
-  @focus
   Scenario: Admin deletes equipment
     Given equipment exists
     And I'm on an exsisting equipment's edit page    

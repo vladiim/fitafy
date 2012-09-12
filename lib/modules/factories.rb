@@ -16,7 +16,7 @@ FactoryGirl.define do
   	description     "wu gambinos"
   	tips  		      "protect yo neck"
     muscle_list     { name }
-  	equipment_list 	"bobby bolders"
+    equipment
   end
 
   factory :workout do

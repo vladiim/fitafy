@@ -68,11 +68,11 @@ CREATE TABLE exercises (
     name character varying(255) NOT NULL,
     description text NOT NULL,
     tips text,
-    equipment character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     slug character varying(255),
-    muscles character varying(255)
+    muscles character varying(255),
+    equipment_id integer
 );
 
 
@@ -566,3 +566,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120901035319');
 INSERT INTO schema_migrations (version) VALUES ('20120901060140');
 
 INSERT INTO schema_migrations (version) VALUES ('20120909071940');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912093310');

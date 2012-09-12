@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  acts_as_taggable_on :muscles, :equipment
+  acts_as_taggable_on :muscles
 
   attr_accessible :name, :description, :tips, :muscle_list, :equipment_list
 
@@ -9,6 +9,7 @@ class Exercise < ActiveRecord::Base
 
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises, uniq: true
+  belongs_to :equipment
 
   validates_presence_of :name, :description
   validates :name, uniqueness: true

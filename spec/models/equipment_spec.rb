@@ -3,6 +3,10 @@ require_relative '../spec_helper'
 describe Equipment do
   let(:equipment) { build :equipment }
 
+  describe "#associations" do
+    it { should have_many :exercises }
+  end
+
   describe "#all_names" do
   	let(:equipment_result) { OpenStruct.new name: "EQUIPMENT NAME"}
 

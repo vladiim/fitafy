@@ -31,4 +31,12 @@ class WorkoutExercise < ActiveRecord::Base
   	end
   	workouts
   end
+
+  def equipment_name
+    if exercise.equipment.nil?
+      return "no equipment yo"
+    else
+      exercise.equipment.name
+    end
+  end
 end
