@@ -1,4 +1,4 @@
 Given /^a workout exsists$/ do
-  FactoryGirl.create :workout_exercise
-  @workout = Workout.last
+  @workout_exercise = create :workout_exercise
+  @workout          = @workout_exercise.workout
 end

@@ -1,11 +1,19 @@
+# With Avdi
+
+* Trending
+* Refactor Workout, Exercise
+
 # Functionality
 
 * Created equipment model
 * Will iterate through equipment.names for sort by
 * upload/manage photo
 * facebook login
-* emails from
 * friendly urls
+
+# Mail
+* forgot password
+* someone favorited your workout
 
 # Backend
 
