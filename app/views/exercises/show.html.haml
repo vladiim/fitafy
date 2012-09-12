@@ -22,8 +22,7 @@
 
     %h5 Equipment
     %p
-      - @exercise.equipment_list.each do |equipment|
-        = equipment.titleize
+      - @equipment_name.titleize
 
   %aside.span3.well
     = render "exercise_aside"

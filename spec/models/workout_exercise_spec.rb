@@ -99,31 +99,12 @@ describe WorkoutExercise do
   end
 
   describe "#equipment_name" do
-    let(:exercise)  { Object.new }
+    let(:exercise) { OpenStruct.new equipment_name: "EQUIPMENT NAME"}
 
-    context "exercise has equipment" do
-      let(:equipment) { OpenStruct.new name: "EQUIPMENT NAME"}
+    before { mock(subject).exercise { exercise } }
 
-      before do
-        mock(subject).exercise.times(2)   { exercise }
-        mock(exercise).equipment.times(2) { equipment }
-      end
-
-      it "should return the exercise's equipment name" do
-        subject.equipment_name.should eq "EQUIPMENT NAME"
-      end
-    end
-
-    context "exercise doesn't have equipment" do
-
-      before do
-        mock(subject).exercise   { exercise }
-        mock(exercise).equipment { nil }
-      end
-
-      it "should return the exercise's equipment name" do
-        subject.equipment_name.should eq "no equipment yo"
-      end
+    it "should return the exercise's equipment name" do
+      subject.equipment_name.should eq "EQUIPMENT NAME"
     end
   end
 end

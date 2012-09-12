@@ -6,6 +6,7 @@ Feature: Visitor views exercises
   Background:
     Given there is an exercise
 
+  @focus
   Scenario: Visitor views an individual exercise
     Given I find an exercise
     When I visit the exercise's page

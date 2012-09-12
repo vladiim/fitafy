@@ -2,4 +2,5 @@
 = f.input :description, input_html: { rows: 5 }
 = f.input :tips, input_html: { rows: 4 }
 = f.input :muscle_list
-= f.input :equipment_list
+/ = f.input :equipment, collection: @exercise.equipment_list, prompt: "Select equipment"
+= f.input :equipment_id, collection: @exercise.equipment_list,  group_method: :name

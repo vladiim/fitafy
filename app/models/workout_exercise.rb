@@ -33,10 +33,6 @@ class WorkoutExercise < ActiveRecord::Base
   end
 
   def equipment_name
-    if exercise.equipment.nil?
-      return "no equipment yo"
-    else
-      exercise.equipment.name
-    end
+    exercise.equipment_name
   end
 end

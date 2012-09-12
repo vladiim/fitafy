@@ -6,7 +6,6 @@ Feature: Visitor views equipment
   Background:
     Given equipment exists
 
-  @focus
   Scenario: Visitor views equipment name on workout page
     Given a workout with the equipment exsists
     When I'm on a workout's page

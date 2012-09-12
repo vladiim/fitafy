@@ -5,6 +5,7 @@
 * upload/manage photo
 * facebook login
 * emails from
+* friendly urls
 
 # Backend
 

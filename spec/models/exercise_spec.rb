@@ -1,7 +1,6 @@
 require_relative '../spec_helper'
 
 describe Exercise do
-  # subject             { Exercise.new }
   subject             { build :exercise }
   let(:valid_subject) { create :exercise }
 
@@ -101,6 +100,36 @@ describe Exercise do
       ["aaa", "bbb", "ccc"].each_with_index do |name, index|
         Exercise.by_alphabetical_tags[index].name.should eq name
       end
+    end
+  end
+
+  describe "#equipment_name" do
+    context "has equipment" do
+      let(:equipment) { OpenStruct.new name: "EQUIPMENT NAME"}
+
+      before { mock(subject).equipment.times(2) { equipment } }
+
+      it "returns the exercise's equipment name" do
+        subject.equipment_name.should eq "EQUIPMENT NAME"
+      end
+    end
+
+    context "doesn't have equipment" do
+      before { mock(subject).equipment { nil } }
+
+      it "returns a message" do
+        subject.equipment_name.should eq "no equipment yo"
+      end
+    end
+  end
+
+  describe "#equipment_list" do
+    let(:equipment) { "EQUIPMENT LIST" }
+
+    before { mock(Equipment).scoped { equipment } }
+
+    it "lists all the equipment" do
+      subject.equipment_list.should eq "EQUIPMENT LIST"
     end
   end
 end

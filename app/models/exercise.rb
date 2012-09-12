@@ -3,7 +3,7 @@ class Exercise < ActiveRecord::Base
 
   acts_as_taggable_on :muscles
 
-  attr_accessible :name, :description, :tips, :muscle_list, :equipment_list
+  attr_accessible :name, :description, :tips, :muscle_list, :equipment_id
 
   MUSCLES = %w(abs back biceps chest forearms legs shoulders tricep)
 
@@ -30,5 +30,17 @@ class Exercise < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def equipment_name
+    if equipment.nil?
+      "no equipment yo"
+    else
+      equipment.name
+    end
+  end
+
+  def equipment_list
+    Equipment.scoped
   end
 end
