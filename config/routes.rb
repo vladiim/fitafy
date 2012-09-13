@@ -24,10 +24,14 @@ Fitafy::Application.routes.draw do
   match 'logout',  to: 'user_sessions#destroy'
 
 
+#---------- AUTH ----------#
+
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+
 #---------- STATIC ----------#
 
   get 'pages/home'
-
 
 #---------- HOME ----------#
 

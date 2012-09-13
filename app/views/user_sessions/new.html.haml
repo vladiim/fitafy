@@ -5,6 +5,9 @@
   = f.input :password
   = f.submit "LOGIN", class: "btn btn-primary"
 
+%p
+  = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
+
 %aside
   %p 
     No account?

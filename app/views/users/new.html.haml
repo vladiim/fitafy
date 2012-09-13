@@ -1,5 +1,8 @@
 = render partial: "form", locals: { cta: "SIGN UP" }
 
+%p
+  = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
+
 %aside
   %p 
     Already got an account?

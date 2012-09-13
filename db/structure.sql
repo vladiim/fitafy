@@ -208,14 +208,18 @@ CREATE TABLE users (
     id integer NOT NULL,
     username character varying(255) NOT NULL,
     email character varying(255) NOT NULL,
-    crypted_password character varying(255) NOT NULL,
     password_salt character varying(255),
     persistence_token character varying(255),
     login_count integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     slug character varying(255),
-    role character varying(255)
+    role character varying(255),
+    provider character varying(255),
+    uid character varying(255),
+    oauth_token character varying(255),
+    oauth_expires_at timestamp without time zone,
+    crypted_password character varying(255)
 );
 
 
@@ -568,3 +572,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120901060140');
 INSERT INTO schema_migrations (version) VALUES ('20120909071940');
 
 INSERT INTO schema_migrations (version) VALUES ('20120912093310');
+
+INSERT INTO schema_migrations (version) VALUES ('20120913102354');
+
+INSERT INTO schema_migrations (version) VALUES ('20120913104644');

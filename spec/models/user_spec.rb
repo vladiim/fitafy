@@ -185,6 +185,7 @@ describe User do
       	mock(user).admin?	{ false }
       end
 
+      # it { should be_able_to(:manage, SessionsController ) }
       it { should be_able_to(:read, :all) }
       it { should_not be_able_to(:manage, Workout.new) }
       it { should_not be_able_to(:manage, Exercise.new) }

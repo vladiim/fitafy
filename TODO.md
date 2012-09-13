@@ -1,26 +1,24 @@
 # With Avdi
-
 * Trending
 * Refactor Workout, Exercise
 
-# Functionality
+# Facebook
+* Can sign up once but if I log out and sign up again it fails
+* Code is ugly as fuck
 
-* Created equipment model
-* Will iterate through equipment.names for sort by
+# Functionality
 * upload/manage photo
-* facebook login
 * friendly urls
+
+# Refactor
+* Extract workout methods that aren't to do with creating a workout
 
 # Mail
 * forgot password
 * someone favorited your workout
 
-# Backend
-
+# Services
 * Mailchimp
 * Sendgrid
 * New Relic
-
-# Refactor
-
-* Extract workout methods that aren't to do with creating a workout
+* cloudinary

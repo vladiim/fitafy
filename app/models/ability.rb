@@ -15,6 +15,7 @@ class Ability
 
     else
       can :read, :all
+      # can :manage, SessionsController
     end
   end
 end
