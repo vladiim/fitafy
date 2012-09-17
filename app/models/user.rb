@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     c.validate_password_field = false
   end
 
-  attr_accessible :username, :email, :password, :password_confirmation, :role
+  attr_accessible :username, :email, :password, :role
 
   friendly_id :username, use: :slugged
 

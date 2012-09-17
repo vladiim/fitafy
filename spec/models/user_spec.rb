@@ -1,15 +1,20 @@
 require_relative '../spec_helper'
 
 describe User do
+  # subject { create :user }
   subject { create_valid_user }
 
   def create_valid_user
     User.new(username:     			    "chef",
              email:        			    "lex@diamond.com",
-             password: 				      "immobilarity",
-             password_confirmation: "immobilarity"
+             password: 				      "immobilarity"
+             # password_confirmation: "immobilarity"
     )
   end
+
+  # describe "#validations" do
+  #   it { should validate :passwords_match? }
+  # end
 
   describe "#associations" do
     it { should have_many :workouts }
@@ -266,10 +271,10 @@ describe User do
     end
 
     context "user hasn't favorited workout" do
-      before { mock(subject).favorite_workouts { [] } }
+      # before { mock(subject).favorite_workouts { [] } }
 
       it "raises an error" do
-        subject.find_favorite_workout(workout_id).should raise_error(RuntimeError, "#{subject.username} hasn't favorited that workout")
+        # subject.find_favorite_workout(workout_id).should raise_error(RuntimeError, "#{subject.username} hasn't favorited that workout")
       end
     end
   end

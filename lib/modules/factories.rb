@@ -5,10 +5,10 @@ FactoryGirl.define do
   sequence(:string) { |n| WuTangIpsum.generate }
 
   factory :user, class: User, aliases: [:trainer] do
-  	username              { "johnny #{ generate :string }" }
+  	username              { "johnny #{ rand 10000 }" }
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
-  	password_confirmation "password"
+  	# password_confirmation "password"
   end
 
   factory :exercise do

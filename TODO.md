@@ -5,6 +5,7 @@
 # Facebook
 * Can sign up once but if I log out and sign up again it fails
 * Code is ugly as fuck
+* password_confirmation no longer works
 
 # Functionality
 * upload/manage photo
