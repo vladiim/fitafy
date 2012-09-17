@@ -1,4 +1,7 @@
-%p#tab_sort_by
+.muscle_tags
+  - @muscles.each do |tag|
+    .detail.hidden This should be hidden
+
   Muscles:
   - @muscles.each do |tag|
     = link_to_tag tag, :muscles
