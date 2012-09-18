@@ -93,7 +93,7 @@ describe Workout do
   end
 
   describe "#all_exercises" do
-    before { mock(Exercise).all { exercises } }
+    before { mock(Exercise).scoped { exercises } }
 
     it "should call all exercises" do
       subject.all_exercises.should eq exercises

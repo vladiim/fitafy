@@ -3,7 +3,7 @@ When /^I click on a tag$/ do
 end
 
 When /^I click remove tag$/ do
-  within "#tab_sort_by" do
+  within ".muscle_tags" do
   	click_link "x"
   end
 end

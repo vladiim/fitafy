@@ -38,6 +38,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'debugger',      '~> 1.2.0'
   gem 'rspec-rails',   '~> 2.9.0'
   gem 'jasminerice',   '~> 0.0.9'
   gem 'guard-jasmine', '~> 1.5.0'

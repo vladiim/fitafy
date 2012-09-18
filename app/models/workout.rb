@@ -33,7 +33,7 @@ class Workout < ActiveRecord::Base
   end
 
   def all_exercises
-    Exercise.all
+    Exercise.scoped
   end
 
   def self.muscles
@@ -60,8 +60,8 @@ class Workout < ActiveRecord::Base
     workout_exercises.count
   end
 
-  def copy_workout_exercises workout
-    workout.workout_exercises.each do |workout_exercise|
+  def copy_workout_exercises other_workout
+    other_workout.workout_exercises.each do |workout_exercise|
       self.workout_exercises.create(exercise_id:  workout_exercise.exercise_id, 
                                     sets:         workout_exercise.sets, 
                                     instructions: workout_exercise.instructions)

@@ -3,17 +3,19 @@ class FacebookUser
   attr_reader :auth
   attr_accessor :user
 
+  delegate :id, to: :user, prefix: true
+
   def initialize auth
     @auth = auth
   end
 
   def update_or_create
-    user = find_user_by_uid || User.new
+    self.user = find_user_by_uid || User.new
     set_user_details
   end
 
   def find_user_by_uid
-    user = User.find_by_uid auth.uid
+    self.user = User.find_by_uid auth.uid
   end
 
   def set_user_details
