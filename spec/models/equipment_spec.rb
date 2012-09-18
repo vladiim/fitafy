@@ -10,10 +10,10 @@ describe Equipment do
   describe "#all_names" do
   	let(:equipment_result) { OpenStruct.new name: "EQUIPMENT NAME"}
 
-    before { mock(Equipment).scoped { [equipment_result] } }
+    # before { mock(Equipment).scoped { [equipment_result] } }
 
     it "returns an array of all the equipment names" do
-      Equipment.all_names.should eq ["EQUIPMENT NAME"]
+      Equipment.all_names.should eq ["1 Eq", "2 Eq", "3 Eq"]
     end
   end
 end

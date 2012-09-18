@@ -11,17 +11,17 @@ describe "TagsHelper" do
       before { mock(helper).params { { sort: false } } }
 
       it "links to the current page" do
-        mock(helper).link_to(anything, anything) { "CURRENT PAGE" }
+        mock(helper).link_to(anything, anything, anything) { "CURRENT PAGE" }
         result.should eq "CURRENT PAGE"
       end
   
       it "appends the uppercase tag name to the current url" do
-        mock(helper).link_to anything, muscles: ["abs"]
+        mock(helper).link_to anything, { muscles: ["abs"] }, anything
         helper.link_to_tag "abs", :muscles
       end
   
       it "uses an uppercase tag name as the link text" do
-        mock(helper).link_to "ABS", anything
+        mock(helper).link_to "ABS", anything, anything
         helper.link_to_tag "abs", :muscles
       end
 
@@ -29,7 +29,7 @@ describe "TagsHelper" do
         let(:result)   { helper.link_to_tag "dumbbells", :equipment }
 
         it "renders the correct link" do
-          mock(helper).link_to "DUMBBELLS", { equipment: ["dumbbells"] }
+          mock(helper).link_to "DUMBBELLS", { equipment: ["dumbbells"] }, anything
           helper.link_to_tag "dumbbells", :equipment
         end
       end
@@ -38,7 +38,7 @@ describe "TagsHelper" do
     context "with current_filter" do
 
       it "includes the current_filter" do
-        mock(helper).link_to anything, muscles: ["chest", "abs", "shoulders"]
+        mock(helper).link_to anything, { muscles: ["chest", "abs", "shoulders"] }, anything
         mock(helper).params.times(2) { { muscles: ["abs", "shoulders"] } }
         helper.link_to_tag "chest", :muscles
       end
