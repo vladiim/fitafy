@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :workouts
   has_many :favorite_workouts, dependent: :destroy
+  has_one :facebook_user
 
   def create_account
     self.save!

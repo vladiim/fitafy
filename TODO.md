@@ -11,6 +11,18 @@
 * Equipment tags
 	- New Equipment model
 
+# Next steps
+* User & FBUser = matching pair
+* for new - verify instantiated from pair
+* for exsiting - verify updates with auth info
+
+verify from auth = existing user & fb pair
+create existing with different values
+
+
+* alt period gives last command - check
+* esc period
+
 # Facebook
 * Can sign up once but if I log out and sign up again it fails
 * Code is ugly as fuck

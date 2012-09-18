@@ -1,12 +1,28 @@
-class FacebookUser
+class FacebookUser < ActiveRecord::Base
 
-  attr_reader :auth
-  attr_accessor :user
+  # attr_reader :auth
+  # attr_accessor :user, :name
+
+  # add god_field/auth_info with all oauth data
 
   delegate :id, to: :user, prefix: true
+  delegate :username, :username=, to: :user
+  delegate :email, :email=, to: :user
 
-  def initialize auth
-    @auth = auth
+  belongs_to :user
+
+  def self.from_auth auth
+    info  = auth.fetch(:info)
+    creds = auth.fetch(:credentials)
+
+    FacebookUser.new do |fb|
+      fb.build_user
+      fb.uid              = auth.fetch(:uid)
+      fb.username         = info.fetch(:name)
+      fb.email            = info.fetch(:email)
+      fb.oauth_token      = creds.fetch(:token)
+      fb.oauth_expires_at = creds.fetch(:expires_at)
+    end
   end
 
   def update_or_create
@@ -25,7 +41,7 @@ class FacebookUser
     set_provider
     set_oauth_token
     set_oauth_expires_at
-    user.save!
+    user.save
   end
 
   def set_unique_username username=auth.info.name

@@ -2,7 +2,11 @@ require_relative '../spec_helper'
 
 describe FacebookUser do
   let(:auth)    { OpenStruct.new uid: 1 }
-  let(:fb_user) { FacebookUser.new auth }
+  let(:fb_user) { FacebookUser.new }
+
+  describe "#associations" do
+    it { should belong_to :user }
+  end
 
   describe "#update_or_create" do
     context "#facebook user exsists" do

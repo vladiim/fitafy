@@ -34,7 +34,6 @@ Feature: Trainer manages account
     When I click delete account
     Then my account will be permanantly deleted
 
-  @focus
   Scenario: Trainer signs up through Facebook
     Given I'm a new trainer
     And I have a Facebook account

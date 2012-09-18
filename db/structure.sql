@@ -96,6 +96,41 @@ ALTER SEQUENCE exercises_id_seq OWNED BY exercises.id;
 
 
 --
+-- Name: facebook_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE facebook_users (
+    id integer NOT NULL,
+    provider character varying(255),
+    uid character varying(255),
+    oauth_token character varying(255),
+    oauth_expires_at timestamp without time zone,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: facebook_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE facebook_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: facebook_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE facebook_users_id_seq OWNED BY facebook_users.id;
+
+
+--
 -- Name: favorite_workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -215,10 +250,6 @@ CREATE TABLE users (
     updated_at timestamp without time zone NOT NULL,
     slug character varying(255),
     role character varying(255),
-    provider character varying(255),
-    uid character varying(255),
-    oauth_token character varying(255),
-    oauth_expires_at timestamp without time zone,
     crypted_password character varying(255)
 );
 
@@ -330,6 +361,13 @@ ALTER TABLE ONLY exercises ALTER COLUMN id SET DEFAULT nextval('exercises_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY facebook_users ALTER COLUMN id SET DEFAULT nextval('facebook_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY favorite_workouts ALTER COLUMN id SET DEFAULT nextval('favorite_workouts_id_seq'::regclass);
 
 
@@ -382,6 +420,14 @@ ALTER TABLE ONLY equipment
 
 ALTER TABLE ONLY exercises
     ADD CONSTRAINT exercises_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: facebook_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY facebook_users
+    ADD CONSTRAINT facebook_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -576,3 +622,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120912093310');
 INSERT INTO schema_migrations (version) VALUES ('20120913102354');
 
 INSERT INTO schema_migrations (version) VALUES ('20120913104644');
+
+INSERT INTO schema_migrations (version) VALUES ('20120918173725');

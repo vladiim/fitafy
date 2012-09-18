@@ -19,6 +19,7 @@ describe User do
   describe "#associations" do
     it { should have_many :workouts }
     it { should have_many :favorite_workouts }
+    it { should have_one :facebook_user }
   end
 
   describe "#create_account" do
