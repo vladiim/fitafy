@@ -17,7 +17,7 @@ class FacebookUser
   end
 
   def set_user_details
-    ensure_unique_username
+    set_unique_username
     set_uid
     set_email
     set_provider
@@ -26,8 +26,32 @@ class FacebookUser
     user.save!
   end
 
-  def ensure_unique_username
-    user = 
+  def set_unique_username username=auth.info.name
+    username = username.downcase.gsub(' ', '-')
+    if username_unique? username
+      return user.username = username
+    else
+      change_username username
+    end
+  end
+
+  def username_unique? username
+    if User.find_by_username username
+      false
+    else
+      true
+    end
+  end
+
+  def change_username username
+    if username[-2..-1] =~ /-[n]/
+      num = username[-1]
+      num = Integer(num) + 1
+      username[-1].replace(num)
+    else
+      username << "-1"
+    end
+    set_unique_username username
   end
 
   def set_uid

@@ -26,7 +26,7 @@ Fitafy::Application.routes.draw do
 
 #---------- AUTH ----------#
 
-  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/:provider/callback', to: 'facebook_users#create'
   match 'auth/failure', to: redirect('/')
 
 #---------- STATIC ----------#

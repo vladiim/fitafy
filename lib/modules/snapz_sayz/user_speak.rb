@@ -17,5 +17,9 @@ module SnapzSayz
     def self.destroy
       "Your account is goooone... I'm seriously sad right now."
     end
+
+    def self.facebook_user_issue
+      "Hmmm... that crazy Facebook seems to be giving us issues, you can sign up or try Facebook again."
+    end
   end
 end

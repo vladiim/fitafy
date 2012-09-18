@@ -1,6 +1,15 @@
 # With Avdi
-* Trending
 * Refactor Workout, Exercise
+* Trending
+	- Favorited workout
+	- Printed workout
+	- Copied workout
+* FaceBook user management
+	- FB details in User model?
+	- ensure_unique_username method
+* Username clickable & in title username/workout_name
+* Equipment tags
+	- New Equipment model
 
 # Facebook
 * Can sign up once but if I log out and sign up again it fails
