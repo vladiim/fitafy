@@ -3,7 +3,7 @@ module TagsHelper
   def link_to_tag tag, tag_type
   	filter = [tag]
   	add_param_tags_to_filter filter, tag_type if params[tag_type]
-  	link_to tag.upcase, tag_type => filter
+  	link_to tag.upcase, { tag_type => filter }, class: "tag_link"
   end
 
   def link_to_remove_tag tag, tag_type
