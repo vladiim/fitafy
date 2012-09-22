@@ -12,10 +12,11 @@ describe FacebookUser do
 
     it "turns expires_at to date time" do
       result.oauth_expires_at.should be_a Time
+      result.oauth_expires_at.should eq Time.at(4503662457)
     end
 
     it "formats the username" do
-      result.user.username.should eq "facebook-name"
+      result.username.should eq "facebook-name"
     end
 
   	context "no existing FacebookUser" do
@@ -26,10 +27,9 @@ describe FacebookUser do
 
       it "uses the given auth info for attributes" do
         result.uid.should              eq '12345'
-        result.username.should         eq 'FACEBOOK NAME'
         result.email.should            eq 'EMAIL@EMAIL.COM'
         result.oauth_token.should      eq '1234'
-        result.oauth_expires_at.should eq Time.at(4503662457)
+        result.provider.should         eq "facebook"
       end
 
       it "makes a new User" do

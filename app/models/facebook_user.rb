@@ -24,6 +24,7 @@ class FacebookUser < ActiveRecord::Base
       fb.email            = info.fetch("email")
       fb.oauth_token      = creds.fetch("token")
       fb.oauth_expires_at = Time.at creds.fetch("expires_at")
+      fb.provider         = "facebook"
     end
   end
 

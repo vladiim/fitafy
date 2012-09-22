@@ -34,10 +34,18 @@ Feature: Trainer manages account
     When I click delete account
     Then my account will be permanantly deleted
 
-  @focus
   Scenario: Trainer signs up through Facebook
     Given I'm a new trainer
     And I have a Facebook account
     When I click sign in with Facebook
     Then I should have a new fitafy account
     And my profile should have my Facebook name as my username
+
+  Scenario: Trainer logs back in with Facebook
+    Given I log out
+    And I've signed in through Facebook
+    And I log out
+    When I click sign in with Facebook
+    Then I should be signed back in through Facebook
+
+  Scenario: Trainer can't visit login/signup page if signed in

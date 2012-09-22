@@ -4,7 +4,7 @@ class FacebookUsersController < ApplicationController
   def create
   	facebook_user = FacebookUser.from_auth env["omniauth.auth"]
     if facebook_user.save
-  	  session[:user_id] = facebook_user.user_id
+  	  session[:facebook_user_id] = facebook_user.user_id
   	  redirect_to root_url
       flash[:success] = SnapzSayz::UserSpeak.created_user
     else
@@ -14,7 +14,7 @@ class FacebookUsersController < ApplicationController
   end
 
   def destroy
-  	session[:user_id] = nil
+  	session[:facebook_user_id] = nil
   	redirect_to root_url
   end
 end
