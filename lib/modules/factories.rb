@@ -15,7 +15,7 @@ FactoryGirl.define do
     user
     uid              "12345"
     oauth_token      "1234"
-    oauth_expires_at 1.month.from_now
+    oauth_expires_at { Time.at(4503662457) }
   end
 
   factory :exercise do

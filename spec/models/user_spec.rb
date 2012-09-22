@@ -1,20 +1,7 @@
 require_relative '../spec_helper'
 
 describe User do
-  # subject { create :user }
-  subject { create_valid_user }
-
-  def create_valid_user
-    User.new(username:     			    "chef",
-             email:        			    "lex@diamond.com",
-             password: 				      "immobilarity"
-             # password_confirmation: "immobilarity"
-    )
-  end
-
-  # describe "#validations" do
-  #   it { should validate :passwords_match? }
-  # end
+  subject { create :user }
 
   describe "#associations" do
     it { should have_many :workouts }
@@ -76,6 +63,8 @@ describe User do
     end
 
     context "user is not a trainer" do
+      before { mock(subject).role { "client" } }
+
       it "should be false" do
         subject.trainer?.should be_false
       end
@@ -107,7 +96,7 @@ describe User do
 
   describe "#copy_workout" do
     let(:workout) { OpenStruct.new(name: "capadona", description: "the struggle")}
-    let(:user)    { subject.dup }
+    let(:user)    { build :trainer }
 
     before do
       user.save!
@@ -161,11 +150,11 @@ describe User do
   end
 
   describe "abilities" do
-  	subject 	  { ability }
-  	let(:ability) { Ability.new(user) }
+  	subject { Ability.new(user) }
+      let(:user) { create :user }
 
     context "admin" do
-      let(:user) { create_valid_user }
+
       before do
       	mock(user).trainer? { false }
       	mock(user).admin?   { true }
@@ -176,7 +165,7 @@ describe User do
     end
 
     context "trainer" do
-      let(:user) { create_valid_user }
+      let(:user) { create :user }
       before     { mock(user).trainer? { true } }
 
       it { should be_able_to(:manage, Workout.new) }
@@ -191,7 +180,6 @@ describe User do
       	mock(user).admin?	{ false }
       end
 
-      # it { should be_able_to(:manage, SessionsController ) }
       it { should be_able_to(:read, :all) }
       it { should_not be_able_to(:manage, Workout.new) }
       it { should_not be_able_to(:manage, Exercise.new) }
@@ -276,6 +264,26 @@ describe User do
 
       it "raises an error" do
         # subject.find_favorite_workout(workout_id).should raise_error(RuntimeError, "#{subject.username} hasn't favorited that workout")
+      end
+    end
+  end
+
+  describe "#facebook_user?" do
+    let(:result) { subject.facebook_user? }
+
+    context "user is facebook_user" do
+      before { mock(FacebookUser).find_by_user_id(subject.id) { true } }
+
+      it "returns true" do
+        result.should eq true
+      end
+    end
+
+    context "user is not facebook_user" do
+      before { mock(FacebookUser).find_by_user_id(subject.id) { nil } }
+
+      it "returns true" do
+        result.should eq false
       end
     end
   end

@@ -96,6 +96,10 @@ class User < ActiveRecord::Base
     raise "#{self.username} hasn't favorited that workout"
   end
 
+  def facebook_user?
+    FacebookUser.find_by_user_id(self.id) ? true : false
+  end
+
   private
 
     def make_user_trainer

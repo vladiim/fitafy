@@ -1,25 +1,19 @@
 require "spec_helper"
 
 describe FacebookUser do
-    let(:auth) { { "uid" => '12345', 
-                   "info" => { "name" => "FACEBOOK NAME", 
-                           "email" => "EMAIL@EMAIL.COM" },
-                   "credentials" => { "token" => "1234",
-                                  "expires_at" => 4503662457 } } }
+  let(:fb_user)  { build :facebook_user }
+
+  let(:auth) { { "uid" => '12345', 
+                 "info" => { "name" => "FACEBOOK NAME", 
+                         "email" => "EMAIL@EMAIL.COM" },
+                 "credentials" => { "token" => "1234",
+                                "expires_at" => 4503662457 } } }
 
   describe ".from_auth" do
     let(:result) { FacebookUser.from_auth auth }
 
-    it "turns expires_at to date time" do
-      result.oauth_expires_at.should be_a Time
-      result.oauth_expires_at.should eq Time.at(4503662457)
-    end
-
-    it "formats the username" do
-      result.username.should eq "facebook-name"
-    end
-
   	context "no existing FacebookUser" do
+
       it "makes a new FacebookUser" do
         result.should be_a FacebookUser
         result.should_not be_persisted
@@ -33,7 +27,7 @@ describe FacebookUser do
       end
 
       it "makes a new User" do
-        user = FacebookUser.from_auth(auth).user
+        user = result.user
         user.should be_a User
         user.should_not be_persisted
       end
@@ -46,6 +40,46 @@ describe FacebookUser do
         create :facebook_user, uid: uid
         result.should be_persisted
       end
+    end
+  end
+
+  describe "#format_username" do
+    let(:fb_user)  { build :facebook_user, username: username }
+    let(:result)   { fb_user.format_username }
+
+    context "username doesn't belong to another user" do
+      let(:username) { "FACEBOOK NAME" }
+      before { mock(User).find_by_username(anything) { fb_user.user } }
+
+      it "format the username" do
+        result.should eq "facebook-name"
+      end
+    end
+
+    context "username belongs to another user" do
+      let(:other_user) { Object.new }
+      let(:username)   { "facebook-name-1" }
+      before { mock(User).find_by_username(anything) { other_user } }
+
+      it "increments the username by one" do
+        mock(fb_user).increment_username(anything) { "facebook-name-2" }
+        result.should eq "facebook-name-2"
+      end
+    end
+  end
+
+  describe "#increment_username" do
+    it "blah" do
+      result.should make dis
+    end
+  end
+
+  describe "#format_oath_expires_at" do
+    let(:result) { fb_user.format_oath_expires_at }
+
+    it "turns expires_at to date time" do
+      result.should be_a Time
+      result.should eq Time.at(4503662457)
     end
   end
 end
