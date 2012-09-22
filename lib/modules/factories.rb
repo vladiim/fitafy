@@ -11,6 +11,13 @@ FactoryGirl.define do
   	# password_confirmation "password"
   end
 
+  factory :facebook_user do
+    user
+    uid              "12345"
+    oauth_token      "1234"
+    oauth_expires_at 1.month.from_now
+  end
+
   factory :exercise do
     name            { "liquid #{ generate :string }" }
   	description     "wu gambinos"

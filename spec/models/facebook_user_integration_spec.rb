@@ -1,28 +1,35 @@
 require "spec_helper"
 
 describe FacebookUser do
+    let(:auth) { { "uid" => '12345', 
+                   "info" => { "name" => "FACEBOOK NAME", 
+                           "email" => "EMAIL@EMAIL.COM" },
+                   "credentials" => { "token" => "1234",
+                                  "expires_at" => 4503662457 } } }
 
   describe ".from_auth" do
-    let(:auth) { { uid: '12345', 
-    				       info: { name: "FACEBOOK NAME", 
-    								       email: "EMAIL@EMAIL.COM" },
-    							 credentials: { token: "1234",
-    								              expires_at: 4503662457 } } }
+    let(:result) { FacebookUser.from_auth auth }
+
+    it "turns expires_at to date time" do
+      result.oauth_expires_at.should be_a Time
+    end
+
+    it "formats the username" do
+      result.user.username.should eq "facebook-name"
+    end
 
   	context "no existing FacebookUser" do
       it "makes a new FacebookUser" do
-        result = FacebookUser.from_auth auth
         result.should be_a FacebookUser
         result.should_not be_persisted
       end
 
       it "uses the given auth info for attributes" do
-        result = FacebookUser.from_auth auth
-        result.uid.should eq '12345'
-        result.username.should eq 'FACEBOOK NAME'
-        result.email.should eq 'EMAIL@EMAIL.COM'
-        result.oauth_token.should eq '1234'
-        result.oauth_expires_at.should eq 4503662457
+        result.uid.should              eq '12345'
+        result.username.should         eq 'FACEBOOK NAME'
+        result.email.should            eq 'EMAIL@EMAIL.COM'
+        result.oauth_token.should      eq '1234'
+        result.oauth_expires_at.should eq Time.at(4503662457)
       end
 
       it "makes a new User" do
@@ -33,8 +40,11 @@ describe FacebookUser do
   	end
 
     context "with existing FacebookUser" do
-      it "next thing to fix" do
-        FacebookUser.from_auth.should eq "blah blah fail fail"
+
+      it "updates FacebookUser" do
+        uid = auth.fetch("uid")
+        create :facebook_user, uid: uid
+        result.should be_persisted
       end
     end
   end
