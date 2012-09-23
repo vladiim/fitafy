@@ -8,7 +8,7 @@ class FacebookUser < ActiveRecord::Base
   delegate :username, :username=, to: :user
   delegate :email, :email=, to: :user
 
-  belongs_to :user
+  has_one :user
 
   before_save :format_username, :format_oath_expires_at
 
@@ -28,11 +28,20 @@ class FacebookUser < ActiveRecord::Base
   end
 
   def format_username
-    username = self.username.downcase.gsub(' ', '-')
-    user     = User.find_by_username(username)
+    self.username = self.username.downcase.gsub(' ', '-')
+    users         = User.find_all_by_username(self.username)
 
-    if user
-      user == self.user ? username : increment_username
+    users.each do |user|
+      (increment_username && format_username) unless user == self.user
+    end
+  end
+
+  def increment_username
+    increment_at = (self.username =~ /[-][[:digit:]]+$/)    # e.g. facebook-name-3 returns the position of '-3'
+    if increment_at                                         # safeguard against incorrect username's being passed in
+      number = self.username.slice!((increment_at + 1)..-1) # get the number e.g. above would return '3'
+      new_number = (number.to_i + 1).to_s
+      self.username << new_number
     end
   end
 

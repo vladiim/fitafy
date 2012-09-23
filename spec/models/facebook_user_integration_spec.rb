@@ -9,10 +9,14 @@ describe FacebookUser do
                  "credentials" => { "token" => "1234",
                                 "expires_at" => 4503662457 } } }
 
+  describe "relationships" do
+    it { should have_one :user }
+  end
+
   describe ".from_auth" do
     let(:result) { FacebookUser.from_auth auth }
 
-  	context "no existing FacebookUser" do
+    context "no existing FacebookUser" do
 
       it "makes a new FacebookUser" do
         result.should be_a FacebookUser
@@ -31,7 +35,7 @@ describe FacebookUser do
         user.should be_a User
         user.should_not be_persisted
       end
-  	end
+    end
 
     context "with existing FacebookUser" do
 
@@ -49,28 +53,63 @@ describe FacebookUser do
 
     context "username doesn't belong to another user" do
       let(:username) { "FACEBOOK NAME" }
-      before { mock(User).find_by_username(anything) { fb_user.user } }
+      before { mock(User).find_all_by_username(anything) { [fb_user.user] } }
 
       it "format the username" do
-        result.should eq "facebook-name"
+        result.should be
+        fb_user.username.should eq 'facebook-name'
       end
     end
 
     context "username belongs to another user" do
       let(:other_user) { Object.new }
       let(:username)   { "facebook-name-1" }
-      before { mock(User).find_by_username(anything) { other_user } }
 
-      it "increments the username by one" do
-        mock(fb_user).increment_username(anything) { "facebook-name-2" }
-        result.should eq "facebook-name-2"
+      before do
+        mock(User).find_all_by_username(anything) { [other_user, fb_user.user] }
+        mock(other_user)
+      end
+
+      it "increments the username" do
+        mock(fb_user).increment_username
+        result.should be
       end
     end
   end
 
   describe "#increment_username" do
-    it "blah" do
-      result.should make dis
+    it "adds one to the username" do
+      [0, 1, 10, 100, 1000, 10000].each do |n|
+        user    = build :user, username: "facebook-name-#{n}"
+        fb_user = build :facebook_user, user: user
+        fb_user.increment_username
+        fb_user.username.should eq "facebook-name-#{(n+1)}"
+      end
+    end
+
+    it "only matches the last number" do
+      fb_user.username = "with-1-extra-400-numbers-1"
+      result = fb_user.increment_username
+      fb_user.username.should eq "with-1-extra-400-numbers-2"
+    end
+
+    it "is called before saving" do
+      create :user, username: "facebook-name-20000"
+      fb_user.username = "facebook-name-20000"
+      fb_user.save
+      fb_user.username.should eq "facebook-name-20001"
+    end
+
+    context "passed a normal username" do
+      before do
+        user    = build :user, username: "facebook-name"
+        @fb_user = build :facebook_user, user: user
+        @fb_user.increment_username
+      end
+
+      it "doesn't alter it" do
+        @fb_user.username.should eq "facebook-name"
+      end
     end
   end
 
@@ -80,6 +119,12 @@ describe FacebookUser do
     it "turns expires_at to date time" do
       result.should be_a Time
       result.should eq Time.at(4503662457)
+    end
+
+    it "is called before saving" do
+      fb_user.oauth_expires_at = 4503662457
+      fb_user.save
+      fb_user.oauth_expires_at.should eq Time.at(4503662457)
     end
   end
 end

@@ -34,32 +34,4 @@ Feature: Trainer manages account
     When I click delete account
     Then my account will be permanantly deleted
 
-  Scenario: Trainer signs up through Facebook
-    Given I'm a new trainer
-    And I have a Facebook account
-    When I click sign in with Facebook
-    Then I should have a new fitafy account
-    And my profile should have my Facebook name as my username
-
-  Scenario: Trainer logs back in with Facebook
-    Given I log out
-    And I've signed in through Facebook
-    And I log out
-    When I click sign in with Facebook
-    Then I should be signed back in through Facebook
-
-  @focus
-  Scenario Outline: Trainer Facebook name is same as another username
-    Given a trainer exsists with the <facebook_name>
-    When I sign in through facebook with the same <facebook_name>
-    Then my username is changed to a <new_username>
-
-    Examples:
-      | facebook_name       | new_username        |
-      | "facebook-name"     | "facebook-name"     |
-      | "facebook-name-1"   | "facebook-name-2"   |
-      | "facebook-name-2"   | "facebook-name-3"   |
-      | "facebook-name-13"  | "facebook-name-14"  |
-      | "facebook-name-345" | "facebook-name-346" |
-
   Scenario: Trainer can't visit login/signup page if signed in

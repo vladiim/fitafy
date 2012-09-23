@@ -2,7 +2,7 @@ class FacebookUsersController < ApplicationController
   skip_filter :authorize, only: [:create]
 
   def create
-  	facebook_user = FacebookUser.from_auth env["omniauth.auth"]
+  	facebook_user = FacebookUser.from_auth(env["omniauth.auth"])
     if facebook_user.save
   	  session[:facebook_user_id] = facebook_user.user_id
   	  redirect_to root_url

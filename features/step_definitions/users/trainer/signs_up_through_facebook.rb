@@ -1,17 +1,13 @@
-Given /^I'm a new trainer$/ do
-  # express the regexp above with the code you wish you had
+Given /^I have an exsisting Facebook account$/ do
+  create_facebook_mock
 end
 
-Given /^I have a Facebook account$/ do
-  OmniAuth.config.add_mock(:facebook, { :uid => '12345', info: {name: "FACEBOOK NAME", email: "EMAIL@EMAIL.COM"}, credentials: { token: "1234", expires_at: 4503662457 } })
-end
-
-Then /^I should have a new fitafy account$/ do
+Then /^I should have a new Facebook fitafy account$/ do
   @user = User.last
   @user.username.should eq "facebook-name"
 end
 
-Then /^my profile should have my Facebook name as my username$/ do
+Then /^my Facebook name should be in the navbar$/ do
   visit user_path(@user)
   within "h1" do
     page.should have_content "FACEBOOK-NAME"
