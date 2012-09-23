@@ -10,7 +10,7 @@ module TagsHelper
     filter = []
     add_param_tags_to_filter filter, tag_type if params[tag_type]
     filter.delete tag
-    link_to "x", tag_type => filter
+    link_to "Remove #{tag}", { tag_type => filter }, class: "remove_tag_link hidden"
   end
 
   def add_param_tags_to_filter filter, tag_type

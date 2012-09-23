@@ -49,7 +49,7 @@ describe "TagsHelper" do
 
     context "without current_filter" do
       it "creates a blank link" do
-        mock(helper).link_to anything, muscles: []
+        mock(helper).link_to anything, { muscles: [] }, anything
         mock(helper).params { { muscles: nil } }
         helper.link_to_remove_tag "abs", :muscles
       end      
@@ -58,7 +58,7 @@ describe "TagsHelper" do
     context "with tag in current_filter" do
 
       it "removes the tag from the filter" do
-        mock(helper).link_to anything, muscles: ["chest"]
+        mock(helper).link_to anything, { muscles: ["chest"] }, anything
         mock(helper).params.times(2) { { muscles: ["chest", "abs"] } }
         helper.link_to_remove_tag "abs", :muscles
       end
