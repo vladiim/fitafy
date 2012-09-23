@@ -10,6 +10,8 @@ class FacebookUser < ActiveRecord::Base
 
   belongs_to :user
 
+  before_save :format_username, :format_oath_expires_at
+
   def self.from_auth auth
     info  = auth.fetch("info")
     creds = auth.fetch("credentials")
@@ -35,6 +37,6 @@ class FacebookUser < ActiveRecord::Base
   end
 
   def format_oath_expires_at
-    Time.at self.oauth_expires_at
+    self.oauth_expires_at = Time.at(self.oauth_expires_at)
   end
 end
