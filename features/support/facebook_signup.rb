@@ -15,6 +15,12 @@ module FacebookSignup
   		                                  credentials: { token: "1234", 
   		                                  	      expires_at: 4503662457 } })
   end
+
+  def sign_up_as_facebook_trainer
+    create_facebook_mock
+    visit login_url
+    click_link "Sign in with Facebook"
+  end
 end
 
 World FacebookSignup

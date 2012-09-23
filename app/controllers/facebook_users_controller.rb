@@ -12,9 +12,4 @@ class FacebookUsersController < ApplicationController
       flash[:error] = SnapzSayz::UserSpeak.facebook_user_issue
     end
   end
-
-  def destroy
-  	session[:facebook_user_id] = nil
-  	redirect_to root_url
-  end
 end

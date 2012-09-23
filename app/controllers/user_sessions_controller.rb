@@ -17,7 +17,12 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-  	current_user_session.destroy
+    if session[:facebook_user_id]
+      session[:facebook_user_id] = nil
+    else
+  	  current_user_session.destroy
+    end
+
   	flash[:success] = SnapzSayz::UserSessionSpeak.logout
   	redirect_to root_url
   end
