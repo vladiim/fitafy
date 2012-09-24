@@ -250,7 +250,8 @@ CREATE TABLE users (
     slug character varying(255),
     role character varying(255),
     crypted_password character varying(255),
-    facebook_user_id integer
+    facebook_user_id integer,
+    avatar character varying(255)
 );
 
 
@@ -626,3 +627,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120913104644');
 INSERT INTO schema_migrations (version) VALUES ('20120918173725');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923060134');
+
+INSERT INTO schema_migrations (version) VALUES ('20120923093145');

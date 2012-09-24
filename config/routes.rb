@@ -17,6 +17,8 @@ Fitafy::Application.routes.draw do
     resources :workouts
   end
 
+  resources :workouts, only: :new # to allow any user to have a create workout CTA
+
 #---------- PRETTY URLS ----------#
 
   match 'sign_up', to: 'users#new'
