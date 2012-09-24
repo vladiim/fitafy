@@ -1,12 +1,12 @@
-.muscle_tags
-  / - @muscles.each do |tag|
-  /   .detail.hidden This should be hidden
+.tag_list.well
+  = link_to "SORT BY TAGS", "#", class: "btn btn-info sort_by_tags"
 
-  Muscles:
-  - @muscles.each do |tag|
-    = link_to_tag tag, :muscles
-    = link_to_remove_tag tag, :muscles
-    |
+  .muscle_tags.hidden
+    Muscles:
+    - @muscles.each do |tag|
+      = link_to_tag tag, :muscles
+      = link_to_remove_tag tag, :muscles
+      |
 
 / %p
 /   Equipment:
