@@ -1,3 +1,7 @@
+# Efficiency
+
+* Revise favorite workout count to be like exercise (remove n+1)
+
 # With Avdi
 * Refactor Workout, Exercise
 * Trending

@@ -7,9 +7,8 @@
       %td
         #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
       %td
-        #create_workouts= link_to "CREATE WORKOUTS", "#", class: "btn btn-success"
+        #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
 
-/ tests will fails without conditional
 - unless @workouts.empty?
   %aside
     %header#trending

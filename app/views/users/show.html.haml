@@ -1,7 +1,8 @@
 .container
 
   %aside.span3
-    #profile= image_tag('das_boot.png', size: "150x200")
+    / #profile= image_tag 'das_boot.png', size: "150x200"
+    #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
     %br
     = render 'stats'
 

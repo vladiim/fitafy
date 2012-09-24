@@ -59,3 +59,9 @@ Feature: Visitor views workouts
     When I click favorite workout
     And I log in
     Then I should be back on the workout
+
+  Scenario: Visitor views trainer's workouts
+    Given a trainer exists
+    And the trainer has 5 workouts
+    When I click on the 5 workouts link
+    Then I get the workouts listed

@@ -35,3 +35,8 @@ Feature: Trainer manages account
     Then my account will be permanantly deleted
 
   Scenario: Trainer can't visit login/signup page if signed in
+
+  Scenario: Trainer uploads profile pic
+    Given I'm on my profile page
+    When I upload a profile pic
+    Then that should be set as my profile pic

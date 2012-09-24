@@ -1,12 +1,7 @@
 class User < ActiveRecord::Base
   extend FriendlyId
 
-  acts_as_authentic do |c|
-  	c.login_field = "email"
-    c.validate_password_field = false
-  end
-
-  attr_accessible :username, :email, :password, :role
+  attr_accessible :username, :email, :password, :role, :avatar
 
   friendly_id :username, use: :slugged
 
@@ -15,6 +10,15 @@ class User < ActiveRecord::Base
   has_many :workouts
   has_many :favorite_workouts, dependent: :destroy
   belongs_to :facebook_user
+
+  # for authlogic gem
+  acts_as_authentic do |c|
+    c.login_field = "email"
+    c.validate_password_field = false
+  end
+
+  # for carrierwave image management gem
+  mount_uploader :avatar, AvatarUploader
 
   def create_account
     self.save!
