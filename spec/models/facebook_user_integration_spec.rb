@@ -38,11 +38,16 @@ describe FacebookUser do
     end
 
     context "with existing FacebookUser" do
+      let(:uid) { auth.fetch("uid") }
 
       it "updates FacebookUser" do
-        uid = auth.fetch("uid")
         create :facebook_user, uid: uid
         result.should be_persisted
+      end
+
+      it "ensures its user is a trainer" do
+        create :facebook_user, uid: uid
+        result.user.should be_trainer
       end
     end
   end

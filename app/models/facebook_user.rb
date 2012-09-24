@@ -17,7 +17,7 @@ class FacebookUser < ActiveRecord::Base
     creds = auth.fetch("credentials")
 
     FacebookUser.find_or_initialize_by_uid(auth.fetch("uid")) do |fb|
-      fb.build_user
+      fb.build_user unless fb.user
       fb.uid              = auth.fetch("uid")
       fb.username         = info.fetch("name")
       fb.email            = info.fetch("email")
