@@ -8,6 +8,7 @@ FactoryGirl.define do
   	username              { "johnny #{ rand 10000 }" }
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
+    avatar                "image.png"
   	# password_confirmation "password"
   end
 

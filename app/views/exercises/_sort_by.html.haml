@@ -1,7 +1,10 @@
 .tag_list.well
   = link_to "SORT BY TAGS", "#", class: "btn btn-info sort_by_tags"
+  .primary_tags
+    - @muscles.each do |tag|
+      = link_to_remove_tag tag, :muscles
 
-  .muscle_tags.hidden.tag_space
+  .muscle_tags.hidden.tags_space
     Muscles:
     - @muscles.each do |tag|
       = link_to_tag tag, :muscles

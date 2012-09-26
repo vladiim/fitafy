@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class FacebookUser < ActiveRecord::Base
 
   # add god_field/auth_info with all oauth data
@@ -7,6 +9,7 @@ class FacebookUser < ActiveRecord::Base
   delegate :id, to: :user, prefix: true
   delegate :username, :username=, to: :user
   delegate :email, :email=, to: :user
+  delegate :avatar, :avatar=, to: :user
 
   has_one :user
 
@@ -21,6 +24,7 @@ class FacebookUser < ActiveRecord::Base
       fb.uid              = auth.fetch("uid")
       fb.username         = info.fetch("name")
       fb.email            = info.fetch("email")
+      fb.avatar           = info.fetch("image")
       fb.oauth_token      = creds.fetch("token")
       fb.oauth_expires_at = creds.fetch("expires_at")
       fb.provider         = "facebook"
@@ -29,7 +33,7 @@ class FacebookUser < ActiveRecord::Base
 
   def format_username
     self.username = self.username.downcase.gsub(' ', '-')
-    users         = User.find_all_by_username(self.username)
+    users = User.find_all_by_username(self.username)
 
     users.each do |user|
       (increment_username && format_username) unless user == self.user
@@ -47,5 +51,22 @@ class FacebookUser < ActiveRecord::Base
 
   def format_oath_expires_at
     self.oauth_expires_at = Time.at(self.oauth_expires_at)
+  end
+
+  def format_avatar_picture
+    open(picture_name, 'wb') do |picture|
+      self.avatar << open(large_profile_picture).read
+    end
+  end
+
+  def large_profile_picture
+    url = self.avatar.dup
+    remove_point = (url =~ /\?type=/)  # find text after type
+    url.slice!((remove_point + 6)..-1) # get rid of it
+    url << "large"                     # replace with large
+  end
+
+  def picture_name
+    "#{self.username}-profile-pic.png".gsub!(' ', '-')
   end
 end
