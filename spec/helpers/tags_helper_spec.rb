@@ -47,21 +47,27 @@ describe "TagsHelper" do
 
   describe "#link_to_remove_tag" do
 
-    context "without current_filter" do
-      it "creates a blank link" do
-        mock(helper).link_to anything, { muscles: [] }, anything
-        mock(helper).params { { muscles: nil } }
-        helper.link_to_remove_tag "abs", :muscles
-      end      
+    it "links to the tag with the params of existing tags" do
+      mock(helper).filter_existing_tags("abs", :muscles) { "FILTERED TAGS" }
+      mock(helper).link_to("ABS x", { muscles: "FILTERED TAGS" }, { class: "remove_tag_link hidden" })
+      helper.link_to_remove_tag "abs", :muscles
     end
+  end
 
-    context "with tag in current_filter" do
+  describe "#link_to_primary_tag" do
 
-      it "removes the tag from the filter" do
-        mock(helper).link_to anything, { muscles: ["chest"] }, anything
-        mock(helper).params.times(2) { { muscles: ["chest", "abs"] } }
-        helper.link_to_remove_tag "abs", :muscles
-      end
+    it "links to the tag with the params of existing tags" do
+      mock(helper).filter_existing_tags("abs", :muscles) { "FILTERED TAGS" }
+      mock(helper).link_to("ABS", { muscles: "FILTERED TAGS" }, { class: "remove_tag_link hidden" })
+      helper.link_to_primary_tag "abs", :muscles
+    end
+  end
+
+  describe "#filter_existing_tags" do
+
+    it "removes the tag from the filter" do
+      mock(helper).params.times(2) { { muscles: ["chest", "abs"] } }
+      helper.filter_existing_tags "abs", :muscles
     end
   end
 

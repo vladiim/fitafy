@@ -2,7 +2,7 @@
   = link_to "SORT BY TAGS", "#", class: "btn btn-info sort_by_tags"
   .primary_tags
     - @muscles.each do |tag|
-      = link_to_remove_tag tag, :muscles
+      = link_to_primary_tag tag, :muscles
 
   .muscle_tags.hidden.tags_space
     Muscles:

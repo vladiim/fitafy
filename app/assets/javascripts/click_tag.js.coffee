@@ -5,8 +5,8 @@ window.init = ->
   $remove_tag_links = $(".muscle_tags > .remove_tag_link")
 
   $sort_by.click (event) ->
-    $remove_link = $(@).siblings(".muscle_tags")
-    $remove_link.toggleClass("hidden")
+    # $remove_link = $(@).siblings(".muscle_tags")
+    $(".muscle_tags").toggleClass("hidden")
 
   $primary_tags.click (event) ->
     tag_name         = $(@).text();
@@ -27,8 +27,11 @@ window.init = ->
     event.preventDefault()
 
   $remove_tag_links.click (event) ->
-    $tag_link    = $(@).prev(".tag_link")
-    tag_name     = $(@).text();
+    # $tag_link    = $(@).prev(".tag_link")
+    orginal_name = $(@).text();
+    length       = orginal_name.length
+    tag_name     = original_name.slice(0, length - 2)
+    $tag_link    = $(".muscle_tags > .tag_link:contains(#{tag_name})")
     $primary_tag = $(".primary_tags > .remove_tag_link:contains(#{tag_name})")
     $primary_tag.toggleClass("hidden")
     $tag_link.toggleClass("hidden")
