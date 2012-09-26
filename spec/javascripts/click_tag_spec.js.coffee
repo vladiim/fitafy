@@ -45,7 +45,7 @@ describe("Click tag", ->
     )
 
     it("adds the hidden class to remove_tag_link", ->
-      expect($(".muscle_tags > .remove_tag_link")).toHaveClass(".hidden")
+      expect($(".muscle_tags > .remove_tag_link")).toHaveClass("hidden")
     )
 
     it("removes the hidden class from tag_link", ->
@@ -63,7 +63,7 @@ describe("Click tag", ->
     )
 
     it("adds the hidden class to remove_tag_link", ->
-      expect($(".muscle_tags > .remove_tag_link")).toHaveClass(".hidden")
+      expect($(".muscle_tags > .remove_tag_link")).toHaveClass("hidden")
     )
 
     it("removes the hidden class from tag_link", ->
