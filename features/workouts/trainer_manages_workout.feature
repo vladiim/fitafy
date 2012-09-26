@@ -1,4 +1,4 @@
-Feature: Trainer manages exercises
+Feature: Trainer manages workouts
   In order to have lots of workouts for my clients
   As a personal trainer
   I want to be able to manage workouts
@@ -42,7 +42,6 @@ Feature: Trainer manages exercises
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
 
-  @focus
   Scenario Outline: Trainer sorts exercise list
     Given there's exercises
     And I'm creating a new workout

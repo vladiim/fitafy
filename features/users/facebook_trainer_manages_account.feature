@@ -37,3 +37,6 @@ Feature: Facebook Trainer manages account
 
   @focus
   Scenario: Facebook Trainer's profile pic comes from Facebook
+    Given I've signed in through Facebook
+    When I go to my profile page
+    Then my Facebook profile pic should be my fitafy profile pic

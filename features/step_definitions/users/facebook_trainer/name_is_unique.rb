@@ -3,7 +3,7 @@ Given /^a trainer exsists with the "(.*?)"$/ do |username|
 end
 
 When /^I sign in through facebook with the same "(.*?)"$/ do |facebook_username|
-  create_facebook_mock_with_name facebook_username
+  create_facebook_mock facebook_username
   visit login_url
   click_link "Sign in with Facebook"
 end

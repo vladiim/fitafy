@@ -1,7 +1,7 @@
 .tag_list.well
   = link_to "SORT BY TAGS", "#", class: "btn btn-info sort_by_tags"
 
-  .muscle_tags.hidden
+  .muscle_tags.hidden.tag_space
     Muscles:
     - @muscles.each do |tag|
       = link_to_tag tag, :muscles
