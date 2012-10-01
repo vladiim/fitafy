@@ -5,23 +5,22 @@ window.init = ->
   $remove_tag_links = $(".muscle_tags > .remove_tag_link")
 
   $sort_by.click (event) ->
-    # $remove_link = $(@).siblings(".muscle_tags")
     $(".muscle_tags").toggleClass("hidden")
 
   $tag_links.click (event) ->
-    tag_name     = $(@).text();
+    tag_name = $(@).text();
     toggleLinks(tag_name)
     event.preventDefault()
 
   $primary_tags.click (event) ->
-    tag_name         = $(@).text();
+    tag_name = $(@).text();
     toggleLinks(tag_name)
     event.preventDefault()
 
   $remove_tag_links.click (event) ->
     orginal_name = $(@).text()
     length       = orginal_name.length
-    tag_name     = orginal_name.slice(0, length - 2)
+    tag_name     = orginal_name.slice(0, length - 2) # get rid of 'x' at the end of tag_name
     toggleLinks(tag_name)
     event.preventDefault()
 
