@@ -28,9 +28,9 @@ window.init = ->
 
   $remove_tag_links.click (event) ->
     # $tag_link    = $(@).prev(".tag_link")
-    orginal_name = $(@).text();
+    orginal_name = $(@).text()
     length       = orginal_name.length
-    tag_name     = original_name.slice(0, length - 2)
+    tag_name     = orginal_name.slice(0, length - 2)
     $tag_link    = $(".muscle_tags > .tag_link:contains(#{tag_name})")
     $primary_tag = $(".primary_tags > .remove_tag_link:contains(#{tag_name})")
     $primary_tag.toggleClass("hidden")
