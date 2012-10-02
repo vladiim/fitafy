@@ -9,11 +9,12 @@ class FacebookUser < ActiveRecord::Base
   delegate :id, to: :user, prefix: true
   delegate :username, :username=, to: :user
   delegate :email, :email=, to: :user
-  delegate :avatar, :avatar=, to: :user
+  # delegate :avatar, :avatar=, to: :user
+  # delegate :remote_avatar_url=, to: :user
 
   has_one :user
 
-  before_save :format_username, :format_oath_expires_at
+  before_save :format_username, :format_oath_expires_at, :format_avatar_picture
 
   def self.from_auth auth
     info  = auth.fetch("info")
@@ -24,7 +25,7 @@ class FacebookUser < ActiveRecord::Base
       fb.uid              = auth.fetch("uid")
       fb.username         = info.fetch("name")
       fb.email            = info.fetch("email")
-      fb.avatar           = info.fetch("image")
+      # fb.avatar           = info.fetch("image")
       fb.oauth_token      = creds.fetch("token")
       fb.oauth_expires_at = creds.fetch("expires_at")
       fb.provider         = "facebook"
@@ -53,20 +54,15 @@ class FacebookUser < ActiveRecord::Base
     self.oauth_expires_at = Time.at(self.oauth_expires_at)
   end
 
-  def format_avatar_picture
-    open(picture_name, 'wb') do |picture|
-      self.avatar << open(large_profile_picture).read
-    end
-  end
+  # def format_avatar_picture
+  #   self.remote_avatar_url = open(self.avatar).read
+  # end
 
-  def large_profile_picture
-    url = self.avatar.dup
-    remove_point = (url =~ /\?type=/)  # find text after type
-    url.slice!((remove_point + 6)..-1) # get rid of it
-    url << "large"                     # replace with large
-  end
-
-  def picture_name
-    "#{self.username}-profile-pic.png".gsub!(' ', '-')
-  end
+  # def large_profile_picture
+  #   url = self.avatar
+  #   debugger
+  #   remove_point = (url =~ /\?type=/)  # find text after type
+  #   url.slice!((remove_point + 6)..-1) # get rid of it
+  #   url << "large"                     # replace with large
+  # end
 end
