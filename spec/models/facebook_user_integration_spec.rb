@@ -141,6 +141,14 @@ describe FacebookUser do
     end
   end
 
+  describe "#format_password" do
+    it "sets the user's password to their token" do
+      fb_user = FacebookUser.from_auth(auth)
+      fb_user.user.password.should eq "81dc9bdb52d04dc20036dbd8313ed055"
+      # note MD5.hexdigest of 1234 is the hexdigest above
+    end
+  end
+
   # describe "#format_avatar_picture" do
   #   let(:user)    { build :user }
   #   let(:fb_user) { build :facebook_user, user: user }

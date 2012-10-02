@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # for authlogic gem
   acts_as_authentic do |c|
     c.login_field = "email"
-    c.validate_password_field = false
+    # c.validate_password_field = false
   end
 
   # for carrierwave image management gem

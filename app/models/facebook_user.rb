@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'digest/md5'
 
 class FacebookUser < ActiveRecord::Base
 
@@ -9,6 +10,8 @@ class FacebookUser < ActiveRecord::Base
   delegate :id, to: :user, prefix: true
   delegate :username, :username=, to: :user
   delegate :email, :email=, to: :user
+  delegate :password=, :password, to: :user
+  delegate :password_confirmation=, to: :user
   # delegate :avatar, :avatar=, to: :user
   # delegate :remote_avatar_url=, to: :user
 
@@ -22,11 +25,13 @@ class FacebookUser < ActiveRecord::Base
 
     FacebookUser.find_or_initialize_by_uid(auth.fetch("uid")) do |fb|
       fb.build_user unless fb.user
-      fb.uid              = auth.fetch("uid")
-      fb.username         = info.fetch("name")
-      fb.email            = info.fetch("email")
-      # fb.avatar           = info.fetch("image")
-      fb.oauth_token      = creds.fetch("token")
+      fb.uid         = auth.fetch("uid")
+      fb.username    = info.fetch("name")
+      fb.email       = info.fetch("email")
+      # fb.avatar      = info.fetch("image")
+      fb.oauth_token = creds.fetch("token")
+      fb.password    = Digest::MD5.hexdigest(creds.fetch("token"))
+      fb.password_confirmation = fb.password
       fb.oauth_expires_at = creds.fetch("expires_at")
       fb.provider         = "facebook"
     end
