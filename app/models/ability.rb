@@ -8,6 +8,7 @@ class Ability
     if user.trainer?
       can :manage, Workout, user_id: user.id
       can :manage, FavoriteWorkout, user_id: user.id
+      can :read, Exercise
 
     elsif user.admin?
       can :manage, Workout, user_id: user.id
@@ -15,7 +16,6 @@ class Ability
 
     else
       can :read, :all
-      # can :manage, SessionsController
     end
   end
 end

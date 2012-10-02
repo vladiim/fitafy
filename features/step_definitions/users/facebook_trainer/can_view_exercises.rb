@@ -11,6 +11,6 @@ end
 
 Then /^I should be able to see that exercise$/ do
   within "h1" do
-  	page.should have_content "Liquid"
+  	page.should have_content "LIQUID"
   end
 end

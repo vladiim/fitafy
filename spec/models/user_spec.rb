@@ -150,8 +150,8 @@ describe User do
   end
 
   describe "abilities" do
-  	subject { Ability.new(user) }
-      let(:user) { create :user }
+  	subject    { Ability.new(user) }
+    let(:user) { create :user }
 
     context "admin" do
 

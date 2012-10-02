@@ -42,9 +42,9 @@ describe FacebookUser do
     context "with existing FacebookUser" do
       let(:uid) { auth.fetch("uid") }
 
-      before do
-        mock.instance_of(FacebookUser).format_avatar_picture { true }
-      end
+      # before do
+      #   mock.instance_of(FacebookUser).format_avatar_picture { true }
+      # end
 
       it "updates FacebookUser" do
         create :facebook_user, uid: uid
@@ -105,7 +105,7 @@ describe FacebookUser do
     end
 
     it "is called before saving" do
-      mock.instance_of(FacebookUser).format_avatar_picture { true }
+      # mock.instance_of(FacebookUser).format_avatar_picture { true }
       create :user, username: "facebook-name-20000"
       fb_user.username = "facebook-name-20000"
       fb_user.save
@@ -135,7 +135,7 @@ describe FacebookUser do
 
     it "is called before saving" do
       fb_user.oauth_expires_at = 4503662457
-      mock.instance_of(FacebookUser).format_avatar_picture { true }
+      # mock.instance_of(FacebookUser).format_avatar_picture { true }
       fb_user.save
       fb_user.oauth_expires_at.should eq Time.at(4503662457)
     end
@@ -155,5 +155,5 @@ describe FacebookUser do
   #       fb_user.large_profile_picture.should eq "http://graph.facebook.com/664725038/picture?type=large"
   #     end
   #   end
-  end
+  # end
 end

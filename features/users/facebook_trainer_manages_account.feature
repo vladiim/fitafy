@@ -28,15 +28,14 @@ Feature: Facebook Trainer manages account
       | "facebook-name-13"  | "facebook-name-14"  |
       | "facebook-name-345" | "facebook-name-346" |
 
-  @focus
   Scenario: Facebook Trainer can view exercises
     Given I've signed in through Facebook
     And I'm on a workout page
     When I go to visit an exercise
     Then I should be able to see that exercise
 
-  @focus
+  # @focus
   Scenario: Facebook Trainer's profile pic comes from Facebook
-    Given I've signed in through Facebook
-    When I go to my profile page
-    Then my Facebook profile pic should be my fitafy profile pic
+  #   Given I've signed in through Facebook
+  #   When I go to my profile page
+  #   Then my Facebook profile pic should be my fitafy profile pic

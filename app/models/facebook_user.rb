@@ -14,7 +14,7 @@ class FacebookUser < ActiveRecord::Base
 
   has_one :user
 
-  before_save :format_username, :format_oath_expires_at, :format_avatar_picture
+  before_save :format_username, :format_oath_expires_at #, :format_avatar_picture
 
   def self.from_auth auth
     info  = auth.fetch("info")
