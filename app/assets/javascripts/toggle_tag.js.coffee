@@ -1,22 +1,22 @@
-window.toggler =
-  sort_by_selector: ".sort_by_tags"
-  tag_links_selector: ".tag_link"
-  primary_tags_selector: ".primary_tags > .remove_tag_link"
-  remove_tag_links_selector: ".muscle_tags > .remove_tag_link"
+class window.ToggleTag
+  constructor: ->
+    @sort_by_selector          = ".sort_by_tags"
+    @tag_links_selector        = ".tag_link"
+    @primary_tags_selector     = ".primary_tags > .remove_tag_link"
+    @remove_tag_links_selector = ".muscle_tags > .remove_tag_link"
 
   init: ->
-    toggler = this
     $(@sort_by_selector).on "click", ->
       $(".muscle_tags").toggleClass("hidden")
 
-    $(@tag_links_selector).on "click", (event) ->
-      toggler.toggleOnClick(event)
+    $(@tag_links_selector).on "click", (event) =>
+      @toggleOnClick(event)
 
-    $(@primary_tags_selector).on "click", (event) ->
-      toggler.toggleOnClick(event)
+    $(@primary_tags_selector).on "click", (event) =>
+      @toggleOnClick(event)
 
-    $(@remove_tag_links_selector).on "click", (event) ->
-      toggler.toggleOnClick(event)
+    $(@remove_tag_links_selector).on "click", (event) =>
+      @toggleOnClick(event)
 
   toggleOnClick: (event) ->
     $link     = $(event.target)
@@ -36,6 +36,6 @@ window.toggler =
     $(".muscle_tags > .tag_link:contains(#{@tag_name})").toggleClass("hidden")
     $(".muscle_tags > .remove_tag_link:contains(#{@tag_name})").toggleClass("hidden")
 
-
 $ ->
+  toggler = new ToggleTag
   toggler.init()

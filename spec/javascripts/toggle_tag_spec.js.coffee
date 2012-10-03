@@ -1,7 +1,8 @@
-describe "Click tag", ->
+describe "ToggleTag", ->
 
   beforeEach ->
     loadFixtures "one_muscle_tag.html"
+    toggler = new ToggleTag
     toggler.init()
 
   describe "sort by tags button", ->
