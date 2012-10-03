@@ -2,7 +2,7 @@ describe "Click tag", ->
 
   beforeEach ->
     loadFixtures "one_muscle_tag.html"
-    init()
+    toggler.init()
 
   describe "sort by tags button", ->
     it "defaults to hiding the muscle tags", ->
