@@ -12,3 +12,8 @@
     %header
       %h1= section_title unless params[:action] == 'home'
     = yield
+
+  - if can? :manage, Workout
+    = simple_form_for @new_workout do |f|
+      = f.input :name
+      = f.submit "CREATE WORKOUT"

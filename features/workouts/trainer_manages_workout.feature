@@ -6,11 +6,15 @@ Feature: Trainer manages workouts
   Background:
     When I'm a logged in trainer
 
+  @focus
   Scenario: Trainer builds new workout
     Given I want to create a new workout
     When I click the "NEW WORKOUT" new workout link
-    Then Snapz should say "W00t! New workout comin'!" because I'm on a new workout page
+    And I fill in the workout name
+    Then I should be on the newly created workout's page
+    And Snapz should say "W00t! New workout comin'! Time to fill in the details yo." because I'm on a new workout page
 
+  @focus
   Scenario: Trainer creates workout
     Given I'm on a new workout page
     When I fill in the workout form
