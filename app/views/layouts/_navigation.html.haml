@@ -7,8 +7,11 @@
 
         %li= link_to "WORKOUTS", workouts_path
 
+        / - if can? :manage, Workout
+        /   %li= link_to "NEW WORKOUT", new_user_workout_path(current_user)
+
         - if can? :manage, Workout
-          %li= link_to "NEW WORKOUT", new_user_workout_path(current_user)
+          %li= link_to "NEW WORKOUT", "#new_workout_modal", "data-toggle" => "modal"
 
         - if can? :manage, Exercise
           %li= link_to "EXERCISES", exercises_path

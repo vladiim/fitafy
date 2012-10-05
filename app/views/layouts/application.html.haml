@@ -14,6 +14,15 @@
     = yield
 
   - if can? :manage, Workout
-    = simple_form_for @new_workout do |f|
-      = f.input :name
-      = f.submit "CREATE WORKOUT"
+    .modal.hide.fade.in#new_workout_modal
+      .modal-header
+        %a.close{ "data-dismiss" => "modal" } x
+        %h3 Create New Workout
+      .modal-body
+      = simple_form_for new_workout do |f|
+        = f.input :name
+        = f.submit "CREATE WORKOUT", class: "btn btn-primary"
+
+/     %a.close{ "data-dismiss" => "modal" } x
+
+= debug(params) if Rails.env.development?

@@ -106,4 +106,17 @@ describe "WorkoutHelper" do
       end
     end
   end
+
+  describe "#new_workout" do
+    let(:current_user) { Object.new }
+    let(:result) { helper.new_workout }
+    before do
+      mock(helper).current_user.times(2) { current_user }
+      mock(current_user).build_workout { "NEW WORKOUT" }
+    end
+
+    it "creates a new workout through the user" do
+      result.should eq [current_user, "NEW WORKOUT"]
+    end
+  end
 end

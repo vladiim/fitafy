@@ -32,4 +32,8 @@ module WorkoutHelper
                               class: "btn btn-danger",
                               data: { confirm: snapz_message }
   end
+
+  def new_workout
+    [current_user, current_user.build_workout]
+  end
 end

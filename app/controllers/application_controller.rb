@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authorize, :create_nav_workout
+  before_filter :authorize
 
   helper_method :current_user_session, :current_user, :redirect_to
 
@@ -17,12 +17,6 @@ class ApplicationController < ActionController::Base
       redirect_to params
     else
       redirect_to root_path
-    end
-  end
-
-  def create_nav_workout
-    if current_user
-      @nav_workout = current_user.build_workout
     end
   end
 
