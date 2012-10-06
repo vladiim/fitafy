@@ -1,7 +1,7 @@
 .workout_name
   - if can? :manage, @workout
-    = link_to "Edit workout name", "#edit_workout_name"
-    = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
+    = link_to "Edit workout name", "#", class: "edit_workout_name"
+    .edit_workout_name_form.hidden.well= render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
 .workout_notes
   %h5 WORKOUT NOTES
