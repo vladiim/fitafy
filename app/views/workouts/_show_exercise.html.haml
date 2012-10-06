@@ -3,13 +3,14 @@
 
   = exercise.safe_instructions.humanize
   - if can? :manage, @workout
-    = link_to "Edit exercise instructions", "#"
-    = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :instructions }
+    = link_to "Edit instructions", "#", class: "edit_workout_instructions"
+    .edit_workout_instructions_form.hidden
+      = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :instructions }
 
   %h5 Sets
   = exercise.sets
   - if can? :manage, @workout
-    = link_to "Edit exercise sets", "#"
+    = link_to "Edit sets", "#"
 
   %h5 Muscle-group
   = exercise.muscles[0].name

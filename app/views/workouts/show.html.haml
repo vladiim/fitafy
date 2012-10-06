@@ -1,6 +1,6 @@
 .workout_name
   - if can? :manage, @workout
-    = link_to "Edit workout name", "#", class: "edit_workout_name"
+    = link_to "Edit name", "#", class: "edit_workout_name"
     .edit_workout_name_form.hidden.well
       = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
@@ -9,13 +9,15 @@
   %p
     = @workout.safe_notes.capitalize
     - if can? :manage, @workout
-      = link_to "Edit workout notes", "#", class: "edit_workout_notes"
+      = link_to "Edit notes", "#", class: "edit_workout_notes"
       .edit_workout_notes_form.hidden.well
         = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
 %section.row
 
   %article.span7
+
+    / TRY TRY TRY = @workout.render_exercises(current_user)
 
     - if @workout.workout_exercises
       = render partial: "show_exercise", collection: @workout.workout_exercises, as: :exercise
@@ -26,7 +28,8 @@
     - else
       %h4 No exercises for this workout, nothing to see here!
 
-    = link_to "ADD EXERCISE", "#", class: "btn btn-primary"
+    - if can? :manage, @workout
+      = link_to "ADD EXERCISE", "#", class: "btn btn-primary"
 
   %aside.span3.well
     = render "stats"
