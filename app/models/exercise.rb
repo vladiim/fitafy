@@ -41,6 +41,6 @@ class Exercise < ActiveRecord::Base
   end
 
   def equipment_list
-    Equipment.scoped
+    Equipment.all
   end
 end

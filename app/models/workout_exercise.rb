@@ -7,11 +7,19 @@ class WorkoutExercise < ActiveRecord::Base
 
   delegate :name, to: :exercise
   delegate :muscles, to: :exercise
-  delegate :equipment, to: :exercise
+  delegate :equipment_name, to: :exercise
 
-  def exercise_name
-  	exercise = Exercise.find exercise_id
-  	exercise.name.titleize
+  # def exercise_name
+  # 	exercise = Exercise.find exercise_id
+  # 	exercise.name.titleize
+  # end
+
+  def safe_instructions
+    if instructions
+      instructions
+    else
+      SnapzSayz::WorkoutExerciseSpeak.no_instructions
+    end
   end
 
   def self.return_workouts_from_exercises exercises
@@ -36,7 +44,7 @@ class WorkoutExercise < ActiveRecord::Base
   	workouts
   end
 
-  def equipment_name
-    exercise.equipment_name
-  end
+  # def equipment_name
+  #   exercise.equipment_name
+  # end
 end

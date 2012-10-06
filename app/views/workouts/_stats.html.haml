@@ -4,7 +4,8 @@
   
   %h5 Level
   = @workout.level
-  = link_to "Edit workout level", "#edit_workout_level_modal", "data-toggle" => "modal"
+  - if can? :manage, @workout
+    = link_to "Edit workout level", "#edit_workout_level_modal", "data-toggle" => "modal"
 
 .modal.hide.fade.in#edit_workout_level_modal
   .modal-header

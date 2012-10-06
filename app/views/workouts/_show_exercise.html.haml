@@ -1,41 +1,25 @@
-#workout_exercises
-.well
+#workout_exercises.well
   %h3= exercise.name
-  = exercise.instructions.humanize
+
+  = exercise.safe_instructions.humanize
+  - if can? :manage, @workout
+    = link_to "Edit exercise instructions", "#"
+    = simple_form_for exercise do |f|
+      = f.input :instructions
+      = f.submit "UPDATE WORKOUT"
 
   %h5 Sets
   = exercise.sets
+  - if can? :manage, @workout
+    = link_to "Edit exercise sets", "#"
 
   %h5 Muscle-group
   = exercise.muscles[0].name
 
   %h5 Equipment
-  = exercise.equipment
+  = exercise.equipment_name.titleize
+
+  %br
 
   - if can? :delete, @workout
-    %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), confirm: @snapz_confirm, method: :delete
-
-/ %table#workout_exercises.table.table-bordered.table-striped
-/   %thead
-/     %tr
-/       %th EXERCISE
-/       %th SETS
-/       %th INSTRUCTIONS
-/       %th EQUIPMENT
-/       - if can? :delete, @workout
-/         %th
-
-/   %tbody
-/     - @workout.list_exercises.each do |workout_exercise|
-/       %tr
-/         %th= link_to workout_exercise.exercise_name, exercise_path(workout_exercise.exercise)
-
-/         %th= workout_exercise.sets
-
-/         - if workout_exercise.instructions
-/           %th= workout_exercise.instructions.humanize
-
-/         %th= workout_exercise.equipment_name.titleize
-
-/         - if can? :delete, @workout
-/           %th= link_to "REMOVE EXERCISE", workout_exercise_path(workout_exercise), confirm: @snaz_confirm, method: :delete
+    %th= link_to "REMOVE EXERCISE", workout_exercise_path(exercise), confirm: @snapz_confirm, method: :delete

@@ -1,12 +1,16 @@
-When /^I change the workout's "(.*?)" with "(.*?)"$/ do |field, value|
-  fill_in field, with: value
-  click_button "UPDATE WORKOUT"
+When /^I click the workout's "(.*?)"$/ do |update_link|
+  click_link update_link
 end
 
-Then /^Snapz should say "(.*?)" to let me know I've updated the workout$/ do |snapz_sayz|
-  page.should have_content snapz_sayz
+When /^"(.*?)" I fill in the workout's "(.*?)" with "(.*?)"$/ do |container, form_element, new_detail|
+  within container do
+    fill_in form_element, with: new_detail
+    click_button "UPDATE WORKOUT"
+  end
 end
 
-Then /^I should see "(.*?)" on the workouts's page$/ do |updated_attr|
-  page.should have_content updated_attr
+Then /^"(.*?)" I should see the workout's updated "(.*?)"$/ do |container, new_detail|
+  within container do
+    page.should have_content new_detail
+  end
 end

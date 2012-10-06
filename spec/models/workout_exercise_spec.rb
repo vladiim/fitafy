@@ -34,10 +34,28 @@ describe WorkoutExercise do
     end
   end
 
-  describe "#exercise_name" do
-    before { mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"} }
-    it "should give the exercise name titleized" do
-      valid_subject.exercise_name.should eq "Rebel Ins"
+  # describe "#exercise_name" do
+  #   before { mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"} }
+  #   it "should give the exercise name titleized" do
+  #     valid_subject.exercise_name.should eq "Rebel Ins"
+  #   end
+  # end
+
+  describe "#safe_instructions" do
+    let(:result) { subject.safe_instructions }
+
+    context "with instructions" do
+      before { mock(subject).instructions.times(2) { "INSTRUCTIONS" } }
+      it "returns the instructions" do
+        result.should eq "INSTRUCTIONS"
+      end
+    end
+
+    context "without instructions" do
+      before { mock(subject).instructions { nil } }
+      it "returns a snapz message" do
+        result.should eq SnapzSayz::WorkoutExerciseSpeak.no_instructions
+      end
     end
   end
 
@@ -98,13 +116,13 @@ describe WorkoutExercise do
     end
   end
 
-  describe "#equipment_name" do
-    let(:exercise) { OpenStruct.new equipment_name: "EQUIPMENT NAME"}
+  # describe "#equipment_name" do
+  #   let(:exercise) { OpenStruct.new equipment_name: "EQUIPMENT NAME"}
 
-    before { mock(subject).exercise { exercise } }
+  #   before { mock(subject).exercise { exercise } }
 
-    it "should return the exercise's equipment name" do
-      subject.equipment_name.should eq "EQUIPMENT NAME"
-    end
-  end
+  #   it "should return the exercise's equipment name" do
+  #     subject.equipment_name.should eq "EQUIPMENT NAME"
+  #   end
+  # end
 end

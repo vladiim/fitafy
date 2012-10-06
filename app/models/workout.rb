@@ -71,9 +71,10 @@ class Workout < ActiveRecord::Base
     Exercise.by_alphabetical_tags tags
   end
 
-  def list_exercises
-    workout_exercises
-  end
+  # TODO delete this if it's not causing problems
+  # def list_exercises
+  #   workout_exercises
+  # end
 
   def new_workout_exercise
     workout_exercises.build

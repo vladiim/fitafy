@@ -8,5 +8,9 @@ module SnapzSayz
     def self.delete
       "You trim down super easy! Exercise gone!"
     end
+
+    def self.no_instructions
+      "No exercise instructions... guessing time!"
+    end
   end
 end
