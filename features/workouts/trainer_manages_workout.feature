@@ -18,7 +18,6 @@ Feature: Trainer manages workouts
     When I click delete exercise
     Then that exercise should be removed
 
-  @focus
   Scenario Outline: Trainer updates a workout
     Given a workout exercise exists
     And I'm on a workout's page

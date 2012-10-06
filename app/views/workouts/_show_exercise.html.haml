@@ -4,9 +4,7 @@
   = exercise.safe_instructions.humanize
   - if can? :manage, @workout
     = link_to "Edit exercise instructions", "#"
-    = simple_form_for exercise do |f|
-      = f.input :instructions
-      = f.submit "UPDATE WORKOUT"
+    = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :instructions }
 
   %h5 Sets
   = exercise.sets
