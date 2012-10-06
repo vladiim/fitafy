@@ -1,12 +1,12 @@
 require_relative '../spec_helper'
 
 describe Workout do
-  subject { FactoryGirl.create :workout }
+  subject { build :workout }
 
   let(:exercise)  { Object.new }
   let(:exercises) { [exercise] }
 
-  describe "#associations" do
+  describe "associations" do
     it { should have_many :workout_exercises }
     it { should accept_nested_attributes_for :workout_exercises }
     it { should have_many :exercises }
@@ -14,56 +14,65 @@ describe Workout do
     it { should have_many(:users).through(:favorite_workouts) }
   end
 
-  describe "#validate" do
-
-    context "without name" do
-       it "shouldn't be valid" do
-         subject.name = nil
-         subject.should_not be_valid
-       end
-     end
-
-    context "with the right client_level" do
-      before { @client_levels = %w{Beginner Regular Pro}}
-      it "should be valid" do
-        @client_levels.each do |client_level|
-          subject.client_level = client_level
-          subject.should be_valid
-        end
-      end
-    end
-
-    context "with the wrong/no client_level" do
-      before { @client_levels = %w{blah di blah "" nil " "}}
-      it "should not be valid" do
-        @client_levels.each do |client_level|
-          subject.client_level = client_level
-          subject.should be_invalid
-        end
-      end
-    end
-
-    context "with the right difficulty" do
-      before { @difficulty = %w{Easy Medium Hard}}
-      it "should be valid" do
-        @difficulty.each do |difficulty|
-          subject.difficulty = difficulty
-          subject.should be_valid
-        end
-      end
-    end
-
-    context "with the wrong/no difficulty" do
-      before { @difficulty = %w{blah di blah "" nil " "}}
-      it "should not be valid" do
-        @difficulty.each do |difficulty|
-          subject.difficulty = difficulty
-          subject.should be_invalid
-        end
-      end
-    end
-
+  describe "validate" do
     it { should validate_presence_of :user_id }
+    it { should validate_presence_of :name }
+
+    describe "#client_level" do
+      context "true" do
+        before { mock(subject).client_level?.times(4) { true } }
+        it { should ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
+      end
+
+      context "false" do
+        before { mock(subject).client_level?.times(4) { false } }
+        it { should_not ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
+      end
+    end
+
+    describe "#difficulty" do
+      context "true" do
+        before { mock(subject).difficulty?.times(4) { true } }
+        it { should ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
+      end
+
+      context "false" do
+        before { mock(subject).difficulty?.times(4) { false } }
+        it { should_not ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
+      end
+    end
+  end
+
+  describe "client_level?" do
+    context "with client level" do
+      it "is true" do
+        mock(subject).client_level { "ANYTHING" }
+        subject.client_level?.should eq true
+      end
+    end
+
+    context "without client level" do
+      it "is false" do
+        mock(subject).client_level { nil }
+        subject.client_level?.should eq false
+      end
+    end
+  end
+
+  describe "difficulty?" do
+    context "with difficulty" do
+      it "is true" do
+        mock(subject).difficulty { "ANYTHING" }
+        subject.difficulty?.should eq true
+      end
+    end
+
+    context "without difficulty" do
+      it "is false" do
+        mock(subject).difficulty { nil }
+        subject.difficulty?.should eq false
+      end
+    end
   end
 
   describe "#filter_by_tags" do

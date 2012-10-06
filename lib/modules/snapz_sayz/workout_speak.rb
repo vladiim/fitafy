@@ -6,6 +6,10 @@ module SnapzSayz
       "W00t! New workout comin'!"
     end
 
+    def self.new_workout_fail
+      "Something went wrong hombre - try again"
+    end
+
     def self.created_workout
       "New workout! You know sumpin'? The world's a better place"
     end

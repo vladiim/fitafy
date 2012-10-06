@@ -13,8 +13,8 @@ class Workout < ActiveRecord::Base
 
   validates_presence_of :name, :user_id
 
-  validates :client_level, inclusion: { in: CLIENT_LEVELS }
-  validates :difficulty, inclusion:   { in: DIFFICULTY }
+  validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
+  validates :difficulty, inclusion:   { in: DIFFICULTY }, if: :difficulty?
 
   belongs_to :user
 
@@ -26,6 +26,14 @@ class Workout < ActiveRecord::Base
   def self.filter_by_tags tags=nil, tag_types=nil
     Workout.all if tags == nil || tag_types == nil
     Exercise.with_tags(tags, tag_types).includes(:workouts).map(&:workouts).flatten
+  end
+
+  def client_level?
+    !client_level.nil?
+  end
+
+  def difficulty?
+    !difficulty.nil?
   end
 
   def new_workout_exercises

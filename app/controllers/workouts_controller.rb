@@ -25,7 +25,8 @@ class WorkoutsController < ApplicationController
   	  redirect_to user_workout_path(current_user, @workout)
   	  flash[:success] = SnapzSayz::WorkoutSpeak.created_workout
   	else
-  	  render :new
+      flash[:error] = SnapzSayz::WorkoutSpeak.new_workout_fail
+      redirect_to :back
   	end
   end
 
