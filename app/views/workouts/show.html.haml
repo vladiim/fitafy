@@ -1,15 +1,17 @@
 .workout_name
   - if can? :manage, @workout
     = link_to "Edit workout name", "#", class: "edit_workout_name"
-    .edit_workout_name_form.hidden.well= render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
+    .edit_workout_name_form.hidden.well
+      = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
 .workout_notes
   %h5 WORKOUT NOTES
   %p
     = @workout.safe_notes.capitalize
     - if can? :manage, @workout
-      = link_to "Edit workout notes", "#"
-      = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
+      = link_to "Edit workout notes", "#", class: "edit_workout_notes"
+      .edit_workout_notes_form.hidden.well
+        = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
 %section.row
 
