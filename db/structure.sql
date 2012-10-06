@@ -315,13 +315,13 @@ ALTER SEQUENCE workout_exercises_id_seq OWNED BY workout_exercises.id;
 CREATE TABLE workouts (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    notes text NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    client_level character varying(255) NOT NULL,
-    difficulty character varying(255) NOT NULL,
     user_id integer NOT NULL,
-    slug character varying(255)
+    slug character varying(255),
+    notes text,
+    difficulty character varying(255),
+    client_level character varying(255)
 );
 
 
@@ -629,3 +629,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120918173725');
 INSERT INTO schema_migrations (version) VALUES ('20120923060134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923093145');
+
+INSERT INTO schema_migrations (version) VALUES ('20121006013902');
+
+INSERT INTO schema_migrations (version) VALUES ('20121006014910');

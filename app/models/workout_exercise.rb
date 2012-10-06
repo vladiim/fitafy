@@ -5,6 +5,10 @@ class WorkoutExercise < ActiveRecord::Base
   belongs_to :exercise
   belongs_to :workout
 
+  delegate :name, to: :exercise
+  delegate :muscles, to: :exercise
+  delegate :equipment, to: :exercise
+
   def exercise_name
   	exercise = Exercise.find exercise_id
   	exercise.name.titleize

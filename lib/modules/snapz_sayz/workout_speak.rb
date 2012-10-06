@@ -37,5 +37,21 @@ module SnapzSayz
     def self.copy_redirect
       "Wanna copy a workout? No problems! You just need to login first yo!"
     end
+
+    def self.no_difficulty_value
+      "No difficulty..."
+    end
+
+    def self.no_client_level_value
+      "No client level..."
+    end
+
+    def self.no_notes_value
+      "No notes for this workout yo... add some!"
+    end
+
+    def self.no_level
+      "No info! Let us know how hard this workout is..."
+    end
   end
 end

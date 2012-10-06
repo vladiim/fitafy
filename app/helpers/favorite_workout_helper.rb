@@ -1,7 +1,9 @@
 module FavoriteWorkoutHelper
 
   def link_to_favorite_workout current_user, workout
-    if current_user && current_user.workout_in_favorites?(workout)
+    if current_user == workout.user
+      return ""
+    elsif current_user && current_user.workout_in_favorites?(workout)
       favorite_workout = current_user.find_favorite_workout(workout.id)
       link_to_unfavorite_workout favorite_workout
   	else

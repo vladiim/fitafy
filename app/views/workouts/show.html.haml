@@ -1,20 +1,21 @@
-%h4
-  By:
-  = link_to @trainer.username.upcase, user_path(@trainer)
-
-%br
-
-%p
-  This is an
-  = @workout.difficulty
-  workout for
-  = @workout.client_level.pluralize
-
 %h5 WORKOUT NOTES
-%p= @workout.notes.capitalize
+%p= @workout.safe_notes.capitalize
 
 %section.row
 
-  %article.span7= render 'show_exercise'
+  %article.span7
 
-  %aside.span3.well= render "workout_aside"
+    - if @workout.workout_exercises
+      = render partial: "show_exercise", collection: @workout.workout_exercises, as: :exercise
+
+    - elsif current_user == @workout.user
+      %h4 This exercise has no workouts sucka! Get to work!
+
+    - else
+      %h4 No exercises for this workout, nothing to see here!
+
+    = link_to "ADD EXERCISE", "#", class: "btn btn-primary"
+
+  %aside.span3.well
+    = render "stats"
+    = render "cta_buttons"

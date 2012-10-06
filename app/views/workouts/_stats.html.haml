@@ -1,0 +1,19 @@
+#workout_stats
+  %h5 By
+  = link_to @trainer.username.upcase, user_path(@trainer)
+  
+  %h5 Level
+  = @workout.level
+  = link_to "Edit workout level", "#edit_workout_level_modal", "data-toggle" => "modal"
+
+.modal.hide.fade.in#edit_workout_level_modal
+  .modal-header
+    %a.close{ "data-dismiss" => "modal" } x
+    %h3 Edit Workout Levels
+  .modal-body
+  Let peeps know how hard this workout really is!
+
+  = simple_form_for [current_user, @workout] do |f|
+    = f.input :client_level, collection: @client_level
+    = f.input :difficulty, collection: @difficulty
+    = f.submit "CREATE WORKOUT", class: "btn btn-primary"

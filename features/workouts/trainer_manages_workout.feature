@@ -7,24 +7,32 @@ Feature: Trainer manages workouts
     When I'm a logged in trainer
 
   @focus
-  Scenario: Trainer builds new workout
-    Given I want to create a new workout
-    When I click the "NEW WORKOUT" new workout link
-    And I fill in the workout name
-    Then I should be on the newly created workout's page
-    And Snapz should say "W00t! New workout comin'! Time to fill in the details yo." because I'm on a new workout page
+  Scenario: Trainer creates new workout
+    Given I've created a new workout
+    When I go to the new workout's page
+    Then I should be able to edit the workout's details
+    And I should see the workout owner CTA buttons
 
-  @focus
-  Scenario: Trainer creates workout
-    Given I'm on a new workout page
-    When I fill in the workout form
-    Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
-    And I can see the workout name
+  # @focus
+  # Scenario: Trainer builds new workout
+  #   Given I want to create a new workout
+  #   When I click the "NEW WORKOUT" new workout link
+  #   And I fill in the workout name
+  #   Then I should be on the newly created workout's page
+  #   And Snapz should say "W00t! New workout comin'! Time to fill in the details yo." because I'm on a new workout page
+  #   And I should see workout CTA buttons for my workout
 
-  Scenario: Trainer edits a workout
-    Given a workout exercise exists
-    When I'm on the edit workout page
-    Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
+  # @focus
+  # Scenario: Trainer creates workout
+  #   Given I'm on a new workout page
+  #   When I fill in the workout form
+  #   Then Snapz should give the created workout message "New workout! You know sumpin'? The world's a better place"
+  #   And I can see the workout name
+
+  # Scenario: Trainer edits a workout
+  #   Given a workout exercise exists
+  #   When I'm on the edit workout page
+  #   Then Snapz should give me the "Gonna switch up the workout eh? Nice... nice" edit workout message
 
   Scenario: Trainer deletes exercise from workout
     Given a workout exercise exists
@@ -32,12 +40,12 @@ Feature: Trainer manages workouts
     When I click delete exercise
     Then that exercise should be removed
 
-  Scenario: Trainer updates a workout
-    Given a workout exercise exists
-    And I'm on the edit workout page
-    When I change the workout's "workout_name" with "SUPREME CLIENTEL"
-    Then I should see "SUPREME CLIENTEL" on the workouts's page
-    And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
+  # Scenario: Trainer updates a workout
+  #   Given a workout exercise exists
+  #   And I'm on the edit workout page
+  #   When I change the workout's "workout_name" with "SUPREME CLIENTEL"
+  #   Then I should see "SUPREME CLIENTEL" on the workouts's page
+  #   And Snapz should say "Snip, snap we update workouts like dat!" to let me know I've updated the workout
 
   Scenario: Trainer deletes workout
     Given a workout exercise exists

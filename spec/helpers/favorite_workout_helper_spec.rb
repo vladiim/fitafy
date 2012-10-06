@@ -6,9 +6,18 @@ describe "FavoriteWorkoutHelper" do
   let(:workout) { OpenStruct.new id: 1 }
 
   describe "#link_to_favorite_workout" do
+    let(:trainer)          { Object.new }
+    let(:result) { helper.link_to_favorite_workout(trainer, workout) }
 
-    context "workout is alread favorte" do
-      let(:trainer)          { Object.new }
+    context "it's the trainer's workout" do
+      before { mock(workout).user { trainer } }
+
+      it "returns an empty string" do
+        result.should eq ""
+      end
+    end
+
+    context "workout is already a favorite" do
       let(:favorite_workout) { Object.new }
       let(:unfavorite_link)  { "UNFAVORITE LINK" }
 
@@ -19,20 +28,18 @@ describe "FavoriteWorkoutHelper" do
       end
 
       it "creates unfavorite link" do
-        helper.link_to_favorite_workout(trainer, workout).should eq "UNFAVORITE LINK"
+        result.should eq "UNFAVORITE LINK"
       end
     end
 
     context "trainer logged in" do
-      let(:trainer) { true }
-
       before do
         mock(trainer).workout_in_favorites?(workout) { false }
         mock(helper).create_favorite_workout_link(workout) { "FAVORITE WORKOUT LINK" }
       end
 
       it "creates a link to create a favorte workout" do
-        helper.link_to_favorite_workout(trainer, workout).should eq "FAVORITE WORKOUT LINK"
+        result.should eq "FAVORITE WORKOUT LINK"
       end
     end
   end

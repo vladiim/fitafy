@@ -4,8 +4,8 @@
       %h5= link_to workout.name.titleize, user_workout_path(workout.user_id, workout)
 
     %p
-      = workout.client_level.upcase
-      = workout.difficulty.upcase
+      = workout.safe_client_level.upcase
+      = workout.safe_difficulty.upcase
 
     %p
       By: CLUB_RYNO

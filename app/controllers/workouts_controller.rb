@@ -35,7 +35,9 @@ class WorkoutsController < ApplicationController
     @trainer       = User.find @workout.user_id
     @current_user  = current_user ? current_user : nil
   	@title         = @workout.name
-    @snapz_warning = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+    @snapz_confirm = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+    @client_level  = Workout::CLIENT_LEVELS
+    @difficulty    = Workout::DIFFICULTY
 
     respond_to do |format|
       format.html

@@ -28,6 +28,25 @@ class Workout < ActiveRecord::Base
     Exercise.with_tags(tags, tag_types).includes(:workouts).map(&:workouts).flatten
   end
 
+  def safe_difficulty
+    return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty
+    difficulty
+  end
+
+  def safe_client_level
+    return SnapzSayz::WorkoutSpeak.no_client_level_value unless client_level
+    client_level
+  end
+
+  def safe_notes
+    return SnapzSayz::WorkoutSpeak.no_notes_value unless notes
+    notes
+  end
+
+  def level
+    "This is a #{difficulty} workout for #{client_level} clients"
+  end
+
   def client_level?
     !client_level.nil?
   end
