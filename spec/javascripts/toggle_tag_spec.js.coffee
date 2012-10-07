@@ -1,10 +1,3 @@
-# describe "ToggleTag", ->
-
-#   beforeEach ->
-#     loadFixtures "one_muscle_tag.html"
-#     toggler = new ToggleTag
-#     toggler.init()
-
 #   describe "sort by tags button", ->
 #     it "defaults to hiding the muscle tags", ->
 #       expect($(".muscle_tags")).toHaveClass("hidden")

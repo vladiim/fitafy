@@ -1,4 +1,4 @@
-.exercise_tag_list.well
-  %h3 SORT BY:
+%ul.exercise_tag_list.nav.nav-tab.affix
   - @muscles.each do |tag|
-    = link_to_single_param_tags tag
+    %li
+      = link_to_single_param_tags tag

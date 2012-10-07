@@ -20,9 +20,6 @@
         = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
 = link_to_add_exercise(@workout)
-= render partial: "exercises/tags"
-.exercise_list
-  = render partial: "exercise", collection: @exercises
 
 %section.row
 
@@ -44,3 +41,12 @@
   %aside.span3.well
     = render "stats"
     = render "cta_buttons"
+
+.modal.hide.fade.in#add_workout_exercise
+  .modal-header
+    %a.close{ "data-dismiss" => "modal" } x
+    %h3 Add Exercise To Workout
+  .modal-body
+    .exercise_list
+      .span2.tabbable.tabs-left= render partial: "exercises/tags"
+      .span4= render partial: "exercise", collection: @exercises
