@@ -21,7 +21,8 @@
 
 = link_to_add_exercise(@workout)
 = render partial: "exercises/tags"
-= render partial: "exercise", collection: @exercises
+.exercise_list
+  = render partial: "exercise", collection: @exercises
 
 %section.row
 

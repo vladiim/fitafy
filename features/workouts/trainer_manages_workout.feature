@@ -69,29 +69,6 @@ Feature: Trainer manages workouts
     And Snapz should let me know I've copied the workout
     And it should copy all the original workout's attributes
 
-  @focus
-  Scenario: trainer filters by multiple tags
-    Given a workout exercise with lots of exercises
-    And I'm on a workout's page
-    And I'm adding a new exercise
-    When I click on more than one tag
-    Then I should see the exercise filtered by the tags
-
-  Scenario: trainer clicks tag twice
-    Given more than one exercise
-    And I'm a logged in trainer
-    And I'm on the new workout page
-    When I click on the same tag twice
-    Then the tag should only appear in the params once
-
-  Scenario: trainer removes exercise tag
-    Given more than one exercise
-    And I'm a logged in trainer
-    And I'm on the new workout page
-    When I click on a tag
-    And I click remove tag
-    Then the tag shouldn't be in the url
-
   Scenario: trainer creates pdf of workout
     Given I'm on the workout page
     When I click download as pdf
