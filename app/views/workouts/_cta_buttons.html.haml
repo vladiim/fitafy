@@ -1,9 +1,8 @@
 %aside
   = link_to_add_exercise(@workout)
 
-  = link_to_favorite_workout @current_user, @workout
+  = link_to_create_copy @workout
 
-  = link_to_edit_or_copy_workout @current_user, @workout
-  / = link_to_copy_workout @current_user, @workout
+  = link_to_favorite_workout @current_user, @workout
 
   = link_to_download_workout_pdf @workout

@@ -1,28 +1,35 @@
 module WorkoutHelper
 
+  def link_to_baby_form current_user, workout, form_attribute, form_element
+    content_tag(:div, class: "edit_workout_#{form_attribute.to_s}_form hidden") do
+      render(partial: "baby_form",
+           locals: { form_element: "#{form_element}",
+                     form_attribute: "#{form_attribute}"}).to_s
+    end
+  end
+
+  def link_to_edit_form workout, form_attribute
+    if can? :manage, workout
+      link_to "Edit #{form_attribute}", "#", class: "edit_workout_#{form_attribute}"
+    else
+      nil
+    end
+  end
+
   def link_to_add_exercise workout
     if can? :manage, workout
       link_to "ADD EXERCISE", "#", class: "btn btn-primary add_workout_exercise_form button_space"
     end
   end
 
-  def link_to_edit_or_copy_workout current_user, workout
-  	if can? :manage, workout
-      link_to_edit_workout workout
-    else
-      link_to_create_copy workout
-  	end
-  end
-
-  def link_to_edit_workout workout
-  	link_to "EDIT WORKOUT", edit_user_workout_path(workout.user_id, workout), 
-  	                        class: "btn btn-info button_space"
-  end
-
   def link_to_create_copy workout
-  	link_to "CREATE COPY", copy_workouts_path({id: workout.id}), 
-                           method: :post,
-  	                       class: "btn btn-primary button_space"
+    if can? :manage, workout
+      nil
+    else
+  	  link_to "CREATE COPY", copy_workouts_path({id: workout.id}), 
+        method: :post,
+  	    class: "btn btn-primary button_space"
+    end
   end
 
   def link_to_download_workout_pdf workout

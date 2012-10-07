@@ -4,10 +4,16 @@
     .edit_workout_name_form.hidden.well
       = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
+  / = link_to_edit_form @workout, "name"
+  / = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
+
 .workout_notes
   %h5 WORKOUT NOTES
   %p
     = @workout.safe_notes.capitalize
+    / = link_to_edit_form @workout, "notes"
+    / = link_to_baby_form current_user, @workout, :notes
+
     - if can? :manage, @workout
       = link_to "Edit notes", "#", class: "edit_workout_notes"
       .edit_workout_notes_form.hidden.well

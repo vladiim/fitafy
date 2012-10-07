@@ -2,6 +2,8 @@
   %h3= exercise.name
 
   = exercise.safe_instructions.humanize
+  / = link_to_edit_form @workout, "instructions"
+  / = link_to_baby_form current_user, @workout, :instructions, exercise
   - if can? :manage, @workout
     = link_to "Edit instructions", "#", class: "edit_workout_instructions"
     .edit_workout_instructions_form.hidden

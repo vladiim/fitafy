@@ -26,10 +26,10 @@ Feature: Trainer manages workouts
     Then <value_container> I should see the workout's updated <new_detail>
 
     Examples:
-      | update_button                | form_container       |form_element                     | new_detail         | value_container      |
-      | "Edit workout name"          | ".workout_name"      | "workout_name"                  | "NEW NAME"         | "h1"                 |
-      | "Edit workout notes"         | ".workout_notes"     | "workout_notes"                 | "New notes"        | ".workout_notes"     |
-      | "Edit exercise instructions" | "#workout_exercises" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | "#workout_exercises" |
+      | update_button        | form_container       |form_element                     | new_detail         | value_container      |
+      | "Edit name"          | ".workout_name"      | "workout_name"                  | "NEW NAME"         | "h1"                 |
+      | "Edit notes"         | ".workout_notes"     | "workout_notes"                 | "New notes"        | ".workout_notes"     |
+      | "Edit instructions"  | "#workout_exercises" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | "#workout_exercises" |
 
 
   Scenario: Trainer deletes workout
