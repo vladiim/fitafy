@@ -1,3 +1,17 @@
+# describe "ToggleTag", ->
+
+#   beforeEach ->
+#     loadFixtures "workout_show_page.html"
+#     toggler = new ToggleTag
+#     toggler.init()
+#     @$exercise_list = $(".exercise_list")
+
+#   it "defaults to hiding the exercise_list", ->
+#     expect(@$exercise_list).toHaveClass("hidden")
+
+#   describe "click 'ADD Exercise' link", ->
+#     beforeEach ->
+#       $("add_workout_exercise_form").click()
 #   describe "sort by tags button", ->
 #     it "defaults to hiding the muscle tags", ->
 #       expect($(".muscle_tags")).toHaveClass("hidden")

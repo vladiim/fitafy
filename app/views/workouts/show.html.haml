@@ -42,11 +42,4 @@
     = render "stats"
     = render "cta_buttons"
 
-.modal.hide.fade.in#add_workout_exercise
-  .modal-header
-    %a.close{ "data-dismiss" => "modal" } x
-    %h3 Add Exercise To Workout
-  .modal-body
-    .exercise_list
-      .span2.tabbable.tabs-left= render partial: "exercises/tags"
-      .span4= render partial: "exercise", collection: @exercises
+= render partial: "add_exercise_modal"

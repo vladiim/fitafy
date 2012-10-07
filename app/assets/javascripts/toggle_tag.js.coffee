@@ -1,13 +1,3 @@
-class window.ToggleTag
-  constructor: ->
-
-  init: ->
-      
-
-$ ->
-  toggler = new ToggleTag
-  toggler.init()
-
 # class window.ToggleTag
 #   constructor: ->
 #     @sort_by_selector          = ".sort_by_tags"
