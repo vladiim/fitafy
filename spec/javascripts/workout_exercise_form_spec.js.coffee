@@ -1,43 +1,26 @@
 describe "WorkoutExerciseForm", ->
   beforeEach ->
-    loadFixtures "workout_exercise_modal.html"
+    loadFixtures "workout_exercise_form.html"
     workout_exercise_form = new WorkoutExerciseForm
     workout_exercise_form.init()
+    @$show_link  = $(".add_workout_exercise_form")
+    @$modal_form = $("#add_workout_exercise")
+    @$show_link.click()
 
-  describe "form is hidden", ->
+  describe "form loaded", ->
     beforeEach ->
-      @$workout_exercise_show_link = $(".add_workout_exercise_form")
-      @$workout_exercise_form_form = $("#add_workout_exercise")
+      @$abs_exercise = $(".exercise_list > #abs")
+      @$back_exercise = $(".exercise_list > #back")
 
-    it "hides the form by default", ->
-      expect(@$workout_exercise_form_form).toHaveClass("hidden")
+    it "defaults to showing all the exercises", ->
+      expect(@$abs_exercise).not.toHaveClass("hidden")
+      expect(@$back_exercise).not.toHaveClass("hidden")
 
-    describe "click 'ADD EXERCISE' to show form", ->
+    describe "filter with abs", ->
       beforeEach ->
-        @$workout_exercise_show_link.click()
+        @$abs_link = $("#add_workout_exercise > a #abs")
+        @$abs_link.click()
 
-      it "shows the form", ->
-        expect(@$workout_exercise_form_form).not.toHaveClass("hidden")
-
-  #   @$abs = $(".exercise_list > #abs")
-  #   @$back = $(".exercise_list > #back")
-  #   @$chest = $(".exercise_list > #chest")
-
-  # it "defaults to showing all the exercises", ->
-  #   expect(@$abs).not.toHaveClass("hidden")
-  #   expect(@$back).not.toHaveClass("hidden")
-  #   expect(@$chest).not.toHaveClass("hidden")
-
-  # describe "click 'ABS' tag link", ->
-  #   beforeEach ->
-  #     @$abs_link = $(".exercise_tag_list > .tag_link #abs")
-  #     @$abs_link.click()
-
-  #   it "doesn't hide the abs exercise", ->
-  #     expect(@$abs).not.toHaveClass("hidden")
-
-  #   it "hides the back exercise", ->
-  #     expect(@$back).toHaveClass("hidden")
-
-  #   it "hides the chest exercise", ->
-  #     expect(@$chest).toHaveClass("hidden")
+    it "hides the other exercises", ->
+      expect(@$abs_exercise).not.toHaveClass("hidden")
+      expect(@$back_exercise).toHaveClass("hidden")
