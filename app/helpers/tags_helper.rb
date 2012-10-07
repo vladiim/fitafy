@@ -1,5 +1,9 @@
 module TagsHelper
 
+  def link_to_single_param_tags tag
+    link_to tag.upcase, { tag: tag }, class: "tag_link"
+  end
+
   def link_to_tag tag, tag_type
   	filter = [tag]
   	add_param_tags_to_filter filter, tag_type if params[tag_type]

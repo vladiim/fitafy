@@ -31,10 +31,8 @@ Feature: Trainer manages workouts
       | "Edit notes"         | ".workout_notes"     | "workout_notes"                 | "New notes"        | ".workout_notes"     |
       | "Edit instructions"  | "#workout_exercises" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | "#workout_exercises" |
 
-
   Scenario: Trainer deletes workout
     Given a workout exercise exists
-    And I'm on the edit workout page
     When I delete the workout by clicking "DELETE WORKOUT"
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
@@ -71,15 +69,11 @@ Feature: Trainer manages workouts
     And Snapz should let me know I've copied the workout
     And it should copy all the original workout's attributes
 
-  Scenario: Trainer can't see edit workout link for another trainer's workout
-    Given a workout exercise exists
-    When I go to the workout's page
-    Then I shouldn't see the edit workout link
-
+  @focus
   Scenario: trainer filters by multiple tags
-    Given more than one exercise
-    And I'm a logged in trainer
-    And I'm on the new workout page
+    Given a workout exercise with lots of exercises
+    And I'm on a workout's page
+    And I'm adding a new exercise
     When I click on more than one tag
     Then I should see the exercise filtered by the tags
 

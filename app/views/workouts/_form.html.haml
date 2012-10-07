@@ -11,11 +11,10 @@
     
         = f.submit cta, class: "btn btn-primary", class: "button_space"
 
-        = link_to_delete_workout @workout, cta, @snapz_confirm_delete
+        = link_to_delete_workout @workout, @snapz_confirm_delete
   
       %section.span7
         = render partial: "exercises/sort_by"
-
         %table#exercise_list.table.table-bordered.table-striped
           %tbody
             = render partial: "exercises", collection: @exercises, as: :exercise, locals: { f: f }

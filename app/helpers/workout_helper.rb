@@ -11,8 +11,6 @@ module WorkoutHelper
   def link_to_edit_form workout, form_attribute
     if can? :manage, workout
       link_to "Edit #{form_attribute}", "#", class: "edit_workout_#{form_attribute}"
-    else
-      nil
     end
   end
 
@@ -23,9 +21,7 @@ module WorkoutHelper
   end
 
   def link_to_create_copy workout
-    if can? :manage, workout
-      nil
-    else
+    unless can? :manage, workout
   	  link_to "CREATE COPY", copy_workouts_path({id: workout.id}), 
         method: :post,
   	    class: "btn btn-primary button_space"
@@ -37,13 +33,13 @@ module WorkoutHelper
   	                           class: "btn btn-success button_space"
   end
 
-  def link_to_delete_workout workout, snapz_message, cta=nil
-    return if cta == nil
-
-    link_to "DELETE WORKOUT", user_workout_path(current_user, workout), 
-                              method: :delete,
-                              class: "btn btn-danger",
-                              data: { confirm: snapz_message }
+  def link_to_delete_workout workout, snapz_message
+    if can? :manage, workout
+      link_to "DELETE WORKOUT", user_workout_path(current_user, workout), 
+                                method: :delete,
+                                class: "btn btn-danger",
+                                data: { confirm: snapz_message }
+    end
   end
 
   def new_workout

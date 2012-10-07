@@ -1,0 +1,5 @@
+.exercise_list.well
+  %head
+    %h4= exercise.name.titleize
+  = truncate(exercise.description.humanize, length: 70)
+  = link_to "ADD TO WORKOUT", "#"

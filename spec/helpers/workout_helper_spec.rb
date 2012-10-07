@@ -113,21 +113,27 @@ describe "WorkoutHelper" do
 
   describe "#link_to_delete_workout" do
     let(:workout)       { Object.new }
-    let(:user)          { Object.new }
     let(:snapz_message) { Object.new }
+    let(:result)        { helper.link_to_delete_workout(workout, snapz_message) }
 
-    context "with update cta" do
-      it "links to destroy the workout" do
-        mock(helper).current_user { user }
-        mock(helper).user_workout_path(user, workout)
+    context "current_user's workout" do
+      before do
+        mock(helper).can?(:manage, workout) { true }
+        mock(helper).user_workout_path(anything, anything)
+        mock(helper).current_user { Object.new }
         mock(helper).link_to("DELETE WORKOUT", anything, anything) { "DESTROY WORKOUT" }
-        helper.link_to_delete_workout(workout, snapz_message, "UPDATE WORKOUT").should eq "DESTROY WORKOUT"
+      end
+
+      it "links to destroy the workout" do
+        result.should eq "DESTROY WORKOUT"
       end
     end
 
-    context "with no cta" do
-      it "doesn't render anything" do
-        helper.link_to_delete_workout(workout, snapz_message).should eq nil
+    context "not current_user's workout" do
+      before { mock(helper).can?(:manage, workout) { false } }
+
+      it "renders nothing" do
+        result.should eq nil
       end
     end
   end

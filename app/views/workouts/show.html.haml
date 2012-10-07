@@ -19,10 +19,13 @@
       .edit_workout_notes_form.hidden.well
         = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
+= link_to_add_exercise(@workout)
+= render partial: "exercises/tags"
+= render partial: "exercise", collection: @exercises
+
 %section.row
 
   %article.span7
-    = link_to_add_exercise(@workout)
 
     / TRY TRY TRY = @workout.render_exercises(current_user)
 

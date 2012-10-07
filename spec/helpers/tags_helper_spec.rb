@@ -45,6 +45,15 @@ describe "TagsHelper" do
     end
   end
 
+  describe "#link_to_single_param_tags" do
+    let(:result) { helper.link_to_single_param_tags "abs" }
+    before { mock(helper).link_to("ABS", {tag: "abs"}, anything) { "SINGLE TAG" } }
+
+    it "renders the tag" do
+      result.should eq "SINGLE TAG"
+    end
+  end
+
   describe "#link_to_remove_tag" do
 
     it "links to the tag with the params of existing tags" do

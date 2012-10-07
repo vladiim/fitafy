@@ -3,7 +3,9 @@
 * Revise favorite workout count to be like exercise (remove n+1)
 
 # With Avdi
-* Workout#show create @workout.render_exercises method
+* Workout#show refactor
+	- WorkoutHelper#link_to_baby_form
+	- WorkoutHelper#link_to_edit_form
 * Trending
 	- Favorited workout
 	- Printed workout
