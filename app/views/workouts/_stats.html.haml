@@ -5,7 +5,7 @@
   %h5 Level
   = @workout.level
   - if can? :manage, @workout
-    = link_to "Edit workout level", "#", class: "edit_workout_level"
+    = link_to "Edit level", "#", class: "edit_workout_level"
     .edit_workout_level_form.hidden
       = simple_form_for [current_user, @workout] do |f|
         = f.input :client_level, collection: @client_level

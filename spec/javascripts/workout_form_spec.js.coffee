@@ -108,3 +108,29 @@ describe "WorkoutForm", ->
       #   it "hides the exercise instructions form", ->
       #     @$cancel_link.click()
       #     expect(@$form).toHaveClass("hidden")
+
+  describe "exercise sets form", ->
+    beforeEach ->
+      @$show_link   = $(".workout_exercises > .edit_workout_sets")
+      @$form        = $(".edit_workout_sets_form")
+      @$cancel_link = $(".edit_workout_sets_form > .edit_workout_sets")
+
+    it "is hidden by default", ->
+      expect(@$form).toHaveClass("hidden")
+
+    describe "click 'Edit exercise sets'", ->
+      beforeEach ->
+        @$show_link.click()
+
+      it "shows the exercise sets form", ->
+        expect(@$form).not.toHaveClass("hidden")
+
+      describe "click 'Edit exercise sets' again", ->
+        it "hides the exercise sets form", ->
+          @$show_link.click()
+          expect(@$form).toHaveClass("hidden")
+
+      # describe "click 'Cancel' within the form", ->
+      #   it "hides the exercise sets form", ->
+      #     @$cancel_link.click()
+      #     expect(@$form).toHaveClass("hidden")
