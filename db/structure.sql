@@ -319,9 +319,9 @@ CREATE TABLE workouts (
     updated_at timestamp without time zone NOT NULL,
     user_id integer NOT NULL,
     slug character varying(255),
-    notes text,
     difficulty character varying(255),
-    client_level character varying(255)
+    client_level character varying(255),
+    notes text
 );
 
 
@@ -633,3 +633,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120923093145');
 INSERT INTO schema_migrations (version) VALUES ('20121006013902');
 
 INSERT INTO schema_migrations (version) VALUES ('20121006014910');
+
+INSERT INTO schema_migrations (version) VALUES ('20121007074716');
