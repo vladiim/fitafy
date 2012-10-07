@@ -1,18 +1,11 @@
 class window.WorkoutExerciseForm
   contstructor: ->
-    @tag_links = $(".tag_link")
+    @add_exercise = $(".add_workout_exercise_form")
 
   init: ->
-    $(@tag_links).on "click", =>
-      alert('fuck off cunt')
-
-    # $(@tag_links_selector).on "click", (event) ->
-    #   # $tag_link = $(event.target)
-    #   # $tag = $tag_link.id()
-    #   alert("boom #{event}")
-    #   # $(".exercise_list_element").addClass("hidden")
-    #   # $exercises.removeClass("hidden") if $exercises.id == $tag
-    #   event.preventDefault()
+    $(@add_exercise).on "click", ->
+      alert("blah")
+      $("#add_workout_exercise").toggleClass("hidden")
 
 $ ->
   workout_exercise_form = new WorkoutExerciseForm
