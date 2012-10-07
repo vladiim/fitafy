@@ -44,7 +44,11 @@ class Workout < ActiveRecord::Base
   end
 
   def level
-    "This is a #{difficulty} workout for #{client_level} clients"
+    if difficulty && client_level
+      "This is a #{difficulty} workout for #{client_level} clients"
+    else
+      "No level for this workout - let us know how tough it is!"
+    end
   end
 
   def client_level?
