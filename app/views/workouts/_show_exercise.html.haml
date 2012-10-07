@@ -10,7 +10,9 @@
   %h5 Sets
   = exercise.sets
   - if can? :manage, @workout
-    = link_to "Edit sets", "#"
+    = link_to "Edit sets", "#", class: "edit_workout_sets"
+    .edit_workout_sets_form.hidden
+      = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :sets }
 
   %h5 Muscle-group
   = exercise.muscles[0].name

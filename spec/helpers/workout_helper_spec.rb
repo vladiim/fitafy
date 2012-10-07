@@ -2,14 +2,37 @@ require_relative '../spec_helper_lite'
 require_relative '../../app/helpers/workout_helper'
 
 describe "WorkoutHelper" do
-  let(:helper)  { Object.new.extend WorkoutHelper }
-  let(:workout)   { OpenStruct.new id: 1 }
+  let(:helper)       { Object.new.extend WorkoutHelper }
+  let(:workout)      { OpenStruct.new id: 1 }
+
+  describe "#link_to_add_exercise" do
+    let(:result) { helper.link_to_add_exercise(workout) }
+
+    context "current_user's workout" do
+      before do
+        mock(helper).can?(:manage, workout) { true }
+        mock(helper).link_to("ADD EXERCISE", anything, anything) { "ADD EXERCISE LINK" }
+      end
+
+      it "renders the exercise link" do
+        result.should eq "ADD EXERCISE LINK"
+      end
+    end
+
+    context "not current_user's workout" do
+      before { mock(helper).can?(:manage, workout) { false } }
+
+      it "renders nothing" do
+        result.should eq nil
+      end
+    end
+  end
 
   describe "#link_to_edit_or_copy_workout" do
 
     context "current user can update workout" do
       before do
-        mock(helper).can?(:update, workout) { true }
+        mock(helper).can?(:manage, workout) { true }
         mock(helper).link_to_edit_workout(workout) { "EDIT WORKOUT LINK" }
       end
 
@@ -22,7 +45,7 @@ describe "WorkoutHelper" do
       let(:current_user) { true }
 
       before do
-        mock(helper).can?(:update, workout) { false }
+        mock(helper).can?(:manage, workout) { false }
         mock(helper).link_to_create_copy(workout) { "CREATE COPY LINK" }
       end
 
@@ -35,7 +58,7 @@ describe "WorkoutHelper" do
       let(:current_user) { nil }
 
       before do
-        mock(helper).can?(:update, workout)       { false }
+        mock(helper).can?(:manage, workout)       { false }
         mock(helper).link_to_create_copy(workout) { "REDIRECT LINK" }
       end
 

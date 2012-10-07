@@ -1,7 +1,13 @@
 module WorkoutHelper
 
+  def link_to_add_exercise workout
+    if can? :manage, workout
+      link_to "ADD EXERCISE", "#", class: "btn btn-primary add_workout_exercise_form button_space"
+    end
+  end
+
   def link_to_edit_or_copy_workout current_user, workout
-  	if can? :update, workout
+  	if can? :manage, workout
       link_to_edit_workout workout
     else
       link_to_create_copy workout

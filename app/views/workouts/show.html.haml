@@ -16,6 +16,7 @@
 %section.row
 
   %article.span7
+    = link_to_add_exercise(@workout)
 
     / TRY TRY TRY = @workout.render_exercises(current_user)
 
@@ -28,8 +29,7 @@
     - else
       %h4 No exercises for this workout, nothing to see here!
 
-    - if can? :manage, @workout
-      = link_to "ADD EXERCISE", "#", class: "btn btn-primary"
+    = link_to_add_exercise(@workout)
 
   %aside.span3.well
     = render "stats"
