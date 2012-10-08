@@ -7,9 +7,9 @@ describe "WorkoutForm", ->
 
   describe "workout name form", ->
     beforeEach ->
-      @$show_link   = $(".workout_name > .edit_workout_name")
-      @$form        = $(".edit_workout_name_form")
-      @$cancel_link = $(".edit_workout_name_form > .edit_workout_name")
+      @$show_link   = $(".workout_name > .edit_workout.name")
+      @$form        = $(".edit_workout_form.name")
+      @$cancel_link = $(".edit_workout_form.name > .edit_workout.name")
 
     it "is hidden by default", ->
       expect(@$form).toHaveClass("hidden")
@@ -33,9 +33,9 @@ describe "WorkoutForm", ->
 
   describe "workout notes form", ->
     beforeEach ->
-      @$show_link   = $(".workout_notes > .edit_workout_notes")
-      @$form        = $(".edit_workout_notes_form")
-      @$cancel_link = $(".edit_workout_notes_form > .edit_workout_notes")
+      @$show_link   = $(".workout_notes > .edit_workout.notes")
+      @$form        = $(".edit_workout_form.notes")
+      @$cancel_link = $(".edit_workout_notes_form > .edit_workout.notes")
 
     it "is hidden by default", ->
       expect(@$form).toHaveClass("hidden")
@@ -59,9 +59,9 @@ describe "WorkoutForm", ->
 
   describe "workout level form", ->
     beforeEach ->
-      @$show_link   = $(".workout_level > .edit_workout_level")
-      @$form        = $(".edit_workout_level_form")
-      @$cancel_link = $(".edit_workout_level_form > .edit_workout_level")
+      @$show_link   = $(".workout_level > .edit_workout.level")
+      @$form        = $(".edit_workout_form.level")
+      @$cancel_link = $(".edit_workout_form.level > .edit_workout_level")
 
     it "is hidden by default", ->
       expect(@$form).toHaveClass("hidden")
@@ -85,9 +85,9 @@ describe "WorkoutForm", ->
 
   describe "exercise instructions form", ->
     beforeEach ->
-      @$show_link   = $(".workout_exercises > .edit_workout_instructions")
-      @$form        = $(".edit_workout_instructions_form")
-      @$cancel_link = $(".edit_workout_instructions_form > .edit_workout_instructions")
+      @$show_link   = $(".workout_exercises > .edit_workout.instructions")
+      @$form        = $(".edit_workout_form.instructions")
+      @$cancel_link = $(".edit_workout_instructions_form > .edit_workout.instructions")
 
     it "is hidden by default", ->
       expect(@$form).toHaveClass("hidden")
@@ -111,9 +111,9 @@ describe "WorkoutForm", ->
 
   describe "exercise sets form", ->
     beforeEach ->
-      @$show_link   = $(".workout_exercises > .edit_workout_sets")
-      @$form        = $(".edit_workout_sets_form")
-      @$cancel_link = $(".edit_workout_sets_form > .edit_workout_sets")
+      @$show_link   = $(".workout_exercises > .edit_workout.sets")
+      @$form        = $(".edit_workout_form.sets")
+      @$cancel_link = $(".edit_workout_form.sets > .edit_workout.sets")
 
     it "is hidden by default", ->
       expect(@$form).toHaveClass("hidden")
