@@ -16,7 +16,7 @@ module WorkoutHelper
 
   def link_to_add_exercise workout
     if can? :manage, workout
-      link_to "ADD EXERCISE", "#add_workout_exercise", class: "btn btn-primary add_workout_exercise_form button_space", "data-toggle" => "modal"
+      link_to "ADD EXERCISE", "#add_workout_exercise", class: "add_workout_exercise_form btn btn-primary button_space", "data-toggle" => "modal"
     end
   end
 

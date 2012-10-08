@@ -1,6 +1,7 @@
-%header
-  %h4= exercise.name.titleize
-= truncate(exercise.description.humanize, length: 70)
-= link_to "ADD TO WORKOUT", "#"
+%div{"class"=> "#{exercise.muscle_list[0].downcase} exercise_list_item"}
+  %header
+    %h4= exercise.name.titleize
+  = truncate(exercise.description.humanize, length: 70)
+  = link_to "ADD TO WORKOUT", "#"
 %br
 %br
