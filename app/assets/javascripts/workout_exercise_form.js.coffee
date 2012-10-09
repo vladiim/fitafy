@@ -5,9 +5,9 @@ class window.WorkoutExerciseForm
   init: ->
     $(@tag_links).on "click", (event) ->
       $tag_link = $(event.target)
-      tag = $tag_link.attr('id')
+      tag = $tag_link.attr('class').split(' ')[0]
       $(".exercise_list_item").toggleClass("hidden")
-
+      $(".#{tag}.exercise_list_item").toggleClass("hidden")
 $ ->
   workout_exercise_form = new WorkoutExerciseForm
   workout_exercise_form.init()

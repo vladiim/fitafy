@@ -6,9 +6,9 @@ describe "WorkoutExerciseForm", ->
 
   describe "form loaded", ->
     beforeEach ->
-      @$abs_exercise   = $(".abs, .exercise_list_item")
-      @$back_exercise  = $(".back, .exercise_list_item")
-      @$chest_exercise = $(".chest, .exercise_list_item")
+      @$abs_exercise   = $(".abs.exercise_list_item")
+      @$back_exercise  = $(".back.exercise_list_item")
+      @$chest_exercise = $(".chest.exercise_list_item")
 
     it "defaults to showing all the exercises", ->
       expect(@$abs_exercise).not.toHaveClass("hidden")
@@ -21,6 +21,6 @@ describe "WorkoutExerciseForm", ->
         @$abs_link.click()
 
       it "hides the other exercises", ->
-        # expect(@$abs_exercise).not.toHaveClass("hidden")
+        expect(@$abs_exercise).not.toHaveClass("hidden")
         expect(@$back_exercise).toHaveClass("hidden")
         expect(@$chest_exercise).toHaveClass("hidden")
