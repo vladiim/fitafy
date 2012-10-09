@@ -1,7 +1,7 @@
 .workout_name
   - if can? :manage, @workout
-    = link_to "Edit name", "#", class: "edit_workout_name"
-    .edit_workout_name_form.hidden.well
+    = link_to "Edit name", "#", class: "edit_workout name"
+    .edit_workout_form.name.hidden.well
       = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
   / = link_to_edit_form @workout, "name"
@@ -15,8 +15,8 @@
     / = link_to_baby_form current_user, @workout, :notes
 
     - if can? :manage, @workout
-      = link_to "Edit notes", "#", class: "edit_workout_notes"
-      .edit_workout_notes_form.hidden.well
+      = link_to "Edit notes", "#", class: "edit_workout notes"
+      .edit_workout_form.notes.hidden.well
         = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
 = link_to_add_exercise(@workout)

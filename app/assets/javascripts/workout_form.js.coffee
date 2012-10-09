@@ -1,29 +1,18 @@
 class window.WorkoutForm
   constructor: ->
-    @name_link         = $(".edit_workout_name")
-    @notes_link        = $(".edit_workout_notes")
-    @level_link        = $(".edit_workout_level")
-    @instructions_link = $(".edit_workout_instructions")
-    @sets_link         = $(".edit_workout_sets")
+    @links = $(".edit_workout")
 
   init: ->
-    $(@name_link).on "click", =>
-      @toggleForm("name")
+    $(@links).on "click", (event) =>
+      $link = $(event.target)
+      tag   = @getTag($link)
+      @toggleForm(tag)
 
-    $(@notes_link).on "click", =>
-      @toggleForm("notes")
-
-    $(@level_link).on "click", =>
-      @toggleForm("level")
-
-    $(@instructions_link).on "click", =>
-      @toggleForm("instructions")
-
-    $(@sets_link).on "click", =>
-      @toggleForm("sets")
+  getTag: (link) ->
+    link.attr("class").split(' ')[1]
 
   toggleForm: (type) ->
-    $(".edit_workout_#{type}_form").toggleClass("hidden")
+    $(".edit_workout_form.#{type}").toggleClass("hidden")
 
 $ ->
   workout_form = new WorkoutForm

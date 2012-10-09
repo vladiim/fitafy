@@ -6,6 +6,9 @@
 * Workout#show refactor
 	- WorkoutHelper#link_to_baby_form
 	- WorkoutHelper#link_to_edit_form
+# WorkoutForm js
+	- cancel link not working
+	- filter workout modal - doesn't remove
 * Trending
 	- Favorited workout
 	- Printed workout

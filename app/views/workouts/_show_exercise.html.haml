@@ -5,15 +5,15 @@
   / = link_to_edit_form @workout, "instructions"
   / = link_to_baby_form current_user, @workout, :instructions, exercise
   - if can? :manage, @workout
-    = link_to "Edit instructions", "#", class: "edit_workout_instructions"
-    .edit_workout_instructions_form.hidden
+    = link_to "Edit instructions", "#", class: "edit_workout instructions"
+    .edit_workout_form.instructions.hidden
       = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :instructions }
 
   %h5 Sets
   = exercise.sets
   - if can? :manage, @workout
-    = link_to "Edit sets", "#", class: "edit_workout_sets"
-    .edit_workout_sets_form.hidden
+    = link_to "Edit sets", "#", class: "edit_workout sets"
+    .edit_workout_form.sets.hidden
       = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :sets }
 
   %h5 Muscle-group
