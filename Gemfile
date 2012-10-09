@@ -10,6 +10,7 @@ gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'prawn',               '~> 0.12.0'
 gem 'resque',              '~> 1.22.0'
 gem 'resque_mailer',       '~> 2.1.0'
+gem 'display_case',        '~> 0.0.4', path: "/Developer/Sites/display-case"
 
 # ------------ AUTH ------------ #
 

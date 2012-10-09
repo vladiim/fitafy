@@ -3,7 +3,9 @@ class window.SortWorkouts
     @tags = $(".tag")
 
   init: ->
+
     $(@tags).on "click", (event) =>
+      event.preventDefault()
       $tag_link = $(event.target)
       tag       = @getTag($tag_link)
       @hideListItems(tag)

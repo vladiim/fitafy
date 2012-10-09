@@ -20,21 +20,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user
+    return @current_user if defined?(@current_user)
+    if session[:facebook_user_id]
+      # User.find session[:facebook_user_id]
+      @current_user = User.find(session[:facebook_user_id])
+    else
+      @current_user = current_user_session && current_user_session.user
+    end
+  end
+
   private
 
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
-    end
-
-    def current_user
-      return @current_user if defined?(@current_user)
-      if session[:facebook_user_id]
-        # User.find session[:facebook_user_id]
-        @current_user = User.find(session[:facebook_user_id])
-      else
-        @current_user = current_user_session && current_user_session.user
-      end
     end
 
     def authorize
