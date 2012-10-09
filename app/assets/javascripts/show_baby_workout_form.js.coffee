@@ -1,4 +1,4 @@
-class window.WorkoutExerciseForm
+class window.ShowBabyWorkoutForm
   constructor: ->
     @tag_links = $(".tag_link")
 
@@ -17,5 +17,5 @@ class window.WorkoutExerciseForm
     $(".#{tag}.exercise_list_item").toggleClass("hidden")
 
 $ ->
-  workout_exercise_form = new WorkoutExerciseForm
-  workout_exercise_form.init()
+  baby_form = new ShowBabyWorkoutForm
+  baby_form.init()

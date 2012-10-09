@@ -1,5 +1,5 @@
 #workout_exercises.well
-  %h3= exercise.name
+  %h3= link_to exercise.name, exercise_path(exercise.exercise)
 
   = exercise.safe_instructions.humanize
   / = link_to_edit_form @workout, "instructions"

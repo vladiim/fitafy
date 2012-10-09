@@ -1,4 +1,7 @@
 = simple_form_for form_element, method: :put do |f|
+
   = f.input form_attribute, id: "workout_#{form_attribute}"
+
   = f.submit "UPDATE WORKOUT", class: "btn btn-primary"
+
   = link_to "Cancel", "#", class: "edit_workout #{form_attribute}"
