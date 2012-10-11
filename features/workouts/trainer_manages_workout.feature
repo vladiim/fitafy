@@ -61,6 +61,7 @@ Feature: Trainer manages workouts
     When I visit the new workout page
     Then I should see them in alphabetical order
 
+  @focus
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise exists
     When I go to the workout's page
@@ -69,7 +70,8 @@ Feature: Trainer manages workouts
     And Snapz should let me know I've copied the workout
     And it should copy all the original workout's attributes
 
-  Scenario: trainer creates pdf of workout
+  # @focus
+  Scenario: Trainer creates pdf of workout
     Given I'm on the workout page
     When I click download as pdf
     Then I should get a pdf

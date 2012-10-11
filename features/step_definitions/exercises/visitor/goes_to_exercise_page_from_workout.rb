@@ -1,5 +1,5 @@
 Given /^I've gone to a workout show page$/ do
-  FactoryGirl.create :workout_exercise
+  create :workout_exercise
   trainer = User.last
   workout = Workout.last
   visit user_workout_path(trainer, workout)

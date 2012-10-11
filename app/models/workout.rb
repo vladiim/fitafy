@@ -16,6 +16,8 @@ class Workout < ActiveRecord::Base
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
   validates :difficulty, inclusion:   { in: DIFFICULTY }, if: :difficulty?
 
+  delegate :username, to: :user
+
   belongs_to :user
 
   def self.trending

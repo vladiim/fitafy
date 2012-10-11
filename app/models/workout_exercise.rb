@@ -9,11 +9,6 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :muscles, to: :exercise
   delegate :equipment_name, to: :exercise
 
-  # def exercise_name
-  # 	exercise = Exercise.find exercise_id
-  # 	exercise.name.titleize
-  # end
-
   def safe_instructions
     if instructions
       instructions
@@ -43,8 +38,4 @@ class WorkoutExercise < ActiveRecord::Base
   	end
   	workouts
   end
-
-  # def equipment_name
-  #   exercise.equipment_name
-  # end
 end

@@ -3,7 +3,6 @@ class WorkoutsController < ApplicationController
 
   load_and_authorize_resource except: [:index, :show]
   skip_filter :authorize, only: [:index, :show]
-  before_filter :create_exercise_variables, only: [:new, :edit]
 
   def index
     @workouts  = Workout.filter_by_tags(params[:muscles]) #.filter_by_tags(params[:equipment])
@@ -14,10 +13,6 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout      = current_user.build_workout
-  	@title        = "New Workout"
-    @client_level = Workout::CLIENT_LEVELS
-    @difficulty   = Workout::DIFFICULTY
-  	@snapz        = SnapzSayz::WorkoutSpeak.creating_new_workout
   end
 
   def create
@@ -33,12 +28,6 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout       = exhibit Workout.find(params[:id]), self
-
-    # @workout = WorkoutExhibit.new(@workout, self)
-    # if @workout.user == current_user
-    #   @workout = CurrentUserOwnedWorkoutExhibit.new(@workout, self)
-    # end
-
     @trainer       = User.find @workout.user_id
     @current_user  = current_user ? current_user : nil
   	@title         = @workout.name
@@ -52,13 +41,6 @@ class WorkoutsController < ApplicationController
       format.html
       format.pdf { create_and_generate_pdf }
     end
-  end
-
-  def edit
-    @workout              = Workout.find(params[:id])
-    @title                = "Edit Workout"
-    @snapz                = SnapzSayz::WorkoutSpeak.editing_exsisting_workout
-    @snapz_confirm_delete = SnapzSayz::WorkoutSpeak.deleting_workout_confirmation
   end
 
   def update
@@ -78,11 +60,6 @@ class WorkoutsController < ApplicationController
   end
 
   private
-    def create_exercise_variables
-      @exercises = Workout.exercises_by_alphabetical_tags(params[:muscles])
-      @equipment = Workout.equipment_names
-      @muscles   = Workout.muscles
-    end
 
     def create_and_generate_pdf
       pdf = WorkoutPdf.new @workout
