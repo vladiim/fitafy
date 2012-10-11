@@ -14,7 +14,7 @@ Fitafy::Application.routes.draw do
   resources :copy_workouts, only: :create
 
   resources :users do
-    resources :workouts
+    resources :workouts, only: [:new, :create, :show, :update, :update, :destroy]
   end
 
   resources :workouts, only: :new # to allow any user to have a create workout CTA

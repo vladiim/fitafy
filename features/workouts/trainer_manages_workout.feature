@@ -61,7 +61,6 @@ Feature: Trainer manages workouts
     When I visit the new workout page
     Then I should see them in alphabetical order
 
-  @focus
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise exists
     When I go to the workout's page
