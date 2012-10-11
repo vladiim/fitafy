@@ -2,19 +2,13 @@
   %h3= link_to exercise.name, exercise_path(exercise.exercise)
 
   = exercise.safe_instructions.humanize
-  / = link_to_edit_form @workout, "instructions"
-  / = link_to_baby_form current_user, @workout, :instructions, exercise
-  - if can? :manage, @workout
-    = link_to "Edit instructions", "#", class: "edit_workout instructions"
-    .edit_workout_form.instructions.hidden
-      = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :instructions }
+  = link_to_edit_form @workout, "instructions"
+  = link_to_baby_form current_user, @workout, :instructions, exercise
 
   %h5 Sets
   = exercise.sets
-  - if can? :manage, @workout
-    = link_to "Edit sets", "#", class: "edit_workout sets"
-    .edit_workout_form.sets.hidden
-      = render partial: "baby_form", locals: { form_element: exercise, form_attribute: :sets }
+  = link_to_edit_form @workout, "sets"
+  = link_to_baby_form current_user, @workout, :sets, exercise
 
   %h5 Muscle-group
   = exercise.muscles[0].name

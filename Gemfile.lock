@@ -1,5 +1,6 @@
-PATH
-  remote: /Developer/Sites/display-case
+GIT
+  remote: https://github.com/vladiim/display-case
+  revision: 20674446d7ef12216cecbf0c7841cfef22d5e938
   specs:
     display_case (0.0.4)
 

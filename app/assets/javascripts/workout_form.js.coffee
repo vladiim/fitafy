@@ -6,7 +6,7 @@ class window.WorkoutForm
     $( @links ).on "click", (event) =>
       $link = $(event.target)
       tag   =  @getTag ($link)
-       @toggleForm (tag)
+      @toggleForm(tag)
 
   getTag: (link) ->
     link.attr("class").split(' ')[1]

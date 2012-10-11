@@ -2,8 +2,7 @@ module WorkoutHelper
 
   def link_to_baby_form current_user, workout, form_attribute, form_element
     if can? :manage, workout
-      link_to "Edit notes", "#", class: "edit_workout notes"
-      content_tag(:div, class: "edit_workout_#{form_attribute.to_s}_form") do
+      content_tag(:div, class: "edit_workout_form #{form_attribute.to_s} hidden") do
         render(partial: "baby_form",
              locals: { form_element: form_element,
                        form_attribute: form_attribute}).to_s
@@ -13,7 +12,7 @@ module WorkoutHelper
 
   def link_to_edit_form workout, form_attribute
     if can? :manage, workout
-      link_to "Edit #{form_attribute}", "#", class: "edit_workout_#{form_attribute}"
+      link_to "Edit #{form_attribute}", "#", class: "edit_workout #{form_attribute}"
     end
   end
 
