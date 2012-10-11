@@ -1,13 +1,21 @@
-= simple_form_for @user do |f|
-  / = f.error_notification
-  = f.input :username
-  = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
+.row
 
-  = f.submit cta, class: "btn btn-primary"
-
-- if current_user
-  %br
-  %br
-  = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"
+  .span3
+    = image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
+    = simple_form_for @user, html: { multipart: true } do |f|
+      = f.input :avatar, label: "Profile Image"
+      = f.submit "Change Profile Pic", class: "btn btn-primary"
+  
+  .span9
+    = simple_form_for @user do |f|
+      = f.input :username
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
+    
+      = f.submit cta, class: "btn btn-primary"
+    
+    - if current_user
+      %br
+      %br
+      = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"  
