@@ -1,16 +1,15 @@
 class window.WorkoutForm
   constructor: ->
-    @edit_links = $("a.edit_workout")
+     @links = $(".edit_workout")
 
   init: ->
+    $( @links ).on "click", (event) =>
+      $link = $(event.target)
+      tag   =  @getTag ($link)
+       @toggleForm (tag)
 
-    $(@edit_links).on "click", (event) =>
-      $edit_link = $(event.target)
-      type = @findType($edit_link)
-      @toggleForm(type)
-
-  findType: (link) ->
-    link.attr('class').split(' ')[1]
+  getTag: (link) ->
+    link.attr("class").split(' ')[1]
 
   toggleForm: (type) ->
     $(".edit_workout_form.#{type}").toggleClass("hidden")

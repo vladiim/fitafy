@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  include DisplayCase::ExhibitsHelper
 
   load_and_authorize_resource except: [:index, :show]
   skip_filter :authorize, only: [:index, :show]
@@ -31,7 +32,13 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-  	@workout       = Workout.find(params[:id])
+  	@workout       = exhibit Workout.find(params[:id]), self
+
+    # @workout = WorkoutExhibit.new(@workout, self)
+    # if @workout.user == current_user
+    #   @workout = CurrentUserOwnedWorkoutExhibit.new(@workout, self)
+    # end
+
     @trainer       = User.find @workout.user_id
     @current_user  = current_user ? current_user : nil
   	@title         = @workout.name

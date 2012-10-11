@@ -1,4 +1,4 @@
-li#box_list {
+li.box_list {
 	list-style: none;
 	margin: 0 20px 10px -5px;
 	height: 120px;
@@ -6,4 +6,8 @@ li#box_list {
 	article { padding: 0 5px; }
 
 	h5 		{ margin-bottom: 5px; }
+}
+
+a.clicked {
+  color: black;
 }

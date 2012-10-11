@@ -1,22 +1,19 @@
 .workout_name
-  - if can? :manage, @workout
-    = link_to "Edit name", "#", class: "edit_workout_name"
-    .edit_workout_name_form.hidden.well
-      = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
 
-  / = link_to_edit_form @workout, "name"
-  / = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
+/ .edit_workout_form.name.well
+/   = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :name }
+
+/ = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
 
 .workout_notes
   %h5 WORKOUT NOTES
   %p
     = @workout.safe_notes.capitalize
-    / = link_to_edit_form @workout, "notes"
-    / = link_to_baby_form current_user, @workout, :notes
+    = link_to_baby_form current_user, @workout, :notes, [ current_user, @workout]
 
     - if can? :manage, @workout
-      = link_to "Edit notes", "#", class: "edit_workout_notes"
-      .edit_workout_notes_form.hidden.well
+      = link_to "Edit notes", "#", class: "edit_workout notes"
+      .edit_workout_form.notes.hidden.well
         = render partial: "baby_form", locals: { form_element: [current_user, @workout], form_attribute: :notes }
 
 = link_to_add_exercise(@workout)
@@ -25,16 +22,16 @@
 
   %article.span7
 
-    / TRY TRY TRY = @workout.render_exercises(current_user)
+    = @workout.render_exercises self
 
-    - if @workout.workout_exercises
-      = render partial: "show_exercise", collection: @workout.workout_exercises, as: :exercise
+    / - if @workout.workout_exercises
+    /   = render partial: "show_exercise", collection: @workout.workout_exercises, as: :exercise
 
-    - elsif current_user == @workout.user
-      %h4 This exercise has no workouts sucka! Get to work!
+    / - elsif current_user == @workout.user
+    /   %h4 This workout has no exercise sucka! Get to work!
 
-    - else
-      %h4 No exercises for this workout, nothing to see here!
+    / - else
+    /   %h4 No exercises for this workout, nothing to see here!
 
     = link_to_add_exercise(@workout)
 

@@ -1,8 +1,8 @@
-describe "WorkoutExerciseForm", ->
+describe "ShowBabyWorkoutForm", ->
   beforeEach ->
     loadFixtures "workout_exercise_form.html"
-    workout_exercise_form = new WorkoutExerciseForm
-    workout_exercise_form.init()
+    baby_form = new ShowBabyWorkoutForm
+    baby_form.init()
 
   describe "form loaded", ->
     beforeEach ->

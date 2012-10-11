@@ -1,11 +1,11 @@
-# Efficiency
-
-* Revise favorite workout count to be like exercise (remove n+1)
-
 # With Avdi
 * Workout#show refactor
 	- WorkoutHelper#link_to_baby_form
 	- WorkoutHelper#link_to_edit_form
+# WorkoutForm js
+	- filter workout modal - doesn't remove
+	- cancel link not working
+	- refactor both into toggle class
 * Trending
 	- Favorited workout
 	- Printed workout
@@ -14,16 +14,15 @@
 	- profile pic
     - ask avdi re password approach
 * Username clickable & in title username/workout_name
-
-# Functionality
 * friendly urls
-* remove "edit workout"
-
-# Refactor
 
 # Mail
 * forgot password
 * someone favorited your workout
+
+# Efficiency
+
+* Revise favorite workout count to be like exercise (remove n+1)
 
 # Services
 * Mailchimp
