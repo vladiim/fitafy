@@ -69,7 +69,6 @@ Feature: Trainer manages workouts
     And Snapz should let me know I've copied the workout
     And it should copy all the original workout's attributes
 
-  # @focus
   Scenario: Trainer creates pdf of workout
     Given I'm on the workout page
     When I click download as pdf

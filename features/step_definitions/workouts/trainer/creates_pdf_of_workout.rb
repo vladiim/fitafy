@@ -8,5 +8,5 @@ When /^I click download as pdf$/ do
 end
 
 Then /^I should get a pdf$/ do
-  current_url.should eq "http://www.example.com/users/#{@trainer.id}/workouts/#{@workout.id}.pdf"
+  current_url.should eq "http://www.example.com/users/#{@trainer.id}/workouts/#{@workout.id}.pdf?id=#{@workout.id}"
 end
