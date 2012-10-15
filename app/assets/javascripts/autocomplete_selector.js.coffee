@@ -4,6 +4,7 @@ class AutocompleteSelector
     @parent  = $(options.parentSelector)
     @field   = options.field
     @options = options
+    @data    = options.data
     @id      = @determineId()
     @updateParent()
 
@@ -11,6 +12,7 @@ class AutocompleteSelector
     @parent.append(@hiddenField())
     @parent.append(@textInput())
     @parent.append(@addButton())
+    @parent.append(@listElements())
 
   determineId: (suffix) ->
     id = @field.replace("][", "_").replace("[", "").replace("]", "")
@@ -33,7 +35,6 @@ class AutocompleteSelector
     input.attr("name", "#{@field}[autocomplete]")
     input
 
-
   addButton: ->
     add_button = $("<a href='#'>")  
     add_button.attr("id", @determineId("add_button"))
@@ -41,34 +42,23 @@ class AutocompleteSelector
     add_button.addClass("selector_add_button")
     add_button
 
+  listElements: ->
+    $ul = $("<ul>").attr("id", @determineId("list"))
+    exsistingValues = @initialValue().split(",")
+    values = @data.filter (value) -> value not in exsistingValues
+
+    for value in values
+      $li = $("<li>").attr("id", @determineId("element_#{value}")).text("#{@data[value]}")
+      $a = $("<a href='#'>").addClass("add-button").attr("id", @determineId("add_#{value}")).text(" Add")
+      $li.append($a)
+      $ul.append($li)
+
+    for value in exsistingValues
+      $li = $("<li>").attr("id", @determineId("element_#{value}")).text("#{@data[value]}")
+      $a = $("<a href='#'>").addClass("delete-button").attr("id", @determineId("delete_#{value}")).text(" Remove")
+      $li.append($a)
+      $ul.append($li)
+    $ul
+
 window.initAutocompleteSelector = (options) ->
   new AutocompleteSelector(options)
-
-
-# ----- Working code that needs to be refactored
-
-# window.initializeHiddenField = (options) ->
-#   $parent = $(options.parentSelector)
-#   field = options.field
-#   id = field.replace("][", "_").replace("[", "").replace("]", "")
-#   input = $("<input type='hidden'/>")
-#   input.attr({ "id": id, "name": field })
-#   input.val(options.initialValue)
-#   $parent.append input  
-
-# window.initializeTextInput = (options) ->
-#   $parent = $(options.parentSelector)
-#   field   = options.field
-#   id      = field.replace("][", "_").replace("[", "").replace("]", "")
-#   input   = $("<input type='text'/>")
-#   input.attr({ "id": "#{id}_autocomplete", "name": "#{field}[autocomplete]" })
-#   $parent.append input
-#   add_button = $("<a href='#'>")  
-#   add_button.attr("id", "#{id}_add_button")
-#   add_button.html("Add")
-#   add_button.addClass("selector_add_button")
-#   $parent.append add_button
-
-# window.initAutocompleteSelector = (options) ->
-#   initializeHiddenField(options)
-#   initializeTextInput(options)

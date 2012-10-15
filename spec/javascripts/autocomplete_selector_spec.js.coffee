@@ -38,3 +38,19 @@ describe "Autocomplete widget", ->
     it "gives the input element an add button", ->
       addbutton = $("#autodiv a#workout_exercise_ids_add_button")
       expect(addbutton).toHaveClass("selector_add_button")
+
+  describe "marks the known values", ->
+    beforeEach ->
+      @.ul = $("#autodiv #workout_exercise_ids_list")
+
+    it "sets the exsisting elements to remove", ->
+      expect(@.ul.find("#workout_exercise_ids_element_1")).toHaveText("Alpha Remove")
+      expect(@.ul.find("#workout_exercise_ids_element_1 .remove-button")).toExist()
+      expect(@.ul.find("#workout_exercise_ids_element_3")).toHaveText("Gamma Remove")
+      expect(@.ul.find("#workout_exercise_ids_element_3 .remove-button")).toExist()
+
+    it "sets the rest of the elements to add", ->
+      expect(@.ul.find("#workout_exercise_ids_element_2")).toHaveText("Beta Add")
+      expect(@.ul.find("#workout_exercise_ids_element_2 .add-button")).toExist()
+      expect(@.ul.find("#workout_exercise_ids_element_4")).toHaveText("Delta Add")
+      expect(@.ul.find("#workout_exercise_ids_element_4 .add-button")).toExist()
