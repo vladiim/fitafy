@@ -1,11 +1,13 @@
 class AutocompleteSelector
 
   constructor: (options) ->
-    @parent  = $(options.parentSelector)
-    @field   = options.field
-    @options = options
-    @data    = options.data
-    @id      = @determineId()
+    @parent      = $(options.parentSelector)
+    @field       = options.field
+    @options     = options
+    @data        = options.data
+    @addedValues = @initialValue().split(",")
+    @allValues   = Object.keys(@data)
+    @id          = @determineId()
     @updateParent()
 
   updateParent: ->
@@ -44,18 +46,21 @@ class AutocompleteSelector
 
   listElements: ->
     $ul = $("<ul>").attr("id", @determineId("list"))
-    exsistingValues = @initialValue().split(",")
-    values = Object.keys(@data)
-
-    for value in values
-      $li = $("<li>").attr("id", @determineId(value)).text("#{@data[value]}")
-      if value in exsistingValues
-        $a = $("<a href='#'>").addClass("remove-button").attr("id", @determineId(value)).text(" Remove")
+    for value in @allValues
+      $li = @createListItem(value)
+      $a = if value in @addedValues
+        @createLinkItem(value, "Remove")
       else
-        $a = $("<a href='#'>").addClass("add-button").attr("id", @determineId(value)).text(" Add")
+        @createLinkItem(value, "Add")
       $li.append($a)
       $ul.append($li)
     $ul
+
+  createListItem: (value) ->
+    $("<li>").attr("id", @determineId(value)).text("#{@data[value]}")
+
+  createLinkItem: (value, type) ->
+    $("<a href='#'>").addClass("#{type.toLowerCase()}-button").attr("id", @determineId(value)).text(" #{type}")
 
 window.initAutocompleteSelector = (options) ->
   new AutocompleteSelector(options)
