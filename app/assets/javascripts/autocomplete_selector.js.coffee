@@ -45,17 +45,14 @@ class AutocompleteSelector
   listElements: ->
     $ul = $("<ul>").attr("id", @determineId("list"))
     exsistingValues = @initialValue().split(",")
-    values = @data.filter (value) -> value not in exsistingValues
+    values = Object.keys(@data)
 
     for value in values
-      $li = $("<li>").attr("id", @determineId("element_#{value}")).text("#{@data[value]}")
-      $a = $("<a href='#'>").addClass("add-button").attr("id", @determineId("add_#{value}")).text(" Add")
-      $li.append($a)
-      $ul.append($li)
-
-    for value in exsistingValues
-      $li = $("<li>").attr("id", @determineId("element_#{value}")).text("#{@data[value]}")
-      $a = $("<a href='#'>").addClass("delete-button").attr("id", @determineId("delete_#{value}")).text(" Remove")
+      $li = $("<li>").attr("id", @determineId(value)).text("#{@data[value]}")
+      if value in exsistingValues
+        $a = $("<a href='#'>").addClass("remove-button").attr("id", @determineId(value)).text(" Remove")
+      else
+        $a = $("<a href='#'>").addClass("add-button").attr("id", @determineId(value)).text(" Add")
       $li.append($a)
       $ul.append($li)
     $ul
