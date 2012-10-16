@@ -1,8 +1,6 @@
 describe "Autocomplete widget", ->
   beforeEach ->
     loadFixtures "autocomplete_form.html"
-    # affix("form div#autodiv")
-    # autocomplete_data = { "workout": 1, "exercises": { 1: "Alpha", 2: "Beta", 3: "Gamma", 4: "Delta" } }
     autocomplete_data = { 1: "Alpha", 2: "Beta", 3: "Gamma", 4: "Delta" }
 
     initAutocompleteSelector({
@@ -61,8 +59,11 @@ describe "Autocomplete widget", ->
       $addButton = $("#workout_exercise_ids_2 a")
       $addButton.click()
 
-    it "adds Beta to the exsisting list", ->
+    it "switches Beta to a remove-button", ->
       expect($("#autodiv ul li a.remove-button").size()).toEqual(3)
+
+    it "switches Beta from an add-button", ->
+      expect($("#autodiv ul li a.add-button").size()).toEqual(1)
 
     it "changes 'Beta Add' to 'Beta Remove'", ->
       expect(@ul.find("#workout_exercise_ids_2")).toHaveText("Beta Remove")
@@ -71,4 +72,4 @@ describe "Autocomplete widget", ->
       expect(@ul.find("#workout_exercise_ids_2 a.remove-button")).toExist()
 
     it "adds Beta's id to the hidden field", ->
-      expect($("#workout_exercise_ids_list")).toHaveAttr("value", "1,3,2")
+      expect($("input:hidden")).toHaveAttr("value", "1,3,2")
