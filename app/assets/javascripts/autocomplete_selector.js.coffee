@@ -8,13 +8,14 @@ class AutocompleteSelector
     @addedValues = @initialValue().split(",")
     @allValues   = Object.keys(@data)
     @id          = @determineId()
+    $("a.add-button").click @addEventHandler()
     @updateParent()
 
   updateParent: ->
     @parent.append(@hiddenField())
     @parent.append(@textInput())
-    @parent.append(@addButton())
-    @parent.append(@listElements())
+    # @parent.append(@addButton())
+    @parent.append(@createList())
 
   determineId: (suffix) ->
     id = @field.replace("][", "_").replace("[", "").replace("]", "")
@@ -37,22 +38,18 @@ class AutocompleteSelector
     input.attr("name", "#{@field}[autocomplete]")
     input
 
-  addButton: ->
-    add_button = $("<a href='#'>")  
-    add_button.attr("id", @determineId("add_button"))
-    add_button.html("Add")
-    add_button.addClass("selector_add_button")
-    add_button
+  listElement: (value) ->
+    $li = @createListItem(value)
+    $a = if value in @addedValues
+      @createLinkItem(value, "Remove")
+    else
+      @createLinkItem(value, "Add")
+    $li.append($a)
 
-  listElements: ->
+  createList: ->
     $ul = $("<ul>").attr("id", @determineId("list"))
     for value in @allValues
-      $li = @createListItem(value)
-      $a = if value in @addedValues
-        @createLinkItem(value, "Remove")
-      else
-        @createLinkItem(value, "Add")
-      $li.append($a)
+      $li = @listElement(value)
       $ul.append($li)
     $ul
 
@@ -61,6 +58,31 @@ class AutocompleteSelector
 
   createLinkItem: (value, type) ->
     $("<a href='#'>").addClass("#{type.toLowerCase()}-button").attr("id", @determineId(value)).text(" #{type}")
+
+  addEventHandler: (event) ->
+    $link = $(event.target)
+    id = $link.id()
+    alert(id)
+
+  # addEventHandler: (event) ->
+  #   newItemName = $("##{@determineId("autocomplete")}").val()
+  #   newItemId   = @idLookUp(newItemName)
+  #   return if not newItemId
+  #   @addedValues = "#{@addedValues},#{newItemId}"
+  #   $("ul##{@determineId("list")}").remove()
+  #   @listElements()
+  #   # hiddenField = $("##{@determineId}")
+  #   # hiddenField.val("#{hiddenField.val()},#{newItemId}")
+  #   # list = $("##{@determineId("list")}")
+  #   # list.append(@listElement(newItemId))
+  #   $autocomplete = $("##{@determineId("autocomplete")}")
+  #   $autocomplete.val("")
+  #   $autocomplete.focus()
+  #   event.preventDefault()
+
+  # idLookUp: (itemName) ->
+  #   for id in @data
+  #     id if @data[id] is itemName else null
 
 window.initAutocompleteSelector = (options) ->
   new AutocompleteSelector(options)

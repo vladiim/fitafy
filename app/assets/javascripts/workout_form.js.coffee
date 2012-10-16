@@ -5,7 +5,7 @@ class window.WorkoutForm
   init: ->
     $( @links ).on "click", (event) =>
       $link = $(event.target)
-      tag   =  @getTag ($link)
+      tag   =  @getTag($link)
       @toggleForm(tag)
 
   getTag: (link) ->
