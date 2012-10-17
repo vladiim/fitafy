@@ -53,7 +53,7 @@ describe "Autocomplete widget", ->
       expect(@ul.find("li#workout_exercise_ids_4")).toHaveText("Delta Add")
       expect(@ul.find("#workout_exercise_ids_4 .add-button")).toExist()
 
-  describe "click Add Beta", ->
+  describe "click 'Beta Add'", ->
     beforeEach ->
       @ul        = $("#autodiv #workout_exercise_ids_list")
       $addButton = $("#workout_exercise_ids_2 a")
@@ -66,10 +66,31 @@ describe "Autocomplete widget", ->
       expect($("#autodiv ul li a.add-button").size()).toEqual(1)
 
     it "changes 'Beta Add' to 'Beta Remove'", ->
-      expect(@ul.find("#workout_exercise_ids_2")).toHaveText("Beta Remove")
+      expect(@ul.find("li#workout_exercise_ids_2")).toHaveText("Beta Remove")
 
     it "changes the Beta link's class from 'add-button' to 'remove-button'", ->
       expect(@ul.find("#workout_exercise_ids_2 a.remove-button")).toExist()
 
     it "adds Beta's id to the hidden field", ->
       expect($("input:hidden")).toHaveAttr("value", "1,3,2")
+
+  describe "click 'Alpha Remove'", ->
+    beforeEach ->
+      @ul        = $("#autodiv #workout_exercise_ids_list")
+      $removeButton = $("#workout_exercise_ids_1 a")
+      $removeButton.click()
+
+    it "switches Alpha to a add-button", ->
+      expect($("#autodiv ul li a.add-button").size()).toEqual(3)
+
+    it "switches Alpha from a remove-button", ->
+      expect($("#autodiv ul li a.remove-button").size()).toEqual(1)
+
+    it "changes 'Alpha Remove' to 'Alpha Add'", ->
+      expect(@ul.find("li#workout_exercise_ids_1")).toHaveText("Alpha Add")
+
+    it "changes the Alpha link's class from 'remove-button' to 'add-button'", ->
+      expect(@ul.find("#workout_exercise_ids_1 a.add-button")).toExist()
+
+    it "removea Alpha's id from the hidden field", ->
+      expect($("input:hidden")).toHaveAttr("value", "3")
