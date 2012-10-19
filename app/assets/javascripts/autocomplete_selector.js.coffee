@@ -11,8 +11,12 @@ class AutocompleteSelector
   data: ->
     @options.data
 
-  allValues: ->
+  allKeys: ->
     Object.keys(@data())
+
+  values: ->
+    result = []
+    result.push(@data[value]) for value in @data()
 
   initialValue: ->
     @options.initialValue
@@ -24,8 +28,8 @@ class AutocompleteSelector
     @parent.append(@hiddenField())
     @parent.append(@textInput())
     @parent.append(@createList())
-    $("a.add-button").on "click", (event) => @addButton(event)
-    $("a.remove-button").on "click", (event) => @removeButton(event)
+    $(@parent).on "click", "a.add-button", (event) => @addButton(event)
+    $(@parent).on "click", "a.remove-button", (event) => @removeButton(event)
 
   determineId: (suffix) ->
     id = @field().replace("][", "_").replace("[", "").replace("]", "")
@@ -42,6 +46,7 @@ class AutocompleteSelector
     input   = $("<input type='text'/>")
     input.attr("id", @determineId("autocomplete"))
     input.attr("name", "#{@field()}[autocomplete]")
+    input.autocomplete { source: @values() }
 
   listElement: (value) ->
     $li = @createListItem(value)
@@ -53,7 +58,7 @@ class AutocompleteSelector
 
   createList: ->
     $ul = $("<ul>").attr("id", @determineId("list"))
-    $ul.append(@listElement(value)) for value in @allValues()
+    $ul.append(@listElement(value)) for value in @allKeys()
     $ul
 
   removeUl: ->

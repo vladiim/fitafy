@@ -2,11 +2,9 @@ module WorkoutHelper
 
   def link_to_baby_form current_user, workout, form_attribute, form_element
     if can? :manage, workout
-      content_tag(:div, class: "edit_workout_form #{form_attribute.to_s} hidden") do
-        render(partial: "baby_form",
-             locals: { form_element: form_element,
-                       form_attribute: form_attribute}).to_s
-      end
+      render(partial: "baby_form",
+        locals: { form_element: form_element,
+                  form_attribute: form_attribute}).to_s
     end
   end
 

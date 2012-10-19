@@ -100,12 +100,12 @@ describe Workout do
   describe "#level" do
     let(:result) { subject.level }
 
-    before do
-      mock(subject).difficulty { "DIFFICULTY" }
-      mock(subject).client_level { "CLIENT LEVEL" }
-    end
-
     context "with difficulty and client_level" do
+      before do
+        mock(subject).difficulty.times(2) { "DIFFICULTY" }
+        mock(subject).client_level.times(2) { "CLIENT LEVEL" }
+      end
+
       it "returns the difficulty and client_level information" do
         result.should eq "This is a DIFFICULTY workout for CLIENT LEVEL clients"
       end
@@ -198,13 +198,6 @@ describe Workout do
   describe "#new_workout_exercise" do
     it "should create a new WorkoutExercise" do
       subject.new_workout_exercise.class.should eq WorkoutExercise
-    end
-  end
-
-  describe "#list_exercises" do
-    it "should list all of its exercises" do
-      mock(subject).workout_exercises { exercises }
-      subject.list_exercises.should eq exercises
     end
   end
 

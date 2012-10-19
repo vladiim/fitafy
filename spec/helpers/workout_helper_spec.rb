@@ -15,8 +15,8 @@ describe "WorkoutHelper" do
         mock(helper).can?(:manage, workout) { true }
         mock(helper).render(partial: "baby_form", 
                             locals: { 
-                              form_element: workout,
-                              form_attribute: anything}) { "RENDER PARTIAL" }
+                              form_element: anything,
+                              form_attribute: form_attribute}) { "RENDER PARTIAL" }
       end
 
       it "renders the baby_form partial" do

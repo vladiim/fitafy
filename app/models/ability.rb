@@ -12,6 +12,7 @@ class Ability
 
     elsif user.admin?
       can :manage, Workout, user_id: user.id
+      can :manage, FavoriteWorkout, user_id: user.id
       can :manage, Exercise
 
     else

@@ -69,7 +69,7 @@ describe "Autocomplete widget", ->
       expect(@ul.find("li#workout_exercise_ids_2")).toHaveText("Beta Remove")
 
     it "changes the Beta link's class to 'remove-button'", ->
-      expect(@ul.find("#workout_exercise_ids_2 a.remove-button")).toExist()
+      expect(@ul.find("#workout_exercise_ids_2 a")).toHaveClass("remove-button")
 
     it "adds Beta's id to the hidden field", ->
       expect($("input:hidden")).toHaveAttr("value", "1,3,2")

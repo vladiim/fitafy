@@ -126,7 +126,7 @@ describe Exercise do
   describe "#equipment_list" do
     let(:equipment) { "EQUIPMENT LIST" }
 
-    before { mock(Equipment).scoped { equipment } }
+    before { mock(Equipment).all { equipment } }
 
     it "lists all the equipment" do
       subject.equipment_list.should eq "EQUIPMENT LIST"

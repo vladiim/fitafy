@@ -49,7 +49,7 @@ class Workout < ActiveRecord::Base
     if difficulty && client_level
       "This is a #{difficulty} workout for #{client_level} clients"
     else
-      "No level for this workout - let us know how tough it is!"
+      SnapzSayz::WorkoutSpeak.no_level
     end
   end
 
