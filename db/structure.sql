@@ -282,10 +282,10 @@ CREATE TABLE workout_exercises (
     id integer NOT NULL,
     workout_id integer NOT NULL,
     exercise_id integer NOT NULL,
-    sets integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    instructions text
+    instructions text,
+    sets character varying(255)
 );
 
 
@@ -630,6 +630,10 @@ INSERT INTO schema_migrations (version) VALUES ('20120923060134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923093145');
 
+INSERT INTO schema_migrations (version) VALUES ('20121006013902');
+
 INSERT INTO schema_migrations (version) VALUES ('20121006014910');
 
 INSERT INTO schema_migrations (version) VALUES ('20121007074716');
+
+INSERT INTO schema_migrations (version) VALUES ('20121019215006');

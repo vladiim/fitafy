@@ -56,6 +56,13 @@ Feature: Trainer manages workouts
       | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
       | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
 
+  @focus
+  Scenario: Trainer adds exercise to workout
+    Given another exercise exists
+    And a workout exercise exists
+    When I click add exercise on the workout's page
+    Then that exercise should be added to the workout
+
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises
     When I visit the new workout page

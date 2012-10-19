@@ -94,6 +94,12 @@ class Workout < ActiveRecord::Base
     workout_exercises.count
   end
 
+  # def includes_exercise ex
+  #   self.workout_exercises.includes(:exercise).map(&:name).each do |name|
+  #     return true if name == ex.name
+  #   end.any?
+  # end
+
   def copy_workout_exercises other_workout
     other_workout.workout_exercises.each do |workout_exercise|
       self.workout_exercises.create(exercise_id:  workout_exercise.exercise_id, 

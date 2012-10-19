@@ -263,4 +263,23 @@ describe Workout do
       Workout.equipment_names.should eq "ALL EQUIPMENT NAMES"
     end
   end
+
+  # describe "#includes_exercise" do
+  #   let(:result)   { subject.includes_exercise(exercise) }
+
+  #   context "does include exercise" do
+  #     let(:exercise) { build_stubbed :exercise }
+  #     before { build_stubbed :workout_exercise, workout: subject, exercise: exercise }
+
+  #     it "returns true" do
+  #       result.should be
+  #     end
+  #   end
+
+  #   context "does not include exercise" do
+  #     it "returns false" do
+  #       result.should_not be
+  #     end
+  #   end
+  # end
 end

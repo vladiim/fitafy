@@ -1,5 +1,16 @@
 class WorkoutExercisesController < ApplicationController
 
+  def create
+    @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
+    if @workout_exercise.save
+      flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
+      redirect_to user_workout_path(current_user.id, @workout_exercise.workout)
+    else
+      flash[:failure] = "Sorry something went wrong - try again!"
+      redirect :back
+    end
+  end
+
   def update
   	@workout_exercise = WorkoutExercise.find(params[:id])
   	@workout = @workout_exercise.workout
