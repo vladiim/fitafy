@@ -22,6 +22,7 @@
 * push live
 * Set up mail, new relic, facebook etc
 * get turbo links working
+* User workout names are unique
 
 # Mail
 * forgot password

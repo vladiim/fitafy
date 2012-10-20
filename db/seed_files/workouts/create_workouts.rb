@@ -1,5 +1,4 @@
-@names  	 = ["the big bad workout", "philly special", "superman", "driving miss daisy", "easy rider", "bricks and mortar", "a hard day's work", "no walk special"]
-NOTES 	   = "Keep the workout popin' or be dropin'"
+@names     = ["philly special", "workout test", "another workout"]
 
 def random_exercise_note
   options = [
@@ -12,14 +11,7 @@ def random_exercise_note
 end
 
 def random_exercise_id
-  ex_id = Random.rand Exercise.all.count
-
-  # exercise_id can't be 0
-  if ex_id == 0
-    ex_id += 1
-  else
-  	ex_id
-  end
+  Exercise.all.sample.id
 end
 
 def random_set
@@ -30,7 +22,7 @@ def create_workout_exercises workout
   5.times do
     workout.workout_exercises.create!(
       exercise_id:  random_exercise_id,
-      sets: 	      random_set,
+      sets:         random_set,
       instructions: random_exercise_note         
     )
   end
@@ -38,17 +30,12 @@ end
 
 def create_workouts
   @names.each do |name|
-    Workout::CLIENT_LEVELS.each do |client_level|
-      Workout::DIFFICULTY.each do |difficulty|
-        workout = Workout.create!(
-        	name:         name,
-        	notes:        NOTES,
-          client_level: client_level,
-          difficulty:   difficulty,
-          user_id:      @rza.id
-        )
-        create_workout_exercises workout
-      end
-    end
+    workout = Workout.create!(
+      name:         name,
+      client_level: Workout::CLIENT_LEVELS[0],
+      difficulty:   Workout::DIFFICULTY[1],
+      user_id:      @fitafy.id
+    )
+    create_workout_exercises workout
   end
 end

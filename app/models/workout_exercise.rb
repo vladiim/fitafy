@@ -38,4 +38,8 @@ class WorkoutExercise < ActiveRecord::Base
   	end
   	workouts
   end
+
+  def safe_sets
+    self.sets.nil? ? "0" : self.sets
+  end
 end

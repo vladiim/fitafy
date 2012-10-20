@@ -1,9 +1,9 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  acts_as_taggable_on :muscles
+  acts_as_taggable_on :muscles, :type
 
-  attr_accessible :name, :description, :tips, :muscle_list, :equipment_id
+  attr_accessible :name, :description, :tips, :muscle_list, :type_list, :equipment_id
 
   MUSCLES = %w(abs back biceps chest forearms legs shoulders tricep)
 
