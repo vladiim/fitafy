@@ -16,6 +16,14 @@
 * Username clickable & in title username/workout_name
 * friendly urls
 
+# To do
+* Get add exercise modal hiding exercises properly
+* Get homepage buttons working
+* Add all of the update exercises
+* push live
+* Set up mail, new relic, facebook etc
+* get turbo links working
+
 # Mail
 * forgot password
 * someone favorited your workout

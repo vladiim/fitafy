@@ -5,9 +5,11 @@
   %table#homepage_cta
     %tr
       %td
+
         #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
       %td
-        #create_workouts= link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+        / #create_workouts= link_to "CREATE WORKOUTS", "#new_workout_modal", "data-toggle" => "modal", class: "btn btn-success"
+        #create_workouts= link_to_create_workout_button
 
 - unless @workouts.empty?
   %aside

@@ -42,6 +42,14 @@ module WorkoutHelper
     end
   end
 
+  def link_to_create_workout_button
+    if can? :manage, Workout
+      link_to "CREATE WORKOUTS", "#new_workout_modal", "data-toggle" => "modal", class: "btn btn-success"
+    else
+      link_to "CREATE WORKOUTS", new_workout_path, class: "btn btn-success"
+    end
+  end
+
   def new_workout
     [current_user, current_user.build_workout]
   end

@@ -7,14 +7,13 @@ class User < ActiveRecord::Base
 
   before_create :make_user_trainer
 
-  has_many :workouts
+  has_many :workouts, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
   belongs_to :facebook_user
 
   # for authlogic gem
   acts_as_authentic do |c|
     c.login_field = "email"
-    # c.validate_password_field = false
   end
 
   # for carrierwave image management gem

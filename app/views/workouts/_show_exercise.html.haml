@@ -17,6 +17,7 @@
   = exercise.equipment_name.titleize
 
   %br
+  %br
 
   - if can? :delete, @workout
-    %th= link_to "REMOVE EXERCISE", workout_exercise_path(exercise), confirm: @snapz_confirm, method: :delete
+    %th= link_to "REMOVE", workout_exercise_path(exercise), confirm: @snapz_confirm, method: :delete, class: "btn btn-danger btn-mini"
