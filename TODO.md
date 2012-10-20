@@ -18,7 +18,6 @@
 
 # To do
 * Get add exercise modal hiding exercises properly
-* Get homepage buttons working
 * Add all of the update exercises
 * push live
 * Set up mail, new relic, facebook etc

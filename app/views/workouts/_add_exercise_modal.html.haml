@@ -7,10 +7,12 @@
 
   .modal-body
 
-    .span2.tabbable.tabs-left.affix-left
+    .span2.tabbable.tabs-right.affix-right
       = render partial: "exercises/tags"
 
-    .span4.exercise_list.left_of_affix
-      %h3.tag_title All Exercises
+    .span4
+      %h3.list_title All Exercises
       %br
-      = render partial: "exercise", collection: @exercises
+      .exercise_list
+        %br
+        = render partial: "exercise", collection: @exercises

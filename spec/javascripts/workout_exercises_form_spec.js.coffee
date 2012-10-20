@@ -1,7 +1,7 @@
 describe "ShowBabyWorkoutForm", ->
   beforeEach ->
     loadFixtures "workout_exercise_form.html"
-    baby_form = new ShowBabyWorkoutForm
+    baby_form = new WorkoutExerciseForm
     baby_form.init()
 
   describe "form loaded", ->
@@ -24,3 +24,6 @@ describe "ShowBabyWorkoutForm", ->
         expect(@$abs_exercise).not.toHaveClass("hidden")
         expect(@$back_exercise).toHaveClass("hidden")
         expect(@$chest_exercise).toHaveClass("hidden")
+
+      it "changes the list title to abs", ->
+        expect($("h3.list_title")).toHaveText("Abs Exercises")

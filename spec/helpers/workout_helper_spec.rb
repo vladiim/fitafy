@@ -150,34 +150,4 @@ describe "WorkoutHelper" do
       result.should eq [current_user, "NEW WORKOUT"]
     end
   end
-
-  describe "#link_to_create_workout_button" do
-    let(:result) { helper.link_to_create_workout_button }
-
-    context "current_user" do
-      let(:current_user) { Object.new }
-
-      before do
-        mock(helper).current_user.times(2) { current_user }
-        mock(helper).link_to("CREATE WORKOUT", 
-                             "#new_workout_modal", 
-                             anything) { "CREATE WORKOUT LINK" }
-      end
-
-      it "returns true" do
-        result.should eq "CREATE WORKOUT LINK"
-      end
-    end
-
-    context "no current_user" do
-      before do
-        mock(helper).current_user { false }
-        mock(helper).link_to("CREATE WORKOUT", "lal", anything) { "CREATE WORKOUT LINK" }
-      end
-
-      it "returns true" do
-        result.should eq "CREATE WORKOUT LINK"
-      end
-    end
-  end
 end
