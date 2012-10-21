@@ -1,0 +1,17 @@
+.modal.hide.fade.in#login_signup_modal
+
+  .modal-header
+
+    %a.close{ "data-dismiss" => "modal" } x
+    %h2 LOGIN -OR- SIGN UP
+
+  .modal-body.row
+    .span3
+      %h3 LOGIN
+      %br
+      = render partial: "user_sessions/form"
+
+    .span3
+      %h3 SIGN UP
+      %br
+      = render partial: "users/simple_form", locals: { cta: "SIGN UP" }

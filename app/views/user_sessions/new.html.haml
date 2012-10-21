@@ -1,9 +1,4 @@
-= simple_form_for @user_session do |f|
-  = f.error_notification
-
-  = f.input :email
-  = f.input :password
-  = f.submit "LOGIN", class: "btn btn-primary"
+= render "form"
 
 %p
   = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"

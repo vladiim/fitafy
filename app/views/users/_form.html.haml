@@ -7,13 +7,7 @@
       = f.submit "Change Profile Pic", class: "btn btn-primary"
   
   .span9
-    = simple_form_for @user do |f|
-      = f.input :username
-      = f.input :email
-      = f.input :password
-      = f.input :password_confirmation
-    
-      = f.submit cta, class: "btn btn-primary"
+    = render "simple_form"
     
     - if current_user
       %br
