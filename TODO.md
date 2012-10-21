@@ -26,6 +26,7 @@
 * SSL
 * User permissions to see new features
 * Chat/customer service http://www.olark.com/
+* http://railscasts.com/episodes/387-cache-digests
 
 # Mail
 * forgot password
