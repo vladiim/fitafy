@@ -39,3 +39,4 @@
 * Sendgrid
 * New Relic
 * cloudinary
+* google analytics

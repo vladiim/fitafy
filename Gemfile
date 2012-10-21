@@ -11,6 +11,7 @@ gem 'prawn',               '~> 0.12.0'
 gem 'resque',              '~> 1.22.0'
 gem 'resque_mailer',       '~> 2.1.0'
 gem 'display_case',        '~> 0.0.4', git: "https://github.com/vladiim/display-case"
+gem 'newrelic_rpm'
 
 # ------------ AUTH ------------ #
 
