@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   before_create :make_user_trainer
-  after_create  :send_welcome_email
+  # after_create  :send_welcome_email
 
   has_many :workouts, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
@@ -20,13 +20,13 @@ class User < ActiveRecord::Base
   # for carrierwave image management gem
   mount_uploader :avatar, AvatarUploader
 
-  # def create_account
-  #   if self.save
-  #     UserMailer.sign_up_welcome(self).deliver
-  #   else
-  #     false
-  #   end
-  # end
+  def create_account
+    if self.save
+      UserMailer.sign_up_welcome(self).deliver
+    else
+      false
+    end
+  end
 
   def trainer?
   	role == "trainer"
@@ -107,9 +107,14 @@ class User < ActiveRecord::Base
     FacebookUser.find_by_user_id(self.id) ? true : false
   end
 
-  def send_welcome_email
-    UserMailer.sign_up_welcome(self).deliver
-  end
+  # def send_welcome_email
+  #   p "#send welcome email was callled send welcome email was callledsend welcome email was callledsend welcome email was callledsend welcome email was callledsend welcome email was callled"
+  #   if UserMailer.sign_up_welcome(self).deliver
+  #     p "delivered the mutha fucker"
+  #   else
+  #     p "issue issue issue issue issue issue "
+  #   end
+  # end
 
   private
 

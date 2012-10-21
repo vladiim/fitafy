@@ -1,10 +1,10 @@
 class UserMailer < ActionMailer::Base
-  include Resque::Mailer
+  # include Resque::Mailer
   include SendGrid
 
   default from: "vlad@fitafy.com"
 
-  sendgrid_category    :use_subject_lines
+  sendgrid_category :use_subject_lines
   # sendgrid_enable      :ganalytics, :opentrack
 
   def sign_up_welcome trainer

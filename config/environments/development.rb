@@ -1,7 +1,15 @@
+#https://github.com/zapnap/resque_mailer
+# QUEUE = mailer rake development resque:work
+
 Fitafy::Application.configure do
 
   # https://devcenter.heroku.com/articles/redistogo
   ENV["REDISTOGO_URL"] = 'redis://redistogo:162405c0386852140e29446c0e6c9edf@carp.redistogo.com:9665/' 
+
+  # sendgrid
+  # config.action_mailer.default_url_options = { host: "smtp.sendgrid.net" }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
 
   # Settings specified here will take precedence over those in config/application.rb
 
