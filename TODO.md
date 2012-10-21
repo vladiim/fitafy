@@ -23,6 +23,8 @@
 * Set up mail, new relic, facebook etc
 * get turbo links working
 * User workout names are unique
+* SSL
+* User permissions to see new features
 
 # Mail
 * forgot password
