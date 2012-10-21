@@ -41,6 +41,8 @@
 * cloudinary
 * google analytics
 * pivotal tracker
+* https://travis-ci.org/
+* pingdom
 
 # done
 * add exercises
