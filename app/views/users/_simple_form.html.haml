@@ -1,4 +1,6 @@
-= simple_form_for new_user do |f|
+- @current_user = current_user ? current_user : User.new
+
+= simple_form_for @current_user do |f|
   = f.input :username
   = f.input :email
   = f.input :password

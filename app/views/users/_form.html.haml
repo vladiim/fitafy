@@ -7,7 +7,7 @@
       = f.submit "Change Profile Pic", class: "btn btn-primary"
   
   .span9
-    = render "simple_form"
+    = render partial: "simple_form", locals: { cta: cta }
     
     - if current_user
       %br
