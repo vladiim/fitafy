@@ -15,7 +15,7 @@ describe UserMailer do
     end
 
     it "sends the email from snapz@fitafy" do
-      mail.from.should eq ["snapz@fitafy.com"]
+      mail.from.should eq ["vlad@fitafy.com"]
     end
 
     it "assigns a username" do

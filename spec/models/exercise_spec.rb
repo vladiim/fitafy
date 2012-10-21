@@ -36,25 +36,7 @@ describe Exercise do
      end
   end
 
-  describe "#exercise_type" do
-    it "should have an array of exercise types" do
-      Exercise::MUSCLES.should eq %w(abs back biceps chest forearms legs shoulders tricep)
-    end
-  end
-
   describe "#tags" do
-    # describe "#equipment_list" do
-    #   before do
-    #     valid_subject.equipment_list = "swordstyle"
-    #     valid_subject.save!
-    #   end
-  
-    #   it "should be able to set and find equipment_list tags" do
-    #     valid_subject.equipment_list.each do |tag|
-    #       tag.should eq "swordstyle"
-    #     end
-    #   end
-    # end
   
     describe "#muscle_list" do
       before do

@@ -1,4 +1,8 @@
 Fitafy::Application.configure do
+
+  # https://devcenter.heroku.com/articles/redistogo
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:162405c0386852140e29446c0e6c9edf@carp.redistogo.com:9665/' 
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
