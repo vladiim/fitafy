@@ -25,6 +25,7 @@
 * User workout names are unique
 * SSL
 * User permissions to see new features
+* Chat/customer service http://www.olark.com/
 
 # Mail
 * forgot password
