@@ -37,26 +37,6 @@ Feature: Trainer manages workouts
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
 
-  Scenario Outline: Trainer sorts exercise list
-    Given there's exercises
-    And I'm creating a new workout
-    When I click show tags
-    And I click <sort>
-    Then I should see <true_name>
-    And I shouldn't see <false_name>
-
-    Examples:
-      | sort        | true_name         | false_name          |
-      | "ABS"       | "Abs Title"       | "Back Title"        |
-      | "BACK"      | "Back Title"      | "Bicep Title"       |
-      | "BICEPS"    | "Biceps Title"    | "Chest Title"       |
-      | "CHEST"     | "Chest Title"     | "Forearms Title"    |
-      | "FOREARMS"  | "Forearms Title"  | "Legs Title"        |
-      | "LEGS"      | "Legs Title"      | "Lower Back Title"  |
-      | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
-      | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
-
-  @focus
   Scenario: Trainer adds exercise to workout
     Given another exercise exists
     And a workout exercise exists

@@ -40,3 +40,4 @@
 * New Relic
 * cloudinary
 * google analytics
+* pivotal tracker

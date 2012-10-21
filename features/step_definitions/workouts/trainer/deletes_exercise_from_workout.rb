@@ -1,6 +1,6 @@
 When /^I click delete exercise$/ do
   within "#workout_exercises" do
-  	click_link "REMOVE EXERCISE"
+  	click_link "REMOVE"
   end
 end
 

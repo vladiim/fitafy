@@ -1,17 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails',               '~> 3.2.0'
-gem 'pg',                  '~> 0.13.0'
-gem 'heroku',              '~> 2.21.0'
-gem 'simple_form',         '~> 2.0.0'
-gem 'pry',                 '~> 0.9.9.0'
-gem 'friendly_id',         '~> 4.0.1'
-gem 'acts-as-taggable-on', '~> 2.3.3'
-gem 'prawn',               '~> 0.12.0'
-gem 'resque',              '~> 1.22.0'
-gem 'resque_mailer',       '~> 2.1.0'
-gem 'display_case',        '~> 0.0.4', git: "https://github.com/vladiim/display-case"
-gem 'newrelic_rpm'
+gem 'rails',                 '~> 3.2.0'
+gem 'pg',                    '~> 0.13.0'
+gem 'heroku',                '~> 2.21.0'
+gem 'simple_form',           '~> 2.0.0'
+gem 'pry',                   '~> 0.9.9.0'
+gem 'friendly_id',           '~> 4.0.1'
+gem 'acts-as-taggable-on',   '~> 2.3.3'
+gem 'prawn',                 '~> 0.12.0'
+gem 'resque',                '~> 1.22.0'
+gem 'resque_mailer',         '~> 2.1.0'
+gem 'display_case',          '~> 0.0.4', git: "https://github.com/vladiim/display-case"
+gem 'newrelic_rpm',          '~> 3.5.0'
+gem 'sendgrid',              '~> 1.1.0'
+gem 'rack-google-analytics', '~> 0.11.0'
 
 # ------------ AUTH ------------ #
 

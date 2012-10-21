@@ -1,5 +1,5 @@
 Given /^I'm on my profile page$/ do
-  visit user_path(@trainer)
+  visit edit_user_path(@trainer)
 end
 
 When /^I upload a profile pic$/ do

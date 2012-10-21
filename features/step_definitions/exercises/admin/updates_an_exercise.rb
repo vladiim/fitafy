@@ -1,5 +1,5 @@
 Given /^I'm on an exsisting exercise's edit page$/ do
-  exercise = FactoryGirl.create :exercise
+  exercise = create :exercise
   visit exercise_path(exercise)
   click_link "EDIT EXERCISE"
 end

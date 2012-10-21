@@ -23,3 +23,7 @@
     %h5 Equipment
     %p
       - @equipment_name.titleize
+
+  - if can? :manage, @exercise
+    %aside.span3.well
+      = link_to "EDIT EXERCISE", edit_exercise_path(@exercise), class: "btn btn-primary"

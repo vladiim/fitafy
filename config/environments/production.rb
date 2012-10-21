@@ -4,6 +4,9 @@ Fitafy::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  # https://github.com/leehambley/rack-google-analytics
+  config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-27205102-1'
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

@@ -17,24 +17,6 @@ Feature: Visitor views workouts
     Then I should see a list of workouts
     And I should see how many exercises the workout has
 
-  Scenario Outline: Vistor sorts workouts
-    Given there's workouts 
-    And I'm on the workouts page with workouts
-    When I click <sort>
-    Then I should see <true_name>
-    And I shouldn't see <false_name>
-
-    Examples:
-      | sort        | true_name         | false_name          |
-      | "ABS"       | "Abs Title"       | "Back Title"        |
-      | "BACK"      | "Back Title"      | "Bicep Title"       |
-      | "BICEPS"    | "Biceps Title"    | "Chest Title"       |
-      | "CHEST"     | "Chest Title"     | "Forearms Title"    |
-      | "FOREARMS"  | "Forearms Title"  | "Legs Title"        |
-      | "LEGS"      | "Legs Title"      | "Lower Back Title"  |
-      | "SHOULDERS" | "Shoulders Title" | "Tricep Title"      |
-      | "TRICEP"    | "Tricep Title"    | "Ab Title"          |
-
 
   Scenario: Visitor cant see new workout link
     Given I'm a visitor
@@ -59,9 +41,3 @@ Feature: Visitor views workouts
     When I click favorite workout
     And I log in
     Then I should be back on the workout
-
-  Scenario: Visitor views trainer's workouts
-    Given a trainer exists
-    And the trainer has 5 workouts
-    When I click on the 5 workouts link
-    Then I get the workouts listed
