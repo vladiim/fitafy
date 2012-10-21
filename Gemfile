@@ -34,6 +34,7 @@ end
 gem 'display_case', '~> 0.0.4', git: "https://github.com/vladiim/display-case"
 gem 'haml-rails',   '~> 0.3.0'
 gem 'simple_form',  '~> 2.0.0'
+gem 'client_side_validations', '~> 3.2.0'
 
 # ------------ ASSETS ------------ #
 

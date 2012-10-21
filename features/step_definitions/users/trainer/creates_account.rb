@@ -1,11 +1,3 @@
-Given /^I'm not logged in$/ do
-  click_link "LOGOUT"
-end
-
-When /^I click sign up$/ do
-  click_link 'SIGN UP'
-end
-
 When /^fill in my details$/ do
   fill_in "user_username", with: "rza"
   fill_in "user_email", with: "bobby@bolders.com"

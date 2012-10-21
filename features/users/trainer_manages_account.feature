@@ -40,3 +40,10 @@ Feature: Trainer manages account
     Given I'm on my profile page
     When I upload a profile pic
     Then that should be set as my profile pic
+
+  @focus
+  Scenario: Trainer gets error messages if signing up
+    Given I'm not logged in
+    When I click sign up
+    And I try creating an account incorrectly
+    Then I should see the error messages

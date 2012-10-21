@@ -1,0 +1,13 @@
+.row
+  .span3
+    %h3 LOGIN
+    %br
+    = render partial: "user_sessions/form"
+
+  .span2
+    %h3 -OR-
+
+  .span3#sign_up_form
+    %h3 SIGN UP
+    %br
+    = render partial: "users/simple_form", locals: { cta: "SIGN UP" }

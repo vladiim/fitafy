@@ -22,4 +22,4 @@
               %li= link_to "EDIT PROFILE", edit_user_path(current_user)
               %li= link_to "LOGOUT", logout_path
         - else
-          %li= link_to "LOGIN/SIGN UP", "#login_signup_modal", "data-toggle" => "modal"
+          %li= link_to "LOGIN/SIGN UP", login_signup_path

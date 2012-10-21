@@ -9,20 +9,31 @@ describe User do
     it { should belong_to :facebook_user }
   end
 
-  describe "#create_account" do
-    let(:trainer)       { build :trainer }
-    let(:welcome_email) { Object.new }
+  # describe "#create_account" do
+  #   let(:result)        { trainer.create_account }
+  #   let(:trainer)       { build :trainer }
+  #   let(:welcome_email) { Object.new }
 
-    before do
-      mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
-      mock(welcome_email).deliver { welcome_email }
-    end
+  #   context "saves successfully" do
+  #     before do
+  #       mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
+  #       mock(welcome_email).deliver { welcome_email }
+  #     end
 
-    it "saves the user and sends them an email" do
-      trainer.create_account.should eq welcome_email
-      User.last.should eq trainer
-    end
-  end
+  #     it "saves the user and sends them an email" do
+  #       result.should be
+  #       User.last.should eq trainer
+  #     end
+  #   end
+
+  #   context "doesn't save successfully" do
+  #     before { mock(trainer).save { false } }
+
+  #     it "returns false" do
+  #       result.should eq false
+  #     end
+  #   end
+  # end
 
   describe "#build_workout" do
     let(:params)  { OpenStruct.new user_id: subject.username }

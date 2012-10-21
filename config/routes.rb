@@ -21,8 +21,9 @@ Fitafy::Application.routes.draw do
 
 #---------- PRETTY URLS ----------#
 
-  match 'sign_up', to: 'users#new'
+  match 'login_signup', to: 'login_signups#show'
   match 'login',   to: 'user_sessions#new'
+  match 'sign_up', to: 'users#new'
   match 'logout',  to: 'user_sessions#destroy'
 
 

@@ -41,3 +41,12 @@
 * cloudinary
 * google analytics
 * pivotal tracker
+
+# done
+* add exercises
+* got from excel to server
+* sendgrid
+* new relic
+* google analytics
+* cloudinary
+* pivotal tracker

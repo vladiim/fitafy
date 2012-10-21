@@ -21,5 +21,9 @@ module SnapzSayz
     def self.facebook_user_issue
       "Hmmm... that crazy Facebook seems to be giving us issues, you can sign up or try Facebook again."
     end
+
+    def self.create_user_fail
+      "Ooops! There was a problem setting you up - try again!"
+    end
   end
 end
