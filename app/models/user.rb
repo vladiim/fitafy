@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   before_create :make_user_trainer
+  after_create :send_welcome_email
 
   has_many :workouts, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
@@ -15,6 +16,8 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :email,    presence: true
   validates :email,    uniqueness: true
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
 
   # for authlogic gem
   acts_as_authentic do |c|
@@ -24,13 +27,13 @@ class User < ActiveRecord::Base
   # for carrierwave image management gem
   mount_uploader :avatar, AvatarUploader
 
-  def create_account
-    if self.save
-      UserMailer.sign_up_welcome(self).deliver
-    else
-      false
-    end
+  def send_welcome_email
+    UserMailer.sign_up_welcome(self).deliver
   end
+
+  # def create_account
+  #   self.save ? UserMailer.sign_up_welcome(self).deliver : false
+  # end
 
   def trainer?
   	role == "trainer"

@@ -26,6 +26,8 @@
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests
 * Workout levels (use bootstrap buttons)
+* when logged in your root_path is your profile
+* note to user's without workout in their profile (favorite a workout or create your own!)
 
 # Func
 

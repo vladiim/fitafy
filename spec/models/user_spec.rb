@@ -16,33 +16,35 @@ describe User do
     it { should validate_presence_of :username }
     it { should validate_presence_of :email }
     it { should validate_uniqueness_of :email }
+    it { should validate_presence_of :password }
+    it { should validate_presence_of :password_confirmation }
   end
 
-  describe "#create_account" do
-    let(:result)        { trainer.create_account }
-    let(:trainer)       { build :trainer }
-    let(:welcome_email) { Object.new }
+  # describe "#create_account" do
+  #   let(:result)        { trainer.create_account }
+  #   let(:trainer)       { build :trainer }
+  #   let(:welcome_email) { Object.new }
 
-    context "saves successfully" do
-      before do
-        mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
-        mock(welcome_email).deliver { welcome_email }
-      end
+  #   context "saves successfully" do
+  #     before do
+  #       mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
+  #       mock(welcome_email).deliver { welcome_email }
+  #     end
 
-      it "saves the user and sends them an email" do
-        result.should be
-        User.last.should eq trainer
-      end
-    end
+  #     it "saves the user and sends them an email" do
+  #       result.should be
+  #       User.last.should eq trainer
+  #     end
+  #   end
 
-    context "doesn't save successfully" do
-      before { mock(trainer).save { false } }
+  #   context "doesn't save successfully" do
+  #     before { mock(trainer).save { false } }
 
-      it "returns false" do
-        result.should eq false
-      end
-    end
-  end
+  #     it "returns false" do
+  #       result.should eq false
+  #     end
+  #   end
+  # end
 
   describe "#build_workout" do
     let(:params)  { OpenStruct.new user_id: subject.username }

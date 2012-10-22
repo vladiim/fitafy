@@ -8,12 +8,12 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
-  	if @user.create_account
-      redirect_to user_path(@user)
-  	  flash[:success] = SnapzSayz::UserSpeak.created_user
+  	if @user.save
+      flash[:success] = SnapzSayz::UserSpeak.created_user
+      redirect_to root_path
     else
-      render template: "login_signups/show"
-      flash[:failure] = SnapzSayz::UserSpeak.create_user_fail
+      flash[:error] = SnapzSayz::UserSpeak.create_user_fail
+      render :new
   	end
   end
 
