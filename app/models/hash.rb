@@ -6,11 +6,6 @@ class Hash
   # NoMethodError: undefined method `closed?' for #<Hash:0x007ff69c7817a8>
   # from /Users/vladi/.rvm/gems/ruby-1.9.3-p194@fitafy/gems/rest-client-1.6.7/lib/restclient/payload.rb:109:in `close'
 
-  def closed?
-  	false
-  end
+  remove_method :read
 
-  def close
-  	true
-  end
 end

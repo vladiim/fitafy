@@ -107,15 +107,6 @@ class User < ActiveRecord::Base
     FacebookUser.find_by_user_id(self.id) ? true : false
   end
 
-  # def send_welcome_email
-  #   p "#send welcome email was callled send welcome email was callledsend welcome email was callledsend welcome email was callledsend welcome email was callledsend welcome email was callled"
-  #   if UserMailer.sign_up_welcome(self).deliver
-  #     p "delivered the mutha fucker"
-  #   else
-  #     p "issue issue issue issue issue issue "
-  #   end
-  # end
-
   private
 
     def make_user_trainer

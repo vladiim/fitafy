@@ -7,10 +7,6 @@
       / = f.input :avatar_cache, as: :hidden
       = f.input :avatar, label: "Profile Pic"
       = f.submit "Change Profile Pic", class: "btn btn-primary btn-mini"
-
-    / = simple_form_for @user, html: { multipart: true } do |f|
-    /   = f.input :avatar, label: "Profile Image"
-    /   = f.submit "Change Profile Pic", class: "btn btn-primary"
   
   .span9
     = render partial: "simple_form", locals: { cta: cta }

@@ -19,13 +19,11 @@
 # To do
 * Get add exercise modal hiding exercises properly
 * Add all of the update exercises
-* push live
 * Set up mail, new relic, facebook etc
 * get turbo links working
 * User workout names are unique
 * SSL
 * User permissions to see new features
-* Chat/customer service http://www.olark.com/
 * http://railscasts.com/episodes/387-cache-digests
 
 # Mail
@@ -45,12 +43,4 @@
 * pivotal tracker
 * https://travis-ci.org/
 * pingdom
-
-# done
-* add exercises
-* got from excel to server
-* sendgrid
-* new relic
-* google analytics
-* cloudinary
-* pivotal tracker
+* Chat/customer service http://www.olark.com/
