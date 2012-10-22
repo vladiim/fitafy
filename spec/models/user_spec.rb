@@ -1,12 +1,28 @@
 require_relative '../spec_helper'
 
 describe User do
-  subject { create :user }
+  subject { build_stubbed :user }
 
   describe "#associations" do
     it { should have_many :workouts }
     it { should have_many :favorite_workouts }
     it { should belong_to :facebook_user }
+  end
+
+  describe "validations" do
+    subject { build :user }
+
+    it { should validate_presence_of :username }
+
+    context "facebook_user" do
+      before { mock(subject).facebook_user? true }
+      it { should_not validate_uniqueness_of :username }
+    end
+
+    context "not facebook_user" do
+      before { mock(subject).facebook_user? false }
+      it { should validate_uniqueness_of :username }
+    end
   end
 
   describe "#create_account" do
@@ -59,25 +75,26 @@ describe User do
   end
 
   describe "trainer?" do
+    let(:user) { build :user }
 
     it "should save the user as a trainer" do
-      subject.save!
-      subject.should be_trainer
+      user.save!
+      user.should be_trainer
     end
 
     context "user is a trainer" do
-      before { mock(subject).role { "trainer" } }
+      before { mock(user).role { "trainer" } }
 
       it "should be true" do
-        subject.trainer?.should be
+        user.trainer?.should be
       end
     end
 
     context "user is not a trainer" do
-      before { mock(subject).role { "client" } }
+      before { mock(user).role { "client" } }
 
       it "should be false" do
-        subject.trainer?.should be_false
+        user.trainer?.should be_false
       end
     end
   end
@@ -226,13 +243,14 @@ describe User do
   end
 
   describe "#build_favorite_workout" do
+    let(:user)        { build :user }
     let(:workout_id)  { 1 }
     let(:workout)     { Object.new }
-    before            { subject.save! }
+    before            { user.save! }
 
     it "builds a new favorite workout" do
-      favorite_workout = subject.build_favorite_workout workout_id
-      favorite_workout.user_id.should eq subject.id
+      favorite_workout = user.build_favorite_workout workout_id
+      favorite_workout.user_id.should eq user.id
       favorite_workout.workout_id.should eq 1
     end
   end

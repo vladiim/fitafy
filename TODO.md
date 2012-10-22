@@ -26,13 +26,18 @@
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests
 
-# Mail
-* forgot password
-* someone favorited your workout
-
-# Efficiency
+# Func
 
 * Revise favorite workout count to be like exercise (remove n+1)
+* Order exercises in workouts
+* basic
+  * accept to terms on sign up
+  * privacy page/terms page
+* Mail
+  * forgot password
+  * someone favorited your workout
+  * unsubscribe
+  * edit settings
 
 # Services
 * Mailchimp

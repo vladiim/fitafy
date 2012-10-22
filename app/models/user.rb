@@ -6,11 +6,12 @@ class User < ActiveRecord::Base
   friendly_id :username, use: :slugged
 
   before_create :make_user_trainer
-  # after_create  :send_welcome_email
 
   has_many :workouts, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
   belongs_to :facebook_user
+
+  validates :username, presence: true, uniqueness: true
 
   # for authlogic gem
   acts_as_authentic do |c|

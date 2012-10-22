@@ -8,5 +8,6 @@ When /^I try creating an account incorrectly$/ do
 end
 
 Then /^I should see the error messages$/ do
+  save_and_open_page
   page.should have_content "username already exsists"
 end
