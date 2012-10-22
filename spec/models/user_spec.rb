@@ -10,19 +10,12 @@ describe User do
   end
 
   describe "validations" do
-    subject { build :user }
+    subject { create :user }
 
+    it { should validate_uniqueness_of :username }
     it { should validate_presence_of :username }
-
-    context "facebook_user" do
-      before { mock(subject).facebook_user? true }
-      it { should_not validate_uniqueness_of :username }
-    end
-
-    context "not facebook_user" do
-      before { mock(subject).facebook_user? false }
-      it { should validate_uniqueness_of :username }
-    end
+    it { should validate_presence_of :email }
+    it { should validate_uniqueness_of :email }
   end
 
   describe "#create_account" do

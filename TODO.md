@@ -25,6 +25,7 @@
 * SSL
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests
+* Workout levels (use bootstrap buttons)
 
 # Func
 
