@@ -15,8 +15,10 @@ class User < ActiveRecord::Base
   belongs_to :facebook_user
 
   validates_uniqueness_of :username, :email
-  validates_presence_of   :username, :email, :password, 
-                          :password_confirmation
+  validates_presence_of   :username, :email
+  validates :terms_of_service, presence: true, on: :create
+  validates :password, presence: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
   validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem

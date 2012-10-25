@@ -32,8 +32,12 @@ class UsersController < ApplicationController
   def update
     if current_user.update_attributes(params[:user])
       flash[:success] = SnapzSayz::UserSpeak.update_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(@current_user)
     else
+      flash[:error] = SnapzSayz::UserSpeak.didnt_update_user
+      @title               = "Edit Profile"
+      @user                = current_user
+      @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
       render :edit
     end
   end

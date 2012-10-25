@@ -2,8 +2,6 @@
 
   %aside.span3
     #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
-    / - if @user == current_user
-    /   = render 'edit_profile_buttons'
 
     %br
     = render 'stats'

@@ -18,7 +18,8 @@ describe User do
     it { should validate_uniqueness_of :email }
     it { should validate_presence_of :password }
     it { should validate_presence_of :password_confirmation }
-    it { should validate_acceptance_of :tandc }
+    it { should validate_presence_of :terms_of_service }
+    it { should validate_acceptance_of :terms_of_service }
   end
 
   # describe "#create_account" do

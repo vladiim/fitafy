@@ -3,6 +3,7 @@ When /^fill in my details$/ do
   fill_in "user_email", with: "bobby@bolders.com"
   fill_in "user_password", with: "password"
   fill_in "user_password_confirmation", with: "password"
+  choose "Yes"
   click_button "SIGN UP"
 end
 

@@ -4,13 +4,11 @@
     = image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
 
     = simple_form_for @user do |f|
-      / = f.input :avatar_cache, as: :hidden
       = f.input :avatar, label: "Profile Pic"
       = f.submit "Change Profile Pic"
   
   .span7
     = render partial: "simple_form", locals: { cta: cta }
     
-    - if current_user
-      %br
-      = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"  
+    %br
+    = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"  

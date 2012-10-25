@@ -9,7 +9,7 @@ FactoryGirl.define do
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
   	password_confirmation "password"
-    tandc                 true
+    terms_of_service      "true"
   end
 
   factory :facebook_user do

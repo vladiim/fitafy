@@ -10,6 +10,10 @@ module SnapzSayz
       "Your profile was updated like a bawse."
     end
 
+    def self.didnt_update_user
+      "There was a problem updating your profile. Why don't you try again?"
+    end
+
     def self.delete_confirmation
       "Deleting your account is permanent yo... no going back!"
     end
@@ -24,10 +28,6 @@ module SnapzSayz
 
     def self.create_user_fail
       "Ooops! There was a problem setting you up - try again!"
-    end
-
-    def self.require_terms_conditions
-      "we need you to agree to our T&Cs, they're not too bad!"
     end
   end
 end

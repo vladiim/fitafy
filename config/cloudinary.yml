@@ -1,3 +1,8 @@
+test:
+  cloud_name: "hdxvaer2w"
+  api_key: "538177331112535"
+  api_secret: "BwqNggHlcPjGKURST2rVWILOJB8"
+
 development:
   cloud_name: "hdxvaer2w"
   api_key: "538177331112535"
