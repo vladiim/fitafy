@@ -12,6 +12,7 @@ class UserSessionsController < ApplicationController
   		flash[:success] = SnapzSayz::UserSessionSpeak.login
       redirect_back root_url
   	else
+      flash[:error] = SnapzSayz::UserSessionSpeak.didnt_login
   		render action: :new
   	end
   end

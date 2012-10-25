@@ -6,7 +6,7 @@
     = simple_form_for @user do |f|
       / = f.input :avatar_cache, as: :hidden
       = f.input :avatar, label: "Profile Pic"
-      = f.submit "Change Profile Pic", class: "btn btn-primary btn-mini"
+      = f.submit "Change Profile Pic"
   
   .span9
     = render partial: "simple_form", locals: { cta: cta }

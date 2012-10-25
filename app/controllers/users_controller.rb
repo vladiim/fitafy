@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = SnapzSayz::UserSpeak.create_user_fail
-      flash[:error] = SnapzSayz::UserSpeak.validation_errors(@user)
       render :new
   	end
   end
