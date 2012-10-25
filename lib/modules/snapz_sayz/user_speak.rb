@@ -25,5 +25,9 @@ module SnapzSayz
     def self.create_user_fail
       "Ooops! There was a problem setting you up - try again!"
     end
+
+    def self.require_terms_conditions
+      "we need you to agree to our T&Cs, they're not too bad!"
+    end
   end
 end

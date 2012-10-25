@@ -3,7 +3,7 @@ Given /^I'm on my profile page$/ do
 end
 
 When /^I upload a profile pic$/ do
-  attach_file "Profile Image", "#{Dir.pwd}/app/assets/images/das_boot.png"
+  attach_file "Profile Pic", "#{Dir.pwd}/app/assets/images/das_boot.png"
   click_button "Change Profile Pic"
 end
 

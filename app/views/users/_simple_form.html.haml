@@ -5,4 +5,7 @@
   = f.input :password
   = f.input :password_confirmation
 
+  - unless current_user
+    = f.input :terms_of_service, label: "I agree with fitafy's T&Cs", as: :radio_buttons
+
   = f.submit cta, class: "btn btn-primary"

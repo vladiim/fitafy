@@ -15,7 +15,13 @@ Feature: Trainer manages account
     And Snapz should have a message for creating an account
     And I should get a sign up email
 
-  Scenario: Trainer agrees to terms & conditions
+  @focus
+  Scenario: Trainer doesn't agree to terms & conditions
+    Given I'm not logged in
+    And I click sign up
+    When I fill in all details other than T&Cs
+    And I click sign up
+    Then I should see a T&Cs error
 
   Scenario: Trainer forgets password
 
@@ -41,7 +47,6 @@ Feature: Trainer manages account
     When I upload a profile pic
     Then that should be set as my profile pic
 
-  @focus
   Scenario: Trainer gets error messages if signing up
     Given I'm not logged in
     When I click sign up

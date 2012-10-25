@@ -1,3 +1,3 @@
 When /^I click sign up$/ do
-  click_link "LOGIN/SIGN UP"
+  click_link "SIGN UP"
 end

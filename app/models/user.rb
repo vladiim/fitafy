@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :username, :email, :password, :password_confirmation, :role, :avatar
+  attr_accessible :username, :email, :password, 
+                  :password_confirmation, :role,
+                  :avatar, :terms_of_service
 
   friendly_id :username, use: :slugged
 
@@ -12,12 +14,10 @@ class User < ActiveRecord::Base
   has_many :favorite_workouts, dependent: :destroy
   belongs_to :facebook_user
 
-  validates :username, presence: true
-  validates :username, uniqueness: true
-  validates :email,    presence: true
-  validates :email,    uniqueness: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  validates_uniqueness_of :username, :email
+  validates_presence_of   :username, :email, :password, 
+                          :password_confirmation
+  validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem
   acts_as_authentic do |c|

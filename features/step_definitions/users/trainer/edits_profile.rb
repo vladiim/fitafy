@@ -1,5 +1,4 @@
 When /^I edit my profile$/ do
-  click_link @trainer.username.upcase
   click_link "EDIT PROFILE"
   fill_in "user_username", with: "gza"
   fill_in "user_email",    with: "gza@wu.com"
