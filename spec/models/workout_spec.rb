@@ -179,7 +179,7 @@ describe Workout do
   end
 
   describe "#all_exercises" do
-    before { mock(Exercise).scoped { exercises } }
+    before { mock(Exercise).all { exercises } }
 
     it "should call all exercises" do
       subject.all_exercises.should eq exercises
@@ -264,22 +264,33 @@ describe Workout do
     end
   end
 
-  # describe "#includes_exercise" do
-  #   let(:result)   { subject.includes_exercise(exercise) }
+  describe "#muscles" do
+    let(:result)  { subject.muscles }
 
-  #   context "does include exercise" do
-  #     let(:exercise) { build_stubbed :exercise }
-  #     before { build_stubbed :workout_exercise, workout: subject, exercise: exercise }
+    context "one exercise" do
+      before do
+        mock(subject).exercises     { [exercise] }
+        mock(exercise).muscle_names { "EXERCISE 1" }
+      end
 
-  #     it "returns true" do
-  #       result.should be
-  #     end
-  #   end
+      it "returns the exercise's muscles" do
+        result.should eq "EXERCISE 1"
+      end
+    end
 
-  #   context "does not include exercise" do
-  #     it "returns false" do
-  #       result.should_not be
-  #     end
-  #   end
-  # end
+
+    context "two exercise" do
+      let(:exercise2) { Object.new }
+
+      before do
+        mock(subject).exercises { [exercise, exercise2] }
+        mock(exercise).muscle_names  { "EXERCISE 1" }
+        mock(exercise2).muscle_names { "EXERCISE 2" }
+      end
+
+      it "returns both exercise's muscles" do
+        result.should eq "EXERCISE 1 EXERCISE 2"
+      end
+    end
+  end
 end

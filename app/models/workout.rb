@@ -66,7 +66,7 @@ class Workout < ActiveRecord::Base
   end
 
   def all_exercises
-    Exercise.scoped
+    Exercise.all
   end
 
   def self.muscles
@@ -76,11 +76,6 @@ class Workout < ActiveRecord::Base
   def self.exercises_by_alphabetical_tags tags
     Exercise.by_alphabetical_tags tags
   end
-
-  # TODO delete this if it's not causing problems
-  # def list_exercises
-  #   workout_exercises
-  # end
 
   def new_workout_exercise
     workout_exercises.build
@@ -94,11 +89,13 @@ class Workout < ActiveRecord::Base
     workout_exercises.count
   end
 
-  # def includes_exercise ex
-  #   self.workout_exercises.includes(:exercise).map(&:name).each do |name|
-  #     return true if name == ex.name
-  #   end.any?
-  # end
+  def muscles
+    muscles = ""
+    exercises.each do |exercise|
+      muscles << " #{exercise.muscle_names}" unless muscles.match(exercise.muscle_names)
+    end
+    muscles.sub(/^\s/, "")
+  end
 
   def copy_workout_exercises other_workout
     other_workout.workout_exercises.each do |workout_exercise|

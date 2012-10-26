@@ -114,4 +114,12 @@ describe Exercise do
       subject.equipment_list.should eq "EQUIPMENT LIST"
     end
   end
+
+  describe "#muscle_names" do
+    let(:result) { subject.muscle_names }
+
+    it "returns the downcase muscle names" do
+      result.should eq Exercise::MUSCLES[0].downcase
+    end
+  end
 end

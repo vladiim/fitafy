@@ -20,6 +20,14 @@ class Exercise < ActiveRecord::Base
   	self.destroy
   end
 
+  def muscle_names
+    names = ""
+    muscle_list.each do |muscle|
+      names << " #{muscle.downcase}" unless names.match(muscle)
+    end
+    names.sub(/^\s/, "")
+  end
+
   def self.by_alphabetical_tags tags=nil
     with_tags(tags).sort_by { |exercise| exercise["name"] }
   end
