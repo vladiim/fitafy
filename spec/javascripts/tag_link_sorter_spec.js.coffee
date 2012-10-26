@@ -25,8 +25,10 @@ describe "TagLinkSorter", ->
 
     describe "click 'CHEST'", ->
       beforeEach ->
-        @$backWorkout  = $(".workout_list#back")
-        @$chestWorkout = $(".workout_list#chest")
+        @$backArticle  = $("article.back")
+        @$chestArticle = $("article.chest")
+        @$backWorkout  = @$backArticle.parent("li")
+        @$chestWorkout = @$chestArticle.parent("li")
         @$chestLink    = $("a.chest")
         @$chestLink.click()
 
@@ -34,7 +36,7 @@ describe "TagLinkSorter", ->
         expect($("#active_tags > a.chest")).toExist()
         expect($("#inactive_tags > a.chest")).not.toExist()
 
-      it "only shows workouts with a chest id", ->
+      it "only shows workouts with a chest class", ->
         expect(@$backWorkout).toHaveClass("hidden")
         expect(@$chestWorkout).not.toHaveClass("hidden")
 
@@ -49,3 +51,4 @@ describe "TagLinkSorter", ->
         it "shows all the workouts", ->
           expect(@$backWorkout).not.toHaveClass("hidden")
           expect(@$chestWorkout).not.toHaveClass("hidden")
+

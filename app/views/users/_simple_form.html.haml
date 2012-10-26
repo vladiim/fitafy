@@ -6,7 +6,7 @@
   = f.input :password_confirmation
 
   - unless current_user
-    = f.input :terms_of_service, label: "I agree with #{link_to 'the fitafy T&Cs', '#terms_of_service_modal', 'data-toggle' => 'modal'}", as: :radio_buttons
+    = f.input :terms_of_service, label: "I agree with #{link_to 'the fitafy Terms of Service', '#terms_of_service_modal', 'data-toggle' => 'modal'}", as: :radio_buttons
 
   = f.submit cta, class: "btn btn-primary"
 

@@ -3,7 +3,7 @@ class window.TagLinkSorter
     @tagLinks       = $(".tag_link")
     @inactiveTags   = $("#inactive_tags")
     @activeTags     = $("#active_tags")
-    @workouts       = $("li.workout_list")
+    @workouts       = $("li.workout_item")
     @showTagsButton = $("#show_tags_button")
 
   init: ->
@@ -36,8 +36,8 @@ class window.TagLinkSorter
 
   hideOtherWorkouts: ->
     $(@workouts).addClass("hidden")
-    tagWorkouts = $(@workouts).find("##{@tag}")
-    tagWorkouts.removeClass("hidden")
+    $tagWorkouts = $("article.#{@tag}")
+    $tagWorkouts.parent().removeClass("hidden")
 
   showOtherWorkouts: ->
     $(@workouts).removeClass("hidden")

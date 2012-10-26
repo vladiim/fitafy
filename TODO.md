@@ -29,6 +29,7 @@
 	- remove mokey patch on hash
 	- set up resque (note, resque needs Hash to have read mothod)
 * exercises are pop ups
+* when you edit workout exercise instructions you open all exercise instruction forms, make it so it only opens the exercise you've clicked on
 
 # Func
 

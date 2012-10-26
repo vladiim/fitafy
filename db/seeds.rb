@@ -21,7 +21,7 @@ create_full_body
 create_neck
 create_torso
 
-@fitafy = User.find_or_create_by_email "rob@fitafy.com", username: "fitafy", password: "password", password_confirmation: "password"
+@fitafy = User.find_or_create_by_email "rob@fitafy.com", username: "fitafy", password: "password", password_confirmation: "password", terms_of_service: "true"
 @fitafy.role = "admin"
 @fitafy.save!
 

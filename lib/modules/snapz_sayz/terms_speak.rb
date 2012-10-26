@@ -2,7 +2,7 @@ module SnapzSayz
 
   module TermsSpeak
   	def self.title
-  	  "FITAFY Terms and Conditions of Use"
+  	  "FITAFY Terms of Service"
   	end
   end
 end

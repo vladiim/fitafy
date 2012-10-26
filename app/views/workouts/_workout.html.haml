@@ -1,5 +1,5 @@
-%li.workout_list.box_list.well.span2{"id" => workout.muscles}
-  %article
+%li.workout_item.box_list.well.span2
+  %article{"class" => workout.muscles}
     %header
       %h5= link_to workout.name.titleize, user_workout_path(workout.user_id, workout)
 
