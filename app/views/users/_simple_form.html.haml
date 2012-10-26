@@ -6,6 +6,17 @@
   = f.input :password_confirmation
 
   - unless current_user
-    = f.input :terms_of_service, label: "I agree with fitafy's T&Cs", as: :radio_buttons
+    = f.input :terms_of_service, label: "I agree with #{link_to 'the fitafy T&Cs', '#terms_of_service_modal', 'data-toggle' => 'modal'}", as: :radio_buttons
 
   = f.submit cta, class: "btn btn-primary"
+
+- unless current_user
+  .modal.hide.fade.in#terms_of_service_modal
+  
+    .modal-header
+  
+      %a.close{ "data-dismiss" => "modal" } x
+      %h3= SnapzSayz::TermsSpeak.title
+
+    .modal-body
+      = render partial: "pages/terms_of_service_copy" 
