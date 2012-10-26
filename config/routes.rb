@@ -33,7 +33,9 @@ Fitafy::Application.routes.draw do
 
 #---------- STATIC ----------#
 
-  get 'pages/home'
+  get "pages/home"
+  get "pages/terms_of_service"
+  match "terms_of_service", to: "pages#terms_of_service"
 
 #---------- HOME ----------#
 
