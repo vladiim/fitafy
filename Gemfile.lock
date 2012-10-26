@@ -60,6 +60,9 @@ GEM
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     client_side_validations (3.2.0)
+    client_side_validations-simple_form (2.0.0)
+      client_side_validations (~> 3.2.0)
+      simple_form (~> 2.0.3)
     cloudinary (1.0.40)
       aws_cf_signer
       rest-client
@@ -297,6 +300,7 @@ DEPENDENCIES
   capybara (~> 1.1.0)
   carrierwave (~> 0.6.2)
   client_side_validations (~> 3.2.0)
+  client_side_validations-simple_form
   cloudinary (~> 1.0.40)
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.3.0)

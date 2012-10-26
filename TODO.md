@@ -1,7 +1,4 @@
 # With Avdi
-* Workout#show refactor
-	- WorkoutHelper#link_to_baby_form
-	- WorkoutHelper#link_to_edit_form
 # WorkoutForm js
 	- filter workout modal - doesn't remove
 	- cancel link not working
@@ -15,9 +12,9 @@
     - ask avdi re password approach
 * Username clickable & in title username/workout_name
 * friendly urls
+* cloudinary uploader - test without it taking so long
 
 # To do
-* Get add exercise modal hiding exercises properly
 * Add all of the update exercises
 * Set up mail, new relic, facebook etc
 * get turbo links working
@@ -28,14 +25,17 @@
 * Workout levels (use bootstrap buttons)
 * when logged in your root_path is your profile
 * note to user's without workout in their profile (favorite a workout or create your own!)
+* once cloudinary has fixed issue:
+	- remove mokey patch on hash
+	- set up resque (note, resque needs Hash to have read mothod)
+* exercises are pop ups
 
 # Func
 
 * Revise favorite workout count to be like exercise (remove n+1)
 * Order exercises in workouts
 * basic
-  * accept to terms on sign up
-  * privacy page/terms page
+  * privacy page
 * Mail
   * forgot password
   * someone favorited your workout

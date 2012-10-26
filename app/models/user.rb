@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :username, :email
   validates :terms_of_service, presence: true, on: :create
   validates :password, presence: true, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  validates :password, confirmation: true #, on: :create
   validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem

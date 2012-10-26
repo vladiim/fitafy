@@ -19,6 +19,8 @@ Fitafy::Application.routes.draw do
 
   resources :workouts, only: :new # to allow any user to have a create workout CTA
 
+  # mount Resque::Server.new, :at => "/resque"
+
 #---------- PRETTY URLS ----------#
 
   match 'login',   to: 'user_sessions#new'

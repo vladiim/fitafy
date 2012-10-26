@@ -13,6 +13,9 @@
       %h1= section_title unless params[:action] == 'home'
     = yield
 
+    %footer
+      = render 'layouts/footer'
+
   - if can? :manage, Workout
     = render partial: "workouts/new_from_nav"
 
