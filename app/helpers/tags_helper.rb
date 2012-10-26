@@ -1,7 +1,7 @@
 module TagsHelper
 
   def link_to_single_param_tags tag
-    link_to tag.upcase, "#", class: "#{tag.downcase} tag_link btn btn-info btn-mini"
+    link_to tag.upcase, "#", class: "#{tag.downcase} tag_link inactive btn btn-info btn-mini"
   end
 
   def link_to_tag tag, tag_type

@@ -1,6 +1,7 @@
 .row
-  .active_tags.well.span10
+  #active_tag_container.well.span10
     = link_to "SORT BY TAGS", "#", class: "btn btn-primary", id: "show_tags_button"
-  .all_tags.well.span10.hidden
+    #active_tags
+  #inactive_tags.well.span10.hidden
     - @muscles.each do |tag|
       = link_to_single_param_tags tag
