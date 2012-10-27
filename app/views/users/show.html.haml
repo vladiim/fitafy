@@ -7,12 +7,14 @@
     = render 'stats'
 
   %section.user_workouts.span8
-    %h4
+    %h2
       - if @user == current_user
         Your workouts
       - else
         = "#{@user.username.titleize}'s"
         Workouts
+
+    = render partial: "tags/list", locals: { width: 8 }
 
     %br
     = render partial: "workouts/workout", collection: @workouts

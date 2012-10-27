@@ -1,5 +1,5 @@
 %section#workout_filters
-  = render partial: "tags/list"
+  = render partial: "tags/list", locals: { width: 10 }
 
 %section#workouts.row
   %ul#workout_list= render @workouts
