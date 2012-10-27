@@ -1,10 +1,10 @@
 class window.TagLinkSorter
   constructor: ->
-    @tagLinks       = $(".tag_link")
-    @inactiveTags   = $("#inactive_tags")
-    @activeTags     = $("#active_tags")
-    @workouts       = $("li.workout_item")
-    @showTagsButton = $("#show_tags_button")
+    @tagLinks        = $(".tag_link")
+    @inactiveTags    = $("#inactive_tags")
+    @activeTags      = $("#active_tags")
+    @activeTagNames  = new Array
+    @showTagsButton  = $("#show_tags_button")
 
   init: ->
 
@@ -14,9 +14,14 @@ class window.TagLinkSorter
 
     $(@tagLinks).on "click", (event) =>
       $tag_link = $(event.target)
-      @tag      = $tag_link.text().toLowerCase()
       @moveTag($tag_link)
       event.preventDefault()
+
+  workouts: ->
+    $("li.workout_item")
+
+  getTag: (tag_link) ->
+    tag_link.text().toLowerCase()
 
   moveTag: (tag_link) ->
     if $(tag_link).hasClass("inactive")
@@ -25,22 +30,48 @@ class window.TagLinkSorter
       @moveToInactiveTags(tag_link)
 
   moveToActiveTags: (tag_link) ->
-    $(tag_link).removeClass("inactive").addClass("active")
+    @makeTagLinkActive(tag_link)
     $(@activeTags).append(tag_link)
-    @hideOtherWorkouts()
+    @addTagToActive(@getTag(tag_link))
+    @showActiveTagWorkouts()
 
   moveToInactiveTags: (tag_link) ->
-    $(tag_link).removeClass("active").addClass("inactive")
+    @makeTagLinkInactive(tag_link)
     $(@inactiveTags).append(tag_link)
-    @showOtherWorkouts()
+    @removeTagFromActive(@getTag(tag_link))
+    @showActiveTagWorkouts()
 
-  hideOtherWorkouts: ->
-    $(@workouts).addClass("hidden")
-    $tagWorkouts = $("article.#{@tag}")
-    $tagWorkouts.parent().removeClass("hidden")
+  makeTagLinkActive: (tag_link) ->
+    $(tag_link).removeClass("inactive").addClass("active")
 
-  showOtherWorkouts: ->
-    $(@workouts).removeClass("hidden")
+  makeTagLinkInactive: (tag_link) ->
+    $(tag_link).removeClass("active").addClass("inactive")
+
+  showActiveTagWorkouts: ->
+    if @activeTagNames.length is 0
+      @showAllWorkouts()
+    else
+      @hideWorkouts()
+      @showActiveWorkouts()
+
+  addTagToActive: (tag) ->
+    @activeTagNames.push(tag)
+
+  removeTagFromActive: (tag) ->
+    index = @activeTagNames.indexOf(tag)
+    @activeTagNames.splice(index, 1)
+
+  showAllWorkouts: ->
+    $(@workouts()).removeClass("hidden")
+
+  showActiveWorkouts: ->
+    tags = ""
+    for tag in @activeTagNames
+      tags += ".#{tag}"
+    $("article#{tags}").parent("li").removeClass("hidden")
+
+  hideWorkouts: ->
+    $(@workouts()).addClass("hidden")
 
 $ ->
   sorter = new TagLinkSorter

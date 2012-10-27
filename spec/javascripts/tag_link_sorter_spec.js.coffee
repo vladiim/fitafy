@@ -3,7 +3,17 @@ describe "TagLinkSorter", ->
     loadFixtures "tag_link_bar.html"
     sorter = new TagLinkSorter
     sorter.init()
+
+  it "hides the inactive tags", ->
+    expect($("#inactive_tags")).toHaveClass("hidden")
+
+describe "TagLinkSorter", ->
+  beforeEach ->
+    loadFixtures "tag_link_bar.html"
+    sorter = new TagLinkSorter
+    sorter.init()
     @$inactiveTags = $("#inactive_tags")
+    @$chestLink    = $("a.chest")
 
   it "hides all tags", ->
     expect(@$inactiveTags).toHaveClass("hidden")
@@ -25,11 +35,8 @@ describe "TagLinkSorter", ->
 
     describe "click 'CHEST'", ->
       beforeEach ->
-        @$backArticle  = $("article.back")
-        @$chestArticle = $("article.chest")
-        @$backWorkout  = @$backArticle.parent("li")
-        @$chestWorkout = @$chestArticle.parent("li")
-        @$chestLink    = $("a.chest")
+        @$legsWorkout  = $("article.legs").parent("li")
+        @$chestWorkout = $("article.chest").parent("li")
         @$chestLink.click()
 
       it "moves the chest link tag to active_tags", ->
@@ -37,7 +44,7 @@ describe "TagLinkSorter", ->
         expect($("#inactive_tags > a.chest")).not.toExist()
 
       it "only shows workouts with a chest class", ->
-        expect(@$backWorkout).toHaveClass("hidden")
+        expect(@$legsWorkout).toHaveClass("hidden")
         expect(@$chestWorkout).not.toHaveClass("hidden")
 
       describe "click 'CHEST' again", ->
@@ -49,6 +56,19 @@ describe "TagLinkSorter", ->
           expect($("#active_tags > a.chest")).not.toExist()
 
         it "shows all the workouts", ->
-          expect(@$backWorkout).not.toHaveClass("hidden")
+          expect(@$legsWorkout).not.toHaveClass("hidden")
           expect(@$chestWorkout).not.toHaveClass("hidden")
+
+  describe "click 'CHEST' and 'LEGS'", ->
+    beforeEach ->
+      $("a.legs").click()
+      $("a.back").click()
+
+    it "shows the workout with back and legs", ->
+      expect($("article.back.legs").parent("li")).not.toHaveClass("hidden")
+
+    it "hides every other workout", ->
+      expect($("article.chest.back").parent("li")).toHaveClass("hidden")
+      # expect($("article[class$='back']").parent("li")).toHaveClass("hidden")
+
 
