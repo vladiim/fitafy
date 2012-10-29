@@ -9,4 +9,8 @@ class PagesController < ApplicationController
   def terms_of_service
   	@title = SnapzSayz::TermsSpeak.title
   end
+
+  def privacy
+  	@title = SnapzSayz::TermsSpeak.privacy
+  end
 end
