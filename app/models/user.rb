@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :workouts, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
-  belongs_to :facebook_user
+  belongs_to :facebook_user, dependent: :destroy
 
   validates_uniqueness_of :username, :email
   validates_presence_of   :username, :email
