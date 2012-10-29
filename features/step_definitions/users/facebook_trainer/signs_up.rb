@@ -3,7 +3,9 @@ Given /^I'm a new trainer$/ do
 end
 
 Given /^I have a Facebook account$/ do
-  OmniAuth.config.add_mock(:facebook, { :uid => '12345', info: {name: "FACEBOOK NAME", email: "EMAIL@EMAIL.COM"}, credentials: { token: "1234", expires_at: 4503662457 } })
+  OmniAuth.config.add_mock(:facebook, { :uid => '12345', info: 
+  	                        { name: "FACEBOOK NAME", email: "EMAIL@EMAIL.COM"}, 
+  	                        credentials: { token: "1234", expires_at: 4503662457 } })
 end
 
 Then /^I should have a new fitafy account$/ do

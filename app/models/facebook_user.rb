@@ -25,13 +25,14 @@ class FacebookUser < ActiveRecord::Base
 
     FacebookUser.find_or_initialize_by_uid(auth.fetch("uid")) do |fb|
       fb.build_user unless fb.user
-      fb.uid         = auth.fetch("uid")
       fb.username    = info.fetch("name")
       fb.email       = info.fetch("email")
       # fb.avatar      = info.fetch("image")
       fb.oauth_token = creds.fetch("token")
-      fb.password    = Digest::MD5.hexdigest(creds.fetch("token"))
-      fb.password_confirmation = fb.password
+      password       = Digest::MD5.hexdigest(creds.fetch("token"))
+      fb.password    = password
+      fb.password_confirmation = password
+      fb.user.terms_of_service = "true"
       fb.oauth_expires_at = creds.fetch("expires_at")
       fb.provider         = "facebook"
     end
@@ -40,6 +41,8 @@ class FacebookUser < ActiveRecord::Base
   def format_username
     self.username = self.username.downcase.gsub(' ', '-')
     users = User.find_all_by_username(self.username)
+
+    debugger
 
     users.each do |user|
       (increment_username && format_username) unless user == self.user
