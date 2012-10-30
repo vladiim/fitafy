@@ -42,8 +42,6 @@ class FacebookUser < ActiveRecord::Base
     self.username = self.username.downcase.gsub(' ', '-')
     users = User.find_all_by_username(self.username)
 
-    debugger
-
     users.each do |user|
       (increment_username && format_username) unless user == self.user
     end
