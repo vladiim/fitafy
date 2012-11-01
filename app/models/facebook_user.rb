@@ -48,12 +48,17 @@ class FacebookUser < ActiveRecord::Base
   end
 
   def increment_username
-    increment_at = (self.username =~ /[-][[:digit:]]+$/)    # e.g. facebook-name-3 returns the position of '-3'
-    if increment_at                                         # safeguard against incorrect username's being passed in
-      number = self.username.slice!((increment_at + 1)..-1) # get the number e.g. above would return '3'
-      new_number = (number.to_i + 1).to_s
-      self.username << new_number
-    end
+    increment_position = (self.username =~ /[-][[:digit:]]+$/)    # e.g. facebook-name-3 returns the position of '-3'
+    original_number = find_original(increment_position)
+    self.username << increment(original_number)
+  end
+
+  def find_original increment_position
+    increment_position ? self.username.slice!((increment_position + 1)..-1) : nil
+  end
+
+  def increment number
+    number ? (number.to_i + 1).to_s : "-1"
   end
 
   def format_oath_expires_at

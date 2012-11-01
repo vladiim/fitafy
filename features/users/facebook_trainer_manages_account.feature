@@ -15,7 +15,6 @@ Feature: Facebook Trainer manages account
     When I click sign in with Facebook
     Then I should be signed back in through Facebook
 
-  @focus
   Scenario Outline: Facebook Trainer name is unique
     Given a trainer exsists with the <facebook_name>
     When I sign in through facebook with the same <facebook_name>
@@ -23,11 +22,11 @@ Feature: Facebook Trainer manages account
 
     Examples:
       | facebook_name       | new_username        |
-      | "facebook-name"     | "facebook-name-1"     |
-      # | "facebook-name-1"   | "facebook-name-2"   |
-      # | "facebook-name-2"   | "facebook-name-3"   |
-      # | "facebook-name-13"  | "facebook-name-14"  |
-      # | "facebook-name-345" | "facebook-name-346" |
+      | "facebook-name"     | "facebook-name-1"   |
+      | "facebook-name-1"   | "facebook-name-2"   |
+      | "facebook-name-2"   | "facebook-name-3"   |
+      | "facebook-name-13"  | "facebook-name-14"  |
+      | "facebook-name-345" | "facebook-name-346" |
 
   Scenario: Facebook Trainer can view exercises
     Given I've signed in through Facebook
