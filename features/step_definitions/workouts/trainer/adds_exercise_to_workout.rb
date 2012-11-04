@@ -11,3 +11,9 @@ end
 Then /^that exercise should be added to the workout$/ do
   @workout.exercises.should include @other_exercise
 end
+
+Then /^the exercise is ordered$/ do
+  # this should be on the workout_exercise not on the 
+  @workout.workout_exercise[0].order.should eq 1
+  @workout.workout_exercise[1].order.should eq 2
+end

@@ -1,6 +1,7 @@
 class WorkoutExercise < ActiveRecord::Base
 
-  attr_accessible :workout_id, :exercise_id, :sets, :instructions
+  attr_accessible :workout_id, :exercise_id,
+                  :sets, :instructions, :order
 
   belongs_to :exercise
   belongs_to :workout
@@ -8,6 +9,17 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :name, to: :exercise
   delegate :muscles, to: :exercise
   delegate :equipment_name, to: :exercise
+  delegate :exercises, to: :workout
+
+  before_create :generate_order_number
+
+  def generate_order_number
+    self.order = (self.exercise_number + 1)
+  end
+
+  def exercise_number
+    self.exercises.count
+  end
 
   def safe_instructions
     if instructions

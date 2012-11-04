@@ -37,11 +37,13 @@ Feature: Trainer manages workouts
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
 
+  @focus
   Scenario: Trainer adds exercise to workout
     Given another exercise exists
     And a workout exercise exists
     When I click add exercise on the workout's page
     Then that exercise should be added to the workout
+    And the exercise is ordered
 
   Scenario: Trainer sorts alphabetical exercise list
     Given there's alphabetical exercises

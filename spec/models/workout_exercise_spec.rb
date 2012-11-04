@@ -3,6 +3,8 @@ require_relative "../spec_helper"
 describe WorkoutExercise do
   subject             { WorkoutExercise.new }
   let(:valid_subject) { FactoryGirl.create :workout_exercise }
+  let(:workout)       { build_stubbed :workout }
+  let(:exercise)      { build_stubbed :exercise }
 
   describe "#attributes" do
     describe "#workout_id" do
@@ -34,12 +36,42 @@ describe WorkoutExercise do
     end
   end
 
-  # describe "#exercise_name" do
-  #   before { mock(Exercise).find(valid_subject.exercise_id) { OpenStruct.new name: "rebel ins"} }
-  #   it "should give the exercise name titleized" do
-  #     valid_subject.exercise_name.should eq "Rebel Ins"
-  #   end
-  # end
+  describe "#generate_order_number" do
+    let(:workout_ex) { build :workout_exercise, workout: workout,
+                                                exercise: exercise }
+
+    let(:result) { workout_ex.generate_order_number }
+
+    context "first exercise for workout" do
+      it "sets the order to 1" do
+        mock(workout_ex).exercise_number { 0 }
+        result
+        workout_ex.order.should eq 1
+      end
+    end
+
+    context "not first exercise for workout" do
+      it "increments the exercise's order" do
+        [1, 14, 440].each do |n|
+          mock(workout_ex).exercise_number { n }
+          workout_ex.generate_order_number
+          workout_ex.order.should eq (n + 1)
+        end
+      end
+    end
+  end
+
+  describe "#exercise_number" do
+    let(:workout_ex) { create :workout_exercise }
+    let(:workout)    { workout_ex.workout }
+
+    it "counts the exercises" do
+      [1, 10, 345].each do |n|
+        mock(workout.exercises).count { n }
+        workout_ex.exercise_number.should eq n
+      end
+    end
+  end
 
   describe "#safe_instructions" do
     let(:result) { subject.safe_instructions }
@@ -115,14 +147,4 @@ describe WorkoutExercise do
       WorkoutExercise.return_workouts_from_exercises(exercises).should eq [workout]
     end
   end
-
-  # describe "#equipment_name" do
-  #   let(:exercise) { OpenStruct.new equipment_name: "EQUIPMENT NAME"}
-
-  #   before { mock(subject).exercise { exercise } }
-
-  #   it "should return the exercise's equipment name" do
-  #     subject.equipment_name.should eq "EQUIPMENT NAME"
-  #   end
-  # end
 end
