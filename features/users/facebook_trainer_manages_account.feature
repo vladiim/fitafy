@@ -15,7 +15,6 @@ Feature: Facebook Trainer manages account
     When I click sign in with Facebook
     Then I should be signed back in through Facebook
 
-  @focus
   Scenario Outline: Facebook Trainer name is unique
     Given a trainer exsists with the <facebook_name>
     When I sign in through facebook with the same <facebook_name>
