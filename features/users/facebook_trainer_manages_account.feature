@@ -34,3 +34,8 @@ Feature: Facebook Trainer manages account
     And I'm on a workout page
     When I go to visit an exercise
     Then I should be able to see that exercise
+
+  Scenario: Facebook Trainer logs out on first go
+    Given I've signed in through Facebook
+    When I click logout
+    Then I shouldn't be logged in anymore

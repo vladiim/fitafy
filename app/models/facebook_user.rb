@@ -3,8 +3,6 @@ require 'digest/md5'
 
 class FacebookUser < ActiveRecord::Base
 
-  # add god_field/auth_info with all oauth data
-
   attr_accessible :uid, :oauth_token, :oauth_expires_at
 
   delegate :id, to: :user, prefix: true
@@ -24,16 +22,17 @@ class FacebookUser < ActiveRecord::Base
 
     FacebookUser.find_or_initialize_by_uid(auth.fetch("uid")) do |fb|
       fb.build_user unless fb.user
-      fb.username    = info.fetch("name")
-      fb.email       = info.fetch("email")
-      fb.oauth_token = creds.fetch("token")
-      password       = Digest::MD5.hexdigest(creds.fetch("token"))
-      fb.password    = password
+      fb.cred_info             = auth
+      fb.username              = info.fetch("name")
+      fb.email                 = info.fetch("email")
+      fb.oauth_token           = creds.fetch("token")
+      password                 = Digest::MD5.hexdigest(creds.fetch("token"))
+      fb.password              = password
       fb.password_confirmation = password
       fb.user.terms_of_service = "true"
-      fb.oauth_expires_at = creds.fetch("expires_at")
-      fb.remote_avatar_url = "http://res.cloudinary.com/hdxvaer2w/image/facebook/w_300,h_300/#{fb.uid}.jpg"
-      fb.provider         = "facebook"
+      fb.oauth_expires_at      = creds.fetch("expires_at")
+      fb.remote_avatar_url     = "http://res.cloudinary.com/hdxvaer2w/image/facebook/w_300,h_300/#{fb.uid}.jpg"
+      fb.provider              = "facebook"
     end
   end
 

@@ -107,7 +107,8 @@ CREATE TABLE facebook_users (
     oauth_token character varying(255),
     oauth_expires_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    cred_info text
 );
 
 
@@ -631,6 +632,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120923060134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923093145');
 
+INSERT INTO schema_migrations (version) VALUES ('20121006013902');
+
 INSERT INTO schema_migrations (version) VALUES ('20121006014910');
 
 INSERT INTO schema_migrations (version) VALUES ('20121007074716');
@@ -638,3 +641,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121007074716');
 INSERT INTO schema_migrations (version) VALUES ('20121019215006');
 
 INSERT INTO schema_migrations (version) VALUES ('20121020222809');
+
+INSERT INTO schema_migrations (version) VALUES ('20121104035110');

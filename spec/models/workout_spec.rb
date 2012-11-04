@@ -20,24 +20,24 @@ describe Workout do
 
     describe "#client_level" do
       context "true" do
-        before { mock(subject).client_level?.times(4) { true } }
+        before { mock(subject).client_level?.times(5) { true } }
         it { should ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
       end
 
       context "false" do
-        before { mock(subject).client_level?.times(4) { false } }
+        before { mock(subject).client_level?.times(5) { false } }
         it { should_not ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
       end
     end
 
     describe "#difficulty" do
       context "true" do
-        before { mock(subject).difficulty?.times(4) { true } }
+        before { mock(subject).difficulty?.times(5) { true } }
         it { should ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
       end
 
       context "false" do
-        before { mock(subject).difficulty?.times(4) { false } }
+        before { mock(subject).difficulty?.times(5) { false } }
         it { should_not ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
       end
     end
@@ -270,7 +270,7 @@ describe Workout do
     context "one exercise" do
       before do
         mock(subject).exercises     { [exercise] }
-        mock(exercise).muscle_names { "EXERCISE 1" }
+        mock(exercise).muscle_names.times(2) { "EXERCISE 1" }
       end
 
       it "returns the exercise's muscles" do
@@ -284,8 +284,8 @@ describe Workout do
 
       before do
         mock(subject).exercises { [exercise, exercise2] }
-        mock(exercise).muscle_names  { "EXERCISE 1" }
-        mock(exercise2).muscle_names { "EXERCISE 2" }
+        mock(exercise).muscle_names.times(2)  { "EXERCISE 1" }
+        mock(exercise2).muscle_names.times(2) { "EXERCISE 2" }
       end
 
       it "returns both exercise's muscles" do
