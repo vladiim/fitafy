@@ -111,18 +111,6 @@ describe FacebookUser do
       fb_user.save
       fb_user.username.should eq "facebook-name-20001"
     end
-
-    context "passed a normal username" do
-      before do
-        user     = build :user, username: "facebook-name"
-        @fb_user = build :facebook_user, user: user
-        @fb_user.increment_username
-      end
-
-      it "doesn't alter it" do
-        @fb_user.username.should eq "facebook-name"
-      end
-    end
   end
 
   describe "#format_oath_expires_at" do
@@ -148,20 +136,4 @@ describe FacebookUser do
       # note MD5.hexdigest of 1234 is the hexdigest above
     end
   end
-
-  # describe "#format_avatar_picture" do
-  #   let(:user)    { build :user }
-  #   let(:fb_user) { build :facebook_user, user: user }
-
-  #   it "sets the remote_avatar_url" do
-  #     # fucked if I know how to test this
-  #   end
-
-  #   describe "#large_picture_name" do
-  #     it "sets the picture type to large" do
-  #       mock(user).avatar { "http://graph.facebook.com/664725038/picture?type=square" }
-  #       fb_user.large_profile_picture.should eq "http://graph.facebook.com/664725038/picture?type=large"
-  #     end
-  #   end
-  # end
 end

@@ -1,4 +1,8 @@
-change something
+# Notes
+* Server not working:
+	- PATH=/usr/local/sbin:$PATH 
+	- sudo nginx -t
+	- sudo nginx (start nginx server)
 
 # With Avdi
 # WorkoutForm js

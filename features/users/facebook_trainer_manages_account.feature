@@ -15,6 +15,7 @@ Feature: Facebook Trainer manages account
     When I click sign in with Facebook
     Then I should be signed back in through Facebook
 
+  @focus
   Scenario Outline: Facebook Trainer name is unique
     Given a trainer exsists with the <facebook_name>
     When I sign in through facebook with the same <facebook_name>
@@ -33,9 +34,3 @@ Feature: Facebook Trainer manages account
     And I'm on a workout page
     When I go to visit an exercise
     Then I should be able to see that exercise
-
-  # @focus
-  Scenario: Facebook Trainer's profile pic comes from Facebook
-  #   Given I've signed in through Facebook
-  #   When I go to my profile page
-  #   Then my Facebook profile pic should be my fitafy profile pic

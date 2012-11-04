@@ -12,8 +12,7 @@ class FacebookUser < ActiveRecord::Base
   delegate :email, :email=, to: :user
   delegate :password=, :password, to: :user
   delegate :password_confirmation=, to: :user
-  # delegate :avatar, :avatar=, to: :user
-  # delegate :remote_avatar_url=, to: :user
+  delegate :remote_avatar_url=, to: :user
 
   has_one :user
 
@@ -27,13 +26,13 @@ class FacebookUser < ActiveRecord::Base
       fb.build_user unless fb.user
       fb.username    = info.fetch("name")
       fb.email       = info.fetch("email")
-      # fb.avatar      = info.fetch("image")
       fb.oauth_token = creds.fetch("token")
       password       = Digest::MD5.hexdigest(creds.fetch("token"))
       fb.password    = password
       fb.password_confirmation = password
       fb.user.terms_of_service = "true"
       fb.oauth_expires_at = creds.fetch("expires_at")
+      fb.remote_avatar_url = "http://res.cloudinary.com/hdxvaer2w/image/facebook/w_300,h_300/#{fb.uid}.jpg"
       fb.provider         = "facebook"
     end
   end
@@ -64,16 +63,4 @@ class FacebookUser < ActiveRecord::Base
   def format_oath_expires_at
     self.oauth_expires_at = Time.at(self.oauth_expires_at)
   end
-
-  # def format_avatar_picture
-  #   self.remote_avatar_url = open(self.avatar).read
-  # end
-
-  # def large_profile_picture
-  #   url = self.avatar
-  #   debugger
-  #   remove_point = (url =~ /\?type=/)  # find text after type
-  #   url.slice!((remove_point + 6)..-1) # get rid of it
-  #   url << "large"                     # replace with large
-  # end
 end

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :username, :email
   validates :terms_of_service, presence: true, on: :create
   validates :password, presence: true, on: :create
-  validates :password, confirmation: true #, on: :create
+  validates :password, confirmation: true, on: :create
   validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem
@@ -32,10 +32,6 @@ class User < ActiveRecord::Base
   def send_welcome_email
     UserMailer.sign_up_welcome(self).deliver
   end
-
-  # def create_account
-  #   self.save ? UserMailer.sign_up_welcome(self).deliver : false
-  # end
 
   def trainer?
   	role == "trainer"
