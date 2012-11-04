@@ -240,6 +240,24 @@ describe Workout do
     end
   end
 
+  describe "#update_exercise_order" do
+    let(:result) { subject.update_exercise_order }
+    let(:w_e)    { ["Ex1", "EX2"] }
+
+    # it "creates an array out of its workout_exercises ordered by :order" do
+    #   before { mock(subject.workout_exercises).order("order") { ["WORKOUT EXERCISES"] }}
+    #   result.should eq ["WORKOUT EXERCISES"]
+    # end
+
+    it "iterates through the workout_exercises and updates their order" do
+      mock(subject.workout_exercises).order("order") { w_e }
+      w_e.each_with_index do |w, i|
+        mock(w).update_attribute(order: 1) { true }
+      end
+      result.should be
+    end
+  end
+
   describe "#copy_workout_exercises" do
     let(:other_workout)     { Object.new }
     let(:workout_exercises) { OpenStruct.new(exercise_id: 2, sets: 5, notes: "") }

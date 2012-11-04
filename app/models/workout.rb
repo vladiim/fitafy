@@ -85,6 +85,10 @@ class Workout < ActiveRecord::Base
     attributed['sets'].blank?
   end
 
+  def update_exercise_order
+    self.workout_exercises.order("order")
+  end
+
   def exercises_count
     workout_exercises.count
   end

@@ -1,33 +1,38 @@
-#workout_exercises.well
-  %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
-  %br
+.workout_exercises.well.row
 
-  %h5 Instructions
-  = exercise.safe_instructions.humanize
-  = link_to_edit_form @workout, "instructions"
-  = link_to_baby_form current_user, @workout, :instructions, exercise
-  %br
-  %br
+  .w_e_order
+    %h1= exercise.safe_order
 
-  %table.workout_exercise_details
-    %thead
-      %tr
-        %th
-          %h5 Sets
-        %th
-          %h5 Muscle-group
-        %th
-          %h5 Equipment
+  .w_e_details
+    %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
+    %br
 
-    %tbody
-      %tr
-        %td
-          = exercise.safe_sets
-          = link_to_edit_form @workout, "sets"
-          = link_to_baby_form current_user, @workout, :sets, exercise
-        %td= exercise.muscles[0].name
-        %td= exercise.equipment_name.titleize
+    %h5 Instructions
+    = exercise.safe_instructions.humanize
+    = link_to_edit_form @workout, "instructions"
+    = link_to_baby_form current_user, @workout, :instructions, exercise
+    %br
+    %br
 
-  %br
-  - if can? :delete, @workout
-    %th= link_to "REMOVE", workout_exercise_path(exercise), confirm: @snapz_confirm, method: :delete, class: "btn btn-danger btn-mini"
+    %table.workout_exercise_details
+      %thead
+        %tr
+          %th
+            %h5 Sets
+          %th
+            %h5 Muscle-group
+          %th
+            %h5 Equipment
+
+      %tbody
+        %tr
+          %td
+            = exercise.safe_sets
+            = link_to_edit_form @workout, "sets"
+            = link_to_baby_form current_user, @workout, :sets, exercise
+          %td= exercise.muscles[0].name
+          %td= exercise.equipment_name.titleize
+
+    %br
+    - if can? :delete, @workout
+      %th= link_to "REMOVE", workout_exercise_path(exercise), confirm: @snapz_confirm, method: :delete, class: "btn btn-danger btn-mini"

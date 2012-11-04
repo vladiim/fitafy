@@ -12,6 +12,7 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :exercises, to: :workout
 
   before_create :generate_order_number
+  after_save :update_exercise_order
 
   def generate_order_number
     self.order = (self.exercise_number + 1)
@@ -21,12 +22,16 @@ class WorkoutExercise < ActiveRecord::Base
     self.exercises.count
   end
 
+  def update_exercise_order
+    Workout.update_exercise_order
+  end
+
+  def safe_order
+    order ? order : "0"
+  end
+
   def safe_instructions
-    if instructions
-      instructions
-    else
-      SnapzSayz::WorkoutExerciseSpeak.no_instructions
-    end
+    instructions ? instructions : SnapzSayz::WorkoutExerciseSpeak.no_instructions
   end
 
   def self.return_workouts_from_exercises exercises

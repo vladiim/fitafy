@@ -37,7 +37,6 @@ Feature: Trainer manages workouts
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
 
-  @focus
   Scenario: Trainer adds exercise to workout
     Given another exercise exists
     And a workout exercise exists
