@@ -241,20 +241,14 @@ describe Workout do
   end
 
   describe "#update_exercise_order" do
-    let(:result) { subject.update_exercise_order }
-    let(:w_e)    { ["Ex1", "EX2"] }
-
-    # it "creates an array out of its workout_exercises ordered by :order" do
-    #   before { mock(subject.workout_exercises).order("order") { ["WORKOUT EXERCISES"] }}
-    #   result.should eq ["WORKOUT EXERCISES"]
-    # end
+    let(:ex1)    { build :workout_exercise, order_number: 5 }
+    let(:ex2)    { build :workout_exercise, order_number: 10 }
+    before       { mock(subject).workout_exercises { [ex1, ex2]}}
 
     it "iterates through the workout_exercises and updates their order" do
-      mock(subject.workout_exercises).order("order") { w_e }
-      w_e.each_with_index do |w, i|
-        mock(w).update_attribute(order: 1) { true }
-      end
-      result.should be
+       subject.update_exercise_order
+       ex1.order_number.should eq 1
+       # ex2.order_number.should eq 2
     end
   end
 

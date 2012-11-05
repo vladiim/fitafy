@@ -1,7 +1,7 @@
 class WorkoutExercise < ActiveRecord::Base
 
   attr_accessible :workout_id, :exercise_id,
-                  :sets, :instructions, :order
+                  :sets, :instructions, :order_number
 
   belongs_to :exercise
   belongs_to :workout
@@ -12,10 +12,9 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :exercises, to: :workout
 
   before_create :generate_order_number
-  after_save :update_exercise_order
 
   def generate_order_number
-    self.order = (self.exercise_number + 1)
+    self.order_number = (self.exercise_number + 1)
   end
 
   def exercise_number
@@ -23,11 +22,11 @@ class WorkoutExercise < ActiveRecord::Base
   end
 
   def update_exercise_order
-    Workout.update_exercise_order
+    self.workout.update_exercise_order
   end
 
   def safe_order
-    order ? order : "0"
+    order_number ? order_number : "0"
   end
 
   def safe_instructions

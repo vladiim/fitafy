@@ -6,36 +6,6 @@ describe WorkoutExercise do
   let(:workout)       { build_stubbed :workout }
   let(:exercise)      { build_stubbed :exercise }
 
-  describe "#attributes" do
-    describe "#workout_id" do
-      it "should set and read the workout_id" do
-        subject.workout_id = 2
-        subject.workout_id.should eq 2
-      end
-    end
-
-    describe "#exercise_id" do
-      it "should set and read the exercise_id" do
-        subject.exercise_id = 4
-        subject.exercise_id.should eq 4
-      end
-    end
-
-    describe "#sets" do
-      it "should be able to set and read sets" do
-        subject.sets = 5
-        subject.sets.should eq 5
-      end
-    end
-
-    describe "#instructions" do
-      it "should be able to set and read instructions" do
-        subject.instructions = "instructions"
-        subject.instructions.should eq "instructions"
-      end
-    end
-  end
-
   describe "#generate_order_number" do
     let(:workout_ex) { build :workout_exercise, workout: workout,
                                                 exercise: exercise }
@@ -43,19 +13,19 @@ describe WorkoutExercise do
     let(:result) { workout_ex.generate_order_number }
 
     context "first exercise for workout" do
-      it "sets the order to 1" do
+      it "sets the order_number to 1" do
         mock(workout_ex).exercise_number { 0 }
         result
-        workout_ex.order.should eq 1
+        workout_ex.order_number.should eq 1
       end
     end
 
     context "not first exercise for workout" do
-      it "increments the exercise's order" do
+      it "increments the exercise's order_number" do
         [1, 14, 440].each do |n|
           mock(workout_ex).exercise_number { n }
           workout_ex.generate_order_number
-          workout_ex.order.should eq (n + 1)
+          workout_ex.order_number.should eq (n + 1)
         end
       end
     end

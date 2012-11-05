@@ -5,7 +5,7 @@ class Workout < ActiveRecord::Base
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
 
-  has_many :workout_exercises, dependent: :destroy
+  has_many :workout_exercises, dependent: :destroy, order: 'order_number'
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
   has_many :exercises, through: :workout_exercises, uniq: true, dependent: :destroy
   has_many :favorite_workouts, dependent: :destroy
@@ -86,7 +86,10 @@ class Workout < ActiveRecord::Base
   end
 
   def update_exercise_order
-    self.workout_exercises.order("order")
+    self.workout_exercises.each_with_index do |exercise, index|
+      exercise.order_number = (index + 1)
+      exercise.save
+    end
   end
 
   def exercises_count

@@ -14,6 +14,6 @@ end
 
 Then /^the exercise is ordered$/ do
   # this should be on the workout_exercise not on the 
-  @workout.workout_exercises[0].order.should eq 1
-  @workout.workout_exercises[1].order.should eq 2
+  @workout.workout_exercises[0].order_number.should eq 1
+  @workout.workout_exercises[1].order_number.should eq 2
 end

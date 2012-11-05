@@ -1,5 +1,5 @@
 When /^I click delete exercise$/ do
-  within "#workout_exercises" do
+  within ".workout_exercises" do
   	click_link "REMOVE"
   end
 end
