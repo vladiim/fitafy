@@ -1,7 +1,9 @@
-.workout_exercises.well.row
+.workout_exercise.well.row
 
   .w_e_order
+    %i.exercise_up.icon-chevron-up{"id" => exercise.order_number}
     %h1= exercise.safe_order
+    %i.exercise_down.icon-chevron-down{"id" => exercise.order_number}
 
   .w_e_details
     %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
