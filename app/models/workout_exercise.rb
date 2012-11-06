@@ -26,7 +26,7 @@ class WorkoutExercise < ActiveRecord::Base
   end
 
   def safe_order
-    order_number ? order_number : "0"
+    order_number ? order_number : "1"
   end
 
   def safe_instructions

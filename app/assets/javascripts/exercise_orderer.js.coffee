@@ -1,6 +1,6 @@
 class window.ExerciseOrderer
   constructor: ->
-    @up_buttons = $("i.exercise_up")
+    @up_buttons = $("i.up_icon")
 
   init: ->
     $(@up_buttons).on "click", (event) =>
@@ -8,10 +8,14 @@ class window.ExerciseOrderer
       @increasePosition($up_button)
 
   increasePosition: ($up_button) ->
-    number = (parseInt($up_button.attr("id")) - 1)
-    $($up_button).attr("id", number)
-    $swap_button = $(".exercise_up##{number}")
-    $swap_button.attr("id", number + 1)
+    position = parseInt($up_button.attr("id"))
+    $down_button = $(".down_icon##{position}")
+    $swap_button_1 = $(".up_icon##{position - 1}")
+    $swap_button_2 = $(".down_icon##{position - 1}")
+    $($up_button).attr("id", position - 1)
+    $($down_button).attr("id", position - 1)
+    $swap_button_1.attr("id", position)
+    $swap_button_2.attr("id", position)
 
 $ ->
   orderer = new ExerciseOrderer

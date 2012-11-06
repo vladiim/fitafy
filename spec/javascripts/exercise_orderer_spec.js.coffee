@@ -4,15 +4,12 @@ describe "ExerciseOrderer", ->
     @orderer = new ExerciseOrderer
     @orderer.init()
 
-  describe "click exercise 2 up", ->
+  describe "click exercise 2 up icon", ->
     beforeEach ->
-      # spyOn(@orderer, "updateOrder").andCallThrough()
-      # spyOn($, "ajax").andCallFake (ajaxParams) ->
-      #   ajaxParams.success "ORDER NUMBER"
-      $(".exercise_up#2").click()
+      $(".up_icon#2").click()
 
     it "exercise 2 and 1 swap ids", ->
-      expect($("#exercise_2 > .w_e_order > i:nth-child(1)")).toHaveId("1")
-      # expect($("#exercise_2 > .w_e_order > i:nth-child(2)")).toHaveId("1")
-      expect($("#exercise_1 > .w_e_order > i:nth-child(1)")).toHaveId("2")
-      # expect($("#exercise_1 > .w_e_order > i:nth-child(1)")).toHaveId("2")
+      expect($("#exercise_2 > .w_e_order > i.up_icon")).toHaveId("1")
+      # expect($("#exercise_2 > .w_e_order > i.down_icon")).toHaveId("1")
+      expect($("#exercise_1 > .w_e_order > i.up_icon")).toHaveId("2")
+      expect($("#exercise_1 > .w_e_order > i.down_icon")).toHaveId("2")
