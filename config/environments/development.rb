@@ -3,6 +3,9 @@
 
 Fitafy::Application.configure do
 
+  # don't use ssl
+  config.force_ssl = false
+
   # https://devcenter.heroku.com/articles/redistogo
   ENV["REDISTOGO_URL"] = 'redis://redistogo:162405c0386852140e29446c0e6c9edf@carp.redistogo.com:9665/' 
 

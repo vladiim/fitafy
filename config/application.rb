@@ -20,7 +20,7 @@ module Fitafy
     config.autoload_paths += %W(#{config.root}/lib/modules)
 
     # always use ssl
-    config.force_ssl = true
+    # config.force_ssl = true
     # in ~/.powconfig
     # config.force_ssl = (ENV["ENABLE_HTTPS"] == "yes")
 

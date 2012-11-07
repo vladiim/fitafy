@@ -2,6 +2,9 @@ Fitafy::Application.configure do
 
   # Settings specified here will take precedence over those in config/application.rb
 
+  # use ssl
+  config.force_ssl = true
+
   # https://devcenter.heroku.com/articles/redistogo
   ENV["REDISTOGO_URL"] = 'redis://redistogo:162405c0386852140e29446c0e6c9edf@carp.redistogo.com:9665/' 
 
