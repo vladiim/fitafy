@@ -33,3 +33,12 @@ describe "ExerciseOrderer", ->
       expect(@down_icon_2).toHaveId("1")
       expect(@up_icon_1).toHaveId("2")
       expect(@down_icon_1).toHaveId("2")
+
+You should not duplicate ID like that. ID should be unique across document.
+
+In your case you can use jQuery attribute selector function. See below,
+
+<i class="up_icon" data-id="1"/>
+<p class="position">1</p>
+<i class="down_icon" data-id="1"/>
+And then you can access them by .up_icon[data-id=1] and .down_icon[data-id=1]
