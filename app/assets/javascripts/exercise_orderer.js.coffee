@@ -7,43 +7,56 @@ class window.ExerciseOrderer
 
     @up_icons.on "click", (event) =>
       @$up_icon = $(event.target)
-      @findIcons()
-      @moveUp() unless @position == 1
+      @findElements()
+      @moveUp() unless @firstIcon()
 
     @down_icons.on "click", (event) =>
       @$down_icon = $(event.target)
-      @findIcons()
+      @findElements()
       @moveDown() unless @lastIcon()
 
   moveUp: ->
     @$up_icon.attr("data-id", @position - 1)
     @$down_icon.attr("data-id", @position - 1)
-    @$old_up_icon.attr("data-id", @position)
-    @$old_down_icon.attr("data-id", @position)
+    @moveOldIcons()
+    @$original_text.text(@position - 1)
+    @$old_text.text(@position)
 
   moveDown: ->
     @$up_icon.attr("data-id", @position + 1)
     @$down_icon.attr("data-id", @position + 1)
+    @moveOldIcons()
+    @$original_text.text(@position + 1)
+    @$old_text.text(@position)
+
+  findElements: ->
+    if @$up_icon then @findWithUpIcon() else @findWithDownIcon()
+
+  findWithUpIcon: ->
+    @position       = @findPosition(@$up_icon)
+    @$down_icon     = $(".down_icon[data-id=#{@position}]")
+    @$old_up_icon   = $(".up_icon[data-id=#{@position - 1}]")
+    @$old_down_icon = $(".down_icon[data-id=#{@position - 1}]")  
+    @$original_text = $("h2[data-id=#{@position}]")
+    @$old_text      = $("h2[data-id=#{@position - 1}]")
+
+  findWithDownIcon: ->
+    @position       = @findPosition(@$down_icon)
+    @$up_icon       = $(".up_icon[data-id=#{@position}]")  
+    @$old_up_icon   = $(".up_icon[data-id=#{@position + 1}]")
+    @$old_down_icon = $(".down_icon[data-id=#{@position + 1}]")  
+    @$original_text = $("h2[data-id=#{@position}]")
+    @$old_text      = $("h2[data-id=#{@position + 1}]")
+
+  moveOldIcons: ->
     @$old_up_icon.attr("data-id", @position)
     @$old_down_icon.attr("data-id", @position)
 
-  findIcons: ->
-    if @$up_icon
-      @position   = @findPosition(@$up_icon)
-      @$down_icon = $(".down_icon[data-id=#{@position}]")
-      @$old_up_icon   = $(".up_icon[data-id=#{@position - 1}]")
-      @$old_down_icon = $(".down_icon[data-id=#{@position - 1}]")  
-    else
-      @position   = @findPosition(@$down_icon)
-      @$up_icon = $(".up_icon[data-id=#{@position}]")  
-      @$old_up_icon   = $(".up_icon[data-id=#{@position + 1}]")
-      @$old_down_icon = $(".down_icon[data-id=#{@position + 1}]")  
+  findPosition: (icon) -> parseInt(icon.attr("data-id"))
 
-  findPosition: (icon) ->
-    parseInt(icon.attr("data-id"))
+  firstIcon: -> @position == 1
 
-  lastIcon: ->
-    @position == @down_icons.length
+  lastIcon: -> @position == @down_icons.length
 
 $ ->
   orderer = new ExerciseOrderer
