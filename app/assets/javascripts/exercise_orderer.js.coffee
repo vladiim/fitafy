@@ -1,43 +1,28 @@
 class window.ExerciseOrderer
   constructor: ->
-    @up_buttons = $("i.up_icon")
-    @down_buttons = $("i.down_icon")
+    @up_icons = $("i.up_icon")
+    @down_icons = $("i.down_icon")
 
   init: ->
-    $(@up_buttons).on "click", (event) =>
-      @$up_button = $(event.target)
-      @position = parseInt(@$up_button.attr("id"))
-      @swapPositions()
+    $(@up_icons).on "click", (event) =>
+      @$up_icon = $(event.target)
+      @findIcons()
+      @moveUp()
 
-    $(@down_buttons).on "click", (event) =>
-      @$down_button = $(event.target)
-      @position = parseInt(@$down_button.attr("id"))
-      @swapPositionsDown()
+  moveUp: ->
+    @$up_icon.attr("data-id", @position - 1)
+    @$down_icon.attr("data-id", @position - 1)
+    @$old_up_icon.attr("data-id", @position)
+    @$old_down_icon.attr("data-id", @position)
 
-  swapPositions: ->
-    @swapIds()
+  findIcons: ->
+    @position   = @findPosition(@$up_icon)
+    @$down_icon = $(".down_icon[data-id=#{@position}]")
+    @$old_up_icon = $(".up_icon[data-id=#{@position - 1}]")
+    @$old_down_icon = $(".down_icon[data-id=#{@position - 1}]")    
 
-  swapIds: ->
-    @findDownButton()
-    @findSwapButtons()
-    @$up_button.attr("id", @position - 1)
-    $(@$down_button).attr("id", @position - 1)
-    @$swap_up_button.attr("id", @position)
-    $(@$swap_down_button).attr("id", @position)
-
-  findDownButton: ->
-    for button in @down_buttons
-      @$down_button = button if parseInt(button.id) == @position
-
-  findSwapButtons: ->
-    @$swap_up_button = $(".up_icon##{@position - 1}")
-    for button in @down_buttons
-       @$swap_down_button = button if parseInt(button.id) == (@position - 1)
-
-  @swapPositionsDown: ->
-    console.log("fuck off")
-    @upButton = $(".up_icon##{@position}")
-    console.log(@upButton)
+  findPosition: (icon) ->
+    parseInt(icon.attr("data-id"))
 
 $ ->
   orderer = new ExerciseOrderer
