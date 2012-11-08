@@ -3,12 +3,14 @@ describe "ExerciseOrderer", ->
     loadFixtures "show_exercise.html"
     @orderer = new ExerciseOrderer
     @orderer.init()
-    @up_icon_1   = $("#exercise_1 > .w_e_order > i.up_icon")
-    @down_icon_1 = $("#exercise_1 > .w_e_order > i.down_icon")
-    @text_1      = $("#exercise_1 > .w_e_order > h2")
-    @up_icon_2   = $("#exercise_2 > .w_e_order > i.up_icon")
-    @down_icon_2 = $("#exercise_2 > .w_e_order > i.down_icon")
-    @text_2      = $("#exercise_2 > .w_e_order > h2")
+    @up_icon_1         = $("#exercise_1 > .w_e_order > i.up_icon")
+    @down_icon_1       = $("#exercise_1 > .w_e_order > i.down_icon")
+    @text_1            = $("#exercise_1 > .w_e_order > h2")
+    @ex_order_1        = $("ul.show_exercises li:nth-child(1)")
+    @up_icon_2         = $("#exercise_2 > .w_e_order > i.up_icon")
+    @down_icon_2       = $("#exercise_2 > .w_e_order > i.down_icon")
+    @text_2            = $("#exercise_2 > .w_e_order > h2")
+    @ex_order_2        = $("ul.show_exercises li:nth-child(2)")
     @workout_exercises = $(".workout_exercise")
 
   describe "click exercise 2 up icon", ->
@@ -29,11 +31,9 @@ describe "ExerciseOrderer", ->
       expect(@text_2).toHaveAttr("data-id", "1")
       expect(@text_1).toHaveAttr("data-id", "2")
 
-    # it "moves exercise_2 above exercise_1", ->
-    #   # expect(@workout_exercises[0]).toHaveAttr("data-id", "2")
-    #   expect(@workout_exercises[0]).toHaveId("exercise_2")
-    #   # expect(@workout_exercises[1]).toHaveAttr("data-id", "1")
-    #   expect(@workout_exercises[1]).toHaveId("exercise_1")
+    it "moves exercise_2 above exercise_1", ->
+      expect(@ex_order_1).toHaveId("exercise_2")
+      expect(@ex_order_2).toHaveId("exercise_1")
 
   describe "click exercise 1 up icon", ->
     beforeEach ->

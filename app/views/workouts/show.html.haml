@@ -11,10 +11,11 @@
 %br
 
 %section.row
-  %article.span5
+  %article.span8
     %header
       %h5 EXERCISES
-    = @workout.render_exercises self
+    %ul.show_exercises
+      = @workout.render_exercises self
     = link_to_add_exercise @workout
   %br
 
