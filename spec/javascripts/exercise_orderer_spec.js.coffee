@@ -17,3 +17,33 @@ describe "ExerciseOrderer", ->
       expect(@down_icon_2).toHaveAttr("data-id" ,"1")
       expect(@up_icon_1).toHaveAttr("data-id" ,"2")
       expect(@down_icon_1).toHaveAttr("data-id" ,"2")
+
+  describe "click exercise 1 up icon", ->
+    beforeEach ->
+      $(".up_icon[data-id=1]").click()
+
+    it "nothing happens", ->
+      expect(@up_icon_2).toHaveAttr("data-id" ,"2")
+      expect(@down_icon_2).toHaveAttr("data-id" ,"2")
+      expect(@up_icon_1).toHaveAttr("data-id" ,"1")
+      expect(@down_icon_1).toHaveAttr("data-id" ,"1")
+
+  describe "click exercise 1 down icon", ->
+    beforeEach ->
+      $(".down_icon[data-id=1]").click()
+
+    it "exercise 1 and 2 swap ids", ->
+      expect(@up_icon_1).toHaveAttr("data-id" ,"2")
+      expect(@down_icon_1).toHaveAttr("data-id" ,"2")
+      expect(@up_icon_2).toHaveAttr("data-id" ,"1")
+      expect(@down_icon_2).toHaveAttr("data-id" ,"1")
+
+  describe "click exercise 2 down icon", ->
+    beforeEach ->
+      $(".down_icon[data-id=2]").click()
+
+    it "nothing happens", ->
+      expect(@up_icon_1).toHaveAttr("data-id" ,"1")
+      expect(@down_icon_1).toHaveAttr("data-id" ,"1")
+      expect(@up_icon_2).toHaveAttr("data-id" ,"2")
+      expect(@down_icon_2).toHaveAttr("data-id" ,"2")
