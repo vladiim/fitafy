@@ -29,11 +29,9 @@ describe "ExerciseOrderer", ->
       expect(@text_2).toHaveAttr("data-id", "1")
       expect(@text_1).toHaveAttr("data-id", "2")
 
-    # it "moves exercise_2 above exercise_1", ->
-    #   # expect(@workout_exercises[0]).toHaveAttr("data-id", "2")
-    #   expect(@workout_exercises[0]).toHaveId("exercise_2")
-    #   # expect(@workout_exercises[1]).toHaveAttr("data-id", "1")
-    #   expect(@workout_exercises[1]).toHaveId("exercise_1")
+    it "moves exercise_2 above exercise_1", ->
+      expect($("ul li:nth-child(1)")).toHaveId("exercise_2")
+      expect($("ul li:nth-child(2)")).toHaveId("exercise_1")
 
   describe "click exercise 1 up icon", ->
     beforeEach ->
