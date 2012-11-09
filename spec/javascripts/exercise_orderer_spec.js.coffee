@@ -32,6 +32,10 @@ describe "ExerciseOrderer", ->
       expect($("ul li:nth-child(1) > .w_e_details > h3")).toHaveText("Workout 2")
       expect($("ul li:nth-child(2) > .w_e_details > h3")).toHaveText("Workout 1")
 
+    it "makes exercise_2's data-id=1 and exercise_1's data-id=2", ->
+      expect($("#exercise_2")).toHaveAttr("data-id", "1")
+      expect($("#exercise_1")).toHaveAttr("data-id", "2")
+
   describe "click exercise 1 up icon", ->
     beforeEach -> $(".up_icon[data-id=1]").click()
 
@@ -57,6 +61,10 @@ describe "ExerciseOrderer", ->
     it "swaps exercise 2 and 1 h2 data-id", ->
       expect(@text_2).toHaveAttr("data-id", "1")
       expect(@text_1).toHaveAttr("data-id", "2")
+
+    it "moves exercise_1 below exercise_2", ->
+      expect($("ul li:nth-child(2) > .w_e_details > h3")).toHaveText("Workout 1")
+      expect($("ul li:nth-child(1) > .w_e_details > h3")).toHaveText("Workout 2")
 
   describe "click exercise 2 down icon", ->
     beforeEach ->

@@ -45,7 +45,7 @@ class window.ExerciseOrderer
     @changeIcons()
     @moveOldIcons()
     @changeText()
-    @changePositions()
+    @changeExercises()
 
   changeIcons: ->
     @$clicked_icon.attr("data-id", @new_position)
@@ -59,7 +59,16 @@ class window.ExerciseOrderer
     @$original_text.text(@new_position).attr("data-id", @new_position)
     @$old_text.text(@position).attr("data-id", @position)
 
-  changePositions: -> @$original_exercise.insertBefore(@$old_exercise)
+  changeExercises: ->
+    @changePositions()
+    @$original_exercise.attr("data-id", @new_position)
+    @$old_exercise.attr("data-id", @position)
+
+  changePositions: ->
+    if @opposite == "down"
+      @$original_exercise.insertBefore(@$old_exercise)
+    else if @opposite == "up"
+      @$original_exercise.insertAfter(@$old_exercise)
 
   firstIcon: -> @position == 1
 
