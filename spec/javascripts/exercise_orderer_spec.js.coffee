@@ -12,8 +12,7 @@ describe "ExerciseOrderer", ->
     @workout_exercises = $(".workout_exercise")
 
   describe "click exercise 2 up icon", ->
-    beforeEach ->
-      $(".up_icon[data-id=2]").click()
+    beforeEach -> $(".up_icon[data-id=2]").click()
 
     it "swaps exercise 2 and 1 data-ids", ->
       expect(@up_icon_2).toHaveAttr("data-id" ,"1")
@@ -30,14 +29,11 @@ describe "ExerciseOrderer", ->
       expect(@text_1).toHaveAttr("data-id", "2")
 
     # it "moves exercise_2 above exercise_1", ->
-    #   # expect(@workout_exercises[0]).toHaveAttr("data-id", "2")
-    #   expect(@workout_exercises[0]).toHaveId("exercise_2")
-    #   # expect(@workout_exercises[1]).toHaveAttr("data-id", "1")
-    #   expect(@workout_exercises[1]).toHaveId("exercise_1")
+    #   expect($("ul li:nth-child(1)")).toHaveId("exercise_1")
+    #   expect($("ul li:nth-child(2)")).toHaveId("exercise_2")
 
   describe "click exercise 1 up icon", ->
-    beforeEach ->
-      $(".up_icon[data-id=1]").click()
+    beforeEach -> $(".up_icon[data-id=1]").click()
 
     it "nothing happens", ->
       expect(@up_icon_2).toHaveAttr("data-id" ,"2")
@@ -46,8 +42,7 @@ describe "ExerciseOrderer", ->
       expect(@down_icon_1).toHaveAttr("data-id" ,"1")
 
   describe "click exercise 1 down icon", ->
-    beforeEach ->
-      $(".down_icon[data-id=1]").click()
+    beforeEach -> $(".down_icon[data-id=1]").click()
 
     it "swaps exercise 1 and 2 data-ids", ->
       expect(@up_icon_1).toHaveAttr("data-id" ,"2")

@@ -27,6 +27,7 @@ class window.ExerciseOrderer
     @$opposite_icon = $(".#{@opposite}_icon[data-id=#{@position}]")
     @findOldIcons()
     @findText()
+    # @findExercises()
 
   findOldIcons: ->
     @$old_up_icon   = $(".up_icon[data-id=#{@new_position}]")
@@ -35,6 +36,7 @@ class window.ExerciseOrderer
   findText: ->
     @$original_text = $("h2[data-id=#{@position}]")
     @$old_text      = $("h2[data-id=#{@new_position}]")
+
 
   move: ->
     @changeIcons()
