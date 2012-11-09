@@ -42,37 +42,50 @@ class window.ExerciseOrderer
     @$old_exercise      = $("li[data-id=#{@new_position}]")
 
   move: ->
-    @changeIcons()
-    @moveOldIcons()
-    @changeText()
+    @changeIds()
+    @changeBothTexts()
     @changeExercises()
 
-  changeIcons: ->
-    @$clicked_icon.attr("data-id", @new_position)
-    @$opposite_icon.attr("data-id", @new_position)
+  changeIds: ->
+    @changeDataId(@$clicked_icon, @new_position)
+    @changeDataId(@$opposite_icon, @new_position)
+    @changeDataId(@$original_text, @new_position)
+    @changeDataId(@$old_text, @position)
+    @changeDataId(@$old_up_icon, @position)
+    @changeDataId(@$old_down_icon, @position)
 
-  moveOldIcons: ->
-    @$old_up_icon.attr("data-id", @position)
-    @$old_down_icon.attr("data-id", @position)
+  changeBothTexts: ->
+    @changeText(@$original_text, @new_position)
+    @changeText(@$old_text, @position)
 
-  changeText: ->
-    @$original_text.text(@new_position).attr("data-id", @new_position)
-    @$old_text.text(@position).attr("data-id", @position)
+  changeText: (element, text) -> element.text(text)
 
   changeExercises: ->
     @changePositions()
-    @$original_exercise.attr("data-id", @new_position)
-    @$old_exercise.attr("data-id", @position)
+    @changeExerciseDataIds()
 
   changePositions: ->
     if @opposite == "down"
       @$original_exercise.insertBefore(@$old_exercise)
     else if @opposite == "up"
       @$original_exercise.insertAfter(@$old_exercise)
+    @postNewOrder()
+
+  postNewOrder: ->
+    $.ajax
+      url: "/workout_exercise"
+      type: "PUT"
+      data: { id: @position }
+
+  changeExerciseDataIds: ->
+    @$original_exercise.attr("data-id", @new_position)
+    @$old_exercise.attr("data-id", @position)
 
   firstIcon: -> @position == 1
 
   lastIcon:  -> @position == @down_icons.length
+
+  changeDataId: (element, id) -> element.attr("data-id", id)
 
 $ ->
   orderer = new ExerciseOrderer

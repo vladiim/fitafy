@@ -12,7 +12,11 @@ describe "ExerciseOrderer", ->
     @workout_exercises = $(".workout_exercise")
 
   describe "click exercise 2 up icon", ->
-    beforeEach -> $(".up_icon[data-id=2]").click()
+    beforeEach ->
+      $(".up_icon[data-id=2]").click()
+      spyOn(@orderer, "postNewOrder").andCallThrough()
+      spyOn($, "ajax").andCallFake (ajaxParams) ->
+        ajaxParams.success "ORDER POSTED"
 
     it "swaps exercise 2 and 1 data-ids", ->
       expect(@up_icon_2).toHaveAttr("data-id" ,"1")
@@ -35,6 +39,11 @@ describe "ExerciseOrderer", ->
     it "makes exercise_2's data-id=1 and exercise_1's data-id=2", ->
       expect($("#exercise_2")).toHaveAttr("data-id", "1")
       expect($("#exercise_1")).toHaveAttr("data-id", "2")
+
+    it "calls the ajax  with the correct urls", ->
+      # expect(@orderer.postNewOrder).toHaveBeenCalled()
+      expect(@orderer.postNewOrder.mostRecentCall.args[1]).toEqual("/workout_exercise/2")
+      expect(@orderer.postNewOrder.mostRecentCall.args[0]).toEqual("/workout_exercise/1")
 
   describe "click exercise 1 up icon", ->
     beforeEach -> $(".up_icon[data-id=1]").click()
