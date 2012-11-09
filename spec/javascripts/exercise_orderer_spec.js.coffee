@@ -11,6 +11,8 @@ describe "ExerciseOrderer", ->
     @text_2      = $("#exercise_2 > .w_e_order > h2")
     @workout_exercises = $(".workout_exercise")
 
+  # blahl balkdjlaskjd
+
   describe "click exercise 2 up icon", ->
     beforeEach -> $(".up_icon[data-id=2]").click()
 
