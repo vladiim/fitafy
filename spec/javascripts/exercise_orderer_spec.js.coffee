@@ -11,8 +11,6 @@ describe "ExerciseOrderer", ->
     @text_2      = $("#exercise_2 > .w_e_order > h2")
     @workout_exercises = $(".workout_exercise")
 
-  # blahl balkdjlaskjd
-
   describe "click exercise 2 up icon", ->
     beforeEach -> $(".up_icon[data-id=2]").click()
 
@@ -31,8 +29,8 @@ describe "ExerciseOrderer", ->
       expect(@text_1).toHaveAttr("data-id", "2")
 
     it "moves exercise_2 above exercise_1", ->
-      expect($("ul li:nth-child(1)")).toHaveId("exercise_2")
-      expect($("ul li:nth-child(2)")).toHaveId("exercise_1")
+      expect($("ul li:nth-child(1) > .w_e_details > h3")).toHaveText("Workout 2")
+      expect($("ul li:nth-child(2) > .w_e_details > h3")).toHaveText("Workout 1")
 
   describe "click exercise 1 up icon", ->
     beforeEach -> $(".up_icon[data-id=1]").click()

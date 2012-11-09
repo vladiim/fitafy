@@ -14,7 +14,8 @@
   %article.span5
     %header
       %h5 EXERCISES
-    = @workout.render_exercises self
+    %ul.workout_exercises
+      = @workout.render_exercises self
     = link_to_add_exercise @workout
   %br
 
