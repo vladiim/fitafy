@@ -1,9 +1,11 @@
 %li.workout_exercise.big_box_list.well.row{ "data-id" => exercise.order_number }
 
   .w_e_order
-    %i.up_icon.icon-chevron-up{ "data-id" => exercise.order_number }
+    = render partial: "exercises/order_form", locals: { exercise: exercise, value: -1, direction: "up" }
+
     %h2{ "data-id" => exercise.order_number }= exercise.safe_order
-    %i.down_icon.icon-chevron-down{ "data-id" => exercise.order_number }
+
+    = render partial: "exercises/order_form", locals: { exercise: exercise, value: 1, direction: "down"  }
 
   .w_e_details
     %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)

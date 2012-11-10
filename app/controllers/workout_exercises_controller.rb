@@ -15,9 +15,14 @@ class WorkoutExercisesController < ApplicationController
   	@workout_exercise = WorkoutExercise.find(params[:id])
   	@workout = @workout_exercise.workout
   	@user = @workout.user
-  	if @workout_exercise.update_attributes(params[:workout_exercise])
+
+  	if @workout_exercise.update_safely(params[:workout_exercise])
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
-  	  redirect_to user_workout_path(@user, @workout)
+
+      respond_to do |format|
+  	    format.html { redirect_to user_workout_path(@user, @workout) }
+        format.js
+      end
   	else
   	  flash[:failure] = SnapzSayz::WorkoutSpeak.new_workout_fail
       redirect :back

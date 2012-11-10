@@ -13,6 +13,10 @@ class WorkoutExercise < ActiveRecord::Base
 
   before_create :generate_order_number
 
+  def update_safely params
+    SafeWorkoutExerciseUpdater.new(self, params).check_other_workout_exercises
+  end
+
   def generate_order_number
     self.order_number = (self.exercise_number + 1)
   end

@@ -1,10 +1,26 @@
 require_relative "../spec_helper"
 
 describe WorkoutExercise do
-  subject             { WorkoutExercise.new }
-  let(:valid_subject) { FactoryGirl.create :workout_exercise }
+  subject             { build :workout_exercise }
+  let(:valid_subject) { create :workout_exercise }
   let(:workout)       { build_stubbed :workout }
   let(:exercise)      { build_stubbed :exercise }
+
+  describe "#update_safely" do
+    let(:safe_update) { Object.new }
+    let(:params)      { "PARAMS" }
+    let(:result)      { subject.update_safely(params) }
+
+    before { mock(SafeWorkoutExerciseUpdater).new(subject, params) { safe_update() } }
+
+    context "updates safely" do
+      before { mock(safe_update).check_other_workout_exercises { true } }
+
+      it "returns true" do
+        result.should be
+      end
+    end
+  end
 
   describe "#generate_order_number" do
     let(:workout_ex) { build :workout_exercise, workout: workout,
