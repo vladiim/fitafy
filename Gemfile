@@ -26,9 +26,11 @@ gem 'omniauth-facebook', '~> 1.4.1'
 # ------------ VIEWS ------------ #
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier',     '>= 1.0.3'
+  gem 'sass-rails',     '~> 3.2.3'
+  gem 'coffee-rails',   '~> 3.2.1'
+  gem 'uglifier',       '>= 1.0.3'
+  gem 'mustache-rails', '~> 0.2.3'
+  gem 'mustache',       '~> 0.99.4'
 end
 
 gem 'display_case', '~> 0.0.4', git: "https://github.com/vladiim/display-case"
