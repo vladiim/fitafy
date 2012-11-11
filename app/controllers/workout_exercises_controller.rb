@@ -13,8 +13,8 @@ class WorkoutExercisesController < ApplicationController
 
   def update
   	@workout_exercise = WorkoutExercise.find(params[:id])
-  	@workout = @workout_exercise.workout
-  	@user = @workout.user
+  	@workout          = @workout_exercise.workout
+  	@user             = @workout.user
 
   	if @workout_exercise.update_safely(params[:workout_exercise])
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated

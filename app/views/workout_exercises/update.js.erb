@@ -1,2 +1,2 @@
 $("li.workout_exercise").remove();
-$('.workout_exercises').append('<%= j render partial: "workouts/show_exercise", collection: @workout.workout_exercises, as: :exercise %>');
+$('ul.workout_exercises').append('<%= j render partial: "workouts/show_exercise", collection: @workout.workout_exercises, as: :exercise %>');
