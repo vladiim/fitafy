@@ -13,7 +13,7 @@ describe "WorkoutHelper" do
     context "current_user's workout" do
       before do
         mock(helper).can?(:manage, workout) { true }
-        mock(helper).render(partial: "baby_form", 
+        mock(helper).render(partial: "shared/baby_form", 
                             locals: { 
                               form_element: anything,
                               form_attribute: form_attribute}) { "RENDER PARTIAL" }
