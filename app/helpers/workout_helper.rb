@@ -53,16 +53,4 @@ module WorkoutHelper
   def new_workout
     [current_user, current_user.build_workout]
   end
-
-  def index_workout_for_mustache workout
-    {
-      muscles:        workout.muscles,
-      name:           workout.name.titleize,
-      url:            user_workout_path(workout.user_id, workout),
-      client_level:   workout.safe_client_level.upcase,
-      difficulaty:    workout.safe_difficulty.upcase,
-      username:       workout.username.upcase,
-      exercise_count: workout.exercise_count
-    }
-  end
 end

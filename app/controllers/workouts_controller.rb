@@ -7,6 +7,7 @@ class WorkoutsController < ApplicationController
   def index
     @workouts  = Workout.filter_by_tags(params[:muscles])
     # @workouts  = @workouts.offset((params[:page].to_i)*20) if params[:page].present?
+    @renderer  = WorkoutsIndex.new
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
     @title     = "Latest Workouts"

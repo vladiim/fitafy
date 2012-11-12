@@ -5,7 +5,8 @@
   / %ul#workout_list= render @workouts
   %ul#workout_list
     - @workouts.each do |workout|
-      = render "workout", mustache: index_workout_for_mustache(workout)
+      - @renderer.set_workout workout
+      = @renderer.render.html_safe
 
 / %script#workout_template{"type"=>"text/html"}
 /   = render "workout"
