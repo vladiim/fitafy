@@ -11,7 +11,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail do
-    process resize_to_fit: [30, 30]
+    process resize_to_fit: [39, 20]
   end
 
   def public_id

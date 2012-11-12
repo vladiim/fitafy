@@ -61,3 +61,16 @@ Feature: Trainer manages workouts
     Given I'm on the workout page
     When I click download as pdf
     Then I should get a pdf
+
+  Scenario Outline: Trainer changes exercise position
+    Given I'm a workout page with two exercises
+    When I click position <position> on exercise <exercise>
+    Then the exercise <exercise_name> order should be <order>
+    And the the title number should be <order>
+
+    Examples:
+      | position | exercise | order | exercise_name |
+      | "up"     | "1"      | "1"   | "one"         |
+      | "up"     | "2"      | "1"   | "two"         |
+      | "down"   | "1"      | "2"   | "one"         |
+      | "down"   | "2"      | "2"   | "two"         |

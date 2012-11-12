@@ -2,7 +2,7 @@ module WorkoutHelper
 
   def link_to_baby_form current_user, workout, form_attribute, form_element
     if can? :manage, workout
-      render(partial: "baby_form",
+      render(partial: "shared/baby_form",
         locals: { form_element: form_element,
                   form_attribute: form_attribute}).to_s
     end

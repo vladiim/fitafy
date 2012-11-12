@@ -1,12 +1,10 @@
 class window.ExerciseOrderer
   constructor: ->
-    @$button = ".ajax_form"
+    @up_icons   = $("i.up_icon")
+    @down_icons = $("i.down_icon")
 
   init: ->
-    $(@$button).bind 'ajax:beforeSend', =>
-      $("li.ajax_nav_spinner").toggleClass("loading")
 
-<<<<<<< HEAD
     @up_icons.on "click", (event) =>
       @$clicked_icon = $(event.target)
       @new_diff      = -1
@@ -66,13 +64,6 @@ class window.ExerciseOrderer
   firstIcon: -> @position == 1
 
   lastIcon:  -> @position == @down_icons.length
-=======
-    $(@$button).bind 'ajax:success', =>
-      $("li.ajax_nav_spinner").toggleClass("loading")
-
-    $(@$button).bind 'ajax:error', =>
-      alert("Oops! Looks like I messed up - forgive and try again?")
->>>>>>> 807027762af431398e4574737530c80ef1c0c411
 
 $ ->
   orderer = new ExerciseOrderer
