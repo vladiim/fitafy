@@ -5,10 +5,16 @@ class WorkoutsController < ApplicationController
   skip_filter :authorize, only: [:index, :show]
 
   def index
-    @workouts  = Workout.filter_by_tags(params[:muscles]) #.filter_by_tags(params[:equipment])
+    @workouts  = Workout.filter_by_tags(params[:muscles])
+    # @workouts  = @workouts.offset((params[:page].to_i)*20) if params[:page].present?
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
     @title     = "Latest Workouts"
+
+    respond_to do |format|
+      format.html
+      # format.json { render json: @workouts }
+    end
   end
 
   def new

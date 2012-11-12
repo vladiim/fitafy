@@ -318,8 +318,8 @@ DEPENDENCIES
   heroku (~> 2.21.0)
   jasminerice (~> 0.0.9)
   jquery-rails (~> 2.0.0)
-  mustache
-  mustache-rails
+  mustache (~> 0.99.4)
+  mustache-rails (~> 0.2.3)
   newrelic_rpm (~> 3.5.0)
   omniauth-facebook (~> 1.4.1)
   pg (~> 0.13.0)

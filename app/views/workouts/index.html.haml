@@ -2,4 +2,10 @@
   = render partial: "tags/list", locals: { width: 10 }
 
 %section#workouts.row
-  %ul#workout_list= render @workouts
+  / %ul#workout_list= render @workouts
+  %ul#workout_list
+    - @workouts.each do |workout|
+      = render "workout", mustache: index_workout_for_mustache(workout)
+
+/ %script#workout_template{"type"=>"text/html"}
+/   = render "workout"
