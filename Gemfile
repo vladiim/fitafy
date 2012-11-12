@@ -31,6 +31,8 @@ group :assets do
   gem 'uglifier',       '>= 1.0.3'
   gem 'mustache-rails', '~> 0.2.3'
   gem 'mustache',       '~> 0.99.4'
+  gem 'hogan_assets',   '~> 1.3.4'
+  gem 'haml_assets',    '~> 0.2.1'
 end
 
 gem 'display_case', '~> 0.0.4', git: "https://github.com/vladiim/display-case"
