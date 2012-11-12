@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require mustache
+//= require hogan
 //= require bootstrap
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require_tree .
+//= require_tree ../templates
