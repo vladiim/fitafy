@@ -4,7 +4,7 @@ When /^I go to the workout's page$/ do
   login @me
   @original_workout = Workout.last
   visit workouts_path
-  click_link @original_workout.name.titleize
+  click_link @original_workout.name
 end
 
 When /^click create copy$/ do

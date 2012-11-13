@@ -1,5 +1,5 @@
 Given /^I'm a workout page with two exercises$/ do
-  workout     = create :workout
+  workout     = create :workout, user_id: @trainer.id
   @exercise_1 = create :exercise, name: "one"
   @exercise_2 = create :exercise, name: "two"
   [@exercise_1, @exercise_2].each do |ex|

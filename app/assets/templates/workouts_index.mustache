@@ -1,5 +1,5 @@
 <li class="workout_item box_list well span2">
-  <article class="workout muscles">
+  <article class="{{muscles}}">
     <header>
       <h5 class="upcase">
         <a href='{{url}}'>
@@ -7,15 +7,12 @@
         </a>
       </h5>
     </header>
-    <p class="upcase">
-      {{client_level}}
-      {{difficulty}}
-    </p>
-    <p class="upcase">
-      by: {{username}}
-    </p>
-    <p class="upcase">
-      {{exercise_count}} exercises
+<!--     <p>{{client_level}}</p>
+    <br/>
+    <p>{{difficulty}}</p> -->
+    <p class="upcase">by: {{username}}</p>
+    <p class=>
+      Exercises: {{exercise_count}}
     </p>
   </article>
 </li>

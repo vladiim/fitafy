@@ -1,4 +1,13 @@
-@names     = ["philly special", "workout test", "another workout"]
+def names
+  all_names = []
+  20.times.each_with_index do |n|
+    ["philly special", "workout test", "another workout"].each do |name|
+      name + n.to_s
+      all_names << name
+    end
+  end
+  all_names
+end
 
 def random_exercise_note
   options = [
@@ -29,7 +38,7 @@ def create_workout_exercises workout
 end
 
 def create_workouts
-  @names.each do |name|
+  names.each do |name|
     workout = Workout.create!(
       name:         name,
       client_level: Workout::CLIENT_LEVELS[0],

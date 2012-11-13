@@ -14,11 +14,12 @@ class window.WorkoutLoader
   addMoreWorkouts: =>
     @page++
     $(window).unbind('scroll', @check)
-    $.getJSON($("#workout_list").data('json-url'), page: @page, @render)
+    @render($.getJSON($("#workout_list").data('json-url'), page: @page))
 
   render: (workouts) =>
     for workout in workouts
-      $("#workout_list").append Mustache.to_html($("#product_template").html(), product)
+      # $("#workout_list").append Mustache.to_html($("#workout_list").html(), workout)
+      $("ul#workout_list").append(HoganTemplates['workouts_index'], workout).html()
     @windowScrollCheck if workouts.length > 0
 
 $ ->

@@ -1,6 +1,6 @@
 Given /^I've favorited a workout$/ do
   visit workouts_path
-  click_link @workout.name.titleize
+  click_link @workout.name
   click_link "ADD TO FAVORITES"
 end
 

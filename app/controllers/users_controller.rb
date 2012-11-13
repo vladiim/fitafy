@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user     = User.find(params[:id])
+    # @user     = User.find_by_username(params[:username])
     @workouts = @user.my_workouts(params[:tags])
     @muscles  = Workout.muscles
     @title    = @user.username

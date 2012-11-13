@@ -46,11 +46,8 @@ class Workout < ActiveRecord::Base
   end
 
   def level
-    if difficulty && client_level
-      "This is a #{difficulty} workout for #{client_level} clients"
-    else
-      SnapzSayz::WorkoutSpeak.no_level
-    end
+    return SnapzSayz::WorkoutSpeak.no_level unless difficulty && client_level
+    "This is a #{difficulty} workout for #{client_level} clients"
   end
 
   def client_level?
@@ -98,7 +95,7 @@ class Workout < ActiveRecord::Base
 
   def muscles
     muscles = ""
-    exercises.each do |exercise|
+    self.exercises.each do |exercise|
       muscles << " #{exercise.muscle_names}" unless muscles.match(exercise.muscle_names)
     end
     muscles.sub(/^\s/, "")

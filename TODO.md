@@ -14,11 +14,11 @@
 	- Printed workout
 	- Copied workout
 * FaceBook user management
-	- profile pic
-    - ask avdi re password approach
+    - ask avdi re not working
 * Username clickable & in title username/workout_name
 * friendly urls
 * cloudinary uploader - test without it taking so long
+* workout - query workout.all + muscle tag via js - manage limit of 30
 
 # To do
 * Add all of the update exercises

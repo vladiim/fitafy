@@ -13,8 +13,15 @@ Fitafy::Application.routes.draw do
 
   resources :copy_workouts, only: :create
 
+  # this solution comes from http://stackoverflow.com/questions/6369476/how-to-remove-controller-names-from-rails-routes
+  # resources :users, except: [:show, :new, :index, :create], path: "/" do
+  #   resources :workouts, except: [:show]
+  # end
+
+  # resources :users, only: [:index, :create]
+
   resources :users do
-    resources :workouts, only: [:new, :create, :show, :update, :update, :destroy]
+    resources :workouts, only: [:new, :create, :show, :update, :destroy]
   end
 
   resources :workouts, only: :new # to allow any user to have a create workout CTA
@@ -22,6 +29,18 @@ Fitafy::Application.routes.draw do
   # mount Resque::Server.new, :at => "/resque"
 
 #---------- PRETTY URLS ----------#
+
+  # username/workout_id
+  # match ":username/:workout_id", as:        :user_workout,
+  #                               via:        :get,
+  #                               controller: :workouts,
+  #                               action:     :show
+
+  # # username
+  # match ":username", as:         :user,
+  #                   via:        :get,
+  #                   controller: :users,
+  #                   action:     :show
 
   match 'login',   to: 'user_sessions#new'
   match 'sign_up', to: 'users#new'
@@ -49,7 +68,7 @@ Fitafy::Application.routes.draw do
 
   # ordering is big issue, this needs to be low. So the routes tries explicit first
   # resources :users, path: "" do
-  #   resources :workouts
+  #   resources :workouts, path: ""
   # end
 
 end

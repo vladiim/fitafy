@@ -1,12 +1,9 @@
 %section#workout_filters
-  = render partial: "tags/list", locals: { width: 10 }
+  = render partial: "tags/list", locals: { width: 9 }
 
 %section#workouts.row
   / %ul#workout_list= render @workouts
-  %ul#workout_list
+  %ul#workout_list{"data-json-url" => workouts_url(format: :json)}
     - @workouts.each do |workout|
       - @renderer.set_workout workout
       = @renderer.render.html_safe
-
-/ %script#workout_template{"type"=>"text/html"}
-/   = render "workout"

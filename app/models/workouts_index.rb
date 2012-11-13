@@ -8,6 +8,10 @@ class WorkoutsIndex < Mustache
     @workout = workout
   end
 
+  def muscles
+    @workout.muscles
+  end
+
   def url
     user_workout_path(workout.user_id, workout)
   end
