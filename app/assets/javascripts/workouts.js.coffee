@@ -1,26 +1,43 @@
 class window.WorkoutLoader
-  constructor: (@page=1) ->
-    @windowScrollCheck()
+  constructor: ->
+    @ul  = $("#workout_list")
+    @url = @ul.data("json-url")
 
-  windowScrollCheck: =>
-    $(window).scroll(@check)
+# class window.WorkoutLoader
+#   constructor: (@page=1) ->
+#     @windowScrollCheck()
 
-  check: =>
-    @addMoreWorkouts() if @nearBottom()
+#   windowScrollCheck: =>
+#     $(window).scroll(@check)
 
-  nearBottom: =>
-    $(window).scrollTop() > $(document).height() - $(window).height() - 30
+#   check: =>
+#     @addMoreWorkouts() if @nearBottom()
 
-  addMoreWorkouts: =>
-    @page++
-    $(window).unbind('scroll', @check)
-    @render($.getJSON($("#workout_list").data('json-url'), page: @page))
+#   nearBottom: =>
+#     $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
-  render: (workouts) =>
-    for workout in workouts
-      # $("#workout_list").append Mustache.to_html($("#workout_list").html(), workout)
-      $("ul#workout_list").append(HoganTemplates['workouts_index'], workout).html()
-    @windowScrollCheck if workouts.length > 0
+#   addMoreWorkouts: =>
+#     $(window).unbind('scroll', @check)
+#     @render(@JSON())
+
+#   url: =>
+#     $("ul#workout_list").data('json-url')
+
+#   template: =>
+#     HoganTemplates['workouts_index']
+
+#   JSON: =>
+#     $.parseJSON(@acquireJSON())
+
+#   acquireJSON: =>
+#     @page++
+#     json = $.getJSON(@url(), page: @page)
+#     # json.responseText
+
+#   render: (workouts) =>
+#     for workout in workouts
+#       $("ul#workout_list").append(@template().render(workout)).html()
+#     @windowScrollCheck if workouts.length > 0
 
 $ ->
   new WorkoutLoader
