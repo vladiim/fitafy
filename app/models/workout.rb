@@ -14,14 +14,14 @@ class Workout < ActiveRecord::Base
   validates_presence_of :name, :user_id
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
-  validates :difficulty, inclusion:   { in: DIFFICULTY }, if: :difficulty?
+  validates :difficulty, inclusion:   { in: DIFFICULTY },    if: :difficulty?
 
   delegate :username, to: :user
 
   belongs_to :user
 
   def self.trending
-    # TODO: actually immplement trending algo based on twitter reputation gem
+    # TODO:
     limit 4
   end
 

@@ -1,6 +1,6 @@
 class WorkoutsIndex < Mustache
   include Rails.application.routes.url_helpers
-  self.template_path = "app/assets/templates"
+  self.template_path = "app/assets/javascripts/app/templates/workouts"
 
 	attr_accessor :workout
 

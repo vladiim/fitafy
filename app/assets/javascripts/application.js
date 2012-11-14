@@ -19,4 +19,4 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require_tree .
-//= require_tree ../templates
+//= require_tree ./app/templates

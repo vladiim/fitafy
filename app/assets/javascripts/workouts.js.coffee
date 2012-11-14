@@ -1,7 +1,15 @@
 class window.WorkoutLoader
   constructor: ->
     @ul  = $("#workout_list")
-    @url = @ul.data("json-url")
+
+  url: => @ul.data("json-url")
+
+  template: => HoganTemplates['app/templates/workouts/workouts_index']
+
+  getWorkouts: =>
+    workouts = $.getJSON(@url())
+    # workouts.responseText
+
 
 # class window.WorkoutLoader
 #   constructor: (@page=1) ->

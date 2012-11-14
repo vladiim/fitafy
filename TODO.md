@@ -13,8 +13,7 @@
 	- Favorited workout
 	- Printed workout
 	- Copied workout
-* FaceBook user management
-    - ask avdi re not working
+* FaceBook 1st logout
 * Username clickable & in title username/workout_name
 * friendly urls
 * cloudinary uploader - test without it taking so long
