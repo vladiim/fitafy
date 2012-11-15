@@ -2,9 +2,9 @@ describe "WorkoutLoader", ->
   beforeEach ->
     loadFixtures "workout_list.html"
     @fake_template = {render: -> "" }
-    @render = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>" )
-    @loader = new WorkoutLoader @fake_template
-    @incomingJSON = [
+    @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>" )
+    @loader        = new WorkoutLoader @fake_template
+    @incomingJSON  = [
       {
         url:            "/users/1/workouts/1",
         muscles:        "back",
@@ -21,7 +21,7 @@ describe "WorkoutLoader", ->
       @server.respondWith("GET", "/workouts.json",
                           [200, { "Content-Type": "application/json" },
                           JSON.stringify(@incomingJSON)])
-      @workouts = @loader.fetchAndAddWorkouts()
+      @workouts = @loader.addMoreWorkouts()
       @server.respond()
 
     afterEach -> @server.restore()

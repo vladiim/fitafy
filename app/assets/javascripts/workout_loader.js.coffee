@@ -1,13 +1,19 @@
 class window.WorkoutLoader
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @ul  = $("#workout_list")
+    @ul       = $("#workout_list")
     @mustache = "app/templates/workouts/workouts_index"
 
+  windowScrollCheck: => $(window).scroll(@check)
+
+  check: => @addMoreWorkouts() if @nearBottom()
+
+  nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
+
+  addMoreWorkouts: =>
+    @page++
+    $.getJSON(@url(), @render)
+
   url: => @ul.data("json-url")
-
-  fetchAndAddWorkouts: => $.getJSON(@url(), @render)
-
-  text: => @workouts.responseText
 
   render: (workouts) => @addWorkout(workout) for workout in workouts
 
@@ -25,3 +31,7 @@ class window.WorkoutLoader
 
 #   nearBottom: =>
 #     $(window).scrollTop() > $(document).height() - $(window).height() - 30
+
+$ ->
+  loader = new WorkoutLoader
+  loader.windowScrollCheck()
