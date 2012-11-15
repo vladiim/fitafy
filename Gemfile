@@ -70,4 +70,6 @@ group :development, :test do
   gem 'rspec-rails',   '~> 2.9.0'
   gem 'jasminerice',   '~> 0.0.9'
   gem 'guard-jasmine', '~> 1.5.0'
+  gem 'sinon-rails'
+  gem 'jasmine-sinon-rails'
 end
