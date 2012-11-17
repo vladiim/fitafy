@@ -37,7 +37,7 @@ class WorkoutsExercise < Mustache
   end
 
   def csrf_token
-    view.csrf_meta_tag
+    view.csrf_meta_tag.to_s
   end
 
   private
