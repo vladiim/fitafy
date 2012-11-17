@@ -1,3 +1,6 @@
+require_relative '../mustaches/workouts_index'
+require_relative '../mustaches/workouts_exercise'
+
 class WorkoutsController < ApplicationController
   include DisplayCase::ExhibitsHelper
 
@@ -38,6 +41,7 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout          = exhibit Workout.find(params[:id]), self
+    @renderer         = WorkoutsExercise.new
     @trainer          = User.find @workout.user_id
     @current_user     = current_user ? current_user : nil
   	@title            = @workout.name

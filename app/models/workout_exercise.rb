@@ -10,6 +10,7 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :muscles, to: :exercise
   delegate :equipment_name, to: :exercise
   delegate :exercises, to: :workout
+  delegate :user_id, to: :workout
 
   before_create :generate_order_number
 
