@@ -16,13 +16,25 @@
           <p>{{name}}</p>
         </a>
       </h3>
-  
-      <h5>Instructions</h5>
-      <div>
-        {{instructions}}
 
+      <h5>Instructions</h5>
+      <div class="baby_form_group" data-model="workout_exercise" data-id="{{id}}" data-variable="instructions">
+        <div class="baby_form_value">{{instructions}}</div>
+        {{#users_workout_exercise}}
+          <a class="baby_form_link" href="#">edit</a>
+        {{/users_workout_exercise}}
       </div>
-  
+
+<!--       <form accept-charset="UTF-8" class="edit_workout_exercise" id="edit_workout_{{id}}" method="post">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="_method" type="hidden" value="put">
+        <input name="authenticity_token" type="hidden" value="{{csrf_token}}">
+        <div class="control-group text optional">
+          <input class="string" id="workout_exercise_instructions" name="workout_exercise[instructions]" size="50" type="text">
+        </div>
+        <input class="btn btn-primary" name="commit" type="submit" value="UPDATE EXERCISE">
+      </form>
+ -->
       <table class='workout_exercise_details'>
         <thead>
           <tr>

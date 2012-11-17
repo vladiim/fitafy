@@ -36,10 +36,6 @@ class WorkoutsExercise < Mustache
   	SnapzSayz::WorkoutExerciseSpeak.confirm_delete
   end
 
-  def csrf_token
-    view.csrf_meta_tag
-  end
-
   private
 
   def user_owns_workout_exercise?

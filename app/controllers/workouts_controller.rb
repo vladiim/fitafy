@@ -1,5 +1,5 @@
-require_relative '../mustaches/workouts_index'
-require_relative '../mustaches/workouts_exercise'
+require_relative '../mustaches/workouts/index'
+require_relative '../mustaches/workouts/exercise'
 
 class WorkoutsController < ApplicationController
   include DisplayCase::ExhibitsHelper
