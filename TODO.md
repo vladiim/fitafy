@@ -15,16 +15,12 @@
 	- Copied workout
 * FaceBook 1st logout
 * Username clickable & in title username/workout_name
-* friendly urls
-* cloudinary uploader - test without it taking so long
 * workout - query workout.all + muscle tag via js - manage limit of 30
 
 # To do
 * Add all of the update exercises
-* Set up mail, new relic, facebook etc
 * get turbo links working
 * User workout names are unique
-* SSL
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests
 * Workout levels (use bootstrap buttons)
