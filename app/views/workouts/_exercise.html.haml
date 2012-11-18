@@ -1,7 +1,7 @@
 %div{"class"=> "#{exercise.muscle.downcase} exercise_list_item"}
   %header
     %h4= exercise.name.titleize
-  = truncate(exercise.description.humanize, length: 70)
+  = truncate(exercise.safe_description.humanize, length: 70)
 
   = simple_form_for @workout_exercise do |f|
     = f.input :exercise_id, as: :hidden, input_html: { value: exercise.id }

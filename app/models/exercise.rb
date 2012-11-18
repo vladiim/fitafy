@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :name, :description, :tips, :muscle, :category, :equipment_id #:muscle_list, :type_list
+  attr_accessible :name, :description, :tips, :muscle, :category, :equipment_id #:muscle, :category
 
   MUSCLES    = %w(chest back shoulders legs quadriceps glutes hamstrings calves triceps biceps forearms core full_body neck torso)
   CATEGORIES = %w(muscle plyometrics mobility stretch crossfit rehab plyometric)
@@ -31,6 +31,10 @@ class Exercise < ActiveRecord::Base
 
   def safe_category
     self.category ? self.category : "no category"
+  end
+
+  def safe_description
+    self.description ? self.description : "no description"
   end
 
   def equipment_list
