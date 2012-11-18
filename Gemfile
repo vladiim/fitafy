@@ -66,10 +66,12 @@ group :test do
 end
 
 group :development, :test do
-  gem 'debugger',      '~> 1.2.0'
-  gem 'rspec-rails',   '~> 2.9.0'
-  gem 'jasminerice',   '~> 0.0.9'
-  gem 'guard-jasmine', '~> 1.5.0'
-  gem 'sinon-rails'
-  gem 'jasmine-sinon-rails'
+  gem 'debugger',            '~> 1.2.0'
+  gem 'rspec-rails',         '~> 2.9.0'
+  gem 'guard-rspec',         '~> 1.2.1'
+  gem 'rb-fsevent',          '~> 0.9.1'
+  gem 'jasminerice',         '~> 0.0.9'
+  gem 'guard-jasmine',       '~> 1.5.0'
+  gem 'sinon-rails',         '~> 1.4.2.1'
+  gem 'jasmine-sinon-rails', '~> 1.3.4'
 end

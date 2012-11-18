@@ -44,11 +44,6 @@ Feature: Trainer manages workouts
     Then that exercise should be added to the workout
     And the exercise is ordered
 
-  Scenario: Trainer sorts alphabetical exercise list
-    Given there's alphabetical exercises
-    When I visit the new workout page
-    Then I should see them in alphabetical order
-
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise exists
     When I go to the workout's page

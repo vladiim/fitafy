@@ -48,7 +48,7 @@ class WorkoutsController < ApplicationController
     @snapz_confirm    = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
     @client_level     = Workout::CLIENT_LEVELS
     @difficulty       = Workout::DIFFICULTY
-    @exercises        = Exercise.by_alphabetical_tags(params[:tag])
+    @exercises        = Exercise.alphabetical_including_muscles(params[:tag])
     @muscles          = Workout.muscles
     @workout_exercise = WorkoutExercise.new
 

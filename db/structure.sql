@@ -66,7 +66,6 @@ ALTER SEQUENCE equipment_id_seq OWNED BY equipment.id;
 CREATE TABLE exercises (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    description text NOT NULL,
     tips text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -75,7 +74,8 @@ CREATE TABLE exercises (
     type character varying(255),
     muscles character varying(255),
     muscle character varying(255),
-    category character varying(255)
+    category character varying(255),
+    description text
 );
 
 
@@ -654,3 +654,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121105093726');
 INSERT INTO schema_migrations (version) VALUES ('20121118011120');
 
 INSERT INTO schema_migrations (version) VALUES ('20121118014701');
+
+INSERT INTO schema_migrations (version) VALUES ('20121118050007');

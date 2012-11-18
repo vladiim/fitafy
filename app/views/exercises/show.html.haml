@@ -14,10 +14,12 @@
     %p= @exercise.tips.humanize
     %br
 
-    %h5 Categories
-    %p
-      - @exercise.muscle_list.each do |category|
-        = category.titleize
+    %h5 Muscle
+    %p= @exercise.muscle
+    %br
+
+    %h5 Category
+    %p= @exercise.safe_category
     %br
 
     %h5 Equipment

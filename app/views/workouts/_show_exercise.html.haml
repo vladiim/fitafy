@@ -36,7 +36,7 @@
             = exercise.safe_sets
             = link_to_edit_form @workout, "sets"
             = link_to_baby_form current_user, @workout, :sets, exercise
-          %td= exercise.muscles[0].name
+          %td= exercise.muscles
           %td= exercise.equipment_name.titleize
 
     %br

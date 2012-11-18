@@ -11,70 +11,39 @@ describe Exercise do
   end
 
   describe "#validations" do
-    context "with valid attributes" do
-      it "should be valid" do
-        valid_subject.should be_valid
-      end
-    end
-
-    context "with same name as another exercise" do
-      it { valid_subject.should validate_uniqueness_of :name }
-    end
-
-    context "without name" do
-       it "shouldn't be valid" do
-         valid_subject.name = nil
-         valid_subject.should_not be_valid
-       end
-     end
-
-     context "without description" do
-       it "shouldn't be valid" do
-         valid_subject.description = nil
-         valid_subject.should_not be_valid
-       end
-     end
+    it { should ensure_inclusion_of(:muscle).in_array(Exercise::MUSCLES) }
+    it { should ensure_inclusion_of(:category).in_array(Exercise::CATEGORIES) }
+    it { should validate_uniqueness_of :name }
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :description }
   end
 
-  describe "#muscle" do
-    it "sets and gets muscle" do
-      subject.muscle = "chest"
-      subject.muscle.should eq "chest"
-    end
-  end
-
-  # describe "#type" do
-  # end
-
-  describe "#with_tags" do
-    context "with categories variable" do
-      before do
-        valid_subject.muscle_list = "tag"
-        valid_subject.save!
-      end
-
-      it "should return the exercise with the variable" do
-        Exercise.with_tags("tag").should eq [valid_subject]
-      end
-    end
-
-    context "without categories variable" do
-      it "should return all exercises" do
-        Exercise.with_tags.should eq Exercise.all
-      end
-    end
-  end
-
-  describe "#by_alphabetical_tags" do
+  describe "#alphabetical_including_muscles" do
     before do
       ["bbb", "ccc", "aaa"].each do |name|
         FactoryGirl.create :exercise, name: name
       end
     end
 
-    it "should return the exercises by alphabetical category" do
-      ["aaa", "bbb", "ccc"].each_with_index do |name, index|
-        Exercise.by_alphabetical_tags[index].name.should eq name
+    context "without muscles" do
+      it "returns the exercises alphabetically" do
+        ["aaa", "bbb", "ccc"].each_with_index do |name, index|
+          Exercise.alphabetical_including_muscles[index].name.should eq name
+        end
+      end      
+    end
+
+    context "with muscles" do
+      before do
+        ex = Exercise.find_by_name("aaa")
+        ex.muscle = "legs"
+        ex.save
+      end
+
+      it "returns the exercises sorted by the muscle" do
+        Exercise.alphabetical_including_muscles(["legs"]).each do |e|
+          e.name.should eq "aaa"
+        end
       end
     end
   end

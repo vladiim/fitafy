@@ -24,6 +24,7 @@ FactoryGirl.define do
   	description     "wu gambinos"
   	tips  		      "protect yo neck"
     muscle          { Exercise::MUSCLES[0] }
+    category        { Exercise::CATEGORIES[0] }
     equipment
   end
 

@@ -120,63 +120,56 @@ describe Workout do
     end
   end
 
-  describe "client_level?" do
-    context "with client level" do
-      it "is true" do
-        mock(subject).client_level { "ANYTHING" }
-        subject.client_level?.should eq true
-      end
-    end
+  # describe "#filter_by_exercise_muscles" do
+  #   context "with muscles" do
+  #     let(:muscles)   { "back" }
+  #     let(:exercises) { Object.new }
+  #     let(:workout)   { "FILTERED WORKOUTS" }
 
-    context "without client level" do
-      it "is false" do
-        mock(subject).client_level { nil }
-        subject.client_level?.should eq false
-      end
-    end
-  end
+  #     before do
+  #       mock(Exercise).workouts_including_muscles([muscles]) { exercises }
+  #       # mock(exercises).includes(:workouts)       { [workout] }
+  #       # mock(workout).workouts                    { [workout] }
+  #       # mock(workout).to_ary # gets called before flatten
+  #     end
 
-  describe "difficulty?" do
-    context "with difficulty" do
-      it "is true" do
-        mock(subject).difficulty { "ANYTHING" }
-        subject.difficulty?.should eq true
-      end
-    end
+  #     it "return a set of filtered workouts" do
+  #       Workout.filter_by_exercise_muscles(muscles).should eq { "FILTERED WORKOUTS" }
+  #     end
+  #   end
 
-    context "without difficulty" do
-      it "is false" do
-        mock(subject).difficulty { nil }
-        subject.difficulty?.should eq false
-      end
-    end
-  end
+  #   context "without muscles" do
+  #     it "returns all workouts" do
+  #       Workout.filter_by_exercise_muscles.should eq Workout.all
+  #     end
+  #   end
+  # end
 
-  describe "#filter_by_tags" do
-    context "with tags" do
-      let(:tags)      { Object.new }
-      let(:tag_type)  { Object.new }
-      let(:exercises) { Object.new }
-      let(:workout)   { "FILTERED WORKOUTS" }
+  # describe "#filter_by_tags" do
+  #   context "with tags" do
+  #     let(:tags)      { Object.new }
+  #     let(:tag_type)  { Object.new }
+  #     let(:exercises) { Object.new }
+  #     let(:workout)   { "FILTERED WORKOUTS" }
 
-      before do
-        mock(Exercise).with_tags(tags, tag_type) { exercises }
-        mock(exercises).includes(:workouts)      { [workout] }
-        mock(workout).workouts                   { [workout] }
-        mock(workout).to_ary # gets called before flatten
-      end
+  #     before do
+  #       mock(Exercise).with_tags(tags, tag_type) { exercises }
+  #       mock(exercises).includes(:workouts)      { [workout] }
+  #       mock(workout).workouts                   { [workout] }
+  #       mock(workout).to_ary # gets called before flatten
+  #     end
 
-      it "return a set of filtered workouts" do
-        Workout.filter_by_tags(tags, tag_type) { "FILTERED WORKOUTS" }
-      end
-    end
+  #     it "return a set of filtered workouts" do
+  #       Workout.filter_by_tags(tags, tag_type) { "FILTERED WORKOUTS" }
+  #     end
+  #   end
 
-    context "without tags" do
-      it "returns all workouts" do
-        Workout.filter_by_tags.should eq Workout.all
-      end
-    end
-  end
+  #   context "without tags" do
+  #     it "returns all workouts" do
+  #       Workout.filter_by_tags.should eq Workout.all
+  #     end
+  #   end
+  # end
 
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
@@ -276,33 +269,33 @@ describe Workout do
     end
   end
 
-  describe "#muscles" do
-    let(:result)  { subject.muscles }
+  # describe "#muscles" do
+  #   let(:result)  { subject.muscles }
 
-    context "one exercise" do
-      before do
-        mock(subject).exercises     { [exercise] }
-        mock(exercise).muscle_names.times(2) { "EXERCISE 1" }
-      end
+  #   context "one exercise" do
+  #     before do
+  #       mock(subject).exercises              { [exercise] }
+  #       mock(exercise).muscle_names.times(2) { "EXERCISE 1" }
+  #     end
 
-      it "returns the exercise's muscles" do
-        result.should eq "EXERCISE 1"
-      end
-    end
+  #     it "returns the exercise's muscles" do
+  #       result.should eq "EXERCISE 1"
+  #     end
+  #   end
 
 
-    context "two exercise" do
-      let(:exercise2) { Object.new }
+  #   context "two exercise" do
+  #     let(:exercise2) { Object.new }
 
-      before do
-        mock(subject).exercises { [exercise, exercise2] }
-        mock(exercise).muscle_names.times(2)  { "EXERCISE 1" }
-        mock(exercise2).muscle_names.times(2) { "EXERCISE 2" }
-      end
+  #     before do
+  #       mock(subject).exercises { [exercise, exercise2] }
+  #       mock(exercise).muscle_names.times(2)  { "EXERCISE 1" }
+  #       mock(exercise2).muscle_names.times(2) { "EXERCISE 2" }
+  #     end
 
-      it "returns both exercise's muscles" do
-        result.should eq "EXERCISE 1 EXERCISE 2"
-      end
-    end
-  end
+  #     it "returns both exercise's muscles" do
+  #       result.should eq "EXERCISE 1 EXERCISE 2"
+  #     end
+  #   end
+  # end
 end

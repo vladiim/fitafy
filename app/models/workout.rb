@@ -25,10 +25,13 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
-  def self.filter_by_tags tags=nil, tag_types=nil
-    Workout.all if tags == nil || tag_types == nil
-    Exercise.with_tags(tags, tag_types).includes(:workouts).map(&:workouts).flatten
-  end
+  # def self.filter_by_exercise_muscles muscles=nil
+  #   return Workout.all if muscles == nil
+  #   muscle_array = []
+  #   muscles.split(' ').each { |m| muscle_array << m }
+  #   Exercise.workouts_including_muscles(muscle_array)
+  #   # Exercise.including_muscles(muscles).includes(:workouts).map(&:workouts).flatten
+  # end
 
   def safe_difficulty
     return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty
@@ -48,14 +51,6 @@ class Workout < ActiveRecord::Base
   def level
     return SnapzSayz::WorkoutSpeak.no_level unless difficulty && client_level
     "This is a #{difficulty} workout for #{client_level} clients"
-  end
-
-  def client_level?
-    !client_level.nil?
-  end
-
-  def difficulty?
-    !difficulty.nil?
   end
 
   def new_workout_exercises
@@ -93,13 +88,13 @@ class Workout < ActiveRecord::Base
     workout_exercises.count
   end
 
-  def muscles
-    muscles = ""
-    self.exercises.each do |exercise|
-      muscles << " #{exercise.muscle_names}" unless muscles.match(exercise.muscle_names)
-    end
-    muscles.sub(/^\s/, "")
-  end
+  # def muscles
+  #   muscles = ""
+  #   self.exercises.each do |exercise|
+  #     muscles << " #{exercise.muscle}" unless muscles.match(exercise.muscle)
+  #   end
+  #   muscles.sub(/^\s/, "")
+  # end
 
   def copy_workout_exercises other_workout
     other_workout.workout_exercises.each do |workout_exercise|
@@ -111,5 +106,15 @@ class Workout < ActiveRecord::Base
 
   def self.equipment_names
     Equipment.all_names
+  end
+
+  private
+
+  def client_level?
+    !client_level.nil?
+  end
+
+  def difficulty?
+    !difficulty.nil?
   end
 end
