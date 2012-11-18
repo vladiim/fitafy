@@ -19,19 +19,6 @@ class window.WorkoutLoader
 
   addWorkout: (workout) => @ul.append(@template_renderer.render(@mustache, workout))
 
-# class window.WorkoutLoader
-#   constructor: (@page=1) ->
-#     @windowScrollCheck()
-
-#   windowScrollCheck: =>
-#     $(window).scroll(@check)
-
-#   check: =>
-#     @addMoreWorkouts() if @nearBottom()
-
-#   nearBottom: =>
-#     $(window).scrollTop() > $(document).height() - $(window).height() - 30
-
 $ ->
   loader = new WorkoutLoader
   loader.windowScrollCheck()

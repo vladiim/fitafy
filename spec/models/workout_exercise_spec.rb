@@ -11,11 +11,12 @@ describe WorkoutExercise do
     let(:params)      { "PARAMS" }
     let(:result)      { subject.update_safely(params) }
 
-    before { mock(ExerciseSwapper).new(subject, params) { safe_update() } }
+    before do
+      mock(subject).change_order_number?(params) {true}
+      mock(ExerciseSwapper).new(subject, params) { safe_update() }
+    end
 
     context "updates safely" do
-      before { mock(safe_update).swap_positions { true } }
-
       it "returns true" do
         result.should be
       end

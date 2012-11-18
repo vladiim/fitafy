@@ -1,15 +1,15 @@
 class window.ExerciseOrderer
   constructor: ->
-    @$button = ".ajax_form"
+    @button = ".ajax_form"
 
   init: ->
-    $(@$button).bind 'ajax:beforeSend', =>
+    $(@button).on 'ajax:beforeSend', =>
       $("li.ajax_nav_spinner").toggleClass("loading")
 
-    $(@$button).bind 'ajax:success', =>
+    $(@button).on 'ajax:success', =>
       $("li.ajax_nav_spinner").toggleClass("loading")
 
-    $(@$button).bind 'ajax:error', =>
+    $(@button).on 'ajax:error', =>
       alert("Oops! Looks like I messed up - forgive and try again?")
 
 $ ->
