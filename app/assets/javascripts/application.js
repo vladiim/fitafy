@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require mustache
-//= require hogan
+//= require hogan.js
 //= require bootstrap
 //= require rails.validations
 //= require rails.validations.simple_form
