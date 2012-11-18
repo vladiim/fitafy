@@ -71,8 +71,6 @@ CREATE TABLE exercises (
     updated_at timestamp without time zone NOT NULL,
     slug character varying(255),
     equipment_id integer,
-    type character varying(255),
-    muscles character varying(255),
     muscle character varying(255),
     category character varying(255),
     description text
@@ -172,41 +170,6 @@ ALTER SEQUENCE favorite_workouts_id_seq OWNED BY favorite_workouts.id;
 CREATE TABLE schema_migrations (
     version character varying(255) NOT NULL
 );
-
-
---
--- Name: taggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE taggings (
-    id integer NOT NULL,
-    tag_id integer,
-    taggable_id integer,
-    taggable_type character varying(255),
-    tagger_id integer,
-    tagger_type character varying(255),
-    context character varying(128),
-    created_at timestamp without time zone
-);
-
-
---
--- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE taggings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
 
 
 --
@@ -381,13 +344,6 @@ ALTER TABLE ONLY favorite_workouts ALTER COLUMN id SET DEFAULT nextval('favorite
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
@@ -442,14 +398,6 @@ ALTER TABLE ONLY facebook_users
 
 ALTER TABLE ONLY favorite_workouts
     ADD CONSTRAINT favorite_workouts_pkey PRIMARY KEY (id);
-
-
---
--- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY taggings
-    ADD CONSTRAINT taggings_pkey PRIMARY KEY (id);
 
 
 --
@@ -510,20 +458,6 @@ CREATE INDEX index_favorite_workouts_on_user_id ON favorite_workouts USING btree
 --
 
 CREATE INDEX index_favorite_workouts_on_workout_id ON favorite_workouts USING btree (workout_id);
-
-
---
--- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
-
-
---
--- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
 
 
 --
@@ -656,3 +590,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121118011120');
 INSERT INTO schema_migrations (version) VALUES ('20121118014701');
 
 INSERT INTO schema_migrations (version) VALUES ('20121118050007');
+
+INSERT INTO schema_migrations (version) VALUES ('20121118064642');

@@ -7,7 +7,7 @@ class WorkoutExercise < ActiveRecord::Base
   belongs_to :workout
 
   delegate :name, to: :exercise
-  delegate :muscles, to: :exercise
+  delegate :muscle, to: :exercise
   delegate :equipment_name, to: :exercise
   delegate :exercises, to: :workout
   delegate :user_id, to: :workout

@@ -4,13 +4,12 @@
 %br
   
   %h5 Level
-  = @workout.level
+  .workout_level= @workout.level
   - if can? :manage, @workout
     = link_to "Edit level", "#", class: "edit_workout level"
 
     .edit_workout_form.level.hidden
-      = simple_form_for [current_user, @workout] do |f|
+      = simple_form_for [current_user, @workout], remote: true do |f|
         = f.input :client_level, collection: @client_level
         = f.input :difficulty, collection: @difficulty
-        = f.submit "UPDATE WORKOUT", class: "btn btn-primary"
-        /= link_to "Cancel", "#", class: "edit_workout level"
+        = f.submit "UPDATE WORKOUT", class: "btn btn-primary", "data-loading-text" => "Updating..."

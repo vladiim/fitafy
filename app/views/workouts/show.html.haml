@@ -1,13 +1,16 @@
-.workout_name
+.workout_name.workout_form_group
   = link_to_edit_form @workout, "name"
-  = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
+  .hidden.edit_workout_form.name
+    = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
 %br
 
-.workout_notes
-  %h5 NOTES
-  %p= @workout.safe_notes.capitalize
-  = link_to_edit_form @workout, "notes"
-  = link_to_baby_form current_user, @workout, :notes, [ current_user, @workout]
+.workout_notes.workout_form_group
+  .edit_wrokout_value.notes
+    %h5 NOTES
+    %p= @workout.safe_notes.capitalize
+    = link_to_edit_form @workout, "notes"
+  .hidden.edit_workout_form.notes
+    = link_to_baby_form current_user, @workout, :notes, [ current_user, @workout]
 %br
 
 %section.row

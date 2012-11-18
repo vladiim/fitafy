@@ -1,9 +1,7 @@
-%div{:class => "edit_workout_form #{form_attribute.to_s} hidden"}
+= simple_form_for form_element, method: :put do |f|
 
-  = simple_form_for form_element, method: :put do |f|
-  
-    = f.input form_attribute, id: "workout_#{form_attribute}"
-  
-    = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
-  
-    / = link_to "Cancel", "#", class: "edit_workout #{form_attribute}"
+  = f.input form_attribute, id: "workout_#{form_attribute}"
+
+  = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
+
+  = link_to "Cancel", "#", class: "cancel_edit_workout #{form_attribute}"

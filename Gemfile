@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails',                 '~> 3.2.0'
 
 gem 'friendly_id',           '~> 4.0.1'
-gem 'acts-as-taggable-on',   '~> 2.3.3'
 
 # ------------ INFRASTRUCTURE ------------ #
 

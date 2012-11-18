@@ -55,6 +55,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf { create_and_generate_pdf }
+      format.js
     end
   end
 

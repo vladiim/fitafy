@@ -13,10 +13,13 @@
     %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
     %br
 
-    %h5 Instructions
-    = exercise.safe_instructions.humanize
-    = link_to_edit_form @workout, "instructions"
-    = link_to_baby_form current_user, @workout, :instructions, exercise
+    .workout_instructions.workout_form_group
+      .edit_wrokout_value.instructions
+        %h5 Instructions
+        = exercise.safe_instructions.humanize
+        = link_to_edit_form @workout, "instructions"
+      .hidden.edit_workout_form.instructions
+        = link_to_baby_form current_user, @workout, :instructions, exercise
     %br
     %br
 
@@ -33,10 +36,13 @@
       %tbody
         %tr
           %td
-            = exercise.safe_sets
-            = link_to_edit_form @workout, "sets"
-            = link_to_baby_form current_user, @workout, :sets, exercise
-          %td= exercise.muscles
+            .workout_sets.workout_form_group
+              .edit_wrokout_value.sets
+                = exercise.safe_sets
+                = link_to_edit_form @workout, "sets"
+              .hidden.edit_workout_form.sets
+                = link_to_baby_form current_user, @workout, :sets, exercise
+          %td= exercise.muscle.titleize
           %td= exercise.equipment_name.titleize
 
     %br

@@ -1,0 +1,10 @@
+/ terms of service modal
+- unless current_user
+  .modal.hide.fade.in#terms_of_service_modal
+  
+    .modal-header
+      %a.close{ "data-dismiss" => "modal" } x
+      %h3= SnapzSayz::TermsSpeak.title
+
+    .modal-body
+      = render partial: "pages/terms_of_service_copy" 

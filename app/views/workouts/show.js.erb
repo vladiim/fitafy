@@ -1,0 +1,3 @@
+$(".edit_workout").on("ajax:success", function() {
+  $(".workout_level").text('<%= j @workout.level %>')
+});
