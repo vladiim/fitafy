@@ -25,5 +25,5 @@ create_torso
 @fitafy.role = "admin"
 @fitafy.save!
 
-# Then create workouts which rely on Exercises to exsist
+
 create_workouts
