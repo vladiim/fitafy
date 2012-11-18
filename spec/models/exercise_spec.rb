@@ -18,7 +18,7 @@ describe Exercise do
     end
 
     context "with same name as another exercise" do
-      it     { valid_subject.should validate_uniqueness_of :name }
+      it { valid_subject.should validate_uniqueness_of :name }
     end
 
     context "without name" do
