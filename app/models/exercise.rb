@@ -3,7 +3,7 @@ class Exercise < ActiveRecord::Base
 
   acts_as_taggable_on :muscles, :type
 
-  attr_accessible :name, :description, :tips, :muscle_list, :type_list, :equipment_id
+  attr_accessible :name, :description, :tips, :muscle, :category, :muscle_list, :type_list, :equipment_id
 
   MUSCLES = %w(chest back shoulders legs quadriceps glutes hamstrings calves triceps biceps forearms core full_body neck torso)
 
@@ -20,12 +20,17 @@ class Exercise < ActiveRecord::Base
   	self.destroy
   end
 
+  def muscles
+    muscle_names
+  end
+
   def muscle_names
-    names = ""
-    muscle_list.each do |muscle|
-      names << " #{muscle.downcase}" unless names.match(muscle)
-    end
-    names.sub(/^\s/, "")
+    self.muscle ? muscle : "No muscle given"
+    # names = ""
+    # muscle_list.each do |muscle|
+    #   names << " #{muscle.downcase}" unless names.match(muscle)
+    # end
+    # names.sub(/^\s/, "")
   end
 
   def self.by_alphabetical_tags tags=nil

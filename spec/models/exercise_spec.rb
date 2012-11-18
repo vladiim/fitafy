@@ -36,21 +36,15 @@ describe Exercise do
      end
   end
 
-  describe "#tags" do
-  
-    describe "#muscle_list" do
-      before do
-        valid_subject.muscle_list = "golden_arms"
-        valid_subject.save!
-      end
-  
-      it "should be able to set and find muscle_list tags" do
-        valid_subject.muscles.each do |muscle|
-          muscle.name.should eq "golden_arms"
-        end
-      end
+  describe "#muscle" do
+    it "sets and gets muscle" do
+      subject.muscle = "chest"
+      subject.muscle.should eq "chest"
     end
   end
+
+  # describe "#type" do
+  # end
 
   describe "#with_tags" do
     context "with categories variable" do
@@ -115,11 +109,11 @@ describe Exercise do
     end
   end
 
-  describe "#muscle_names" do
-    let(:result) { subject.muscle_names }
+  # describe "#muscle_names" do
+  #   let(:result) { subject.muscle_names }
 
-    it "returns the downcase muscle names" do
-      result.should eq Exercise::MUSCLES[0].downcase
-    end
-  end
+  #   it "returns the downcase muscle names" do
+  #     result.should eq Exercise::MUSCLES[0].downcase
+  #   end
+  # end
 end

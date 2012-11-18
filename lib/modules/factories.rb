@@ -23,7 +23,7 @@ FactoryGirl.define do
     name            { "liquid #{ generate :string }" }
   	description     "wu gambinos"
   	tips  		      "protect yo neck"
-    muscle_list     { Exercise::MUSCLES[0] }
+    muscle          { Exercise::MUSCLES[0] }
     equipment
   end
 
