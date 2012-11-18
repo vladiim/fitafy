@@ -11,3 +11,7 @@ class window.ExerciseOrderer
 
     $(@$button).bind 'ajax:error', =>
       alert("Oops! Looks like I messed up - forgive and try again?")
+
+$ ->
+  orderer = new ExerciseOrderer
+  orderer.init()

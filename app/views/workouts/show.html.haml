@@ -16,10 +16,6 @@
       %h5 EXERCISES
     %ul.workout_exercises
       = @workout.render_exercises self
-      / - @workout.workout_exercises.each do |workout_exercise|
-      /   - @renderer.workout_exercise = workout_exercise
-      /   - @renderer.view = self
-      /   = @renderer.render.html_safe
     = link_to_add_exercise @workout
   %br
 
