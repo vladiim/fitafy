@@ -4,13 +4,19 @@ module WorkoutHelper
     if can? :manage, workout
       render(partial: "shared/baby_form",
         locals: { form_element: form_element,
-                  form_attribute: form_attribute}).to_s
+                  form_attribute: form_attribute})
     end
   end
 
-  def link_to_edit_form workout, form_attribute
+  def link_to_show_form workout, form_attribute
     if can? :manage, workout
-      link_to "Edit #{form_attribute}", "#", class: "edit_workout #{form_attribute}"
+      link_to "Edit", "#", class: "show_link", "data-tag" => form_attribute
+    end
+  end
+
+  def link_to_hide_form workout, form_attribute
+    if can? :manage, workout
+      link_to "Cancel", "#", class: "hide_link", "data-tag" => form_attribute
     end
   end
 

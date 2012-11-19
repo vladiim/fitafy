@@ -13,13 +13,17 @@
     %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
     %br
 
-    .workout_instructions.workout_form_group
-      .edit_wrokout_value.instructions
+    .workout_form_group.instructions
+      .workout_value.instructions{"id" => "#{exercise.id}instructions"}
         %h5 Instructions
-        = exercise.safe_instructions.humanize
-        = link_to_edit_form @workout, "instructions"
-      .hidden.edit_workout_form.instructions
-        = link_to_baby_form current_user, @workout, :instructions, exercise
+        %p= exercise.safe_instructions.humanize
+        = link_to_show_form @workout, "instructions"
+      .hidden.workout_form.instructions
+        - if can? :manage, @workout
+          = simple_form_for exercise, remote: true do |f|
+            = f.input :instructions, input_html: { rows: 6 }
+            = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
+        = link_to_hide_form @workout, "instructions"
     %br
     %br
 
@@ -29,19 +33,23 @@
           %th
             %h5 Sets
           %th
-            %h5 Muscle-group
+            %h5 Muscle
           %th
             %h5 Equipment
 
       %tbody
         %tr
           %td
-            .workout_sets.workout_form_group
-              .edit_wrokout_value.sets
+            .workout_form_group.sets
+              .workout_value.sets
                 = exercise.safe_sets
-                = link_to_edit_form @workout, "sets"
-              .hidden.edit_workout_form.sets
-                = link_to_baby_form current_user, @workout, :sets, exercise
+                = link_to_show_form @workout, "sets"
+              - if can? :manage, @workout
+                .hidden.workout_form.sets
+                  = simple_form_for exercise, remote: true do |f|
+                    = f.input :sets, input_html: { class: "thin_form_element" }
+                    = f.submit "UPDATE", class: "btn btn-primary btn-mini"
+                  = link_to_hide_form @workout, "sets"
           %td= exercise.muscle.titleize
           %td= exercise.equipment_name.titleize
 

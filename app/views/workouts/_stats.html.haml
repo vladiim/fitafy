@@ -2,14 +2,16 @@
   %h5 By
   = link_to @trainer.username.upcase, user_path(@trainer)
 %br
-  
-  %h5 Level
-  .workout_level= @workout.level
-  - if can? :manage, @workout
-    = link_to "Edit level", "#", class: "edit_workout level"
 
-    .edit_workout_form.level.hidden
-      = simple_form_for [current_user, @workout] do |f|
+  .workout_form_group.level
+    .workout_value.level
+      %h5 Level
+      = @workout.level
+      = link_to_show_form @workout, "level"
+
+    .workout_form.level.hidden
+      = simple_form_for [current_user, @workout], remote: true do |f|
         = f.input :client_level, collection: @client_level
         = f.input :difficulty, collection: @difficulty
-        = f.submit "UPDATE WORKOUT", class: "btn btn-primary", "data-loading-text" => "Updating..."
+        = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
+      = link_to_hide_form @workout, "level"

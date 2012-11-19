@@ -42,10 +42,6 @@ FactoryGirl.define do
   	sets "3"
   end
 
-  factory :tag, class: ActsAsTaggableOn::Tag do
-    name "cuban linx"
-  end
-
   factory :equipment do
     name "liquid swords"
   end

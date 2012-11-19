@@ -1,32 +1,41 @@
 class window.WorkoutForm
   constructor: ->
-     @edit   = $(".edit_workout")
-     @cancel = $(".cancel_edit_workout")
+     @show_links   = $("a.show_link")
+     @hide_links   = $("a.hide_link")
+     @workout_form = $("form.edit_workout")
+     @workout_exercise_form = $("form.edit_workout_exercise")
 
   init: ->
-    $( @edit ).on "click", (event) =>
-      $link = $(event.target)
-      @tag  =  @getTag($link)
-      @toggleValue()
-      @toggleForm()
+    $( @show_links ).on "click", (event) =>
+      @link = $(event.target)
+      @toggle()
       event.preventDefault()
 
-    $( @cancel ).on "click", (event) =>
-      $link = $(event.target)
-      @tag  =  @getTag($link)
-      @toggleValue()
-      @toggleForm()
+    $( @hide_links ).on "click", (event) =>
+      @link = $(event.target)
+      @toggle()
       event.preventDefault()
 
-  getTag: (link) ->
-    link.attr("class").split(' ')[1]
+    $( @workout_form ).on "ajax:success", => @formSubmitted()
 
-  toggleForm: ->
-    $(".edit_workout_form.#{@tag}").toggleClass("hidden")
+    $( @workout_exercise_form ).on "ajax:success", => @formSubmitted()
 
-  toggleValue: ->
-    console.log($(".edit_workout_value.#{@tag}"))
-    $(".edit_workout_value.#{@tag}").addClass("hidden")
+  toggle: =>
+    @tag = @getTag(@link)
+    @toggleForm()
+    @toggleValue()
+
+  getTag: (link) => link.data("tag")
+
+  toggleForm: => $(".workout_form.#{@tag}").toggleClass("hidden")
+
+  toggleValue: => $(".workout_value.#{@tag}").toggleClass("hidden")
+
+  formSubmitted: => @hideForms() && @showValues()
+
+  hideForms: => $(".workout_form").addClass("hidden")
+
+  showValues: => $(".workout_value").removeClass("hidden")
 
 $ ->
   workout_form = new WorkoutForm

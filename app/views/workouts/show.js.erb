@@ -1,3 +1,10 @@
+$(".edit_workout").on("ajax:beforeSend", function() {
+  $("li.ajax_nav_spinner").toggleClass("loading");
+});
+
 $(".edit_workout").on("ajax:success", function() {
-  $(".workout_level").text('<%= j @workout.level %>')
+  $("li.ajax_nav_spinner").toggleClass("loading");
+  $("h1").text('<%= j @workout.name.upcase %>');
+  $(".workout_value.notes > p").text('<%= j @workout.notes %>');
+  $(".workout_value.level").text('<%= j @workout.level %>');
 });

@@ -1,16 +1,24 @@
-.workout_name.workout_form_group
-  = link_to_edit_form @workout, "name"
-  .hidden.edit_workout_form.name
+.workout_form_group
+  .workout_value.name
+    = link_to_show_form @workout, "name"
+
+  .hidden.workout_form.name
     = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
+    = link_to_hide_form @workout, "name"
 %br
 
-.workout_notes.workout_form_group
-  .edit_wrokout_value.notes
+.workout_form_group.notes
+  .workout_value.notes
     %h5 NOTES
     %p= @workout.safe_notes.capitalize
-    = link_to_edit_form @workout, "notes"
-  .hidden.edit_workout_form.notes
-    = link_to_baby_form current_user, @workout, :notes, [ current_user, @workout]
+    = link_to_show_form @workout, "notes"
+  .hidden.workout_form.notes
+    - if can? :manage, @workout
+      = simple_form_for [current_user, @workout], remote: true do |f|
+        = f.input :notes, input_html: { rows: 6 }
+        = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
+      = link_to_hide_form @workout, "notes"
+
 %br
 
 %section.row

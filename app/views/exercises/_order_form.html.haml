@@ -1,3 +1,4 @@
-= simple_form_for exercise, html: { remote: true, class: 'ajax_form' } do |f|
+/ = simple_form_for exercise, html: { remote: true, class: 'ajax_form' } do |f|
+= simple_form_for exercise, remote: true do |f|
   = f.input :order_number, input_html: { value: exercise.order_number + value }, as: :hidden
   = f.submit " ", class: "icon-chevron-#{direction}"
