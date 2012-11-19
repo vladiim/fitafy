@@ -28,7 +28,6 @@ describe "WorkoutLoader", ->
 
     it "should use TemplateHoganBuilder", ->
       expect(@render).toHaveBeenCalledWith("app/templates/workouts/workouts_index", @incomingJSON[0])
-      console.log $("ul#workout_list").html()
 
     it "should fetch workouts from server", ->
       expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")
