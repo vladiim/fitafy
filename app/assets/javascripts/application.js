@@ -16,6 +16,8 @@
 //= require mustache
 //= require hogan.js
 //= require bootstrap
+//= require bootstrap-tooltip
+//= require bootstrap-popover
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require_tree .

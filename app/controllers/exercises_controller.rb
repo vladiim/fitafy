@@ -30,6 +30,11 @@ class ExercisesController < ApplicationController
     @exercise       = Exercise.find(params[:id])
     @equipment_name = @exercise.equipment_name
     @title          = @exercise.name
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @exercise }
+    end
   end
 
   def edit

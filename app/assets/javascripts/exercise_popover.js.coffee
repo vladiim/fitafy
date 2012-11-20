@@ -1,12 +1,19 @@
-class window ExercisePopover
+$ ->
+  $("#test").popover("show")
+
+class window.ExercisePopover
+
   constructor: ->
     @exercise_links = $("a.exercise_ajax_popover")
 
   init: ->
     $( @exercise_links ).on "click", (event) =>
       @link = $( event.target )
-      $.JSON @link.data("url"), (data) ->
-        @link.unbind("click").popover({content: data}).popover("show")
+      @id   = @link.attr("id")
+      event.preventDefault()
+      $.getJSON @link.attr("data-url"), (data) ->
+        $(@link).unbind("click")
+        $(@id).popover({ title: data.name, content: data.description }).popover("show")
 
 $ ->
   popover = new ExercisePopover
