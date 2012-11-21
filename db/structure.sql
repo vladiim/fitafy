@@ -218,7 +218,8 @@ CREATE TABLE users (
     role character varying(255),
     crypted_password character varying(255),
     facebook_user_id integer,
-    avatar character varying(255)
+    avatar character varying(255),
+    perishable_token character varying(255) DEFAULT ''::character varying
 );
 
 
@@ -569,6 +570,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120923060134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923093145');
 
+INSERT INTO schema_migrations (version) VALUES ('20121006013902');
+
 INSERT INTO schema_migrations (version) VALUES ('20121006014910');
 
 INSERT INTO schema_migrations (version) VALUES ('20121007074716');
@@ -590,3 +593,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121118014701');
 INSERT INTO schema_migrations (version) VALUES ('20121118050007');
 
 INSERT INTO schema_migrations (version) VALUES ('20121118064642');
+
+INSERT INTO schema_migrations (version) VALUES ('20121121085347');

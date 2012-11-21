@@ -1,0 +1,6 @@
+%p Forgot your password? No worries! Just tell me your email yo!
+
+= simple_form_for @reseter do |f|
+  = f.error_notification
+  = f.input :email
+  = f.submit "RESET PASSWORD", class: "btn btn-primary"

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :username, :email
   validates :terms_of_service, presence: true, on: :create
   validates :password, presence: true, on: :create
-  validates :password, confirmation: true, on: :create
+  validates :password, confirmation: true, on: :create # if: password?
   validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem
@@ -110,6 +110,17 @@ class User < ActiveRecord::Base
 
   def facebook_user?
     FacebookUser.find_by_user_id(self.id) ? true : false
+  end
+
+  def self.find_and_destroy_token token
+    user = User.find_by_perishable_token(token)
+    user ? user.destroy_token : nil
+  end
+
+  def destroy_token
+    self.perishable_token = ""
+    self.save
+    self
   end
 
   private

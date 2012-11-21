@@ -1,0 +1,9 @@
+%p
+  Hey
+  = @user.username.upcase
+  - just give yourself a new password and you'll be set!
+
+= simple_form_for @reseter do |f|
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit "SAVE NEW PASSWORD", class: "btn btn-primary"

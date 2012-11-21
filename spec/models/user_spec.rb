@@ -319,4 +319,29 @@ describe User do
       end
     end
   end
+
+  describe ".find_and_destroy_token" do
+    context "with valid token" do
+      let(:user)   { create :user, perishable_token: "TOKEN"}
+      let(:result) { User.find_and_destroy_token(user.perishable_token) }
+
+      it "finds the user" do
+        result.should eq user
+      end
+
+      it "resets the perishable_token" do
+        result
+        p user
+        User.find(user.id).perishable_token.should eq ""
+        # user.perishable_token.should eq ""
+      end
+    end
+
+    context "without valid token" do
+      let(:result) { User.find_and_destroy_token("blah") }
+      it "returns nil" do
+        result.should_not be
+      end
+    end
+  end
 end

@@ -1,7 +1,5 @@
 %li.workout_exercise.big_box_list.row.well{ "data-id" => exercise.order_number }
 
-  = link_to "test", "#", id: "blah", "rel" => "popover", "data-content" => "blahllkajsdlkjfa sdlfj ", "data-original-title" => "blaldkjfs"
-
   .w_e_order.span1
     - if can? :manage, @workout
       = render partial: "exercises/order_form", locals: { exercise: exercise, value: -1, direction: "up" }
@@ -12,7 +10,7 @@
       %h2= exercise.safe_order
 
   .w_e_details.span3
-    %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise), class: "exercise_ajax_popover", id: "#{exercise.id}_ajax_popover", "rel" => "popover", "data-url" => exercise_path(exercise.exercise)
+    %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
     %br
 
     .workout_form_group.instructions

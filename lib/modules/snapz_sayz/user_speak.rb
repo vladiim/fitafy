@@ -29,5 +29,13 @@ module SnapzSayz
     def self.create_user_fail
       "Ooops! There was a problem setting you up - try again!"
     end
+
+    def self.sent_password_reset
+      "We've sent info to the email provided! Check your emails for instructions."
+    end
+
+    def self.cant_find_perishable_token
+      "Sorry but I can't find your account details. If we sent you an email to reset your password make sure you've copied the link correctly."
+    end
   end
 end

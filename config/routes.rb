@@ -13,6 +13,8 @@ Fitafy::Application.routes.draw do
 
   resources :copy_workouts, only: :create
 
+  resources :password_resets, only: [:new, :create, :edit]
+
   # this solution comes from http://stackoverflow.com/questions/6369476/how-to-remove-controller-names-from-rails-routes
   # resources :users, except: [:show, :new, :index, :create], path: "/" do
   #   resources :workouts, except: [:show]
