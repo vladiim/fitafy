@@ -1,7 +1,7 @@
 describe "WorkoutLoader", ->
   beforeEach ->
     loadFixtures "workout_list.html"
-    @fake_template = {render: -> "" }
+    @fake_template = { render: -> "" }
     @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>" )
     @loader        = new WorkoutLoader @fake_template
     @incomingJSON  = [

@@ -10,7 +10,7 @@ class window.WorkoutLoader
   nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
   addMoreWorkouts: =>
-    @page++
+    # @page++
     $.getJSON(@url(), @render)
 
   url: => @ul.data("json-url")
