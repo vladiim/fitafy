@@ -15,8 +15,6 @@ Feature: Trainer manages account
     And Snapz should have a message for creating an account
     And I should get a sign up email
 
-  Scenario: Trainer forgets password
-
   Scenario: Trainer has profile page
     Given I'm on the hompage
     When I visit my profile page

@@ -9,15 +9,9 @@ class PasswordReset
   	@user = user unless user == nil
   end
 
-  def self.reset_password email
-    user = User.find_by_email(email)
-    self.make_and_send_password_reset(user) if user
-  end
-
-  def self.make_and_send_password_reset user
-    user.reset_perishable_token!
-    user.save!
-    UserMailer.password_reset(user).deliver
+  def reset_password email
+    self.user = User.find_by_email(email)
+    make_and_send_password_reset if user
   end
 
   def update_user passwords
@@ -29,4 +23,11 @@ class PasswordReset
   def persisted?
   	false
   end
+
+  private
+
+    def make_and_send_password_reset
+      user.reset_perishable_token!
+      UserMailer.password_reset(user).deliver
+    end
 end

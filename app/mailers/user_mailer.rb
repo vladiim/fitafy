@@ -19,6 +19,6 @@ class UserMailer < ActionMailer::Base
     @username = trainer.username
     @url      = edit_password_reset_url(trainer.perishable_token)
     mail to: trainer.email,
-          subject: SnapzSayz::UserSpeak.password_reset_title
+         subject: SnapzSayz::UserSpeak.password_reset_title
   end
 end

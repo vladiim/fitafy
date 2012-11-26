@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-  	PasswordReset.reset_password(params[:password_reset][:email])
+  	PasswordReset.new.reset_password(params[:password_reset][:email])
   	flash[:notice] = SnapzSayz::UserSpeak.sent_password_reset
   	redirect_to root_path
   end
