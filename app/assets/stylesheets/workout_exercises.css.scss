@@ -1,7 +1,11 @@
 li.workout_exercise {
 
-
   .w_e_order > h2.order_numbers {
   	margin-top: -25px;
   }
+}
+
+p.exercise_loaded_text {
+  color: red;
+  text-style: bold;
 }

@@ -41,6 +41,7 @@ class WorkoutsController < ApplicationController
 
   def show
   	@workout          = exhibit Workout.find(params[:id]), self
+    @base_workout     = Workout.find(params[:id])
     @renderer         = WorkoutsExercise.new
     @trainer          = User.find @workout.user_id
     @current_user     = current_user ? current_user : nil

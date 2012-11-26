@@ -1,10 +1,25 @@
+// updating details about the workout
 $(".edit_workout").on("ajax:beforeSend", function() {
   $("li.ajax_nav_spinner").toggleClass("loading");
 });
 
+// updating details about the workout
 $(".edit_workout").on("ajax:success", function() {
   $("li.ajax_nav_spinner").toggleClass("loading");
   $("h1").text('<%= j @workout.name.upcase %>');
   $(".workout_value.notes > p").text('<%= j @workout.notes %>');
   $(".workout_value.level").text('<%= j @workout.level %>');
 });
+
+// add an exercise to the workout
+$(".new_workout_exercise").on("ajax:success", function() {
+  $("li.workout_exercise").remove();
+  $('ul.workout_exercises').append('<%= j render partial: "workouts/show_exercise", collection: @base_workout.workout_exercises, as: :exercise %>');
+  newWorkoutAddedText();
+});
+
+function newWorkoutAddedText() {
+  $('p.exercise_loaded_text').fadeIn(function() {
+    $(this).text("New exercise added!");
+  }).fadeOut(2000);
+};

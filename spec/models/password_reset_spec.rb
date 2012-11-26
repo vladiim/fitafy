@@ -8,9 +8,15 @@ describe PasswordReset do
     reseter.user.should eq user
   end
 
-  describe ".reset_password" do
+  describe "#reset_password" do
+    let(:reseter) { PasswordReset.new }
+
     context "with exsisting user email" do
-      before { PasswordReset.reset_password(user.email) }
+      before { reseter.reset_password(user.email) }
+
+      it "sets the user to the reseter.user" do
+        reseter.user.should eq user
+      end
 
       it "creates the user's perishable_token" do
         user.perishable_token.should_not eq ""
@@ -18,10 +24,9 @@ describe PasswordReset do
     end
 
     context "without exsisting user email" do
-      let(:result) { PasswordReset.reset_password("fake@email.com") }
-
-      it "does nothing" do
-        result.should eq nil
+      it "sets no user to the reseter user" do
+        reseter.reset_password("fake@email.com")
+        reseter.user.should eq nil
       end
     end
   end
