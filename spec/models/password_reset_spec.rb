@@ -27,11 +27,22 @@ describe PasswordReset do
   end
 
   describe "#update_user" do
-  	let(:user)   { { "user" { "password" => "password", "password_confirmation" => "password" } } }
-    let(:result) { reseter.update_user(user) }
+    let(:result) { reseter.update_user(params) }
 
-    it "should " do
-      
-THIS IS WHERE I'M UP TO MUTHA FUCKER!!!!!!!
+    context "password & password_confirmation match" do
+      let(:params) { {"password" => "password", "password_confirmation" => "password"} }
+
+      it "updates the user" do
+        result.should be
+      end
+    end
+
+    context "password & password_confirmation don't match" do
+      let(:params) { {"password" => "not_password", "password_confirmation" => "password"} }
+
+      it "updates the user" do
+        result.should_not be
+      end
+    end
   end
 end

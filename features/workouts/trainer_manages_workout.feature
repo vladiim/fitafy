@@ -21,15 +21,13 @@ Feature: Trainer manages workouts
   Scenario Outline: Trainer updates a workout
     Given a workout exercise exists
     And I'm on a workout's page
-    When I click the workout's <update_button>
-    And <form_container> I fill in the workout's <form_element> with <new_detail>
+    When <form_container> I fill in the workout's <form_element> with <new_detail>
     Then <value_container> I should see the workout's updated <new_detail>
 
     Examples:
-      | update_button        | form_container       |form_element                     | new_detail         | value_container      |
-      | "Edit name"          | ".workout_name"      | "workout_name"                  | "NEW NAME"         | "h1"                 |
-      | "Edit notes"         | ".workout_notes"     | "workout_notes"                 | "New notes"        | ".workout_notes"     |
-      | "Edit instructions"  | ".workout_exercises" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | ".workout_exercises" |
+      | form_container               |form_element                     | new_detail         | value_container        |
+      | ".workout_form.name"         | "workout_name"                  | "NEW NAME"         | "h1"                   |
+      | ".workout_form.instructions" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | ".workout_exercises"   |
 
   Scenario: Trainer deletes workout
     Given a workout exercise exists

@@ -32,7 +32,7 @@ describe "WorkoutHelper" do
     context "current_user's workout" do
       before do
         mock(helper).can?(:manage, workout) { true }
-        mock(helper).link_to("Edit name", anything, anything) { "EDIT NAME LINK" }
+        mock(helper).link_to("Edit", anything, anything) { "EDIT NAME LINK" }
       end
 
       it "returns the edit name link" do

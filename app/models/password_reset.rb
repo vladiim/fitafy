@@ -6,7 +6,7 @@ class PasswordReset
   attr_accessor :email, :user
 
   def initialize user=nil
-  	@user = user if user
+  	@user = user unless user == nil
   end
 
   def self.reset_password email
@@ -16,7 +16,14 @@ class PasswordReset
 
   def self.make_and_send_password_reset user
     user.reset_perishable_token!
+    user.save!
     UserMailer.password_reset(user).deliver
+  end
+
+  def update_user passwords
+    self.user.password = passwords.fetch('password')
+    self.user.password_confirmation = passwords.fetch('password_confirmation')
+    user.save ? true : false
   end
 
   def persisted?

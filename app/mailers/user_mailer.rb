@@ -6,6 +6,8 @@ class UserMailer < ActionMailer::Base
 
   if Rails.env == "development"
     default_url_options[:host] = "localhost:3000"
+  elsif Rails.env == "test"
+    default_url_options[:host] = "www.example.com"
   else
     default_url_options[:host] = "www.fitafy.com"
   end
@@ -23,6 +25,6 @@ class UserMailer < ActionMailer::Base
     @username = trainer.username
     @url      = edit_password_reset_url(trainer.perishable_token)
     mail to: trainer.email,
-          subject: SnapzSayz::UserSpeak.sent_password_reset
+          subject: SnapzSayz::UserSpeak.password_reset_title
   end
 end

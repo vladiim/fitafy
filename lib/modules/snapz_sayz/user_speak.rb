@@ -34,6 +34,14 @@ module SnapzSayz
       "We've sent info to the email provided! Check your emails for instructions."
     end
 
+    def self.password_reset_title
+      "fitafy Reset Password Info"
+    end
+
+    def self.reset_password_successfully
+      "Boom! You've updated your password - welcome back!"
+    end
+
     def self.cant_find_perishable_token
       "Sorry but I can't find your account details. If we sent you an email to reset your password make sure you've copied the link correctly."
     end

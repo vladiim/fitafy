@@ -45,11 +45,9 @@ Feature: Trainer manages account
     And I try creating an account incorrectly
     Then I should see the error messages
 
-  @focus
   Scenario: Trainer logs in with forgot password link
     Given I'm not logged in
     When I complete a forgot password flow
     And I follow the link emailed to me
+    And I enter in a new password
     Then I should be on my edit account page
-    And Snapz should ask me to reset my password
-    And I should have been sent the link in an email

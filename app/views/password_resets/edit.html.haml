@@ -1,9 +1,9 @@
 %p
   Hey
   = @user.username.upcase
-  - just give yourself a new password and you'll be set!
+  just give yourself a new password and you'll be set!
 
-= simple_form_for @reseter do |f|
+= simple_form_for @user, url: password_reset_path, method: :put do |f|
   = f.input :password
   = f.input :password_confirmation
   = f.submit "SAVE NEW PASSWORD", class: "btn btn-primary"

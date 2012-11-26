@@ -112,17 +112,6 @@ class User < ActiveRecord::Base
     FacebookUser.find_by_user_id(self.id) ? true : false
   end
 
-  def self.find_and_destroy_token token
-    user = User.find_by_perishable_token(token)
-    user ? user.destroy_token : nil
-  end
-
-  def destroy_token
-    self.perishable_token = ""
-    self.save
-    self
-  end
-
   private
 
     def make_user_trainer
