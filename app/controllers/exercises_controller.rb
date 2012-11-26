@@ -5,7 +5,8 @@ class ExercisesController < ApplicationController
 
   def index
     @title     = "All Exercises"
-    @exercises = Exercise.alphabetical_including_muscles(params[:muscles])
+    @exercises = Exercise.all
+    # @exercises = Exercise.alphabetical_including_muscles(params[:muscles])
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
   end

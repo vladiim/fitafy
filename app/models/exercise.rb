@@ -17,13 +17,15 @@ class Exercise < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  default_scope order("name ASC")
+
   def delete_exercise!
   	self.destroy
   end
 
-  def self.alphabetical_including_muscles muscles=nil
-    with_muscles(muscles).sort_by { |exercise| exercise["name"] }
-  end
+  # def self.alphabetical_including_muscles muscles=nil
+  #   with_muscles(muscles).sort_by { |exercise| exercise["name"] }
+  # end
 
   def equipment_name
     self.equipment ? equipment.name : "no equipment yo"
@@ -47,12 +49,12 @@ class Exercise < ActiveRecord::Base
 
   private
 
-  def self.with_muscles muscles
-    return Exercise.all if muscles == nil
-    muscles.inject([]) do |exercises, muscle|
-      exercises << Exercise.find_by_muscle(muscle)
-    end
-  end
+  # def self.with_muscles muscles
+  #   return Exercise.all if muscles == nil
+  #   muscles.inject([]) do |exercises, muscle|
+  #     exercises << Exercise.find_by_muscle(muscle)
+  #   end
+  # end
 
   def muscle?
     true unless self.muscle.nil?
