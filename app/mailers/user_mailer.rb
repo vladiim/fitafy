@@ -1,16 +1,10 @@
 class UserMailer < ActionMailer::Base
   # include Resque::Mailer
   include SendGrid
+  extend MailerDefaultUrl
 
+  default_url_options[:host] = MailerDefaultUrl.set_env_url
   default from: "vlad@fitafy.com"
-
-  if Rails.env == "development"
-    default_url_options[:host] = "localhost:3000"
-  elsif Rails.env == "test"
-    default_url_options[:host] = "www.example.com"
-  else
-    default_url_options[:host] = "www.fitafy.com"
-  end
 
   sendgrid_category :use_subject_lines
   # sendgrid_enable      :ganalytics, :opentrack
