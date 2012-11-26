@@ -18,35 +18,35 @@ describe Exercise do
     it { should validate_presence_of :description }
   end
 
-  describe "#alphabetical_including_muscles" do
-    before do
-      ["bbb", "ccc", "aaa"].each do |name|
-        FactoryGirl.create :exercise, name: name
-      end
-    end
+  # describe "#alphabetical_including_muscles" do
+  #   before do
+  #     ["bbb", "ccc", "aaa"].each do |name|
+  #       FactoryGirl.create :exercise, name: name
+  #     end
+  #   end
 
-    context "without muscles" do
-      it "returns the exercises alphabetically" do
-        ["aaa", "bbb", "ccc"].each_with_index do |name, index|
-          Exercise.alphabetical_including_muscles[index].name.should eq name
-        end
-      end      
-    end
+  #   context "without muscles" do
+  #     it "returns the exercises alphabetically" do
+  #       ["aaa", "bbb", "ccc"].each_with_index do |name, index|
+  #         Exercise.alphabetical_including_muscles[index].name.should eq name
+  #       end
+  #     end      
+  #   end
 
-    context "with muscles" do
-      before do
-        ex = Exercise.find_by_name("aaa")
-        ex.muscle = "legs"
-        ex.save
-      end
+  #   context "with muscles" do
+  #     before do
+  #       ex = Exercise.find_by_name("aaa")
+  #       ex.muscle = "legs"
+  #       ex.save
+  #     end
 
-      it "returns the exercises sorted by the muscle" do
-        Exercise.alphabetical_including_muscles(["legs"]).each do |e|
-          e.name.should eq "aaa"
-        end
-      end
-    end
-  end
+  #     it "returns the exercises sorted by the muscle" do
+  #       Exercise.alphabetical_including_muscles(["legs"]).each do |e|
+  #         e.name.should eq "aaa"
+  #       end
+  #     end
+  #   end
+  # end
 
   describe "#equipment_name" do
     context "has equipment" do

@@ -3,7 +3,7 @@ class Workout < ActiveRecord::Base
   attr_accessible :user_id, :name, :notes, :workout_exercises_attributes,
                   :client_level, :difficulty
 
-  attr_accessor :exercises
+  attr_accessor :all_exercises
 
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
@@ -61,7 +61,7 @@ class Workout < ActiveRecord::Base
   end
 
   def all_exercises
-    @exercises ||= Exercise.all
+    @all_exercises ||= Exercise.all
   end
 
   def self.muscles
