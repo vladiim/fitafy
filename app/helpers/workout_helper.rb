@@ -62,7 +62,7 @@ module WorkoutHelper
 
   def workouts_index_json workout
     {
-      muscles:        workout.muscles,
+      # muscles:        workout.muscles,
       url:            user_workout_path(workout.user_id, workout),
       name:           workout.name,
       client_level:   workout.safe_client_level,
