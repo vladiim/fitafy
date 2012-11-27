@@ -28,12 +28,17 @@ class Workout < ActiveRecord::Base
     limit 4
   end
 
+  def self.filter_by_exercise_muscles muscles=nil
+    return Workout.scoped if muscles == nil
+    exercises = Exercise.includes(:workouts)
+    exercises.find_all_by_muscle(muscles).map(&:workouts).flatten
+  end
+
   # def self.filter_by_exercise_muscles muscles=nil
-  #   return Workout.all if muscles == nil
+  #   return Workout.scoped if muscles == nil
   #   muscle_array = []
   #   muscles.split(' ').each { |m| muscle_array << m }
-  #   Exercise.workouts_including_muscles(muscle_array)
-  #   # Exercise.including_muscles(muscles).includes(:workouts).map(&:workouts).flatten
+  #   Exercise.find_with_muscles(muscle_array).includes(:workouts).map(&:workouts).flatten
   # end
 
   def safe_difficulty

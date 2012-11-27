@@ -18,17 +18,17 @@ describe Exercise do
     it { should validate_presence_of :description }
   end
 
-  # describe "#alphabetical_including_muscles" do
+  # describe "#find_with_muscles" do
   #   before do
   #     ["bbb", "ccc", "aaa"].each do |name|
-  #       FactoryGirl.create :exercise, name: name
+  #       create :exercise, name: name
   #     end
   #   end
 
   #   context "without muscles" do
   #     it "returns the exercises alphabetically" do
   #       ["aaa", "bbb", "ccc"].each_with_index do |name, index|
-  #         Exercise.alphabetical_including_muscles[index].name.should eq name
+  #         Exercise.find_with_muscles[index].name.should eq name
   #       end
   #     end      
   #   end
@@ -41,8 +41,8 @@ describe Exercise do
   #     end
 
   #     it "returns the exercises sorted by the muscle" do
-  #       Exercise.alphabetical_including_muscles(["legs"]).each do |e|
-  #         e.name.should eq "aaa"
+  #       Exercise.find_with_muscles(["legs"]).each do |e|
+  #         e[0].name.should eq "aaa"
   #       end
   #     end
   #   end

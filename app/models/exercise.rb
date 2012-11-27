@@ -23,8 +23,9 @@ class Exercise < ActiveRecord::Base
   	self.destroy
   end
 
-  # def self.alphabetical_including_muscles muscles=nil
-  #   with_muscles(muscles).sort_by { |exercise| exercise["name"] }
+  # def self.find_with_muscles muscles=nil
+  #   # with_muscles(muscles).sort_by { |exercise| exercise["name"] }
+  #   with_muscles(muscles)
   # end
 
   def equipment_name
@@ -52,7 +53,7 @@ class Exercise < ActiveRecord::Base
   # def self.with_muscles muscles
   #   return Exercise.all if muscles == nil
   #   muscles.inject([]) do |exercises, muscle|
-  #     exercises << Exercise.find_by_muscle(muscle)
+  #     exercises << Exercise.find_all_by_muscle(muscle)
   #   end
   # end
 

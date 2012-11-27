@@ -120,17 +120,58 @@ describe Workout do
     end
   end
 
+  describe ".filter_by_exercise_muscles" do
+    context "no muslces" do
+      let(:result) { Workout.filter_by_exercise_muscles }
+
+      it "returns all the workouts" do
+        result.should eq Workout.scoped
+      end
+    end
+
+    context "with muscles" do
+      before do
+        @exercise = create :exercise, muscle: "back"
+        @workout = create :workout
+        create :workout_exercise, workout_id: @workout.id, exercise_id: @exercise.id
+      end
+
+      context "one muscle" do
+        let(:result)   { Workout.filter_by_exercise_muscles('back')}
+
+        it "returns the workouts with that muscle" do
+          result.should eq [@workout]
+        end
+      end
+
+      context "more than one muscle" do
+        before do
+          @exercise2 = create :exercise, muscle: 'chest'
+          @workout2 = create :workout
+          create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise2.id
+        end
+
+        let(:result)   { Workout.filter_by_exercise_muscles(['back', 'chest'])}
+
+        it "returns the workouts with those muscles" do
+          result.should include @workout
+          result.should include @workout2
+        end
+      end
+    end
+  end
+
   # describe "#filter_by_exercise_muscles" do
   #   context "with muscles" do
-  #     let(:muscles)   { "back" }
+  #     let(:muscles)   { ["back"] }
   #     let(:exercises) { Object.new }
   #     let(:workout)   { "FILTERED WORKOUTS" }
 
   #     before do
-  #       mock(Exercise).workouts_including_muscles([muscles]) { exercises }
-  #       # mock(exercises).includes(:workouts)       { [workout] }
-  #       # mock(workout).workouts                    { [workout] }
-  #       # mock(workout).to_ary # gets called before flatten
+  #       mock(Exercise).find_with_muscles([muscles]) { exercises }
+  #       mock(exercises).includes(:workouts)       { [workout] }
+  #       mock(workout).workouts                    { [workout] }
+  #       mock(workout).to_ary # gets called before flatten
   #     end
 
   #     it "return a set of filtered workouts" do
@@ -140,33 +181,7 @@ describe Workout do
 
   #   context "without muscles" do
   #     it "returns all workouts" do
-  #       Workout.filter_by_exercise_muscles.should eq Workout.all
-  #     end
-  #   end
-  # end
-
-  # describe "#filter_by_tags" do
-  #   context "with tags" do
-  #     let(:tags)      { Object.new }
-  #     let(:tag_type)  { Object.new }
-  #     let(:exercises) { Object.new }
-  #     let(:workout)   { "FILTERED WORKOUTS" }
-
-  #     before do
-  #       mock(Exercise).with_tags(tags, tag_type) { exercises }
-  #       mock(exercises).includes(:workouts)      { [workout] }
-  #       mock(workout).workouts                   { [workout] }
-  #       mock(workout).to_ary # gets called before flatten
-  #     end
-
-  #     it "return a set of filtered workouts" do
-  #       Workout.filter_by_tags(tags, tag_type) { "FILTERED WORKOUTS" }
-  #     end
-  #   end
-
-  #   context "without tags" do
-  #     it "returns all workouts" do
-  #       Workout.filter_by_tags.should eq Workout.all
+  #       Workout.filter_by_exercise_muscles.should eq Workout.scoped
   #     end
   #   end
   # end
