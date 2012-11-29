@@ -46,7 +46,7 @@ Fitafy::Application.routes.draw do
 
   match 'login',   to: 'user_sessions#new'
   match 'sign_up', to: 'users#new'
-  match 'logout',  to: 'user_sessions#destroy'
+  delete 'logout',  to: 'user_sessions#destroy'
 
 
 #---------- AUTH ----------#
