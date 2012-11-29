@@ -1,22 +1,28 @@
 !!! 5
+-# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+- html_tag :class => "no-js", :lang => "en" do
+  = render "head"
 
-%head= render 'layouts/head'
+  %body#main{ :class => "#{ controller.controller_name }" }
+    = render "chromeframe"
+    = render "header"
 
-%body#main.container
+    %nav
+      = render "layouts/navigation"
 
-  %nav= render 'layouts/navigation'
+    %section#main_content
+      = render "layouts/flashes"
 
-  %section#main_content
-    = render 'layouts/flashes'
+    %section{ :role => "main" }
+      = yield
 
-    %header
-      %h1= section_title unless params[:action] == 'home'
-    = yield
+    = render "footer"
 
-    %footer
-      = render 'layouts/footer'
+    - if can? :manage, Workout
+      = render partial: "workouts/new_from_nav"
 
-  - if can? :manage, Workout
-    = render partial: "workouts/new_from_nav"
+      -# Javascript at the bottom for fast page loading
+      / = render "javascripts"
+    = javascript_include_tag "application"
 
 = debug(params) if Rails.env.development?
