@@ -48,11 +48,8 @@ class window.TagLinkSorter
     $(tag_link).removeClass("active").addClass("inactive")
 
   showActiveTagWorkouts: ->
-    if @activeTagNames.length is 0
-      @showAllWorkouts()
-    else
-      @hideWorkouts()
-      @showActiveWorkouts()
+    $(@workouts()).remove()
+    @loader.reloadWorkouts(@activeTagNames)
 
   addTagToActive: (tag) ->
     @activeTagNames.push(tag)
@@ -60,20 +57,6 @@ class window.TagLinkSorter
   removeTagFromActive: (tag) ->
     index = @activeTagNames.indexOf(tag)
     @activeTagNames.splice(index, 1)
-
-  showAllWorkouts: ->
-    $(@workouts()).removeClass("hidden")
-
-  showActiveWorkouts: ->
-    $("ul#workout_list > li").remove()
-    @loader.reloadWorkouts(@activeTagNames)
-    # tags = ""
-    # for tag in @activeTagNames
-    #   tags += ".#{tag}"
-    # $("article#{tags}").parent("li").removeClass("hidden")
-
-  hideWorkouts: ->
-    $(@workouts()).addClass("hidden")
 
 $ ->
   sorter = new TagLinkSorter
