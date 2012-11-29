@@ -96,13 +96,13 @@ class Workout < ActiveRecord::Base
     workout_exercises.count
   end
 
-  # def muscles
-  #   muscles = ""
-  #   self.exercises.each do |exercise|
-  #     muscles << " #{exercise.muscle}" unless muscles.match(exercise.muscle)
-  #   end
-  #   muscles.sub(/^\s/, "")
-  # end
+  def muscles
+    muscles = ""
+    self.exercises.each do |exercise|
+      muscles << " #{exercise.muscle}" unless muscles.match(exercise.muscle)
+    end
+    muscles.sub(/^\s/, "")
+  end
 
   def copy_workout_exercises other_workout
     other_workout.workout_exercises.each do |workout_exercise|
