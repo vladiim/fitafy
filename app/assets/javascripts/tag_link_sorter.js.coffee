@@ -1,5 +1,5 @@
 class window.TagLinkSorter
-  constructor: ->
+  constructor: (@loader = new WorkoutLoader) ->
     @tagLinks        = $(".tag_link")
     @inactiveTags    = $("#inactive_tags")
     @activeTags      = $("#active_tags")
@@ -65,10 +65,12 @@ class window.TagLinkSorter
     $(@workouts()).removeClass("hidden")
 
   showActiveWorkouts: ->
-    tags = ""
-    for tag in @activeTagNames
-      tags += ".#{tag}"
-    $("article#{tags}").parent("li").removeClass("hidden")
+    $("ul#workout_list > li").remove()
+    @loader.reloadWorkouts(@activeTagNames)
+    # tags = ""
+    # for tag in @activeTagNames
+    #   tags += ".#{tag}"
+    # $("article#{tags}").parent("li").removeClass("hidden")
 
   hideWorkouts: ->
     $(@workouts()).addClass("hidden")
