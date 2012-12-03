@@ -15,19 +15,24 @@ describe "WorkoutLoader", ->
         exercise_count: "5"
       }]
 
-  describe "acquires JSON data from server", ->
-    beforeEach -> 
-      @server = sinon.fakeServer.create()
-      @server.respondWith("GET", "/workouts.json",
-                          [200, { "Content-Type": "application/json" },
-                          JSON.stringify(@incomingJSON)])
-      @workouts = @loader.addMoreWorkouts()
-      @server.respond()
+  describe "gets workouts", ->
 
-    afterEach -> @server.restore()
+    describe "without options", ->
 
-    it "should use TemplateHoganBuilder", ->
-      expect(@render).toHaveBeenCalledWith("app/templates/workouts/workouts_index", @incomingJSON[0])
+      beforeEach -> 
+        @server = sinon.fakeServer.create()
+        @server.respondWith("GET", "/workouts.json",
+                            [200, { "Content-Type": "application/json" },
+                            JSON.stringify(@incomingJSON)])
+        @workouts = @loader.addMoreWorkouts()
+        @server.respond()
 
-    it "should fetch workouts from server", ->
-      expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")
+      afterEach -> @server.restore()
+
+      it "should use TemplateHoganBuilder", ->
+        expect(@render).toHaveBeenCalledWith("app/templates/workouts/workouts_index", @incomingJSON[0])
+
+      it "should fetch workouts from server", ->
+        expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")
+
+    describe "with options", ->

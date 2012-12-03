@@ -13,6 +13,10 @@ class window.WorkoutLoader
     # @page++
     $.getJSON(@url(), @render)
 
+  reloadWorkouts: (muscles) =>
+    param = $.param( { muscles: muscles } )
+    $.getJSON("workouts?#{param}", @render)    
+
   url: => @ul.data("json-url")
 
   render: (workouts) => @addWorkout(workout) for workout in workouts

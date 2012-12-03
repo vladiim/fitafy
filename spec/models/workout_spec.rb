@@ -149,42 +149,18 @@ describe Workout do
           @exercise2 = create :exercise, muscle: 'chest'
           @workout2 = create :workout
           create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise2.id
+          create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise.id
         end
 
         let(:result)   { Workout.filter_by_exercise_muscles(['back', 'chest'])}
 
-        it "returns the workouts with those muscles" do
-          result.should include @workout
+        it "returns only the workouts with both muscles" do
+          result.should_not include @workout
           result.should include @workout2
         end
       end
     end
   end
-
-  # describe "#filter_by_exercise_muscles" do
-  #   context "with muscles" do
-  #     let(:muscles)   { ["back"] }
-  #     let(:exercises) { Object.new }
-  #     let(:workout)   { "FILTERED WORKOUTS" }
-
-  #     before do
-  #       mock(Exercise).find_with_muscles([muscles]) { exercises }
-  #       mock(exercises).includes(:workouts)       { [workout] }
-  #       mock(workout).workouts                    { [workout] }
-  #       mock(workout).to_ary # gets called before flatten
-  #     end
-
-  #     it "return a set of filtered workouts" do
-  #       Workout.filter_by_exercise_muscles(muscles).should eq { "FILTERED WORKOUTS" }
-  #     end
-  #   end
-
-  #   context "without muscles" do
-  #     it "returns all workouts" do
-  #       Workout.filter_by_exercise_muscles.should eq Workout.scoped
-  #     end
-  #   end
-  # end
 
   describe "#all_exercises" do
     before { mock(Exercise).all { exercises } }
@@ -283,34 +259,4 @@ describe Workout do
       Workout.equipment_names.should eq "ALL EQUIPMENT NAMES"
     end
   end
-
-  # describe "#muscles" do
-  #   let(:result)  { subject.muscles }
-
-  #   context "one exercise" do
-  #     before do
-  #       mock(subject).exercises              { [exercise] }
-  #       mock(exercise).muscle_names.times(2) { "EXERCISE 1" }
-  #     end
-
-  #     it "returns the exercise's muscles" do
-  #       result.should eq "EXERCISE 1"
-  #     end
-  #   end
-
-
-  #   context "two exercise" do
-  #     let(:exercise2) { Object.new }
-
-  #     before do
-  #       mock(subject).exercises { [exercise, exercise2] }
-  #       mock(exercise).muscle_names.times(2)  { "EXERCISE 1" }
-  #       mock(exercise2).muscle_names.times(2) { "EXERCISE 2" }
-  #     end
-
-  #     it "returns both exercise's muscles" do
-  #       result.should eq "EXERCISE 1 EXERCISE 2"
-  #     end
-  #   end
-  # end
 end

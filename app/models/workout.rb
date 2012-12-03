@@ -32,6 +32,7 @@ class Workout < ActiveRecord::Base
     return Workout.scoped if muscles == nil
     exercises = Exercise.includes(:workouts)
     exercises.find_all_by_muscle(muscles).map(&:workouts).flatten
+    # exercises.find_each_by_muscle(muscles).map(&:workouts).flatten
   end
 
   # def self.filter_by_exercise_muscles muscles=nil
