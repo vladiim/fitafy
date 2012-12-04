@@ -15,7 +15,7 @@ gem 'sendgrid',              '~> 1.1.0'
 gem 'rack-google-analytics', '~> 0.11.0'
 gem 'redis',                 '~> 3.0.2'
 gem 'pry',                   '~> 0.9.9.0'
-# gem "squeel",                '~> 1.0.13'
+gem "squeel",                '~> 1.0.13'
 
 # ------------ AUTH ------------ #
 

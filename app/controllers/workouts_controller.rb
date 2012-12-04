@@ -8,10 +8,9 @@ class WorkoutsController < ApplicationController
   skip_filter :authorize, only: [:index, :show]
 
   def index
-    # @workouts  = Workout.filter_by_tags(params[:muscles])
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])
-    # @workouts  = Workout.limit(20)
-    @workouts  = @workouts.offset((params[:page].to_i)*20) if params[:page].present?
+
+    # @workouts  = @workouts.offset((params[:page].to_i)*20) if params[:page].present?
     @renderer  = WorkoutsIndex.new
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names

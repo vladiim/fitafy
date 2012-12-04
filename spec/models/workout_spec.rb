@@ -137,7 +137,7 @@ describe Workout do
       end
 
       context "one muscle" do
-        let(:result)   { Workout.filter_by_exercise_muscles('back')}
+        let(:result)   { Workout.filter_by_exercise_muscles(['back'])}
 
         it "returns the workouts with that muscle" do
           result.should eq [@workout]
@@ -149,13 +149,13 @@ describe Workout do
           @exercise2 = create :exercise, muscle: 'chest'
           @workout2 = create :workout
           create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise2.id
-          create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise.id
+          # create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise.id
         end
 
         let(:result) { Workout.filter_by_exercise_muscles(['back', 'chest'])}
 
         it "returns only the workouts with both muscles" do
-          result.should_not include @workout
+          result.should include @workout
           result.should include @workout2
         end
       end

@@ -23,6 +23,9 @@ class Workout < ActiveRecord::Base
 
   belongs_to :user
 
+  # scope :find_by_exercise_muscles, lambda { |muscles| Exercise.includes(:workouts).find_all_by_muscle(muscles).map(&:workouts).flatten }
+  scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
+
   def self.trending
     # TODO:
     limit 4
@@ -30,9 +33,10 @@ class Workout < ActiveRecord::Base
 
   def self.filter_by_exercise_muscles muscles=nil
     return Workout.scoped if muscles == nil
-    exercises = Exercise.includes(:workouts)
-    exercises.find_all_by_muscle(muscles).map(&:workouts).flatten
-    # exercises.find_each_by_muscle(muscles).map(&:workouts).flatten
+    Workout.find_by_exercise_muscles(muscles)
+
+    # exercises = Exercise.includes(:workouts)
+    # exercises.find_all_by_muscle(muscles).map(&:workouts).flatten
   end
 
   # def self.filter_by_exercise_muscles muscles=nil
