@@ -1,3 +1,10 @@
+#<Workout id: 224
+=> "biceps"
+=> "shoulders"
+
+# Up to
+* Create spike & test out squeel queries
+
 # Notes
 * Server not working:
 	- PATH=/usr/local/sbin:$PATH 

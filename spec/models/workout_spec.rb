@@ -152,7 +152,7 @@ describe Workout do
           create :workout_exercise, workout_id: @workout2.id, exercise_id: @exercise.id
         end
 
-        let(:result)   { Workout.filter_by_exercise_muscles(['back', 'chest'])}
+        let(:result) { Workout.filter_by_exercise_muscles(['back', 'chest'])}
 
         it "returns only the workouts with both muscles" do
           result.should_not include @workout
