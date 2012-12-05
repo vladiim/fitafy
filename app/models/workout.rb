@@ -19,12 +19,11 @@ class Workout < ActiveRecord::Base
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
   validates :difficulty, inclusion:   { in: DIFFICULTY },    if: :difficulty?
 
+  belongs_to :user
   delegate :username, to: :user
 
-  belongs_to :user
-
-  # scope :find_by_exercise_muscles, lambda { |muscles| Exercise.includes(:workouts).find_all_by_muscle(muscles).map(&:workouts).flatten }
   scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
+  scope :offset_by_page, lambda { |page| self.offset(page.to_i * 20).limit(20) }
 
   def self.trending
     # TODO:
@@ -34,17 +33,7 @@ class Workout < ActiveRecord::Base
   def self.filter_by_exercise_muscles muscles=nil
     return Workout.scoped if muscles == nil
     Workout.find_by_exercise_muscles(muscles)
-
-    # exercises = Exercise.includes(:workouts)
-    # exercises.find_all_by_muscle(muscles).map(&:workouts).flatten
   end
-
-  # def self.filter_by_exercise_muscles muscles=nil
-  #   return Workout.scoped if muscles == nil
-  #   muscle_array = []
-  #   muscles.split(' ').each { |m| muscle_array << m }
-  #   Exercise.find_with_muscles(muscle_array).includes(:workouts).map(&:workouts).flatten
-  # end
 
   def safe_difficulty
     return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty

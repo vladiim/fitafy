@@ -2,6 +2,7 @@ class window.WorkoutLoader
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
     @ul       = $("#workout_list")
     @mustache = "app/templates/workouts/workouts_index"
+    @page     = 0
 
   windowScrollCheck: => $(window).scroll(@check)
 
@@ -10,8 +11,8 @@ class window.WorkoutLoader
   nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
   addMoreWorkouts: =>
-    # @page++
-    $.getJSON(@url(), @render)
+    @page++
+    $.getJSON(@url(), :page => @page, @render)
 
   reloadWorkouts: (muscles) =>
     param = $.param( { muscles: muscles } )
