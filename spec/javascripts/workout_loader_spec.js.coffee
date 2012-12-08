@@ -23,7 +23,7 @@ describe "WorkoutLoader", ->
 
       beforeEach ->
         @server = sinon.fakeServer.create()
-        @server.respondWith("GET", "/workouts.json",
+        @server.respondWith("GET", "/workouts?page=1",
                             [200, { "Content-Type": "application/json" },
                             JSON.stringify(@incomingJSON)])
         @workouts = @loader.reloadWorkouts()
@@ -53,7 +53,7 @@ describe "WorkoutLoader", ->
       afterEach  -> $.ajax.restore()
 
       it "gets the workouts with the options", ->
-        expect($.ajax.getCall(0).args[0].url).toEqual("workouts?muscles%5B%5D=back")
+        expect($.ajax.getCall(0).args[0].url).toEqual("/workouts?muscles%5B%5D=back&page=0")
 
       it "resets the page number", -> expect(@loader.page).toEqual(0)
       it "saves the muscles", -> expect(@loader.muscles).toEqual(['back'])
@@ -72,3 +72,15 @@ describe "WorkoutLoader", ->
         it "saves the old muscles", -> expect(@loader.old_muscles).toEqual(['back'])
         it "maintains the muscles value", -> expect(@loader.muscles).toEqual([])
         it "increments the page number", -> expect(@loader.page).toEqual(0)
+
+    describe "responds without workouts", ->
+
+      beforeEach ->
+        @server = sinon.fakeServer.create()
+        @server.respondWith("GET", "/workouts?page=1",
+                            [200, { "Content-Type": "application/json" },
+                            JSON.stringify(@incomingJSON)])
+        @workouts = @loader.reloadWorkouts()
+        @server.respond()
+
+      afterEach -> @server.restore()

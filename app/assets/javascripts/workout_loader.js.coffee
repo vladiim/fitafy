@@ -7,9 +7,10 @@ class window.WorkoutLoader
 
   windowScrollCheck: => $(window).scroll(@check)
 
-  # need to keep a local copy of muscles
-  # otherwise this will just keep reloading
-  # all the workouts when no arg is passed in
+  # need to stop calling server once all the workouts are loaded
+  # give message - no more workouts with back & chest
+  # maybe put title @ top - workouts 20 to 40 of 80
+
   reloadWorkouts: (muscles=[]) =>
     @resetMuscles(muscles)
     @incrementOrResetPage()
@@ -20,11 +21,8 @@ class window.WorkoutLoader
     @muscles     = muscles
 
   getAndRenderWorkouts: =>
-    if @muscles.length == 0
-      $.getJSON(@url(), @render)
-    else
-      param = $.param( { muscles: @muscles } )
-      $.getJSON("workouts?#{param}", @render)
+    param = $.param( { muscles: @muscles, page: @page } )
+    $.getJSON("/workouts?#{param}", @render)
 
   render: (workouts) => @addWorkout(workout) for workout in workouts
 
@@ -44,7 +42,7 @@ class window.WorkoutLoader
 
   nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
-  url: => @ul.data("json-url")
+  # url: => @ul.data("json-url")
 
 # TODO: on @reloadWorkouts() need to resetParams() 
 # If they're the same, increment @page else @resetPage()

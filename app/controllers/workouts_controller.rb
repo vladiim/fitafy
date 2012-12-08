@@ -9,9 +9,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])
-    @workouts  = @workouts.offset_by_page(params[:page])
-
-    # debugger
+                        .offset_by_page(params[:page])
 
     @renderer  = WorkoutsIndex.new
     @muscles   = Workout.muscles

@@ -23,7 +23,7 @@ class Workout < ActiveRecord::Base
   delegate :username, to: :user
 
   scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
-  scope :offset_by_page, lambda { |page| self.offset(page.to_i * 20).limit(20) }
+  scope :offset_by_page, lambda { |page| self.limit(20).offset(page.to_i * 20) }
 
   def self.trending
     # TODO:
