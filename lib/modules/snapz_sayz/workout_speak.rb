@@ -39,11 +39,11 @@ module SnapzSayz
     end
 
     def self.no_difficulty_value
-      "No difficulty..."
+      "None..."
     end
 
     def self.no_client_level_value
-      "No client level..."
+      "None..."
     end
 
     def self.no_notes_value
