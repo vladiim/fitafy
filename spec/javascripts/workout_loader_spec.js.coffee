@@ -79,8 +79,13 @@ describe "WorkoutLoader", ->
         @server = sinon.fakeServer.create()
         @server.respondWith("GET", "/workouts?page=1",
                             [200, { "Content-Type": "application/json" },
-                            JSON.stringify(@incomingJSON)])
+                            JSON.stringify([])])
         @workouts = @loader.reloadWorkouts()
         @server.respond()
 
       afterEach -> @server.restore()
+
+      it "decrements the page number", -> expect(@loader.page).toEqual(0)
+
+      it "lets the user know there are no more workouts", ->
+        expect($(".end_of_workouts > p")).toHaveText("No more workouts!")

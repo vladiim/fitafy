@@ -24,7 +24,11 @@ class window.WorkoutLoader
     param = $.param( { muscles: @muscles, page: @page } )
     $.getJSON("/workouts?#{param}", @render)
 
-  render: (workouts) => @addWorkout(workout) for workout in workouts
+  render: (workouts) =>
+    if workouts.length
+      @addWorkout(workout) for workout in workouts
+    else
+      @noMoreWorkouts()
 
   addWorkout: (workout) => @ul.append(@template_renderer.render(@mustache, workout))
 
@@ -38,14 +42,14 @@ class window.WorkoutLoader
     @old_muscles.length is @muscles.length and @old_muscles.every = (elem, i) ->
       elem is @muscles[i]
 
+  noMoreWorkouts: =>
+    @page--
+    $(".end_of_workouts > p").text("No more workouts!")
+
   check: => @reloadWorkouts() if @nearBottom()
 
-  nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
-
-  # url: => @ul.data("json-url")
-
-# TODO: on @reloadWorkouts() need to resetParams() 
-# If they're the same, increment @page else @resetPage()
+  nearBottom: =>
+    $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
 $ ->
   loader = new WorkoutLoader
