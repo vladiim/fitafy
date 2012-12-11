@@ -25,9 +25,12 @@ gem 'omniauth-facebook', '~> 1.4.1'
 
 # ------------ VIEWS ------------ #
 
-gem 'sass-rails',     '~> 3.2.3'
-gem 'coffee-rails',   '~> 3.2.1'
-gem 'uglifier',       '>= 1.0.3'
+group :assets do
+  gem 'sass-rails',     '~> 3.2.3'
+  gem 'coffee-rails',   '~> 3.2.1'
+  gem 'uglifier',       '>= 1.0.3'
+end
+
 gem 'mustache-rails', '~> 0.2.3'
 gem 'mustache',       '~> 0.99.4'
 gem 'hogan_assets',   '~> 1.3.4'

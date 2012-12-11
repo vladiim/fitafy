@@ -1,8 +1,5 @@
-#<Workout id: 224
-=> "biceps"
-=> "shoulders"
-
 # Up to
+* Workout tag isn't keeping track of page number correctly
 * Create spike & test out squeel queries
 
 # Notes

@@ -2,23 +2,30 @@ class window.WorkoutLoader
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
     @ul          = $("#workout_list")
     @mustache    = "app/templates/workouts/workouts_index"
+    @muscles     = []
     @old_muscles = []
     @resetPage()
 
-  windowScrollCheck: => $(window).scroll(@check)
+  windowScrollCheck: => $(window).bind "scroll", => @check()
+  # windowScrollCheck: => $(window).scroll(@check)
 
-  # need to stop calling server once all the workouts are loaded
-  # give message - no more workouts with back & chest
-  # maybe put title @ top - workouts 20 to 40 of 80
+  check: =>
+    console.log("muscles from scroll: #{@muscles}")
+    if @nearBottom()
+      @reloadWorkouts(@muscles)
+    else false
 
-  reloadWorkouts: (muscles=[]) =>
+  reloadWorkouts: (muscles) =>
     @resetMuscles(muscles)
     @incrementOrResetPage()
     @getAndRenderWorkouts()
+    $(window).unbind("scroll")
+    @windowScrollCheck() # unless @noMoreWorkouts()
 
   resetMuscles: (muscles) =>
-    @old_muscles = @muscles if @muscles
+    @old_muscles = @muscles
     @muscles     = muscles
+    console.log("muscles: #{@muscles} -- old_muscles: #{@old_muscles}")
 
   getAndRenderWorkouts: =>
     param = $.param( { muscles: @muscles, page: @page } )
@@ -33,20 +40,23 @@ class window.WorkoutLoader
   addWorkout: (workout) => @ul.append(@template_renderer.render(@mustache, workout))
 
   incrementOrResetPage: =>
+    console.log("Page pre #: #{@page}")
     if @sameMuscles() then @page++ else @resetPage()
+    console.log("Page post #: #{@page}")
 
   resetPage: => @page = 0
 
+  # return true if both are empty or 
+  # each item in the array is equal
   sameMuscles: =>
-    return false if @old_muscles == undefined
-    @old_muscles.length is @muscles.length and @old_muscles.every = (elem, i) ->
-      elem is @muscles[i]
+    return true if @old_muscles is @muscles
+    if @old_muscles.length is @muscles.length and for index in @muscles.length
+      @muscles[index] is @old_muscles[index]
+    then true else false
 
   noMoreWorkouts: =>
     @page--
     $(".end_of_workouts > p").text("No more workouts!")
-
-  check: => @reloadWorkouts() if @nearBottom()
 
   nearBottom: =>
     $(window).scrollTop() > $(document).height() - $(window).height() - 30
