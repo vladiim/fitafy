@@ -8,6 +8,8 @@ class window.TagLinkSorter
 
   init: ->
 
+    @loader.windowScrollCheck()
+
     $(@showTagsButton).on "click", (event) =>
       $(@inactiveTags).toggleClass("hidden")
       event.preventDefault()

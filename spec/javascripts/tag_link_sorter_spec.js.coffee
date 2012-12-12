@@ -2,7 +2,7 @@ describe "TagLinkSorter", ->
   beforeEach ->
     loadFixtures "tag_link_bar.html"
     @reloadWorkouts = sinon.stub()
-    @loader = { reloadWorkouts: @reloadWorkouts }
+    @loader = { reloadWorkouts: @reloadWorkouts, windowScrollCheck: sinon.stub() }
     @sorter = new TagLinkSorter(@loader)
     @sorter.init()
     @$inactiveTags = $("#inactive_tags")
