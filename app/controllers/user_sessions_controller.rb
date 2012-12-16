@@ -8,9 +8,13 @@ class UserSessionsController < ApplicationController
 
   def create
   	@user_session = UserSession.new(params[:user_session])
+    @user         = User.find_by_email(params[:user_session][:email])
   	if @user_session.save
   		flash[:success] = SnapzSayz::UserSessionSpeak.login
       redirect_back root_url
+    elsif @user && @user.not_activated?
+      flash[:error] = "Looks like you haven't confirmed your email address"
+      redirect_to new_activation_path
   	else
       flash[:error] = SnapzSayz::UserSessionSpeak.didnt_login
   		render action: :new

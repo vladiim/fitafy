@@ -1,6 +1,5 @@
 # Up to
-* Workout tag isn't keeping track of page number correctly
-* Create spike & test out squeel queries
+* cucumber: needs_to_confirm_email
 
 # Notes
 * Server not working:

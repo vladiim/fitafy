@@ -27,31 +27,41 @@ describe User do
     end
   end
 
-  # describe "#create_account" do
-  #   let(:result)        { trainer.create_account }
-  #   let(:trainer)       { build :trainer }
-  #   let(:welcome_email) { Object.new }
+  describe "#active" do
+    let(:subject) { create :user }
 
-  #   context "saves successfully" do
-  #     before do
-  #       mock(UserMailer).sign_up_welcome(trainer) { welcome_email }
-  #       mock(welcome_email).deliver { welcome_email }
-  #     end
+    context "on creation" do
+      it "should not be active" do
+        subject.should_not be_active
+      end
+    end
 
-  #     it "saves the user and sends them an email" do
-  #       result.should be
-  #       User.last.should eq trainer
-  #     end
-  #   end
+    context "activated" do
+      before { subject.activate! }
 
-  #   context "doesn't save successfully" do
-  #     before { mock(trainer).save { false } }
+      it "should be active" do
+        subject.should be_active
+      end
+    end
+  end
 
-  #     it "returns false" do
-  #       result.should eq false
-  #     end
-  #   end
-  # end
+  describe "#not_activated?" do
+    context "user has been activated" do
+      before { mock(subject).active { true } }
+
+      it "returns false" do
+        subject.not_activated?.should eq false
+      end
+    end
+
+    context "user has not been activated" do
+      before { mock(subject).active { nil } }
+
+      it "returns true" do
+        subject.not_activated?.should eq true
+      end
+    end
+  end
 
   describe "#build_workout" do
     let(:params)  { OpenStruct.new user_id: subject.username }
@@ -319,29 +329,4 @@ describe User do
       end
     end
   end
-
-  # describe ".find_and_reset_token" do
-  #   context "with valid token" do
-  #     let(:user)   { create :user, perishable_token: "TOKEN"}
-  #     let(:result) { User.find_and_reset_token(user.perishable_token) }
-
-  #     it "finds the user" do
-  #       result.should eq user
-  #     end
-
-  #     it "resets the perishable_token" do
-  #       result
-  #       p user
-  #       User.find(user.id).perishable_token.should eq ""
-  #       # user.perishable_token.should eq ""
-  #     end
-  #   end
-
-  #   context "without valid token" do
-  #     let(:result) { User.find_and_destroy_token("blah") }
-  #     it "returns nil" do
-  #       result.should_not be
-  #     end
-  #   end
-  # end
 end

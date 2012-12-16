@@ -15,6 +15,20 @@ Feature: Trainer manages account
     And Snapz should have a message for creating an account
     And I should get a sign up email
 
+  @focus
+  Scenario: Trainer needs to confirm email
+    Given I'm not logged in
+    When I've created an account
+    When I try to log in
+    Then I get a message to confirm my email
+    And I can resend the email
+
+  # @focus
+  Scenario: Trainer confirms email
+    Given I've created an account
+    When I confirm my email
+    Then I'm signed in automagically
+
   Scenario: Trainer has profile page
     Given I'm on the hompage
     When I visit my profile page

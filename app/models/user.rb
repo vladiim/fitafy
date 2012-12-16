@@ -22,9 +22,7 @@ class User < ActiveRecord::Base
   validates :terms_of_service, acceptance: { accept: 'true' }
 
   # for authlogic gem
-  acts_as_authentic do |c|
-    c.login_field = "email"
-  end
+  acts_as_authentic { |c| c.login_field = "email" }
 
   # for carrierwave image management gem
   mount_uploader :avatar, AvatarUploader
@@ -35,6 +33,16 @@ class User < ActiveRecord::Base
 
   def trainer?
   	role == "trainer"
+  end
+
+  def activate!
+    reset_perishable_token!
+    self.active = true
+    save
+  end
+
+  def not_activated?
+    self.active != true
   end
 
   def admin?

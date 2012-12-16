@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
   	if @user.save
       flash[:success] = SnapzSayz::UserSpeak.created_user
-      redirect_to root_path
+      redirect_to new_activation_path
     else
       flash[:error] = SnapzSayz::UserSpeak.create_user_fail
       render :new

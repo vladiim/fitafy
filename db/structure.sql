@@ -219,7 +219,8 @@ CREATE TABLE users (
     crypted_password character varying(255),
     facebook_user_id integer,
     avatar character varying(255),
-    perishable_token character varying(255) DEFAULT ''::character varying
+    perishable_token character varying(255) DEFAULT ''::character varying,
+    active boolean
 );
 
 
@@ -595,3 +596,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121118050007');
 INSERT INTO schema_migrations (version) VALUES ('20121118064642');
 
 INSERT INTO schema_migrations (version) VALUES ('20121121085347');
+
+INSERT INTO schema_migrations (version) VALUES ('20121213104121');
