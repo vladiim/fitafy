@@ -3,7 +3,9 @@ require "spec_helper"
 describe UserMailer do
 
   describe "#sign_up_welcome" do
-    let(:trainer) { OpenStruct.new username: "jamel", email: "elgin@turner.com" }
+    let(:trainer) { OpenStruct.new username: "jamel",
+                                   email: "elgin@turner.com",
+                                   perishable_token: "1234" }
     let(:mail)    { UserMailer.sign_up_welcome(trainer) }
 
     it "renders the subject" do

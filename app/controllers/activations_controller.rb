@@ -19,7 +19,8 @@ class ActivationsController < ApplicationController
 
     elsif @user.activate!
       flash[:success] = "You're account has been activated!"
-      UserSession.create(@user, false)
+      UserSession.create! @user
+      # UserSession.create(@user, false)
       redirect_to user_path(@user)
 
     else
