@@ -1,6 +1,6 @@
 When /^I go to the workout's page$/ do
   click_link "LOGOUT"
-  @me = FactoryGirl.create :trainer
+  @me = create :active_trainer
   login @me
   @original_workout = Workout.last
   visit workouts_path

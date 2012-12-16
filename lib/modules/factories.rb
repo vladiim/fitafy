@@ -10,6 +10,10 @@ FactoryGirl.define do
   	password              "password"
   	password_confirmation "password"
     terms_of_service      "true"
+
+    factory :active_trainer do
+      active true
+    end
   end
 
   factory :facebook_user do

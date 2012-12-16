@@ -4,7 +4,7 @@ Feature: Trainer manages workouts
   I want to be able to manage workouts
 
   Background:
-    When I'm a logged in trainer
+    Given I'm a logged in trainer
 
   Scenario: Trainer creates new workout
     Given I've created a new workout

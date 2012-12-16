@@ -1,3 +1,3 @@
 Given /^a trainer exists$/ do
-  @trainer = create :trainer
+  @active_trainer = create :active_trainer
 end

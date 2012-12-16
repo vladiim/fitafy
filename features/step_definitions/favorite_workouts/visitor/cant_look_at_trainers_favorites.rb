@@ -3,7 +3,7 @@ Given /^the trainer has no favorite workouts$/ do
 end
 
 When /^I want to look at their favorite workouts$/ do
-  visit user_path(@trainer)
+  visit user_path(@active_trainer)
 end
 
 Then /^I shouldn't see a link to their favorites$/ do

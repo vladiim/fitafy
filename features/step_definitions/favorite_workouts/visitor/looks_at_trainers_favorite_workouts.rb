@@ -1,10 +1,10 @@
 Given /^the trainer has workouts, some of them favorites$/ do
-  @non_favorite = create :workout, user_id: @trainer.id
+  @non_favorite = create :workout, user_id: @active_trainer.id
   3.times do
-  	create :favorite_workout, user: @trainer
+  	create :favorite_workout, user: @active_trainer
   end
-  @favorites = @trainer.favorite_workouts
-  visit user_path(@trainer)
+  @favorites = @active_trainer.favorite_workouts
+  visit user_path(@active_trainer)
 end
 
 When /^I click on favorites$/ do

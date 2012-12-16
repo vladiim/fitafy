@@ -5,7 +5,7 @@ Feature: Trainer Mangaes Favorite Workouts
 
   Background:
     Given a workout exsists
-    And I'm a logged in user
+    And I'm a logged in trainer
 
   Scenario: Trainer adds workout to favorite
     Given I'm on a workout's page
@@ -19,5 +19,3 @@ Feature: Trainer Mangaes Favorite Workouts
     When I click remove favorite
     Then the workout shouldn't be one of my favorites
     And snapz should tell me I've relmoved the workout from my favorites
-
-  Scenario: Trainer removes workout from favorite from their profile

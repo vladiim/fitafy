@@ -1,10 +1,10 @@
 Given /^I've created a new workout$/ do
-  @workout = @trainer.build_workout(name: "MY NEW WORKOUT")
+  @workout = @active_trainer.build_workout(name: "MY NEW WORKOUT")
   @workout.save
 end
 
 When /^I go to the new workout's page$/ do
-  visit user_workout_path(@trainer, @workout)
+  visit user_workout_path(@active_trainer, @workout)
 end
 
 Then /^I should be able to edit the workout's details$/ do

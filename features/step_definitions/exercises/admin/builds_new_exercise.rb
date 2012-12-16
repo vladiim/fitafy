@@ -1,5 +1,4 @@
 Given /^I want to create a new exercise$/ do
-  create_admin_user
   visit root_path
 end
 

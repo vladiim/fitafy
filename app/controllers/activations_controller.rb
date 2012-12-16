@@ -9,9 +9,6 @@ class ActivationsController < ApplicationController
   end
 
   def create
-    # TODO you should probably provide some sort of “My Token is Expired!” action that will reset the token and resend the activation email if the user does not get around to activating right away.
-    # TODO http://stackoverflow.com/questions/3194372/authlogic-how-to-find-if-a-user-was-not-logged-in-because-the-user-was-not-logg/3252452#3252452
-
     @user = User.find_using_perishable_token(params[:activation_code]) || redirect_with_message
     active_user_message if @user.active?
 

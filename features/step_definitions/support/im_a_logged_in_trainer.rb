@@ -1,4 +1,4 @@
 Given /^I'm a logged in trainer$/ do
-  @trainer = create :trainer
-  login @trainer
+  @active_trainer = create :active_trainer
+  login @active_trainer
 end

@@ -5,12 +5,14 @@ class FacebookUser < ActiveRecord::Base
 
   attr_accessible :uid, :oauth_token, :oauth_expires_at
 
-  delegate :id, to: :user, prefix: true
-  delegate :username, :username=, to: :user
-  delegate :email, :email=, to: :user
-  delegate :password=, :password, to: :user
+  delegate :id,                     to: :user, prefix: true
+  delegate :username, :username=,   to: :user
+  delegate :email, :email=,         to: :user
+  delegate :password=, :password,   to: :user
   delegate :password_confirmation=, to: :user
-  delegate :remote_avatar_url=, to: :user
+  delegate :remote_avatar_url=,     to: :user
+  delegate :terms_of_service=,      to: :user
+  delegate :active=,                to: :user
 
   has_one :user
 
@@ -29,7 +31,8 @@ class FacebookUser < ActiveRecord::Base
       password                 = Digest::MD5.hexdigest(creds.fetch("token"))
       fb.password              = password
       fb.password_confirmation = password
-      fb.user.terms_of_service = "true"
+      fb.terms_of_service      = "true"
+      fb.active                = true
       fb.oauth_expires_at      = creds.fetch("expires_at")
       fb.remote_avatar_url     = "http://res.cloudinary.com/hdxvaer2w/image/facebook/w_300,h_300/#{fb.uid}.jpg"
       fb.provider              = "facebook"

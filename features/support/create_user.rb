@@ -5,9 +5,9 @@ module CreateUser
   end
 
   def create_admin_user
-    # admin = FactoryGirl.create :trainer
-    admin = create :trainer
-    admin.role = "admin"
+    admin        = create :trainer
+    admin.role   = "admin"
+    admin.active = true
     admin.save!
   end
 end
