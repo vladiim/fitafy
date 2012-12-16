@@ -3,7 +3,7 @@ module SnapzSayz
   module UserSpeak
 
     def self.created_user
-      "Yea, yea, yea! Welcome to the fitification!"
+      "Yea, yea, yea! Welcome to the fitification! To finish your sign up click on the link sent to your email address."
     end
 
     def self.update_user

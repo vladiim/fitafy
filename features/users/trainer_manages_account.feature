@@ -22,7 +22,6 @@ Feature: Trainer manages account
     Then I get a message to confirm my email
     And I can resend the email
 
-  # @focus
   Scenario: Trainer confirms email
     Given I've created an account
     When I confirm my email

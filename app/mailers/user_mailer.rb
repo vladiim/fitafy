@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  include Resque::Mailer
+  # include Resque::Mailer
   include SendGrid
   extend MailerDefaultUrl
 
@@ -11,6 +11,7 @@ class UserMailer < ActionMailer::Base
 
   def sign_up_welcome trainer
   	@username = trainer.username
+    @activation_url = edit_activation_url(trainer.perishable_token)
   	mail to: trainer.email,
   	     subject: SnapzSayz::EmailSpeak.sign_up_welcome_title
   end

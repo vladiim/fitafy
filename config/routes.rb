@@ -17,7 +17,7 @@ Fitafy::Application.routes.draw do
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 
-  resources :activations, only: [:new, :create]
+  resources :activations, only: [:new, :edit]
 
   # this solution comes from http://stackoverflow.com/questions/6369476/how-to-remove-controller-names-from-rails-routes
   # resources :users, except: [:show, :new, :index, :create], path: "/" do

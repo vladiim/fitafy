@@ -8,15 +8,22 @@ class ActivationsController < ApplicationController
     @activation = Activation.new
   end
 
-  def create
-    @user = User.find_using_perishable_token(params[:activation_code]) || redirect_with_message
-    active_user_message if @user.active?
+  def edit
+    @user = User.find_by_perishable_token(params[:id])
 
-    if @user.activate!
+    if @user == nil
+      redirect_bad_token
+
+    elsif @user.active?
+      redirect_active_user
+
+    elsif @user.activate!
       flash[:success] = "You're account has been activated!"
       UserSession.create(@user, false)
       redirect_to user_path(@user)
+
     else
+      flash[:error] = SnapzSayz::ActivationsSpeak.issue
       render :new
     end
   end
@@ -24,19 +31,21 @@ class ActivationsController < ApplicationController
   def reset
   	email = params[:activation][:email]
     @activation = Activation.new
-    @activation.resend email
+    @activation.resend(email)
     flash[:success] = "Email resent to #{email}!"
     render :new
   end
 
   private
 
-    def redirect_with_message
+    def redirect_bad_token
       flash[:error] = "That activation url didn't work why not generate a new one?"
-      redirect_to :new
+      @activation = Activation.new
+      render :new
     end
 
-    def active_user_message
-      flash[:error] = "Your account is already activated."
+    def redirect_active_user
+      flash[:error] = "Your account is already activated - you can log in."
+      redirect_to login_path
     end
 end
