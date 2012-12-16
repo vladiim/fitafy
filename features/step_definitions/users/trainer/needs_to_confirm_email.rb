@@ -1,6 +1,3 @@
-# https://github.com/matthooks/authlogic-activation-tutorial
-# up to step 3
-
 When /^I've created an account$/ do
   create_new_user
 end
