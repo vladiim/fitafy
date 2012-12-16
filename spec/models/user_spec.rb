@@ -45,24 +45,6 @@ describe User do
     end
   end
 
-  describe "#active?" do
-    context "user has been activated" do
-      before { mock(subject).active { true } }
-
-      it "returns true" do
-        subject.should be_active
-      end
-    end
-
-    context "user has not been activated" do
-      before { mock(subject).active { nil } }
-
-      it "returns false" do
-        subject.should_not be_active
-      end
-    end
-  end
-
   describe "#not_activated?" do
     context "user has been activated" do
       before { mock(subject).active { true } }

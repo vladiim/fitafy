@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
     save
   end
 
-  def active?
-    self.active == true
-  end
-
   def not_activated?
     self.active != true
   end
