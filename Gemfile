@@ -2,12 +2,11 @@ source 'http://rubygems.org'
 
 gem 'rails',                 '~> 3.2.0'
 
-gem 'friendly_id',           '~> 4.0.1'
-
 # ------------ INFRASTRUCTURE ------------ #
 
 gem 'pg',                    '~> 0.13.0'
 gem 'heroku',                '~> 2.21.0'
+gem 'thin',                  '~> 1.5.0'
 gem 'resque',                '~> 1.22.0'
 gem 'resque_mailer',         '~> 2.1.0'
 gem 'newrelic_rpm',          '~> 3.5.0'
@@ -16,6 +15,7 @@ gem 'rack-google-analytics', '~> 0.11.0'
 gem 'redis',                 '~> 3.0.2'
 gem 'pry',                   '~> 0.9.9.0'
 gem 'squeel',                '~> 1.0.13'
+gem 'friendly_id',           '~> 4.0.1'
 
 # ------------ AUTH ------------ #
 
@@ -38,6 +38,7 @@ gem 'haml_assets',    '~> 0.2.1'
 gem 'compass-rails',  '~> 1.0.3'
 gem 'compass-h5bp',   '~> 0.0.5'
 
+# gem 'display_case'
 gem 'display_case', '~> 0.0.4', git: "https://github.com/vladiim/display-case"
 gem 'haml-rails',   '~> 0.3.0'
 gem 'html5-rails',  '~> 0.0.5'

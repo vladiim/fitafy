@@ -16,7 +16,7 @@ class FacebookUser < ActiveRecord::Base
 
   has_one :user
 
-  before_save :format_username, :format_oath_expires_at #, :format_avatar_picture
+  before_save :format_username
 
   def self.from_auth auth
     info  = auth.fetch("info")
@@ -33,7 +33,7 @@ class FacebookUser < ActiveRecord::Base
       fb.password_confirmation = password
       fb.terms_of_service      = "true"
       fb.active                = true
-      fb.oauth_expires_at      = creds.fetch("expires_at")
+      fb.oauth_expires_at      = Time.at(creds.fetch("expires_at").to_i)
       fb.remote_avatar_url     = "http://res.cloudinary.com/hdxvaer2w/image/facebook/w_300,h_300/#{fb.uid}.jpg"
       fb.provider              = "facebook"
     end
@@ -60,9 +60,5 @@ class FacebookUser < ActiveRecord::Base
 
   def increment number
     number ? (number.to_i + 1).to_s : "-1"
-  end
-
-  def format_oath_expires_at
-    self.oauth_expires_at = Time.at(self.oauth_expires_at)
   end
 end

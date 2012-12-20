@@ -1,5 +1,12 @@
+# deploy integration step
+* replicate db
+	- heroku addons:add heroku-postgresql:blah --form HEROKU_POSTGRESQL_BLAH
+* test migrations on db copy
+
+
 # Up to
-* cucumber: needs_to_confirm_email
+* test cucumber works
+* update display_case
 
 # Notes
 * Server not working:

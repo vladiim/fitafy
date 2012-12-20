@@ -27,7 +27,6 @@ describe FacebookUser do
       it "uses the given auth info for attributes" do
         result.uid.should              eq '12345'
         result.email.should            eq 'EMAIL@EMAIL.COM'
-        # result.avatar.should           eq "facebook-name-profile.png"
         result.oauth_token.should      eq '1234'
         result.provider.should         eq "facebook"
       end
@@ -105,27 +104,10 @@ describe FacebookUser do
     end
 
     it "is called before saving" do
-      # mock.instance_of(FacebookUser).format_avatar_picture { true }
       create :user, username: "facebook-name-20000"
       fb_user.username = "facebook-name-20000"
       fb_user.save
       fb_user.username.should eq "facebook-name-20001"
-    end
-  end
-
-  describe "#format_oath_expires_at" do
-    let(:result) { fb_user.format_oath_expires_at }
-
-    it "turns expires_at to date time" do
-      result.should be_a Time
-      result.should eq Time.at(4503662457)
-    end
-
-    it "is called before saving" do
-      fb_user.oauth_expires_at = 4503662457
-      # mock.instance_of(FacebookUser).format_avatar_picture { true }
-      fb_user.save
-      fb_user.oauth_expires_at.should eq Time.at(4503662457)
     end
   end
 

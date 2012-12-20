@@ -4,7 +4,7 @@ Feature: Visitor Views Favorite Workouts
   I want to be able to look at their favorite workouts
 
   Background:
-    Given a trainer exists
+    Given a trainer has been created
     And I'm on the trainer's profile
 
   Scenario: Visitor looks at trainer's favorite workouts

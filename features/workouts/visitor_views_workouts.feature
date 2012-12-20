@@ -29,14 +29,14 @@ Feature: Visitor views workouts
     Then I can't see the edit workout link
 
   Scenario: Visitor copies workout once logged in
-    Given a trainer exists 
+    Given a trainer has been created
     And I'm on a workout's page
     When I click copy workout
     And I log in
     Then I should be back on the workout
 
   Scenario: Visitor favorites workout once signed up
-    Given a trainer exists 
+    Given a trainer has been created
     And I'm on a workout's page
     When I click favorite workout
     And I log in
