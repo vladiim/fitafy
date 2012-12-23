@@ -3,6 +3,6 @@ When /^I click logout$/ do
 end
 
 Then /^I shouldn't be logged in anymore$/ do
-  page.should have_content "SIGNUP"
-  page.should have_content "SIGN IN"
+  page.should have_content "SIGN UP"
+  page.should have_content "LOGIN"
 end

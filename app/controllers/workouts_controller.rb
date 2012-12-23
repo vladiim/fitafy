@@ -50,7 +50,6 @@ class WorkoutsController < ApplicationController
     @client_level     = Workout::CLIENT_LEVELS
     @difficulty       = Workout::DIFFICULTY
     @exercises        = @workout.all_exercises
-    # @exercises        = Exercise.alphabetical_including_muscles(params[:tag])
     @muscles          = Workout.muscles
     @workout_exercise = WorkoutExercise.new
 

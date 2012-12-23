@@ -1,7 +1,7 @@
 class WorkoutExhibit < DisplayCase::Exhibit
 
   def self.applicable_to? object, controller
-  	 object.class.name == "Workout"
+  	object.class.name == "Workout"
   end
 
   def render_exercises view_context
