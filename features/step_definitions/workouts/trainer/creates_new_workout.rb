@@ -4,7 +4,7 @@ Given /^I've created a new workout$/ do
 end
 
 When /^I go to the new workout's page$/ do
-  visit user_workout_path(@active_trainer, @workout)
+  visit_workout(@workout)
 end
 
 Then /^I should be able to edit the workout's details$/ do

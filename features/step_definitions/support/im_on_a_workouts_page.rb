@@ -1,4 +1,4 @@
 Given /^I'm on a workout's page$/ do
   @trainer = @workout.user
-  visit user_workout_path(@trainer.id, @workout.id)
+  visit users_workout_path(@workout.username, @workout)
 end

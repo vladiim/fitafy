@@ -13,7 +13,7 @@ class WorkoutsIndex < Mustache
   end
 
   def url
-    user_workout_path(workout.user_id, workout)
+    users_workout_path(workout.username, workout)
   end
 
   def name

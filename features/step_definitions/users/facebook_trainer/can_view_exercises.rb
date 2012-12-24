@@ -2,7 +2,7 @@ Given /^I'm on a workout page$/ do
   user       = create :user
   workout    = create :workout, user: user
   workout_ex = create :workout_exercise, workout: workout
-  visit user_workout_path(user, workout)
+  visit_workout(workout)
 end
 
 When /^I go to visit an exercise$/ do

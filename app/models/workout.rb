@@ -8,18 +8,18 @@ class Workout < ActiveRecord::Base
   CLIENT_LEVELS = %w{Beginner Regular Pro}
   DIFFICULTY    = %w{Easy Medium Hard}
 
-  has_many :workout_exercises, dependent: :destroy, order: 'order_number'
+  has_many :workout_exercises,  dependent: :destroy, order: 'order_number'
+  has_many :exercises,          through: :workout_exercises, uniq: true, dependent: :destroy
+  has_many :favorite_workouts,  dependent: :destroy
+  has_many :users,              through: :favorite_workouts, dependent: :destroy
+  belongs_to :user,             dependent: :destroy
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
-  has_many :exercises, through: :workout_exercises, uniq: true, dependent: :destroy
-  has_many :favorite_workouts, dependent: :destroy
-  has_many :users, through: :favorite_workouts, dependent: :destroy
 
   validates_presence_of :name, :user_id
 
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
   validates :difficulty, inclusion:   { in: DIFFICULTY },    if: :difficulty?
 
-  belongs_to :user
   delegate :username, to: :user
 
   scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
@@ -86,6 +86,10 @@ class Workout < ActiveRecord::Base
     end
   end
 
+  def username
+    User.find(self.user_id).username
+  end
+
   def exercises_count
     workout_exercises.count
   end
@@ -108,6 +112,10 @@ class Workout < ActiveRecord::Base
 
   def self.equipment_names
     Equipment.all_names
+  end
+
+  def to_param
+    "#{id}-#{name}".parameterize
   end
 
   private

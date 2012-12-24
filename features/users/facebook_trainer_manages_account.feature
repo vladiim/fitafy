@@ -34,7 +34,6 @@ Feature: Facebook Trainer manages account
     When I go to visit an exercise
     Then I should be able to see that exercise
 
-  @fb_test
   Scenario: Facebook Trainer logs out on first go
     Given I've signed in through Facebook
     When I click logout

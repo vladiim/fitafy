@@ -1,7 +1,7 @@
 Given /^I'm on a workout$/ do
   @trainer = FactoryGirl.create :trainer
   @workout = FactoryGirl.create :workout, user_id: @trainer.id
-  visit user_workout_path(@trainer, @workout)
+  visit_workout(@workout)
 end
 
 When /^I click the trainer's name$/ do

@@ -2,7 +2,7 @@ Given /^I've gone to a workout show page$/ do
   create :workout_exercise
   trainer = User.last
   workout = Workout.last
-  visit user_workout_path(trainer, workout)
+  visit_workout(workout)
 end
 
 When /^I click on an exercise in the workout's list$/ do

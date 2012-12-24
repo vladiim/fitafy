@@ -17,4 +17,7 @@
     = render partial: "tags/list", locals: { width: 8 }
 
     %br
-    = render partial: "workouts/workout", collection: @workouts
+      - @workouts.each do |workout|
+        - @renderer.set_workout workout
+        = @renderer.render.html_safe
+    / = render partial: "workouts/workout", collection: @workouts

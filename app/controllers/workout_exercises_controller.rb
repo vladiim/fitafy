@@ -4,7 +4,7 @@ class WorkoutExercisesController < ApplicationController
     @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
     if @workout_exercise.save
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
-      redirect_to user_workout_path(current_user.id, @workout_exercise.workout)
+      redirect_to users_workout_path(current_user.username, @workout_exercise.workout)
     else
       flash[:failure] = "Sorry something went wrong - try again!"
       redirect :back
@@ -20,7 +20,7 @@ class WorkoutExercisesController < ApplicationController
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
 
       respond_to do |format|
-  	    format.html { redirect_to user_workout_path(@user, @workout) }
+  	    format.html { redirect_to users_workout_path(@user.username, @workout) }
         format.js
       end
   	else
@@ -33,7 +33,7 @@ class WorkoutExercisesController < ApplicationController
   	@workout_exercise = WorkoutExercise.find(params[:id])
     @workout = Workout.find(@workout_exercise.workout_id)
     @workout_exercise.destroy
-    redirect_to user_workout_path(@workout.user_id, @workout)
+    redirect_to users_workout_path(@workout.username, @workout)
     flash[:success] = SnapzSayz::WorkoutExerciseSpeak.delete
   end
 end

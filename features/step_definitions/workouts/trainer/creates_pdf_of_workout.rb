@@ -1,6 +1,6 @@
 Given /^I'm on the workout page$/ do
   @workout = create :workout, user_id: @active_trainer.id
-  visit user_workout_path(@active_trainer.id, @workout)
+  visit_workout(@workout)
 end
 
 When /^I click download as pdf$/ do
@@ -8,5 +8,6 @@ When /^I click download as pdf$/ do
 end
 
 Then /^I should get a pdf$/ do
-  current_url.should eq "http://www.example.com/users/#{@active_trainer.id}/workouts/#{@workout.id}.pdf?id=#{@workout.id}"
+  p "USERNAME::: #{@active_trainer.username}"
+  current_url.should include "#{@workout.id}-#{@workout.name.parameterize}.pdf?id="
 end

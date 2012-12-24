@@ -13,7 +13,7 @@ end
 
 Then /^I should have a copy of the workout I can edit$/ do
   @copied_workout = Workout.last
-  current_path.should eq user_workout_path(@me, @copied_workout)
+  current_path.should eq users_workout_path(@me.username, @copied_workout)
 end
 
 Then /^Snapz should let me know I've copied the workout$/ do

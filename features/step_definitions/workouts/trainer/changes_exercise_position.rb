@@ -5,7 +5,7 @@ Given /^I'm a workout page with two exercises$/ do
   [@exercise_1, @exercise_2].each do |ex|
     workout.workout_exercises.create exercise_id: ex.id
   end
-  visit user_workout_path(@active_trainer, workout)
+  visit users_workout_path(workout.username, workout)
 end
 
 When /^I click position "(.*?)" on exercise "(.*?)"$/ do |position, exercise|

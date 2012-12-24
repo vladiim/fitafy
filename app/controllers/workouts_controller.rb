@@ -1,11 +1,14 @@
 require_relative '../mustaches/workouts/index'
-require_relative '../mustaches/workouts/exercise'
+# require_relative '../mustaches/workouts/exercise'
 
 class WorkoutsController < ApplicationController
   include DisplayCase::ExhibitsHelper
 
-  load_and_authorize_resource except: [:index, :show]
-  skip_filter :authorize, only: [:index, :show]
+  # load_and_authorize_resource except: [:index, :show]
+  # skip_filter :authorize,     only: [:index, :show]
+
+  load_and_authorize_resource except: [:index]
+  skip_filter :authorize,     only: [:index]
 
   def index
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])
@@ -39,31 +42,31 @@ class WorkoutsController < ApplicationController
   	end
   end
 
-  def show
-  	@workout          = exhibit Workout.find(params[:id]), self
-    @base_workout     = Workout.find(params[:id])
-    @renderer         = WorkoutsExercise.new
-    @trainer          = User.find @workout.user_id
-    @current_user     = current_user ? current_user : nil
-  	@title            = @workout.name
-    @snapz_confirm    = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
-    @client_level     = Workout::CLIENT_LEVELS
-    @difficulty       = Workout::DIFFICULTY
-    @exercises        = @workout.all_exercises
-    @muscles          = Workout.muscles
-    @workout_exercise = WorkoutExercise.new
+  # def show
+  # 	@workout          = exhibit Workout.find(params[:id]), self
+  #   @base_workout     = Workout.find(params[:id])
+  #   @renderer         = WorkoutsExercise.new
+  #   @trainer          = User.find @workout.user_id
+  #   @current_user     = current_user ? current_user : nil
+  # 	@title            = @workout.name
+  #   @snapz_confirm    = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+  #   @client_level     = Workout::CLIENT_LEVELS
+  #   @difficulty       = Workout::DIFFICULTY
+  #   @exercises        = @workout.all_exercises
+  #   @muscles          = Workout.muscles
+  #   @workout_exercise = WorkoutExercise.new
 
-    respond_to do |format|
-      format.html
-      format.pdf { create_and_generate_pdf }
-      format.js
-    end
-  end
+  #   respond_to do |format|
+  #     format.html
+  #     format.pdf { create_and_generate_pdf }
+  #     format.js
+  #   end
+  # end
 
   def update
     @workout = current_user.workouts.find(params[:id])
     if @workout.update_attributes(params[:workout])
-      redirect_to user_workout_path(current_user, @workout)
+      redirect_to users_workout_path(current_user.username, @workout)
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
     else
       render :new
@@ -76,11 +79,11 @@ class WorkoutsController < ApplicationController
     flash[:success] = SnapzSayz::WorkoutSpeak.deleted_workout
   end
 
-  private
+  # private
 
-    def create_and_generate_pdf
-      pdf = WorkoutPdf.new @workout
-      pdf.generate_content
-      send_data pdf.render, pdf.render_details
-    end
+  #   def create_and_generate_pdf
+  #     pdf = WorkoutPdf.new @workout
+  #     pdf.generate_content
+  #     send_data pdf.render, pdf.render_details
+  #   end
 end

@@ -35,7 +35,7 @@ module WorkoutHelper
   end
 
   def link_to_download_workout_pdf workout
-  	link_to "DOWNLOAD AS PDF", user_workout_path(workout.user_id, workout, format: "pdf"), 
+  	link_to "DOWNLOAD AS PDF", users_workout_path(workout.username, workout, format: "pdf"), 
   	                           class: "btn btn-success button_space"
   end
 
@@ -63,7 +63,7 @@ module WorkoutHelper
   def workouts_index_json workout
     {
       muscles:        workout.muscles,
-      url:            user_workout_path(workout.user_id, workout),
+      url:            users_workout_path(workout.username, workout),
       name:           workout.name,
       client_level:   workout.safe_client_level,
       difficulty:     workout.safe_difficulty,
