@@ -98,11 +98,11 @@ describe "WorkoutHelper" do
   end
 
   describe "#link_to_download_workout_pdf" do
-    let(:workout)       { OpenStruct.new user_id: 1 }
+    let(:workout)       { OpenStruct.new username: "USERNAME" }
     let(:download_link) { "DOWNLOAD LINK" }
 
     before do
-      mock(helper).user_workout_path(1, workout, format: "pdf")
+      mock(helper).users_workout_path("USERNAME", workout, format: "pdf")
       mock(helper).link_to("DOWNLOAD AS PDF", anything, anything) { download_link }
     end
 

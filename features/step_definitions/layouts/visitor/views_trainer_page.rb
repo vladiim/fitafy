@@ -18,5 +18,5 @@ end
 
 Then /^I should see the trainer's workouts$/ do
   page.should have_content "#{@trainer.username.titleize}'s Workouts"
-  page.should have_content @workout.name.titleize
+  page.should have_content @workout.name
 end

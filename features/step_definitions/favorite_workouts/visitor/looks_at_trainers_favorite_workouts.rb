@@ -15,7 +15,7 @@ Then /^I should see their favorites$/ do
   @favorites.each do |fav|
   	within "section.user_workouts" do
   	  workout = Workout.find fav.workout_id
-  	  page.should have_content workout.name.titleize
+  	  page.should have_content workout.name
     end
   end
 end
