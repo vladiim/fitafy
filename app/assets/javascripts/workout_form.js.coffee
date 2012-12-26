@@ -21,15 +21,18 @@ class window.WorkoutForm
     $( @workout_exercise_form ).on "ajax:success", => @formSubmitted()
 
   toggle: =>
-    @tag = @getTag(@link)
+    @tag   = @getTag(@link)
+    @value = @getValue(@link)
     @toggleForm()
     @toggleValue()
 
   getTag: (link) => link.data("tag")
 
-  toggleForm: => $(".workout_form.#{@tag}").toggleClass("hidden")
+  getValue: (link) => link.data("value")
 
-  toggleValue: => $(".workout_value.#{@tag}").toggleClass("hidden")
+  toggleForm: => $(".workout_form.#{@tag}[data-value=#{@value}]").toggleClass("hidden")
+
+  toggleValue: => $(".workout_value.#{@tag}[data-value=#{@value}]").toggleClass("hidden")
 
   formSubmitted: => @hideForms() && @showValues()
 

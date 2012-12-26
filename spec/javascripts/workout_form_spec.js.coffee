@@ -7,22 +7,25 @@ describe "WorkoutForm", ->
 
   describe "workout name form", ->
     beforeEach ->
-      @show_name   = $("a.show_link[data-tag=name]")
-      @form_name   = $(".workout_form.name")
+      @show_name   = $("a.show_link[data-tag=name][data-value=1]")
+      @form_name   = $(".workout_form.name[data-value=1]")
       @form_other  = $(".workout_form.instructions")
       @value_name  = $(".workout_value.name")
       @value_other = $(".workout_value.instructions")
-      @cancel_name = $("a.hide_link[data-tag=name]")
+      @cancel_name = $("a.hide_link[data-tag=name][data-value=1]")
 
     it "is hidden by default", ->
       expect(@form_name).toHaveClass("hidden")
 
-    describe "click 'Edit workout name'", ->
+    describe "click 'Edit workout 1 name'", ->
       beforeEach ->
         @show_name.click()
 
       it "shows the workout name form", ->
         expect(@form_name).not.toHaveClass("hidden")
+
+      it "keeps workout 2 name hidden", ->
+        expect($(".workout_form.name[data-value=2]")).toHaveClass("hidden")
 
       it "hides the associated value", ->
         expect(@value_name).toHaveClass("hidden")
@@ -40,6 +43,9 @@ describe "WorkoutForm", ->
 
         it "shows the workout name value", ->
           expect(@value_name).not.toHaveClass("hidden")
+
+        it "keeps workout 2 name hidden", ->
+          expect($(".workout_form.name[data-value=2]")).toHaveClass("hidden")
 
       describe "form submitted", ->
         beforeEach ->

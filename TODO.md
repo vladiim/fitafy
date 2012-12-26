@@ -3,11 +3,6 @@
 	- heroku addons:add heroku-postgresql:blah --form HEROKU_POSTGRESQL_BLAH
 * test migrations on db copy
 
-
-# Up to
-* test cucumber works
-* update display_case
-
 # Notes
 * Server not working:
 	- PATH=/usr/local/sbin:$PATH 

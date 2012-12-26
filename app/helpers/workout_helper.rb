@@ -8,15 +8,15 @@ module WorkoutHelper
     end
   end
 
-  def link_to_show_form workout, form_attribute
+  def link_to_show_form workout, form_attribute, id=nil
     if can? :manage, workout
-      link_to "Edit", "#", class: "show_link", "data-tag" => form_attribute
+      link_to "Edit", "#", class: "show_link", "data-tag" => form_attribute, "data-value" => id
     end
   end
 
-  def link_to_hide_form workout, form_attribute
+  def link_to_hide_form workout, form_attribute, id=nil
     if can? :manage, workout
-      link_to "Cancel", "#", class: "hide_link", "data-tag" => form_attribute
+      link_to "Cancel", "#", class: "hide_link", "data-tag" => form_attribute, "data-value" => id
     end
   end
 
