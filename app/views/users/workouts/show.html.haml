@@ -1,23 +1,23 @@
 .workout_form_group
-  .workout_value.name
-    = link_to_show_form @workout, "name"
+  .workout_value.name{"data-value" => @workout.id}
+    = link_to_show_form @workout, "name", @workout.id
 
-  .hidden.workout_form.name
+  .hidden.workout_form.name{"data-value" => @workout.id}
     = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
-    = link_to_hide_form @workout, "name"
+    = link_to_hide_form @workout, "name", @workout.id
 %br
 
 .workout_form_group.notes
-  .workout_value.notes
+  .workout_value.notes{"data-value" => @workout.id}
     %h5 NOTES
     %p= @workout.safe_notes.capitalize
-    = link_to_show_form @workout, "notes"
-  .hidden.workout_form.notes
+    = link_to_show_form @workout, "notes", @workout.id
+  .hidden.workout_form.notes{"data-value" => @workout.id}
     - if can? :manage, @workout
       = simple_form_for [current_user, @workout], remote: true do |f|
         = f.input :notes, input_html: { rows: 6 }
         = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
-      = link_to_hide_form @workout, "notes"
+      = link_to_hide_form @workout, "notes", @workout.id
 
 %br
 

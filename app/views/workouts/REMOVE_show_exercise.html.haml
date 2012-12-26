@@ -1,4 +1,4 @@
-%li.workout_exercise.big_box_list.row.well{ "data-id" => exercise.order_number }
+%li.workout_exercise.big_box_list.row.well{ "data-value" => exercise.order_number }
 
   .w_e_order.span1
     - if can? :manage, @workout
@@ -17,7 +17,7 @@
       .workout_value.instructions{"data-value" => exercise.id}
         %h5 Instructions
         %p= exercise.safe_instructions.humanize
-        = link_to_show_form @workout, "instructions", exercise.id
+        = link_to_show_form(@workout, "instructions", exercise.id)
       .hidden.workout_form.instructions{"data-value" => exercise.id}
         - if can? :manage, @workout
           = simple_form_for exercise, remote: true do |f|
