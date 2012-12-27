@@ -1,12 +1,10 @@
-require_relative '../mustaches/workouts/index'
-
 class PagesController < ApplicationController
   skip_filter :authorize
 
   def home
   	@snapz 	  = SnapzSayz::Information
   	@workouts = Workout.trending
-    @renderer = WorkoutsIndex.new
+    @renderer = Workouts::Index.new
   end
 
   def terms_of_service

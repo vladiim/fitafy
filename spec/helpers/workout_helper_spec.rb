@@ -27,7 +27,7 @@ describe "WorkoutHelper" do
 
   describe "#link_to_show_form" do
     let(:form_attribute) { "name" }
-    let(:result) { helper.link_to_show_form(workout, form_attribute)}
+    let(:result) { helper.link_to_show_form(workout, form_attribute, anything)}
 
     context "current_user's workout" do
       before do

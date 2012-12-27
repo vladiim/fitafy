@@ -1,5 +1,3 @@
-require_relative '../mustaches/workouts/index'
-
 class UsersController < ApplicationController
 
   skip_filter :authorize, only: [:new, :create, :show]
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user     = User.find(params[:id])
-    @renderer = WorkoutsIndex.new
+    @renderer = Workouts::Index.new
     @workouts = @user.my_workouts(params[:tags])
     @muscles  = Workout.muscles
     @title    = @user.username

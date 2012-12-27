@@ -1,5 +1,3 @@
-require_relative '../mustaches/workouts/index'
-
 class WorkoutsController < ApplicationController
   include DisplayCase::ExhibitsHelper
 
@@ -10,7 +8,7 @@ class WorkoutsController < ApplicationController
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])
                         .offset_by_page(params[:page])
 
-    @renderer  = WorkoutsIndex.new
+    @renderer  = Workouts::Index.new
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
     @title     = "Latest Workouts"
