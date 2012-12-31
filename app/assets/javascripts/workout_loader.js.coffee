@@ -1,7 +1,7 @@
 class window.WorkoutLoader
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
     @ul          = $("#workout_list")
-    @mustache    = "app/templates/workouts/workouts_index"
+    @mustache    = "app/templates/workouts/index"
     @muscles     = []
     @page        = 0
     @allWorkoutsLoaded = false

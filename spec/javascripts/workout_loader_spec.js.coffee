@@ -31,7 +31,7 @@ describe "WorkoutLoader", ->
       afterEach -> @server.restore()
 
       it "uses TemplateHoganBuilder to load workouts", ->
-        expect(@render).toHaveBeenCalledWith("app/templates/workouts/workouts_index", @incomingJSON[0])
+        expect(@render).toHaveBeenCalledWith("app/templates/workouts/index", @incomingJSON[0])
 
       it "loads the workouts on the page", ->
         expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")

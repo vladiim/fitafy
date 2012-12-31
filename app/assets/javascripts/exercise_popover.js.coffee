@@ -1,22 +1,33 @@
-# $ ->
-#   $("#test").popover("show")
+class window.ExercisePopover
+  constructor: ->
+    @links = $( 'a.exercise_ajax_popover' )
 
-# class window.ExercisePopover
+  init: ->
+    $( @links ).on 'click', (event) =>
+      @target_link = $( event.target )
+      @showPopoverWithOptions()
+      event.preventDefault()
 
-#   constructor: ->
-#     @exercise_links = $("a.exercise_ajax_popover")
+  showPopoverWithOptions: ->
+    @setOptions()
+    @options()
+    @showPopover()
 
-#   init: ->
-#     $( @exercise_links ).on "click", (event) =>
-#       @link = $( event.target )
-#       @id   = @link.attr("id")
-#       event.preventDefault()
-#       $.getJSON @link.attr("data-url"), (data) ->
-#         $(@link).unbind("click")
-#         $(@id).popover({ title: data.name, content: data.description }).popover("show")
+  setOptions: ->
+    @title   = @target_link.text()
+    url      = @target_link.attr( 'href' )
+    @content = $.getJSON(url, @render)
 
-# $ ->
-#   popover = new ExercisePopover
-#   popover.init()
+  options: ->
+    @target_link.popover({
+      title:   @title,
+      content: @content
+    })
 
-# # http://stackoverflow.com/questions/8130069/load-bootstrap-js-popover-content-with-ajax
+  showPopover: -> @target_link.popover('show')
+
+  render: ->
+
+$ ->
+  exercise_popover = new ExercisePopover
+  exercise_popover.init()
