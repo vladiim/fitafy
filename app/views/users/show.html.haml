@@ -18,5 +18,5 @@
 
     %br
       - @workouts.each do |workout|
-        - @renderer.set_workout workout
+        - @renderer.workout = workout
         = @renderer.render.html_safe

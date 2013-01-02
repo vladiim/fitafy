@@ -10,7 +10,7 @@
       %h2= exercise.safe_order
 
   .w_e_details.span3
-    %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise)
+    %h3= link_to exercise.name.titleize, exercise_path(exercise.exercise), 'data-toggle' => 'modal', 'data-target' => '#exercise_ajax_modal'
     %br
 
     .workout_form_group.instructions

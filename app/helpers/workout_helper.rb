@@ -59,16 +59,4 @@ module WorkoutHelper
   def new_workout
     [current_user, current_user.build_workout]
   end
-
-  def workouts_index_json workout
-    {
-      muscles:        workout.muscles,
-      url:            users_workout_path(workout.username, workout),
-      name:           workout.name,
-      client_level:   workout.safe_client_level,
-      difficulty:     workout.safe_difficulty,
-      username:       workout.username,
-      exercise_count: workout.exercises_count
-    }
-  end
 end

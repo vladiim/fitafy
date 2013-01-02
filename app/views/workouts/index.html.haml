@@ -4,7 +4,7 @@
 %section#workouts.row
   %ul#workout_list{"data-json-url" => workouts_url(format: :json)}
     - @workouts.each do |workout|
-      - @renderer.set_workout workout
+      - @renderer.workout = workout
       = @renderer.render.html_safe
 
 .end_of_workouts

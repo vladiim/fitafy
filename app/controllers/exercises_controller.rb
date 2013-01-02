@@ -6,7 +6,6 @@ class ExercisesController < ApplicationController
   def index
     @title     = "All Exercises"
     @exercises = Exercise.all
-    # @exercises = Exercise.alphabetical_including_muscles(params[:muscles])
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
   end
@@ -28,13 +27,14 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    @exercise       = Exercise.find(params[:id])
-    @equipment_name = @exercise.equipment_name
-    @title          = @exercise.name
+    @exercise          = Exercise.find(params[:id])
+    @renderer          = Exercises::Show.new
+    @renderer.exercise = @exercise
+    @title             = @exercise.name
 
     respond_to do |format|
       format.html
-      format.json { render json: @exercise }
+      format.json { render json: @renderer.render_json(@exercise) }
     end
   end
 

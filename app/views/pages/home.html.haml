@@ -2,8 +2,6 @@
   %p#usp_copy
     = @snapz.usp
 
-  = link_to "TOOL TIP", "#", class: "btn", "rel" => "popover", "data-placement" => "top", "data-content" => "THIS IS THE FUCKING CONTENT", "data-original-title" => "FUCKING TITLE"
-
   %table#homepage_cta
     %tr
       %td
@@ -19,5 +17,5 @@
   
       %ul#trending_workouts.row
       - @workouts.each do |workout|
-        - @renderer.set_workout workout
+        - @renderer.workout = workout
         = @renderer.render.html_safe

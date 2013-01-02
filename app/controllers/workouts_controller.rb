@@ -16,7 +16,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: @workouts.map { |w| view_context.workouts_index_json(w) }
+        render json: @workouts.map { |w| @renderer.render_json(w, view_context) }
       end
     end
   end
