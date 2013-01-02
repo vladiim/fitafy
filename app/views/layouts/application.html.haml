@@ -21,8 +21,6 @@
     - if can? :manage, Workout
       = render partial: "workouts/new_from_nav"
 
-      -# Javascript at the bottom for fast page loading
-      / = render "javascripts"
     = javascript_include_tag "application"
 
 = debug(params) if Rails.env.development?
