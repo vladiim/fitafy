@@ -6,5 +6,5 @@ $(".edit_workout_exercise").on("ajax:success", function() {
   $("li.ajax_nav_spinner").toggleClass("loading");
   $(".workout_value.instructions#<%= @workout_exercise.id %>instructions > p").text('<%= j @workout_exercise.safe_instructions %>');
   $("li.workout_exercise").remove();
-  $('ul.workout_exercises').append('<%= j render partial: "workouts/show_exercise", collection: @workout.workout_exercises, as: :exercise %>');
+  $('ul.workout_exercises').append('<%= j render partial: "users/workouts/show_exercise", collection: @workout.workout_exercises, as: :exercise %>');
 });
