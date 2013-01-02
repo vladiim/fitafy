@@ -9,7 +9,7 @@ module Exercises
     end
 
     def tips
-      @exercise.tips.humanize
+      @exercise.tips.humanize || "No tips for this exercise"
     end
 
     def muscle
@@ -21,7 +21,7 @@ module Exercises
     end
 
     def equipment
-      @exercise.equipment_name.titleize
+      @exercise.equipment_name.titleize || "No equipment for this exercise"
     end
 
     def render_json(exercise)

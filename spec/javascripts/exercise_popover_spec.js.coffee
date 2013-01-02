@@ -47,21 +47,12 @@ describe 'ExercisePopover', ->
       describe 'content', ->
         it 'fetches the content from the server', ->
           call = $.ajax.getCall( 0 ).args[0].url
-          expect( call ).toEqual( '/exercises/chest-press' )
+          expect( call ).toEqual( '/exercises/chest-press' ) 
 
-    describe 'set options server response', ->
-      beforeEach ->
-        @server = sinon.fakeServer.create()
-        incomingResponse = 'CONTENT FROM SERVER'
-        @server.respondWith 'Get', '/exercises/chest-press',
-                             [200, { 'Content-Type': 'application/json' },
-                             JSON.stringify(incomingResponse)]
-        @server.respond()
-
-      afterEach -> @server.restore()
-
-      it 'renders the content', ->
-        expect( @popover.render ).toHaveBeenCalled()
+    describe 'render', ->
+      it 'renders a HoganTemplate', ->
+        exercise = '{"description":"Lie down on your side with both your knees and hips bent at 90 degrees. whilst keeping your heels together and your hips vertically aligned, rotate your top knee as high as possible and slowly return to the start position.","tips":"Prevent the hips from rolling forwards or backwards and perform the exercise in a slow and controlled manner.","muscle":"Glutes","category":"Muscle","equipment":""}'
+        expect(@popover.render(exercise)).toEqual('blah')
 
 # $ ->
 #   $('#testy').on 'click', ->
