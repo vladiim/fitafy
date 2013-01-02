@@ -1,30 +1,6 @@
 %section.row
 
-  %figure.span3
-    = image_tag 'shoulder_press.png'
-
-  %article.span4
-    %br
-
-    %h5 Description
-    %p= @exercise.safe_description.humanize
-    %br
-
-    %h5 Tips
-    %p= @exercise.tips.humanize
-    %br
-
-    %h5 Muscle
-    %p= @exercise.muscle
-    %br
-
-    %h5 Category
-    %p= @exercise.safe_category
-    %br
-
-    %h5 Equipment
-    %p
-      - @equipment_name.titleize
+  = @renderer.render.html_safe
 
   - if can? :manage, @exercise
     %aside.span3.well
