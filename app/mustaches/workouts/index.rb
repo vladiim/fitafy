@@ -5,9 +5,9 @@ module Workouts
   
   	attr_accessor :workout
   
-    def set_workout workout
-      @workout = workout
-    end
+    # def set_workout workout
+    #   @workout = workout
+    # end
   
     def muscles
       @workout.muscles
@@ -38,7 +38,7 @@ module Workouts
     end
 
     def render_json(workout, view_context)
-      @workout = workout
+      self.workout = workout
       {
         muscles:         muscles,
         url:             view_context.users_workout_path(@workout.username, workout),

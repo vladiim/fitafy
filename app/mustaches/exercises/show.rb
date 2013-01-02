@@ -23,5 +23,16 @@ module Exercises
     def equipment
       @exercise.equipment_name.titleize
     end
+
+    def render_json(exercise)
+      self.exercise = exercise
+      {
+        description: description,
+        tips:        tips,
+        muscle:      muscle,
+        category:    category,
+        equipment:   equipment
+      }
+    end
   end
 end

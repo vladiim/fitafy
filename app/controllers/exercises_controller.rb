@@ -34,7 +34,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @exercise }
+      format.json { render json: @renderer.render_json(@exercise) }
     end
   end
 
