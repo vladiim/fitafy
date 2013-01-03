@@ -14,15 +14,13 @@
 	- Favorited workout
 	- Printed workout
 	- Copied workout
-* FaceBook 1st logout
 * Username clickable & in title username/workout_name
 * workout - query workout.all + muscle tag via js - manage limit of 30
-* exercise popover
 
 # To do
+* ExerciseSwapper fix
 * cach all exercises
 * get turbo links working
-* User workout names are unique
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests
 * when logged in your root_path is your profile

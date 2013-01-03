@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     if session[:facebook_user_id]
-      # User.find session[:facebook_user_id]
       @current_user = User.find(session[:facebook_user_id])
     else
       @current_user = current_user_session && current_user_session.user

@@ -14,12 +14,8 @@ describe Workouts::Index do
       index.workout.should eq workout
     end
 
-    it 'returns a hash' do
-      result.class.should be Hash
-    end
-
     it "creates an url with the view context" do
-      result.fetch(:url).should eq 'URL'
+      result.should match(/\"url\":\"URL\"/) # json equivalent to { url: 'URL' }
     end
   end
 end
