@@ -4,20 +4,20 @@ class ExercisesController < ApplicationController
   skip_filter :authorize, only: [:index, :show]
 
   def index
-    @title     = "All Exercises" # muscle_name(params[:muscle])
+    @title     = Exercise.index_title(params[:muscle])
     @exercises = Exercise.filter_by_muscle(params[:muscle])
     @muscles   = Workout.muscles
-    @equipment = Workout.equipment_names
 
     @renderer              = Exercises::Index.new
     @renderer.view_context = view_context
     @renderer.user         = current_user
-    # respond_to do |format|
-    #   format.html
-    #   format.json do
-    #     render json: @exercises.map { |e| @renderer.render_json(e, view_context)}
-    #   end
-    # end
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @exercises.map { |e| @renderer.render_json(e, view_context)}
+      end
+    end
   end
 
   def new

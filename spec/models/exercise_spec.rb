@@ -37,6 +37,24 @@ describe Exercise do
     end
   end
 
+  describe '.index_title' do
+    context 'no muscle' do
+      let(:result) { Exercise.index_title }
+
+      it 'returns All Exercises' do
+        result.should eq 'All Exercises'
+      end
+    end
+
+    context 'muscle provided' do
+      let(:result) { Exercise.index_title('chest') }
+
+      it 'returns Chest Exercises' do
+        result.should eq 'Chest Exercises'
+      end
+    end
+  end
+
   describe "#equipment_name" do
     context "has equipment" do
       let(:equipment) { OpenStruct.new name: "EQUIPMENT NAME"}

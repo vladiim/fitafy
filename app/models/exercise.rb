@@ -24,9 +24,14 @@ class Exercise < ActiveRecord::Base
   	self.destroy
   end
 
-  def self.filter_by_muscle muscle=nil
+  def self.filter_by_muscle(muscle=nil)
     return Exercise.scoped if muscle == nil
     Exercise.by_muscle(muscle)
+  end
+
+  def self.index_title(muscle=nil)
+    return 'All Exercises' if muscle == nil
+    "#{muscle.titleize} Exercises"
   end
 
   def equipment_name
