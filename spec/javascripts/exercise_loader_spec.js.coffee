@@ -28,14 +28,14 @@ describe 'ExerciseLoader', ->
     it 'calls tagClicked', ->
       expect( @loader.tagClicked ).toHaveBeenCalled()
 
-  describe 'tagClicked', ->
+  describe 'removeAndRenderExercises', ->
     beforeEach ->
       @loader.tag = @back
       @server = sinon.fakeServer.create()
       @server.respondWith 'GET', '/exercises?muscle=back',
                            [200, { 'Content-Type': 'application/json' },
                             JSON.stringify(@incomingJSON)]
-      @loader.tagClicked()
+      @loader.removeAndRenderExercises()
       @server.respond()
 
     afterEach -> @server.restore()
@@ -44,7 +44,7 @@ describe 'ExerciseLoader', ->
     #   expect( @render_stub ).toHaveBeenCalledWith('/app/templates/exercises/index', @incomingJSON[0])
 
     it 'renders the template on the page', ->
-      expect($( '.exercise_list > article' )).toHaveText('BACK EXERCISE')
+      expect($( 'article.exercise_list > article' )).toHaveText('BACK EXERCISE')
 
   describe 'unit test post clicked tag', ->
     beforeEach -> @loader.tag = @back
@@ -54,16 +54,16 @@ describe 'ExerciseLoader', ->
         @loader.removeExercises()
         expect($( 'article.exercise_list > article.exercise' )).not.toExist()
 
-    describe 'activateTag', ->
+    describe 'tagClicked', ->
       it 'adds the active class to the active tag', ->
-        @loader.activateTag()
+        @loader.tagClicked()
         expect( @back.parent() ).toHaveClass('active')
         expect( @back.parent() ).not.toHaveClass('disabled')
 
       it 'removes the active class from all other tags', ->
         other_tag = $( 'a[href$="/exercises?muscle=chest"]')
         other_tag.parent().removeClass('disabled').addClass('active')
-        @loader.activateTag()
+        @loader.tagClicked()
         expect( other_tag.parent() ).not.toHaveClass('active')
         expect( other_tag.parent() ).toHaveClass('disabled')
 

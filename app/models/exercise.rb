@@ -25,7 +25,7 @@ class Exercise < ActiveRecord::Base
   end
 
   def self.filter_by_muscle(muscle=nil)
-    return Exercise.scoped if muscle == nil
+    return Exercise.scoped.limit(10) if muscle == nil
     Exercise.by_muscle(muscle)
   end
 

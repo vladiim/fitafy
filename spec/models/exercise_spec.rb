@@ -32,7 +32,7 @@ describe Exercise do
       let(:result)   { Exercise.filter_by_muscle }
 
       it 'returns all the muscles' do
-        result.should eq Exercise.scoped
+        result.should eq Exercise.scoped.limit(10)
       end
     end
   end

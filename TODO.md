@@ -18,7 +18,6 @@
 * workout - query workout.all + muscle tag via js - manage limit of 30
 
 # To do
-* ExerciseSwapper fix
 * cach all exercises
 * get turbo links working
 * User permissions to see new features

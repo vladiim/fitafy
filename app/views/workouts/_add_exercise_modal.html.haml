@@ -12,8 +12,7 @@
       = render partial: "exercises/tags"
 
     .span4
-      %h3.list_title All Exercises
+      %h3.list_title ALL EXERCISES
       %br
-      .exercise_list
-        %br
-        = render partial: "exercise", collection: @exercises
+      %article.exercise_list
+        / = render partial: "exercise", collection: @exercises
