@@ -21,11 +21,11 @@ describe Exercises::Index do
     end
 
     it "creates an url with the view context" do
-      result.should match(/\"edit_url\":\"EDIT URL\"/) # json equivalent to { url: 'URL' }
+      result.fetch(:edit_url).should eq "EDIT URL"
     end
 
     it 'creates an edit_url with the view context' do
-      result.should match(/\"url\":\"URL\"/)
+      result.fetch(:url).should eq "URL"
     end
   end
 end

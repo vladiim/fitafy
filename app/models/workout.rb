@@ -64,7 +64,7 @@ class Workout < ActiveRecord::Base
   end
 
   def self.muscles
-    Exercise::MUSCLES
+    Exercise.muscles
   end
 
   def self.exercises_by_alphabetical_tags tags

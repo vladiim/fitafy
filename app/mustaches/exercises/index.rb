@@ -39,7 +39,7 @@ module Exercises
         muscle:      muscle,
         url:         url,
         edit_url:    edit_url
-      }.to_json
+      }
     end
   end
 end

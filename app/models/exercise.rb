@@ -34,6 +34,11 @@ class Exercise < ActiveRecord::Base
     "#{muscle.titleize} Exercises"
   end
 
+  def self.muscles
+    muscles = MUSCLES.sort { |a, b| a <=> b }
+    muscles.each { |m| m.gsub!('_', ' ') }
+  end
+
   def equipment_name
     self.equipment ? equipment.name : "no equipment yo"
   end
@@ -55,13 +60,6 @@ class Exercise < ActiveRecord::Base
   end
 
   private
-
-  # def self.with_muscles muscles
-  #   return Exercise.all if muscles == nil
-  #   muscles.inject([]) do |exercises, muscle|
-  #     exercises << Exercise.find_all_by_muscle(muscle)
-  #   end
-  # end
 
   def muscle?
     true unless self.muscle.nil?

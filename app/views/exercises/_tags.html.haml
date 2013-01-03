@@ -1,6 +1,3 @@
-/ %ul.exercise_tag_list.nav.nav-tab.affix
 %ul.nav.nav-pills.nav-stacked.pull-left
   - @muscles.each do |tag|
-    %li.disabled
-      = link_to tag.upcase, "/exercises?muscle=#{tag}"
-      / = link_to_single_param_tags tag, "/exercises?muscle=#{tag}"
+    %li.disabled= link_to tag.upcase, "/exercises?muscle=#{tag}"

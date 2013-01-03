@@ -32,7 +32,7 @@ module Exercises
         muscle:      muscle,
         category:    category,
         equipment:   equipment
-      }.to_json
+      }
     end
   end
 end

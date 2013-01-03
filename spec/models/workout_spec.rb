@@ -212,8 +212,8 @@ describe Workout do
   end
 
   describe "#muscles" do
-    it "should return the Exercise::MUSCLES" do
-      Workout.muscles.should eq Exercise::MUSCLES
+    it "returns Exercise.muscles" do
+      Workout.muscles.should eq Exercise.muscles
     end
   end
 

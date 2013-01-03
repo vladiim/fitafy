@@ -47,7 +47,7 @@ module Workouts
         difficulty:      difficulty,
         username:        username,
         exercises_count: exercise_count
-      }.to_json
+      }
     end
   end
 end

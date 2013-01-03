@@ -7,17 +7,3 @@
     - @exercises.each do |exercise|
       - @renderer.exercise = exercise
       = @renderer.render.html_safe
-
-/ %table.table.table-bordered.table-striped
-/   %thead
-/     %th EXERCISE
-/     %th DESCRIPTION
-/     %th
-
-/ %tbody#exercises_list
-/   - @exercises.each do |exercise|
-
-/     %tr
-/       %td= link_to exercise.name.titleize, exercise_path(exercise)
-/       %td= exercise.description.truncate(60)
-/       %td= link_to "EDIT", edit_exercise_path(exercise)

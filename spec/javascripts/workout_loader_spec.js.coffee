@@ -2,7 +2,7 @@ describe "WorkoutLoader", ->
   beforeEach ->
     loadFixtures "workout_list.html"
     @fake_template = { render: -> "" }
-    @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>" )
+    @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>")
     @loader        = new WorkoutLoader @fake_template
     @incomingJSON  = [
       {
@@ -36,7 +36,8 @@ describe "WorkoutLoader", ->
       it "loads the workouts on the page", ->
         expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")
 
-      it "increments the page number", -> expect(@loader.page).toEqual(1)
+      it "increments the page number", ->
+        expect(@loader.page).toEqual(1)
 
     describe "start with options", ->
       beforeEach ->

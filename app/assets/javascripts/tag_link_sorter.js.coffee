@@ -61,5 +61,8 @@ class window.TagLinkSorter
     @activeTagNames.splice(index, 1)
 
 $ ->
-  sorter = new TagLinkSorter
-  sorter.init()
+  # only instantiate TagLinkSorter if needed
+  tag_link_bar = $( 'div#active_tag_container' )
+  if tag_link_bar.length > 0
+    sorter = new TagLinkSorter
+    sorter.init()
