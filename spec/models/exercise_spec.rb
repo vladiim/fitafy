@@ -18,35 +18,24 @@ describe Exercise do
     it { should validate_presence_of :description }
   end
 
-  # describe "#find_with_muscles" do
-  #   before do
-  #     ["bbb", "ccc", "aaa"].each do |name|
-  #       create :exercise, name: name
-  #     end
-  #   end
+  describe '.filter_by_muscle' do
+    context 'with muscle' do
+      let(:result)   { Exercise.filter_by_muscle('chest') }
 
-  #   context "without muscles" do
-  #     it "returns the exercises alphabetically" do
-  #       ["aaa", "bbb", "ccc"].each_with_index do |name, index|
-  #         Exercise.find_with_muscles[index].name.should eq name
-  #       end
-  #     end      
-  #   end
+      it 'finds the exercise' do
+        exercise = create :exercise, muscle: 'chest'
+        result.should eq [exercise]
+      end
+    end
 
-  #   context "with muscles" do
-  #     before do
-  #       ex = Exercise.find_by_name("aaa")
-  #       ex.muscle = "legs"
-  #       ex.save
-  #     end
+    context 'without muscle' do
+      let(:result)   { Exercise.filter_by_muscle }
 
-  #     it "returns the exercises sorted by the muscle" do
-  #       Exercise.find_with_muscles(["legs"]).each do |e|
-  #         e[0].name.should eq "aaa"
-  #       end
-  #     end
-  #   end
-  # end
+      it 'returns all the muscles' do
+        result.should eq Exercise.scoped
+      end
+    end
+  end
 
   describe "#equipment_name" do
     context "has equipment" do
@@ -77,12 +66,4 @@ describe Exercise do
       subject.equipment_list.should eq "EQUIPMENT LIST"
     end
   end
-
-  # describe "#muscle_names" do
-  #   let(:result) { subject.muscle_names }
-
-  #   it "returns the downcase muscle names" do
-  #     result.should eq Exercise::MUSCLES[0].downcase
-  #   end
-  # end
 end

@@ -18,15 +18,16 @@ class Exercise < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   default_scope order("name ASC")
+  scope :by_muscle, lambda { |m| Exercise.where{ muscle.like(m) } }
 
   def delete_exercise!
   	self.destroy
   end
 
-  # def self.find_with_muscles muscles=nil
-  #   # with_muscles(muscles).sort_by { |exercise| exercise["name"] }
-  #   with_muscles(muscles)
-  # end
+  def self.filter_by_muscle muscle=nil
+    return Exercise.scoped if muscle == nil
+    Exercise.by_muscle(muscle)
+  end
 
   def equipment_name
     self.equipment ? equipment.name : "no equipment yo"
