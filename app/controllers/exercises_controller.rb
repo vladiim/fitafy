@@ -9,6 +9,16 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.filter_by_muscle(params[:muscle])
     @muscles   = Workout.muscles
     @equipment = Workout.equipment_names
+
+    @renderer              = Exercises::Index.new
+    @renderer.view_context = view_context
+    @renderer.user         = current_user
+    # respond_to do |format|
+    #   format.html
+    #   format.json do
+    #     render json: @exercises.map { |e| @renderer.render_json(e, view_context)}
+    #   end
+    # end
   end
 
   def new

@@ -11,10 +11,10 @@ Feature: Visitor views exercises
     When I visit the exercise's page
     Then I should see that exercise's details
 
-  Scenario: Visitor views exercise list alphabetically
+  Scenario: Visitor views exercise list
     Given there are more than one exercise
     When I visit the exercise list
-    Then the exercises should be in alphabetical order
+    Then I see the exercise's details
 
   Scenario: Visitor goes to exercise page from list
     Given I'm on the exercises page
