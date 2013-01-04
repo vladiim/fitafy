@@ -7,15 +7,12 @@ class ExercisesController < ApplicationController
     @title     = Exercise.index_title(params[:muscle])
     @exercises = Exercise.filter_by_muscle(params[:muscle])
     @muscles   = Workout.muscles
-
-    @renderer              = Exercises::Index.new
-    @renderer.view_context = view_context
-    @renderer.user         = current_user
+    @renderer  = Exercises::Index.new view_context, current_user
 
     respond_to do |format|
       format.html
       format.json do
-        render json: @exercises.map { |e| @renderer.render_json(e, view_context)}
+        render json: @exercises.map { |e| @renderer.render_json(e)}
       end
     end
   end
