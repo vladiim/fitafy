@@ -5,16 +5,21 @@ class Users::WorkoutsController < ApplicationController
 
   def show
   	@workout          = exhibit Workout.find(params[:id]), self
-    @base_workout     = Workout.find(params[:id])
+    # @workout    = Workout.find(params[:id])
+    # @exercises        = @workout.all_exercises
+
+    @workout_exercises = @workout.workout_exercises
+    @exercise_renderer = WorkoutExercises::Show.new
+
+    # @base_workout     = Workout.find(params[:id])
     @trainer          = User.find @workout.user_id
     @current_user     = current_user ? current_user : nil
   	@title            = @workout.name
     @snapz_confirm    = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
     @client_level     = Workout::CLIENT_LEVELS
     @difficulty       = Workout::DIFFICULTY
-    @exercises        = @workout.all_exercises
     @muscles          = Workout.muscles
-    @workout_exercise = WorkoutExercise.new
+    # @workout_exercise = WorkoutExercise.new
 
     respond_to do |format|
       format.html

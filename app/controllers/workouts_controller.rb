@@ -1,5 +1,4 @@
 class WorkoutsController < ApplicationController
-  include DisplayCase::ExhibitsHelper
 
   load_and_authorize_resource except: [:index]
   skip_filter :authorize,     only: [:index]
