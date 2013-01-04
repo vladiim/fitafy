@@ -9,6 +9,7 @@ Fitafy::Application.routes.draw do
   resources :copy_workouts,     only: [:create]
   resources :password_resets,   only: [:new, :create, :edit, :update]
   resources :activations,       only: [:new, :edit]
+  resources :new_workout_exercises, only: :index
 
   resources :users do
     resources :workouts, only: [:new, :create, :update, :destroy]

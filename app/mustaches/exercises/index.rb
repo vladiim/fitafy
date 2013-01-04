@@ -8,7 +8,7 @@ module Exercises
 
     def initialize(view_context=nil, user=nil)
       @view_context, @user = view_context, user
-      set_workout if view_context && on_show_workouts_page?
+      # set_workout if view_context && on_show_workouts_page?
     end
 
     def id
@@ -55,20 +55,24 @@ module Exercises
     private
 
     def generate_new_workout_exercise_form
-      @view_context.simple_form_for :workout_exercise, remote: true do |f|
-        f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id }
-        f.input :workout_id,  as: :hidden, input_html: { value: @workout.id }
-        f.submit "ADD", class: "btn btn-primary btn-mini"
-      end    
+      @view_context.link_to "ADD", "#", 
+                            'data-exercise_id' => @exercise.id,
+                            'data-workout_id' => @workout.id,
+                            class: "add_exercise_to_workout_button btn btn-primary btn-mini"
+      # @view_context.simple_form_for :workout_exercise, remote: true do |f|
+      #   f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id }
+      #   f.input :workout_id,  as: :hidden, input_html: { value: @workout.id }
+      #   f.submit "ADD", class: "btn btn-primary btn-mini"
+      # end
     end
 
-    def on_show_workouts_page?
-      @view_context.current_page?(controller: 'workouts', action: 'show')
-    end
+    # def on_show_workouts_page?
+    #   @view_context.current_page?(controller: 'workouts', action: 'show')
+    # end
 
-    def set_workout
-      @workout = Workout.find(@view_context.params[:id])
-    end
+    # def set_workout
+    #   @workout = Workout.find(@view_context.params[:id])
+    # end
 
     def user_is_admin?
       @user && @user.admin?

@@ -3,7 +3,6 @@ Given /^another exercise exists$/ do
 end
 
 When /^I click add exercise on the workout's page$/ do
-  save_and_open_page
   within ".exercise_list_item" do
   	click_button "ADD"
   end

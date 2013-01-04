@@ -9,6 +9,9 @@ class ExercisesController < ApplicationController
     @muscles   = Workout.muscles
     @renderer  = Exercises::Index.new view_context, current_user
 
+    # need @workout to pass into link_to_muscle_tag
+    @workout   = nil
+
     respond_to do |format|
       format.html
       format.json do
