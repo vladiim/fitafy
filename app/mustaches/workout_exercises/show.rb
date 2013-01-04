@@ -9,11 +9,11 @@ module WorkoutExercises
     end
 
     def name
-      @workout_exercise.name
+      @workout_exercise.name.titleize
     end
 
     def instructions
-      @workout_exercise.instructions
+      @workout_exercise.instructions.humanize
     end
 
     def sets
@@ -21,11 +21,11 @@ module WorkoutExercises
     end
 
     def muscle
-      @workout_exercise.muscle
+      @workout_exercise.muscle.titleize
     end
 
     def equipment_name
-      @workout_exercise.equipment_name
+      @workout_exercise.equipment_name.titleize
     end
 
     def order
@@ -41,6 +41,20 @@ module WorkoutExercises
       return if workout_exercise_isnt_users?
       @workout = @workout_exercise.workout
       last_order? ? nil : generate_down_link
+    end
+
+    def render_json(workout_exercise)
+      @workout_exercise = workout_exercise
+      {
+      	name:           name,
+      	instructions:   instructions,
+      	sets:           sets,
+      	muscle:         muscle,
+      	equipment_name: equipment_name,
+      	order:          order,
+      	up_link:        up_link,
+      	down_link:      down_link
+      }
     end
 
     private

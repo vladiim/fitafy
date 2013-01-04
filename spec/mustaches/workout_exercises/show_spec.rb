@@ -114,7 +114,7 @@ describe WorkoutExercises::Show do
       before { mock(workout_exercise).name { 'EXERCISE NAME' } }
 
       it 'returns the exercise name' do
-        result.should eq 'EXERCISE NAME'
+        result.should eq "Exercise Name"
       end
     end
 
@@ -123,7 +123,7 @@ describe WorkoutExercises::Show do
       before { mock(workout_exercise).instructions { 'EXERCISE INSTUCTIONS' } }
 
       it 'returns the workout_exercises instructions' do
-      	result.should eq 'EXERCISE INSTUCTIONS'
+      	result.should eq "Exercise instuctions"
       end
     end
 
@@ -141,7 +141,7 @@ describe WorkoutExercises::Show do
       before { mock(workout_exercise).muscle { 'EXERCISE MUSCLE' } }
 
       it 'returns the workout_exercises muscle' do
-      	result.should eq 'EXERCISE MUSCLE'
+      	result.should eq "Exercise Muscle"
       end
     end
 
@@ -150,8 +150,29 @@ describe WorkoutExercises::Show do
       before { mock(workout_exercise).equipment_name { 'EQUIPMENT NAME' } }
 
       it 'returns the workout_exercises equipment_name' do
-      	result.should eq 'EQUIPMENT NAME'
+      	result.should eq "Equipment Name"
       end
+    end
+  end
+
+  describe 'render_json' do
+  	let(:workout_exercise) { create :workout_exercise, instructions: 'blah' }
+  	let(:user)             { workout_exercise.workout.user }
+    let(:renderer)         { WorkoutExercises::Show.new view_context, user }
+    let(:result)           { renderer.render_json workout_exercise }
+
+    it 'returns all details as a hash' do
+      result_hash = {
+        name:           workout_exercise.name.titleize,
+        instructions:   workout_exercise.instructions.humanize,
+        sets:           workout_exercise.sets,
+        muscle:         workout_exercise.muscle.titleize,
+        equipment_name: workout_exercise.equipment_name.titleize,
+        order:          workout_exercise.order_number,
+        up_link: nil,
+        down_link: nil
+      }
+      result.should eq result_hash
     end
   end
 end
