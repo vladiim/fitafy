@@ -55,7 +55,7 @@ module Exercises
     private
 
     def generate_new_workout_exercise_form
-      @view_context.link_to "ADD", "#", 
+      @view_context.link_to "ADD", '#',
                             'data-exercise_id' => @exercise.id,
                             'data-workout_id' => @workout.id,
                             class: "add_exercise_to_workout_button btn btn-primary btn-mini"

@@ -2,7 +2,7 @@ Fitafy::Application.routes.draw do
 
 #---------- RESOURCES ----------#
 
-  resources :exercises,:equipment, :user_sessions, :workout_exercises 
+  resources :exercises, :equipment, :user_sessions, :workout_exercises
 
   resources :workouts,          only: [:index, :new] # allows anyone to see index and create new workout cta
   resources :favorite_workouts, only: [:create, :destroy]
@@ -28,7 +28,7 @@ Fitafy::Application.routes.draw do
 
   # mount Resque::Server.new, :at => "/resque"
 
-#---------- AUTH ----------#
+#---------- SERVICES ----------#
 
   match 'auth/:provider/callback', to: 'facebook_users#create'
   match 'auth/failure',            to: redirect('/')

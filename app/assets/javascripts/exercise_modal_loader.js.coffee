@@ -18,10 +18,6 @@ class window.ExerciseModalLoader extends ExerciseLoader
   changeURLs: =>
     @changeURL(tag) for tag in @tags
 
-  # changeURL: (tag) =>
-  #   new_url = $(tag).attr('href').replace('exercises', 'add_exercise_to_workout')
-  #   $(tag).attr('href', new_url)
-
 $ ->
   exercise_modal = $( 'div.modal#add_workout_exercise' )
   if exercise_modal.length > 0

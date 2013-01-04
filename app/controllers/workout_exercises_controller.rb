@@ -2,9 +2,17 @@ class WorkoutExercisesController < ApplicationController
 
   def create
     @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
+
     if @workout_exercise.save
+      @workout = @workout_exercise.workout
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
-      redirect_to users_workout_path(current_user.username, @workout_exercise.workout)
+
+      respond_to do |format|
+        format.html { redirect_to users_workout_path(current_user.username, @workout) }
+        format.js
+        format.json { render json: @workout_exercise }
+      end
+
     else
       flash[:failure] = "Sorry something went wrong - try again!"
       redirect_back
