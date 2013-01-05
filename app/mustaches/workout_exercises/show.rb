@@ -6,12 +6,13 @@ module WorkoutExercises
     attr_accessor :workout_exercise, :user, :view_context
     attr_reader   :workout
 
-    def id
-      @workout_exercise.id
-    end
-
     def initialize(view_context, user)
       @view_context, @user = view_context, user
+      generate_fake_user if @user == nil
+    end
+
+    def id
+      @workout_exercise.id
     end
 
     def name
@@ -45,13 +46,13 @@ module WorkoutExercises
 
     def up_link
       return if workout_exercise_isnt_users?
-      first_order? ? nil : generate_up_link
+      first_order? ? nil : generate_up_icon
     end
 
     def down_link
       return if workout_exercise_isnt_users?
       @workout = @workout_exercise.workout
-      last_order? ? nil : generate_down_link
+      last_order? ? nil : generate_down_icon
     end
 
     def own_workout
@@ -62,6 +63,7 @@ module WorkoutExercises
       @workout_exercise = workout_exercise
       {
       	name:           name,
+        exercise_url:   exercise_url,
       	instructions:   instructions,
       	sets:           sets,
       	muscle:         muscle,
@@ -75,6 +77,10 @@ module WorkoutExercises
 
     private
 
+    def generate_fake_user
+      @user = OpenStruct.new(id: 0)
+    end
+
     def workout_exercise_isnt_users?
       @user.id != @workout_exercise.user_id
     end
@@ -87,13 +93,11 @@ module WorkoutExercises
       order >= @workout.exercises_count
     end
 
-    def generate_up_link
-      # @view_context.link_to 'Move Up', '#'
+    def generate_up_icon
       "<i class='icon-chevron-up move_workout_exercise_up'></i>"
     end
 
-    def generate_down_link
-      # @view_context.link_to 'Move Down', '#'
+    def generate_down_icon
       "<i class='icon-chevron-down move_workout_exercise_down'></i>"
     end
   end

@@ -20,6 +20,19 @@ describe WorkoutExercises::Show do
       renderer.workout_exercise = workout_exercise
       renderer.workout_exercise.should eq workout_exercise
     end
+
+    context 'user is nil' do
+      let(:nil_user)     { nil }
+      let(:renderer) { WorkoutExercises::Show.new view_context, nil_user }
+
+      it 'should be an OpenStruct' do
+        renderer.user.class.should eq OpenStruct
+      end
+
+      it 'should have an id of 0' do
+        renderer.user.id.should eq 0
+      end
+    end
   end
 
   context 'initialized' do
@@ -49,11 +62,11 @@ describe WorkoutExercises::Show do
         context 'order > 1' do
           before do
             mock(renderer).order { 2 }
-            mock(view_context).link_to('Move Up', anything) { 'UP LINK' }
+            mock(renderer).generate_up_icon { 'UP ICON' }
           end
 
           it 'returns an up link' do
-          	result.should eq 'UP LINK'
+          	result.should eq 'UP ICON'
           end
         end
       end
@@ -79,11 +92,11 @@ describe WorkoutExercises::Show do
         context 'order < total' do
           before do
             mock(workout).exercises_count  { 4 }
-            mock(view_context).link_to('Move Down', anything) { 'DOWN LINK' }
+            mock(renderer).generate_down_icon { 'DOWN ICON' }
           end
 
           it 'returns a down link' do
-          	result.should eq 'DOWN LINK'
+          	result.should eq 'DOWN ICON'
           end
         end
       end
@@ -134,7 +147,7 @@ describe WorkoutExercises::Show do
 
     describe '#instructions' do
       let(:result) { renderer.instructions }
-      before { mock(workout_exercise).instructions { 'EXERCISE INSTUCTIONS' } }
+      before { mock(workout_exercise).safe_instructions { 'EXERCISE INSTUCTIONS' } }
 
       it 'returns the workout_exercises instructions' do
       	result.should eq "Exercise instuctions"
@@ -175,17 +188,20 @@ describe WorkoutExercises::Show do
     let(:renderer)         { WorkoutExercises::Show.new view_context, user }
     let(:result)           { renderer.render_json workout_exercise }
 
+    before { mock(renderer).exercise_url { 'URL' } }
+
     it 'returns all details as a hash' do
       result_hash = {
         name:           workout_exercise.name.titleize,
-        url:            renderer.url,
+        exercise_url:   'URL',
         instructions:   workout_exercise.instructions.humanize,
         sets:           workout_exercise.sets,
         muscle:         workout_exercise.muscle.titleize,
         equipment_name: workout_exercise.equipment_name.titleize,
         order:          workout_exercise.order_number,
         up_link: nil,
-        down_link: nil
+        down_link: nil,
+        own_workout:    true
       }
       result.should eq result_hash
     end
