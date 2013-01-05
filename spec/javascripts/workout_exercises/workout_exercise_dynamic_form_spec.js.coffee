@@ -9,6 +9,7 @@ describe 'WorkoutExerciseDynamicForm', ->
     @form_group    = $( '.workout_form_group.instructions' )
     @text_node     = $( '.workout_form_group.instructions > p' )
     @form_node     = $( '.workout_exercise_form.instructions' )
+    @input         = $(@form_node).find('input')
     @w_e_node      = $( 'li.workout_exercise')
 
   describe 'click show link', ->
@@ -63,6 +64,7 @@ describe 'WorkoutExerciseDynamicForm', ->
       @form.show_form = @show_form
       @form.storeVariables()
       @form.form_node = @form_node
+      sinon.spy(@form, 'enterKeyListener')
       @form.showForm()
 
     it 'shows the form', ->
@@ -70,6 +72,32 @@ describe 'WorkoutExerciseDynamicForm', ->
 
     it 'the form has the text as the input value', ->
       expect( $(@form_node ).find('input').val() ).toEqual('INITIAL TEXT')
+
+    it 'listens for the Enter key to be pressed', ->
+      expect(@form.enterKeyListener).toHaveBeenCalled()
+
+  describe 'enterKeyListener', ->
+    beforeEach ->
+      @form.input = @input
+      sinon.spy(@form, 'updateValue')
+      @form.enterKeyListener()
+      @keydown = $.Event('keydown')
+
+    describe 'enter key pressed', ->
+      beforeEach ->
+        @keydown.which = 13
+        @input.trigger(@keydown)
+
+      it 'updates the value', ->
+        expect(@form.updateValue).toHaveBeenCalled()
+
+    describe 'a key other than enter pressed', ->
+      beforeEach ->
+        @keydown.which = 14
+        @input.trigger(@keydown)
+
+      it 'updates the value', ->
+        expect(@form.updateValue).not.toHaveBeenCalled()
 
   describe 'click cancel', ->
     beforeEach ->

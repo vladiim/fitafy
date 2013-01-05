@@ -24,7 +24,6 @@ class window.WorkoutExerciseDynamicForm
     @hide_form     = $(@form_node).find('a.hide_form')
     @update_button = $(@form_node).find("button.update_workout_exercise_form.#{@tag}")
     @initial_text  = @text_node.text()
-    console.log(this)
 
   triggerListeners: =>
     @hideFormListener()
@@ -41,6 +40,10 @@ class window.WorkoutExerciseDynamicForm
       if @input.val() is @initial_text then @sameText() else @updateValue()
       event.preventDefault()
 
+  enterKeyListener: =>
+    @input.on 'keydown', (event) =>
+      @updateValue() if event.which is 13
+
   showValues: =>
     @text_node.removeClass('hidden')
     @show_form.removeClass('hidden')
@@ -53,6 +56,7 @@ class window.WorkoutExerciseDynamicForm
     @form_node.removeClass('hidden')
     @input.val(@initial_text)
     @input.focus()
+    @enterKeyListener()
 
   hideForm: =>
     @form_node.addClass('hidden')
