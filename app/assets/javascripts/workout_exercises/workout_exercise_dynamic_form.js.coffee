@@ -4,20 +4,33 @@ class window.WorkoutExerciseDynamicForm
 
   init: ->
     @show_forms.on 'click', (event) =>
-      event.preventDefault()
       @show_form = $( event.target )
       @storeVariables()
+      @unbindAndCreateNew()
+      @hideFormListener()
       @hideValues()
       @showForm()
+      event.preventDefault()
+
+  hideFormListener: =>
+    @hide_form.on 'click', (event) =>
+      @hideForm()
+      @showValues()
+      event.preventDefault()
 
   storeVariables: =>
     @tag          = @show_form.data('tag')
-    @value        = @show_form.data('value')
+    # @value        = @show_form.data('value')
     @form_group   = @show_form.parents('.workout_form_group')
     @text_node    = @show_form.prev('p')
-    @form_node    = @show_form.siblings('.workout_exercise_instructions_form')
+    @form_node    = @show_form.next(".workout_exercise_form.#{@tag}")
     @input        = $(@form_node).find('input')
+    @hide_form    = $(@form_node).find('a.hide_form')
     @initial_text = @text_node.text()
+
+  showValues: =>
+    @text_node.removeClass('hidden')
+    @show_form.removeClass('hidden')
 
   hideValues: =>
     @text_node.addClass('hidden')
@@ -27,6 +40,14 @@ class window.WorkoutExerciseDynamicForm
     @form_node.removeClass('hidden')
     @input.val(@initial_text)
     @input.focus()
+
+  hideForm: =>
+    @form_node.addClass('hidden')
+
+  unbindAndCreateNew: =>
+    @show_forms.unbind 'click'
+    form = new WorkoutExerciseDynamicForm
+    form.init()
 
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )

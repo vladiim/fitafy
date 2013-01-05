@@ -17,7 +17,7 @@
 
       {{# own_workout}}
         <a href="#" class='show_form' data-tag='instructions' data-value="{{id}}">Edit</a>
-        <div class='hidden workout_exercise_instructions_form'>
+        <div class='hidden workout_exercise_form instructions'>
           <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
           <button class='btn btn-primary btn-mini' data-value="{{id}}">
           	UPDATE
@@ -50,11 +50,15 @@
         <tr>
           <td>
             <div class='workout_form_group sets' data-value='{{id}}'>
-              {{sets}}
+              <p>{{sets}}</p>
 
               {{# own_workout}}
                 <a href="#" class='show_form' data-tag='sets' data-value="{{id}}">Edit</a>
-                <div class='hidden workout_form sets' data-value='{{id}}'>
+
+                <div class='hidden workout_exercise_form sets' data-value='{{id}}'>
+
+                  <input class='numeric integer thin_form_element' type='number' step='1' data-tag='sets' data-value="{{id}}">
+
                   <a href="#" class='hide_form' data-tag='sets' data-value="{{id}}">Cancel</a>
                 </div>
               {{/ own_workout}}
