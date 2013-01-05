@@ -62,6 +62,7 @@ module WorkoutExercises
     def render_json(workout_exercise)
       @workout_exercise = workout_exercise
       {
+        id:             id,
       	name:           name,
         exercise_url:   exercise_url,
       	instructions:   instructions,

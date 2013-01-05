@@ -23,6 +23,7 @@ class WorkoutExercisesController < ApplicationController
   	@workout_exercise = WorkoutExercise.find(params[:id])
   	@workout          = @workout_exercise.workout
   	@user             = @workout.user
+    @renderer         = WorkoutExercises::Show.new(view_context, current_user)
 
   	if @workout_exercise.update_safely(params[:workout_exercise])
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
@@ -33,6 +34,7 @@ class WorkoutExercisesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_workout_path(@user.username, @workout) }
       format.js
+      format.json { render json: @renderer.render_json(@workout_exercise) }
     end
   end
 

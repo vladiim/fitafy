@@ -3,11 +3,13 @@ describe 'WorkoutExerciseDynamicForm', ->
     loadFixtures 'workout_exercise_dynamic_form.html'
     @form = new WorkoutExerciseDynamicForm
     @form.init()
-    @show_form  = $( 'a.show_form[data-value=1]')
-    @hide_form  = $( 'a.hide_form[data-value=1]')
-    @form_group = $( '.workout_form_group.instructions' )
-    @text_node  = $( '.workout_form_group.instructions > p' )
-    @form_node  = $( '.workout_exercise_form.instructions' )
+    @show_form     = $( 'a.show_form[data-value=1]')
+    @hide_form     = $( 'a.hide_form[data-value=1]')
+    @update_button = $('.update_workout_exercise_form')
+    @form_group    = $( '.workout_form_group.instructions' )
+    @text_node     = $( '.workout_form_group.instructions > p' )
+    @form_node     = $( '.workout_exercise_form.instructions' )
+    @w_e_node      = $( 'li.workout_exercise')
 
   describe 'click show link', ->
     beforeEach -> @show_form.click()
@@ -23,8 +25,8 @@ describe 'WorkoutExerciseDynamicForm', ->
     it 'stores the tag name locally', ->
       expect(@form.tag).toEqual('instructions')
 
-    # it 'stores the workout_exercise value locally', ->
-    #   expect(@form.value).toEqual(1)
+    it 'stores the workout_exercise value locally', ->
+      expect(@form.value).toEqual(1)
 
     it 'stores the form node', ->
       expect(@form.form_node).toBe(@form_node)
@@ -37,6 +39,12 @@ describe 'WorkoutExerciseDynamicForm', ->
 
     it 'stores the hide form locally', ->
       expect(@form.hide_form).toBe(@hide_form)
+
+    it 'stores the update button locally', ->
+      expect(@form.update_button).toBe(@update_button)
+
+    it 'stores the workout exercise item', ->
+      expect(@form.workout_exercise_item).toBe(@w_e_node)
 
   describe 'hideValues', ->
     beforeEach ->
@@ -101,3 +109,98 @@ describe 'WorkoutExerciseDynamicForm', ->
 
     it 'hides the form node', ->
       expect(@form_node).toHaveClass('hidden')
+
+  describe 'update form', ->
+    beforeEach ->
+      @show_form.click()
+
+    describe 'with the same text', ->
+      beforeEach ->
+        sinon.stub(@form, 'sameText', -> true)
+        sinon.spy(@form, 'updateValue')
+        @update_button.click()
+
+      it 'lets the user know they have the same text', ->
+        expect(@form.sameText).toHaveBeenCalled()
+
+      it 'doesnt update the value', ->
+        expect(@form.updateValue).not.toHaveBeenCalled()
+
+    describe 'with new text', ->
+      beforeEach ->
+        sinon.stub(@form, 'updateValue', -> true )
+        sinon.spy(@form, 'sameText')
+        @form.input.val('NEW VAL')
+        @update_button.click()
+
+      it 'updates the value', ->
+        expect(@form.updateValue).toHaveBeenCalled()
+
+      it 'doesnt tell the user they have the same text', ->
+        expect(@form.sameText).not.toHaveBeenCalled()
+
+  describe 'sameText', ->
+    beforeEach ->
+      sinon.stub(window, 'alert')
+      @show_form.click()
+      @form.sameText()
+
+    afterEach -> window.alert.restore()
+
+    it 'alerts the user that they used the same text', ->
+      expect(window.alert).toHaveBeenCalledWith("Sheesh! The instructions are alreay INITIAL TEXT - try changing 'em!")
+
+  describe 'updateValue', ->
+
+    describe 'with instructions', ->
+      beforeEach ->
+        @param = $.param( { workout_exercise: { instructions: 'INITIAL TEXT' } })
+        sinon.stub($, 'ajax')
+        @show_form.click()
+        @form.updateValue()
+
+      afterEach -> $.ajax.restore()
+
+      it 'uses ajax for the request', ->
+        expect($.ajax).toHaveBeenCalled()
+
+      it 'posts to the right url', ->
+        expect($.ajax.getCall(0).args[0].url).toEqual("/workout_exercises/1?#{@param}")
+
+      it 'posts the info to the server', ->
+        expect($.ajax.getCall(0).args[0].type).toEqual("PUT")
+
+      it 'uses json as the data type', ->
+        expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
+
+    describe 'with sets', ->
+      beforeEach ->
+        @param = $.param( { workout_exercise: { sets: 'INITIAL TEXT' } })
+        sinon.stub($, 'ajax')
+        @show_form.click()
+        @form.tag = 'sets'
+        @form.updateValue()
+
+      afterEach -> $.ajax.restore()
+
+      it 'posts to the right url', ->
+        expect($.ajax.getCall(0).args[0].url).toEqual("/workout_exercises/1?#{@param}")
+
+  describe 'replaceWorkoutExercise', ->
+    beforeEach ->
+      @fake_template_renderer = { render: -> }
+      @render = sinon.stub(@fake_template_renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
+      @form   = new WorkoutExerciseDynamicForm @fake_template_renderer
+      @show_form.click()
+      @form.workout_exercise_item = @w_e_node
+      @data = {}
+      @form.replaceWorkoutExercise(@data)
+
+    it 'uses the template renderer', ->
+      expect(@render).toHaveBeenCalled("app/templates/workout_exercises/show", @data)
+
+    it 'removes the workout exercise node', ->
+      expect(@w_e_node).not.toBe()
+
+    it 'replaces the workout exercise node with a new one', ->
+      expect($( 'li.new_node').text() ).toEqual('NEW WORKOUT EXERCISE RENDERED')

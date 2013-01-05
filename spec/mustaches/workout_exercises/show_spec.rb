@@ -192,6 +192,7 @@ describe WorkoutExercises::Show do
 
     it 'returns all details as a hash' do
       result_hash = {
+        id:             workout_exercise.id
         name:           workout_exercise.name.titleize,
         exercise_url:   'URL',
         instructions:   workout_exercise.instructions.humanize,
