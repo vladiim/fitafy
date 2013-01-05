@@ -18,7 +18,6 @@ describe Exercises::Index do
 
     context 'with variables passed in' do
       let(:index) { Exercises::Index.new(view, user)}
-      before { mock(view).current_page?(controller: 'workouts', action: 'show') { false } }
 
       it 'sets its view_context and user' do
         index.should be
@@ -27,19 +26,19 @@ describe Exercises::Index do
       end
     end
 
-    context 'on workout page' do
-      let(:index) { Exercises::Index.new(view, user)}
+  #   context 'on workout page' do
+  #     let(:index) { Exercises::Index.new(view, user)}
 
-      before do
-        mock(view).current_page?(controller: 'workouts', action: 'show') { true }
-        mock(view).params     { { :id => 1 } }
-        mock(Workout).find(1) { workout }
-      end
+  #     before do
+  #       mock(view).current_page?(controller: 'workouts', action: 'show') { true }
+  #       mock(view).params     { { :id => 1 } }
+  #       mock(Workout).find(1) { workout }
+  #     end
 
-      it 'finds and sets the workout' do
-        index.workout.should eq workout
-      end
-    end
+  #     it 'finds and sets the workout' do
+  #       index.workout.should eq workout
+  #     end
+  #   end
   end
 
   describe "render_json" do
@@ -69,17 +68,17 @@ describe Exercises::Index do
       result.fetch(:new_workout_exercise_form).should eq nil
     end
 
-    context 'on workout page' do
-      let(:workout) { OpenStruct.new id: 1 }
+    # context 'on workout page' do
+    #   let(:workout) { OpenStruct.new id: 1 }
 
-      before do
-        index.workout = workout
-        mock(view).simple_form_for(anything, anything) { 'NEW WE URL' }
-      end
+    #   before do
+    #     index.workout = workout
+    #     mock(view).simple_form_for(anything, anything) { 'NEW WE URL' }
+    #   end
 
-      it 'generates a new_workout_exercise_form' do
-        result.fetch(:new_workout_exercise_form).should eq 'NEW WE URL'
-      end
-    end
+    #   it 'generates a new_workout_exercise_form' do
+    #     result.fetch(:new_workout_exercise_form).should eq 'NEW WE URL'
+    #   end
+    # end
   end
 end

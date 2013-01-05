@@ -1,7 +1,6 @@
 class window.AddExerciseToWorkout
 
   constructor: (@link) ->
-    console.log(@link)
     @params = $.param( { workout_exercise: { workout_id: @link.data('workout_id'), exercise_id: @link.data('exercise_id') } })
 
   init: ->

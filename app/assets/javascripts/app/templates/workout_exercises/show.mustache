@@ -13,17 +13,17 @@
 
     <div class='workout_form_group instructions'>
       <h5 class='workout_value instructions' data-value="{{id}}">Instructions</h5>
-      {{instructions}}
+      <p>{{instructions}}</p>
 
       {{# own_workout}}
-        <a href="#" class='show_link' data-tag='instructions' data-value="{{id}}">Edit</a>
+        <a href="#" class='show_form' data-tag='instructions' data-value="{{id}}">Edit</a>
         <div class='hidden workout_exercise_instructions_form'>
           <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
           <button class='btn btn-primary btn-mini' data-value="{{id}}">
           	UPDATE
           </button>
 
-          <a href="#" class='hide_link' data-tag='instructions' data-value="{{id}}">Cancel</a>
+          <a href="#" class='hide_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
         </div>
       {{/ own_workout}}
 
@@ -53,9 +53,9 @@
               {{sets}}
 
               {{# own_workout}}
-                <a href="#" class='show_link' data-tag='sets' data-value="{{id}}">Edit</a>
+                <a href="#" class='show_form' data-tag='sets' data-value="{{id}}">Edit</a>
                 <div class='hidden workout_form sets' data-value='{{id}}'>
-                  <a href="#" class='hide_link' data-tag='sets' data-value="{{id}}">Cancel</a>
+                  <a href="#" class='hide_form' data-tag='sets' data-value="{{id}}">Cancel</a>
                 </div>
               {{/ own_workout}}
 
