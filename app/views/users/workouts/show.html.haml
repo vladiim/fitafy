@@ -26,8 +26,8 @@
     %header
       %h5 EXERCISES
     %ul.workout_exercises
-    /   = @workout.render_exercises self
-    / = link_to_add_exercise @workout
+      / = @workout.render_exercises self
+      / = link_to_add_exercise @workout
       - @workout_exercises.each do |workout_exercise|
         - @exercise_renderer.workout_exercise = workout_exercise
         = @exercise_renderer.render.html_safe

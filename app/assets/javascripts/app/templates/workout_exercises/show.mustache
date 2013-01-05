@@ -1,0 +1,80 @@
+<li class='workout_exercise big_box_list row well'>
+
+  <aside class='span1 w_e_order {{id}}'>
+  	<a href="#">{{{up_link}}}</a>
+    <p class='order_number'>{{order}}</p>
+  	<a href="#">{{{down_link}}}</a>
+  </aside>
+
+  <article class='span4 w_e_details'>
+  	<h3>
+  	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
+  	</h3>
+
+    <div class='workout_form_group instructions'>
+      <h5 class='workout_value instructions' data-value="{{id}}">Instructions</h5>
+      {{instructions}}
+
+      {{# own_workout}}
+        <a href="#" class='show_link' data-tag='instructions' data-value="{{id}}">Edit</a>
+        <div class='hidden workout_exercise_instructions_form'>
+          <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
+          <button class='btn btn-primary btn-mini' data-value="{{id}}">
+          	UPDATE
+          </button>
+
+          <a href="#" class='hide_link' data-tag='instructions' data-value="{{id}}">Cancel</a>
+        </div>
+      {{/ own_workout}}
+
+    </div>
+
+    <table class='workout_exercise_details'>
+      <thead>
+      	<tr>
+          <th class='workout_exercise_details sets'>
+            <h5>Sets</h5>
+          </th>
+
+          <th class='workout_exercise_details muscle'>
+            <h5>Muscle</h5>
+          </th>
+          <th class='workout_exercise_details equipment'>
+            <h5>Equipment</h5>
+          </th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div class='workout_form_group sets' data-value='{{id}}'>
+              {{sets}}
+
+              {{# own_workout}}
+                <a href="#" class='show_link' data-tag='sets' data-value="{{id}}">Edit</a>
+                <div class='hidden workout_form sets' data-value='{{id}}'>
+                  <a href="#" class='hide_link' data-tag='sets' data-value="{{id}}">Cancel</a>
+                </div>
+              {{/ own_workout}}
+
+            </div>
+          </td>
+
+          <td>
+            <p>{{muscle}}</p>
+          </td>
+          <td>
+            <p>{{equipment_name}}</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    {{# own_workout}}
+      <a href="workout_exercises/{{id}}" class='btn btn-danger btn-mini'>DELETE</a>
+    {{/ own_workout}}
+  </article>
+</li>

@@ -118,6 +118,20 @@ describe WorkoutExercises::Show do
       end
     end
 
+    describe '#exercise_url' do
+      let(:result)   { renderer.exercise_url }
+      let(:exercise) { build :exercise, name: 'exercise-name' }
+
+      before do
+        mock(workout_exercise).exercise { exercise }
+        mock(view_context).exercise_path(exercise) { '/exercises/exercise-name' }
+      end
+
+      it 'returns the exercise name' do
+        result.should eq "/exercises/exercise-name"
+      end
+    end
+
     describe '#instructions' do
       let(:result) { renderer.instructions }
       before { mock(workout_exercise).instructions { 'EXERCISE INSTUCTIONS' } }
@@ -164,6 +178,7 @@ describe WorkoutExercises::Show do
     it 'returns all details as a hash' do
       result_hash = {
         name:           workout_exercise.name.titleize,
+        url:            renderer.url,
         instructions:   workout_exercise.instructions.humanize,
         sets:           workout_exercise.sets,
         muscle:         workout_exercise.muscle.titleize,

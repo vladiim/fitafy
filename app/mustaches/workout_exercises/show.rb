@@ -1,8 +1,14 @@
 module WorkoutExercises
   class Show < Mustache
+    include Rails.application.routes.url_helpers
+    self.template_path = "app/assets/javascripts/app/templates"
 
     attr_accessor :workout_exercise, :user, :view_context
     attr_reader   :workout
+
+    def id
+      @workout_exercise.id
+    end
 
     def initialize(view_context, user)
       @view_context, @user = view_context, user
@@ -12,8 +18,13 @@ module WorkoutExercises
       @workout_exercise.name.titleize
     end
 
+    def exercise_url
+      exercise = @workout_exercise.exercise
+      @view_context.exercise_path(exercise)
+    end
+
     def instructions
-      @workout_exercise.instructions.humanize
+      @workout_exercise.safe_instructions.humanize
     end
 
     def sets
@@ -43,6 +54,10 @@ module WorkoutExercises
       last_order? ? nil : generate_down_link
     end
 
+    def own_workout
+      !workout_exercise_isnt_users?
+    end
+
     def render_json(workout_exercise)
       @workout_exercise = workout_exercise
       {
@@ -53,7 +68,8 @@ module WorkoutExercises
       	equipment_name: equipment_name,
       	order:          order,
       	up_link:        up_link,
-      	down_link:      down_link
+      	down_link:      down_link,
+      	own_workout:    own_workout
       }
     end
 
@@ -72,11 +88,13 @@ module WorkoutExercises
     end
 
     def generate_up_link
-      @view_context.link_to 'Move Up', '#'
+      # @view_context.link_to 'Move Up', '#'
+      "<i class='icon-chevron-up move_workout_exercise_up'></i>"
     end
 
     def generate_down_link
-      @view_context.link_to 'Move Down', '#'    	
+      # @view_context.link_to 'Move Down', '#'
+      "<i class='icon-chevron-down move_workout_exercise_down'></i>"
     end
   end
 end

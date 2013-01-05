@@ -9,7 +9,7 @@ class Users::WorkoutsController < ApplicationController
     # @exercises        = @workout.all_exercises
 
     @workout_exercises = @workout.workout_exercises
-    @exercise_renderer = WorkoutExercises::Show.new
+    @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
 
     # @base_workout     = Workout.find(params[:id])
     @trainer          = User.find @workout.user_id
