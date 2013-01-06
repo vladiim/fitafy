@@ -38,8 +38,12 @@ class WorkoutsController < ApplicationController
   def update
     @workout = current_user.workouts.find(params[:id])
     if @workout.update_attributes(params[:workout])
-      redirect_to users_workout_path(current_user.username, @workout)
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
+
+      respond_to do |format|
+        format.html { redirect_to users_workout_path(current_user.username, @workout) }
+        format.json { render json: @workout }
+      end
     else
       render :new
     end

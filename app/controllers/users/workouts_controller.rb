@@ -7,6 +7,7 @@ class Users::WorkoutsController < ApplicationController
   	@workout          = exhibit Workout.find(params[:id]), self
     # @workout    = Workout.find(params[:id])
     # @exercises        = @workout.all_exercises
+    @workout_path     = user_workout_path(current_user, @workout)
 
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user

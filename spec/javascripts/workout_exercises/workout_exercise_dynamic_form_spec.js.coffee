@@ -3,8 +3,8 @@ describe 'WorkoutExerciseDynamicForm', ->
     loadFixtures 'workout_exercise_dynamic_form.html'
     @form = new WorkoutExerciseDynamicForm
     @form.init()
-    @show_form     = $( 'a.show_form[data-value=1]')
-    @hide_form     = $( 'a.hide_form[data-value=1]')
+    @show_form     = $( 'a.show_workout_exercise_form[data-value=1]')
+    @hide_form     = $( 'a.hide_workout_exercise_form[data-value=1]')
     @update_button = $('.update_workout_exercise_form')
     @form_group    = $( '.workout_form_group.instructions' )
     @text_node     = $( '.workout_form_group.instructions > p' )
@@ -26,8 +26,8 @@ describe 'WorkoutExerciseDynamicForm', ->
     it 'stores the tag name locally', ->
       expect(@form.tag).toEqual('instructions')
 
-    it 'stores the workout_exercise value locally', ->
-      expect(@form.value).toEqual(1)
+    it 'stores the url', ->
+      expect(@form.url).toEqual('/workout_exercises/1')
 
     it 'stores the form node', ->
       expect(@form.form_node).toBe(@form_node)
@@ -50,7 +50,7 @@ describe 'WorkoutExerciseDynamicForm', ->
   describe 'hideValues', ->
     beforeEach ->
       @form.show_form = @show_form
-      @form.text_node = @text_node
+      @form.value     = @text_node
       @form.hideValues()
 
     it 'hides the text', ->
@@ -182,7 +182,7 @@ describe 'WorkoutExerciseDynamicForm', ->
 
     describe 'with instructions', ->
       beforeEach ->
-        @param = $.param( { workout_exercise: { instructions: 'INITIAL TEXT' } })
+        @param = $.param( { instructions: 'INITIAL TEXT' })
         sinon.stub($, 'ajax')
         @show_form.click()
         @form.updateValue()
@@ -203,7 +203,7 @@ describe 'WorkoutExerciseDynamicForm', ->
 
     describe 'with sets', ->
       beforeEach ->
-        @param = $.param( { workout_exercise: { sets: 'INITIAL TEXT' } })
+        @param = $.param( { sets: 'INITIAL TEXT' } )
         sinon.stub($, 'ajax')
         @show_form.click()
         @form.tag = 'sets'
@@ -214,7 +214,7 @@ describe 'WorkoutExerciseDynamicForm', ->
       it 'posts to the right url', ->
         expect($.ajax.getCall(0).args[0].url).toEqual("/workout_exercises/1?#{@param}")
 
-  describe 'replaceWorkoutExercise', ->
+  describe 'updateFormItem', ->
     beforeEach ->
       @fake_template_renderer = { render: -> }
       @render = sinon.stub(@fake_template_renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
@@ -222,7 +222,7 @@ describe 'WorkoutExerciseDynamicForm', ->
       @show_form.click()
       @form.workout_exercise_item = @w_e_node
       @data = {}
-      @form.replaceWorkoutExercise(@data)
+      @form.updateFormItem(@data)
 
     it 'uses the template renderer', ->
       expect(@render).toHaveBeenCalled("app/templates/workout_exercises/show", @data)

@@ -1,10 +1,13 @@
-.workout_form_group
-  .workout_value.name{"data-value" => @workout.id}
-    = link_to_show_form @workout, "name", @workout.id
+.workout_form_group.name
+  .workout_value.name
+    / = link_to_show_form @workout, "name", @workout.id
+    = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
 
-  .hidden.workout_form.name{"data-value" => @workout.id}
-    = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
-    = link_to_hide_form @workout, "name", @workout.id
+  .hidden.workout_form.name
+    / = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
+    / = link_to_hide_form @workout, "name", @workout.id
+    %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
+    = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 %br
 
 .workout_form_group.notes

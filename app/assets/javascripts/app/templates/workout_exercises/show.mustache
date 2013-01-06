@@ -16,14 +16,14 @@
       <p>{{instructions}}</p>
 
       {{# own_workout}}
-        <a href="#" class='show_form' data-tag='instructions' data-value="{{id}}">Edit</a>
+        <a href="/workout_exercises/{{id}}" class='show_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Edit</a>
         <div class='hidden workout_exercise_form instructions'>
           <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
           <button class='update_workout_exercise_form instructions btn btn-primary btn-mini' data-value="{{id}}">
           	UPDATE
           </button>
 
-          <a href="#" class='hide_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
+          <a href="/workout_exercises/{{id}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
         </div>
       {{/ own_workout}}
 
