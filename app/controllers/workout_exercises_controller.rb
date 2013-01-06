@@ -25,7 +25,7 @@ class WorkoutExercisesController < ApplicationController
   	@user             = @workout.user
     @renderer         = WorkoutExercises::Show.new(view_context, current_user)
 
-  	if @workout_exercise.update_safely(params[:workout_exercise])
+  	if @workout_exercise.update_attributes(params[:workout_exercise])
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
   	else
   	  flash[:failure] = SnapzSayz::WorkoutSpeak.new_workout_fail

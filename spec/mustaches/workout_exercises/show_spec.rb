@@ -188,12 +188,16 @@ describe WorkoutExercises::Show do
     let(:renderer)         { WorkoutExercises::Show.new view_context, user }
     let(:result)           { renderer.render_json workout_exercise }
 
-    before { mock(renderer).exercise_url { 'URL' } }
+    before do
+      mock(renderer).url { 'URL' }
+      mock(renderer).exercise_url { 'URL' }
+    end
 
     it 'returns all details as a hash' do
       result_hash = {
-        id:             workout_exercise.id
+        id:             workout_exercise.id,
         name:           workout_exercise.name.titleize,
+        url:            'URL',
         exercise_url:   'URL',
         instructions:   workout_exercise.instructions.humanize,
         sets:           workout_exercise.sets,

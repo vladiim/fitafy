@@ -1,26 +1,24 @@
 .workout_form_group.name
   .workout_value.name
-    / = link_to_show_form @workout, "name", @workout.id
     = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
 
-  .hidden.workout_form.name
-    / = link_to_baby_form current_user, @workout, :name, [current_user, @workout]
-    / = link_to_hide_form @workout, "name", @workout.id
-    %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
-    = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
+  - if can? :manage, @workout
+    .hidden.workout_form.name
+      %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
+      %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
+      = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 %br
 
 .workout_form_group.notes
-  .workout_value.notes{"data-value" => @workout.id}
+  .workout_value.notes
     %h5 NOTES
     %p= @workout.safe_notes.capitalize
-    = link_to_show_form @workout, "notes", @workout.id
-  .hidden.workout_form.notes{"data-value" => @workout.id}
-    - if can? :manage, @workout
-      = simple_form_for [current_user, @workout], remote: true do |f|
-        = f.input :notes, input_html: { rows: 6 }
-        = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
-      = link_to_hide_form @workout, "notes", @workout.id
+    = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
+  - if can? :manage, @workout
+    .hidden.workout_form.notes
+      %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
+      %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
+      = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'   
 
 %br
 

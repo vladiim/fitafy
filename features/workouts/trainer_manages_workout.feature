@@ -12,36 +12,11 @@ Feature: Trainer manages workouts
     Then I should be able to edit the workout's details
     And I should see the workout owner CTA buttons
 
-  Scenario: Trainer deletes exercise from workout
-    Given a workout exercise has been created
-    And I'm on a workout's page
-    When I click delete exercise
-    Then that exercise should be removed
-
-  Scenario Outline: Trainer updates a workout
-    Given a workout exercise has been created
-    And I'm on a workout's page
-    When <form_container> I fill in the workout's <form_element> with <new_detail>
-    Then <value_container> I should see the workout's updated <new_detail>
-
-    Examples:
-      | form_container               |form_element                     | new_detail         | value_container        |
-      | ".workout_form.name"         | "workout_name"                  | "NEW NAME"         | "h1"                   |
-      | ".workout_form.instructions" | "workout_exercise_instructions" | "NEW INSTRUCTIONS" | ".workout_exercises"   |
-
   Scenario: Trainer deletes workout
     Given a workout exercise has been created
     When I delete the workout by clicking "DELETE WORKOUT"
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
-
-  @focus
-  Scenario: Trainer adds exercise to workout
-    Given another exercise exists
-    And a workout exercise has been created
-    When I click add exercise on the workout's page
-    Then that exercise should be added to the workout
-    And the exercise is ordered
 
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise has been created

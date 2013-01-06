@@ -19,6 +19,10 @@ module WorkoutExercises
       @workout_exercise.name.titleize
     end
 
+    def url
+      @view_context.workout_exercise_path(@workout_exercise)
+    end
+
     def exercise_url
       exercise = @workout_exercise.exercise
       @view_context.exercise_path(exercise)
@@ -64,6 +68,7 @@ module WorkoutExercises
       {
         id:             id,
       	name:           name,
+        url:            url,
         exercise_url:   exercise_url,
       	instructions:   instructions,
       	sets:           sets,

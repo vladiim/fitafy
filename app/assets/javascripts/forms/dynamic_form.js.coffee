@@ -53,7 +53,6 @@ class window.DynamicForm
 
   createParam: =>
     @param = {}
-    # @param[@dynamic_form_type] = {}
-    # @param["#{@dynamic_form_type}"]["#{@tag}"] = @input.val()
-    @param["#{@tag}"] = @input.val()
+    @param[@dynamic_form_type] = {}
+    @param[@dynamic_form_type]["#{@tag}"] = @input.val()
     @param = $.param(@param)

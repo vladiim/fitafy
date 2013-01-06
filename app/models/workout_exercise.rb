@@ -14,14 +14,6 @@ class WorkoutExercise < ActiveRecord::Base
 
   before_create :generate_order_number
 
-  def update_safely params
-    # if change_order_number?(params)
-    #   ExerciseSwapper.new(self, params).swap_positions!
-    # else
-    update_attributes(params)
-    # end
-  end
-
   def generate_order_number
     self.order_number = (self.exercise_number + 1)
   end
@@ -67,11 +59,5 @@ class WorkoutExercise < ActiveRecord::Base
   def safe_sets
     self.sets.nil? ? "0" : self.sets
   end
-
-  private
-
-  # def change_order_number? params
-  #   params["order_number"] ? true : false
-  # end
 
 end

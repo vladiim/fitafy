@@ -6,24 +6,6 @@ describe WorkoutExercise do
   let(:workout)       { build_stubbed :workout }
   let(:exercise)      { build_stubbed :exercise }
 
-  describe "#update_safely" do
-    let(:safe_update) { Object.new }
-    let(:params)      { "PARAMS" }
-    let(:result)      { subject.update_safely(params) }
-
-    before do
-      mock(subject).change_order_number?(params) { true }
-      mock(ExerciseSwapper).new(subject, params) { safe_update() }
-      mock(safe_update).swap_positions! { true }
-    end
-
-    context "updates safely" do
-      it "returns true" do
-        result.should be
-      end
-    end
-  end
-
   describe "#generate_order_number" do
     let(:workout_ex) { build :workout_exercise, workout: workout,
                                                 exercise: exercise }

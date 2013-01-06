@@ -18,7 +18,13 @@
 * workout - query workout.all + muscle tag via js - manage limit of 30
 
 # To do
-* cach all exercises
+* workout_exercise delete
+* workout_exercise order
+* workout_exercise add
+
+* create a guest user model
+
+* cache all exercise find
 * get turbo links working
 * User permissions to see new features
 * http://railscasts.com/episodes/387-cache-digests

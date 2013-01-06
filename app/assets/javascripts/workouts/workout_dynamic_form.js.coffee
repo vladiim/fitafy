@@ -1,6 +1,7 @@
 class window.WorkoutDynamicForm extends DynamicForm
   constructor: ->
     @show_forms = $( 'a.show_workout_form' )
+    @dynamic_form_type = 'workout'
 
   init: ->
     @show_forms.on 'click', (event) =>
@@ -18,15 +19,16 @@ class window.WorkoutDynamicForm extends DynamicForm
     @group         = $( ".workout_form_group.#{@tag}" )
     @value         = if @onName() then $( 'h1' ) else @show_form.prev('p')
     @form_node     = $( "div.workout_form.#{@tag}" )
-    @input         = $( "input.workout_form[data-tag=#{@tag}]")
+    @input         = $( ".workout_form[data-tag=#{@tag}]")
     @update_button = $( "button.update_workout_form.#{@tag}")
     @hide_form     = $( "a.hide_workout_form[data-tag=#{@tag}]")
-    @initial_text  = @value.text()
+    @initial_text  = @removeWhiteSpace(@value.text()).toLowerCase()
 
   onName: => @tag is 'name'
 
   updateFormItem: (data) =>
     new_text = data[@tag]
+    if @onName() then new_text = new_text.toUpperCase()
     @value.text(new_text)
     @showValues()
     @hideForm()
@@ -36,27 +38,10 @@ class window.WorkoutDynamicForm extends DynamicForm
     form = new WorkoutDynamicForm
     form.init()
 
-  # updateValue: =>
-  #   if @tag is 'instructions' then @instructionParams() else @setsParams()
-  #   $.ajax {
-  #     url: "#{@url}?#{@param}",
-  #     type: 'PUT',
-  #     dataType: 'json',
-
-  #     success: (data) => @replaceWorkoutExercise(data)
-
-  #     failure: => alert('Something went wrong o_0 try again')
-  #   }
-
-  # replaceWorkoutExercise: (data) =>
-  #   @workout_exercise_item.replaceWith(@template_renderer.render(@mustache, data))
-  #   @unbindAndCreateNew()
-
-  # instructionParams: =>
-  #   @param = $.param( { workout_exercise: { instructions: @input.val() }} )
-
-  # setsParams: =>
-  #   @param = $.param( { workout_exercise: { sets: @input.val() }} )
+  removeWhiteSpace: (s) =>
+    words = s.match(/\S+/g)         # returns an array of words & whitespace
+    words = $.grep(words, (w) -> w) # returns only the words in the array
+    words.join(' ').trim()
 
 $ ->
   workout_form = $( '.workout_form_group' )

@@ -9,5 +9,5 @@ end
 
 Then /^I should get a pdf$/ do
   p "USERNAME::: #{@active_trainer.username}"
-  current_url.should include "#{@workout.id}-#{@workout.name.parameterize}.pdf?id="
+  current_url.should include "#{@workout.id}-#{@workout.name.parameterize}.pdf"
 end

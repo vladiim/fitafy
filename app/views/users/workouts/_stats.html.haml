@@ -4,15 +4,17 @@
 %br
 
   .workout_form_group.level
-    .workout_value.level{"data-value" => @workout.id}
-      %h5 Level
-      = @workout.level
-      = link_to_show_form @workout, "level", @workout.id
+    .workout_value.level
+      %h5.level Level
+      %p= @workout.level
+      / = link_to_show_form @workout, "level", @workout.id
+      = link_to 'Edit', @workout_path, class: 'show_workout_form', 'data-tag' => 'level'
 
     - if can? :manage, @workout
-      .workout_form.level.hidden{"data-value" => @workout.id}
+      .workout_form.level.hidden
         = simple_form_for [current_user, @workout], remote: true do |f|
           = f.input :client_level, collection: @client_level
           = f.input :difficulty, collection: @difficulty
           = f.submit "UPDATE WORKOUT", class: "btn btn-primary btn-mini"
-        = link_to_hide_form @workout, "level", @workout.id
+        / = link_to_hide_form @workout, "level", @workout.id
+        = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'level'

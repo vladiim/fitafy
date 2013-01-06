@@ -1,18 +1,15 @@
 class Users::WorkoutsController < ApplicationController
-  include DisplayCase::ExhibitsHelper
+  # include DisplayCase::ExhibitsHelper
 
   skip_filter :authorize
 
   def show
-  	@workout          = exhibit Workout.find(params[:id]), self
-    # @workout    = Workout.find(params[:id])
-    # @exercises        = @workout.all_exercises
-    @workout_path     = user_workout_path(current_user, @workout)
+  	# @workout          = exhibit Workout.find(params[:id]), self
+    @workout          = Workout.find(params[:id])
+    @workout_path     = current_user ? user_workout_path(current_user, @workout) : '/'
 
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
-
-    # @base_workout     = Workout.find(params[:id])
     @trainer          = User.find @workout.user_id
     @current_user     = current_user ? current_user : nil
   	@title            = @workout.name

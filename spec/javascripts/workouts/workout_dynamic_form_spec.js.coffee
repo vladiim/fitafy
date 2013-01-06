@@ -16,7 +16,6 @@ describe 'WorkoutDynamicForm on name', ->
     beforeEach ->
       sinon.spy(@form, 'storeVariables')
       sinon.spy(@form, 'unbindAndCreateNew')
-      # sinon.spy(@form, 'tiggerListeners')
       @show_name.click()
 
     it 'sets the show_form', ->
@@ -52,7 +51,7 @@ describe 'WorkoutDynamicForm on name', ->
       expect(@form.update_button).toEqual(@name_update_button)
 
     it 'stores the initial value', ->
-      expect(@form.initial_text).toEqual('H1 INITIAL VALUE')
+      expect(@form.initial_text).toEqual('h1 initial value')
 
     it 'stoes the input', ->
       expect(@form.input).toBe(@name_input)
@@ -77,6 +76,10 @@ describe 'WorkoutDynamicForm on name', ->
 
     it 'hides the form', ->
       expect(@name_form_node).toHaveClass('hidden')
+
+  describe 'removeWhiteSpace', ->
+    it 'removes white space from a string', ->
+      expect(@form.removeWhiteSpace('  HEADING   BLAH   BLAH   ')).toBe('HEADING BLAH BLAH')
 
 describe 'WorkoutDynamicForm on notes', ->
   beforeEach ->
