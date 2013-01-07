@@ -21,6 +21,7 @@
 * workout_exercise delete
 * workout_exercise order
 * workout_exercise add
+* show workout & workout_exercise form when you hover over the element - note, add a contingency to check if the user is the owner, only show the hover function if they are an owner
 
 * create a guest user model
 

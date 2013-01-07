@@ -59,5 +59,4 @@ class WorkoutExercise < ActiveRecord::Base
   def safe_sets
     self.sets.nil? ? "0" : self.sets
   end
-
 end

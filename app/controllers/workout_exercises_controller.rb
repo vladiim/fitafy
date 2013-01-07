@@ -41,8 +41,17 @@ class WorkoutExercisesController < ApplicationController
   def destroy
   	@workout_exercise = WorkoutExercise.find(params[:id])
     @workout = Workout.find(@workout_exercise.workout_id)
-    @workout_exercise.destroy
-    redirect_to users_workout_path(@workout.username, @workout)
-    flash[:success] = SnapzSayz::WorkoutExerciseSpeak.delete
+    # @renderer = WorkoutExercises::Index.new
+
+    if WorkoutExerciseDestroyer.new(@workout_exercise, @workout).destroy_safely!
+      flash[:success] = SnapzSayz::WorkoutExerciseSpeak.delete
+
+      respond_to do |format|
+        format.html { redirect_to users_workout_path(@workout.username, @workout) }
+        format.json # { render json: @renderer.render_json }
+      end
+    else
+      flash[:failure] = "Oops! We couldn't delete your exercise - try again."
+    end
   end
 end
