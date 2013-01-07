@@ -2,6 +2,7 @@ class WorkoutExercisesController < ApplicationController
 
   def create
     @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
+    @renderer = WorkoutExercises::Show.new(view_context, current_user)
 
     if @workout_exercise.save
       @workout = @workout_exercise.workout
@@ -10,7 +11,7 @@ class WorkoutExercisesController < ApplicationController
       respond_to do |format|
         format.html { redirect_to users_workout_path(current_user.username, @workout) }
         format.js
-        format.json { render json: @workout_exercise }
+        format.json { render json: @renderer.render_json(@workout_exercise) }
       end
 
     else

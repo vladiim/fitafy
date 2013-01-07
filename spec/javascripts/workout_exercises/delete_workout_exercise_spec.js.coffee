@@ -11,7 +11,7 @@ describe 'DeleteWorkoutExercise', ->
 
   describe 'click button', ->
     beforeEach ->
-      sinon.stub(@delete, 'confirmationAlert')
+      # sinon.stub(@delete, 'confirmationAlert')
       sinon.spy(@delete, 'unbindAndCreateNew')
       @delete_button.click()
 
@@ -21,8 +21,8 @@ describe 'DeleteWorkoutExercise', ->
     it 'sets the workout exercise locally', ->
       expect(@delete.workout_exercise).toBe(@right_workout_exercise)
 
-    it 'triggers a confirmation alert', ->
-      expect(@delete.confirmationAlert).toHaveBeenCalled()
+    # it 'triggers a confirmation alert', ->
+    #   expect(@delete.confirmationAlert).toHaveBeenCalled()
 
     it 'unbinds and creates a new version', ->
       expect(@delete.unbindAndCreateNew).toHaveBeenCalled()
@@ -30,15 +30,15 @@ describe 'DeleteWorkoutExercise', ->
     it 'sets the url', ->
       expect(@delete.url).toEqual('/workout_exercises/1071')
 
-  describe 'confirmationAlert', ->
-    beforeEach ->
-      sinon.stub(window, 'confirm')
-      @delete.confirmationAlert()
+  # describe 'confirmationAlert', ->
+  #   beforeEach ->
+  #     sinon.stub(window, 'confirm')
+  #     @delete.confirmationAlert()
 
-    afterEach -> window.confirm.restore()
+  #   afterEach -> window.confirm.restore()
 
-    it 'asks the user to confirm', ->
-      expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to delete this Exercise from the Workout?')
+  #   it 'asks the user to confirm', ->
+  #     expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to delete this Exercise from the Workout?')
 
     describe 'deleteWorkoutExercise', ->
       beforeEach ->
