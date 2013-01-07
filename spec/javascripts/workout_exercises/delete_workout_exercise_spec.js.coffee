@@ -1,7 +1,9 @@
 describe 'DeleteWorkoutExercise', ->
   beforeEach ->
     loadFixtures 'delete_workout_exercise.html'
-    @delete = new DeleteWorkoutExercise
+    @fake_renderer = { render: -> '' }
+    @rendered = sinon.stub(@fake_renderer, 'render', -> "<li>WORKOUT EXERCISES FROM SERVER</li>" )
+    @delete = new DeleteWorkoutExercise @fake_renderer
     @delete.init()
     @delete_button = $( 'a.delete_workout_exercise' )
     @right_workout_exercise = $( 'li.workout_exercise.right' )
@@ -58,6 +60,23 @@ describe 'DeleteWorkoutExercise', ->
       it 'uses json as the data type', ->
         expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
 
-    describe 'manages order numbers', ->
-      it 'need to set up other workout_exercises and manage their order numbers', ->
-        expect(false).toEqual(true)
+  describe 'reloadExercises', ->
+    beforeEach ->
+      sinon.spy(@delete, 'removeExercises')
+      @workout_exercises = [ workout_exercise: { name: 'one' } ]
+      @delete.reloadExercises(@workout_exercises)
+
+    it 'removes the exsisting exercises', ->
+      expect(@delete.removeExercises).toHaveBeenCalled()
+
+    it 'uses the template renderer to render the exercises', ->
+      expect(@rendered).toHaveBeenCalledWith('app/templates/workout_exercises/show', @workout_exercises[0])
+
+    it 'loads the new workout exercise on the page', ->
+      expect($( 'ul.workout_exercises > li' ).text()).toEqual('WORKOUT EXERCISES FROM SERVER')
+
+  describe 'removeExercises', ->
+    beforeEach -> @delete.removeExercises()
+
+    it 'removes the exercises from the page', ->
+      expect($( 'ul.workout_exercises > li' )).not.toExist()

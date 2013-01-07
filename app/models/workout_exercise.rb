@@ -12,6 +12,8 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :exercises, to: :workout
   delegate :user_id, to: :workout
 
+  default_scope order("order_number ASC")
+
   before_create :generate_order_number
 
   def generate_order_number
