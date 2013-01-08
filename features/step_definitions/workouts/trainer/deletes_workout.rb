@@ -9,3 +9,8 @@ end
 Then /^that workout shouldn't exsist$/ do
   Workout.find_by_name("no said date").should_not be
 end
+
+Then /^the trainer should still exsist$/ do
+  trainer = User.find(@active_trainer.id)
+  trainer.should be
+end

@@ -28,15 +28,17 @@ class WorkoutExercisesController < ApplicationController
 
   	if @workout_exercise.update_attributes(params[:workout_exercise])
   	  flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
-  	else
-  	  flash[:failure] = SnapzSayz::WorkoutSpeak.new_workout_fail
-  	end
 
-    respond_to do |format|
-      format.html { redirect_to users_workout_path(@user.username, @workout) }
-      format.js
-      format.json { render json: @renderer.render_json(@workout_exercise) }
-    end
+      respond_to do |format|
+        format.html { redirect_to users_workout_path(@user.username, @workout) }
+        format.js
+        format.json { render json: @renderer.render_json(@workout_exercise) }
+      end
+
+  	else
+  	  flash[:failure] = SnapzSayz::WorkoutExerciseSpeak.update_failed
+      render users_workout_path(@user, @workout)
+  	end
   end
 
   def destroy
@@ -50,7 +52,7 @@ class WorkoutExercisesController < ApplicationController
       respond_to do |format|
         format.html { redirect_to users_workout_path(@workout.username, @workout) }
         format.json do
-          render json: @workout.workout_exercises.map { |we| @renderer.render_json(we) }
+          render json: @workout.workout_exercises.order('order_number ASC').map { |we| @renderer.render_json(we) }
         end
       end
 

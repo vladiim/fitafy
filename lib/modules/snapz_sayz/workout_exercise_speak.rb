@@ -12,5 +12,9 @@ module SnapzSayz
     def self.no_instructions
       "No exercise instructions... guessing time!"
     end
+
+    def self.update_failed
+      "We couldn't update the Exercise this time round, but don't give up!"
+    end
   end
 end

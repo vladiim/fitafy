@@ -12,7 +12,7 @@
 .workout_form_group.notes
   .workout_value.notes
     %h5 NOTES
-    %p= @workout.safe_notes.capitalize
+    %p= @workout.safe_notes.humanize
     = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
   - if can? :manage, @workout
     .hidden.workout_form.notes

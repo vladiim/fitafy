@@ -12,7 +12,7 @@ class Workout < ActiveRecord::Base
   has_many :exercises,          through: :workout_exercises, uniq: true, dependent: :destroy
   has_many :favorite_workouts,  dependent: :destroy
   has_many :users,              through: :favorite_workouts, dependent: :destroy
-  belongs_to :user,             dependent: :destroy
+  belongs_to :user
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
 
   validates_presence_of :name, :user_id

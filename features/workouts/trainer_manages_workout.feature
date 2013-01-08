@@ -17,6 +17,7 @@ Feature: Trainer manages workouts
     When I delete the workout by clicking "DELETE WORKOUT"
     Then Snapz should give the "That's one dead workout... I'll miss that guy" deleted workout message
     And that workout shouldn't exsist
+    And the trainer should still exsist
 
   Scenario: Trainer creates a copy of another trainer's workout
     Given a workout exercise has been created
@@ -30,16 +31,3 @@ Feature: Trainer manages workouts
     Given I'm on the workout page
     When I click download as pdf
     Then I should get a pdf
-
-  Scenario Outline: Trainer changes exercise position
-    Given I'm a workout page with two exercises
-    When I click position <position> on exercise <exercise>
-    Then the exercise <exercise_name> order should be <order>
-    And the the title number should be <order>
-
-    Examples:
-      | position | exercise | order | exercise_name |
-      | "up"     | "1"      | "1"   | "one"         |
-      | "up"     | "2"      | "1"   | "two"         |
-      | "down"   | "1"      | "2"   | "one"         |
-      | "down"   | "2"      | "2"   | "two"         |
