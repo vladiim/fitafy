@@ -220,7 +220,9 @@ CREATE TABLE users (
     facebook_user_id integer,
     avatar character varying(255),
     perishable_token character varying(255) DEFAULT ''::character varying,
-    active boolean
+    active boolean,
+    gym character varying(255) DEFAULT 'No gym listed'::character varying,
+    bio text DEFAULT 'No bio given.'::text
 );
 
 
@@ -598,3 +600,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121118064642');
 INSERT INTO schema_migrations (version) VALUES ('20121121085347');
 
 INSERT INTO schema_migrations (version) VALUES ('20121213104121');
+
+INSERT INTO schema_migrations (version) VALUES ('20130108062514');

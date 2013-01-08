@@ -1,11 +1,8 @@
-%aside#user_stats
-  %p
-    = @user.workouts_count
-    Workouts
+%aside#user_stats.well
+  .span1
+    %p.user_stat= @user.workouts_count
+    %p Workouts
 
-  %p
-    - if @user.has_favorite_workouts?
-      = link_to pluralize(@user.count_favorite_workouts, "Favorite"), tags: :favorite
-  
-  %br
-  %br
+  .span1
+    %p.user_stat= @user.count_favorite_workouts
+    %p Favorites

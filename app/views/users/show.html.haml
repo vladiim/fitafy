@@ -1,22 +1,29 @@
-.container
-
-  %aside.span3
+%article.row.user_details
+  .span1.user_profile_pic
     #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
 
-    %br
+  .span6.user_profile_details.well
+    %header
+      %h5
+        GYM -
+        = @user.gym
+
+    %p= @user.bio
+
+  .span3
     = render 'stats'
 
-  %section.user_workouts.span8
-    %h2
-      - if @user == current_user
-        Your workouts
-      - else
-        = "#{@user.username.titleize}'s"
-        Workouts
+%section.user_workouts
+  %h2
+    - if @user == current_user
+      YOUR WORKOUTS
+    - else
+      = "#{@user.username.upcase}'S"
+      WORKOUTS
 
-    = render partial: "tags/list", locals: { width: 8 }
+  = render partial: "tags/list", locals: { width: 12 }
 
-    %br
-      - @workouts.each do |workout|
-        - @renderer.workout = workout
-        = @renderer.render.html_safe
+  %br
+    - @workouts.each do |workout|
+      - @renderer.workout = workout
+      = @renderer.render.html_safe
