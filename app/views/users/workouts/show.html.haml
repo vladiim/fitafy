@@ -1,44 +1,44 @@
 .workout_form_group.name
   .workout_value.name
-
-  - if can? :manage, @workout
-    = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
-    / - if can? :manage, @workout
-    .hidden.workout_form.name
-      %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
-      %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
-      = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
+    - if can? :manage, @workout
+      = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
+      / - if can? :manage, @workout
+      .hidden.workout_form.name
+        %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
+        %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
+        = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 %br
 
-.workout_form_group.notes
+.workout_form_group.notes.well
   .workout_value.notes
     %h5 NOTES
     %p= @workout.safe_notes.humanize
 
     - if can? :manage, @workout
       = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
-    /- if can? :manage, @workout
-    .hidden.workout_form.notes
-      %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
-      %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
-      = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'   
+      /- if can? :manage, @workout
+      .hidden.workout_form.notes
+        %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
+        %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
+        = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'   
 
 %br
 
 %section.row
-  %article.span6
+  %article.span7
     %header
       %h5 EXERCISES
     %ul.workout_exercises
-      / = @workout.render_exercises self
-      / = link_to_add_exercise @workout
       - @workout_exercises.each do |workout_exercise|
         - @exercise_renderer.workout_exercise = workout_exercise
         = @exercise_renderer.render.html_safe
 
-  %aside.span3.well
-    = render "stats"
-    = render "cta_buttons"
+  %aside.span4
+    %header
+      %h5 DETAILS
+    .well
+      = render "stats"
+      = render "cta_buttons"
 
 = render partial: "workouts/add_exercise_modal"
 

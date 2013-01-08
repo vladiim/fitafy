@@ -1,16 +1,18 @@
 <li class='workout_exercise big_box_list row well {{order}}'>
 
-  {{# own_workout}}
-    <aside class='span1 w_e_order {{id}}'>
-    	<a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='up'>{{{up_link}}}</a>
-      <p class='order_number'>{{order}}</p>
-    	<a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down'>{{{down_link}}}</a>
-    </aside>
-  {{/ own_workout}}
+  <aside class='span1 w_e_order {{id}}'>
 
-  {{^ own_workout}}
-    <p class='order_number'>{{order}}</p>
-  {{/ own_workout}}
+    {{# own_workout}}
+  	  <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='up'>{{{up_link}}}</a>
+      <p class='order_number'>{{order}}</p>
+  	  <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down'>{{{down_link}}}</a>
+    {{/ own_workout}}
+
+    {{^ own_workout}}
+      <p class='order_number'>{{order}}</p>
+    {{/ own_workout}}
+
+  </aside>
 
   <article class='span4 w_e_details'>
   	<h3>
