@@ -2,7 +2,7 @@
   .span1.user_profile_pic
     #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
 
-  .span6.user_profile_details.well
+  .span5.user_profile_details.well
     %header
       %h5
         GYM -
@@ -10,8 +10,13 @@
 
     %p= @user.bio
 
-  .span3
-    = render 'stats'
+  .span3.user_stats.well
+    .span1.user_workouts_count
+      .user_stat= @user.workouts_count
+      %p WORKOUTS
+    .span1.user_favorite_workouts
+      .user_stat= @user.count_favorite_workouts
+      %p FAVORITES
 
 %section.user_workouts
   %h2
