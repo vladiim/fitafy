@@ -31,10 +31,6 @@ class User < ActiveRecord::Base
     UserMailer.sign_up_welcome(self).deliver
   end
 
-  def trainer?
-  	role == "trainer"
-  end
-
   def activate!
     reset_perishable_token!
     self.active = true
@@ -43,6 +39,10 @@ class User < ActiveRecord::Base
 
   def not_activated?
     self.active != true
+  end
+
+  def trainer?
+    role == "trainer"
   end
 
   def admin?

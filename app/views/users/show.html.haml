@@ -5,7 +5,7 @@
   .span5.user_profile_details.well
     %header
       %h5
-        GYM -
+        MY GYM -
         = @user.gym.upcase
 
     %p= @user.bio.humanize
@@ -26,9 +26,10 @@
       = "#{@user.username.upcase}'S"
       WORKOUTS
 
-  = render partial: "tags/list", locals: { width: 12 }
+  .row#user_show_tags_list{'data-url' => users_workouts_path(@user.username)}
+    = render partial: "tags/list", locals: { width: 9 }
 
-  %br
+  %ul#workout_list
     - @workouts.each do |workout|
       - @renderer.workout = workout
       = @renderer.render.html_safe

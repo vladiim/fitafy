@@ -6,7 +6,7 @@ class window.TagLinkSorter
     @activeTagNames  = new Array
     @showTagsButton  = $("#show_tags_button")
 
-  init: ->
+  init: =>
 
     @loader.windowScrollCheck()
 
@@ -48,7 +48,7 @@ class window.TagLinkSorter
 
   showActiveTagWorkouts: =>
     $(@workouts()).remove()
-    @loader.reloadWorkouts(@activeTagNames)
+    @loader.reloadWorkouts(@activeTagNames, @url)
 
   addTagToActive: =>
     @activeTagNames.push(@tag_text)
@@ -57,9 +57,9 @@ class window.TagLinkSorter
     index = @activeTagNames.indexOf(@tag_text)
     @activeTagNames.splice(index, 1)
 
-$ ->
-  # only instantiate TagLinkSorter if needed
-  tag_link_bar = $( 'div#active_tag_container' )
-  if tag_link_bar.length > 0
-    sorter = new TagLinkSorter
-    sorter.init()
+# $ ->
+#   # only instantiate TagLinkSorter if needed
+#   tag_link_bar = $( 'div#active_tag_container' )
+#   if tag_link_bar.length > 0
+#     sorter = new TagLinkSorter
+#     sorter.init()

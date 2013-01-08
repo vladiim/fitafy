@@ -37,8 +37,6 @@ gem 'hogan_assets',   '~> 1.3.4'
 gem 'haml_assets',    '~> 0.2.1'
 gem 'compass-rails',  '~> 1.0.3'
 gem 'compass-h5bp',   '~> 0.0.5'
-
-gem 'display_case', '~> 0.0.4', git: "https://github.com/vladiim/display-case"
 gem 'haml-rails',   '~> 0.3.0'
 gem 'html5-rails',  '~> 0.0.5'
 

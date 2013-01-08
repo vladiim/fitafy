@@ -1,13 +1,21 @@
 class Users::WorkoutsController < ApplicationController
-  # include DisplayCase::ExhibitsHelper
 
-  skip_filter :authorize
+  skip_filter :authorize, only: :show
+
+  def index
+    @workouts = UserWorkoutsOrderer.new(current_user, params).get_workouts
+    @renderer = Workouts::Index.new
+
+    respond_to do |format|
+      format.json do
+        render json: @workouts.map { |w| @renderer.render_json(w, view_context) }
+      end
+    end
+  end
 
   def show
-  	# @workout          = exhibit Workout.find(params[:id]), self
     @workout           = Workout.find(params[:id])
     @workout_path      = current_user ? user_workout_path(current_user, @workout) : '/'
-
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
     @trainer           = User.find @workout.user_id
@@ -16,9 +24,7 @@ class Users::WorkoutsController < ApplicationController
     @snapz_confirm     = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
     @client_level      = Workout::CLIENT_LEVELS
     @difficulty        = Workout::DIFFICULTY
-    # @muscles           = Workout.muscles
-    @muscles           = @trainer.muscles
-    # @workout_exercise = WorkoutExercise.new
+    @muscles           = Workout.muscles
 
     respond_to do |format|
       format.html

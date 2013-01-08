@@ -18,7 +18,7 @@ Fitafy::Application.routes.draw do
 #---------- PRETTY URLS ----------#
 
   namespace :users, path: "/:username" do
-    resources :workouts, only: :show
+    resources :workouts, only: [:show, :index]
   end
 
   match 'login',            to: 'user_sessions#new'

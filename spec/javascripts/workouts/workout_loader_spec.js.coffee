@@ -4,6 +4,7 @@ describe "WorkoutLoader", ->
     @fake_template = { render: -> "" }
     @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>")
     @loader        = new WorkoutLoader @fake_template
+    @loader.url    = '/workouts'
     @incomingJSON  = [
       {
         url:            "/users/1/workouts/1",
@@ -42,7 +43,7 @@ describe "WorkoutLoader", ->
     describe "start with options", ->
       beforeEach ->
         sinon.spy($, 'ajax')
-        @loader.reloadWorkouts(['back'])
+        @loader.reloadWorkouts(['back'], '/workouts')
 
       afterEach  -> $.ajax.restore()
 
@@ -55,7 +56,7 @@ describe "WorkoutLoader", ->
         @server.respondWith("GET", "/workouts?page=0",
                             [200, { "Content-Type": "application/json" },
                             JSON.stringify([])])
-        @loader.reloadWorkouts([])
+        @loader.reloadWorkouts([], '/workouts')
         @server.respond()
 
       afterEach -> @server.restore()

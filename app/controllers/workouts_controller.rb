@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
 
   load_and_authorize_resource except: [:index]
-  skip_filter :authorize,     only: [:index]
+  skip_filter :authorize, only: [:index]
 
   def index
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])

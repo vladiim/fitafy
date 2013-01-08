@@ -18,10 +18,11 @@ class window.WorkoutLoader
     @getAndRenderWorkouts()
     @resetScrollChecker()
 
-  reloadWorkouts: (muscles) =>
+  reloadWorkouts: (muscles, url) =>
     @allWorkoutsLoaded = false
     @page    = 0
     @muscles = muscles
+    @url     = url
     @getAndRenderWorkouts()
 
   resetScrollChecker: =>
@@ -29,8 +30,10 @@ class window.WorkoutLoader
     @windowScrollCheck()
 
   getAndRenderWorkouts: =>
-    param = $.param( { muscles: @muscles, page: @page } )
-    $.getJSON("/workouts?#{param}", @render)
+    param = @generateParam()
+    $.getJSON("#{@url}?#{param}", @render)
+
+  generateParam: => $.param( { muscles: @muscles, page: @page } )
 
   render: (workouts) =>
     if workouts.length
