@@ -40,9 +40,9 @@ describe WorkoutExercises::Show do
 
     describe '#order' do
       let(:result) { renderer.order }
-      before { mock(workout_exercise).safe_order { 'WE ORDER' } }
+      before { mock(workout_exercise).order_number { 'WE ORDER' } }
 
-      it 'returns the workout_exercises safe_order' do
+      it 'returns the workout_exercises order_number' do
         result.should eq 'WE ORDER'
       end
     end

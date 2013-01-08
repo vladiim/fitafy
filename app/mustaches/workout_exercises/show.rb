@@ -45,7 +45,7 @@ module WorkoutExercises
     end
 
     def order
-      @workout_exercise.safe_order
+      @workout_exercise.order_number
     end
 
     def up_link

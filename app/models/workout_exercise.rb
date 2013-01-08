@@ -26,10 +26,6 @@ class WorkoutExercise < ActiveRecord::Base
     self.workout.update_exercise_order
   end
 
-  def safe_order
-    order_number ? order_number : "1"
-  end
-
   def safe_instructions
     instructions ? instructions : SnapzSayz::WorkoutExerciseSpeak.no_instructions
   end
@@ -54,9 +50,5 @@ class WorkoutExercise < ActiveRecord::Base
   	  workouts << Workout.find(workout_exercise.workout_id)
   	end
   	workouts
-  end
-
-  def safe_sets
-    self.sets.nil? ? "0" : self.sets
   end
 end
