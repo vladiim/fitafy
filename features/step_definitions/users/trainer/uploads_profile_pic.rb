@@ -4,7 +4,7 @@ end
 
 When /^I upload a profile pic$/ do
   attach_file "Profile Pic", "#{Dir.pwd}/app/assets/images/beer_me.jpeg"
-  click_button "Change Profile Pic"
+  click_button "UPDATE PHOTO"
 end
 
 Then /^that should be set as my profile pic$/ do

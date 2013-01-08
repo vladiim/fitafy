@@ -47,11 +47,11 @@ module SnapzSayz
     end
 
     def self.no_notes_value
-      "No notes for this workout yo... add some!"
+      "No notes for this workout yo..."
     end
 
     def self.no_level
-      "No info! Let us know how hard this workout is..."
+      "No level info!"
     end
   end
 end

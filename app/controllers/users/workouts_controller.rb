@@ -5,18 +5,19 @@ class Users::WorkoutsController < ApplicationController
 
   def show
   	# @workout          = exhibit Workout.find(params[:id]), self
-    @workout          = Workout.find(params[:id])
-    @workout_path     = current_user ? user_workout_path(current_user, @workout) : '/'
+    @workout           = Workout.find(params[:id])
+    @workout_path      = current_user ? user_workout_path(current_user, @workout) : '/'
 
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
-    @trainer          = User.find @workout.user_id
-    @current_user     = current_user ? current_user : nil
-  	@title            = @workout.name
-    @snapz_confirm    = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
-    @client_level     = Workout::CLIENT_LEVELS
-    @difficulty       = Workout::DIFFICULTY
-    @muscles          = Workout.muscles
+    @trainer           = User.find @workout.user_id
+    @current_user      = current_user ? current_user : nil
+  	@title             = @workout.name
+    @snapz_confirm     = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+    @client_level      = Workout::CLIENT_LEVELS
+    @difficulty        = Workout::DIFFICULTY
+    # @muscles           = Workout.muscles
+    @muscles           = @trainer.muscles
     # @workout_exercise = WorkoutExercise.new
 
     respond_to do |format|

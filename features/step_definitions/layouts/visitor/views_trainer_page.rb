@@ -13,10 +13,11 @@ Then /^I should be on the trainer's profile$/ do
 end
 
 Then /^I should see the trainer's stats$/ do
-  page.should have_content "1 Workout"
+  within('.user_workouts_count')    { page.should have_content "1" }
+  within('.user_favorite_workouts') { page.should have_content "0" }
 end
 
 Then /^I should see the trainer's workouts$/ do
-  page.should have_content "#{@trainer.username.titleize}'s Workouts"
+  page.should have_content "#{@trainer.username.upcase}'S WORKOUTS"
   page.should have_content @workout.name
 end
