@@ -5,14 +5,14 @@ describe "TagLinkSorter", ->
     @loader = { reloadWorkouts: @reloadWorkouts, windowScrollCheck: sinon.stub() }
     @sorter = new TagLinkSorter(@loader)
     @sorter.init()
-    @$inactiveTags = $("#inactive_tags")
-    @$chestLink    = $("a.chest")
+    @inactiveTags = $( "#inactive_tags" )
+    @chestLink    = $( "a.chest" )
 
   it "hides all tags", ->
-    expect(@$inactiveTags).toHaveClass("hidden")
+    expect(@inactiveTags).toHaveClass("hidden")
 
   describe "click 'CHEST'", ->
-    beforeEach -> @$chestLink.click()
+    beforeEach -> @chestLink.click()
 
     it "moves the chest link tag to active_tags", ->
       expect($("#active_tags > a.chest")).toExist()
@@ -25,7 +25,7 @@ describe "TagLinkSorter", ->
       expect(@loader.reloadWorkouts).toHaveBeenCalledWith(['chest'])
 
     describe "click 'CHEST' again", ->
-      beforeEach -> @$chestLink.click()
+      beforeEach -> @chestLink.click()
 
       it "moves the chest link tag to inactive_tags", ->
         expect($("#inactive_tags > a.chest")).toExist()
@@ -36,14 +36,22 @@ describe "TagLinkSorter", ->
 
   describe "click 'SORT BY TAGS'", ->
     beforeEach ->
-      @$showTagsButton = $("#show_tags_button")
-      @$showTagsButton.click()
+      @showTagsButton = $("#show_tags_button")
+      @showTagsButton.click()
 
     it "shows all tags", ->
-      expect(@$inactiveTags).not.toHaveClass("hidden")
+      expect(@inactiveTags).not.toHaveClass("hidden")
 
     describe "click 'SORT BY TAGS' again", ->
-      beforeEach -> @$showTagsButton.click()
+      beforeEach -> @showTagsButton.click()
 
       it "hides all tags", ->
-        expect(@$inactiveTags).toHaveClass("hidden")
+        expect(@inactiveTags).toHaveClass("hidden")
+
+  describe 'setVariables with full body', ->
+    beforeEach ->
+      @sorter.tag_link = $( 'a.full.body' )
+      @sorter.setVariables()
+
+    it 'replaces spaces with underscores', ->
+      expect(@sorter.tag_text).toEqual('full_body')

@@ -15,49 +15,46 @@ class window.TagLinkSorter
       event.preventDefault()
 
     $(@tagLinks).on "click", (event) =>
-      $tag_link = $(event.target)
-      @moveTag($tag_link)
+      @tag_link = $(event.target)
+      @setVariables()
+      @moveTag()
       event.preventDefault()
 
-  workouts: ->
-    $("li.workout_item")
+  setVariables: =>
+    @tag_text = @tag_link.text().toLowerCase().replace(/\s+/g, '_')
 
-  getTag: (tag_link) ->
-    tag_link.text().toLowerCase()
+  workouts: => $("li.workout_item")
 
-  moveTag: (tag_link) ->
-    if $(tag_link).hasClass("inactive")
-      @moveToActiveTags(tag_link)
-    else
-      @moveToInactiveTags(tag_link)
+  moveTag: =>
+    if @tag_link.hasClass("inactive") then @moveToActiveTags() else @moveToInactiveTags()
 
-  moveToActiveTags: (tag_link) ->
-    @makeTagLinkActive(tag_link)
-    $(@activeTags).append(tag_link)
-    @addTagToActive(@getTag(tag_link))
+  moveToActiveTags: =>
+    @makeTagLinkActive()
+    $(@activeTags).append(@tag_link)
+    @addTagToActive()
     @showActiveTagWorkouts()
 
-  moveToInactiveTags: (tag_link) ->
-    @makeTagLinkInactive(tag_link)
-    $(@inactiveTags).append(tag_link)
-    @removeTagFromActive(@getTag(tag_link))
+  moveToInactiveTags: =>
+    @makeTagLinkInactive()
+    $(@inactiveTags).append(@tag_link)
+    @removeTagFromActive()
     @showActiveTagWorkouts()
 
-  makeTagLinkActive: (tag_link) ->
-    $(tag_link).removeClass("inactive").addClass("active")
+  makeTagLinkActive: =>
+    @tag_link.removeClass("inactive").addClass("active")
 
-  makeTagLinkInactive: (tag_link) ->
-    $(tag_link).removeClass("active").addClass("inactive")
+  makeTagLinkInactive: =>
+    @tag_link.removeClass("active").addClass("inactive")
 
-  showActiveTagWorkouts: ->
+  showActiveTagWorkouts: =>
     $(@workouts()).remove()
     @loader.reloadWorkouts(@activeTagNames)
 
-  addTagToActive: (tag) ->
-    @activeTagNames.push(tag)
+  addTagToActive: =>
+    @activeTagNames.push(@tag_text)
 
-  removeTagFromActive: (tag) ->
-    index = @activeTagNames.indexOf(tag)
+  removeTagFromActive: =>
+    index = @activeTagNames.indexOf(@tag_text)
     @activeTagNames.splice(index, 1)
 
 $ ->
