@@ -6,9 +6,9 @@
     %header
       %h5
         GYM -
-        = @user.gym
+        = @user.gym.upcase
 
-    %p= @user.bio
+    %p= @user.bio.humanize
 
   .span3.user_stats.well
     .span1.user_workouts_count

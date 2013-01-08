@@ -5,10 +5,20 @@
 
     = simple_form_for @user do |f|
       = f.input :avatar, label: "Profile Pic"
-      = f.submit "Change Profile Pic"
+      = f.submit "UPDATE PHOTO", class: 'btn btn-primary'
   
-  .span7
+  .span3.well
     = render partial: "simple_form", locals: { cta: cta }
-    
-    %br
+
+  .span3.well
+    = simple_form_for @user do |f|
+      = f.error_notification
+      = f.input :gym
+      = f.input :bio, input_html: { rows: 8 }
+      = f.submit "SAVE CHANGES", class: "btn btn-primary"
+
+%aside.row
+  .span10.well
+    %header
+      %h5 DANGER BIT!
     = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"  
