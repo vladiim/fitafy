@@ -38,5 +38,14 @@ class window.ExerciseModal
     $( '#exercise_ajax_modal > .modal-body > article' ).remove()
 
 $ ->
-  modal = new ExerciseModal
-  modal.init()
+  workout_exercise_present = $( 'ul.workout_exercises' )
+  if workout_exercise_present.length > 0
+    modal = new ExerciseModal
+    modal.init()
+
+    document.body.addEventListener "DOMNodeInserted", (event) =>
+      @element = $( event.target )
+
+      if element.hasClass('workout_exercise')
+        modal = new ExerciseModal
+        modal.init()
