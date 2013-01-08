@@ -5,10 +5,6 @@ module Workouts
   
   	attr_accessor :workout
   
-    # def set_workout workout
-    #   @workout = workout
-    # end
-  
     def muscles
       @workout.muscles
     end
