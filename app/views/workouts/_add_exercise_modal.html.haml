@@ -12,7 +12,10 @@
       = render partial: "exercises/tags"
 
     .span4
-      %h3.list_title ALL EXERCISES
-      %br
+      %header#add_exercises_title_and_search
+        %h3.list_title ALL EXERCISES
+        %br
+        %form.form-search
+          %input#workout_exercise_autofilter_search.input-large.search-query{'type' => 'text', 'placeholder' => 'Search exercises'}
+          %p.red
       %article.exercise_list
-        / = render partial: "exercise", collection: @exercises

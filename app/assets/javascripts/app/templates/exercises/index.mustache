@@ -1,15 +1,17 @@
-<article class='exercise exercise_list_item'>
+<article class='exercise exercise_list_item' data-title='{{paramitized_name}}'>
   <h4>
-  	<a href="{{url}}">
+  	<a href="{{url}}" class='workout_exercise_title' data-title='{{paramitized_name}}'>
   		{{name}}
   	</a>
   </h4>
 
   <p>{{description}}</p>
 
-  <a href="{{edit_url}}" class="btn btn-primary btn-mini">
-  	EDIT
-  </a>
+  {{# admin }}
+    <a href="{{edit_url}}" class="btn btn-primary btn-mini">
+    	EDIT
+    </a>
+  {{/ admin }}
 
   {{{new_workout_exercise_form}}}
   <p class='red'></p>

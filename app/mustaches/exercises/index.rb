@@ -19,6 +19,10 @@ module Exercises
       @exercise.name.titleize
     end
 
+    def paramitized_name
+      name.parameterize
+    end
+
     def description
       truncate(@exercise.safe_description.humanize, length: 70)
     end
@@ -48,6 +52,8 @@ module Exercises
         muscle:      muscle,
         url:         url,
         edit_url:    edit_url,
+        admin:       user_is_admin?,
+        paramitized_name: paramitized_name,
         new_workout_exercise_form: new_workout_exercise_form
       }
     end

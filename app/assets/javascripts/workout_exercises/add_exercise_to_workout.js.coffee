@@ -22,7 +22,6 @@ class window.AddExerciseToWorkout
 
   updateWorkout: (workout_exercise) =>
     $(@link).parent($( 'h4' )).effect('highlight', {}, 4500)
-    # @link.fadeOut 100, -> $(this).text('Exercise Added!').fadeIn(500)
     @link.next('p').text('Exercise Added!').fadeIn(200).fadeOut(4500)
     $( 'ul.workout_exercises' ).append(@template_renderer.render(@mustache, workout_exercise))
 
