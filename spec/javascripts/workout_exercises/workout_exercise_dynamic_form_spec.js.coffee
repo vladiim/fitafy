@@ -52,6 +52,7 @@ describe 'WorkoutExerciseDynamicForm', ->
       @fake_template_renderer = { render: -> }
       @render = sinon.stub(@fake_template_renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
       @form   = new WorkoutExerciseDynamicForm @fake_template_renderer
+      @form.init()
       @show_form.click()
       @form.workout_exercise_item = @w_e_node
       @data = {}

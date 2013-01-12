@@ -5,15 +5,15 @@
 
   %body#main.container{ :class => "#{ controller.controller_name }" }
     = render "chromeframe"
-    = render "header"
+    .main_section= render "header"
 
     %nav
       = render "layouts/navigation"
 
-    %section#main_content
+    %section.main_section
       = render "layouts/flashes"
 
-    %section.container{ :role => "main" }
+    %section.main_section.container{ :role => "main" }
       = yield
 
     = render "footer"
