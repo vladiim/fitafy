@@ -9,7 +9,7 @@
         = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 %br
 
-.workout_form_group.notes.well
+.workout_form_group.notes.well.span10
   .workout_value.notes
     %h5 NOTES
     %p= @workout.safe_notes.humanize

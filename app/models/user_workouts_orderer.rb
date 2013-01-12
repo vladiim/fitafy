@@ -13,10 +13,12 @@ class UserWorkoutsOrderer
   private
 
   def params_empty?(params)
-  	begin
-  	  params.fetch('muscles') && params.fetch('page')
-  	rescue KeyError
-  	  return true
+    ['muscles', 'page'].each do |key|
+  	  begin
+  	    params.fetch(key)
+  	  rescue KeyError
+  	    return true
+      end
     end
 
     return false

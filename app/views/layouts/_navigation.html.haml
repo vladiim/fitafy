@@ -29,7 +29,7 @@
 
           - if current_user
             %li.btn-group
-              %a.btn.btn-inverse{"href" => "#"}
+              %a.btn.btn-inverse{"href" => user_path(current_user)}
                 = image_tag(current_user.avatar_url(:thumbnail))
                 = current_user.username.upcase
               %a#user_drop_down.btn.btn-inverse.dropdown-toggle{"data-toggle"=>"dropdown", "href"=>"#"}

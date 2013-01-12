@@ -17,6 +17,11 @@ gem 'pry',                   '~> 0.9.9.0'
 gem 'squeel',                '~> 1.0.13'
 gem 'friendly_id',           '~> 4.0.1'
 
+group :development do
+  gem 'better_errors',     '~> 0.3.2'
+  gem 'binding_of_caller', '~> 0.6.8'
+end
+
 # ------------ AUTH ------------ #
 
 gem 'authlogic',         '~> 3.1.3'

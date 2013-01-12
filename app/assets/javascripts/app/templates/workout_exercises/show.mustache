@@ -14,12 +14,12 @@
 
   </aside>
 
-  <article class='span4 w_e_details'>
-  	<h3>
+  <article class='w_e_details'>
+  	<h3 class='span5'>
   	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
   	</h3>
 
-    <div class='workout_form_group instructions'>
+    <div class='span3 workout_form_group instructions'>
       <h5 class='workout_value instructions' data-value="{{id}}">Instructions</h5>
       <p>{{instructions}}</p>
 
@@ -37,7 +37,7 @@
 
     </div>
 
-    <table class='workout_exercise_details'>
+    <table class='span3 workout_exercise_details'>
       <thead>
       	<tr>
           <th class='workout_exercise_details sets'>
@@ -90,7 +90,7 @@
     </table>
 
     {{# own_workout}}
-      <div class='well'>
+      <div class='well span5'>
         <h4>DANGER ZONE!</h4>
         <a href="{{url}}" class='delete_workout_exercise btn btn-danger btn-mini'>DELETE</a>
       </div>

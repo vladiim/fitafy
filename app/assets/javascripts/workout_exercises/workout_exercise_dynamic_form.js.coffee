@@ -1,10 +1,11 @@
 class window.WorkoutExerciseDynamicForm extends DynamicForm
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @show_forms = $( 'a.show_workout_exercise_form' )
     @mustache   = "app/templates/workout_exercises/show"
     @dynamic_form_type = 'workout_exercise'
 
   init: ->
+    @show_forms = $( 'a.show_workout_exercise_form' )
+
     @show_forms.on 'click', (event) =>
       @show_form = $( event.target )
       @storeVariables()
@@ -38,12 +39,12 @@ class window.WorkoutExerciseDynamicForm extends DynamicForm
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )
   if workout_exercise_present.length > 0
-    form = new WorkoutExerciseDynamicForm
-    form.init()
+    @form = new WorkoutExerciseDynamicForm
+    @form.init()
 
     document.body.addEventListener "DOMNodeInserted", (event) =>
       @element = $( event.target )
 
       if element.hasClass('workout_exercise')
-        form = new WorkoutExerciseDynamicForm
-        form.init()
+        # form = new WorkoutExerciseDynamicForm
+        @form.init()

@@ -1,9 +1,10 @@
 class window.DeleteWorkoutExercise
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @delete_buttons = $( 'a.delete_workout_exercise' )
     @mustache = 'app/templates/workout_exercises/show'
 
   init: ->
+    @delete_buttons = $( 'a.delete_workout_exercise' )
+
     @delete_buttons.on 'click', (event) =>
       @delete_button = $( event.target )
       @storeVariables()
@@ -50,12 +51,12 @@ class window.DeleteWorkoutExercise
 $ ->
   workout_exercises = $( 'ul.workout_exercises' )
   if workout_exercises.length > 0
-    deleter = new DeleteWorkoutExercise
-    deleter.init()
+    @deleter = new DeleteWorkoutExercise
+    @deleter.init()
 
     document.body.addEventListener "DOMNodeInserted", (event) =>
       @element = $( event.target )
 
       if element.hasClass('workout_exercise')
-        deleter = new DeleteWorkoutExercise
-        deleter.init()
+        # deleter = new DeleteWorkoutExercise
+        @deleter.init()

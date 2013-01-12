@@ -56,10 +56,3 @@ class window.TagLinkSorter
   removeTagFromActive: =>
     index = @activeTagNames.indexOf(@tag_text)
     @activeTagNames.splice(index, 1)
-
-# $ ->
-#   # only instantiate TagLinkSorter if needed
-#   tag_link_bar = $( 'div#active_tag_container' )
-#   if tag_link_bar.length > 0
-#     sorter = new TagLinkSorter
-#     sorter.init()

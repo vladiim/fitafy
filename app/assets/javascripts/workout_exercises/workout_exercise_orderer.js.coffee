@@ -1,9 +1,10 @@
 class window.WorkoutExerciseOrderer
   constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @links    = $( 'a.change_workout_exercise_order i' )
     @mustache = "app/templates/workout_exercises/show"
 
   init: ->
+    @links = $( 'a.change_workout_exercise_order i' )
+
     @links.on 'click', (event) =>
       @icon = $( event.target )
       @link = @icon.parent('a')
@@ -64,12 +65,12 @@ class window.WorkoutExerciseOrderer
 $ ->
   workout_exercise = $( 'li.workout_exercise' )
   if workout_exercise.length > 0
-    orderer = new WorkoutExerciseOrderer
-    orderer.init()
+    @orderer = new WorkoutExerciseOrderer
+    @orderer.init()
 
     document.body.addEventListener 'DOMNodeInserted', (event) =>
       @element = $( event.target )
 
       if element.hasClass('workout_exercise')
-        orderer = new WorkoutExerciseOrderer
-        orderer.init()
+        # orderer = new WorkoutExerciseOrderer
+        @orderer.init()
