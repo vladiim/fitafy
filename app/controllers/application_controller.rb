@@ -10,11 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back(params=nil)
-    if redirect_to_info?
-      send_to_redirect_to
-    else
-      params_arent_empty ? redirect_to(params) : redirect_to(root_path)
-    end
+    redirect_to_info? ? send_to_redirect_info : send_to_params_or_root(params)
   end
 
   def current_user
@@ -24,11 +20,15 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def params_arent_empty
+    def send_to_params_or_root(params)
+      params_arent_empty(params) ? redirect_to(params) : redirect_to(root_path)
+    end
+
+    def params_arent_empty(params)
       params != nil
     end
 
-    def send_to_redirect_to
+    def send_to_redirect_info
       redirect_to session[:redirect_to]
       session[:redirect_to] = nil
     end
