@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :authorize
 
-  helper_method :current_user_session, :current_user, :redirect_to
+  helper_method :current_user_session, :current_user,
+                :redirect_to, :navigation_renderer
 
   rescue_from CanCan::AccessDenied do
     redirect_to root_url, alert: SnapzSayz::Information.unauthorized
@@ -16,6 +17,10 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     is_facebook_session ? find_user_via_facebook : find_user_via_user_session
+  end
+
+  def navigation_renderer
+    Navigations::Show.new(view_context, current_user)
   end
 
   private

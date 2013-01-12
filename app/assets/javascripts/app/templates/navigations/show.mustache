@@ -1,0 +1,84 @@
+<div class='navbar navbar-fixed-top'>
+  <div class='navbar-inner'>
+  	<div class='container'>
+  		<ul class='nav'>
+  		  <li id='logo'>
+  		    <a href="/" id='fitafy_logo' id='logo'><img src="/assets/logo.png" alt='fitafy' height='30' width='30'></a>
+  		  </li>
+
+        {{# logged_in_trainer }}
+          <li class='dropdown'>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">WORKOUTS</a>
+            <ul class='dropdown-menu'>
+              <li>
+                <a href="{{workouts_path}}">ALL WORKOUTS</a>
+              </li>
+              <li>
+                <a href="#new_workout_modal" data-toggle='modal'>NEW WORKOUT</a>
+              </li>
+            </ul>
+          </li>
+        {{/ logged_in_trainer }}
+
+        {{^ logged_in_trainer }}
+          <li>
+            <a href="{{workouts_path}}">WORKOUTS</a>
+          </li>
+        {{/ logged_in_trainer }}
+
+        {{# admin }}
+          <li class='dropdown'>
+            <a href="#" class='dropdown-toggle' data-toggle='dropdown'>EXERCISES</a>
+            <ul class='dropdown-menu'>
+              <li>
+                <a href="{{exercises_path}}">EXERCISES</a>
+              </li>
+              <li>
+                <a href="{{new_exercise_path}}">NEW EXERCISE</a>
+              </li>
+            </ul>
+          </li>
+        {{/ admin }}
+      </ul>
+
+      <div class='right-nav'>
+
+        <ul class='nav pull-right'>
+          {{# logged_in_trainer }}
+            <li class='btn-group'>
+              <a class="btn btn-inverse" href="{{current_user_path}}">
+                <img src="{{current_user_thumbnail_avatar}}" alt{{user_name}}>
+                {{user_name}}
+              </a>
+
+              <a href="#" class='btn btn-inverse dropdown-toggle' data-toggle='dropdown' id='user_drop_down'>
+                <span class='caret'></span>
+              </a>
+
+              <ul class='dropdown-menu'>
+                <li>
+                	<a href="{{current_user_path}}">PROFILE</a>
+                </li>
+                <li>
+                	<a href="{{edit_user_path}}">EDIT PROFILE</a>
+                </li>
+                <li>
+                	<a href="{{logout_path}}" data-method='delete' rel='nofollow'>LOGOUT</a>
+                </li>
+              </ul>
+            </li>
+          {{/ logged_in_trainer }}
+
+          {{^ logged_in_trainer }}
+            <li>
+              <a href="{{login_path}}">LOGIN</a>
+            </li>
+            <li>
+              <a href="{{sign_up_path}}">SIGN UP</a>
+            </li>
+          {{/ logged_in_trainer }}
+        </ul>
+      </div>
+  	</div>
+  </div>
+</div>
