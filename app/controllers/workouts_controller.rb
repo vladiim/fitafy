@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
   def create
     @workout = current_user.build_workout(params[:workout])
   	if @workout.save
-  	  redirect_to user_workout_path(current_user, @workout)
+  	  redirect_to users_workout_path(current_user.username, @workout)
   	  flash[:success] = SnapzSayz::WorkoutSpeak.created_workout
   	else
       flash[:error] = SnapzSayz::WorkoutSpeak.new_workout_fail

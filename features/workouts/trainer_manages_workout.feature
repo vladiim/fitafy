@@ -6,6 +6,11 @@ Feature: Trainer manages workouts
   Background:
     Given I'm a logged in trainer
 
+  Scenario: Trainer creates workout from nav
+    Given I'm on the homepage
+    When I create a workout from the nav
+    Then I should be on the new workouts page
+
   Scenario: Trainer creates new workout
     Given I've created a new workout
     When I go to the new workout's page

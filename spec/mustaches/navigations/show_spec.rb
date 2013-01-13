@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe Navigations::Show do
-  let(:user)         { OpenStruct.new username: 'USER NAME', id: 1 }
+  let(:user)         { OpenStruct.new username: 'USER NAME', id: 1, admin?: true }
   let(:view_context) { OpenStruct.new workouts_path: 'WORKOUTS PATH', 
                                       new_workout_path: 'NEW WORKOUT PATH',
                                       login_path: 'LOGIN',
                                       sign_up_path: 'SIGN UP',
-                                      logout_path: 'LOGOUT PATH'}
+                                      logout_path: 'LOGOUT PATH',
+                                      exercises_path: 'EXERCISES PATH',
+                                      new_exercise_path: 'NEW EXERCISE PATH'}
   let(:nav)          { Navigations::Show.new view_context, user }
 
   describe "#initialize" do
@@ -29,10 +31,13 @@ describe Navigations::Show do
         workouts_path:                 'WORKOUTS PATH',
         new_workout_path:              'NEW WORKOUT PATH',
         logged_in_trainer:             true,
+        admin:                         true,
         current_user_path:             'USER PATH',
         current_user_thumbnail_avatar: 'AVATAR',
         user_name:                     'USER NAME',
         edit_user_path:                'EDIT USER PATH',
+        exercises_path:                'EXERCISES PATH',
+        new_exercise_path:             'NEW EXERCISE PATH',
         login_path:                    'LOGIN',
         sign_up_path:                  'SIGN UP',
         logout_path:                   'LOGOUT PATH'
