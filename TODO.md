@@ -1,9 +1,13 @@
+# up to
+depoying rollout gem , look @ homepage - navbar has func, ViewFeature is the class immplementing & view_feature_controller is handling the request
+
 # deploy integration step
 * replicate db
 	- heroku addons:add heroku-postgresql:blah --form HEROKU_POSTGRESQL_BLAH
 * test migrations on db copy
 
 # Notes
+* start redis: redis-server /usr/local/etc/redis.conf
 * Server not working:
 	- PATH=/usr/local/sbin:$PATH 
 	- sudo nginx -t
@@ -18,24 +22,13 @@
 * workout - query workout.all + muscle tag via js - manage limit of 30
 
 # To do
-* workout_exercise delete
-* workout_exercise order
-* workout_exercise add
 * show workout & workout_exercise form when you hover over the element - note, add a contingency to check if the user is the owner, only show the hover function if they are an owner
 
 * create a guest user model
 
 * cache all exercise find
-* get turbo links working
-* User permissions to see new features
-* http://railscasts.com/episodes/387-cache-digests
 * when logged in your root_path is your profile
 * note to user's without workout in their profile (favorite a workout or create your own!)
-* once cloudinary has fixed issue:
-	- remove mokey patch on hash
-	- set up resque (note, resque needs Hash to have read mothod)
-* exercises are pop ups
-* when you edit workout exercise instructions you open all exercise instruction forms, make it so it only opens the exercise you've clicked on
 
 # Func
 
@@ -45,9 +38,3 @@
   * someone favorited your workout
   * unsubscribe
   * edit settings
-
-# Services
-* Mailchimp
-* https://travis-ci.org/
-* pingdom
-* Chat/customer service http://www.olark.com/

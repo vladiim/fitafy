@@ -19,11 +19,25 @@ module Navigations
     end
 
     def logged_in_trainer
-      @user.id > 0 && trainer_or_admin?
+      @user.id > 0 && trainer_or_above?
     end
 
     def admin
-      @user.admin?
+      admin_or_staff?
+    end
+
+    def staff
+      @user.staff?
+    end
+
+    def new_feature
+      return unless staff
+      $rollout.instance_variable_get("@groups").each_key.inject({}) do |feature_hash, feature|
+        feature_hash.merge(
+          feature_path: "#{@view_context.user_view_features_path(@user.username)}?feature=#{feature}",
+          feature_name: feature.upcase.gsub('_', ' ').split.last
+        )
+      end
     end
 
     def current_user_path
@@ -68,9 +82,11 @@ module Navigations
         new_workout_path:              new_workout_path,
         logged_in_trainer:             logged_in_trainer,
         admin:                         admin,
-        current_user_path:             current_user_path,
+        staff:                         staff,
         current_user_thumbnail_avatar: current_user_thumbnail_avatar,
         user_name:                     user_name,
+        new_feature:                   new_feature,
+        current_user_path:             current_user_path,
         edit_user_path:                edit_user_path,
         exercises_path:                exercises_path,
         new_exercise_path:             new_exercise_path,
@@ -82,8 +98,12 @@ module Navigations
 
     private
 
-    def trainer_or_admin?
-      @user.trainer? || @user.admin?
+    def trainer_or_above?
+      @user.trainer? || admin_or_staff?
+    end
+
+    def admin_or_staff?
+      @user.admin? || @user.staff?
     end
   end
 end

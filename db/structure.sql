@@ -22,6 +22,20 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION hstore; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
+
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -222,7 +236,8 @@ CREATE TABLE users (
     perishable_token character varying(255) DEFAULT ''::character varying,
     active boolean,
     gym character varying(255) DEFAULT 'No gym listed'::character varying,
-    bio text DEFAULT 'No bio given.'::text
+    bio text DEFAULT 'No bio given.'::text,
+    features hstore
 );
 
 
@@ -528,6 +543,13 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: users_features; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX users_features ON users USING gin (features);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -604,3 +626,9 @@ INSERT INTO schema_migrations (version) VALUES ('20121213104121');
 INSERT INTO schema_migrations (version) VALUES ('20130108062514');
 
 INSERT INTO schema_migrations (version) VALUES ('20130108221306');
+
+INSERT INTO schema_migrations (version) VALUES ('20130113070544');
+
+INSERT INTO schema_migrations (version) VALUES ('20130113071223');
+
+INSERT INTO schema_migrations (version) VALUES ('20130113071519');

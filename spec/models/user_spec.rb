@@ -86,47 +86,6 @@ describe User do
     end
   end
 
-  describe "trainer?" do
-    let(:user) { build :user }
-
-    it "should save the user as a trainer" do
-      user.save!
-      user.should be_trainer
-    end
-
-    context "user is a trainer" do
-      before { mock(user).role { "trainer" } }
-
-      it "should be true" do
-        user.trainer?.should be
-      end
-    end
-
-    context "user is not a trainer" do
-      before { mock(user).role { "client" } }
-
-      it "should be false" do
-        user.trainer?.should be_false
-      end
-    end
-  end
-
-  describe "admin?" do
-    context "user is an admin" do
-      before { mock(subject).role { "admin" } }
-
-      it "should be true" do
-        subject.admin?.should be
-      end
-    end
-
-    context "user is not an admin" do
-      it "should be false" do
-        subject.admin?.should be_false
-      end
-    end
-  end
-
   describe "#workouts_count" do
     before { mock(subject.workouts).count { 3 } }
     it "should count the number of workouts" do
@@ -186,45 +145,6 @@ describe User do
 
     it "returns an array of workouts from an array of favorites" do
       subject.workouts_from_favorites(favorite_workouts).should eq [workout]
-    end
-  end
-
-  describe "abilities" do
-  	subject    { Ability.new(user) }
-    let(:user) { build_stubbed :user }
-
-    context "admin" do
-
-      before do
-      	mock(user).trainer? { false }
-      	mock(user).admin?   { true }
-      end
-
-	    it { should be_able_to(:manage, (build :workout, user: user)) }
-      it { should be_able_to(:manage, Exercise.new) }
-      it { should be_able_to(:manage, (build :favorite_workout, user: user)) }
-    end
-
-    context "trainer" do
-      let(:user) { create :user }
-      before     { mock(user).trainer? { true } }
-
-      it { should be_able_to(:manage, (build :workout, user: user)) }
-      it { should_not be_able_to(:manage, Exercise.new) }
-      it { should be_able_to(:manage, (build :favorite_workout, user: user)) }
-    end
-
-    context "client" do
-      let(:user) { User.new }
-      before do
-      	mock(user).trainer? { false }
-      	mock(user).admin?	{ false }
-      end
-
-      it { should be_able_to(:read, :all) }
-      it { should_not be_able_to(:manage, Workout.new) }
-      it { should_not be_able_to(:manage, Exercise.new) }
-      it { should_not be_able_to(:manage, FavoriteWorkout.new) }
     end
   end
 

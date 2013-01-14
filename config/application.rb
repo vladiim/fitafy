@@ -50,6 +50,8 @@ module Fitafy
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
+
+    # This enables postgres hstore to work in test env
     config.active_record.schema_format = :sql
 
     # Enforce whitelist mode for mass assignment.

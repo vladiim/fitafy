@@ -12,7 +12,8 @@ Fitafy::Application.routes.draw do
   resources :new_workout_exercises, only: :index
 
   resources :users do
-    resources :workouts, only: [:new, :create, :update, :destroy]
+    resources :workouts,      only: [:new, :create, :update, :destroy]
+    resources :view_features, only: [:index]
   end
 
 #---------- PRETTY URLS ----------#

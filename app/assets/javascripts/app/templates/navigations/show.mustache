@@ -39,6 +39,19 @@
             </ul>
           </li>
         {{/ admin }}
+
+        {{# staff }}
+          <li class='dropdown'>
+            <a href="#" class='dropdown-toggle new_features' data-toggle='dropdown'>NEW FEATURES</a>
+            <ul class='dropdown-menu'>
+              {{# new_feature }}
+                <li>
+                  <a href="{{feature_path}}" value='{{feature_name}}'>{{feature_name}}</a>
+                </li>
+              {{/ new_feature }}
+            </ul>
+          </li>
+        {{/ staff }}
       </ul>
 
       <div class='right-nav'>

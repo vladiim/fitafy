@@ -19,3 +19,11 @@
       - @workouts.each do |workout|
         - @renderer.workout = workout
         = @renderer.render.html_safe
+
+/ %h1= current_user.features
+/ %h1= current_user.wants_to_see('clients')
+/ %h1= current_user.staff?
+/ %h1= $rollout.active? :clients, current_user
+
+- if current_user && $rollout.active?(:clients, current_user)
+  %h1 BOOM THIS IS THE AMAZING NEW CLIENT FEATURE YO!

@@ -5,7 +5,10 @@ class Ability
 
     user ||= User.new
 
-    if user.trainer?
+    if user.staff?
+      can :manage, :all
+
+    elsif user.trainer?
       can :manage, Workout, user_id: user.id
       can :manage, FavoriteWorkout, user_id: user.id
       can :read, Exercise

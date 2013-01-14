@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Navigations::Show do
-  let(:user)         { OpenStruct.new username: 'USER NAME', id: 1, admin?: true }
+  let(:user)         { OpenStruct.new username: 'USER NAME', id: 1, admin?: true, staff?: false }
   let(:view_context) { OpenStruct.new workouts_path: 'WORKOUTS PATH', 
                                       new_workout_path: 'NEW WORKOUT PATH',
                                       login_path: 'LOGIN',
@@ -32,9 +32,11 @@ describe Navigations::Show do
         new_workout_path:              'NEW WORKOUT PATH',
         logged_in_trainer:             true,
         admin:                         true,
-        current_user_path:             'USER PATH',
+        staff:                         false,
         current_user_thumbnail_avatar: 'AVATAR',
         user_name:                     'USER NAME',
+        new_feature:                   nil,
+        current_user_path:             'USER PATH',
         edit_user_path:                'EDIT USER PATH',
         exercises_path:                'EXERCISES PATH',
         new_exercise_path:             'NEW EXERCISE PATH',

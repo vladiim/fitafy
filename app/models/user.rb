@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   extend FriendlyId
 
+  serialize :features, ActiveRecord::Coders::Hstore
+
   attr_accessible :username, :email, :password, :gym,
                   :password_confirmation, :role, :bio,
-                  :avatar, :terms_of_service
+                  :avatar, :terms_of_service, :features
 
   friendly_id :username, use: :slugged
 
@@ -47,6 +49,10 @@ class User < ActiveRecord::Base
 
   def admin?
   	role == "admin"
+  end
+
+  def staff?
+    role == 'staff'
   end
 
   def build_workout params=nil
@@ -118,6 +124,11 @@ class User < ActiveRecord::Base
 
   def facebook_user?
     FacebookUser.find_by_user_id(self.id) ? true : false
+  end
+
+  # for the rollout gem see config/initializers/rollout
+  def wants_to_see(feature)
+    features.keys.include?(feature)
   end
 
   private
