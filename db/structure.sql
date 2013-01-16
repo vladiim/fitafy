@@ -308,7 +308,7 @@ CREATE TABLE workouts (
     slug character varying(255),
     difficulty character varying(255),
     client_level character varying(255),
-    notes text
+    notes text DEFAULT 'No notes for this workout yo...'::text
 );
 
 
@@ -632,3 +632,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130113070544');
 INSERT INTO schema_migrations (version) VALUES ('20130113071223');
 
 INSERT INTO schema_migrations (version) VALUES ('20130113071519');
+
+INSERT INTO schema_migrations (version) VALUES ('20130115080555');
