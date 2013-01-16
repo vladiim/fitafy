@@ -26,10 +26,6 @@ class WorkoutExercise < ActiveRecord::Base
     self.workout.update_exercise_order
   end
 
-  def safe_instructions
-    instructions ? instructions : SnapzSayz::WorkoutExerciseSpeak.no_instructions
-  end
-
   def self.return_workouts_from_exercises exercises
   	workout_exercises = WorkoutExercise.find_by_exercises(exercises)
     WorkoutExercise.return_workouts_from workout_exercises

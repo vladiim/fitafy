@@ -270,7 +270,7 @@ CREATE TABLE workout_exercises (
     exercise_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    instructions text,
+    instructions text DEFAULT 'No instructions added yet'::text,
     sets integer DEFAULT 1,
     order_number integer DEFAULT 1
 );
@@ -634,3 +634,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130113071223');
 INSERT INTO schema_migrations (version) VALUES ('20130113071519');
 
 INSERT INTO schema_migrations (version) VALUES ('20130115080555');
+
+INSERT INTO schema_migrations (version) VALUES ('20130116075952');

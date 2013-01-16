@@ -29,7 +29,7 @@ module WorkoutExercises
     end
 
     def instructions
-      @workout_exercise.safe_instructions.humanize
+      @workout_exercise.instructions.humanize
     end
 
     def sets

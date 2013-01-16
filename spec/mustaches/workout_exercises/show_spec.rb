@@ -147,7 +147,7 @@ describe WorkoutExercises::Show do
 
     describe '#instructions' do
       let(:result) { renderer.instructions }
-      before { mock(workout_exercise).safe_instructions { 'EXERCISE INSTUCTIONS' } }
+      before { mock(workout_exercise).instructions { 'EXERCISE INSTUCTIONS' } }
 
       it 'returns the workout_exercises instructions' do
       	result.should eq "Exercise instuctions"
