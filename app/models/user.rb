@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   serialize :features, ActiveRecord::Coders::Hstore
 
   attr_accessible :username, :email, :password, :gym,
-                  :password_confirmation, :role, :bio,
+                  :password_confirmation, :bio,
                   :avatar, :terms_of_service, :features
 
   friendly_id :username, use: :slugged
