@@ -1,51 +1,49 @@
-class window.ExerciseModal
-  constructor: (@template = new HoganTemplateBuilder) ->
-    @links    = $( 'a[data-target=#exercise_ajax_modal]' )
-    @mustache = 'app/templates/exercises/show'
-    @body     = $( '#exercise_ajax_modal > .modal-body' )
-    @modal    = $( '#exercise_ajax_modal' )
+@ExerciseModal =
 
-  init: ->
-    $( @links ).on 'click', (event) =>
-      @target_link = $( event.target )
+  init: -> @renderer = new HoganTemplateBuilder
+
+  showExerciseListener: ->
+    $( 'a[data-target=#exercise_ajax_modal]' ).on 'click', (event) =>
+      @link = $( event.target )
       @showModal()
       event.preventDefault()
 
-  showModal: =>
+  showModal: ->
     @showTitle()
     @showBody()
-    @modal.on 'hide', => @hideModal()
+    $( '#exercise_ajax_modal' ).on 'hide', => @hideModal()
 
-  showTitle: =>
-    @title = @target_link.text()
-    $( '#exercise_ajax_modal > .modal-header' ).append("<h3>#{@title}</h3>")
+  hideModal: ->
+    @clearTitle()
+    @removeBody()
 
-  showBody: =>
-    url = @target_link.attr('href')
-    $.getJSON(url, @render)
+  showTitle: -> @changeTitle(@getText())
 
-  render: (exercise) =>
-    @body.append(@template.render(@mustache, exercise))
+  clearTitle: -> @changeTitle('')
 
-  hideModal: =>
-    @hideTitle()
-    @hideBody()
+  changeTitle: (text) ->
+    $( '#exercise_ajax_modal > .modal-header > h3' ).text(text)
 
-  hideTitle: =>
-    $( '#exercise_ajax_modal > .modal-header > h3' ).remove()
+  showBody: -> $.getJSON(@getUrl(), @renderExercise)
 
-  hideBody: =>
+  renderExercise: (exercise) =>
+    $( '#exercise_ajax_modal > .modal-body' ).append(ExerciseModal.renderer.render('app/templates/exercises/show', exercise))
+
+  removeBody: ->
     $( '#exercise_ajax_modal > .modal-body > article' ).remove()
+
+  getText: -> @link.text()
+
+  getUrl: -> @link.attr('href')
 
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )
   if workout_exercise_present.length > 0
-    @modal = new ExerciseModal
-    @modal.init()
+    ExerciseModal.init()
+    ExerciseModal.showExerciseListener()
 
     document.body.addEventListener "DOMNodeInserted", (event) =>
       @element = $( event.target )
 
       if element.hasClass('workout_exercise')
-        # modal = new ExerciseModal
-        @modal.init()
+        ExerciseModal.showExerciseListener()

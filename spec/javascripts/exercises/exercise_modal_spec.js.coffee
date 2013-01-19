@@ -1,56 +1,46 @@
 describe 'ExerciseModal', ->
   beforeEach ->
     loadFixtures "exercise_modal.html"
-    @fake_template = { render: -> "" }
-    @renderer      = sinon.stub(@fake_template, 'render', -> "<article>THE MUSTACHE TEMPLATE</article>" )
-    @modal = new ExerciseModal @fake_template
-    @modal.init()
-    @link = $( 'a[data-target=#exercise_ajax_modal]' )
-    @exercise = {
-      description: 'DESCRIPTION',
-      tips:        'TIPS',
-      muscle:      'MUSCLE',
-      category:    'CATEGORY',
-      equipment:   'EQUIPMENT'
-    }
+    @chest_title = $( 'a#chest_press' )
 
-  afterEach -> @renderer.restore()
+  describe 'showTitle', ->
+    beforeEach ->
+      ExerciseModal.link = @chest_title
+      ExerciseModal.showTitle()
 
-  describe 'link clicked', ->
-    beforeEach -> @modal.target_link = @link
+    it 'sets the modal header title', ->
+      expect($( '.modal-header > h3' ).text()).toEqual('Chest Press')
 
-    describe 'showTitle', ->
-      beforeEach -> @modal.showTitle()
-
-      it 'sets the modal header title', ->
-        expect($( '.modal-header > h3' ).text()).toEqual('Chest Press')
-
-    describe 'showBody', ->
-      beforeEach ->
-        @server = sinon.fakeServer.create()
-        @server.respondWith 'GET', '/exercises/chest-press',
+  describe 'showBody', ->
+    beforeEach ->
+      @incomingJSON = { name: 'SERVER EXERCISE' }
+      @server = sinon.fakeServer.create()
+      @server.respondWith 'GET', '/exercises/chest-press',
                             [200, { 'Content-Type': 'application/json' },
-                            JSON.stringify(@exercise)]
-        @modal.showBody()
-        @server.respond()
+                            JSON.stringify(@incomingJSON)]
+      @renderer = { render: -> '' }
+      @renderer_stub = sinon.stub(@renderer, 'render', -> '<article>EXERCISE FROM SERVER</article>')
+      ExerciseModal.renderer = @renderer
+      ExerciseModal.showBody()
+      @server.respond()
 
-      afterEach -> @server.restore()
+    afterEach -> @server.restore()
 
-      it 'uses the template to render the content', ->
-        expect(@renderer).toHaveBeenCalledWith('app/templates/exercises/show', @exercise)
+    it 'uses the renderer to render the exercise body', ->
+      expect(@renderer_stub).toHaveBeenCalledWith('app/templates/exercises/show', @incomingJSON)
 
-      it 'appends the modal-body with the rendered content', ->
-        expect($( '.modal-body > article' ).text()).toEqual('THE MUSTACHE TEMPLATE')
+    it 'appends the modal-body with the rendered content', ->
+      expect($( '.modal-body > article' ).text()).toEqual('EXERCISE FROM SERVER')
 
-    describe 'modal hidden', ->
-      beforeEach ->
-        @modal.showModal()
-        $( '.modal-body' ).append("<article></article>")
-        @modal.hideModal()
+  describe 'modal hidden', ->
+    beforeEach ->
+      ExerciseModal.showModal()
+      $( '.modal-body' ).append("<article></article>")
+      ExerciseModal.hideModal()
 
-      describe 'hideModal', ->
-        it 'removes the title', ->
-          expect($( '.modal-header > h3' )).not.toExist()
+    describe 'hideModal', ->
+      it 'removes the title text', ->
+        expect($( '.modal-header > h3' ).text()).toEqual('')
 
-        it 'removes the content', ->
-          expect($( '.modal-body > article' )).not.toExist()
+      it 'removes the content', ->
+        expect($( '.modal-body > article' )).not.toExist()
