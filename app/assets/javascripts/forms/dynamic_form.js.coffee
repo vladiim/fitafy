@@ -6,7 +6,7 @@
       type: 'PUT',
       dataType: 'json',
 
-      success: (data) => @updateFormItem(data)
+      success: (data) => DynamicForm.collaborater.updateFormItem(data)
 
       failure: => alert('Something went wrong o_0 try again')
     }
