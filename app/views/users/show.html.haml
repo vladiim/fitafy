@@ -20,11 +20,7 @@
 
 %section.user_workouts
   %h2
-    - if @user == current_user
-      YOUR WORKOUTS
-    - else
-      = "#{@user.username.upcase}'S"
-      WORKOUTS
+    = @user == current_user ? "YOUR WORKOUTS" : "#{@user.username.upcase}'S WORKOUTS"
 
   .row#user_show_tags_list{'data-url' => users_workouts_path(@user.username)}
     = render partial: "tags/list", locals: { width: 9 }
@@ -33,3 +29,10 @@
     - @workouts.each do |workout|
       - @renderer.workout = workout
       = @renderer.render.html_safe
+
+    - if @user == current_user
+      %li.workout_item.box_list.well.span2
+        = link_to "CREATE NEW WORKOUT", "  #new_workout_modal", 'data-toggle' => '  modal'
+        %br
+        %br
+        = link_to "+", "#new_workout_modal", 'data-toggle' => 'modal', class: 'new_workout_plus'

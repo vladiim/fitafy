@@ -33,6 +33,9 @@
         - @exercise_renderer.workout_exercise = workout_exercise
         = @exercise_renderer.render.html_safe
 
+      - if @workout_exercises.empty?
+        = link_to_add_exercise @workout
+
   %aside.span4
     %header
       %h5 DETAILS
