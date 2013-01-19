@@ -1,17 +1,30 @@
 describe 'ExerciseModalLoader', ->
   beforeEach ->
     loadFixtures 'exercise_modal_index.html'
-    @modal_loader = new ExerciseModalLoader
-    @modal = $( '.modal#add_workout_exercise' )
-    @link  = $( 'ul > li > a').first()
+    @modal = $(' .modal#add_workout_exercise ')
+    @modal.addEvent('show')
+    ExerciseModalLoader.init()
 
-  describe 'changeTitle', ->
-    it 'uses changes the title to the tag name', ->
-      @modal_loader.changeTitle()
-      expect($( 'h3.list_title' ).text()).toEqual('BACK EXERCISES')
+  describe 'show modal', ->
+    beforeEach ->
+      sinon.spy(ExerciseModalLoader, 'changeTitle')
+      sinon.spy(ExerciseLoader, 'removeAndRenderExercises')
+      @modal.trigger.show()
 
-  # describe 'changeURLs', ->
-  #   it 'changes the url paths to add_exercise_to_workout', ->
-  #     @modal_loader.changeURLs()
-  #     expect(@link.attr('href')).toEqual('/add_exercise_to_workout?muscle=back')
-  #     expect($(' ul > li > a ').slice(1, 2).attr('href')).toEqual('/add_exercise_to_workout?muscle=chest')
+    it 'removes and renders the exercises', ->
+      expect(ExerciseLoader.removeAndRenderExercises).toHaveBeenCalled()
+
+    it 'changes the title', ->
+      expect(ExerciseModalLoader.changeTitle).toHaveBeenCalled()
+
+# describe 'ExerciseModalLoader', ->
+#   beforeEach ->
+#     loadFixtures 'exercise_modal_index.html'
+#     @modal_loader = new ExerciseModalLoader
+#     @modal = $( '.modal#add_workout_exercise' )
+#     @link  = $( 'ul > li > a').first()
+
+#   describe 'changeTitle', ->
+#     it 'uses changes the title to the tag name', ->
+#       @modal_loader.changeTitle()
+#       expect($( 'h3.list_title' ).text()).toEqual('BACK EXERCISES')
