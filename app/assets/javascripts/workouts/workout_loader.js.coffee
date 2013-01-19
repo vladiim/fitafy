@@ -1,48 +1,48 @@
-class window.WorkoutLoader
-  constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @ul          = $("#workout_list")
-    @mustache    = "app/templates/workouts/index"
-    @muscles     = []
-    @page        = 0
+@WorkoutLoader =
+
+  init: ->
+    @page              = 0
+    @muscles           = []
+    @ul                = $("#workout_list")
     @allWorkoutsLoaded = false
+    @renderer          = new HoganTemplateBuilder
+    @windowScrollCheck()
 
-  windowScrollCheck: => $(window).bind "scroll", => @check()
+  windowScrollCheck: -> $(window).bind "scroll", -> WorkoutLoader.check()
 
-  check: => if @nearBottom() then @loadMoreWorkouts() else false
+  check: -> if @nearBottom() then @loadMoreWorkouts() else false
 
-  nearBottom: => $(window).scrollTop() > $(document).height() - $(window).height() - 30
+  nearBottom: -> $(window).scrollTop() > $(document).height() - $(window).height() - 30
 
-  loadMoreWorkouts: =>
+  resetScrollChecker: ->
+    $(window).unbind("scroll")
+    @windowScrollCheck()
+
+  loadMoreWorkouts: ->
     return if @allWorkoutsLoaded
     @page++
     @getAndRenderWorkouts()
     @resetScrollChecker()
 
-  reloadWorkouts: (muscles, url) =>
+  reloadWorkouts: (muscles) ->
     @allWorkoutsLoaded = false
     @page    = 0
     @muscles = muscles
-    @url     = url
     @getAndRenderWorkouts()
 
-  resetScrollChecker: =>
-    $(window).unbind("scroll")
-    @windowScrollCheck()
+  getAndRenderWorkouts: ->
+    $.getJSON("#{@url}?#{@generateParam()}", @render)
 
-  getAndRenderWorkouts: =>
-    param = @generateParam()
-    $.getJSON("#{@url}?#{param}", @render)
-
-  generateParam: => $.param( { muscles: @muscles, page: @page } )
+  generateParam: -> $.param( { muscles: @muscles, page: @page } )
 
   render: (workouts) =>
-    if workouts.length
-      @addWorkout(workout) for workout in workouts
-    else
-      @noMoreWorkouts()
+    if workouts.length then WorkoutLoader.addWorkouts(workouts) else WorkoutLoader.noMoreWorkouts()
 
-  addWorkout: (workout) => @ul.append(@template_renderer.render(@mustache, workout))
+  addWorkouts: (workouts) ->
+    @addWorkout(workout) for workout in workouts
 
-  noMoreWorkouts: =>
+  addWorkout: (workout) -> @ul.append(@renderer.render('app/templates/workouts/index', workout))
+
+  noMoreWorkouts: ->
     $(".end_of_workouts > p").text("No more workouts!")
     @allWorkoutsLoaded = true

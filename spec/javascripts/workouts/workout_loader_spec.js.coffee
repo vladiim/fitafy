@@ -1,73 +1,66 @@
 describe "WorkoutLoader", ->
   beforeEach ->
     loadFixtures "workout_list.html"
-    @fake_template = { render: -> "" }
-    @render        = sinon.stub(@fake_template, 'render', -> "<li>THE MUSTACHE TEMPLATE</li>")
-    @loader        = new WorkoutLoader @fake_template
-    @loader.url    = '/workouts'
-    @incomingJSON  = [
-      {
-        url:            "/users/1/workouts/1",
-        muscles:        "back",
-        name:           "workout",
-        client_level:   "beginer",
-        difficulty:     "easy",
-        username:       "rza",
-        exercise_count: "5"
-      }]
+    WorkoutLoader.init()
 
-  it "sets the page to 0", -> expect(@loader.page).toEqual(0)
+  it "sets the page to 0", -> expect(WorkoutLoader.page).toEqual(0)
 
-  describe "gets workouts", ->
+  describe 'loadMoreWorkouts', ->
+    beforeEach ->
+      @incomingJSON  = [{ name: 'JSON DATA' }]
+      @renderer      = {render: -> ''}
+      @renderer_stub = sinon.stub(@renderer, 'render', ->"<li>THE MUSTACHE TEMPLATE</li>")
+      WorkoutLoader.renderer = @renderer
 
-    describe "start without options", ->
+    describe 'no options', ->
       beforeEach ->
         @server = sinon.fakeServer.create()
         @server.respondWith("GET", "/workouts?page=1",
                             [200, { "Content-Type": "application/json" },
                             JSON.stringify(@incomingJSON)])
-        @loader.loadMoreWorkouts([])
+        WorkoutLoader.url = '/workouts'
+        WorkoutLoader.loadMoreWorkouts([])
         @server.respond()
 
       afterEach -> @server.restore()
 
       it "uses TemplateHoganBuilder to load workouts", ->
-        expect(@render).toHaveBeenCalledWith("app/templates/workouts/index", @incomingJSON[0])
+        expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workouts/index", @incomingJSON[0])
 
       it "loads the workouts on the page", ->
         expect($("ul#workout_list > li")).toHaveText("THE MUSTACHE TEMPLATE")
 
       it "increments the page number", ->
-        expect(@loader.page).toEqual(1)
+        expect(WorkoutLoader.page).toEqual(1)
 
     describe "start with options", ->
       beforeEach ->
         sinon.spy($, 'ajax')
-        @loader.reloadWorkouts(['back'], '/workouts')
+        WorkoutLoader.reloadWorkouts(['back'], '/workouts')
 
       afterEach  -> $.ajax.restore()
 
       it "gets the workouts with the options", ->
         expect($.ajax.getCall(0).args[0].url).toEqual("/workouts?muscles%5B%5D=back&page=0")
 
-    describe "no more workouts left", ->
-      beforeEach ->
-        @server = sinon.fakeServer.create()
-        @server.respondWith("GET", "/workouts?page=0",
-                            [200, { "Content-Type": "application/json" },
-                            JSON.stringify([])])
-        @loader.reloadWorkouts([], '/workouts')
-        @server.respond()
+  describe "no more workouts left", ->
+    beforeEach ->
+      @server = sinon.fakeServer.create()
+      @server.respondWith("GET", "/workouts?page=0",
+                          [200, { "Content-Type": "application/json" },
+                          JSON.stringify([])])
+      WorkoutLoader.reloadWorkouts([], '/workouts')
+      @server.respond()
 
-      afterEach -> @server.restore()
+    afterEach -> @server.restore()
 
-      it "lets the user know there are no more workouts", ->
-        expect($(".end_of_workouts > p")).toHaveText("No more workouts!")
+    it "lets the user know there are no more workouts", ->
+      expect($(".end_of_workouts > p")).toHaveText("No more workouts!")
 
-      it "sets allWorkoutsLoaded to true", ->
-        expect(@loader.allWorkoutsLoaded).toEqual(true)
+    it "sets allWorkoutsLoaded to true", ->
+      expect(WorkoutLoader.allWorkoutsLoaded).toEqual(true)
 
-      describe "new search", ->
-        it "sets allWorkoutsLoaded to false", ->
-          @loader.reloadWorkouts()
-          expect(@loader.allWorkoutsLoaded).toEqual(false)
+    describe "new search", ->
+      it "sets allWorkoutsLoaded to false", ->
+        WorkoutLoader.reloadWorkouts()
+        expect(WorkoutLoader.allWorkoutsLoaded).toEqual(false)
