@@ -27,10 +27,10 @@
     DynamicForm.initial_text  = @removeWhiteSpace(DynamicForm.value.text()).toLowerCase()
 
   showForm: ->
-    @init()
     DynamicForm.triggerListeners()
     DynamicForm.hideValues()
     DynamicForm.showForm()
+    @init()
 
   onName: -> DynamicForm.tag is 'name'
 

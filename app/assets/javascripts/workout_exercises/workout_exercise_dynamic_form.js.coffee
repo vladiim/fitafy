@@ -1,50 +1,50 @@
-class window.WorkoutExerciseDynamicForm extends DynamicForm
-  constructor: (@template_renderer = new HoganTemplateBuilder) ->
-    @mustache   = "app/templates/workout_exercises/show"
-    @dynamic_form_type = 'workout_exercise'
+@WorkoutExerciseDynamicForm =
 
   init: ->
+    @renderer   = new HoganTemplateBuilder
     @show_forms = $( 'a.show_workout_exercise_form' )
+    @formListener()
 
+  formListener: ->
     @show_forms.on 'click', (event) =>
-      @show_form = $( event.target )
+      WorkoutExerciseDynamicForm.show_form = $( event.target )
+      DynamicForm.collaborater = WorkoutExerciseDynamicForm
+      DynamicForm.form_type    = 'workout_exercise'
+      DynamicForm.hideCurrentForm()
       @storeVariables()
-      @unbindAndCreateNew()
-      @triggerListeners()
-      @hideValues()
       @showForm()
       event.preventDefault()
 
-  storeVariables: =>
-    @workout_exercise_item = @show_form.parents('li.workout_exercise')    
-    @tag           = @show_form.data('tag')
-    @url           = @show_form.attr('href')
-    @form_group    = @show_form.parents('.workout_form_group')
-    @value         = @show_form.prev('p')
-    @form_node     = @show_form.next(".workout_exercise_form.#{@tag}")
-    @input         = $(@form_node).find('input')
-    @hide_form     = $(@form_node).find('a.hide_workout_exercise_form')
-    @update_button = $(@form_node).find("button.update_workout_exercise_form.#{@tag}")
-    @initial_text  = @value.text()
+  storeVariables: ->
+    @workout_exercise_item    = @show_form.parents('li.workout_exercise')
+    DynamicForm.show_form     = @show_form
+    DynamicForm.tag           = @show_form.data('tag')
+    DynamicForm.url           = @show_form.attr('href')
+    DynamicForm.form_group    = @show_form.parents('.workout_form_group')
+    DynamicForm.value         = @show_form.prev('p')
+    DynamicForm.form_node     = @show_form.next(".workout_exercise_form.#{DynamicForm.tag}")
+    DynamicForm.input         = $( DynamicForm.form_node ).find('input')
+    DynamicForm.hide_form     = $( DynamicForm.form_node ).find('a.hide_workout_exercise_form')
+    DynamicForm.update_button = $( DynamicForm.form_node ).find("button.update_workout_exercise_form.#{DynamicForm.tag}")
+    DynamicForm.initial_text  = DynamicForm.value.text()
 
-  updateFormItem: (data) =>
-    @workout_exercise_item.replaceWith(@template_renderer.render(@mustache, data))
-    @unbindAndCreateNew()
+  showForm: ->
+    DynamicForm.triggerListeners()
+    DynamicForm.hideValues()
+    DynamicForm.showForm()
+    @init()
 
-  unbindAndCreateNew: =>
-    @show_forms.unbind 'click'
-    form = new WorkoutExerciseDynamicForm
-    form.init()
+  updateFormItem: (data) ->
+    @workout_exercise_item.replaceWith(@renderer.render("app/templates/workout_exercises/show", data))
+    @init()
 
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )
   if workout_exercise_present.length > 0
-    @form = new WorkoutExerciseDynamicForm
-    @form.init()
+    WorkoutExerciseDynamicForm.init()
 
     document.body.addEventListener "DOMNodeInserted", (event) =>
       @element = $( event.target )
 
       if element.hasClass('workout_exercise')
-        # form = new WorkoutExerciseDynamicForm
-        @form.init()
+        WorkoutExerciseDynamicForm.init()

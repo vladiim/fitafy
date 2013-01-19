@@ -1,65 +1,56 @@
 describe 'WorkoutExerciseDynamicForm', ->
   beforeEach ->
     loadFixtures 'workout_exercise_dynamic_form.html'
-    @form = new WorkoutExerciseDynamicForm
-    @form.init()
-    @show_form     = $( 'a.show_workout_exercise_form[data-value=1]')
-    @hide_form     = $( 'a.hide_workout_exercise_form[data-value=1]')
-    @update_button = $('.update_workout_exercise_form')
-    @form_group    = $( '.workout_form_group.instructions' )
-    @text_node     = $( '.workout_form_group.instructions > p' )
-    @form_node     = $( '.workout_exercise_form.instructions' )
-    @input         = $(@form_node).find('input')
-    @w_e_node      = $( 'li.workout_exercise')
+    WorkoutExerciseDynamicForm.init()
+    @show_form = $( 'a.show_workout_exercise_form[data-value=1]')
+    @w_e_node  = $( 'li.workout_exercise')
 
   describe 'click show link', ->
     beforeEach -> @show_form.click()
 
-    it 'stores the clicked link locally', ->
-      expect(@form.show_form).toBe(@show_form)
+    it 'stores the show_form locally', ->
+      expect(WorkoutExerciseDynamicForm.show_form).toBe(@show_form)
 
   describe 'storeVariables', ->
     beforeEach ->
-      @form.show_form = @show_form
-      @form.storeVariables()
+      WorkoutExerciseDynamicForm.show_form = @show_form
+      WorkoutExerciseDynamicForm.storeVariables()
 
-    it 'stores the tag name locally', ->
-      expect(@form.tag).toEqual('instructions')
+    it 'stores the DynamicForm tag name', ->
+      expect(DynamicForm.tag).toEqual('instructions')
 
-    it 'stores the url', ->
-      expect(@form.url).toEqual('/workout_exercises/1')
+    it 'stores the DynamicForm url', ->
+      expect(DynamicForm.url).toEqual('/workout_exercises/1')
 
-    it 'stores the form node', ->
-      expect(@form.form_node).toBe(@form_node)
+    it 'stores the DynamicForm form node', ->
+      expect(DynamicForm.form_node).toBe($( '.workout_exercise_form.instructions' ))
 
-    it 'stores the form group locally', ->
-      expect(@form.form_group).toBe(@form_group)
+    it 'sets the DynamicForm form group', ->
+      expect(DynamicForm.form_group).toBe($( '.workout_form_group.instructions' ))
 
-    it 'stores the initial_text locally', ->
-      expect(@form.initial_text).toEqual( 'INITIAL TEXT' )
+    it 'sets the DynamicForm initial_text', ->
+      expect(DynamicForm.initial_text).toEqual( 'INITIAL TEXT' )
 
-    it 'stores the hide form locally', ->
-      expect(@form.hide_form).toBe(@hide_form)
+    it 'sets the DynamicForm hide form', ->
+      expect(DynamicForm.hide_form).toBe($( 'a.hide_workout_exercise_form[data-value=1]'))
 
     it 'stores the update button locally', ->
-      expect(@form.update_button).toBe(@update_button)
+      expect(DynamicForm.update_button).toBe($('.update_workout_exercise_form'))
 
-    it 'stores the workout exercise item', ->
-      expect(@form.workout_exercise_item).toBe(@w_e_node)
+    it 'stores the workout exercise item locally', ->
+      expect(WorkoutExerciseDynamicForm.workout_exercise_item).toBe(@w_e_node)
 
   describe 'updateFormItem', ->
     beforeEach ->
-      @fake_template_renderer = { render: -> }
-      @render = sinon.stub(@fake_template_renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
-      @form   = new WorkoutExerciseDynamicForm @fake_template_renderer
-      @form.init()
-      @show_form.click()
-      @form.workout_exercise_item = @w_e_node
-      @data = {}
-      @form.updateFormItem(@data)
+      @renderer      = { render: -> }
+      @renderer_stub = sinon.stub(@renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
+      WorkoutExerciseDynamicForm.renderer = @renderer
+      WorkoutExerciseDynamicForm.workout_exercise_item = @w_e_node
+      data = {}
+      WorkoutExerciseDynamicForm.updateFormItem(data)
 
     it 'uses the template renderer', ->
-      expect(@render).toHaveBeenCalled("app/templates/workout_exercises/show", @data)
+      expect(@renderer_stub).toHaveBeenCalled("app/templates/workout_exercises/show", @data)
 
     it 'removes the workout exercise node', ->
       expect(@w_e_node).not.toBe()
