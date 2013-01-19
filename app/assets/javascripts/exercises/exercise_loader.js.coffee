@@ -1,50 +1,48 @@
-class window.ExerciseLoader
-  constructor: (@renderer = new HoganTemplateBuilder) ->
-    @modal    = $( '.modal#add_workout_exercise' )
-    @tag      = $( 'ul#exercise_loader_tags > li > a' ).first()
-    @tags     = $( 'ul#exercise_loader_tags > li > a' )
-    @body     = $( 'article.exercise_list' )
-    @mustache = 'app/templates/exercises/index'
+@ExerciseLoader =
 
   init: ->
-    @removeAndRenderExercises()
+    @tags     = $('ul#exercise_loader_tags > li > a')
+    @tag      = @tags.first()
+    @mustache = 'app/templates/exercises/index'
+    @renderer = new HoganTemplateBuilder
+    @tagListener()
 
-    @tags.on  'click', (event) =>
-      event.preventDefault()
+  tagListener: ->
+    @tags.on 'click', (event) =>
       @tag = $( event.target )
       @removeAndRenderExercises()
-  
-  removeAndRenderExercises: =>
-    @tagClicked()
+      event.preventDefault()
+
+  removeAndRenderExercises: ->
+    @makeTagActive()
     @removeExercises()
-    @findURL()
     @getAndRenderExercises()
     @changeTitle()
 
-  tagClicked: =>
+  makeTagActive: ->
     @tags.parent().removeClass('active').addClass('disabled')
     @tag.parent().removeClass('disabled').addClass('active')
 
-  findURL: =>
-    @url = @tag.attr('href').replace(' ', '_')
+  removeExercises: ->
+    $('article.exercise_list > article.exercise').remove()
 
-  getAndRenderExercises: =>
-    $.getJSON(@url, @renderExercises)
+  changeTitle: ->
+    $( 'h1' ).text(@tag.text().toUpperCase() + " EXERCISES")
+
+  getAndRenderExercises: ->
+    $.getJSON(@findURL(), @renderExercises)
+
+  findURL: ->
+    @tag.attr('href').replace(' ', '_')
 
   renderExercises: (exercises) =>
-    @renderExercise(exercise) for exercise in exercises
+    ExerciseLoader.renderExercise(exercise) for exercise in exercises
 
-  renderExercise: (exercise) =>
-    @body.append(@renderer.render(@mustache, exercise))    
-
-  removeExercises: =>
-    $( 'article.exercise_list > article.exercise' ).remove()
-
-  changeTitle: =>
-    $( 'h1' ).text(@tag.text().toUpperCase() + " EXERCISES")
+  renderExercise: (exercise) ->
+    $( 'article.exercise_list' ).append(@renderer.render(@mustache, exercise))
 
 $ ->
   exercise_tags = $( '#exercise_index_tags')
   if exercise_tags.length > 0
-    loader = new ExerciseLoader
-    loader.init()
+    ExerciseLoader.init()
+    ExerciseLoader.getAndRenderExercises()

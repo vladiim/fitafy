@@ -1,73 +1,64 @@
 describe 'ExerciseLoader', ->
   beforeEach ->
     loadFixtures 'exercise_index.html'
-    @fake_renderer = { render: -> "" }
-    @render_stub   = sinon.stub(@fake_renderer, 'render', ->'<article>BACK EXERCISE</article>')
-    @loader        = new ExerciseLoader @fake_renderer
-    @loader.init()
-    @back = $( 'ul > li > a' ).first()
-    @incomingJSON = [
-      {
-        id:          '1',
-        name:        'NAME',
-        description: 'DESCRIPTION',
-        muscle:      'BACK',
-        url:         'URL',
-        edit_url:    'EDIT URL'
-      }
-    ]
+    ExerciseLoader.init()
+    @back  = $( 'a#back_tag' )
+    @chest = $( 'a#chest_tag' )
 
-  describe 'click back tag', ->
+  it 'defaults with the first tag as the tag', ->
+    expect(ExerciseLoader.tag).toBe(@back)
+
+  describe 'click chest tag', ->
     beforeEach ->
-      sinon.spy(@loader, 'tagClicked')
-      @back.click()
+      sinon.stub(ExerciseLoader, 'removeAndRenderExercises', -> '')
+      @chest.click()
+
+    afterEach -> ExerciseLoader.removeAndRenderExercises.restore()
 
     it 'sets the local tag', ->
-      expect( @loader.tag ).toBe(@back)
+      expect(ExerciseLoader.tag).toBe(@chest)
 
-    it 'calls tagClicked', ->
-      expect( @loader.tagClicked ).toHaveBeenCalled()
+    it 'removes and renders the exercises', ->
+      expect(ExerciseLoader.removeAndRenderExercises).toHaveBeenCalled()
 
   describe 'removeAndRenderExercises', ->
     beforeEach ->
-      @loader.tag = @back
+      sinon.stub(ExerciseLoader, 'getAndRenderExercises')
+      ExerciseLoader.removeAndRenderExercises()
+
+    afterEach -> ExerciseLoader.getAndRenderExercises.restore()
+
+    it 'makes the tags parent active', ->
+      expect(@back.parent()).toHaveClass('active')
+      expect(@back.parent()).not.toHaveClass('disabled')
+
+    it 'ensures the other tags are disabled', ->
+      expect(@chest.parent()).not.toHaveClass('active')
+      expect(@chest.parent()).toHaveClass('disabled')
+
+    it 'removes the exercises from the page', ->
+      expect($( 'article.exercise_list > article.exercise' )).not.toExist()
+
+    it 'changes the title', ->
+      expect($( 'h1' ).text()).toEqual('BACK EXERCISES')
+
+  describe 'getAndRenderExercises', ->
+    beforeEach ->
+      @renderer = { render: -> '' }
+      @render_stub = sinon.stub(@renderer, 'render', -> '<article>BACK EXERCISE</article>')
+      ExerciseLoader.renderer = @renderer
+      @incomingJSON = [{ name: 'EXERCISE' }]
       @server = sinon.fakeServer.create()
       @server.respondWith 'GET', '/exercises?muscle=back',
                            [200, { 'Content-Type': 'application/json' },
                             JSON.stringify(@incomingJSON)]
-      @loader.removeAndRenderExercises()
+      ExerciseLoader.getAndRenderExercises()
       @server.respond()
 
     afterEach -> @server.restore()
 
-    # it 'uses a template renderer to load the workouts', ->
-    #   expect( @render_stub ).toHaveBeenCalledWith('/app/templates/exercises/index', @incomingJSON[0])
-
     it 'renders the template on the page', ->
       expect($( 'article.exercise_list > article' )).toHaveText('BACK EXERCISE')
 
-  describe 'unit test post clicked tag', ->
-    beforeEach -> @loader.tag = @back
-
-    describe 'removeExercises', ->
-      it 'removes existing page exercises', ->
-        @loader.removeExercises()
-        expect($( 'article.exercise_list > article.exercise' )).not.toExist()
-
-    describe 'tagClicked', ->
-      it 'adds the active class to the active tag', ->
-        @loader.tagClicked()
-        expect( @back.parent() ).toHaveClass('active')
-        expect( @back.parent() ).not.toHaveClass('disabled')
-
-      it 'removes the active class from all other tags', ->
-        other_tag = $( 'a[href$="/exercises?muscle=chest"]')
-        other_tag.parent().removeClass('disabled').addClass('active')
-        @loader.tagClicked()
-        expect( other_tag.parent() ).not.toHaveClass('active')
-        expect( other_tag.parent() ).toHaveClass('disabled')
-
-    describe 'changeTitle', ->
-      it 'changes the title to BACK EXERCISES', ->
-        @loader.changeTitle()
-        expect($( 'h1').text() ).toEqual('BACK EXERCISES')
+    it 'calls the template renderer with the data from the server', ->
+      expect(@render_stub).toHaveBeenCalledWith('app/templates/exercises/index', @incomingJSON[0])
