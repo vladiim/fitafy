@@ -1,7 +1,7 @@
 @AddExerciseToWorkout =
 
   init: ->
-    @renderer = new HoganTemplateBuilder
+    @renderer = HoganTemplateBuilder
     @buttons  = $( 'a.add_exercise_to_workout_button' )
     @buttonListener()
 

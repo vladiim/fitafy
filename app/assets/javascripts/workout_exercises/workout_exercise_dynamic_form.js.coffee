@@ -1,7 +1,7 @@
 @WorkoutExerciseDynamicForm =
 
   init: ->
-    @renderer   = new HoganTemplateBuilder
+    @renderer   = HoganTemplateBuilder
     @show_forms = $( 'a.show_workout_exercise_form' )
     @formListener()
 

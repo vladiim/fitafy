@@ -4,7 +4,7 @@
     @tags     = $('ul#exercise_loader_tags > li > a')
     @tag      = @tags.first()
     @mustache = 'app/templates/exercises/index'
-    @renderer = new HoganTemplateBuilder
+    @renderer = HoganTemplateBuilder
     @tagListener()
 
   tagListener: ->

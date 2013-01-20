@@ -5,7 +5,7 @@
     @muscles           = []
     @ul                = $("#workout_list")
     @allWorkoutsLoaded = false
-    @renderer          = new HoganTemplateBuilder
+    @renderer          = HoganTemplateBuilder
     @windowScrollCheck()
 
   windowScrollCheck: -> $(window).bind "scroll", -> WorkoutLoader.check()

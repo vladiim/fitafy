@@ -1,4 +1,4 @@
-class window.HoganTemplateBuilder
+@HoganTemplateBuilder =
 
-  render: (template_path, data) =>
+  render: (template_path, data) ->
     HoganTemplates[template_path].render data

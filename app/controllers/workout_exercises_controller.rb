@@ -52,8 +52,8 @@ class WorkoutExercisesController < ApplicationController
 
   def destroy
   	@workout_exercise = WorkoutExercise.find(params[:id])
-    @workout = Workout.find(@workout_exercise.workout_id)
-    @renderer = WorkoutExercises::Show.new(view_context, current_user)
+    @workout          = Workout.find(@workout_exercise.workout_id)
+    @renderer         = WorkoutExercises::Show.new(view_context, current_user)
 
     if WorkoutExerciseDestroyer.new(@workout_exercise, @workout).destroy_safely!
       flash[:success] = SnapzSayz::WorkoutExerciseSpeak.delete

@@ -1,6 +1,6 @@
 @ExerciseModal =
 
-  init: -> @renderer = new HoganTemplateBuilder
+  init: -> @renderer = HoganTemplateBuilder
 
   showExerciseListener: ->
     $( 'a[data-target=#exercise_ajax_modal]' ).on 'click', (event) =>
