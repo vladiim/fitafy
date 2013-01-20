@@ -1,26 +1,26 @@
 @TagLinkSorter =
 
   init: ->
-    @loader          = WorkoutLoader
+    @loader            = WorkoutLoader
     @loader.init()
-    @tagLinks        = $(".tag_link")
-    @inactiveTags    = $("#inactive_tags")
-    @activeTags      = $("#active_tags")
-    @activeTagNames  = new Array
-    @showTagsButton  = $("#show_tags_button")
+    @tag_links         = $(".tag_link")
+    @inactiveTags      = $("#inactive_tags")
+    @activeTags        = $("#active_tags")
+    @activeTagNames    = new Array
+    @show_tags_button  = $("#show_tags_button")
     @tagLinkListener()
     @showTagsButtonListener()
 
   tagLinkListener: ->
-    @tagLinks.on 'click', (event) =>
+    @tag_links.on 'click', (event) =>
       @tag_link = $(event.target)
       @tag_text = @tag_link.text().toLowerCase().replace(/\s+/g, '_')
-      @moveTag()
+      TagLinkSorter.moveTag()
       event.preventDefault()
 
   showTagsButtonListener: ->
-    $(@showTagsButton).on "click", (event) =>
-      $(@inactiveTags).toggleClass("hidden")
+    @show_tags_button.on "click", (event) =>
+      $("#inactive_tags").toggleClass('hidden')
       event.preventDefault()
 
   moveTag: ->

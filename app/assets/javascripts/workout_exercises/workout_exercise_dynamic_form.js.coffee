@@ -38,10 +38,13 @@
     @workout_exercise_item.replaceWith(@renderer.render("app/templates/workout_exercises/show", data))
     @init()
 
-$ ->
+ready = ->
   workout_exercise_present = $( 'ul.workout_exercises' )
   if workout_exercise_present.length > 0 then WorkoutExerciseDynamicForm.init()
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
     if element.hasClass('workout_exercise') then WorkoutExerciseDynamicForm.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

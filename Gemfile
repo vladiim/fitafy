@@ -46,7 +46,6 @@ gem 'compass-rails',  '~> 1.0.3'
 gem 'compass-h5bp',   '~> 0.0.5'
 gem 'haml-rails',     '~> 0.3.0'
 gem 'html5-rails',    '~> 0.0.5'
-gem 'turbolinks',     '~> 1.0.0'
 
 # ------------ FORMS ------------ #
 

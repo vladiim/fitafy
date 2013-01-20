@@ -9,7 +9,6 @@
 //= require bootstrap-popover
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require turbolinks
 
 //= require_tree .
 //= require_tree ./app/templates

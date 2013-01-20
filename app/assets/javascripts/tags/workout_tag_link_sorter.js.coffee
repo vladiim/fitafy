@@ -4,5 +4,5 @@ ready = ->
     TagLinkSorter.init()
     WorkoutLoader.init('/workouts')
 
-$(document).on 'page:load', ready
+# $(document).on 'page:load', -> ready()
 $ -> ready()

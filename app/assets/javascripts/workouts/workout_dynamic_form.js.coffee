@@ -46,7 +46,10 @@
     DynamicForm.showValues()
     DynamicForm.hideForm()
 
-$ ->
+ready = ->
   workout_form = $( '.workout_form_group' )
   if workout_form.length > 0
     WorkoutDynamicForm.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

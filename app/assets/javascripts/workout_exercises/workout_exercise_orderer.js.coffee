@@ -60,10 +60,13 @@
   setParam: (order_number) ->
     $.param({ workout_exercise: { order_number: order_number } })
 
-$ ->
+ready = ->
   workout_exercise = $( 'li.workout_exercise' )
   if workout_exercise.length > 0 then WorkoutExerciseOrderer.init()
 
   document.body.addEventListener 'DOMNodeInserted', (event) =>
     element = $( event.target )
     if element.hasClass('workout_exercise') then WorkoutExerciseOrderer.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

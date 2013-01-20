@@ -42,8 +42,11 @@
   renderExercise: (exercise) ->
     $( 'article.exercise_list' ).append(@renderer.render(@mustache, exercise))
 
-$ ->
+ready = ->
   exercise_tags = $( '#exercise_index_tags')
   if exercise_tags.length > 0
     ExerciseLoader.init()
     ExerciseLoader.getAndRenderExercises()
+
+# $(document).on 'page:load', ready
+$ -> ready()

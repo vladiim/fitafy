@@ -333,8 +333,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
-    turbolinks (1.0.0)
-      coffee-rails
     turn (0.9.6)
       ansi
     tzinfo (0.3.35)
@@ -404,6 +402,5 @@ DEPENDENCIES
   sinon-rails (~> 1.4.2.1)
   squeel (~> 1.0.13)
   thin (~> 1.5.0)
-  turbolinks (~> 1.0.0)
   turn
   uglifier (>= 1.0.3)

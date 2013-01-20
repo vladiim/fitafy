@@ -37,10 +37,13 @@
   getParams: ->
     $.param( { workout_exercise: { workout_id: @button.data('workout_id'), exercise_id: @button.data('exercise_id') } })
 
-$ ->
+ready = ->
   exercise_modal = $('.modal#add_workout_exercise')
   if exercise_modal.length > 0 then AddExerciseToWorkout.init()
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
     if element.hasClass('exercise_list_item') then AddExerciseToWorkout.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

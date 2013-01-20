@@ -4,5 +4,5 @@ ready = ->
     TagLinkSorter.init()
     WorkoutLoader.init($('#user_show_tags_list').data('url'))
 
-$(document).on 'page:load', ready
+# $(document).on 'page:load', -> ready()
 $ -> ready()

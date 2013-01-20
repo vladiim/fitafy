@@ -50,10 +50,13 @@
   removeWhiteSpace: (str) ->
     str.replace(/^\s\s*/, '').replace(/\s\s*$/, '')
 
-$ ->
+ready = ->
   we_search_input_present = $( 'input#workout_exercise_autofilter_search' )
   if we_search_input_present.length > 0 then WorkoutExerciseAutofilterSearchForm.init()
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
     if element.hasClass('exercise_list_item') then WorkoutExerciseAutofilterSearchForm.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

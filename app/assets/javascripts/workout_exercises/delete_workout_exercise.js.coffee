@@ -47,11 +47,13 @@
   removeExercises: ->
     $( 'ul.workout_exercises > li' ).remove()
 
-$ ->
-
+ready = ->
   workout_exercises = $( 'ul.workout_exercises' )
   if workout_exercises.length > 0 then DeleteWorkoutExercise.init()
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
     if element.hasClass('workout_exercise') then DeleteWorkoutExercise.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()

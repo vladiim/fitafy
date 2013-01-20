@@ -38,10 +38,13 @@
 
   getUrl: -> @link.attr('href')
 
-$ ->
+ready = ->
   workout_exercise_present = $( 'ul.workout_exercises' )
   if workout_exercise_present.length > 0 then ExerciseModal.init()
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
     if element.hasClass('workout_exercise') then ExerciseModal.init()
+
+# $(document).on 'page:load', ready
+$ -> ready()
