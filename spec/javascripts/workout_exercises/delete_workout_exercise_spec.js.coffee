@@ -10,7 +10,7 @@ describe 'DeleteWorkoutExercise', ->
       # sinon.stub(DeleteWorkoutExercise, 'confirmationAlert')
       @delete_button.click()
 
-    afterEach -> DeleteWorkoutExercise.confirmationAlert.restore()
+    # afterEach -> DeleteWorkoutExercise.confirmationAlert.restore()
 
     it 'sets the delete button locally', ->
       expect(DeleteWorkoutExercise.delete_button).toBe(@delete_button)
@@ -43,15 +43,15 @@ describe 'DeleteWorkoutExercise', ->
       it 'uses json as the data type', ->
         expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
 
-  describe 'confirmationAlert', ->
-    beforeEach ->
-      sinon.stub(window, 'confirm')
-      DeleteWorkoutExercise.confirmationAlert()
+  # describe 'confirmationAlert', ->
+  #   beforeEach ->
+  #     sinon.stub(window, 'confirm')
+  #     DeleteWorkoutExercise.confirmationAlert()
 
-    afterEach -> window.confirm.restore()
+  #   afterEach -> window.confirm.restore()
 
-    it 'asks the user to confirm', ->
-      expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to delete this Exercise from the Workout?')
+  #   it 'asks the user to confirm', ->
+  #     expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to delete this Exercise from the Workout?')
 
   describe 'reloadExercises', ->
     beforeEach ->

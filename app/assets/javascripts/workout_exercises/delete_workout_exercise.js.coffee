@@ -1,7 +1,6 @@
 @DeleteWorkoutExercise =
 
   init: ->
-    console.log('init')
     @delete_buttons = $( 'a.delete_workout_exercise' )
     @renderer       = HoganTemplateBuilder
     @deleteButtonListener()
@@ -13,14 +12,12 @@
       event.preventDefault()
 
   buttonClicked: ->
-    console.log('buttonClicked')
     @storeVariables()
     # @confirmationAlert()
     @delete()
     @init()
 
   storeVariables: ->
-    console.log('storeVariables')
     @workout_exercise = $(@delete_button).parents('li.workout_exercise')
     @url = @delete_button.attr('href')
 
