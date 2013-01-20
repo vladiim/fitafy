@@ -3,7 +3,7 @@ class UserWorkoutsOrderer
 
   def initialize user, params
   	@user = user
-    params_empty?(params) ? set_nil_params : set_params(params)
+    set_params(params)
   end
 
   def get_workouts
@@ -12,24 +12,25 @@ class UserWorkoutsOrderer
 
   private
 
-  def params_empty?(params)
-    ['muscles', 'page'].each do |key|
-  	  begin
-  	    params.fetch(key)
-  	  rescue KeyError
-  	    return true
-      end
-    end
-
-    return false
-  end
-
-  def set_nil_params
-  	@muscles, @page = nil, 0
-  end
-
   def set_params(params)
-  	@muscles, @page = params.fetch('muscles'), params.fetch('page').to_i 
+  	set_muscles(params)
+    set_page(params)
+  end
+
+  def set_muscles(params)
+    @muscles = begin
+      params.fetch('muscles')
+    rescue KeyError
+      nil
+    end
+  end
+
+  def set_page(params)
+    @page = begin
+      params.fetch('page').to_i 
+    rescue KeyError
+      0
+    end
   end
 
   def are_there_muscles?

@@ -26,9 +26,6 @@
     = render partial: "tags/list", locals: { width: 9 }
 
   %ul#workout_list
-    - @workouts.each do |workout|
-      - @renderer.workout = workout
-      = @renderer.render.html_safe
 
     - if @user == current_user
       %li.workout_item.box_list.well.span2
@@ -36,6 +33,10 @@
         %br
         %br
         = link_to "+", "#new_workout_modal", 'data-toggle' => 'modal', class: 'new_workout_plus'
+
+    - @workouts.each do |workout|
+      - @renderer.workout = workout
+      = @renderer.render.html_safe
 
   .end_of_workouts.row.span12
     %p

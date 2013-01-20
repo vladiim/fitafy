@@ -1,6 +1,7 @@
 @WorkoutLoader =
 
-  init: ->
+  init: (url) ->
+    @url               = url
     @page              = 0
     @muscles           = []
     @ul                = $("#workout_list")

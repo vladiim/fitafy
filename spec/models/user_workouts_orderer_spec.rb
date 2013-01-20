@@ -21,6 +21,14 @@ describe UserWorkoutsOrderer do
       end
     end
 
+    context "with page but not muscles" do
+      let(:params) { {"page"=>"4", "action"=>"index", "controller"=>"users_workouts"} }
+
+      it 'sets the page as 4' do
+        orderer.page.should eq 4
+      end
+    end
+
     context 'without params' do
       let(:params) { { "action"=>"index", "controller"=>"users_workouts"} }
 
