@@ -24,6 +24,8 @@
 
   getAndLoadWorkoutExercises: ->
     $.getJSON("/workout_exercises?workout_id=#{@button.data('workout_id')}", @loadWorkoutExercises)
+    $(@button).parent($( 'h4' )).effect('highlight', {}, 4500)
+    @button.next('p').text('Exercise Added!').fadeIn(200).fadeOut(4500)
 
   loadWorkoutExercises: (workout_exercises) =>
     $( 'ul.workout_exercises > li' ).remove()

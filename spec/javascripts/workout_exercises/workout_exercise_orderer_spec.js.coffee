@@ -102,7 +102,9 @@ describe 'WorkoutExerciseOrderer', ->
       expect($( 'li.workout_exercise:nth-child(2)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
   
     describe 'render the original counterpart', ->
-      beforeEach -> WorkoutExerciseOrderer.renderWorkoutExercise(@data, 'counterpart')
+      beforeEach ->
+        WorkoutExerciseOrderer.renderer = @renderer
+        WorkoutExerciseOrderer.renderWorkoutExercise(@data, 'counterpart')
   
       it 'replaces the original', ->
         expect($( 'li.workout_exercise:nth-child(1)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
