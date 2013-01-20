@@ -1,11 +1,20 @@
 class WorkoutExercisesController < ApplicationController
 
-  def create
-    @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
+  def index
+    @workout = Workout.find(params[:workout_id])
     @renderer = WorkoutExercises::Show.new(view_context, current_user)
 
+    respond_to do |format|
+      format.json { render json: @workout.workout_exercises.map { |we| @renderer.render_json(we) } }
+    end
+  end
+
+  def create
+    @workout_exercise = WorkoutExercise.new(params[:workout_exercise])
+    @renderer         = WorkoutExercises::Show.new(view_context, current_user)
+
     if @workout_exercise.save
-      @workout = @workout_exercise.workout
+      @workout        = @workout_exercise.workout
       flash[:success] = SnapzSayz::WorkoutSpeak.workout_updated
 
       respond_to do |format|

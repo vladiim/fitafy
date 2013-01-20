@@ -1,5 +1,4 @@
 # up to
-depoying rollout gem , look @ homepage - navbar has func, ViewFeature is the class immplementing & view_feature_controller is handling the request
 
 # deploy integration step
 * replicate db
@@ -13,8 +12,7 @@ depoying rollout gem , look @ homepage - navbar has func, ViewFeature is the cla
 	- sudo nginx -t
 	- sudo nginx (start nginx server)
 
-# With Avdi
-* Trending
+# Trending
 	- Favorited workout
 	- Printed workout
 	- Copied workout
