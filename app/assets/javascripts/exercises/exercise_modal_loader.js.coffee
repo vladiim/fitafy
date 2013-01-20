@@ -17,4 +17,4 @@ $ ->
   exercise_modal = $( 'div.modal#add_workout_exercise' )
   if exercise_modal.length > 0
     ExerciseModalLoader.init()
-    ExerciseLoader.tagListener()
+    ExerciseLoader.init()

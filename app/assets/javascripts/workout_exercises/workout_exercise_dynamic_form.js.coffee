@@ -40,11 +40,8 @@
 
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )
-  if workout_exercise_present.length > 0
-    WorkoutExerciseDynamicForm.init()
+  if workout_exercise_present.length > 0 then WorkoutExerciseDynamicForm.init()
 
-    document.body.addEventListener "DOMNodeInserted", (event) =>
-      @element = $( event.target )
-
-      if element.hasClass('workout_exercise')
-        WorkoutExerciseDynamicForm.init()
+  document.body.addEventListener "DOMNodeInserted", (event) =>
+    element = $( event.target )
+    if element.hasClass('workout_exercise') then WorkoutExerciseDynamicForm.init()

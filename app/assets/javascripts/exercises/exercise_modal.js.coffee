@@ -1,6 +1,8 @@
 @ExerciseModal =
 
-  init: -> @renderer = HoganTemplateBuilder
+  init: ->
+    @renderer = HoganTemplateBuilder
+    @showExerciseListener()
 
   showExerciseListener: ->
     $( 'a[data-target=#exercise_ajax_modal]' ).on 'click', (event) =>
@@ -38,12 +40,8 @@
 
 $ ->
   workout_exercise_present = $( 'ul.workout_exercises' )
-  if workout_exercise_present.length > 0
-    ExerciseModal.init()
-    ExerciseModal.showExerciseListener()
+  if workout_exercise_present.length > 0 then ExerciseModal.init()
 
-    document.body.addEventListener "DOMNodeInserted", (event) =>
-      @element = $( event.target )
-
-      if element.hasClass('workout_exercise')
-        ExerciseModal.showExerciseListener()
+  document.body.addEventListener "DOMNodeInserted", (event) =>
+    element = $( event.target )
+    if element.hasClass('workout_exercise') then ExerciseModal.init()
