@@ -1,42 +1,49 @@
 <li class="workout_exercise big_box_list" data-we_id='1' id='parent'>
 
-  <table class='workout_exercise_set_details'>
-    <tbody>
-      <tr class='set'  data-value='1'>
-        <td class='sets'>
-          1
-        </td>
-        <td class='reps' data-value='12'>
-          12
-          <a id='reps_up' href="/workout_exercises/1" class='change_workout_exercise_set_details' data-type='reps' data-value='12' data-direction='up'><i class="icon-chevron-up" data-value='12'></i></a>
+  <div class='set_details'>
+    <table class='workout_exercise_set_details'>
+      <tbody>
+        <tr class='set'  data-value='1'>
+          <td class='sets'>
+            1
+          </td>
 
-          <a id='reps_down' href="/workout_exercises/1" class='change_workout_exercise_set_details' data-type='reps' data-value='12' data-direction='down'><i class="icon-chevron-up" data-value='12'></i></a>
-        </td>
-        <td class='weight' data-value='80'>
-          80
-          <a href="/workout_exercises/1" class='change_workout_exercise_set_details' data-type='weight' data-value='80' data-direction='up'><i class="icon-chevron-up" data-value='12'></i></a>
+          <td class='reps' id='rep_parent' data-value='12' data-type='reps'>
 
-          <a href="/workout_exercises/1" class='change_workout_exercise_set_details' data-type='weight' data-value='80' data-direction='down'><i class="icon-chevron-up" data-value='12'></i></a>
-        </td>
-      </tr>
+            <p id='rep_text'>12</p>
 
-      <tr class='set' data-value='2'>
-        <td class='sets'>
-          2
-        </td>
-        <td class='reps' data-value='10'>
-          10
-        </td>
-        <td class='weight' data-value='100'>
-          100
-        </td>
-      </tr>
-      <tr>
-        <a href="/workout_exercises/1" class='new_workout_exercise_set_details'>+ ADD SET</a>
-      </tr>
-      <a href="/workout_exercises/1" class='hidden'>UPDATE</a>
-    </tbody>
-  </table>
+            <a id='reps_up' href="/workout_exercises/1" class='change_workout_exercise_set_details' data-direction='up'><i class="icon-chevron-up" id='rep_icon_up'></i></a>
+  
+            <a id='reps_down' href="/workout_exercises/1" class='change_workout_exercise_set_details' data-direction='down'><i class="icon-chevron-up" id='rep_icon_down'></i></a>
+          </td>
+
+          <td class='weight' data-value='80' data-type='weight' >
+            80
+            <a href="/workout_exercises/1" class='change_workout_exercise_set_details' data-direction='up'><i class="icon-chevron-up"></i></a>
+  
+            <a href="/workout_exercises/1" class='change_workout_exercise_set_details' data-direction='down'><i class="icon-chevron-up"></i></a>
+          </td>
+        </tr>
+  
+        <tr class='set' data-value='2'>
+          <td class='sets'>
+            2
+          </td>
+          <td class='reps' data-value='10'>
+            10
+          </td>
+          <td class='weight' data-value='100'>
+            100
+          </td>
+        </tr>
+        <tr>
+          <a href="/workout_exercises/1" class='new_workout_exercise_set_details'>+ ADD SET</a>
+        </tr>
+      </tbody>
+    </table>
+
+    <a href="/workout_exercises/1" class='hidden workout_exercise_set_details_update_button' id='update_button'>UPDATE</a>
+  </div>
 
   <div class='workout_form_group instructions'>
     <h5 class='workout_value instructions' data-value='1'>Instructions</h5>
