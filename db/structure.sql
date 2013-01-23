@@ -272,7 +272,8 @@ CREATE TABLE workout_exercises (
     updated_at timestamp without time zone NOT NULL,
     instructions text DEFAULT 'No instructions added yet'::text,
     sets integer DEFAULT 1,
-    order_number integer DEFAULT 1
+    order_number integer DEFAULT 1,
+    set_details hstore
 );
 
 
@@ -550,6 +551,13 @@ CREATE INDEX users_features ON users USING gin (features);
 
 
 --
+-- Name: workout_exercises_set_details; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX workout_exercises_set_details ON workout_exercises USING gin (set_details);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -636,3 +644,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130113071519');
 INSERT INTO schema_migrations (version) VALUES ('20130115080555');
 
 INSERT INTO schema_migrations (version) VALUES ('20130116075952');
+
+INSERT INTO schema_migrations (version) VALUES ('20130122085514');
+
+INSERT INTO schema_migrations (version) VALUES ('20130122085544');

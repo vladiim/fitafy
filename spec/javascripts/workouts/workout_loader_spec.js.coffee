@@ -36,7 +36,8 @@ describe "WorkoutLoader", ->
     describe "start with options", ->
       beforeEach ->
         sinon.spy($, 'ajax')
-        WorkoutLoader.reloadWorkouts(['back'], '/workouts')
+        WorkoutLoader.url = '/workouts'
+        WorkoutLoader.reloadWorkouts(['back'])
 
       afterEach  -> $.ajax.restore()
 
@@ -49,7 +50,8 @@ describe "WorkoutLoader", ->
       @server.respondWith("GET", "/workouts?page=0",
                           [200, { "Content-Type": "application/json" },
                           JSON.stringify([])])
-      WorkoutLoader.reloadWorkouts([], '/workouts')
+      WorkoutLoader.init('/workouts')
+      WorkoutLoader.reloadWorkouts([])
       @server.respond()
 
     afterEach -> @server.restore()

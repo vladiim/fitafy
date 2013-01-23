@@ -3,6 +3,8 @@ class WorkoutExercise < ActiveRecord::Base
   attr_accessible :workout_id, :exercise_id,
                   :sets, :instructions, :order_number
 
+  serialize :set_details, ActiveRecord::Coders::Hstore
+
   belongs_to :exercise
   belongs_to :workout
 

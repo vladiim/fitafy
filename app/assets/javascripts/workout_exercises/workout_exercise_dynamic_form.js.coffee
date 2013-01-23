@@ -8,14 +8,14 @@
   formListener: ->
     @show_forms.on 'click', (event) =>
       WorkoutExerciseDynamicForm.show_form = $( event.target )
-      DynamicForm.collaborater = WorkoutExerciseDynamicForm
-      DynamicForm.form_type    = 'workout_exercise'
       DynamicForm.hideCurrentForm()
       @storeVariables()
       @showForm()
       event.preventDefault()
 
   storeVariables: ->
+    DynamicForm.collaborater = WorkoutExerciseDynamicForm
+    DynamicForm.form_type    = 'workout_exercise'
     @workout_exercise_item    = @show_form.parents('li.workout_exercise')
     DynamicForm.show_form     = @show_form
     DynamicForm.tag           = @show_form.data('tag')

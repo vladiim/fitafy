@@ -14,13 +14,64 @@
 
   </aside>
 
+
   <article class='w_e_details'>
   	<h3 class='span5'>
   	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
   	</h3>
 
+    <table class='span3 workout_exercise_details'>
+      <thead>
+        <tr>
+          <th class='workout_exercise_details sets'>
+            <h5>Set</h5>
+          </th>
+
+          <th class='workout_exercise_details reps'>
+            <h5>Reps</h5>
+          </th>
+          <th class='workout_exercise_details weight'>
+            <h5>Weight</h5>
+          </th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div class='workout_form_group sets' data-value='{{id}}'>
+              <p>{{sets}}</p>
+
+              {{# own_workout}}
+
+                  <div>
+                    <a href="{{url}}" class='change_workout_exercise_sets' data-order='{{order}}' data-move='up'>{{{up_link}}}</a>
+
+                    <a href="{{url}}" class='change_workout_exercise_sets' data-order='{{order}}' data-move='down'>{{{down_link}}}</a>
+                  </div>
+
+                </div>
+              {{/ own_workout}}
+
+            </div>
+          </td>
+
+          <td>
+            <p>12</p>
+          </td>
+          <td>
+            <p>60kg</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
     <div class='span3 workout_form_group instructions'>
-      <h5 class='workout_value instructions' data-value="{{id}}">Instructions</h5>
+      <div>{{muscle}} with {{equipment_name}}</div>
+
+      <!-- <h5 class='workout_value instructions' data-value="{{id}}">Instructions</h5> -->
       <p>{{instructions}}</p>
 
       {{# own_workout}}
@@ -36,58 +87,6 @@
       {{/ own_workout}}
 
     </div>
-
-    <table class='span3 workout_exercise_details'>
-      <thead>
-      	<tr>
-          <th class='workout_exercise_details sets'>
-            <h5>Sets</h5>
-          </th>
-
-          <th class='workout_exercise_details muscle'>
-            <h5>Muscle</h5>
-          </th>
-          <th class='workout_exercise_details equipment'>
-            <h5>Equipment</h5>
-          </th>
-        </tr>
-
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>
-            <div class='workout_form_group sets' data-value='{{id}}'>
-              <p>{{sets}}</p>
-
-              {{# own_workout}}
-                <a href="{{url}}" class='show_workout_exercise_form' data-tag='sets' data-value="{{id}}">Edit</a>
-
-                <div class='hidden workout_exercise_form sets' data-value='{{url}}'>
-
-                  <input class='numeric integer thin_form_element' type='number' step='1' data-tag='sets' data-value="{{id}}">
-
-                  <button class='update_workout_exercise_form sets btn btn-primary btn-mini' data-value="{{id}}">
-                    UPDATE
-                  </button>
-
-                  <a href="#" class='hide_workout_exercise_form' data-tag='sets' data-value="{{id}}">Cancel</a>
-                </div>
-              {{/ own_workout}}
-
-            </div>
-          </td>
-
-          <td>
-            <p>{{muscle}}</p>
-          </td>
-          <td>
-            <p>{{equipment_name}}</p>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
 
     {{# own_workout}}
       <div class='well span5'>

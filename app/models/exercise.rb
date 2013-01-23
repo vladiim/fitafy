@@ -40,7 +40,7 @@ class Exercise < ActiveRecord::Base
   end
 
   def equipment_name
-    self.equipment ? equipment.name : "no equipment yo"
+    self.equipment.name ? equipment.name : "no equipment yo"
   end
 
   def safe_description

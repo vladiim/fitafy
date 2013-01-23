@@ -41,7 +41,7 @@ module WorkoutExercises
     end
 
     def equipment_name
-      @workout_exercise.equipment_name.titleize
+      @workout_exercise.equipment_name == "" ? 'no equipment' : @workout_exercise.equipment_name.titleize
     end
 
     def order
