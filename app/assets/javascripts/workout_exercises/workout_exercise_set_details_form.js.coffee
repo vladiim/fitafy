@@ -8,36 +8,72 @@
   linkListener: ->
     @links.on 'click', (event) =>
       event.preventDefault()
-      @link = $( event.target )
+      @link = $( event.target ).parent('a')
       WorkoutExerciseSetDetailsForm.linkClicked()
 
-    @icons.on 'click', (event) =>
-      event.preventDefault()
-      @icon = $( event.target )
+    @icons.on 'click', (event) => event.preventDefault()
 
   linkClicked: ->
     @setVariables()
     @showUpdateButton()
+    @updateButtonListener()
     @updateValues()
 
   setVariables: ->
+    @url           = @link.attr('href')
     @table_data    = @link.parents('td')
     @text          = @table_data.children('p')
     @value         = @table_data.data('value')
+    @type          = @table_data.data('type')
     @direction     = @link.data('direction')
     set_details    = @link.parents('div.set_details')
+    @sets          = set_details.find('tr.set')
     @update_button = set_details.children('a.workout_exercise_set_details_update_button')
 
   showUpdateButton: ->
     @update_button.removeClass('hidden')
     @update_button.addClass('show_update_button')
 
-  updateValues: ->
-    @new_value = if @direction == 'up' then @value + 1 else if @direction == 'down' then @value - 1
-    @table_data.data('value', @new_value)
-    @text.text(@new_value)
-    console.log("direction: #{@direction}, valu: #{@value}, new_value = #{@new_value}, table_data = #{@table_data.data('value')}, text: #{@text.text()}")
+  updateButtonListener: ->
+    @update_button.on 'click', (event) =>
+      WorkoutExerciseSetDetailsForm.collectData()
+      WorkoutExerciseSetDetailsForm.save()
+      event.preventDefault()
 
+  updateValues: ->
+    @new_value = @changeValue()
+    @table_data.data('value', @new_value)
+    @text.text(@newText())
+
+  changeValue: ->
+    change_ammount = if @onWeight() then 2.5 else 1
+    if @direction == 'up' then @value + change_ammount else if @direction == 'down' then @value - change_ammount
+
+  newText: ->
+    if @onWeight() then "#{@new_value}kg" else @new_value
+
+  collectData: ->
+    @data = {}
+    @findSetDetails(set) for set in @sets
+
+  findSetDetails: (set) ->
+    number        = $(set).data('value')
+    reps          = $(set).find('td.reps').data('value')
+    weight        = $(set).find('td.weight').data('value')
+    @data[number] = {reps: reps, weight: weight}
+
+  save: ->
+    $.ajax {
+      url:      @url,
+      type:     'PUT',
+      data:     @data,
+      dataType: 'json',
+
+      success: (data) => 'blah'
+      failure: => alert("Dang! Something went wront, try again.")
+    }
+
+  onWeight: -> @type == 'weight'
 
   # changeLinkValue: ->
   #   new_value = @value + 1

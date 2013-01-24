@@ -20,52 +20,70 @@
   	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
   	</h3>
 
-    <div class='set_details'>
-      <table class='span3 workout_exercise_details'>
-        <thead>
-          <tr>
-            <th class='workout_exercise_details sets'>
-              <h5>Set</h5>
-            </th>
+    {{#set_details}}
+      <div class='set_details'>
+        <table class='span3 workout_exercise_details'>
+          <thead>
+            <tr>
+              <th class='workout_exercise_details sets'>
+                <h5>Set</h5>
+              </th>
   
-            <th class='workout_exercise_details reps'>
-              <h5>Reps</h5>
-            </th>
-            <th class='workout_exercise_details weight'>
-              <h5>Weight</h5>
-            </th>
-          </tr>
+              <th class='workout_exercise_details reps'>
+                <h5>Reps</h5>
+              </th>
+              <th class='workout_exercise_details weight'>
+                <h5>Weight</h5>
+              </th>
+            </tr>
   
-        </thead>
+          </thead>
 
-        <tbody>
-          <tr class='set' data-value='{{id}}'>
-            <td>
-              <div>
-                <p class='sets'>{{sets}}</p>  
-              </div>
-            </td>
+          <tbody>
+            <tr class='set' data-value='1'>
+              <td>
+                <div>
+                  <p class='sets'>{{sets}}</p>  
+                </div>
+              </td>
 
-            <td class='reps' data-value='12' data-type='reps'>
-              <p>12</p>
+              <td class='reps' data-value='12' data-type='reps'>
+                <p>12</p>
+                {{# own_workout}}
+  
+                    <div>
+                      <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='up'><i class='icon-chevron-up change_workout_exercise_set_details' data-direction='up'></i></a>
+  
+                      <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='down'><i class='icon-chevron-down change_workout_exercise_set_details' data-direction='down'></i></a>
+                    </div>
+  
+                  </div>
+                {{/ own_workout}}
+              </td>
+
+
+            <!-- NOTE ----- YOU NEED TO CHANGE THE DATA-VALUE IN <TD> TO BEING A VARIBLE!!!!!!!!!!!!!!!! --> 
+
+
+            <td class='weight' data-value='60' data-type='weight'>
+              <p>60kg</p>
               {{# own_workout}}
   
                   <div>
-                    <a href="{{url}}" class='change_workout_exercise_set_details' data-direction='up'><i class='icon-chevron-up change_workout_exercise_set_details' data-direction='up'></i></a>
+                    <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='up'><i class='icon-chevron-up change_workout_exercise_set_details' data-direction='up'></i></a>
   
-                    <a href="{{url}}" class='change_workout_exercise_set_details' data-direction='down'><i class='icon-chevron-down change_workout_exercise_set_details' data-direction='down'></i></a>
+                    <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='down'><i class='icon-chevron-down change_workout_exercise_set_details' data-direction='down'></i></a>
                   </div>
   
                 </div>
               {{/ own_workout}}
             </td>
-            <td>
-              <p>60kg</p>
-            </td>
           </tr>
+          <tr><a href="{{set_details_url}}" class='new_workout_set_details'>+ ADD SET</a></tr>
         </tbody>
       </table>
-
+    {{#set_details}}
+      <a href="{{set_details_url}}" class='hidden workout_exercise_set_details_update_button'>UPDATE</a>
     </div>
 
     <div class='span3 workout_form_group instructions'>

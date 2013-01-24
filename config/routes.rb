@@ -10,6 +10,7 @@ Fitafy::Application.routes.draw do
   resources :password_resets,   only: [:new, :create, :edit, :update]
   resources :activations,       only: [:new, :edit]
   resources :new_workout_exercises, only: :index
+  resources :workout_exercise_set_details, only: [:show, :update]
 
   resources :users do
     resources :workouts,      only: [:new, :create, :update, :destroy]

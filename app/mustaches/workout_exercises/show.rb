@@ -19,8 +19,16 @@ module WorkoutExercises
       @workout_exercise.name.titleize
     end
 
+    def set_details
+      @workout_exercise.set_details_as_hash
+    end
+
     def url
       @view_context.workout_exercise_path(@workout_exercise)
+    end
+
+    def set_details_url
+      @view_context.workout_exercise_set_detail_path(@workout_exercise)
     end
 
     def exercise_url
@@ -66,18 +74,19 @@ module WorkoutExercises
     def render_json(workout_exercise)
       @workout_exercise = workout_exercise
       {
-        id:             id,
-      	name:           name,
-        url:            url,
-        exercise_url:   exercise_url,
-      	instructions:   instructions,
-      	sets:           sets,
-      	muscle:         muscle,
-      	equipment_name: equipment_name,
-      	order:          order,
-      	up_link:        up_link,
-      	down_link:      down_link,
-      	own_workout:    own_workout
+        id:              id,
+      	name:            name,
+        url:             url,
+        set_details_url: set_details_url,
+        exercise_url:    exercise_url,
+      	instructions:    instructions,
+      	sets:            sets,
+      	muscle:          muscle,
+      	equipment_name:  equipment_name,
+      	order:           order,
+      	up_link:         up_link,
+      	down_link:       down_link,
+      	own_workout:     own_workout
       }
     end
 
