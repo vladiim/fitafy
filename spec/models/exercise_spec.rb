@@ -59,7 +59,7 @@ describe Exercise do
     context "has equipment" do
       let(:equipment) { OpenStruct.new name: "EQUIPMENT NAME"}
 
-      before { mock(subject).equipment.times(2) { equipment } }
+      before { mock(subject).equipment.times(3) { equipment } }
 
       it "returns the exercise's equipment name" do
         subject.equipment_name.should eq "EQUIPMENT NAME"

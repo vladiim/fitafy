@@ -174,7 +174,7 @@ describe WorkoutExercises::Show do
 
     describe '#equipment_name' do
       let(:result) { renderer.equipment_name }
-      before { mock(workout_exercise).equipment_name { 'EQUIPMENT NAME' } }
+      before { mock(workout_exercise).equipment_name.times(2) { 'EQUIPMENT NAME' } }
 
       it 'returns the workout_exercises equipment_name' do
       	result.should eq "Equipment Name"
@@ -191,19 +191,21 @@ describe WorkoutExercises::Show do
     before do
       mock(renderer).url { 'URL' }
       mock(renderer).exercise_url { 'URL' }
+      mock(renderer).set_details_url { 'URL' }
     end
 
     it 'returns all details as a hash' do
       result_hash = {
-        id:             workout_exercise.id,
-        name:           workout_exercise.name.titleize,
-        url:            'URL',
-        exercise_url:   'URL',
-        instructions:   workout_exercise.instructions.humanize,
-        sets:           workout_exercise.sets,
-        muscle:         workout_exercise.muscle.titleize,
-        equipment_name: workout_exercise.equipment_name.titleize,
-        order:          workout_exercise.order_number,
+        id:              workout_exercise.id,
+        name:            workout_exercise.name.titleize,
+        url:             'URL',
+        set_details_url: 'URL',
+        exercise_url:    'URL',
+        instructions:    workout_exercise.instructions.humanize,
+        sets:            workout_exercise.sets,
+        muscle:          workout_exercise.muscle.titleize,
+        equipment_name:  workout_exercise.equipment_name.titleize,
+        order:           workout_exercise.order_number,
         up_link: nil,
         down_link: nil,
         own_workout:    true
