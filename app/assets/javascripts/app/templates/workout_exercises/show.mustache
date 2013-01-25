@@ -20,7 +20,7 @@
   	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
   	</h3>
 
-    {{#set_details}}
+    {{#own_workout}}<!-- should be: #set_details -->
       <div class='set_details'>
         <table class='span3 workout_exercise_details'>
           <thead>
@@ -82,7 +82,7 @@
           <tr><a href="{{set_details_url}}" class='new_workout_set_details'>+ ADD SET</a></tr>
         </tbody>
       </table>
-    {{#set_details}}
+    {{/own_workout}}
       <a href="{{set_details_url}}" class='hidden workout_exercise_set_details_update_button'>UPDATE</a>
     </div>
 

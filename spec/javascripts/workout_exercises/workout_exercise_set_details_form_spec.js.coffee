@@ -25,7 +25,7 @@ describe 'WorkoutExerciseSetDetailsForm', ->
     describe 'click update button', ->
       beforeEach ->
         sinon.stub($, 'ajax')
-        @data   = { 1: { reps: 13, weight: 80 }, 2: { reps: 10, weight: 100 } }
+        @data   = { 'set_details': { 1: { reps: 13, weight: 80 }, 2: { reps: 10, weight: 100 } } }
         @update = $( 'a#update_button' )
         @update.click()
 

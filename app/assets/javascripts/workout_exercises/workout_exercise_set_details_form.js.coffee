@@ -53,14 +53,14 @@
     if @onWeight() then "#{@new_value}kg" else @new_value
 
   collectData: ->
-    @data = {}
+    @data = { 'set_details': {} }
     @findSetDetails(set) for set in @sets
 
   findSetDetails: (set) ->
     number        = $(set).data('value')
     reps          = $(set).find('td.reps').data('value')
     weight        = $(set).find('td.weight').data('value')
-    @data[number] = {reps: reps, weight: weight}
+    @data['set_details'][number] = {reps: reps, weight: weight}
 
   save: ->
     $.ajax {
