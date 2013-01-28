@@ -189,8 +189,9 @@ describe WorkoutExercises::Show do
     let(:result)           { renderer.render_json workout_exercise }
 
     before do
-      mock(renderer).url { 'URL' }
-      mock(renderer).exercise_url { 'URL' }
+      mock(renderer).url             { 'URL' }
+      mock(renderer).exercise_url    { 'URL' }
+      mock(renderer).set_details     { 'SET DETAILS' }
       mock(renderer).set_details_url { 'URL' }
     end
 
@@ -198,6 +199,7 @@ describe WorkoutExercises::Show do
       result_hash = {
         id:              workout_exercise.id,
         name:            workout_exercise.name.titleize,
+        set_details:     'SET DETAILS',
         url:             'URL',
         set_details_url: 'URL',
         exercise_url:    'URL',

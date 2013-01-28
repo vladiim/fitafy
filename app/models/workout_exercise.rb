@@ -15,7 +15,7 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :user_id, to: :workout
   delegate :update_exercise_order, to: :workout
 
-  before_create :generate_order_number
+  before_create :generate_order_number, :default_set_details
 
   def generate_order_number
     self.order_number = (self.exercise_number + 1)
@@ -25,12 +25,8 @@ class WorkoutExercise < ActiveRecord::Base
     self.exercises.count
   end
 
-  # def update_exercise_order
-  #   self.workout.update_exercise_order
-  # end
-
-  def set_details_as_hash(mustache_helper)
-    WorkoutExerciseSetDetail.new(self, mustache_helper).to_hash
+  def set_details_to_array(mustache_helper)
+    WorkoutExerciseSetDetail.new(self, mustache_helper).to_array
   end
 
   def self.return_workouts_from_exercises exercises
@@ -53,5 +49,15 @@ class WorkoutExercise < ActiveRecord::Base
   	  workouts << Workout.find(workout_exercise.workout_id)
   	end
   	workouts
+  end
+
+  private
+
+  def default_set_details
+    self.set_details = { "1"=>
+      {set: 1,
+       reps: 1,
+       weight: 10}
+    }
   end
 end

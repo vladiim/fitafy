@@ -20,7 +20,7 @@ module WorkoutExercises
     end
 
     def set_details
-      @workout_exercise.set_details_as_hash(self)
+      @workout_exercise.set_details_to_array(self)
     end
 
     def url
@@ -76,6 +76,7 @@ module WorkoutExercises
       {
         id:              id,
       	name:            name,
+        set_details:     set_details,
         url:             url,
         set_details_url: set_details_url,
         exercise_url:    exercise_url,

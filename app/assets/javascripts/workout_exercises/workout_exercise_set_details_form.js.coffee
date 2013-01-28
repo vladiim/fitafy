@@ -1,10 +1,13 @@
 @WorkoutExerciseSetDetailsForm =
 
   init: ->
-    @template = HoganTemplateBuilder
-    @links    = $( 'a.change_workout_exercise_set_details' )
-    @icons    = $( 'a.change_workout_exercise_set_details > i' )
+    @template   = HoganTemplateBuilder
+    @mustache   = 'app/templates/workout_exercises/set_detail'
+    @links      = $( 'a.change_workout_exercise_set_details' )
+    @icons      = $( 'a.change_workout_exercise_set_details > i' )
+    @set_adders = $( 'a.workout_exercise_set_details_update_button' )
     @linkListener()
+    @setListener()
 
   linkListener: ->
     @links.on 'click', (event) =>
@@ -13,6 +16,12 @@
       WorkoutExerciseSetDetailsForm.linkClicked()
 
     @icons.on 'click', (event) => event.preventDefault()
+
+  setListener: ->
+    @set_adders.on 'click', (event) =>
+      event.preventDefault()
+      @set = $( event.target )
+      WorkoutExerciseSetDetailsForm.addSet()      
 
   linkClicked: ->
     @setVariables()
@@ -57,7 +66,7 @@
     if @direction == 'up' then @value + change_ammount else if @direction == 'down' then @value - change_ammount
 
   newText: ->
-    if @onWeight() then "#{@new_value}kg" else @new_value
+    if @onWeight() then "#{@new_value}kg" else String(@new_value)
 
   collectData: ->
     @data = { 'set_details': {} }
@@ -88,28 +97,14 @@
   removeSets: -> @sets.remove()
 
   addSetDetail: (set, detail) ->
-    @tbody.append(@template.render('app/templates/workout_exercises/set_detail', {set: set, detail}))
+    @tbody.append(@template.render(@mustache, {set: set, detail}))
+
+  addSet: ->
+    parent = @set.parents($('div.set_details'))
+    tbody  = parent.children('table > tbody')
+    set    = tbody.children('tr.set').length + 1
+    tbody.append(@template.render(@mustache, {"set": set, "reps": 1, "weight": 10}))
 
   onWeight: -> @type == 'weight'
-
-  # changeLinkValue: ->
-  #   new_value = @value + 1
-  #   # new_value = if @direction == 'up'
-  #   #   @value + 1
-  #   # else if @direction == 'down'
-  #   #   @value -1
-  #   @link.parents("td.#{@type}").data('value', new_value)
-
-  # findAllSetDetails: ->
-  #   @set_details = {}
-  #   @findEachSetDetails(set) for set in @sets
-
-  # findEachSetDetails: (set) ->
-  #   number = $(set).data('value')
-  #   reps   = $(set).find('td.reps').data('value')
-  #   weight = $(set).find('td.weight').data('value')
-  #   @set_details[number] = {reps: reps, weight: weight}
-
-  # updateAttributes: ->
 
 WorkoutExerciseSetDetailsForm.init()

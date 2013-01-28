@@ -19,11 +19,11 @@ class WorkoutExerciseSetDetail
   end
 
   def to_json
-    to_hash.to_json
+    to_array.to_json
   end
 
-  def to_hash
-    @clean_result, @final_result = {}, { set_details: [] }
+  def to_array
+    @clean_result, @final_result = {}, []
     return unless @workout_exercise.set_details
     add_set_details_to_clean_result
     add_clean_result_to_final_result
@@ -43,23 +43,23 @@ class WorkoutExerciseSetDetail
   end
 
   def add_set_to_final_result(set)
-    @final_result[:set_details] << { set: set.to_i }
+    @final_result << { set: set.to_i }
   end
 
   def add_details_to_final_result(details, index)
     details.each do |key, value|
-      @final_result[:set_details][index][key] = value
+      @final_result[index][key] = value
     end
   end
 
   def add_own_workout_to_final_result(index)
     own_workout = @own_workout ||= @mustache_helper.own_workout
-    @final_result[:set_details][index][:own_workout] = own_workout
+    @final_result[index][:own_workout] = own_workout
   end
 
   def add_set_details_url_to_final_result(index)
     set_details_url = @set_details_url ||= @mustache_helper.set_details_url
-    @final_result[:set_details][index][:set_details_url] = set_details_url
+    @final_result[index][:set_details_url] = set_details_url
   end
 
   def clean_set_details

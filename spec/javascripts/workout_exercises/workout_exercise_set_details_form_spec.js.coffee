@@ -104,3 +104,26 @@ describe 'WorkoutExerciseSetDetailsForm', ->
     it 'increases the weight parents text by 2.5', ->
       weight_text = $('p#weight_text').text()
       expect(weight_text).toEqual('85kg')
+
+  describe 'add set', ->
+    beforeEach ->
+      @fake_template = { render: -> ''}
+      @renderer      = sinon.stub(@fake_template, 'render', ->'<tr class="set">NEW SET <a class="change_workout_exercise_set_details">LINK</a></tr>')
+      @subject.template = @fake_template
+      @add_set = $( '.new_workout_exercise_set_details' )
+      @add_set.click()
+
+    it 'adds a new set to the workout exercise', ->
+      expect($( 'tr.set' ).length).toEqual(3)
+
+    it 'hides the add set button', ->
+      expect(@add_set).toHaveClass('hidden')
+
+    describe 'interact with new set', ->
+      beforeEach ->
+        @set  = $( 'tr.set' )[2]
+        @link = @set.find('a.change_workout_exercise_set_details').first()
+        @link.click()
+
+      it 'shows the add button', ->
+        expect(@add_set).not.toHaveClass('hidden')

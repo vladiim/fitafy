@@ -3,9 +3,9 @@
   <aside class='span1 w_e_order {{id}}'>
 
     {{# own_workout}}
-  	  <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='up'>{{{up_link}}}</a>
+      <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='up'>{{{up_link}}}</a>
       <p class='order_number'>{{order}}</p>
-  	  <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down'>{{{down_link}}}</a>
+      <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down'>{{{down_link}}}</a>
     {{/ own_workout}}
 
     {{^ own_workout}}
@@ -16,9 +16,9 @@
 
 
   <article class='we_details'>
-  	<h3 class='span5'>
-  	  <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
-  	</h3>
+    <h3 class='span5'>
+      <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
+    </h3>
 
   <div class='set_details'>
     <table class='span3 workout_exercise_details'>
@@ -39,10 +39,12 @@
       </thead>
 
       <tbody>
-        {{# set_details}}
+
+        {{#set_details}}
           {{> workout_exercises/set_detail}}
-        {{/ set_details}}
-        <tr><a href="{{set_details_url}}" class='new_workout_set_details'>+ ADD SET</a></tr>
+        {{/set_details}}
+
+        <a href="{{set_details_url}}" class='workout_exercise_set_details_update_button'>+ ADD SET</a>
       </tbody>
     </table>
 
@@ -61,7 +63,7 @@
         <div class='hidden workout_exercise_form instructions'>
           <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
           <button class='update_workout_exercise_form instructions btn btn-primary btn-mini' data-value="{{id}}">
-          	UPDATE
+            UPDATE
           </button>
 
           <a href="{{url}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>

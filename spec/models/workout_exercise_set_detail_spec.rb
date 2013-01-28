@@ -22,8 +22,8 @@ describe WorkoutExerciseSetDetail do
     end
   end
 
-  describe '#to_hash' do
-    let(:result) { set_detail.to_hash }
+  describe '#to_array' do
+    let(:result) { set_detail.to_array }
 
     context "correct data" do
       let(:data) { good_data }
@@ -72,21 +72,19 @@ def params
 end
 
 def filtered_good_data
-  {
-    set_details: [
-      { set: 1, 
-        reps: 13,
-        weight: 80,
-        own_workout: true,
-        set_details_url: "URL",
-      }, { set: 2,
-        reps: 10,
-        weight: 100,
-        own_workout: true,
-        set_details_url: "URL",
-      }
-    ]
-  }
+  [
+    { set: 1, 
+      reps: 13,
+      weight: 80,
+      own_workout: true,
+      set_details_url: "URL",
+    }, { set: 2,
+      reps: 10,
+      weight: 100,
+      own_workout: true,
+      set_details_url: "URL",
+    }
+  ]
 end
 
 class MustachHelper
@@ -105,20 +103,18 @@ def bad_set
 end
 
 def filtered_bad_data
-  {
-    set_details: [
-      { set: 1, 
-        reps: 13,
-        weight: 80,
-        own_workout: true,
-        set_details_url: "URL",
-      }, { set: 2,
-        reps: 10,
-        own_workout: true,
-        set_details_url: "URL",
-      }
-    ]
-  }
+  [
+    { set: 1, 
+      reps: 13,
+      weight: 80,
+      own_workout: true,
+      set_details_url: "URL",
+    }, { set: 2,
+      reps: 10,
+      own_workout: true,
+      set_details_url: "URL",
+    }
+  ]
 end
 
 def bad_data

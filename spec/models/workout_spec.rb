@@ -230,9 +230,8 @@ describe Workout do
     before       { mock(subject).workout_exercises { [ex1, ex2]}}
 
     it "iterates through the workout_exercises and updates their order" do
-       subject.update_exercise_order
-       ex1.order_number.should eq 1
-       # ex2.order_number.should eq 2
+      subject.update_exercise_order
+      ex1.order_number.should eq 1
     end
   end
 
@@ -248,15 +247,6 @@ describe Workout do
     it "should copy another workout's exercises" do
       subject.copy_workout_exercises(other_workout)
       subject.exercises.should eq exercises
-    end
-  end
-
-  describe "#equipment_names" do
-    let(:equipment) { "ALL EQUIPMENT NAMES" }
-
-    it "renders all the equipment" do
-      mock(Equipment).all_names { equipment }
-      Workout.equipment_names.should eq "ALL EQUIPMENT NAMES"
     end
   end
 end
