@@ -110,10 +110,6 @@ class Workout < ActiveRecord::Base
     end
   end
 
-  def self.equipment_names
-    Equipment.all_names
-  end
-
   def to_param
     "#{id}-#{name}".parameterize
   end

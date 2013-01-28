@@ -182,7 +182,7 @@ describe WorkoutExercises::Show do
     end
   end
 
-  describe 'render_json' do
+  describe '#render_json' do
   	let(:workout_exercise) { create :workout_exercise, instructions: 'blah' }
   	let(:user)             { workout_exercise.workout.user }
     let(:renderer)         { WorkoutExercises::Show.new view_context, user }

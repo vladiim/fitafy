@@ -1,8 +1,9 @@
 @WorkoutExerciseSetDetailsForm =
 
   init: ->
-    @links = $( 'a.change_workout_exercise_set_details' )
-    @icons = $( 'a.change_workout_exercise_set_details > i' )
+    @template = HoganTemplateBuilder
+    @links    = $( 'a.change_workout_exercise_set_details' )
+    @icons    = $( 'a.change_workout_exercise_set_details > i' )
     @linkListener()
 
   linkListener: ->
@@ -28,13 +29,19 @@
     @direction     = @link.data('direction')
     set_details    = @link.parents('div.set_details')
     @sets          = set_details.find('tr.set')
+    @tbody         = @sets.parent()
     @update_button = set_details.children('a.workout_exercise_set_details_update_button')
 
   showUpdateButton: ->
     @update_button.removeClass('hidden')
     @update_button.addClass('show_update_button')
 
+  hideUpdateButton: ->
+    @update_button.addClass('hidden')
+    @update_button.removeClass('show_update_button')
+
   updateButtonListener: ->
+    @update_button.unbind 'click'
     @update_button.on 'click', (event) =>
       WorkoutExerciseSetDetailsForm.collectData()
       WorkoutExerciseSetDetailsForm.save()
@@ -46,7 +53,7 @@
     @text.text(@newText())
 
   changeValue: ->
-    change_ammount = if @onWeight() then 2.5 else 1
+    change_ammount = if @onWeight() then 5 else 1
     if @direction == 'up' then @value + change_ammount else if @direction == 'down' then @value - change_ammount
 
   newText: ->
@@ -69,9 +76,19 @@
       data:     @data,
       dataType: 'json',
 
-      success: (data) => 'blah'
+      success: (data) => WorkoutExerciseSetDetailsForm.updateSuccess(data)
       failure: => alert("Dang! Something went wront, try again.")
     }
+
+  updateSuccess: (set_details) ->
+    @hideUpdateButton()
+    @removeSets()
+    for set, details of set_details then @addSetDetail(set, details)
+
+  removeSets: -> @sets.remove()
+
+  addSetDetail: (set, detail) ->
+    @tbody.append(@template.render('app/templates/workout_exercises/set_detail', {set: set, detail}))
 
   onWeight: -> @type == 'weight'
 

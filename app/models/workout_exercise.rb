@@ -13,7 +13,7 @@ class WorkoutExercise < ActiveRecord::Base
   delegate :equipment_name, to: :exercise
   delegate :exercises, to: :workout
   delegate :user_id, to: :workout
-  # delegate :update_exercise_order, to: :workout
+  delegate :update_exercise_order, to: :workout
 
   before_create :generate_order_number
 
@@ -25,12 +25,12 @@ class WorkoutExercise < ActiveRecord::Base
     self.exercises.count
   end
 
-  def update_exercise_order
-    self.workout.update_exercise_order
-  end
+  # def update_exercise_order
+  #   self.workout.update_exercise_order
+  # end
 
-  def set_details_as_hash
-    WorkoutExerciseSetDetail.new(self).as_hash
+  def set_details_as_hash(mustache_helper)
+    WorkoutExerciseSetDetail.new(self, mustache_helper).to_hash
   end
 
   def self.return_workouts_from_exercises exercises

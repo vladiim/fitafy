@@ -20,7 +20,7 @@ module WorkoutExercises
     end
 
     def set_details
-      @workout_exercise.set_details_as_hash
+      @workout_exercise.set_details_as_hash(self)
     end
 
     def url

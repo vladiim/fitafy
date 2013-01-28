@@ -9,7 +9,6 @@ class WorkoutsController < ApplicationController
 
     @renderer  = Workouts::Index.new
     @muscles   = Workout.muscles
-    @equipment = Workout.equipment_names
     @title     = "Latest Workouts" # could show muscles & pages here
 
     respond_to do |format|

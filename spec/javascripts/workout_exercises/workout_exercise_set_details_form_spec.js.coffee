@@ -7,6 +7,8 @@ describe 'WorkoutExerciseSetDetailsForm', ->
   describe 'rep_up', ->
     beforeEach ->
       @rep_up  = $('a#reps_up')
+      @data    = { 'set_details': { 1: { reps: 13, weight: 80 }, 2: { reps: 10, weight: 100 } } }
+      @update  = $( 'a#update_button' )
       WorkoutExerciseSetDetailsForm.link = @rep_up
       WorkoutExerciseSetDetailsForm.linkClicked()
 
@@ -25,11 +27,12 @@ describe 'WorkoutExerciseSetDetailsForm', ->
     describe 'click update button', ->
       beforeEach ->
         sinon.stub($, 'ajax')
-        @data   = { 'set_details': { 1: { reps: 13, weight: 80 }, 2: { reps: 10, weight: 100 } } }
-        @update = $( 'a#update_button' )
+        sinon.stub(@subject, 'updateSuccess', -> '')
         @update.click()
 
-      afterEach -> $.ajax.restore()
+      afterEach ->
+       $.ajax.restore()
+       @subject.updateSuccess.restore()
 
       it 'uses ajax for the request', ->
         expect($.ajax).toHaveBeenCalled()
@@ -47,12 +50,37 @@ describe 'WorkoutExerciseSetDetailsForm', ->
         expect($.ajax.getCall(0).args[0].type).toEqual("PUT")
 
       it 'uses json as the data type', ->
-        expect($.ajax.getCall(0).args[0].dataType).toEqual("json")    
+        expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
+
+    describe 'updateSuccess', ->
+      beforeEach ->
+        @new_data = { 1: { reps: 4, weight: 200 } }
+        sinon.stub(@subject, 'addSetDetail')
+        @subject.updateSuccess(@new_data)
+
+      afterEach -> @subject.addSetDetail.restore()
+
+      it 'hides the update button', ->
+        expect(@update).toHaveClass('hidden')
+
+      # it 'replaces the set_details with the data', ->
+      #   expect($( 'tr.set' ).length).toEqual(1)
+
+    describe 'addSetDetail', ->
+      beforeEach ->
+        @fake_template = { render: ->'' }
+        @rendered      = sinon.stub(@fake_template, 'render', -> '<tr class="set"><td>NEW SET</td></tr>')
+        @subject.template = @fake_template
+        @subject.removeSets()
+        @subject.addSetDetail(1, { reps: 4, weight: 200 })
+ 
+      it 'renders the new template on the page', ->
+        expect($( 'tr.set > td' )).toHaveText('NEW SET')
 
   describe 'rep_down', ->
     beforeEach ->
       @rep_down  = $('a#reps_down')
-      WorkoutExerciseSetDetailsForm.link =@rep_down
+      WorkoutExerciseSetDetailsForm.link = @rep_down
       WorkoutExerciseSetDetailsForm.linkClicked()
 
     it 'decreases the rep parents value', ->
@@ -71,8 +99,8 @@ describe 'WorkoutExerciseSetDetailsForm', ->
 
     it 'increases the weight parents value by 2.5', ->
       weight_parent_val = $('#weight_parent').data('value')
-      expect(weight_parent_val).toEqual(82.5)
+      expect(weight_parent_val).toEqual(85)
 
     it 'increases the weight parents text by 2.5', ->
       weight_text = $('p#weight_text').text()
-      expect(weight_text).toEqual('82.5kg')
+      expect(weight_text).toEqual('85kg')

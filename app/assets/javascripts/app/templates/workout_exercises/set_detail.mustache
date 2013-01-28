@@ -1,0 +1,38 @@
+<tr class='set' data-value='{{set}}'>
+  <td>
+    <div>
+      <p class='sets'>{{set}}</p>  
+    </div>
+  </td>
+
+  <td class='reps' data-value='12' data-type='reps'>
+    <p>12</p>
+    {{# own_workout}}
+
+      <div>
+        <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='up'><i class='icon-chevron-up change_workout_exercise_set_details' data-direction='up'></i></a>
+
+        <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='down'><i class='icon-chevron-down change_workout_exercise_set_details' data-direction='down'></i></a>
+      </div>
+
+      </div>
+    {{/ own_workout}}
+  </td>
+
+
+  <!-- NOTE ----- YOU NEED TO CHANGE THE DATA-VALUE IN <TD> TO BEING A VARIBLE!!!!!!!!!!!!!!!! --> 
+
+
+  <td class='weight' data-value='{{weight}}' data-type='weight'>
+    <p>{{weight}}</p>
+    {{# own_workout}}
+
+      <div>
+        <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='up'><i class='icon-chevron-up change_workout_exercise_set_details' data-direction='up'></i></a>
+
+        <a href="{{set_details_url}}" class='change_workout_exercise_set_details' data-direction='down'><i class='icon-chevron-down change_workout_exercise_set_details' data-direction='down'></i></a>
+      </div>
+
+    {{/ own_workout}}
+  </td>
+</tr>
