@@ -11,6 +11,7 @@ Feature: Trainer manages workouts
     When I create a workout from the nav
     Then I should be on the new workouts page
 
+  @focus
   Scenario: Trainer creates new workout
     Given I've created a new workout
     When I go to the new workout's page

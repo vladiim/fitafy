@@ -1,13 +1,13 @@
 describe 'WorkoutExerciseSetDetailsForm', ->
   beforeEach ->
     loadFixtures 'workout_exercise_dynamic_form.html'
+    @rep_up  = $('a#reps_up')
     @subject = WorkoutExerciseSetDetailsForm
-    WorkoutExerciseSetDetailsForm.init()
+    @subject.init()
 
   describe 'rep_up', ->
     beforeEach ->
-      @rep_up  = $('a#reps_up')
-      @data    = { 'set_details': { 1: { reps: 13, weight: 80 }, 2: { reps: 10, weight: 100 } } }
+      @data    = { "1": { "set": 1, "reps": 13, "weight": 80 }, "2": { "set": 2, "reps": 10, "weight": 100 } }
       @update  = $( 'a#update_button' )
       WorkoutExerciseSetDetailsForm.link = @rep_up
       WorkoutExerciseSetDetailsForm.linkClicked()
@@ -94,8 +94,8 @@ describe 'WorkoutExerciseSetDetailsForm', ->
   describe 'weight_up', ->
     beforeEach ->
       @weight_up = $('a#weight_up')
-      WorkoutExerciseSetDetailsForm.link = @weight_up
-      WorkoutExerciseSetDetailsForm.linkClicked()
+      @subject.link = @weight_up
+      @subject.linkClicked()
 
     it 'increases the weight parents value by 2.5', ->
       weight_parent_val = $('#weight_parent').data('value')
@@ -107,11 +107,17 @@ describe 'WorkoutExerciseSetDetailsForm', ->
 
   describe 'add set', ->
     beforeEach ->
-      @fake_template = { render: -> ''}
-      @renderer      = sinon.stub(@fake_template, 'render', ->'<tr class="set">NEW SET <a class="change_workout_exercise_set_details">LINK</a></tr>')
+      @fake_template    = { render: -> ''}
+      @renderer         = sinon.stub(@fake_template, 'render', ->'<tr id="new_set" class="set"><td><p>NEW SET</p></td></tr>')
       @subject.template = @fake_template
-      @add_set = $( '.new_workout_exercise_set_details' )
+      sinon.spy(@subject, 'reinit')
+      @add_set = $( '.workout_exercise_set_details_update_button' )
       @add_set.click()
+
+    afterEach -> @subject.reinit.restore()
+
+    it 'renders the new set', ->
+      expect($('tr#new_set > td > p')).toHaveText('NEW SET')
 
     it 'adds a new set to the workout exercise', ->
       expect($( 'tr.set' ).length).toEqual(3)
@@ -119,9 +125,14 @@ describe 'WorkoutExerciseSetDetailsForm', ->
     it 'hides the add set button', ->
       expect(@add_set).toHaveClass('hidden')
 
+    it 'reinitializes itself', ->
+      expect(@subject.reinit).toHaveBeenCalled()
+
     describe 'interact with new set', ->
       beforeEach ->
-        @set  = $( 'tr.set' )[2]
+        @subject.link = @rep_up
+        @subject.linkClicked()
+        @set  = $( 'tr#new_set' )
         @link = @set.find('a.change_workout_exercise_set_details').first()
         @link.click()
 

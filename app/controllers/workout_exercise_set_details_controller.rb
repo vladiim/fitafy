@@ -2,7 +2,7 @@ class WorkoutExerciseSetDetailsController < ApplicationController
 
   def update
   	workout_exercise = WorkoutExercise.find(params[:id])
-  	mustache_helper  = WorkoutExercises::Show.new(view_context, current_user)
+  	mustache_helper  = WorkoutExercises::Show.new(view_context, current_user, workout_exercise)
     set_details      = WorkoutExerciseSetDetail.new(workout_exercise, mustache_helper)
 
     if set_details.update(params[:set_details])

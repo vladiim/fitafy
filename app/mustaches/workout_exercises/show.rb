@@ -6,8 +6,8 @@ module WorkoutExercises
     attr_accessor :workout_exercise, :user, :view_context
     attr_reader   :workout
 
-    def initialize(view_context, user)
-      @view_context, @user = view_context, user
+    def initialize(view_context, user, workout_exercise=nil)
+      @view_context, @user, @workout_exercise = view_context, user, workout_exercise
       generate_fake_user if @user == nil
     end
 
