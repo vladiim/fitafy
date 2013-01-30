@@ -20,34 +20,33 @@
       <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
     </h3>
 
-  <div class='set_details'>
-    <table class='span3 workout_exercise_set_details'>
-      <thead>
-        <tr>
-          <th class='workout_exercise_details sets'>
-            <h5>Set</h5>
-          </th>
+    <div class='set_details'>
+      <table class='span3 workout_exercise_set_details'>
+        <thead>
+          <tr>
+            <th class='workout_exercise_details sets'>
+              <h5>Set</h5>
+            </th>
   
-          <th class='workout_exercise_details reps'>
-            <h5>Reps</h5>
-          </th>
-          <th class='workout_exercise_details weight'>
-            <h5>Weight</h5>
-          </th>
-        </tr>
+            <th class='workout_exercise_details reps'>
+              <h5>Reps</h5>
+            </th>
+            <th class='workout_exercise_details weight'>
+              <h5>Weight</h5>
+            </th>
+          </tr>
   
-      </thead>
+        </thead>
 
-      <tbody>
+        <tbody>
 
-        {{#set_details}}
-          {{> workout_exercises/set_detail}}
-        {{/set_details}}
+          {{#set_details}}
+            {{> workout_exercises/set_detail}}
+          {{/set_details}}
 
-        <a href="{{set_details_url}}" class='workout_exercise_set_details_update_button'>+ ADD SET</a>
-      </tbody>
-    </table>
-
+        </tbody>
+      </table>
+        <a href="{{set_details_url}}" class='new_workout_exercise_set_details'>+ ADD SET</a>
 
       <a href="{{set_details_url}}" class='hidden workout_exercise_set_details_update_button'>UPDATE</a>
     </div>

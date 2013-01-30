@@ -7,7 +7,7 @@ describe 'WorkoutExerciseSetDetailsForm', ->
 
   describe 'rep_up', ->
     beforeEach ->
-      @data    = { "1": { "set": 1, "reps": 13, "weight": 80 }, "2": { "set": 2, "reps": 10, "weight": 100 } }
+      @data    = { "set_details": { "1": { "set": 1, "reps": 13, "weight": 80 }, "2": { "set": 2, "reps": 10, "weight": 100 } }}
       @update  = $( 'a#update_button' )
       WorkoutExerciseSetDetailsForm.link = @rep_up
       WorkoutExerciseSetDetailsForm.linkClicked()
@@ -77,6 +77,32 @@ describe 'WorkoutExerciseSetDetailsForm', ->
       it 'renders the new template on the page', ->
         expect($( 'tr.set > td' )).toHaveText('NEW SET')
 
+  describe 'click rep_down 10 times', ->
+    beforeEach ->
+      WorkoutExerciseSetDetailsForm.link = $('a#reps_down')
+      WorkoutExerciseSetDetailsForm.linkClicked() for i in [1..12]
+
+    it 'rep_parent doesnt go below 1', ->
+      rep_parent_val = $('#rep_parent').data('value')
+      expect(rep_parent_val).toEqual(1)
+
+    it 'rep_text  doesnt go below 1', ->
+      rep_text = $('p#rep_text').text()
+      expect(rep_text).toEqual('1')
+
+  describe 'click weight_down 18 times', ->
+    beforeEach ->
+      WorkoutExerciseSetDetailsForm.link = $('a#weight_down')
+      WorkoutExerciseSetDetailsForm.linkClicked() for i in [1..18]
+
+    it 'weight_parent doesnt go below 5', ->
+      rep_parent_val = $('#weight_parent').data('value')
+      expect(rep_parent_val).toEqual(5)
+
+    it 'weight_text  doesnt go below 1', ->
+      rep_text = $('p#weight_text').text()
+      expect(rep_text).toEqual('5kg')
+
   describe 'rep_down', ->
     beforeEach ->
       @rep_down  = $('a#reps_down')
@@ -111,7 +137,7 @@ describe 'WorkoutExerciseSetDetailsForm', ->
       @renderer         = sinon.stub(@fake_template, 'render', ->'<tr id="new_set" class="set"><td><p>NEW SET</p></td></tr>')
       @subject.template = @fake_template
       sinon.spy(@subject, 'reinit')
-      @add_set = $( '.workout_exercise_set_details_update_button' )
+      @add_set = $( '.new_workout_exercise_set_details' )
       @add_set.click()
 
     afterEach -> @subject.reinit.restore()
@@ -138,3 +164,5 @@ describe 'WorkoutExerciseSetDetailsForm', ->
 
       it 'shows the add button', ->
         expect(@add_set).not.toHaveClass('hidden')
+
+  describe 'delete set', ->

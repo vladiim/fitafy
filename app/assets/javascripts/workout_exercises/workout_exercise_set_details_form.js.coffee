@@ -5,7 +5,7 @@
     @mustache   = 'app/templates/workout_exercises/set_detail'
     @links      = $( 'a.change_workout_exercise_set_details' )
     @icons      = $( 'a.change_workout_exercise_set_details > i' )
-    @set_adders = $( 'a.workout_exercise_set_details_update_button' )
+    @set_adders = $( 'a.new_workout_exercise_set_details' )
     @linkListener()
     @setListener()
 
@@ -56,7 +56,7 @@
     @update_button = @set_details.children('a.workout_exercise_set_details_update_button')
 
   showAddSet: ->
-    set_adder = @set_details.children('a.workout_exercise_set_details_update_button')
+    set_adder = @set_details.children('a.new_workout_exercise_set_details')
     set_adder.removeClass('hidden')
 
   showUpdateButton: ->
@@ -73,8 +73,14 @@
     @text.text(@newText())
 
   changeValue: ->
-    change_ammount = if @onWeight() then 5 else 1
-    if @direction == 'up' then @value + change_ammount else if @direction == 'down' then @value - change_ammount
+    @change_ammount = if @onWeight() then 5 else 1
+    if @direction == 'up' then @value + @change_ammount else if @direction == 'down' then @decreaseValue()
+
+  decreaseValue: ->
+    if @smallestValue() then @value - @change_ammount else @value
+
+  smallestValue: ->
+    if @onWeight() then @value > 5 else @value > 1
 
   newText: ->
     if @onWeight() then "#{@new_value}kg" else String(@new_value)
