@@ -1,12 +1,12 @@
 <tr class='set workout_exercise_set_details' data-value='{{set}}'>
-  <td>
+  <td class='workout_exercise_set_detail_td'>
     <div>
-      <p class='sets'>{{set}}</p>  
+      <p class='sets'>Set {{set}}:</p>  
     </div>
   </td>
 
-  <td class='reps' data-value='{{reps}}' data-type='reps'>
-    <p>{{reps}}</p>
+  <td class='reps workout_exercise_set_detail_td' data-value='{{reps}}' data-type='reps'>
+    <p>{{reps}} reps</p>
     {{# own_workout}}
 
       <div>
@@ -20,7 +20,7 @@
   </td>
 
 
-  <td class='weight' data-value='{{weight}}' data-type='weight'>
+  <td class='weight workout_exercise_set_detail_td' data-value='{{weight}}' data-type='weight'>
     <p>{{weight}}kg</p>
     {{# own_workout}}
 

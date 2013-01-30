@@ -119,7 +119,6 @@
   #----- server -------#
 
   save: ->
-    console.log(@data)
     $.ajax {
       url:      @url,
       type:     'PUT',

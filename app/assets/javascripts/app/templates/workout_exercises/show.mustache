@@ -20,24 +20,8 @@
       <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
     </h3>
 
-    <div class='set_details'>
-      <table class='span3 workout_exercise_set_details'>
-        <thead>
-          <tr>
-            <th class='workout_exercise_details sets'>
-              <h5>Set</h5>
-            </th>
-  
-            <th class='workout_exercise_details reps'>
-              <h5>Reps</h5>
-            </th>
-            <th class='workout_exercise_details weight'>
-              <h5>Weight</h5>
-            </th>
-          </tr>
-  
-        </thead>
-
+    <div class='set_details span3'>
+      <table class='workout_exercise_set_details'>
         <tbody>
 
           {{#set_details}}
@@ -46,8 +30,8 @@
 
         </tbody>
       </table>
-        <a href="{{set_details_url}}" class='new_workout_exercise_set_details'>+ ADD SET</a>
 
+      <a href="{{set_details_url}}" class='new_workout_exercise_set_details btn btn-mini'>+ ADD SET</a>
     </div>
 
     <div class='span3 workout_form_group instructions'>
@@ -66,15 +50,13 @@
 
           <a href="{{url}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
         </div>
+
+        <br />
+        <br />
+
+        <a href="{{url}}" class='delete_workout_exercise btn btn-danger btn-mini'>DELETE</a>
       {{/ own_workout}}
 
     </div>
-
-    {{# own_workout}}
-      <div class='well span5'>
-        <h4>DANGER ZONE!</h4>
-        <a href="{{url}}" class='delete_workout_exercise btn btn-danger btn-mini'>DELETE</a>
-      </div>
-    {{/ own_workout}}
   </article>
 </li>
