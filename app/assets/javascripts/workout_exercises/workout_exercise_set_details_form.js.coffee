@@ -1,19 +1,26 @@
 @WorkoutExerciseSetDetailsForm =
 
+  #----- initializers -------#
+
   init: ->
-    @template   = HoganTemplateBuilder
-    @mustache   = 'app/templates/workout_exercises/set_detail'
-    @links      = $( 'a.change_workout_exercise_set_details' )
-    @icons      = $( 'a.change_workout_exercise_set_details > i' )
-    @set_adders = $( 'a.new_workout_exercise_set_details' )
+    @template     = HoganTemplateBuilder
+    @mustache     = 'app/templates/workout_exercises/set_detail'
+    @links        = $( 'a.change_workout_exercise_set_details' )
+    @icons        = $( 'a.change_workout_exercise_set_details > i' )
+    @set_adders   = $( 'a.new_workout_exercise_set_details' )
+    @set_deleters = $( 'a.delete_workout_exercise_set_details' )
     @linkListener()
-    @setListener()
+    @addSetListener()
+    @deleteSetListener()
 
   reinit: ->
     @links.unbind 'click'
     @icons.unbind 'click'
     @set_adders.unbind 'click'
+    @set_deleters.unbind 'click'
     @init()
+
+  #----- listeners -------#
 
   linkListener: ->
     @links.on 'click', (event) =>
@@ -23,49 +30,62 @@
 
     @icons.on 'click', (event) => event.preventDefault()
 
-  setListener: ->
+  addSetListener: ->
     @set_adders.on 'click', (event) =>
       event.preventDefault()
       @set = $( event.target )
       WorkoutExerciseSetDetailsForm.addSet()      
 
-  updateButtonListener: ->
-    @update_button.unbind 'click'
-    @update_button.on 'click', (event) =>
-      WorkoutExerciseSetDetailsForm.collectData()
-      WorkoutExerciseSetDetailsForm.save()
+  deleteSetListener: ->
+    @set_deleters.on 'click', (event) =>
       event.preventDefault()
+      @deleter = $( event.target )
+      WorkoutExerciseSetDetailsForm.deleteLinkClicked()
+
+  #----- action takers -------#
 
   linkClicked: ->
     @setVariables()
-    @showUpdateButton()
     @showAddSet()
-    @updateButtonListener()
     @updateValues()
+    @collectData()
+    @save()
+
+  deleteLinkClicked: ->
+    @url         = @findUrl(@deleter)
+    @set_details = @findDivSetDetails(@deleter)
+    @deleter.parents('tr.set').remove()
+    @sets        = @findTrSetDetails()
+    @tbody       = @findTBody()
+    @collectData()
+    @save()
+
+  #----- variable setters -------#
 
   setVariables: ->
-    @url           = @link.attr('href')
+    @url           = @findUrl(@link)
     @table_data    = @link.parents('td')
     @text          = @table_data.children('p')
     @value         = @table_data.data('value')
     @type          = @table_data.data('type')
     @direction     = @link.data('direction')
-    @set_details   = @link.parents('div.set_details')
-    @sets          = @set_details.find('tr.set')
-    @tbody         = @sets.parent()
-    @update_button = @set_details.children('a.workout_exercise_set_details_update_button')
+    @set_details   = @findDivSetDetails(@link)
+    @sets          = @findTrSetDetails()
+    @tbody         = @findTBody()
 
-  showAddSet: ->
-    set_adder = @set_details.children('a.new_workout_exercise_set_details')
-    set_adder.removeClass('hidden')
+  findUrl: (node) -> node.attr('href')
 
-  showUpdateButton: ->
-    @update_button.removeClass('hidden')
-    @update_button.addClass('show_update_button')
+  findDivSetDetails: (node) -> node.parents('div.set_details')
 
-  hideUpdateButton: ->
-    @update_button.addClass('hidden')
-    @update_button.removeClass('show_update_button')
+  findTrSetDetails: -> @set_details.find('tr.set')
+
+  findTBody: -> @sets.parent()
+
+  getTBody: -> @set.parents($('div.set_details')).find('table > tbody')
+
+  onWeight: -> @type == 'weight'
+
+  #----- data managers -------#
 
   updateValues: ->
     @new_value = @changeValue()
@@ -87,29 +107,35 @@
 
   collectData: ->
     @data = { "set_details": {} }
-    @findSetDetails(set) for set in @sets
+    @findSetDetails(set, number) for set, number in @sets
 
-  findSetDetails: (set) ->
-    number        = $(set).data('value')
+  findSetDetails: (set, number) ->
     reps          = $(set).find('td.reps').data('value')
     weight        = $(set).find('td.weight').data('value')
-    @data["set_details"][String(number)] = {"set": number, "reps": reps, "weight": weight}
+    @data["set_details"][String(number + 1)] = {"set": number + 1, "reps": reps, "weight": weight}
+
+  newSetData: (set_number, url) -> {"set": set_number, "reps": 1, "weight": 10, "own_workout": true, "set_details_url": url}
+
+  #----- server -------#
 
   save: ->
+    console.log(@data)
     $.ajax {
       url:      @url,
       type:     'PUT',
       data:     @data,
       dataType: 'json',
 
-      success: (data) => WorkoutExerciseSetDetailsForm.updateSuccess(data)
+      success: (set_details) => WorkoutExerciseSetDetailsForm.updateSuccess(set_details)
       failure: => alert("Dang! Something went wront, try again.")
     }
 
+  #----- view editors -------#
+
   updateSuccess: (set_details) ->
-    @hideUpdateButton()
     @removeSets()
     @addSetDetail(set_detail) for set_detail in set_details
+    @reinit()
 
   removeSets: -> @sets.remove()
 
@@ -118,7 +144,6 @@
 
   addSet: ->
     @addSetToTable()
-    @resetUpdateButton()
     @set.addClass('hidden')
     @reinit()
 
@@ -128,14 +153,14 @@
     url        = @set.attr('href')
     tbody.append(@template.render(@mustache, @newSetData(set_number, url)))
 
-  newSetData: (set_number, url) -> {"set": set_number, "reps": 1, "weight": 10, "own_workout": true, "set_details_url": url}
+  showAddSet: ->
+    set_adder = @set_details.children('a.new_workout_exercise_set_details')
+    set_adder.removeClass('hidden')
 
-  getTBody: -> @set.parents($('div.set_details')).find('table > tbody')
+ready = ->
+  set_details = $( '.workout_exercise_set_details' )
+  if set_details.length > 0
+    WorkoutExerciseSetDetailsForm.init()
 
-  resetUpdateButton: ->
-    @update_button = @set.parents('div.set_details').children('a.workout_exercise_set_details_update_button')
-    @showUpdateButton()
-
-  onWeight: -> @type == 'weight'
-
-WorkoutExerciseSetDetailsForm.init()
+# $(document).on 'page:load', ready
+$ -> ready()

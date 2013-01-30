@@ -8,9 +8,14 @@ describe 'WorkoutExerciseSetDetailsForm', ->
   describe 'rep_up', ->
     beforeEach ->
       @data    = { "set_details": { "1": { "set": 1, "reps": 13, "weight": 80 }, "2": { "set": 2, "reps": 10, "weight": 100 } }}
-      @update  = $( 'a#update_button' )
+      sinon.stub($, 'ajax')
+      sinon.stub(@subject, 'updateSuccess', -> '')
       WorkoutExerciseSetDetailsForm.link = @rep_up
       WorkoutExerciseSetDetailsForm.linkClicked()
+
+    afterEach ->
+      $.ajax.restore()
+      @subject.updateSuccess.restore()
 
     it 'increases the rep parents value', ->
       rep_parent_val = $('#rep_parent').data('value')
@@ -20,37 +25,23 @@ describe 'WorkoutExerciseSetDetailsForm', ->
       rep_text = $('p#rep_text').text()
       expect(rep_text).toEqual('13')
 
-    it 'shows the update button', ->
-       expect($( '#update_button' )).not.toHaveClass('hidden')
-       expect($( '#update_button' )).toHaveClass('show_update_button')
+    it 'uses ajax for the request', ->
+      expect($.ajax).toHaveBeenCalled()
 
-    describe 'click update button', ->
-      beforeEach ->
-        sinon.stub($, 'ajax')
-        sinon.stub(@subject, 'updateSuccess', -> '')
-        @update.click()
+    it 'sets the data based on the new values', ->
+      expect(@subject.data).toEqual(@data)
 
-      afterEach ->
-       $.ajax.restore()
-       @subject.updateSuccess.restore()
+    it 'posts to the right url', ->
+      expect($.ajax.getCall(0).args[0].url).toEqual("/workout_exercise_set_details/1")
 
-      it 'uses ajax for the request', ->
-        expect($.ajax).toHaveBeenCalled()
+    it 'posts the data', ->
+      expect($.ajax.getCall(0).args[0].data).toEqual(@data)
 
-      it 'sets the data based on the new values', ->
-        expect(@subject.data).toEqual(@data)
+    it 'posts the info to the server', ->
+      expect($.ajax.getCall(0).args[0].type).toEqual("PUT")
 
-      it 'posts to the right url', ->
-        expect($.ajax.getCall(0).args[0].url).toEqual("/workout_exercise_set_details/1")
-
-      it 'posts the data', ->
-        expect($.ajax.getCall(0).args[0].data).toEqual(@data)
-
-      it 'posts the info to the server', ->
-        expect($.ajax.getCall(0).args[0].type).toEqual("PUT")
-
-      it 'uses json as the data type', ->
-        expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
+    it 'uses json as the data type', ->
+      expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
 
     describe 'updateSuccess', ->
       beforeEach ->
@@ -59,12 +50,6 @@ describe 'WorkoutExerciseSetDetailsForm', ->
         @subject.updateSuccess(@new_data)
 
       afterEach -> @subject.addSetDetail.restore()
-
-      it 'hides the update button', ->
-        expect(@update).toHaveClass('hidden')
-
-      # it 'replaces the set_details with the data', ->
-      #   expect($( 'tr.set' ).length).toEqual(1)
 
     describe 'addSetDetail', ->
       beforeEach ->
@@ -165,4 +150,16 @@ describe 'WorkoutExerciseSetDetailsForm', ->
       it 'shows the add button', ->
         expect(@add_set).not.toHaveClass('hidden')
 
-  describe 'delete set', ->
+  describe 'delete first set', ->
+    beforeEach ->
+      sinon.spy(@subject, 'deleteLinkClicked', ->'')
+      @delete = $(' a#delete_first_set ')
+      @delete.click()
+
+    afterEach -> @subject.deleteLinkClicked.restore()
+
+    it 'removes the first set', ->
+      expect($( 'tr#first_we_set_details' )).not.toExist()
+
+    it 'updates the workout', ->
+      expect(@subject.deleteLinkClicked).toHaveBeenCalled()

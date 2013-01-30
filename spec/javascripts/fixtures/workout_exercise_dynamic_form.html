@@ -3,7 +3,7 @@
   <div class='set_details'>
     <table class='workout_exercise_set_details'>
       <tbody>
-        <tr class='set'  data-value='1'>
+        <tr id='first_we_set_details' class='set'  data-value='1'>
           <td class='sets'>
             1
           </td>
@@ -15,6 +15,7 @@
             <a id='reps_up' href="/workout_exercise_set_details/1" class='change_workout_exercise_set_details' data-direction='up'><i class="icon-chevron-up" id='rep_icon_up'></i></a>
   
             <a id='reps_down' href="/workout_exercise_set_details/1" class='change_workout_exercise_set_details' data-direction='down'><i class="icon-chevron-up" id='rep_icon_down'></i></a>
+
           </td>
 
           <td id='weight_parent' class='weight' data-value='80' data-type='weight' >
@@ -23,10 +24,12 @@
   
             <a href="/workout_exercise_set_details/1" class='change_workout_exercise_set_details' data-direction='down' id='weight_down'><i class="icon-chevron-up"></i></a>
           </td>
+
+          <td><a id='delete_first_set' href="/workout_exercise_set_details/1" class='delete_workout_exercise_set_details'>x</a></td>
         </tr>
   
         <tr class='set' data-value='2'>
-          <td class='sets'>
+          <td id='set_two' class='sets'>
             2
           </td>
           <td class='reps' data-value='10'>

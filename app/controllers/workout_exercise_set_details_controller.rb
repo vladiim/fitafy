@@ -11,4 +11,9 @@ class WorkoutExerciseSetDetailsController < ApplicationController
       end
     end
   end
+
+  def show
+    flash[:error] = "Oops! There was a problem..."
+    redirect :back
+  end
 end

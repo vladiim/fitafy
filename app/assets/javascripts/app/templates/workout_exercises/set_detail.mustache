@@ -1,4 +1,4 @@
-<tr class='set' data-value='{{set}}'>
+<tr class='set workout_exercise_set_details' data-value='{{set}}'>
   <td>
     <div>
       <p class='sets'>{{set}}</p>  
@@ -32,4 +32,8 @@
 
     {{/ own_workout}}
   </td>
+
+  {{# own_workout }}
+    <td><a href="{{set_details_url}}" class='delete_workout_exercise_set_details'>x</a></td>
+  {{/ own_workout }}
 </tr>
