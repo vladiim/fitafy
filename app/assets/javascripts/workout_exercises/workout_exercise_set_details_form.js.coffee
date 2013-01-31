@@ -46,7 +46,7 @@
 
   linkClicked: ->
     @setVariables()
-    @showAddSet()
+    # @showAddSet()
     @updateValues()
     @collectData()
     @save()
@@ -143,7 +143,7 @@
 
   addSet: ->
     @addSetToTable()
-    @set.addClass('hidden')
+    # @set.addClass('hidden')
     @reinit()
 
   addSetToTable: ->
@@ -152,9 +152,9 @@
     url        = @set.attr('href')
     tbody.append(@template.render(@mustache, @newSetData(set_number, url)))
 
-  showAddSet: ->
-    set_adder = @set_details.children('a.new_workout_exercise_set_details')
-    set_adder.removeClass('hidden')
+  # showAddSet: ->
+  #   set_adder = @set_details.children('a.new_workout_exercise_set_details')
+  #   set_adder.removeClass('hidden')
 
 ready = ->
   set_details = $( '.workout_exercise_set_details' )

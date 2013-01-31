@@ -27,4 +27,4 @@ describe 'ExerciseModalLoader', ->
       ExerciseModalLoader.changeTitle()
 
     it 'uses changes the title to the tag name', ->
-      expect($( 'h3.list_title' ).text()).toEqual('BACK EXERCISES')
+      expect($( 'h3#exercise_modal_title' ).text()).toEqual('BACK EXERCISES')

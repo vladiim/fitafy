@@ -133,9 +133,6 @@ describe 'WorkoutExerciseSetDetailsForm', ->
     it 'adds a new set to the workout exercise', ->
       expect($( 'tr.set' ).length).toEqual(3)
 
-    it 'hides the add set button', ->
-      expect(@add_set).toHaveClass('hidden')
-
     it 'reinitializes itself', ->
       expect(@subject.reinit).toHaveBeenCalled()
 

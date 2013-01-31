@@ -40,7 +40,7 @@ describe 'ExerciseLoader', ->
       expect($( 'article.exercise_list > article.exercise' )).not.toExist()
 
     it 'changes the title', ->
-      expect($( 'h1' ).text()).toEqual('BACK EXERCISES')
+      expect($( 'h3#exercise_modal_title' ).text()).toEqual('BACK EXERCISES')
 
   describe 'getAndRenderExercises', ->
     beforeEach ->
