@@ -163,3 +163,15 @@ describe 'WorkoutExerciseSetDetailsForm', ->
 
     it 'updates the workout', ->
       expect(@subject.deleteLinkClicked).toHaveBeenCalled()
+
+describe 'two exercises WorkoutExerciseSetDetailsForm', ->
+  beforeEach ->
+    loadFixtures 'two_workout_exericses_dynamic_form.html'
+    @fake_template    = { render: -> ''}
+    @renderer         = sinon.stub(@fake_template, 'render', ->'<tr id="new_set" class="set"><td><p>NEW SET</p></td></tr>')
+    WorkoutExerciseSetDetailsForm.init()
+    WorkoutExerciseSetDetailsForm.template = @fake_template
+    $('a#add_set').click()
+
+  it 'doesnt add a set to the other workout exercise', ->
+    expect($( 'tbody#second_we_set_details > tr.set' ).length).toEqual(2)

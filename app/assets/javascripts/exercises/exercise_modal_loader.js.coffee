@@ -11,7 +11,7 @@
       @changeTitle()
 
   changeTitle: ->
-    $( 'h3.list_title' ).text("#{ExerciseLoader.tag.text()} EXERCISES")
+    $( 'h3#exercise_modal_title' ).text("#{ExerciseLoader.tag.text()} EXERCISES")
 
 ready = ->
   exercise_modal = $( 'div.modal#add_workout_exercise' )

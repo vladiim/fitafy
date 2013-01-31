@@ -27,8 +27,8 @@
     $('article.exercise_list > article.exercise').remove()
 
   changeTitle: ->
-    if $( '#exercise_index_tags').length > 0
-      $( 'h1' ).text(@tag.text().toUpperCase() + " EXERCISES")
+    if $( '#exercise_modal_title').length > 0
+      $( 'h3#exercise_modal_title' ).text(@tag.text().toUpperCase() + " EXERCISES")
 
   getAndRenderExercises: ->
     $.getJSON(@findURL(), @renderExercises)

@@ -81,7 +81,7 @@
 
   findTBody: -> @sets.parent()
 
-  getTBody: -> @set.parents($('div.set_details')).find('table > tbody')
+  getTBody: -> @set.parents($('div.set_details')).find('table > tbody').first()
 
   onWeight: -> @type == 'weight'
 
@@ -160,6 +160,11 @@ ready = ->
   set_details = $( '.workout_exercise_set_details' )
   if set_details.length > 0
     WorkoutExerciseSetDetailsForm.init()
+
+    document.body.addEventListener 'DOMNodeInserted', (event) =>
+      element = $( event.target )
+      if element.hasClass('workout_exercise')
+        WorkoutExerciseSetDetailsForm.reinit()
 
 # $(document).on 'page:load', ready
 $ -> ready()
