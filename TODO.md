@@ -1,6 +1,7 @@
 # up to
 
-* adding workout_exericse from orderer or adder doesn't load the set_details properly the reason for this is that the data isn't the right fromat for mustache
+* add workout exercise
+* edit workout exercise instructions
 
 # deploy integration step
 * replicate db
