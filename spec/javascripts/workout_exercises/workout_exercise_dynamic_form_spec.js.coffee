@@ -1,7 +1,8 @@
 describe 'WorkoutExerciseDynamicForm', ->
   beforeEach ->
     loadFixtures 'workout_exercise_dynamic_form.html'
-    WorkoutExerciseDynamicForm.init()
+    @subject = WorkoutExerciseDynamicForm
+    @subject.init()
     @show_form = $( 'a.show_workout_exercise_form[data-value=1]')
     @w_e_node  = $( 'li.workout_exercise')
 
@@ -9,12 +10,12 @@ describe 'WorkoutExerciseDynamicForm', ->
     beforeEach -> @show_form.click()
 
     it 'stores the show_form locally', ->
-      expect(WorkoutExerciseDynamicForm.show_form).toBe(@show_form)
+      expect(@subject.show_form).toBe(@show_form)
 
   describe 'storeVariables', ->
     beforeEach ->
-      WorkoutExerciseDynamicForm.show_form = @show_form
-      WorkoutExerciseDynamicForm.storeVariables()
+      @subject.show_form = @show_form
+      @subject.storeVariables()
 
     it 'stores the DynamicForm tag name', ->
       expect(DynamicForm.tag).toEqual('instructions')
@@ -38,19 +39,22 @@ describe 'WorkoutExerciseDynamicForm', ->
       expect(DynamicForm.update_button).toBe($('.update_workout_exercise_form'))
 
     it 'stores the workout exercise item locally', ->
-      expect(WorkoutExerciseDynamicForm.workout_exercise_item).toBe(@w_e_node)
+      expect(@subject.workout_exercise_item).toBe(@w_e_node)
 
   describe 'updateFormItem', ->
     beforeEach ->
-      @renderer      = { render: -> }
-      @renderer_stub = sinon.stub(@renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
-      WorkoutExerciseDynamicForm.renderer = @renderer
-      WorkoutExerciseDynamicForm.workout_exercise_item = @w_e_node
+      @renderer             = { render: -> ''}
+      @renderer_stub        = sinon.stub(@renderer, 'render', -> "<li class='new_node'>NEW WORKOUT EXERCISE RENDERED</li>")
+      @set_details_renderer = { render: -> ''}
+      @fake_set_details     = sinon.stub(@set_details_renderer, 'render', -> '<p>SET DETAILS</p>')
+      @subject.renderer = @renderer
+      @subject.workout_exercise_item = @w_e_node
+      @subject.set_details_renderer  = @set_details_renderer
       data = {}
-      WorkoutExerciseDynamicForm.updateFormItem(data)
+      @subject.updateFormItem(data)
 
     it 'uses the template renderer', ->
-      expect(@renderer_stub).toHaveBeenCalled("app/templates/workout_exercises/show", @data)
+      expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workout_exercises/show", @set_details_renderer.render(@data))
 
     it 'removes the workout exercise node', ->
       expect(@w_e_node).not.toBe()

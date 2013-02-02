@@ -1,7 +1,8 @@
 describe 'WorkoutExerciseOrderer', ->
   beforeEach ->
     loadFixtures 'workout_exercise_orderer.html'
-    WorkoutExerciseOrderer.init()
+    @subject = WorkoutExerciseOrderer
+    @subject.init()
     @one           = $( 'li.workout_exercise.1' )
     @one_down      = $(@one).find('i.move_workout_exercise_down')
     @one_down_link = @one_down.parent('a')
@@ -9,63 +10,63 @@ describe 'WorkoutExerciseOrderer', ->
 
   describe 'click one down', ->
     beforeEach ->
-      sinon.stub(WorkoutExerciseOrderer, 'findCounterPart')
-      sinon.stub(WorkoutExerciseOrderer, 'swapWorkoutExercises')
+      sinon.stub(@subject, 'findCounterPart')
+      sinon.stub(@subject, 'swapWorkoutExercises')
       @one_down.click()
 
     afterEach ->
-      WorkoutExerciseOrderer.findCounterPart.restore()
-      WorkoutExerciseOrderer.swapWorkoutExercises.restore()
+      @subject.findCounterPart.restore()
+      @subject.swapWorkoutExercises.restore()
 
     describe 'setAttributes', ->
 
       it 'sets the link', ->
-        expect(WorkoutExerciseOrderer.link).toBe(@one_down_link)
+        expect(@subject.link).toBe(@one_down_link)
 
       it 'sets the order', ->
-        expect(WorkoutExerciseOrderer.order).toEqual(1)
+        expect(@subject.order).toEqual(1)
 
       it 'sets the direction', ->
-        expect(WorkoutExerciseOrderer.direction).toEqual('down')
+        expect(@subject.direction).toEqual('down')
 
       it 'sets the new_order', ->
-        expect(WorkoutExerciseOrderer.new_order).toEqual(2)
+        expect(@subject.new_order).toEqual(2)
 
       it 'sets the parent', ->
-        expect(WorkoutExerciseOrderer.parent).toBe(@one)
+        expect(@subject.parent).toBe(@one)
 
       it 'sets the url', ->
-        expect(WorkoutExerciseOrderer.url).toBe('/workout_exercises/1')
+        expect(@subject.url).toBe('/workout_exercises/1')
 
       it 'sets the param', ->
         param = $.param({ workout_exercise: { order_number: 2 } })
-        expect(WorkoutExerciseOrderer.param).toEqual(param)
+        expect(@subject.param).toEqual(param)
 
       it 'finds its counterpart', ->
-        expect(WorkoutExerciseOrderer.findCounterPart).toHaveBeenCalled()
+        expect(@subject.findCounterPart).toHaveBeenCalled()
 
       it 'swaps the workout exercises', ->
-        expect(WorkoutExerciseOrderer.swapWorkoutExercises).toHaveBeenCalled()
+        expect(@subject.swapWorkoutExercises).toHaveBeenCalled()
 
   describe 'findCounterPart', ->
     beforeEach ->
-      sinon.stub(WorkoutExerciseOrderer, 'swapWorkoutExercises')
+      sinon.stub(@subject, 'swapWorkoutExercises')
       @one_down.click()
 
-    afterEach -> WorkoutExerciseOrderer.swapWorkoutExercises.restore()
+    afterEach -> @subject.swapWorkoutExercises.restore()
 
     it 'sets the counterpart to two', ->
-      expect(WorkoutExerciseOrderer.counterpart).toBe($( 'li.workout_exercise.2' ))
+      expect(@subject.counterpart).toBe($( 'li.workout_exercise.2' ))
 
     it 'sets the counterpart_url', ->
-      expect(WorkoutExerciseOrderer.counterpart_url).toEqual('/workout_exercises/2')
+      expect(@subject.counterpart_url).toEqual('/workout_exercises/2')
 
     it 'sets the counterpart_order', ->
-      expect(WorkoutExerciseOrderer.counterpart_order).toEqual(1)
+      expect(@subject.counterpart_order).toEqual(1)
 
     it 'sets the counterpart_param', ->
       param = $.param({ workout_exercise: { order_number: 1 } })
-      expect(WorkoutExerciseOrderer.counterpart_param).toEqual(param)
+      expect(@subject.counterpart_param).toEqual(param)
 
   describe 'updateWorkoutExercise', ->
     beforeEach ->
@@ -88,23 +89,21 @@ describe 'WorkoutExerciseOrderer', ->
 
   describe 'renderers', ->
     beforeEach ->
-      @set_detail    = {"set": 1, "reps": 2}
-      @set_details   = [@set_detail]
-      sinon.stub(WorkoutExerciseOrderer, 'renderSetDetails', ->'')
-      @data          = { name: 'NAME', set_details: @set_details}
+      @data          = { name: 'NAME' }
       @renderer      = { render: -> '' }
       @renderer_stub = sinon.stub(@renderer, 'render', -> '<li class="workout_exercise">WORKOUT EXERCISE FROM SERVER</li>')
-
-    afterEach -> WorkoutExerciseOrderer.renderSetDetails.restore()
+      @set_details_renderer = { render: -> '' }
+      @set_details_stub     = sinon.stub(@set_details_renderer, 'render', -> '<p>SET DETAILS</p>')
 
     describe 'renderWorkoutExercise', ->
       beforeEach ->
         @one_down.click()
-        WorkoutExerciseOrderer.renderer = @renderer
-        WorkoutExerciseOrderer.renderWorkoutExercise(@data)
+        @subject.renderer = @renderer
+        @subject.set_details_renderer = @set_details_renderer
+        @subject.renderWorkoutExercise(@data)
 
       it 'uses the template renderer to load the workout exercise', ->
-        expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workout_exercises/show", @data)
+        expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workout_exercises/show", @set_details_renderer.render(@data))
 
       it 'replaces the counterpart', ->
         expect($( 'li.workout_exercise:nth-child(2)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
@@ -112,31 +111,12 @@ describe 'WorkoutExerciseOrderer', ->
     describe 'counterpart renderWorkoutExercise', ->
       beforeEach ->
         @one_down.click()
-        WorkoutExerciseOrderer.renderer = @renderer
-        WorkoutExerciseOrderer.renderWorkoutExercise(@data, 'counterpart')
+        @subject.renderer = @renderer
+        @subject.set_details_renderer = @set_details_renderer
+        @subject.renderWorkoutExercise(@data, 'counterpart')
 
       it 'replaces the original', ->
         expect($( 'li.workout_exercise:nth-child(1)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
-
-    describe 'renderSetDetails', ->
-      beforeEach ->
-
-      it 'fucking doesnt work', ->
-        expect(true).toEqual(false)
-
-      # it 'renders the set detail', ->
-      #   expect(WorkoutExerciseOrderer.renderSetDetail).toHaveBeenCalledWith(@set_detail)
-
-    describe 'renderSetDetail', ->
-      beforeEach ->
-        @set_renderer = { render: -> '' }
-        @set_rendered = sinon.stub(@set_renderer, 'render', ->'<tr><td>SET DETAIL</td></tr>')
-        WorkoutExerciseOrderer.tbody    = $('tbody#one_tbody')
-        WorkoutExerciseOrderer.renderer = @set_renderer
-        WorkoutExerciseOrderer.renderSetDetail(@set_detail, $('tbody#one_tbody'))
-
-      it 'renders the set details on the page', ->
-        expect($('tbody#one_tbody > tr > td').text()).toEqual('SET DETAIL')
 
   describe 'click two up', ->
     beforeEach ->
@@ -145,4 +125,4 @@ describe 'WorkoutExerciseOrderer', ->
       two_up.click()
 
     it 'sets no counterpart to one', ->
-      expect(WorkoutExerciseOrderer.counterpart).toBe(@one)
+      expect(@subject.counterpart).toBe(@one)
