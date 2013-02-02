@@ -142,37 +142,9 @@ class WorkoutExerciseSetDetail
 
   def self.digit_scanner(symbol_key, string_key, json_key)
     [symbol_key, string_key, json_key].each do |key|
-      if is_right_key?(key)
-        return scan_set_detail_return_value(key)
-      end
+      return scan_set_detail_return_value(key) if is_right_key?(key)
     end
-
-    # if is_symbol_key?(symbol_key)
-    #   scan_set_detail_return_value(symbol_key)
-
-    # elsif is_string_key?(string_key)
-    #   scan_set_detail_return_value(string_key)
-
-    # elsif is_json_key?(json_key)
-    #   scan_set_detail_return_value(json_key)
-    # end
   end
-
-  # def self.is_symbol_key?(symbol_key)
-  #   check_key(symbol_key)
-  # end
-
-  # def self.is_string_key?(string_key)
-  #   check_key(string_key)
-  # end
-
-  # def self.is_json_key?(json_key)
-  #   check_key(json_key)
-  # end
-
-  # def self.check_key(key)
-  #   scan_set_detail_for_key(key) != []
-  # end
 
   def self.is_right_key?(key)
     scan_set_detail_for_key(key) != []
