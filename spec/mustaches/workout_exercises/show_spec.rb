@@ -189,10 +189,10 @@ describe WorkoutExercises::Show do
     let(:result)           { renderer.render_json workout_exercise }
 
     before do
-      mock(renderer).url             { 'URL' }
-      mock(renderer).exercise_url    { 'URL' }
-      mock(renderer).set_details     { 'SET DETAILS' }
-      mock(renderer).set_details_url { 'URL' }
+      mock(renderer).url              { 'URL' }
+      mock(renderer).exercise_url     { 'URL' }
+      mock(renderer).json_set_details { 'SET DETAILS' }
+      mock(renderer).set_details_url  { 'URL' }
     end
 
     it 'returns all details as a hash' do
