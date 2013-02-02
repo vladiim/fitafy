@@ -1,9 +1,10 @@
 @WorkoutExerciseOrderer =
 
   init: ->
-    @links    = $( 'a.change_workout_exercise_order i' )    
-    @mustache = 'app/templates/workout_exercises/show'
-    @renderer = HoganTemplateBuilder
+    @links                = $( 'a.change_workout_exercise_order i' )    
+    @renderer             = HoganTemplateBuilder
+    @set_details_renderer = SetDetailsRenderer
+    @mustache             = 'app/templates/workout_exercises/show'
     @linkListener()
 
   linkListener: ->
@@ -56,14 +57,7 @@
     if type is 'counterpart' then @replace(@parent, workout_exercise) else @replace(@counterpart, workout_exercise)
 
   replace: (node, workout_exercise) ->
-    parsed_set_details = $.parseJSON(workout_exercise.set_details)
-    workout_exercise['javascript_set_details'] = @setDetailRenderer(parsed_set_details)
-    node.replaceWith(@renderer.render(@mustache, workout_exercise))
-
-  setDetailRenderer: (set_details) ->
-    set_details.map (set_detail) =>
-      mustache = 'app/templates/workout_exercises/set_detail'
-      HoganTemplateBuilder.render(mustache, set_detail)
+    node.replaceWith(@renderer.render(@mustache, @set_details_renderer.render(workout_exercise)))
 
   setParam: (order_number) ->
     $.param({ workout_exercise: { order_number: order_number } })

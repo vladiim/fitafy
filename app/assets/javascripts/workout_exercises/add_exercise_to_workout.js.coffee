@@ -1,8 +1,10 @@
 @AddExerciseToWorkout =
 
   init: ->
-    @renderer = HoganTemplateBuilder
-    @buttons  = $( 'a.add_exercise_to_workout_button' )
+    @renderer             = HoganTemplateBuilder
+    @set_details_renderer = SetDetailsRenderer
+    @mustache             = 'app/templates/workout_exercises/show'
+    @buttons              = $( 'a.add_exercise_to_workout_button' )
     @buttonListener()
 
   buttonListener: ->
@@ -32,14 +34,7 @@
     AddExerciseToWorkout.loadWorkoutExercise(workout_exercise) for workout_exercise in workout_exercises
 
   loadWorkoutExercise: (workout_exercise) ->
-    parsed_set_details = $.parseJSON(workout_exercise.set_details)
-    workout_exercise['javascript_set_details'] = @setDetailRenderer(parsed_set_details)
-    $( 'ul.workout_exercises' ).append(@renderer.render('app/templates/workout_exercises/show', workout_exercise))
-
-  setDetailRenderer: (set_details) ->
-    set_details.map (set_detail) =>
-      mustache = 'app/templates/workout_exercises/set_detail'
-      HoganTemplateBuilder.render(mustache, set_detail)
+    $( 'ul.workout_exercises' ).append(@renderer.render(@mustache, @set_details_renderer.render(workout_exercise)))
 
   getParams: ->
     $.param( { workout_exercise: { workout_id: @button.data('workout_id'), exercise_id: @button.data('exercise_id') } })

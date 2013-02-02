@@ -1,8 +1,10 @@
 @WorkoutExerciseDynamicForm =
 
   init: ->
-    @renderer   = HoganTemplateBuilder
-    @show_forms = $( 'a.show_workout_exercise_form' )
+    @renderer             = HoganTemplateBuilder
+    @set_details_renderer = SetDetailsRenderer
+    @mustache             = "app/templates/workout_exercises/show"
+    @show_forms           = $( 'a.show_workout_exercise_form' )
     @formListener()
 
   reinit: ->
@@ -39,15 +41,8 @@
     @init()
 
   updateFormItem: (workout_exercise) ->
-    parsed_set_details = $.parseJSON(workout_exercise.set_details)
-    workout_exercise['javascript_set_details'] = @setDetailRenderer(parsed_set_details)
-    @workout_exercise_item.replaceWith(@renderer.render("app/templates/workout_exercises/show", workout_exercise))
+    @workout_exercise_item.replaceWith(@renderer.render(@mustache, @set_details_renderer.render(workout_exercise)))
     @reinit()
-
-  setDetailRenderer: (set_details) ->
-    set_details.map (set_detail) =>
-      mustache = 'app/templates/workout_exercises/set_detail'
-      HoganTemplateBuilder.render(mustache, set_detail)
 
 ready = ->
   workout_exercise_present = $( 'ul.workout_exercises' )
