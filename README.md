@@ -24,9 +24,9 @@ fitafy is a fitness app that helps PTs manage their clients.
 ## Set up
 
 1. `cd fitafy`
-2. RVM should ask you if you wish to trust the .rvmrc file - `y` then hit <return>
-3. Install all the gem `bundle install`
-4. `rake create:db`
+2. RVM should ask you if you wish to trust the .rvmrc file - `y` then hit return
+3. Install all the gems `bundle install`
+4. Create the Postgres database `rake create:db`
 5. If you want some seed data `rake db:seed`
 6. Fire up the server `rails s`
 
@@ -37,4 +37,4 @@ fitafy uses Cucumber for integration tests and rspec and jasmine to unit test Ru
 * _Run Cucumber_: `cucumber`
 * _Run Rspec_: `rspec spec`
 * _Run jasmine_: `rails s` then visit http://localhost:3000/jasmine
-* _Guard_: `guard` will run rspec & jasmine in the console and re-run tests as you press Crtl + s in tested files
+* _Guard_: the command `guard` will run rspec & jasmine in the console and re-run tests as you press Crtl + s in tested files
