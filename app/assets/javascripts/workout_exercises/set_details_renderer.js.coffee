@@ -20,7 +20,8 @@
     @workout_exercise
 
   setDetailsRenderer: (set_details) ->
-    set_details.map (set_detail) => SetDetailsRenderer.setDetailRenderer(set_detail)
+    set_detail_array = set_details.map (set_detail) => SetDetailsRenderer.setDetailRenderer(set_detail)
+    set_detail_array.join().replace(/,/g, '') # otherwise the array's commas are rendered on the page
 
   setDetailRenderer: (set_detail) ->
     @renderer.render(@mustache, set_detail)
