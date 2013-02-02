@@ -1,6 +1,6 @@
 # fitafy
 
-![](./app/assets/images/logo_on_black_v01.jpeg)
+<!-- ![](./app/assets/images/logo_on_black_v01.jpeg) -->
 
 fitafy is a fitness app that helps PTs manage their clients.
 

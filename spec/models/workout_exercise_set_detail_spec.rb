@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe WorkoutExerciseSetDetail do
   let(:we)         { build :workout_exercise, set_details: data }
-  let(:helper)     { MustachHelper.new }
+  let(:helper)     { MustacheHelper.new }
   let(:set_detail) { WorkoutExerciseSetDetail.new(we, helper) }
   let(:data)       { good_data }
+
+  let(:klass) { WorkoutExerciseSetDetail }
 
   describe '#initialize' do
   	it 'stores the workout_exercise locally' do
@@ -65,6 +67,46 @@ describe WorkoutExerciseSetDetail do
       end      
     end
   end
+
+  describe '.to_object' do
+    let(:result) { klass.to_object(set_details) }
+
+    context 'keys are symbols' do
+      context 'good set_details' do
+        let(:set_details) { good_symbol_set_details }
+
+        it 'returns an object with the set, reps & weight' do
+          result.set.should eq 1
+          result.reps.should eq 1
+          result.weight.should eq 10
+        end
+      end
+    end
+
+    context 'keys are strings' do
+      context 'good set_details' do
+       let(:set_details) { good_string_set_details }
+
+        it 'returns an object with the set, reps & weight' do
+          result.set.should eq 1
+          result.reps.should eq 1
+          result.weight.should eq 10
+        end
+      end
+    end
+
+    context 'set_detail is json format' do
+      context 'good set details' do
+        let(:set_details) { good_json_set_details }
+
+        it 'returns an object with the set, reps & weight' do
+          result.set.should eq 1
+          result.reps.should eq 1
+          result.weight.should eq 10
+        end
+      end
+    end
+  end
 end
 
 def params
@@ -87,9 +129,24 @@ def filtered_good_data
   ]
 end
 
-class MustachHelper
-  def set_details_url; 'URL'; end
+def bad_data
+  {"1"=>"{\"reps\"=>\"13\", \"weight\"=>\"80\"}", "2"=>"{\"reps\"=>\"10\", \"weight\"=>\"SQLITEINJECTION\"}"}
+end
 
+def good_symbol_set_details
+  "{:set=>1, :reps=>1, :weight=>10}"
+end
+
+def good_string_set_details
+  "{'set'=>'1', 'reps'=>'1', 'weight'=>'10'}"
+end
+
+def good_json_set_details
+  "{\"set\"=>\"1\", \"reps\"=>\"1\", \"weight\"=>\"10\"}"
+end
+
+class MustacheHelper
+  def set_details_url; 'URL'; end
   def own_workout; true; end
 end
 
@@ -115,10 +172,6 @@ def filtered_bad_data
       set_details_url: "URL",
     }
   ]
-end
-
-def bad_data
-  {"1"=>"{\"reps\"=>\"13\", \"weight\"=>\"80\"}", "2"=>"{\"reps\"=>\"10\", \"weight\"=>\"SQLITEINJECTION\"}"}
 end
 
 # def filtered_weight_float

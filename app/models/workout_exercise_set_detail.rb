@@ -4,7 +4,7 @@ class WorkoutExerciseSetDetail
 
   attr_reader :workout_exercise, :clean_result,
               :params, :mustache_helper, :final_result,
-              :own_workout, :set_details_url
+              :own_workout, :set_details_url, :set_detail
 
   def initialize(workout_exercise, mustache_helper)
     return unless workout_exercise.class == WorkoutExercise
@@ -28,6 +28,11 @@ class WorkoutExerciseSetDetail
     add_set_details_to_clean_result
     add_clean_result_to_final_result
     @final_result
+  end
+
+  def self.to_object(set_detail)
+    @set_detail = set_detail
+    OpenStruct.new(set: clean_set, reps: clean_reps, weight: clean_weight)
   end
 
   private
@@ -122,4 +127,66 @@ class WorkoutExerciseSetDetail
   # def is_float?(value)
   #   value.to_f.to_s.length == value.length && value.to_f.class == Float
   # end
+
+  def self.clean_set
+    digit_scanner('set=>', "set'=>'", 'set\"=>\"')
+  end
+
+  def self.clean_reps
+    digit_scanner('reps=>', "reps'=>'", 'reps\"=>\"')
+  end
+
+  def self.clean_weight
+    digit_scanner('weight=>', "weight'=>'", 'weight\"=>\"')
+  end
+
+  def self.digit_scanner(symbol_key, string_key, json_key)
+    [symbol_key, string_key, json_key].each do |key|
+      if is_right_key?(key)
+        return scan_set_detail_return_value(key)
+      end
+    end
+
+    # if is_symbol_key?(symbol_key)
+    #   scan_set_detail_return_value(symbol_key)
+
+    # elsif is_string_key?(string_key)
+    #   scan_set_detail_return_value(string_key)
+
+    # elsif is_json_key?(json_key)
+    #   scan_set_detail_return_value(json_key)
+    # end
+  end
+
+  # def self.is_symbol_key?(symbol_key)
+  #   check_key(symbol_key)
+  # end
+
+  # def self.is_string_key?(string_key)
+  #   check_key(string_key)
+  # end
+
+  # def self.is_json_key?(json_key)
+  #   check_key(json_key)
+  # end
+
+  # def self.check_key(key)
+  #   scan_set_detail_for_key(key) != []
+  # end
+
+  def self.is_right_key?(key)
+    scan_set_detail_for_key(key) != []
+  end
+
+  def self.scan_set_detail_return_value(key)
+    scan_to_value(scan_set_detail_for_key(key))
+  end
+
+  def self.scan_set_detail_for_key(key)
+    @set_detail.scan(/#{key}\d+/)
+  end
+
+  def self.scan_to_value(key_and_value)
+    key_and_value[0].scan(/\d+/)[0].to_i
+  end
 end

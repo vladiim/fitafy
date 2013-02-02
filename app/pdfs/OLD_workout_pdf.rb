@@ -3,7 +3,7 @@ class WorkoutPdf < Prawn::Document
   attr_reader :exercise
 
   def initialize workout
-  	super(page_layout: :landscape)
+  	super()
   	@workout = workout
   end
 
@@ -33,7 +33,7 @@ class WorkoutPdf < Prawn::Document
   end
 
   def workout_notes
-    text "Workout Notes: #{@workout.notes}", size: 10
+    text "Notes: #{@workout.notes}", size: 10
   end
 
   def exercise_list
@@ -41,21 +41,14 @@ class WorkoutPdf < Prawn::Document
       move_down 15
       @exercise = Exercise.find(we.exercise_id)
       text "#{we.order_number}) #{exercise.name}", size: 12, style: :bold
-      exercise_set_details(we)
-      horizontal_rule
+      # text "#{we.sets} #{set_pluralize(we.sets)} |  #{exercise.muscle.humanize}", size: 10, color: '080808'
+
       exercise_instructions(we)
     end
   end
 
-  def exercise_set_details(workout_exercise)
-    workout_exercise.set_details.each do |set_details|
-      table set_details_table_data(set_details) do
-      end
-    end
-  end
-
   def exercise_instructions(workout_exercise)
-    table instructions_table_data(workout_exercise) do
+    table table_data(workout_exercise) do
       self.cells.style(padding: 5, height: 60)
       self.cell_style                    = { border_color: "CCCCCC" }
       row(0).size                        = 8
@@ -70,20 +63,7 @@ class WorkoutPdf < Prawn::Document
     end
   end
 
-  def set_details_table_data(set_details)
-    set = set_details[0].to_i
-    # TODO: remove eval & add to_pdf method on WorkoutExerciseSetDetail
-
-    details = WorkoutExerciseSetDetail.to_object(set_details[1])
-    # details = eval(set_details[1])
-    # reps = details[:reps] ? details[:reps] : details['reps']
-    # weight = details[:weight] ? details[:weight] : details['weight']
-    reps = details.reps
-    weight = details.weight
-    [["Set: #{set} | Reps: #{reps} | Weight: #{weight}kg"]]
-  end
-
-  def instructions_table_data(workout_exercise)
+  def table_data(workout_exercise)
     [["#{(workout_exercise).sets} #{set_pluralize((workout_exercise).sets)} |  #{@exercise.muscle.humanize}", "Exercise Notes:"],
       ["Instructions: #{workout_exercise.instructions}", "#{'_' * 200}"]]
   end
