@@ -23,6 +23,10 @@ module WorkoutExercises
       @workout_exercise.set_details_to_array(self)
     end
 
+    def json_set_details
+      set_details.to_json
+    end
+
     def url
       @view_context.workout_exercise_path(@workout_exercise)
     end
@@ -76,7 +80,7 @@ module WorkoutExercises
       {
         id:              id,
       	name:            name,
-        set_details:     set_details,
+        set_details:     json_set_details,
         url:             url,
         set_details_url: set_details_url,
         exercise_url:    exercise_url,

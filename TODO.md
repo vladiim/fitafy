@@ -1,5 +1,7 @@
 # up to
 
+* adding workout_exericse from orderer or adder doesn't load the set_details properly the reason for this is that the data isn't the right fromat for mustache
+
 # deploy integration step
 * replicate db
 	- heroku addons:add heroku-postgresql:blah --form HEROKU_POSTGRESQL_BLAH

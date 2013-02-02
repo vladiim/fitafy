@@ -86,28 +86,57 @@ describe 'WorkoutExerciseOrderer', ->
     it 'uses json as the data type', ->
       expect($.ajax.getCall(0).args[0].dataType).toEqual("json")
 
-  describe 'renderWorkoutExercise', ->
+  describe 'renderers', ->
     beforeEach ->
-      @data = { name: 'NAME' }
-      @renderer = { render: -> '' }
+      @set_detail    = {"set": 1, "reps": 2}
+      @set_details   = [@set_detail]
+      sinon.stub(WorkoutExerciseOrderer, 'renderSetDetails', ->'')
+      @data          = { name: 'NAME', set_details: @set_details}
+      @renderer      = { render: -> '' }
       @renderer_stub = sinon.stub(@renderer, 'render', -> '<li class="workout_exercise">WORKOUT EXERCISE FROM SERVER</li>')
-      @one_down.click()
-      WorkoutExerciseOrderer.renderer = @renderer
-      WorkoutExerciseOrderer.renderWorkoutExercise(@data)
 
-    it 'uses the template renderer to load the workout exercise', ->
-      expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workout_exercises/show", @data)
-  
-    it 'replaces the counterpart', ->
-      expect($( 'li.workout_exercise:nth-child(2)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
-  
-    describe 'render the original counterpart', ->
+    afterEach -> WorkoutExerciseOrderer.renderSetDetails.restore()
+
+    describe 'renderWorkoutExercise', ->
       beforeEach ->
+        @one_down.click()
+        WorkoutExerciseOrderer.renderer = @renderer
+        WorkoutExerciseOrderer.renderWorkoutExercise(@data)
+
+      it 'uses the template renderer to load the workout exercise', ->
+        expect(@renderer_stub).toHaveBeenCalledWith("app/templates/workout_exercises/show", @data)
+
+      it 'replaces the counterpart', ->
+        expect($( 'li.workout_exercise:nth-child(2)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
+
+    describe 'counterpart renderWorkoutExercise', ->
+      beforeEach ->
+        @one_down.click()
         WorkoutExerciseOrderer.renderer = @renderer
         WorkoutExerciseOrderer.renderWorkoutExercise(@data, 'counterpart')
-  
+
       it 'replaces the original', ->
         expect($( 'li.workout_exercise:nth-child(1)' ).text()).toEqual('WORKOUT EXERCISE FROM SERVER')
+
+    describe 'renderSetDetails', ->
+      beforeEach ->
+
+      it 'fucking doesnt work', ->
+        expect(true).toEqual(false)
+
+      # it 'renders the set detail', ->
+      #   expect(WorkoutExerciseOrderer.renderSetDetail).toHaveBeenCalledWith(@set_detail)
+
+    describe 'renderSetDetail', ->
+      beforeEach ->
+        @set_renderer = { render: -> '' }
+        @set_rendered = sinon.stub(@set_renderer, 'render', ->'<tr><td>SET DETAIL</td></tr>')
+        WorkoutExerciseOrderer.tbody    = $('tbody#one_tbody')
+        WorkoutExerciseOrderer.renderer = @set_renderer
+        WorkoutExerciseOrderer.renderSetDetail(@set_detail, $('tbody#one_tbody'))
+
+      it 'renders the set details on the page', ->
+        expect($('tbody#one_tbody > tr > td').text()).toEqual('SET DETAIL')
 
   describe 'click two up', ->
     beforeEach ->
