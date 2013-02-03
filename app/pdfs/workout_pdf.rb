@@ -1,6 +1,8 @@
 class WorkoutPdf < Prawn::Document
 
-  attr_reader :exercise
+  attr_reader :exercise, :set, :reps, :weight
+
+  attr_accessor :set_details
 
   def initialize workout
   	super(page_layout: :landscape)
@@ -8,14 +10,12 @@ class WorkoutPdf < Prawn::Document
   end
 
   def generate_content
-  	workout_name
-    user_name
+    render_workout_name
+    render_username
     move_down 5
-    workout_notes
+    render_notes
     move_down 5
-  	exercise_list
-    horizontal_rule
-    move_down 5
+    render_exercises
   end
 
   def render_details
@@ -24,81 +24,115 @@ class WorkoutPdf < Prawn::Document
 
   private
 
-  def workout_name
+  def render_workout_name
     text " #{@workout.name.upcase}", size: 30, style: :bold
   end
 
-  def user_name
+  def render_username
     text "By #{@workout.username.upcase}", size: 8, color: "CCCCCC"
   end
 
-  def workout_notes
+  def render_notes
     text "Workout Notes: #{@workout.notes}", size: 10
   end
 
-  def exercise_list
-    @workout.workout_exercises.map do |we|
+  def render_exercises
+    @workout.workout_exercises.map do |workout_exercise|
       move_down 15
-      @exercise = Exercise.find(we.exercise_id)
-      text "#{we.order_number}) #{exercise.name}", size: 12, style: :bold
-      exercise_set_details(we)
-      # horizontal_rule
-      # exercise_instructions(we)
+      @exercise = Exercise.find(workout_exercise.exercise_id)
+      text "#{workout_exercise.order_number}) #{exercise.name}", size: 12, style: :bold
+      render_set_details_table(workout_exercise)
     end
   end
 
-  def exercise_set_details(workout_exercise)
-    workout_exercise.set_details.each do |set_details|
-      table set_details_table_data(set_details) do |set_details_table|
-        WorkoutPdf.table_style(set_details_table )
-      end
+  def render_set_details_table(workout_exercise)
+    @set_details = workout_exercise.set_details
+    table set_details_table_data do |set_details_table|
+      WorkoutPdf.table_style(set_details_table )
     end
+  end
+
+  def set_details_table_data
+    set_details_variables(@set_details)
+    [ ["WORKOUT DETAILS", { content: "TRAINING SESSIONS", colspan: 21 }],
+      session_numbers_data,
+      session_details_heading_data,
+      render_set_details_and_empty_cells ]
+  end
+
+  def render_set_details_and_empty_cells
+    set_details_count = @set_details.count
+    arr = [render_set_details_cell]
+    form = create_form_elements(set_details_count)
+    21.times.inject(arr) { arr << form }
+  end
+
+  def create_form_elements(set_details_count)
+    set_details_count.times.inject("") { |form, n| form << "__\n" }
+  end
+
+  def render_set_details_cell
+    @set_details.each.inject("") do |set_details, set_detail|
+      set_details_variables(set_detail)
+      set_details + set_detail_data
+    end
+  end
+
+  def set_details_variables(set_details)
+    @set     = get_set_details_set(set_details)
+    values   = get_set_details_values(set_details)
+    details  = WorkoutExerciseSetDetail.to_object(values)
+    @reps    = details.reps
+    @weight  = details.weight
+  end
+
+  def get_set_details_set(set_details)
+    if set_details.class == Array
+      set_details[0].to_i
+
+    elsif set_details.class == Hash
+      set_details.keys[0]
+    end
+  end
+
+  def get_set_details_values(set_details)
+    if set_details.class == Array
+      set_details[1]
+
+    elsif set_details.class == Hash
+      set_details.values[0]
+    end
+  end
+
+  def set_detail_data
+    "Set: #{@set},   Reps: #{@reps},   Weight: #{@weight}kg  \n\n"
+  end
+
+  def session_numbers_data
+    first_result = { content: '', rowspan: 2 }
+
+    (1..7).each.inject([first_result]) do |result, session_number|
+      result << { content: "Session #{session_number}", colspan: 3 }
+    end
+  end
+
+  def session_details_heading_data
+    (1..7).each.inject([]) do |result, n|
+      result << { content: 'Date' }
+      result << { content: 'Reps' }
+      result << { content: 'Weight'}
+    end
+  end
+
+  def session_details_empty_data
+    (1..24).each.inject([]) { |result, n| result << '' }
   end
 
   def self.table_style(table)
-    table.cells.style(padding: 5, height: 60)
-    table.cell_style                    = { border_color: "CCCCCC" }
-    table.row(0).size                   = 8
-    table.row(1).size                   = 10
-    table.row(0).height                 = 20
-    table.column(0).width               = 150
-    table.column(1).width               = 150
-    table.column(0).border_top_color    = "FFFFFF"
-    table.column(0).border_bottom_color = "FFFFFF"
+    table.cell_style = { border_color: "CCCCCC" }
+    table.row(0).style(height: 20, size: 8)    
+    table.row(1).style(height: 20, size: 8)    
+    table.row(2).style(size: 5, valign: :bottom, rotate: 30)
+    table.column(0).style(width: 150, size: 8)
   end
-
-  # def self.table_style(table)
-  #   table.cells.style(padding: 5, height: 60)
-  #   table.cell_style                    = { border_color: "CCCCCC" }
-  #   table.row(0).size                   = 8
-  #   table.row(1).size                   = 10
-  #   table.row(0).height                 = 20
-  #   table.column(0).width               = 250
-  #   table.column(1).width               = 250
-  #   table.row(0).border_left_color      = "FFFFFF"
-  #   table.row(1).border_left_color      = "FFFFFF"
-  #   table.column(0).border_top_color    = "FFFFFF"
-  #   table.column(0).border_bottom_color = "FFFFFF"
-  # end
-
-  def set_details_table_data(set_details)
-    set     = set_details[0].to_i
-    details = WorkoutExerciseSetDetail.to_object(set_details[1])
-    reps    = details.reps
-    weight  = details.weight
-    [["Set: #{set},   Reps: #{reps},   Weight: #{weight}kg  "]]
-  end
-
-  # def instructions_table_data(workout_exercise)
-  #   [["#{(workout_exercise).sets} #{set_pluralize((workout_exercise).sets)} |  #{@exercise.muscle.humanize}", "Exercise Notes:"],
-  #     ["Instructions: #{workout_exercise.instructions}", "#{'_' * 200}"]]
-  # end
-
-  # def instruction_data(workout_exercise)
-  #   [[workout_exercise.instructions, "Workout notes: #{'_' * 150}"]]
-  # end
-
-  # def set_pluralize(sets)
-  #   sets == 1 ? 'Set' : 'Sets'
-  # end
 end

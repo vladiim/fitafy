@@ -61,7 +61,8 @@ gem 'jquery-rails',   '~> 2.0.0'
 gem 'carrierwave',    '~> 0.6.2'
 gem 'rmagick',        '~> 2.13.1'
 gem 'cloudinary',     '~> 1.0.40'
-gem 'prawn',          '~> 0.12.0'
+# gem 'prawn',          '~> 1.0.0.rc1'
+gem 'prawn', git: 'git://github.com/prawnpdf/prawn', branch: 'master' 
 
 # ------------ TEST SUITE ------------ #
 group :test do
@@ -72,6 +73,7 @@ group :test do
   gem 'database_cleaner',   '~> 0.7.2'
   gem 'factory_girl_rails', '~> 3.0'
   gem 'shoulda',            '~> 3.1.1'
+  gem 'pdf-inspector', :require => "pdf/inspector"
 end
 
 group :development, :test do

@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/prawnpdf/prawn
+  revision: 2d40e4d73270a1e6a2a294aec12f5705a52969e6
+  branch: master
+  specs:
+    prawn (1.0.0.rc1)
+      afm
+      pdf-reader (>= 0.9.0, < 2.0)
+      ruby-rc4
+      ttfunk (~> 1.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -23,7 +34,7 @@ GEM
       activesupport (= 3.2.11)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-postgres-hstore (0.5.2)
+    activerecord-postgres-hstore (0.5.3)
       rails
       rake
     activeresource (3.2.11)
@@ -59,7 +70,7 @@ GEM
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    childprocess (0.3.6)
+    childprocess (0.3.7)
       ffi (~> 1.0, >= 1.0.6)
     chunky_png (1.2.7)
     client_side_validations (3.2.1)
@@ -97,13 +108,13 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
     database_cleaner (0.7.2)
-    debugger (1.2.3)
+    debugger (1.2.4)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.5)
+      debugger-ruby_core_source (~> 1.1.7)
     debugger-linecache (1.1.2)
       debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.6)
+    debugger-ruby_core_source (1.1.7)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (1.0.0)
@@ -116,11 +127,11 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
-    ffi (1.3.0)
+    ffi (1.3.1)
     friendly_id (4.0.9)
-    fssm (0.2.9)
-    gherkin (2.11.5)
-      json (>= 1.4.6)
+    fssm (0.2.10)
+    gherkin (2.11.6)
+      json (>= 1.7.6)
     guard (1.4.0)
       listen (>= 0.4.2)
       thor (>= 0.14.6)
@@ -171,10 +182,7 @@ GEM
       multi_json (>= 1.0)
     launchy (2.1.2)
       addressable (~> 2.3)
-    libwebsocket (0.1.7.1)
-      addressable
-      websocket
-    listen (0.7.1)
+    listen (0.7.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -191,7 +199,7 @@ GEM
       actionpack (>= 3.1)
       mustache (~> 0.99.4)
     netrc (0.7.7)
-    newrelic_rpm (3.5.4.34)
+    newrelic_rpm (3.5.6.46)
     nokogiri (1.5.6)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -207,6 +215,8 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    pdf-inspector (1.0.2)
+      pdf-reader (>= 0.9.0)
     pdf-reader (1.3.0)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.0)
@@ -217,20 +227,17 @@ GEM
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    prawn (0.12.0)
-      pdf-reader (>= 0.9.0)
-      ttfunk (~> 1.0.2)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
-    rack (1.4.3)
+    rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-google-analytics (0.11.0)
     rack-protection (1.3.2)
       rack
-    rack-ssl (1.3.2)
+    rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -285,15 +292,15 @@ GEM
     ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
     sass (3.2.5)
-    sass-rails (3.2.5)
+    sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.27.2)
+    selenium-webdriver (2.29.0)
       childprocess (>= 0.2.5)
-      libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+      websocket (~> 1.0.4)
     sendgrid (1.1.0)
       json
       json
@@ -307,9 +314,9 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-    sinatra (1.3.3)
-      rack (~> 1.3, >= 1.3.6)
-      rack-protection (~> 1.2)
+    sinatra (1.3.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
     sinon-rails (1.4.2.1)
       railties (>= 3.1)
@@ -319,7 +326,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    squeel (1.0.14)
+    squeel (1.0.15)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
@@ -327,7 +334,7 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.16.0)
+    thor (0.17.0)
     tilt (1.3.3)
     treetop (1.4.12)
       polyglot
@@ -341,7 +348,7 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    websocket (1.0.6)
+    websocket (1.0.7)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -382,8 +389,9 @@ DEPENDENCIES
   mustache-rails (~> 0.2.3)
   newrelic_rpm (~> 3.5.0)
   omniauth-facebook (~> 1.4.1)
+  pdf-inspector
   pg (~> 0.13.0)
-  prawn (~> 0.12.0)
+  prawn!
   pry (~> 0.9.9.0)
   rack-google-analytics (~> 0.11.0)
   rails (~> 3.2.0)
