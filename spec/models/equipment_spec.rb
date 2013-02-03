@@ -5,5 +5,7 @@ describe Equipment do
 
   describe "#associations" do
     it { should have_many :exercises }
+    it { should have_many :equipment_products }
+    it { should have_many :products }
   end
 end

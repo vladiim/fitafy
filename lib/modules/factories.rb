@@ -54,4 +54,17 @@ FactoryGirl.define do
     user
     workout
   end
+
+  factory :product do
+    name       "Cap Barbell Solid Hex Single Dumbbell"
+    image      "https://images-na.ssl-images-amazon.com/images/I/41z7mpl3OvL._SL75_.jpg"
+    price      55.98
+    analytics_link "http://fitafyanalyticslink.com/"
+    affiliate_link "http://amazonafilliatelink.com/"
+  end
+
+  factory :equipment_product do
+    equipment
+    product
+  end
 end

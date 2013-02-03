@@ -4,21 +4,36 @@ module Exercises
 
     attr_accessor :exercise
 
-    def description
-      @exercise.safe_description.humanize
-    end
+    delegate :description,    to: :@exercise
+    delegate :tips,           to: :@exercise
+    delegate :muscle,         to: :@exercise
+    delegate :category,       to: :@exercise
+    delegate :equipment_name, to: :@exercise
+    # products - gives array of 8 products
+    # product_name
+    # product_image
+    # analytics_link
+    # price
 
-    def tips
-      @exercise.tips.humanize || "No tips for this exercise"
-    end
+    # def name
+    #   @exercise.name
+    # end
 
-    def muscle
-      @exercise.muscle.humanize
-    end
+    # def description
+    #   @exercise.safe_description.humanize
+    # end
 
-    def category
-      @exercise.safe_category.humanize
-    end
+    # def tips
+    #   @exercise.tips.humanize || "No tips for this exercise"
+    # end
+
+    # def muscle
+    #   @exercise.muscle.humanize
+    # end
+
+    # def category
+    #   @exercise.safe_category.humanize
+    # end
 
     def equipment
       @exercise.equipment_name.titleize || "No equipment for this exercise"

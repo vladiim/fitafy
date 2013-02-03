@@ -6,13 +6,18 @@ module Exercises
   
   	attr_accessor :exercise, :view_context, :user, :workout
 
+    delegate :id,          to: :@exercise
+    delegate :muscle,      to: :@exercise
+
+    delegate :exercise_path,      to: :@view_context
+    delegate :edit_exercise_path, to: :@view_context
+    delegate :link_to,            to: :@view_context
+
+    delegate :admin?, to: :@user
+
     def initialize(view_context=nil, user=nil)
       @view_context, @user = view_context, user
     end
-
-    def id
-      @exercise.id
-    end 
 
     def name
       @exercise.name.titleize
@@ -23,19 +28,19 @@ module Exercises
     end
 
     def description
-      truncate(@exercise.safe_description.humanize, length: 70)
+      truncate(@exercise.description.humanize, length: 70)
     end
 
     def muscle
-      @exercise.muscle.titleize
+      muscle.titleize
     end
 
     def url
-      @view_context.exercise_path(@exercise)
+      exercise_path(@exercise)
     end
 
     def edit_url
-      @view_context.edit_exercise_path(@exercise) if user_is_admin?
+      edit_exercise_path(@exercise) if user_is_admin?
     end
 
     def new_workout_exercise_form
@@ -60,14 +65,14 @@ module Exercises
     private
 
     def generate_new_workout_exercise_form
-      @view_context.link_to "ADD", '#',
-                            'data-exercise_id' => @exercise.id,
-                            'data-workout_id' => @workout.id,
-                            class: "add_exercise_to_workout_button btn btn-primary btn-mini"
+      link_to "ADD", '#',
+              'data-exercise_id' => id,
+              'data-workout_id' => @workout.id,
+              class: "add_exercise_to_workout_button btn btn-primary btn-mini"
     end
 
     def user_is_admin?
-      @user && @user.admin?
+      @user && admin?
     end
   end
 end

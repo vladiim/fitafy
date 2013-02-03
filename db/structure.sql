@@ -74,6 +74,38 @@ ALTER SEQUENCE equipment_id_seq OWNED BY equipment.id;
 
 
 --
+-- Name: equipment_products; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE equipment_products (
+    id integer NOT NULL,
+    equipment_id integer,
+    product_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: equipment_products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE equipment_products_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: equipment_products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE equipment_products_id_seq OWNED BY equipment_products.id;
+
+
+--
 -- Name: exercises; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -86,8 +118,8 @@ CREATE TABLE exercises (
     slug character varying(255),
     equipment_id integer,
     muscle character varying(255),
-    category character varying(255),
-    description text
+    category character varying(255) DEFAULT 'No category'::character varying,
+    description text DEFAULT 'No description'::text
 );
 
 
@@ -175,6 +207,42 @@ CREATE SEQUENCE favorite_workouts_id_seq
 --
 
 ALTER SEQUENCE favorite_workouts_id_seq OWNED BY favorite_workouts.id;
+
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE products (
+    id integer NOT NULL,
+    name character varying(255),
+    retailer character varying(255),
+    image character varying(255),
+    price double precision,
+    analytics_link character varying(255),
+    affiliate_link character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE products_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE products_id_seq OWNED BY products.id;
 
 
 --
@@ -343,6 +411,13 @@ ALTER TABLE ONLY equipment ALTER COLUMN id SET DEFAULT nextval('equipment_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY equipment_products ALTER COLUMN id SET DEFAULT nextval('equipment_products_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY exercises ALTER COLUMN id SET DEFAULT nextval('exercises_id_seq'::regclass);
 
 
@@ -358,6 +433,13 @@ ALTER TABLE ONLY facebook_users ALTER COLUMN id SET DEFAULT nextval('facebook_us
 --
 
 ALTER TABLE ONLY favorite_workouts ALTER COLUMN id SET DEFAULT nextval('favorite_workouts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
 
 
 --
@@ -397,6 +479,14 @@ ALTER TABLE ONLY equipment
 
 
 --
+-- Name: equipment_products_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_products
+    ADD CONSTRAINT equipment_products_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: exercises_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -418,6 +508,14 @@ ALTER TABLE ONLY facebook_users
 
 ALTER TABLE ONLY favorite_workouts
     ADD CONSTRAINT favorite_workouts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: products_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
@@ -453,6 +551,20 @@ ALTER TABLE ONLY workouts
 
 
 --
+-- Name: index_equipment_products_on_equipment_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_equipment_products_on_equipment_id ON equipment_products USING btree (equipment_id);
+
+
+--
+-- Name: index_equipment_products_on_product_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_equipment_products_on_product_id ON equipment_products USING btree (product_id);
+
+
+--
 -- Name: index_exercises_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -478,6 +590,13 @@ CREATE INDEX index_favorite_workouts_on_user_id ON favorite_workouts USING btree
 --
 
 CREATE INDEX index_favorite_workouts_on_workout_id ON favorite_workouts USING btree (workout_id);
+
+
+--
+-- Name: index_products_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_products_on_name ON products USING btree (name);
 
 
 --
@@ -648,3 +767,9 @@ INSERT INTO schema_migrations (version) VALUES ('20130116075952');
 INSERT INTO schema_migrations (version) VALUES ('20130122085514');
 
 INSERT INTO schema_migrations (version) VALUES ('20130122085544');
+
+INSERT INTO schema_migrations (version) VALUES ('20130203101006');
+
+INSERT INTO schema_migrations (version) VALUES ('20130203101941');
+
+INSERT INTO schema_migrations (version) VALUES ('20130203102945');

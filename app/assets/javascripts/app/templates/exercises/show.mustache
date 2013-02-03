@@ -2,19 +2,36 @@
   <!--   = image_tag 'shoulder_press.png' -->  
 <!-- </figure> -->
 
-<article class='span4 show_exercise_mustache'>
-  <h5>Description</h5>
-  <p>{{description}}</p>
+<article>
+  <article class='span4 show_exercise_mustache'>
+    <h5>Description</h5>
+    <p>{{description}}</p>
 
-  <h5>Tips</h5>
-  <p>{{tips}}</p>
+    <h5>Tips</h5>
+    <p>{{tips}}</p>
 
-  <h5>Muscle</h5>
-  <p>{{muscle}}</p>
+    <h5>Muscle</h5>
+    <p>{{muscle}}</p>
 
-  <h5>Category</h5>
-  <p>{{category}}</p>
+    <h5>Category</h5>
+    <p>{{category}}</p>
 
-  <h5>Equipment</h5>
-  <p>{{equipment}}</p>
+    <h5>Equipment</h5>
+    <p>{{equipment}}</p>
+  </article>
+
+  <aside class='span3 equipment_products'>
+
+    {{#products}}
+
+      <header>
+        <h5>{{name}} Products</h5>
+      </header>
+
+      <p>{{product_name}}</p>
+      <img alt="{{product_name}}" src="{{product_image}}">
+      <a href="{{analytics_link}}" class="btn btn-primary btn-mini">${{price}} Buy Now</a>
+
+    {{/products}}
+  </aside>
 </article>

@@ -43,17 +43,13 @@ class Exercise < ActiveRecord::Base
     equipment && equipment.name ? equipment.name : "no equipment yo"
   end
 
-  def safe_description
-    self.description ? self.description : "no description"
-  end
+  # def safe_description
+  #   self.description ? self.description : "no description"
+  # end
 
-  def safe_category
-    self.category ? self.category : "no category"
-  end
-
-  def safe_description
-    self.description ? self.description : "no description"
-  end
+  # def safe_category
+  #   self.category ? self.category : "no category"
+  # end
 
   def equipment_list
     Equipment.all

@@ -29,8 +29,9 @@ fitafy is a fitness app that helps PTs manage their clients.
 2. RVM should ask you if you wish to trust the .rvmrc file - `y` then hit return
 3. Install all the gems `bundle install`
 4. Create the Postgres database `rake create:db`
-5. If you want some seed data `rake db:seed`
-6. Fire up the server `rails s`
+5. Run the database migrations `rake db:migrate && rake db:test:prepare`
+6. If you want some seed data `rake db:seed`
+7. Fire up the server `rails s`
 
 ## Running The Tests
 
