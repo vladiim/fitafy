@@ -4,7 +4,7 @@ class WorkoutPdf < Prawn::Document
 
   attr_accessor :set_details
 
-  def initialize workout
+  def initialize(workout)
   	super(page_layout: :landscape)
   	@workout = workout
   end
@@ -54,16 +54,40 @@ class WorkoutPdf < Prawn::Document
 
   def set_details_table_data
     set_details_variables(@set_details)
-    [ ["WORKOUT DETAILS", { content: "TRAINING SESSIONS", colspan: 21 }],
+    [ [exercise_heading_data, sessions_heading_data],
       session_numbers_data,
       session_details_heading_data,
-      render_set_details_and_empty_cells ]
+      set_details_and_empty_data ]
   end
 
-  def render_set_details_and_empty_cells
+  def exercise_heading_data
+    "WORKOUT DETAILS"
+  end
+
+  def sessions_heading_data
+    { content: "TRAINING SESSIONS", colspan: 21 }
+  end
+
+  def session_numbers_data
+    first_result = { content: '', rowspan: 2 }
+
+    (1..7).each.inject([first_result]) do |result, session_number|
+      result << { content: "Session #{session_number}", colspan: 3 }
+    end
+  end
+
+  def session_details_heading_data
+    (1..7).each.inject([]) do |result, n|
+      result << { content: 'Date' }
+      result << { content: 'Reps' }
+      result << { content: 'Weight'}
+    end
+  end
+
+  def set_details_and_empty_data
     set_details_count = @set_details.count
-    arr = [render_set_details_cell]
-    form = create_form_elements(set_details_count)
+    arr               = [render_set_details_cell]
+    form              = create_form_elements(set_details_count)
     21.times.inject(arr) { arr << form }
   end
 
@@ -108,31 +132,23 @@ class WorkoutPdf < Prawn::Document
     "Set: #{@set},   Reps: #{@reps},   Weight: #{@weight}kg  \n\n"
   end
 
-  def session_numbers_data
-    first_result = { content: '', rowspan: 2 }
-
-    (1..7).each.inject([first_result]) do |result, session_number|
-      result << { content: "Session #{session_number}", colspan: 3 }
-    end
-  end
-
-  def session_details_heading_data
-    (1..7).each.inject([]) do |result, n|
-      result << { content: 'Date' }
-      result << { content: 'Reps' }
-      result << { content: 'Weight'}
-    end
-  end
-
   def session_details_empty_data
     (1..24).each.inject([]) { |result, n| result << '' }
   end
 
   def self.table_style(table)
-    table.cell_style = { border_color: "CCCCCC" }
-    table.row(0).style(height: 20, size: 8)    
+    table.cell_style = { border_color: "CCCCCC", background_color: "F0F0F0" }
+    table.row(0).style(height: 20, size: 8, font_style: :bold)
     table.row(1).style(height: 20, size: 8)    
     table.row(2).style(size: 5, valign: :bottom, rotate: 30)
     table.column(0).style(width: 150, size: 8)
+
+    table.row(3).column(0).style(font_style: :bold, background_color: "FFFFFF")
+
+    [2, 3].each do |row|
+      [(1..3), (7..9), (13..15), (19..21)].each do |col|
+        table.row(row).column(col).style(background_color: "CCCCCC")
+      end
+    end
   end
 end
