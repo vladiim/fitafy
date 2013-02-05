@@ -84,4 +84,24 @@ describe Exercise do
       subject.equipment_list.should eq "EQUIPMENT LIST"
     end
   end
+
+  describe '#products' do
+    let(:result) { subject.products }
+
+    context 'with equipment' do
+      before { mock(subject.equipment).random_products { 'PRODUCTS' } }
+
+      it 'returns the equipment products' do
+        result.should eq 'PRODUCTS'
+      end
+    end
+
+    context 'without equipment' do
+      let(:subject) { build :exercise, equipment_id: nil }
+
+      it 'returns nothing' do
+        result.should eq nil
+      end
+    end
+  end
 end

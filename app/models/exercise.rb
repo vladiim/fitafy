@@ -55,6 +55,10 @@ class Exercise < ActiveRecord::Base
     Equipment.all
   end
 
+  def products
+    equipment.random_products if equipment
+  end
+
   private
 
   def muscle?

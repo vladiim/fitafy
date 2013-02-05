@@ -9,31 +9,13 @@ module Exercises
     delegate :muscle,         to: :@exercise
     delegate :category,       to: :@exercise
     delegate :equipment_name, to: :@exercise
+    delegate :products,       to: :@exercise
+
     # products - gives array of 8 products
     # product_name
     # product_image
     # analytics_link
     # price
-
-    # def name
-    #   @exercise.name
-    # end
-
-    # def description
-    #   @exercise.safe_description.humanize
-    # end
-
-    # def tips
-    #   @exercise.tips.humanize || "No tips for this exercise"
-    # end
-
-    # def muscle
-    #   @exercise.muscle.humanize
-    # end
-
-    # def category
-    #   @exercise.safe_category.humanize
-    # end
 
     def equipment
       @exercise.equipment_name.titleize || "No equipment for this exercise"

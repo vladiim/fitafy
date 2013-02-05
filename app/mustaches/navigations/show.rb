@@ -5,17 +5,24 @@ module Navigations
 
     attr_accessor :view_context, :user
 
+    delegate :workouts_path,      to: :@view_context
+    delegate :new_workouts_path,  to: :@view_context
+    delegate :user_path,          to: :@view_context
+    delegate :exercise_path,      to: :@view_context
+    delegate :new_exercise_path,  to: :@view_context
+    delegate :logout_path,        to: :@view_context
+    delegate :login_path,         to: :@view_context
+    delegate :sign_up_path,       to: :@view_context
+
+    delegate :avatar_url, to: :@user
+    delegate :username,   to: :@user
+    delegate :staff?,     to: :@user
+    delegate :admin?,     to: :@user
+    delegate :trainer?,   to: :@user
+
     def initialize(view_context, user)
       @view_context = view_context
       user.nil? ? @user = OpenStruct.new(id: 0) : @user = user
-    end
-
-    def workouts_path
-      @view_context.workouts_path
-    end
-
-    def new_workout_path
-      @view_context.new_workout_path
     end
 
     def logged_in_trainer
@@ -27,7 +34,7 @@ module Navigations
     end
 
     def staff
-      @user.staff?
+      staff?
     end
 
     def new_feature
@@ -41,39 +48,19 @@ module Navigations
     end
 
     def current_user_path
-      @view_context.user_path(@user)
+      user_path(@user)
     end
 
     def edit_user_path
       @view_context.edit_user_path(@user)
     end
 
-    def exercises_path
-      @view_context.exercises_path
-    end
-
-    def new_exercise_path
-      @view_context.new_exercise_path
-    end
-
     def current_user_thumbnail_avatar
-      @user.avatar_url(:thumbnail)
+      avatar_url(:thumbnail)
     end
 
     def user_name
-      @user.username.upcase
-    end
-
-    def login_path
-      @view_context.login_path
-    end
-
-    def sign_up_path
-      @view_context.sign_up_path
-    end
-
-    def logout_path
-      @view_context.logout_path
+      username.upcase
     end
 
     def render_json
@@ -99,11 +86,11 @@ module Navigations
     private
 
     def trainer_or_above?
-      @user.trainer? || admin_or_staff?
+      trainer? || admin_or_staff?
     end
 
     def admin_or_staff?
-      @user.admin? || @user.staff?
+      admin? || staff?
     end
   end
 end

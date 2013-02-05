@@ -5,44 +5,27 @@ module Workouts
   
   	attr_accessor :workout
   
-    def muscles
-      @workout.muscles
-    end
+    delegate :muscles,         to: :@workout
+    delegate :name,            to: :@workout
+    delegate :username,        to: :@workout
+    delegate :exercises_count, to: :@workout
+    delegate :client_level,    to: :@workout
+    delegate :difficulty,      to: :@workout
   
     def url
       users_workout_path(workout.username, workout)
     end
-  
-    def name
-      @workout.name
-    end
-  
-    def client_level
-      @workout.safe_client_level
-    end
-  
-    def difficulty
-      @workout.safe_difficulty
-    end
-  
-    def username
-      @workout.username
-    end
-  
-    def exercise_count
-      @workout.exercises_count
-    end
 
     def render_json(workout, view_context)
-      self.workout = workout
+      @workout = workout
       {
         muscles:         muscles,
-        url:             view_context.users_workout_path(@workout.username, workout),
+        url:             view_context.users_workout_path(username, @workout),
         name:            name,
         client_level:    client_level,
         difficulty:      difficulty,
         username:        username,
-        exercises_count: exercise_count
+        exercises_count: exercises_count
       }
     end
   end

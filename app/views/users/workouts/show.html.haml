@@ -2,7 +2,7 @@
   .workout_value.name
     - if can? :manage, @workout
       = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
-      / - if can? :manage, @workout
+
       .hidden.workout_form.name
         %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
         %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
@@ -12,7 +12,7 @@
 .workout_form_group.notes.well.span10
   .workout_value.notes
     %h5 NOTES
-    %p= @workout.safe_notes.humanize
+    %p= @workout.notes.humanize
 
     - if can? :manage, @workout
       = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'

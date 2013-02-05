@@ -174,7 +174,7 @@ describe WorkoutExercises::Show do
 
     describe '#equipment_name' do
       let(:result) { renderer.equipment_name }
-      before { mock(workout_exercise).equipment_name.times(2) { 'EQUIPMENT NAME' } }
+      before { mock(workout_exercise).equipment_name { 'EQUIPMENT NAME' } }
 
       it 'returns the workout_exercises equipment_name' do
       	result.should eq "Equipment Name"

@@ -375,8 +375,8 @@ CREATE TABLE workouts (
     updated_at timestamp without time zone NOT NULL,
     user_id integer NOT NULL,
     slug character varying(255),
-    difficulty character varying(255),
-    client_level character varying(255),
+    difficulty character varying(255) DEFAULT 'None...'::character varying,
+    client_level character varying(255) DEFAULT 'None...'::character varying,
     notes text DEFAULT 'No notes for this workout yo...'::text
 );
 
@@ -773,3 +773,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130203101006');
 INSERT INTO schema_migrations (version) VALUES ('20130203101941');
 
 INSERT INTO schema_migrations (version) VALUES ('20130203102945');
+
+INSERT INTO schema_migrations (version) VALUES ('20130204104623');

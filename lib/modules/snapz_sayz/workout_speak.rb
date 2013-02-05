@@ -38,18 +38,6 @@ module SnapzSayz
       "Wanna copy a workout? No problems! You just need to login first yo!"
     end
 
-    def self.no_difficulty_value
-      "None..."
-    end
-
-    def self.no_client_level_value
-      "None..."
-    end
-
-    def self.no_notes_value
-      "No notes for this workout yo..."
-    end
-
     def self.no_level
       "No level info!"
     end

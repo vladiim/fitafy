@@ -43,60 +43,6 @@ describe Workout do
     end
   end
 
-  describe "#safe_difficulty" do
-    let(:result) { subject.safe_difficulty }
-
-    context "with difficulty value" do
-      it "should respond with the workout difficulty" do
-        mock(subject).difficulty.times(2) { "DIFFICULTY" }
-        result.should eq "DIFFICULTY"
-      end
-    end
-
-    context "without difficulty value" do
-      it "should respond with a snapz message" do
-        mock(subject).difficulty { nil }
-        result.should eq SnapzSayz::WorkoutSpeak.no_difficulty_value
-      end
-    end
-  end
-
-  describe "#safe_client_level" do
-    let(:result) { subject.safe_client_level }
-
-    context "with client_level value" do
-      it "should respond with the workout client_level" do
-        mock(subject).client_level.times(2) { "CLIENT LEVEL" }
-        result.should eq "CLIENT LEVEL"
-      end
-    end
-
-    context "without client_level value" do
-      it "should respond with a snapz message" do
-        mock(subject).client_level { nil }
-        result.should eq SnapzSayz::WorkoutSpeak.no_client_level_value
-      end
-    end
-  end
-
-  describe "#safe_notes" do
-    let(:result) { subject.safe_notes }
-
-    context "with notes value" do
-      it "should respond with the workout notes" do
-        mock(subject).notes.times(2) { "NOTES" }
-        result.should eq "NOTES"
-      end
-    end
-
-    context "without notes value" do
-      it "should respond with a snapz message" do
-        mock(subject).notes { nil }
-        result.should eq SnapzSayz::WorkoutSpeak.no_notes_value
-      end
-    end
-  end
-
   describe "#level" do
     let(:result) { subject.level }
 

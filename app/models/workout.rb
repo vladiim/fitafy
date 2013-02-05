@@ -5,8 +5,8 @@ class Workout < ActiveRecord::Base
 
   attr_accessor :all_exercises
 
-  CLIENT_LEVELS = %w{Beginner Regular Pro}
-  DIFFICULTY    = %w{Easy Medium Hard}
+  CLIENT_LEVELS = %w{Beginner Regular Pro None...}
+  DIFFICULTY    = %w{Easy Medium Hard None...}
 
   has_many :workout_exercises,  dependent: :destroy, order: 'order_number'
   has_many :exercises,          through: :workout_exercises, uniq: true, dependent: :destroy
@@ -35,20 +35,20 @@ class Workout < ActiveRecord::Base
     Workout.find_by_exercise_muscles(muscles)
   end
 
-  def safe_difficulty
-    return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty
-    difficulty
-  end
+  # def safe_difficulty
+  #   return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty
+  #   difficulty
+  # end
 
-  def safe_client_level
-    return SnapzSayz::WorkoutSpeak.no_client_level_value unless client_level
-    client_level
-  end
+  # def safe_client_level
+  #   return SnapzSayz::WorkoutSpeak.no_client_level_value unless client_level
+  #   client_level
+  # end
 
-  def safe_notes
-    return SnapzSayz::WorkoutSpeak.no_notes_value unless notes
-    notes
-  end
+  # def safe_notes
+  #   return SnapzSayz::WorkoutSpeak.no_notes_value unless notes
+  #   notes
+  # end
 
   def level
     return SnapzSayz::WorkoutSpeak.no_level unless difficulty && client_level
