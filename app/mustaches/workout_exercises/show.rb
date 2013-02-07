@@ -25,10 +25,6 @@ module WorkoutExercises
       generate_fake_user if @user == nil
     end
 
-    # def id
-    #   @workout_exercise.id
-    # end
-
     def name
       @workout_exercise.name.titleize
     end
@@ -56,10 +52,6 @@ module WorkoutExercises
     def instructions
       @workout_exercise.instructions.humanize
     end
-
-    # def sets
-    #   @workout_exercise.sets
-    # end
 
     def muscle
       @workout_exercise.muscle.titleize

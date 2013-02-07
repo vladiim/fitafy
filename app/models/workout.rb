@@ -35,21 +35,6 @@ class Workout < ActiveRecord::Base
     Workout.find_by_exercise_muscles(muscles)
   end
 
-  # def safe_difficulty
-  #   return SnapzSayz::WorkoutSpeak.no_difficulty_value unless difficulty
-  #   difficulty
-  # end
-
-  # def safe_client_level
-  #   return SnapzSayz::WorkoutSpeak.no_client_level_value unless client_level
-  #   client_level
-  # end
-
-  # def safe_notes
-  #   return SnapzSayz::WorkoutSpeak.no_notes_value unless notes
-  #   notes
-  # end
-
   def level
     return SnapzSayz::WorkoutSpeak.no_level unless difficulty && client_level
     "This is a #{difficulty} workout for #{client_level} clients"

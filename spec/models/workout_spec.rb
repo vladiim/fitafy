@@ -20,24 +20,24 @@ describe Workout do
 
     describe "#client_level" do
       context "true" do
-        before { mock(subject).client_level?.times(5) { true } }
+        before { mock(subject).client_level?.times(6) { true } }
         it { should ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
       end
 
       context "false" do
-        before { mock(subject).client_level?.times(5) { false } }
+        before { mock(subject).client_level?.times(6) { false } }
         it { should_not ensure_inclusion_of(:client_level).in_array(Workout::CLIENT_LEVELS)}
       end
     end
 
     describe "#difficulty" do
       context "true" do
-        before { mock(subject).difficulty?.times(5) { true } }
+        before { mock(subject).difficulty?.times(6) { true } }
         it { should ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
       end
 
       context "false" do
-        before { mock(subject).difficulty?.times(5) { false } }
+        before { mock(subject).difficulty?.times(6) { false } }
         it { should_not ensure_inclusion_of(:difficulty).in_array(Workout::DIFFICULTY) }
       end
     end
