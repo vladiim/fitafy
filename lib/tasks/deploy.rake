@@ -7,6 +7,8 @@ task :instructions do
   p '(5) Heroku push'
   p '(6) Heroku run rake db:migrate'
   p '(7) Test live env'
+  p '(8) git branch -d <old branch>'
+  p '(9) git checkout -b <new branch>'
 end
 
 desc "Prepare for deployment"
