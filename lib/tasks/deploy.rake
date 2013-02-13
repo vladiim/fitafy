@@ -1,5 +1,5 @@
 desc "Deploy to staging"
-task :stagging do
+task :staging do
   p "Pushing to staging master https://rocky-river-7142.herokuapp.com/"
   sh "git push staging master"
 
