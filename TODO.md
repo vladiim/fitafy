@@ -1,7 +1,26 @@
+# Find PT
+
+* Type
+	- Group fitness
+	- 1 on 1
+	- Kick boxing
+	- Crossfit
+
+* Where
+	- Outdoors
+	- Gym
+	- Studio
+	- 
+
+
 # up to
 
-* add workout exercise
-* edit workout exercise instructions
+* rake deploy
+	- tests
+	- continuous int
+	- AA
+	- stagging instructions
+	- speed
 
 # deploy integration step
 * replicate db

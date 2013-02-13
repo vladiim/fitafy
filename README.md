@@ -11,11 +11,14 @@ fitafy is a fitness app that helps PTs manage their clients.
 
 ## Dependancies
 
-* Ruby 1.9.3-p194
-* Ruby on Rails 3.1+
+* xcode
+* Ruby            >=1.9.3-p194
+* Ruby on Rails   >= 3.1+
+* Postgres        >= 9.1.3+
+* Redis           >= 2.6.7
+* node            >= 0.8.4 `brew install node`
+* Testacular      >= 0.4.0 `npm -g install testacular`
 * Heroku toolbelt
-* Postgres 9.1.3+
-* Redis 2.6.7+
 
 ## Additional dependancy suggestions
 
@@ -36,6 +39,12 @@ fitafy is a fitness app that helps PTs manage their clients.
 ## Running The Tests
 
 fitafy uses Cucumber for integration tests and rspec and jasmine to unit test Ruby and Coffescript respectively.
+
+* Run integration tests:
+	- `cucumber`
+	- `rake phantom`
+
+* Run 
 
 * _Run Cucumber_: `cucumber`
 * _Run Rspec_: `rspec spec`

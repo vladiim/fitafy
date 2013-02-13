@@ -16,6 +16,8 @@ describe 'WorkoutExerciseAutofilterSearchForm', ->
       sinon.spy(WorkoutExerciseAutofilterSearchForm, 'searchListener')
       @input.focus()
 
+    afterEach -> WorkoutExerciseAutofilterSearchForm.searchListener.restore()
+
     it 'triggers the search listener', ->
       expect(WorkoutExerciseAutofilterSearchForm.searchListener).toHaveBeenCalled()
 
@@ -23,6 +25,8 @@ describe 'WorkoutExerciseAutofilterSearchForm', ->
     beforeEach ->
       sinon.spy(WorkoutExerciseAutofilterSearchForm, 'searchIgnore')
       @input.blur()
+
+    afterEach -> WorkoutExerciseAutofilterSearchForm.searchIgnore.restore()
 
     it 'removes the search listener', ->
       expect(WorkoutExerciseAutofilterSearchForm.searchIgnore).toHaveBeenCalled()
@@ -35,7 +39,8 @@ describe 'WorkoutExerciseAutofilterSearchForm', ->
         WorkoutExerciseAutofilterSearchForm.searchListener()
         @input.trigger('keyup')
 
-      afterEach -> WorkoutExerciseAutofilterSearchForm.filterResults.restore()
+      afterEach ->
+        WorkoutExerciseAutofilterSearchForm.filterResults.restore()
 
       it 'sets the search term to the input value', ->
         expect(WorkoutExerciseAutofilterSearchForm.search_term).toEqual('as')
@@ -48,6 +53,8 @@ describe 'WorkoutExerciseAutofilterSearchForm', ->
       sinon.spy(WorkoutExerciseAutofilterSearchForm, 'filterResults')
       WorkoutExerciseAutofilterSearchForm.formListener()
       @input.trigger('keyup')
+
+    afterEach -> WorkoutExerciseAutofilterSearchForm.filterResults.restore()
 
     it 'doesnt filter the results', ->
       expect(WorkoutExerciseAutofilterSearchForm.filterResults).not.toHaveBeenCalled()

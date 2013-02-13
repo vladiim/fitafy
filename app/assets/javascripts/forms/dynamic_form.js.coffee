@@ -21,11 +21,11 @@
     @hideFormListener()
     @updateFormListener()
 
-  hideFormListener: ->
-    @hide_form.on 'click', (event) =>
-      @hideForm()
-      @showValues()
-      event.preventDefault()
+  # hideFormListener: ->
+  #   @hide_form.on 'click', (event) =>
+  #     @hideForm()
+  #     @showValues()
+  #     event.preventDefault()
 
   updateFormListener: ->
     @update_button.on 'click', (event) =>
