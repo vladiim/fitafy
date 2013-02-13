@@ -17,7 +17,7 @@ fitafy is a fitness app that helps PTs manage their clients.
 * Postgres        >= 9.1.3+
 * Redis           >= 2.6.7
 * node            >= 0.8.4 `brew install node`
-* Testacular      >= 0.4.0 `npm -g install testacular`
+* phantomjs       `brew install phantomjs`
 * Heroku toolbelt
 
 ## Additional dependancy suggestions
@@ -44,9 +44,8 @@ fitafy uses Cucumber for integration tests and rspec and jasmine to unit test Ru
 	- `cucumber`
 	- `rake phantom`
 
-* Run 
-
-* _Run Cucumber_: `cucumber`
-* _Run Rspec_: `rspec spec`
-* _Run jasmine_: `rails s` then visit http://localhost:3000/jasmine
-* _Guard_: the command `guard` will run rspec & jasmine in the console and re-run tests as you press Crtl + s in tested files
+* Run unit tests:
+    - `guard` will run & watch rspec & jasmine tests
+    - You can also run each seperatley:
+    	* `rake rspec`
+    	* `rails s` then visit `http://localhost3000/jasmine
