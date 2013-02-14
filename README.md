@@ -1,5 +1,7 @@
 # fitafy
 
+[ ![Codeship Status for vladiim/fitafy](https://www.codeship.io/projects/5fb28c70-58aa-0130-9807-123138152df8/status?branch=master)](https://www.codeship.io/projects/1511)
+
 <!-- ![](./app/assets/images/logo_on_black_v01.jpeg) -->
 
 fitafy is a fitness app that helps PTs manage their clients.
@@ -12,6 +14,11 @@ fitafy is a fitness app that helps PTs manage their clients.
 ## Dependancies
 
 * xcode
+* Mac OS X
+* Homebrew
+* Git
+* Github
+* RVM
 * Ruby            >=1.9.3-p194
 * Ruby on Rails   >= 3.1+
 * Postgres        >= 9.1.3+
@@ -19,12 +26,6 @@ fitafy is a fitness app that helps PTs manage their clients.
 * node            >= 0.8.4 `brew install node`
 * phantomjs       `brew install phantomjs`
 * Heroku toolbelt
-
-## Additional dependancy suggestions
-
-* Mac OS X
-* Homebrew
-* RVM
 
 ## Set up
 

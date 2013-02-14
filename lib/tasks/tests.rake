@@ -7,10 +7,10 @@ end
 
 # --------- JAVASCRIPT TESTS --------- #
 
-desc "Runs all the jasmine tests"
-task :jasmine do
-  # TODO: do this with testacular so it's run across browsers
-end
+# desc "Runs all the jasmine tests"
+# task :jasmine do
+#   # TODO: do this with testacular so it's run across browsers
+# end
 
 # --------- ACCESSIBILITY TESTS --------- #
 
@@ -23,6 +23,6 @@ end
 
 desc "Runs all tests"
 # task test: [:rspec, :jasmine] do
-task test: [:rspec] do
+task test: [:rspec, :jasmine] do
   sh "cucumber"
 end

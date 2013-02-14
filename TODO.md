@@ -1,16 +1,71 @@
 # Find PT
 
-* Type
-	- Group fitness
-	- 1 on 1
-	- Kick boxing
-	- Crossfit
+## Training Environment
 
-* Where
-	- Outdoors
-	- Gym
-	- Studio
-	- 
+* Gym
+* Outdoors
+* Private Studio
+* Home Visit
+* Online Trainer
+* Building Gym
+* Office Visit
+* Aquatic Facility
+
+## Goals
+
+* Increase Muscle
+* Lose Body Fat
+* Pre or Post Natal
+* Health Maintenance
+* Relaxation
+* Flexibilty
+* Increase Fitness
+* Rehabilitation
+* Increase Energy
+* Increase Strength
+* Sport Performance
+* Learn a Skill
+* Event Preparation Preparation
+* Improve Co-ordination/Balance
+* Childrens Fitness
+* Older Adult Fitness
+
+## Training types
+
+* Weights
+* Bootcamp
+* Crossfit
+* Kettlebell
+* Boxing
+* Military
+* Martial Arts
+* Running 
+* Swimming
+* Yoga
+* Pilates
+* Riding
+* Rowing
+* Aquatic
+* Dance
+
+
+## Trainer qualifications
+
+* Cert 3 in Fitness (AUS)
+* Cert 4 in Fitness (AUS)
+* Diploma 
+* ACSM Certification (US)
+* ISSA Certification (US)
+* NSCA Certification (US)
+* REPs Level 1 (UK)
+* REPs Level 2 (UK)
+* REPs Level 3 (UK)
+* REPs Level 4 (UK)
+* REPs Level 5 (UK)
+* CHEK Practitioner
+* Bachelors Degree
+* Masters
+* Doctorate
 
 
 # up to
@@ -22,10 +77,6 @@
 	- stagging instructions
 	- speed
 
-# deploy integration step
-* replicate db
-	- heroku addons:add heroku-postgresql:blah --form HEROKU_POSTGRESQL_BLAH
-* test migrations on db copy
 
 # Notes
 * start redis: redis-server /usr/local/etc/redis.conf
@@ -33,28 +84,3 @@
 	- PATH=/usr/local/sbin:$PATH 
 	- sudo nginx -t
 	- sudo nginx (start nginx server)
-
-# Trending
-	- Favorited workout
-	- Printed workout
-	- Copied workout
-* Username clickable & in title username/workout_name
-* workout - query workout.all + muscle tag via js - manage limit of 30
-
-# To do
-* show workout & workout_exercise form when you hover over the element - note, add a contingency to check if the user is the owner, only show the hover function if they are an owner
-
-* create a guest user model
-
-* cache all exercise find
-* when logged in your root_path is your profile
-* note to user's without workout in their profile (favorite a workout or create your own!)
-
-# Func
-
-* Revise favorite workout count to be like exercise (remove n+1)
-* Order exercises in workouts
-* Mail
-  * someone favorited your workout
-  * unsubscribe
-  * edit settings

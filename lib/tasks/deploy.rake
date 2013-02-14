@@ -10,10 +10,10 @@ end
 desc "Deploy to production"
 task :production do
   p "Pushing to production"
-  sh "git push heroku"
+  sh "git push heroku --app fitafy"
 
   p "Running rake db:migrate"
-  sh "heroku run rake db:migrate"
+  sh "heroku run rake db:migrate --app fitafy"
 end
 
 desc "Print deployment instructions"
