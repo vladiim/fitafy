@@ -22,7 +22,6 @@ Feature: Visitor navigates site
     And I should see the trainer's stats
     And I should see the trainer's workouts
 
-  @focus
   Scenario: Visitor views workout page
     Given a workout exsists
     And I'm on the homepage

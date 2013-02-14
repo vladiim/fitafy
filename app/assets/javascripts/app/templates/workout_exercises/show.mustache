@@ -33,7 +33,9 @@
         </tbody>
       </table>
 
-      <a href="{{set_details_url}}" class='new_workout_exercise_set_details btn btn-primary btn-mini'>+ ADD SET</a>
+      {{# own_workout}}
+        <a href="{{set_details_url}}" class='new_workout_exercise_set_details btn btn-primary btn-mini'>+ ADD SET</a>
+      {{/ own_workout}}
     </div>
 
     <div class='span2 workout_form_group instructions'>
