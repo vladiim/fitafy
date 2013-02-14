@@ -21,3 +21,10 @@ Feature: Visitor navigates site
     Then I should be on the trainer's profile
     And I should see the trainer's stats
     And I should see the trainer's workouts
+
+  @focus
+  Scenario: Visitor views workout page
+    Given a workout exsists
+    And I'm on the homepage
+    When I click on a workout
+    Then I see the visitor workout
