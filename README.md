@@ -16,15 +16,15 @@ fitafy is a fitness app that helps PTs get, keep and manage clients.
 * xcode
 * Mac OS X
 * Homebrew
-* Git
 * Github
 * RVM
 * Ruby            >=1.9.3-p194
 * Ruby on Rails   >= 3.1+
-* Postgres        >= 9.1.3+
-* Redis           >= 2.6.7
-* node            >= 0.8.4 `brew install node`
-* phantomjs       `brew install phantomjs`
+* Git                       `brew install git`
+* Postgres        >= 9.1.3+ `brew install postgres`
+* Redis           >= 2.6.7  `brew install redis`
+* node            >= 0.8.4  `brew install node`
+* phantomjs                 `brew install phantomjs`
 * Heroku toolbelt
 
 ## Set up
