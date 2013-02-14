@@ -3,7 +3,7 @@ Given /^I'm on the workouts page$/ do
 end
 
 When /^I click the fitafy logo$/ do
-  click_link 'fitafy_logo'
+  click_link 'logo'
 end
 
 Then /^I should be on the homepage$/ do
