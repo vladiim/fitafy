@@ -23,6 +23,6 @@ end
 
 desc "Runs all tests"
 # task test: [:rspec, :jasmine] do
-task test: [:rspec, :jasmine] do
+task test: [:rspec] do
   sh "cucumber"
 end
