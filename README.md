@@ -50,3 +50,10 @@ fitafy uses Cucumber for integration tests and rspec and jasmine to unit test Ru
     - You can also run each seperatley:
     	* `rake rspec`
     	* `rails s` then visit `http://localhost3000/jasmine
+* Run all tests: `rake test`
+
+## Deployment
+
+* `rake deploy`
+* Let the tests run
+* Follow the instructions
