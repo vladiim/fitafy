@@ -77,7 +77,7 @@ module WorkoutExercises
     end
 
     def own_workout
-      !workout_exercise_isnt_users?
+      @user.id == user_id
     end
 
     def render_json(workout_exercise)

@@ -12,7 +12,7 @@ Feature: Trainer manages workouts
     Then I should be on the new workouts page
 
   Scenario: Trainer creates new workout
-    Given I've created a new workout
+    Given I've created a new workout with 2 workout exercises
     When I go to the new workout's page
     Then I should be able to edit the workout's details
     And I should see the workout owner CTA buttons
