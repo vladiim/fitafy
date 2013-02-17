@@ -3,8 +3,6 @@ describe "WorkoutLoader", ->
     loadFixtures "workout_list.html"
     WorkoutLoader.init()
 
-  it "sets the page to 0", -> expect(WorkoutLoader.page).toEqual(0)
-
   describe 'loadMoreWorkouts', ->
     beforeEach ->
       @incomingJSON  = [{ name: 'JSON DATA' }]
