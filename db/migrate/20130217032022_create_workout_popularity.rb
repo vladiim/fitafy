@@ -1,5 +1,5 @@
-class WorkoutPopularity < ActiveRecord::Migration
-  def change
+class CreateWorkoutPopularity < ActiveRecord::Migration
+  def up
   	create_table :workout_popularities do |t|
   	  t.integer :workout_id
   	  t.integer :pdfs_downloaded, default: 0
@@ -9,5 +9,9 @@ class WorkoutPopularity < ActiveRecord::Migration
   	  t.integer :favorites, default: 0
       t.timestamps
   	end
+  end
+
+  def down
+    drop_table :workout_popularities
   end
 end
