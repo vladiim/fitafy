@@ -39,17 +39,15 @@ fitafy is a fitness app that helps PTs get, keep and manage clients.
 
 ## Running The Tests
 
-fitafy uses Cucumber for integration tests and rspec and jasmine to unit test Ruby and Coffescript respectively.
-
 * Run integration tests:
 	- `cucumber`
-	- `rake phantom`
 
 * Run unit tests:
     - `guard` will run & watch rspec & jasmine tests
     - You can also run each seperatley:
     	* `rake rspec`
-    	* `rails s` then visit `http://localhost3000/jasmine
+    	* `rake jasmine`
+
 * Run all tests: `rake test`
 
 ## Deployment

@@ -1,3 +1,6 @@
+- if can? :manage, @workout
+  #can_manage_workout
+
 .workout_form_group.name
   .workout_value.name
     - if can? :manage, @workout
@@ -13,10 +16,9 @@
   .workout_value.notes
     %h5 NOTES
     %p= @workout.notes.humanize
-
     - if can? :manage, @workout
       = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
-      /- if can? :manage, @workout
+
       .hidden.workout_form.notes
         %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
         %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE

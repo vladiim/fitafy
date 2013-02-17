@@ -21,12 +21,6 @@
     @hideFormListener()
     @updateFormListener()
 
-  # hideFormListener: ->
-  #   @hide_form.on 'click', (event) =>
-  #     @hideForm()
-  #     @showValues()
-  #     event.preventDefault()
-
   updateFormListener: ->
     @update_button.on 'click', (event) =>
       if @input.val() is @initial_text then @sameText() else @updateValue()

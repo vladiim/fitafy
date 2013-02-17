@@ -85,4 +85,5 @@ group :development, :test do
   gem 'guard-jasmine',       '~> 1.5.0'
   gem 'sinon-rails',         '~> 1.4.2.1'
   gem 'jasmine-sinon-rails', '~> 1.3.4'
+  gem 'poltergeist',         '~> 1.0.2'
 end

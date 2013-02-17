@@ -36,3 +36,17 @@ Feature: Trainer manages workouts
     Given I'm on the workout page
     When I click download as pdf
     Then I should get a pdf
+
+  # @javascript
+  # Scenario Outline: Trainer can interact with editable items
+  #   Given I've created a workout with exercises
+  #   And I'm on a workout's page
+  #   When I hover over the <editable_item> editable item
+  #   Then I can see the <editable_item_link> edit link
+
+  #   Examples:
+  #     | editable_item                      | editable_item_link        |
+  #     | "h1"                               | "[data-tag='name']"         |
+  #     | ".workout_form_group.notes"        | "[data-tag=notes]"        |
+  #     | ".workout_form_group.instructions" | "[data-tag=instructions]" |
+  #     | ".workout_form_group.level"        | "[data-tag=level]"        |
