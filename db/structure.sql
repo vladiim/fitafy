@@ -297,6 +297,42 @@ ALTER SEQUENCE workout_exercises_id_seq OWNED BY workout_exercises.id;
 
 
 --
+-- Name: workout_popularities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE workout_popularities (
+    id integer NOT NULL,
+    workout_id integer,
+    pdfs_downloaded integer DEFAULT 0,
+    views integer DEFAULT 0,
+    unique_member_views integer DEFAULT 0,
+    copies integer DEFAULT 0,
+    favorites integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: workout_popularities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE workout_popularities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workout_popularities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE workout_popularities_id_seq OWNED BY workout_popularities.id;
+
+
+--
 -- Name: workouts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -385,6 +421,13 @@ ALTER TABLE ONLY workout_exercises ALTER COLUMN id SET DEFAULT nextval('workout_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY workout_popularities ALTER COLUMN id SET DEFAULT nextval('workout_popularities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY workouts ALTER COLUMN id SET DEFAULT nextval('workouts_id_seq'::regclass);
 
 
@@ -442,6 +485,14 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY workout_exercises
     ADD CONSTRAINT workout_exercises_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workout_popularities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY workout_popularities
+    ADD CONSTRAINT workout_popularities_pkey PRIMARY KEY (id);
 
 
 --
@@ -660,3 +711,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130204104623');
 INSERT INTO schema_migrations (version) VALUES ('20130217020503');
 
 INSERT INTO schema_migrations (version) VALUES ('20130217020531');
+
+INSERT INTO schema_migrations (version) VALUES ('20130217032022');

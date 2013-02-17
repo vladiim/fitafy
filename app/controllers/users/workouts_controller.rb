@@ -26,6 +26,8 @@ class Users::WorkoutsController < ApplicationController
     @difficulty        = Workout::DIFFICULTY
     @muscles           = Workout.muscles
 
+    @workout.increase_views
+
     respond_to do |format|
       format.html
       format.pdf { create_and_generate_pdf }

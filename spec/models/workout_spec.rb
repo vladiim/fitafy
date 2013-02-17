@@ -12,6 +12,7 @@ describe Workout do
     it { should have_many :exercises }
     it { should have_many :favorite_workouts }
     it { should have_many(:users).through(:favorite_workouts) }
+    it { should have_one workout_popularity }
   end
 
   describe "validate" do
@@ -193,6 +194,15 @@ describe Workout do
     it "should copy another workout's exercises" do
       subject.copy_workout_exercises(other_workout)
       subject.exercises.should eq exercises
+    end
+  end
+
+  describe '#increase_views' do
+    let(:popularity) { OpenStruct.new(increase_views: 'PASS MESSAGE TO POPULARITY') }
+    before { mock(subject).workout_popularity { popularity } }
+
+    it 'passes the message on to the workout_popularity object' do
+      subject.increase_views.should eq 'PASS MESSAGE TO POPULARITY'
     end
   end
 end

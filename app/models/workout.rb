@@ -13,10 +13,10 @@ class Workout < ActiveRecord::Base
   has_many :favorite_workouts,  dependent: :destroy
   has_many :users,              through: :favorite_workouts, dependent: :destroy
   belongs_to :user
+  has_one :workout_popularity
   accepts_nested_attributes_for :workout_exercises, reject_if: :w_e_set_blank?
 
   validates_presence_of :name, :user_id
-
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
   validates :difficulty, inclusion:   { in: DIFFICULTY },    if: :difficulty?
 
@@ -24,6 +24,8 @@ class Workout < ActiveRecord::Base
 
   scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
   scope :offset_by_page, lambda { |page| self.limit(20).offset(page.to_i * 20) }
+
+  after_create :create_workout_popularity
 
   def self.trending
     # TODO:
@@ -95,6 +97,10 @@ class Workout < ActiveRecord::Base
     end
   end
 
+  def increase_views
+    self.workout_popularity.increase_views
+  end
+
   def to_param
     "#{id}-#{name}".parameterize
   end
@@ -107,5 +113,9 @@ class Workout < ActiveRecord::Base
 
   def difficulty?
     !difficulty.nil?
+  end
+
+  def create_workout_popularity
+    self.workout_popularity = WorkoutPopularity.create(workout_id: self.id)
   end
 end

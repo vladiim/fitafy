@@ -40,7 +40,7 @@ module WorkoutHelper
   end
 
   def link_to_delete_workout workout, snapz_message
-    if can? :manage, workout
+    if current_user && workout.user_id == current_user.id
       link_to "DELETE WORKOUT", user_workout_path(current_user, workout), 
                                 method: :delete,
                                 class: "btn btn-danger button_space",
