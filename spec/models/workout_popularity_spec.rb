@@ -25,12 +25,35 @@ describe WorkoutPopularity do
   	it { should belong_to :workout }
   end
 
-  describe '#increase_views' do
-  	before { mock(popularity).save { true } }
+  describe '#increase_' do
+    before { mock(popularity).save { true } }
 
-  	it 'increases the views by 1' do
-  	  popularity.increase_views
-  	  popularity.views.should eq 1
-  	end
+    context 'views' do
+  	  it 'increases the views by 1' do
+  	    popularity.increase_views
+  	    popularity.views.should eq 1
+  	  end
+    end
+
+    context 'copies' do
+  	  it 'increases the copies by 1' do
+  	    popularity.increase_copies
+  	    popularity.copies.should eq 1
+  	  end
+    end
+
+    context 'favorites' do
+  	  it 'increases the favorites by 1' do
+  	    popularity.increase_favorites
+  	    popularity.favorites.should eq 1
+  	  end
+    end
+
+    context 'pdfs_downloaded' do
+  	  it 'increases the pdfs_downloaded by 1' do
+  	    popularity.increase_pdfs_downloaded
+  	    popularity.pdfs_downloaded.should eq 1
+  	  end
+    end
   end
 end

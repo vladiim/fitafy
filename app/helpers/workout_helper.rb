@@ -21,13 +21,13 @@ module WorkoutHelper
   end
 
   def link_to_add_exercise workout
-    if can? :manage, workout
+    if current_users_workout?(workout)
       link_to "ADD EXERCISE", "#add_workout_exercise", class: "add_workout_exercise_form btn btn-primary button_space", "data-toggle" => "modal"
     end
   end
 
   def link_to_create_copy workout
-    unless can? :manage, workout
+    unless current_users_workout?(workout)
   	  link_to "CREATE COPY", copy_workouts_path({id: workout.id}), 
         method: :post,
   	    class: "btn btn-primary button_space"
@@ -40,7 +40,7 @@ module WorkoutHelper
   end
 
   def link_to_delete_workout workout, snapz_message
-    if current_user && workout.user_id == current_user.id
+    if current_users_workout?(workout)
       link_to "DELETE WORKOUT", user_workout_path(current_user, workout), 
                                 method: :delete,
                                 class: "btn btn-danger button_space",
@@ -58,5 +58,11 @@ module WorkoutHelper
 
   def new_workout
     [current_user, current_user.build_workout]
+  end
+
+  private
+
+  def current_users_workout?(workout)
+    current_user && workout.user_id == current_user.id
   end
 end

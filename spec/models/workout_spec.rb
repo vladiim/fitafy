@@ -12,7 +12,7 @@ describe Workout do
     it { should have_many :exercises }
     it { should have_many :favorite_workouts }
     it { should have_many(:users).through(:favorite_workouts) }
-    it { should have_one workout_popularity }
+    it { should have_one :workout_popularity }
   end
 
   describe "validate" do
@@ -197,12 +197,40 @@ describe Workout do
     end
   end
 
-  describe '#increase_views' do
-    let(:popularity) { OpenStruct.new(increase_views: 'PASS MESSAGE TO POPULARITY') }
+  describe 'workout_popularity' do
+    let(:popularity) { OpenStruct.new(options) }
     before { mock(subject).workout_popularity { popularity } }
 
-    it 'passes the message on to the workout_popularity object' do
-      subject.increase_views.should eq 'PASS MESSAGE TO POPULARITY'
+    describe '#increase_views' do
+      let(:options) { { increase_views: 'PASS MESSAGE TO POPULARITY' } }
+
+      it 'passes increase_views on to the workout_popularity object' do
+        subject.increase_views.should eq 'PASS MESSAGE TO POPULARITY'
+      end
+    end
+
+    describe '#increase_copies' do
+      let(:options) { { increase_copies: 'PASS MESSAGE TO POPULARITY' } }
+
+      it 'passes increase_copies on to the workout_popularity object' do
+        subject.increase_copies.should eq 'PASS MESSAGE TO POPULARITY'
+      end
+    end
+
+    describe '#increase_favorites' do
+      let(:options) { { increase_favorites: 'PASS MESSAGE TO POPULARITY' } }
+
+      it 'passes increase_favorites on to the workout_popularity object' do
+        subject.increase_favorites.should eq 'PASS MESSAGE TO POPULARITY'
+      end
+    end
+
+    describe '#increase_pdfs_downloaded' do
+      let(:options) { { increase_pdfs_downloaded: 'PASS MESSAGE TO POPULARITY' } }
+
+      it 'passes increase_pdfs_downloaded on to the workout_popularity object' do
+        subject.increase_pdfs_downloaded.should eq 'PASS MESSAGE TO POPULARITY'
+      end
     end
   end
 end

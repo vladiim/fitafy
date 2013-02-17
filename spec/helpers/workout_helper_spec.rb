@@ -3,8 +3,8 @@ require_relative '../../app/helpers/workout_helper'
 
 describe "WorkoutHelper" do
   let(:helper)       { Object.new.extend WorkoutHelper }
-  let(:workout)      { OpenStruct.new id: 1 }
-  let(:current_user) { Object.new }
+  let(:workout)      { OpenStruct.new id: 1, user_id: 1 }
+  let(:current_user) { OpenStruct.new id: 1 }
 
   describe "#link_to_baby_form" do
     let(:form_attribute) { :name }
@@ -54,7 +54,7 @@ describe "WorkoutHelper" do
 
     context "current_user's workout" do
       before do
-        mock(helper).can?(:manage, workout) { true }
+        mock(helper).current_user.times(2) { current_user }
         mock(helper).link_to("ADD EXERCISE", anything, anything) { "ADD EXERCISE LINK" }
       end
 
@@ -64,7 +64,7 @@ describe "WorkoutHelper" do
     end
 
     context "not current_user's workout" do
-      before { mock(helper).can?(:manage, workout) { false } }
+      before { mock(helper).current_user { nil } }
 
       it "renders nothing" do
         result.should eq nil
@@ -78,7 +78,7 @@ describe "WorkoutHelper" do
 
     context "not current_user's workout" do
       before do
-        mock(helper).can?(:manage, workout) { false }
+        mock(helper).current_user { nil }
         mock(helper).copy_workouts_path({id: 1})
         mock(helper).link_to("CREATE COPY", anything, anything) { copy_link }
       end
@@ -89,7 +89,7 @@ describe "WorkoutHelper" do
     end
 
     context "current_user's workout" do
-      before { mock(helper).can?(:manage, workout) { true } }
+      before { mock(helper).current_user.times(2) { current_user } }
 
       it "creates a link to copy the workout" do
         result.should eq nil
@@ -112,15 +112,13 @@ describe "WorkoutHelper" do
   end
 
   describe "#link_to_delete_workout" do
-    let(:workout)       { Object.new }
     let(:snapz_message) { Object.new }
     let(:result)        { helper.link_to_delete_workout(workout, snapz_message) }
 
     context "current_user's workout" do
       before do
-        mock(helper).can?(:manage, workout) { true }
+        mock(helper).current_user.times(3) { current_user }
         mock(helper).user_workout_path(anything, anything)
-        mock(helper).current_user { Object.new }
         mock(helper).link_to("DELETE WORKOUT", anything, anything) { "DESTROY WORKOUT" }
       end
 
@@ -130,7 +128,7 @@ describe "WorkoutHelper" do
     end
 
     context "not current_user's workout" do
-      before { mock(helper).can?(:manage, workout) { false } }
+      before { mock(helper).current_user { nil } }
 
       it "renders nothing" do
         result.should eq nil

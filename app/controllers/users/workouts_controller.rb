@@ -38,6 +38,7 @@ class Users::WorkoutsController < ApplicationController
   private
 
     def create_and_generate_pdf
+      @workout.increase_pdfs_downloaded
       pdf = WorkoutPdf.new @workout
       pdf.generate_content
       send_data pdf.render, pdf.render_details

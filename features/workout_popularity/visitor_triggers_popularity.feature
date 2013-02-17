@@ -8,22 +8,17 @@ Feature: Visitor triggers popularity
     When I visit the workout page
     Then the workout's view popularity number increases
 
-  @focus
-  Scenario: Visitor interacts with the workout
+  Scenario Outline: Visitor interacts with the workout
     Given a workout exsists
-    And I'm on thw workout page
+    And I'm a logged in trainer
+    And I'm on a workout's page
     When I click a <cta> workout cta
     Then the workout popularity <unit> increases
 
     Examples:
-      | cta                | unit             |
-      | 'COPY WORKOUT'     | :copies          |
-      | 'ADD TO FAVORITES' | :favorites       |
-      | 'DOWNLOAD AS PDF'  | :pdfs_downloaded |
+      | cta                | unit              |
+      | "CREATE COPY"      | "copies"          |
+      | "ADD TO FAVORITES" | "favorites"       |
+      | "DOWNLOAD AS PDF"  | "pdfs_downloaded" |
 
   Scenario: Signed up member visits workout
-
-  Scenario: CREATE MIGRATION THAT ADDS WORKOUT_POPULARITY TO WORKOUTS
-    Given blah
-    When lala
-    Then jar
