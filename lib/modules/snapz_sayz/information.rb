@@ -11,7 +11,7 @@ module SnapzSayz
   	end
 
   	def self.usp
-      "Gazillions of workouts and exercises to help you manage your Personal Training clients!"
+      "Find, copy, create and manage workouts for your PT clients."
   	end
 
     def self.unauthorized

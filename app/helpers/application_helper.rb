@@ -4,7 +4,7 @@ module ApplicationHelper
     if @title
       @title.upcase
     else 
-      SnapzSayz::Information.title
+      'Fitafy'
     end
   end
 

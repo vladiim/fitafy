@@ -4,6 +4,8 @@
   = render "head"
 
   %body#main.container{ :class => "#{ controller.controller_name }" }
+    %noscript You need to enable Javascript to get the most out of fitafy
+    %a{ :accesskey => 's', :href => '#main', class: 'hidden' } skip to content
     = render "chromeframe"
     .main_section= render "header"
 
