@@ -29,7 +29,7 @@ class Workout < ActiveRecord::Base
 
   def self.trending
     # TODO:
-    limit 4
+    Workout.order("RANDOM()").limit(6)
   end
 
   def self.filter_by_exercise_muscles muscles=nil

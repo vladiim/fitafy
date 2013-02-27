@@ -1,6 +1,7 @@
 Given /^on my edit profile page$/ do
-  click_link @trainer.username.upcase
-  click_link "EDIT PROFILE"
+  within('.navbar') do
+    click_link "EDIT PROFILE"
+  end
 end
 
 When /^I click delete account$/ do

@@ -1,17 +1,9 @@
-<li class="workout_item box_list well span2">
-  <article class='{{muscles}}'>
-    <header>
-      <h5 class="upcase">
-        <a href='{{url}}' class='workout_title_link'>
-          {{name}}
-        </a>
-      </h5>
-    </header>
-    <p>Level: {{client_level}}</p>
-    <p>Difficulty: {{difficulty}}</p>
-    <p class="upcase">by: {{username}}</p>
-    <p class=>
-      Exercises: {{exercises_count}}
-    </p>
-  </article>
+<li>
+  <a href='{{url}}'>
+    <strong class='title'>{{name}}</strong>
+    <strong class='caption'>{{username}}</strong>
+    <img src="assets/new_design/ico01.png" width='66' height='53' alt='{{name}}'>
+    <img src="assets/new_design/ico01-h.png" width="66" height="52" alt="{{name}}" class="hover">
+    <span class='note'>EXERCISES: {{exercises_count}}</span>
+  </a>
 </li>

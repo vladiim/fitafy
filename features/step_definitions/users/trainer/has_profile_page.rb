@@ -1,5 +1,7 @@
 When /^I visit my profile page$/ do
-  click_link @trainer.username.upcase
+  within('.navbar') do
+  	click_link 'PROFILE'
+  end
 end
 
 Then /^I should see my account details$/ do

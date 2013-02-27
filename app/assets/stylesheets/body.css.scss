@@ -1,0 +1,28 @@
+body{
+	color:#3c3c3c;
+	background:#efede4;
+	padding:0;
+	font:13px/15px Helvetica, Arial, sans-serif;
+	-webkit-text-size-adjust:100%;
+	-ms-text-size-adjust: none;
+	min-width:320px;
+}
+input[type=text], input[type=password], input[type=file], input[type=submit], textarea{
+	-webkit-appearance:none;
+	-webkit-border-radius:0;
+}
+a{
+	text-decoration:none;
+	color:#cd0000;
+}
+a:focus,
+a:hover{
+	text-decoration:underline;
+	color:#cd0000;
+}
+a:active{background-color:transparent;}
+#wrapper{
+	width:100%;
+	position:relative;
+	overflow:hidden;
+}

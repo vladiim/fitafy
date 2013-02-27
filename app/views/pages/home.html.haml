@@ -1,21 +1,22 @@
-%section#home_usp.hero-unit
-  %p#usp_copy
-    = @snapz.usp
-
-  %table#homepage_cta
-    %tr
-      %td
-
-        #find_workouts= link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
-      %td
-        #create_workouts= link_to_create_workout_button
+%section.container-fluid
+  .row-fluid
+    .span12
+      .main-visual
+        .text-holder
+          %h1 DIGITAL WORKOUTS
+          %p= @snapz.usp
+          .btn-holder
+            = link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
+            = link_to_create_workout_button
 
 - unless @workouts.empty?
-  %aside
-    %header#trending
-      %h5 TRENDING WORKOUTS
-  
-      %ul#trending_workouts.row
-      - @workouts.each do |workout|
-        - @renderer.workout = workout
-        = @renderer.render.html_safe
+  %aside.row-fluid
+    .span12
+      .workout-holder
+        %header
+          %h3 SOME WORKOUTS
+
+      %ul.workout-list
+        - @workouts.each do |workout|
+          - @renderer.workout = workout
+          = @renderer.render.html_safe

@@ -1,15 +1,38 @@
+.main-visual{
+	background:url(new_design/bg-main-visual.png) no-repeat;
+	background-position:50% 0;
+	width:1022px;
+	min-height:444px;
+	margin:0 -45px 8px -37px;
+	padding:109px 0 30px 12.2%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.main-visual .text-holder{
+	padding:0 0 30px;
+	max-width:38%;
+	font: 25px/30px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+	color:#373636;
+}
+
+
+//------------------------------
+// OLD
+//------------------------------
+
 // hide the section title
 //h1 { display: none }
 
-section#home_usp {
-	width: 80%;
-	p#usp_copy {
-		margin: -40px 0 50px 0;
-		font-size: 4em;
-		line-height: 1.2em;
-	}
-}
+//section#home_usp {
+//	width: 80%;
+//	p#usp_copy {
+//		margin: -40px 0 50px 0;
+//		font-size: 4em;
+//		line-height: 1.2em;
+//	}
+//}
 
-header#trending { margin-bottom: 10px; }
+//header#trending { margin-bottom: 10px; }
 
-aside ul#trending_workouts { margin-left: 5px; }
+//aside ul#trending_workouts { margin-left: 5px; }

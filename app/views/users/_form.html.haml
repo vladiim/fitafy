@@ -13,8 +13,8 @@
   .span3.well
     = simple_form_for @user do |f|
       = f.error_notification
-      = f.input :gym
-      = f.input :bio, input_html: { rows: 8 }
+      / = f.input :gym
+      / = f.input :bio, input_html: { rows: 8 }
       = f.submit "SAVE CHANGES", class: "btn btn-primary"
 
 %aside.row

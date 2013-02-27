@@ -1,5 +1,7 @@
 When /^I edit my profile$/ do
-  click_link "EDIT PROFILE"
+  within('.navbar') do
+    click_link "EDIT PROFILE"
+  end
   fill_in "user_username", with: "gza"
   fill_in "user_email",    with: "gza@wu.com"
   click_button "SAVE CHANGES"

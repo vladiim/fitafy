@@ -7,5 +7,5 @@ Then /^I should see a list of workouts$/ do
 end
 
 Then /^I should see how many exercises the workout has$/ do
-  page.should have_content "Exercises: 1"
+  page.should have_content "EXERCISES: 1"
 end

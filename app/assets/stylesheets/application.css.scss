@@ -5,7 +5,34 @@
 //-----------------------------------------
 // Variables come first
 //-----------------------------------------
-@import "variables";
+//@import "variables";
+
+//-----------------------------------------
+// Mixins
+//-----------------------------------------
+@import 'gradients';
+
+//-----------------------------------------
+// New Design
+//-----------------------------------------
+@import 'font';
+@import 'nav';
+@import 'workouts';
+@import 'user';
+
+//-----------------------------------------
+// Bootstrap
+//-----------------------------------------
+@import "bootstrap_base";
+@import 'bootstrap-responsive';
+
+//-----------------------------------------
+// New Design
+//-----------------------------------------
+@import "all";
+@import 'body';
+@import 'homepage';
+@import 'typography';
 
 //-----------------------------------------
 // Imports
@@ -16,20 +43,7 @@
 //-----------------------------------------
 // Prepend includes
 //-----------------------------------------
-@include h5bp-normalize;
-
-//-----------------------------------------
-// Custom application partials
-//-----------------------------------------
-@import "application/chromeframe";
-@import "application/document";
-@import "application/media_queries"; // Media queries last
-
-//-----------------------------------------
-// Bootstrap
-//-----------------------------------------
-@import "bootstrap_base";
-//@import 'bootstrap-responsive';
+//@include h5bp-normalize;
 
 //-----------------------------------------
 // Append includes
@@ -38,7 +52,7 @@
 @include h5bp-media;
 
 //-----------------------------------------
-// CSS Files
+// Old CSS Files
 //-----------------------------------------
 //@import "base";
 //@import "box_list";
@@ -57,6 +71,8 @@
 //@import "tables";
 
 //-----------------------------------------
-// New Design
+// Custom application partials
 //-----------------------------------------
-@import "all";
+@import "application/chromeframe";
+@import "application/document";
+@import "application/media_queries"; // Media queries last

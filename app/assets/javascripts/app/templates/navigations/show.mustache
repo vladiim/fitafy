@@ -1,48 +1,53 @@
-<div class='navbar navbar-fixed-top'>
-  <div class='navbar-inner'>
-  	<div class='container'>
-  		<ul class='nav'>
-  		  <li id='logo fitafy_logo'>
-  		    <a href="/" id='logo'><img src="/assets/logo.png" alt='fitafy' height='30' width='30'></a>
-  		  </li>
+<div class="navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <header id="header">
+      <a href="#" class="btn btn-navbar collapsed" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar">&nbsp;</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <strong class="logo"><a href="/">fitafy</a></strong>
+      <div class="nav-collapse">
+        <ul class="nav">
 
-        {{# logged_in_trainer }}
-          <li class='dropdown'>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">WORKOUTS</a>
-            <ul class='dropdown-menu'>
-              <li>
-                <a href="{{workouts_path}}">ALL WORKOUTS</a>
-              </li>
-              <li>
-                <a href="#new_workout_modal" data-toggle='modal'>NEW WORKOUT</a>
-              </li>
-            </ul>
-          </li>
-        {{/ logged_in_trainer }}
+          {{# logged_in_trainer }}
+            <li class='dropdown' accesskey='w'>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>WORKOUTS</span></a>
+              <ul class='dropdown-menu'>
+                <li>
+                  <a href="{{workouts_path}}"><span>ALL WORKOUTS</span></a>
+                </li>
+                <li>
+                  <a href="#new_workout_modal" data-toggle='modal'><span>NEW WORKOUT</span></a>
+                </li>
+              </ul>
+            </li>
+          {{/ logged_in_trainer }}
 
         {{^ logged_in_trainer }}
-          <li>
-            <a href="{{workouts_path}}">WORKOUTS</a>
+          <li accesskey='w'>
+            <a href="{{workouts_path}}"><span>WORKOUTS</span></a>
           </li>
         {{/ logged_in_trainer }}
 
+
         {{# admin }}
-          <li class='dropdown'>
-            <a href="#" class='dropdown-toggle' data-toggle='dropdown'>EXERCISES</a>
+          <li class='dropdown' accesskey="o">
+            <a href="#" class='dropdown-toggle' data-toggle='dropdown'><span>EXERCISES</span></a>
             <ul class='dropdown-menu'>
               <li>
-                <a href="{{exercises_path}}">EXERCISES</a>
+                <a href="{{exercises_path}}"><span>EXERCISES</span></a>
               </li>
               <li>
-                <a href="{{new_exercise_path}}">NEW EXERCISE</a>
+                <a href="{{new_exercise_path}}"><span>NEW EXERCISE</span></a>
               </li>
             </ul>
           </li>
         {{/ admin }}
 
         {{# staff }}
-          <li class='dropdown'>
-            <a href="#" class='dropdown-toggle new_features' data-toggle='dropdown'>NEW FEATURES</a>
+          <li class='dropdown' accesskey="r">
+            <a href="#" class='dropdown-toggle new_features' data-toggle='dropdown'><span>NEW FEATURES</span></a>
             <ul class='dropdown-menu'>
               {{# new_feature }}
                 <li>
@@ -58,25 +63,21 @@
 
         <ul class='nav pull-right' id='user_nav_button'>
           {{# logged_in_trainer }}
-            <li class='btn-group'>
-              <a class="btn btn-inverse" href="{{current_user_path}}">
-                <img src="{{current_user_thumbnail_avatar}}" alt{{user_name}}>
-                {{user_name}}
-              </a>
-
-              <a href="#" class='btn btn-inverse dropdown-toggle' data-toggle='dropdown' id='user_drop_down'>
-                <span class='caret'></span>
+            <li class='dropdown'>
+              <a data-toggle='dropdown'>
+                <span><img src="{{current_user_thumbnail_avatar}}" alt{{user_name}}>
+                {{user_name}}</span>
               </a>
 
               <ul class='dropdown-menu'>
                 <li>
-                	<a href="{{current_user_path}}">PROFILE</a>
+                  <a href="{{current_user_path}}"><span>PROFILE</span></a>
                 </li>
                 <li>
-                	<a href="{{edit_user_path}}">EDIT PROFILE</a>
+                  <a href="{{edit_user_path}}"><span>EDIT PROFILE</span></a>
                 </li>
                 <li>
-                	<a href="{{logout_path}}" data-method='delete' rel='nofollow'>LOGOUT</a>
+                  <a href="{{logout_path}}" data-method='delete' rel='nofollow'><span>LOGOUT</span></a>
                 </li>
               </ul>
             </li>
@@ -84,14 +85,15 @@
 
           {{^ logged_in_trainer }}
             <li>
-              <a href="{{login_path}}">LOGIN</a>
+              <a href="{{login_path}}"><span>LOGIN</span></a>
             </li>
             <li>
-              <a href="{{sign_up_path}}">SIGN UP</a>
+              <a href="{{sign_up_path}}"><span>SIGN UP</span></a>
             </li>
           {{/ logged_in_trainer }}
         </ul>
+
       </div>
-  	</div>
+    </header>
   </div>
 </div>

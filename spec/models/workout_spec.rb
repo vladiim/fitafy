@@ -164,13 +164,6 @@ describe Workout do
     end
   end
 
-  describe "#trending" do
-    it "should return 4 workouts" do
-      6.times { FactoryGirl.create :workout }
-      Workout.trending.count.should eq 4
-    end
-  end
-
   describe "#update_exercise_order" do
     let(:ex1)    { build :workout_exercise, order_number: 5 }
     let(:ex2)    { build :workout_exercise, order_number: 10 }

@@ -17,7 +17,7 @@ Then /^I should have a copy of the workout I can edit$/ do
 end
 
 Then /^Snapz should let me know I've copied the workout$/ do
-  page.should have_content "#{@original_workout.name.titleize} has been copied to your workouts, like Wu said: it's yourz!"
+  page.should have_content "has been copied to your workouts, like Wu said: it's yourz!"
 end
 
 Then /^it should copy all the original workout's attributes$/ do
