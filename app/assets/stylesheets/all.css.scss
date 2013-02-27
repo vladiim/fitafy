@@ -599,39 +599,7 @@ background: linear-gradient(to bottom,  rgba(110,109,109,1) 0%,rgba(59,59,58,1) 
 }
 #main .btns .btn{margin:0 0 8px;}
 #main .btns .btn:hover{margin:0 0 6px;}
-#footer{
-	width:100%;
-	background:#323233 url(new_design/bg-nav.png);
-}
-#footer .logo{
-	background-position:-100px 0;
-	width:100px;
-	height:83px;
-	margin:1px 36px 5px -28px;
-}
-.footer-nav{
-	float:left;
-	margin:0 20px 5px 0;
-	text-transform:uppercase;
-	font: 18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
-}
-.footer-nav ul{
-	padding:0;
-	margin:0;
-	list-style:none;
-}
-.footer-nav li{padding:0 0 2px;}
-.footer-nav a{color:#fff;}
-.footer-holder{
-	margin:0 auto;
-	width:100%;
-	max-width:940px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	padding:28px 20px 13px;
-	overflow:hidden;
-}
+
 .hidden{
 	position:absolute;
 	left:-10000px;
