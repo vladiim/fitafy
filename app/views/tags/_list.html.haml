@@ -1,7 +1,14 @@
-#active_tag_container{"class" => "span#{width}"}
-  = link_to "SORT BY TAGS", "#", class: "btn btn-primary", id: "show_tags_button"
-  #active_tags
+%aside.tabs-holder
+  .holder
+    %ul#active_tag_container.span12.tabset
+      %li
+        %a{ href: '#', class: 'btn', id: 'show_tags_button' } FIND WORKOUTS
 
-#inactive_tags.well.hidden{"class" => "span#{width}"}
-  - @muscles.each do |tag|
-    = link_to_single_param_tags tag
+.tab-content
+  %a{ href: '#', class: 'btn-close' } close
+  .box
+    %strong.title MUSCLES
+    %ul.btn-list#inactive_tags
+      %li
+        - @muscles.each do |tag|
+          = link_to_single_param_tags tag
