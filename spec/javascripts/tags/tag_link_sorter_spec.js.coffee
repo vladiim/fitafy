@@ -11,8 +11,8 @@ describe "TagLinkSorter", ->
     beforeEach -> @chest.click()
 
     it "moves the chest link tag to active_tags", ->
-      expect($("#active_tags > a.chest")).toExist()
-      expect($("#inactive_tags > a.chest")).not.toExist()
+      expect($("#active_tag_container > li > a.chest")).toExist()
+      expect($("#inactive_tags > .box > ul > li > a.chest")).not.toExist()
 
     it "removes the workouts from the page", ->
       expect($("ul#workout_list > li")).not.toBe()

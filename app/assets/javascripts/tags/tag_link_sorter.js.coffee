@@ -5,7 +5,7 @@
     @loader.init()
     @tag_links         = $(".tag_link")
     @inactiveTags      = $("#inactive_tags")
-    @activeTags        = $("#active_tags")
+    @activeTags        = $("#active_tag_container > li")
     @activeTagNames    = new Array
     @show_tags_button  = $("#show_tags_button")
     @tagLinkListener()

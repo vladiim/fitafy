@@ -1,7 +1,7 @@
 module TagsHelper
 
   def link_to_single_param_tags(tag)
-    link_to tag.upcase, '#', class: "#{tag.downcase} tag_link btn alt"
+    link_to tag.upcase, '#', class: "#{tag.downcase} tag_link inactive btn alt"
   end
 
   def link_to_muscle_tag(muscle, workout=nil)
