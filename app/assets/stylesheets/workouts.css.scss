@@ -85,32 +85,8 @@
 
 .workout-list a strong{ text-transform: uppercase; }
 
-//-----------------------------------------
-// OLD
-//-----------------------------------------
-//#workouts {
-//  margin-top: 20px;
-//}
-
-//#workout_form {
-//	margin-left: 40px;
-//}
-
-//.end_of_workouts > p {
-//  margin: 20px;
-//  color: red;
-//  text-align: center;
-//  font-size: 200%;
-//}
-
-//a.new_workout_plus { 
-//  font-size: 1000%;
-//  font-weight: bold;
-//  margin-left: 30px;
-//}
-
-//a.new_workout_plus:hover { text-decoration: none; }
-
-//a.new_workout_plus:visited { color: '#0088cc'; }
-
-//.editable { background: pink; }
+.end_of_workouts p { 
+  font-size: 200%;
+  font-weigth: bold;
+  text-align: center;
+}

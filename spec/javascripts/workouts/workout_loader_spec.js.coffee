@@ -55,7 +55,7 @@ describe "WorkoutLoader", ->
     afterEach -> @server.restore()
 
     it "lets the user know there are no more workouts", ->
-      expect($(".end_of_workouts > p")).toHaveText("No more workouts!")
+      expect($(".end_of_workouts > p")).not.toHaveClass("hidden")
 
     it "sets allWorkoutsLoaded to true", ->
       expect(WorkoutLoader.allWorkoutsLoaded).toEqual(true)

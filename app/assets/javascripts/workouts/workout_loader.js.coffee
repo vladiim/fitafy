@@ -5,6 +5,7 @@
     @page              = 0
     @muscles           = []
     @ul                = $("#workout_list")
+    @end_workouts      = $(".end_of_workouts > p")
     @allWorkoutsLoaded = false
     @renderer          = HoganTemplateBuilder
     @windowScrollCheck()
@@ -27,6 +28,7 @@
 
   reloadWorkouts: (muscles) ->
     @allWorkoutsLoaded = false
+    if @notHidden() then @end_workouts.addClass('hidden')
     @page    = 0
     @muscles = muscles
     @getAndRenderWorkouts()
@@ -37,7 +39,7 @@
   generateParam: -> $.param( { muscles: @muscles, page: @page } )
 
   render: (workouts) =>
-    if workouts.length then WorkoutLoader.addWorkouts(workouts) else WorkoutLoader.noMoreWorkouts()
+    if workouts.length > 0 then WorkoutLoader.addWorkouts(workouts) else WorkoutLoader.noMoreWorkouts()
 
   addWorkouts: (workouts) ->
     @addWorkout(workout) for workout in workouts
@@ -45,5 +47,8 @@
   addWorkout: (workout) -> @ul.append(@renderer.render('app/templates/workouts/index', workout))
 
   noMoreWorkouts: ->
-    $(".end_of_workouts > p").text("No more workouts!")
+    @end_workouts.removeClass('hidden')
     @allWorkoutsLoaded = true
+
+  notHidden: ->
+    !@end_workouts.hasClass('hidden')
