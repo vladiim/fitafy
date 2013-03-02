@@ -10,40 +10,39 @@
         %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
         %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
         = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
-%br
 
-.workout_form_group.notes.well.span10
-  .workout_value.notes
-    %h5 NOTES
-    %p= @workout.notes.humanize
-    - if can? :manage, @workout
-      = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
 
-      .hidden.workout_form.notes
-        %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
-        %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
-        = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'   
+.row-fluid
+  .span12
 
-%br
+    %article.workout_form_group.notes.notes-holder.span8
+      .workout_value.notes.heading-box
+        = image_tag "new_design/bullet02.png", width: '20', height: '20', alt: 'fitafy star', class: 'ico'
+        %h5 WORKOUT NOTES
+        %p= @workout.notes.humanize
+        - if can? :manage, @workout
+          = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
+          .hidden.workout_form.notes
+            %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
+            %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
+            = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'
 
-%section.row
-  %article.span7
-    %header
-      %h5 EXERCISES
-    %ul.workout_exercises
-      - @workout_exercises.each do |workout_exercise|
-        - @exercise_renderer.workout_exercise = workout_exercise
-        = @exercise_renderer.render.html_safe
+    %aside.span3
+      = render 'stats'
 
-      - if @workout_exercises.empty?
-        = link_to_add_exercise @workout
+%section.container-fluid
+  .row-fluid
+    %article.span8
+      %ul.workout_exercises.exercise-list
+        - @workout_exercises.each do |workout_exercise|
+          - @exercise_renderer.workout_exercise = workout_exercise
+          = @exercise_renderer.render.html_safe
 
-  %aside.span4
-    %header
-      %h5 DETAILS
-    .well
-      = render "stats"
-      = render "cta_buttons"
+        - if @workout_exercises.empty?
+          = link_to_add_exercise @workout
+
+    %aside.span2.offset2
+      %ul.workout_btns= render "cta_buttons"
 
 = render partial: "workouts/add_exercise_modal"
 

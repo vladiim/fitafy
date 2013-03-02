@@ -15,13 +15,13 @@ class Users::WorkoutsController < ApplicationController
 
   def show
     @workout           = Workout.find(params[:id])
-    @workout_path      = current_user ? user_workout_path(current_user, @workout) : '/'
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
     @trainer           = User.find @workout.user_id
+    @workout_path      = users_workout_path(@trainer.username, @workout)
     @current_user      = current_user ? current_user : nil
   	@title             = @workout.name
-    @snapz_confirm     = SnapzSayz::WorkoutExerciseSpeak.confirm_delete
+    @snapz_confirm     = SnapzSayz::WorkoutSpeak.confirm_delete
     @client_level      = Workout::CLIENT_LEVELS
     @difficulty        = Workout::DIFFICULTY
     @muscles           = Workout.muscles

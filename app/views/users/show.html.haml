@@ -1,6 +1,6 @@
 %article.row.user_details
   .span1.user_profile_pic
-    #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
+    #profile= image_tag(@user.display_avatar)
 
   .span5.user_profile_details.well
     %header

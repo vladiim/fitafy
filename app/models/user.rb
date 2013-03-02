@@ -131,6 +131,14 @@ class User < ActiveRecord::Base
     features.keys.include?(feature)
   end
 
+  def display_avatar(transformation=nil)
+    avatar_url ? avatar_url(transformation: transformation) : "das_boot.png"
+  end
+
+  def display_grayscale_avatar
+    display_avatar('e_grayscale')
+  end
+
   private
 
     def make_user_trainer

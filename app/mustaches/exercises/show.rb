@@ -11,12 +11,6 @@ module Exercises
     delegate :equipment_name, to: :@exercise
     delegate :products,       to: :@exercise
 
-    # products - gives array of 8 products
-    # product_name
-    # product_image
-    # analytics_link
-    # price
-
     def equipment
       @exercise.equipment_name.titleize || "No equipment for this exercise"
     end

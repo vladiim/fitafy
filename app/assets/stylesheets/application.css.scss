@@ -10,31 +10,36 @@
 //-----------------------------------------
 // Mixins
 //-----------------------------------------
-@import 'gradients';
+@import 'gradient_mixin';
+@import 'box_mixin';
+@import 'typography';
 
 //-----------------------------------------
 // New Design
 //-----------------------------------------
 @import 'font';
 @import 'nav';
-@import 'workouts';
+@import 'workout_list';
+@import 'workout_show';
+@import 'workout_exercise_list';
 @import 'user';
 @import 'footer';
 @import 'tags';
 
+@import 'buttons';
+
 //-----------------------------------------
 // Bootstrap
 //-----------------------------------------
-@import "bootstrap_base";
+@import "bootstrap";
 @import 'bootstrap-responsive';
 
 //-----------------------------------------
 // New Design
 //-----------------------------------------
-@import "all";
 @import 'body';
 @import 'homepage';
-@import 'typography';
+@import "all";
 
 //-----------------------------------------
 // Imports

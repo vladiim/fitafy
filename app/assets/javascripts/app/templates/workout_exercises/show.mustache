@@ -1,11 +1,14 @@
-<li class='workout_exercise big_box_list row well {{order}}' data-workout-exercise='{{id}}'>
+<li class='workout_exercise big_box_list row {{order}}' data-workout-exercise='{{id}}'>
 
   <aside class='span1 w_e_order {{id}}'>
 
     {{# own_workout}}
-      <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='up' data-workout-exercise='{{id}}'>{{{up_link}}}</a>
-      <p class='order_number'>{{order}}</p>
-      <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down' data-workout-exercise='{{id}}'>{{{down_link}}}</a>
+      <div class='number {{first}}'>
+        <a href="{{url}}" class='change_workout_exercise_order up' data-order='{{order}}' data-move='up' data-workout-exercise='{{id}}'>{{{up_link}}}</a>
+        <span class='order_number'>{{order}}</span>
+        <br />
+        <a href="{{url}}" class='change_workout_exercise_order' data-order='{{order}}' data-move='down' data-workout-exercise='{{id}}'>{{{down_link}}}</a>
+      </div>
     {{/ own_workout}}
 
     {{^ own_workout}}
@@ -15,31 +18,14 @@
   </aside>
 
 
-  <article class='we_details'>
-    <h3 class='span5'>
-      <a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a>
-    </h3>
+  <article class='we_details text-holder'>
+    <header class='heading-box'>
+      <h3><a href="{{exercise_url}}" data-toggle='modal' data-target='#exercise_ajax_modal'>{{name}}</a></h3>
+      <span class='note'>{{muscle}} - {{equipment_name}}</span>
+    </header>
 
-    <div class='set_details span3'>
-      <table class='workout_exercise_set_details'>
-        <tbody data-workout-exercise='{{id}}'>
-
-          {{{javascript_set_details}}}
-
-          {{#set_details}}
-            {{> workout_exercises/set_detail}}
-          {{/set_details}}
-
-        </tbody>
-      </table>
-
-      {{# own_workout}}
-        <a href="{{set_details_url}}" class='new_workout_exercise_set_details btn btn-primary btn-mini'>+ ADD SET</a>
-      {{/ own_workout}}
-    </div>
-
-    <div class='span2 workout_form_group instructions'>
-      <div>{{muscle}} with {{equipment_name}}</div>
+    <div class='span5 workout_form_group instructions'>
+      <!-- <div>{{muscle}} with {{equipment_name}}</div> -->
 
       <br />
 
@@ -56,12 +42,32 @@
           <a href="{{url}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
         </div>
 
-        <br />
-        <br />
-
-        <a href="{{url}}" class='delete_workout_exercise btn btn-danger btn-mini'>DELETE</a>
       {{/ own_workout}}
 
     </div>
+
+    <div class='set_details span5'>
+      <table class='workout_exercise_set_details'>
+        <tbody data-workout-exercise='{{id}}'>
+
+          {{{javascript_set_details}}}
+
+          {{#set_details}}
+            {{> workout_exercises/set_detail}}
+          {{/set_details}}
+
+          {{# own_workout}}
+            <tr><a href="{{set_details_url}}" class='new_workout_exercise_set_details'>+ ADD SET</a></tr>
+          {{/ own_workout}}
+
+        </tbody>
+      </table>
+    </div>
   </article>
+
+  <div class='delete_exercise'>
+    {{# own_workout}}
+      <a href="{{url}}" class='delete_workout_exercise'>DELETE EXERCISE</a>
+    {{/ own_workout}}
+  </div>
 </li>

@@ -41,5 +41,9 @@ module SnapzSayz
     def self.no_level
       "No level info!"
     end
+
+    def self.confirm_delete
+      "You sure you want to delete this workout? Super dooper sure?"
+    end
   end
 end

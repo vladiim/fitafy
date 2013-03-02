@@ -7,15 +7,14 @@
     %noscript You need to enable Javascript to get the most out of fitafy
     %a{ :accesskey => 's', :href => '#main', class: 'hidden' } skip to content
     = render "chromeframe"
-    .main_section= render "header"
 
-    %nav
-      = render "layouts/navigation"
-
-    %section.main_section
-      = render "layouts/flashes"
+    %nav= render "layouts/navigation"
 
     %section.main_section.container{ :role => "main" }
+      = render "layouts/flashes"
+
+      = render "header"
+
       = yield
 
     = render "footer"

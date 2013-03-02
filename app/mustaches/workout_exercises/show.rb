@@ -80,6 +80,10 @@ module WorkoutExercises
       @user.id == user_id
     end
 
+    def first
+      'first' if first_order?
+    end
+
     def render_json(workout_exercise)
       @workout_exercise = workout_exercise
       {
@@ -96,7 +100,8 @@ module WorkoutExercises
       	order:           order,
       	up_link:         up_link,
       	down_link:       down_link,
-      	own_workout:     own_workout
+      	own_workout:     own_workout,
+        first:           first
       }
     end
 

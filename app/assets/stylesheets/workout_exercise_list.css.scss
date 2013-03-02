@@ -1,0 +1,62 @@
+.exercise-list{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.exercise-list li{
+	border:1px solid #dddbd5;
+	border-width:1px 0;
+	padding:10px 0;
+	margin:0 0 15px;
+	overflow:hidden;
+	line-height:15px;
+	position:relative;
+}
+.exercise-list .number {
+	float:left;
+	min-width:40px;
+    margin: -50px 0 0 0;
+	color:#525252;
+	font: 55px/58px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+
+    a.up i { margin: 50px 0 0 4px; }
+}
+
+.exercise-list .number.first { margin: 0; }
+
+.exercise-list .text-holder{
+	overflow:hidden;
+	padding:2px 0 0;
+}
+#main .exercise-list .heading-box{
+	overflow:hidden;
+	position:relative;
+	padding:0 0 6px;
+}
+#main .exercise-list h3{
+	color:#cd0000;
+	text-transform:capitalize;
+	margin:0;
+	float:left;
+	font: 25px/28px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+}
+#main .exercise-list .note{
+	float:right;
+	color:#202020;
+	margin:0 0 0 10px;
+	text-transform:capitalize;
+	font: 25px/28px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+}
+#main .exercise-list p { margin:0 0 11px; }
+.exercise-list .sets{
+	display:block;
+	color:#454545;
+	font: 25px/28px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+}
+
+#main .exercise-list tr.workout_exercise_set_details td { 
+	margin: 10px;
+	padding: 10px;
+}
+
+#main .exercise-list .delete_exercise { text-align: right; }
