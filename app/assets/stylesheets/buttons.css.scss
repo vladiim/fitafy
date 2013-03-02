@@ -1,12 +1,3 @@
-.workout_btns li {
-	list-style: none;
-
-	a.btn {
-		padding: 5px 47.5px !important;
-		margin: 10px 0 10px -15px !important;
-	}
-}
-
 #main .notes-holder .btn,
 #main .user-details .btn{
 	position:absolute;
@@ -42,6 +33,12 @@
 	background: -o-linear-gradient(top,  rgba(138,138,136,1) 0%,rgba(86,86,84,1) 100%);
 	background: -ms-linear-gradient(top,  rgba(138,138,136,1) 0%,rgba(86,86,84,1) 100%);
 	background: linear-gradient(to bottom,  rgba(138,138,136,1) 0%,rgba(86,86,84,1) 100%);
+}
+
+#main #header .btn-navbar {
+	min-width: 20px;
+	min-height: 15px;
+	margin: 20px 40px 0 0;
 }
 
 .btns{

@@ -1,3 +1,11 @@
+.workout_form_group.level {
+	margin: 20px 0 0 0;
+}
+
+// -----------------------
+// NOTES
+// -----------------------
+
 .notes-holder{
 	overflow:hidden;
 	position:relative;
@@ -50,6 +58,10 @@
 	margin:4px 15px 0 -1px;
 }
 
+// -----------------------
+// STATS
+// -----------------------
+
 #workout_stats { @include smooth-box; }
 
 #workout_stats .title{
@@ -70,6 +82,22 @@
 
 #workout_stats .box.profile { margin: 0 -20px 0 -10px; }
 
+@media only screen and (max-width: 980px) {
+	#workout_stats #profile {
+		margin: 0 0 15px 10px !important;
+	}	
+}
+
+@media only screen and (max-width: 767px) {
+	#workout_stats .box {
+		text-align: left;
+
+		p { margin-left: 10px; }
+	}
+
+    #workout_stats .show_workout_form { margin: 0 !important; }
+}
+
 #workout_stats .box.workout_form_group { margin-left: 20px; }
 
 #workout_stats:hover .hover,
@@ -78,12 +106,10 @@
 	margin:0 auto 4px;
 }
 
-.workout_form_group.level {
-	margin: 20px 0 0 0;
-}
-
 #workout_stats:hover img.grayscale,
 #workout_stats .hover { display:none; }
+
+.hover_box:hover { @include list-hover; }
 
 #workout_stats:hover { @include list-hover; }
 
@@ -96,3 +122,27 @@
 }
 
 #workout_stats .show_workout_form { margin: 0 0 0 100px; }
+
+// -----------------------
+// BUTTONS
+// -----------------------
+.workout_btns li {
+	list-style: none;
+
+	a.btn {
+		padding: 5px 47.5px !important;
+		margin: 10px 0 10px -15px !important;
+	}
+}
+
+@media only screen and (max-width: 980px) {
+	.workout_btns li a.btn {
+		padding: 5px 20px !important;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.workout_btns li a.btn {
+		
+	}
+}

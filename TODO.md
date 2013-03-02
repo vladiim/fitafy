@@ -1,6 +1,6 @@
 # Up to:
 
-tags/list partial
+workout show - mobile doesn't properly show modal
 
 # Find PT
 

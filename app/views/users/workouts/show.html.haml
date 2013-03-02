@@ -8,14 +8,14 @@
 
       .hidden.workout_form.name
         %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
-        %button.update_workout_form.name.btn.btn-primary.btn-mini UPDATE
+        %button.update_workout_form.name.btn.btn-primary.btn-small UPDATE
         = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 
 
 .row-fluid
   .span12
 
-    %article.workout_form_group.notes.notes-holder.span8
+    %article.workout_form_group.notes.notes-holder.span8.hover_box
       .workout_value.notes.heading-box
         = image_tag "new_design/bullet02.png", width: '20', height: '20', alt: 'fitafy star', class: 'ico'
         %h5 WORKOUT NOTES
@@ -24,7 +24,7 @@
           = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
           .hidden.workout_form.notes
             %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
-            %button.update_workout_form.notes.btn.btn-primary.btn-mini UPDATE
+            %button.update_workout_form.notes.btn.btn-primary.btn-small UPDATE
             = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'
 
     %aside.span3
