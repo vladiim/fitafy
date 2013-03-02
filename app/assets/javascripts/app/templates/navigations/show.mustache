@@ -15,10 +15,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>WORKOUTS</span></a>
               <ul class='dropdown-menu'>
                 <li>
-                  <a href="{{workouts_path}}"><span>ALL WORKOUTS</span></a>
+                  <a href="{{workouts_path}}" class='sub_nav'><span>ALL WORKOUTS</span></a>
                 </li>
                 <li>
-                  <a href="#new_workout_modal" data-toggle='modal'><span>NEW WORKOUT</span></a>
+                  <a href="#new_workout_modal" data-toggle='modal' class='sub_nav'><span>NEW WORKOUT</span></a>
                 </li>
               </ul>
             </li>
@@ -36,10 +36,10 @@
             <a href="#" class='dropdown-toggle' data-toggle='dropdown'><span>EXERCISES</span></a>
             <ul class='dropdown-menu'>
               <li>
-                <a href="{{exercises_path}}"><span>EXERCISES</span></a>
+                <a href="{{exercises_path}}" class='sub_nav'><span>EXERCISES</span></a>
               </li>
               <li>
-                <a href="{{new_exercise_path}}"><span>NEW EXERCISE</span></a>
+                <a href="{{new_exercise_path}}" class='sub_nav'><span>NEW EXERCISE</span></a>
               </li>
             </ul>
           </li>
@@ -51,7 +51,7 @@
             <ul class='dropdown-menu'>
               {{# new_feature }}
                 <li>
-                  <a href="{{feature_path}}" value='{{feature_name}}'>{{feature_name}}</a>
+                  <a href="{{feature_path}}" class='sub_nav' value='{{feature_name}}'>{{feature_name}}</a>
                 </li>
               {{/ new_feature }}
             </ul>
@@ -71,13 +71,13 @@
 
               <ul class='dropdown-menu'>
                 <li>
-                  <a href="{{current_user_path}}"><span>PROFILE</span></a>
+                  <a href="{{current_user_path}}" class='sub_nav'><span>PROFILE</span></a>
                 </li>
                 <li>
-                  <a href="{{edit_user_path}}"><span>EDIT PROFILE</span></a>
+                  <a href="{{edit_user_path}}" class='sub_nav'><span>EDIT PROFILE</span></a>
                 </li>
                 <li>
-                  <a href="{{logout_path}}" data-method='delete' rel='nofollow'><span>LOGOUT</span></a>
+                  <a href="{{logout_path}}" data-method='delete' rel='nofollow' class='sub_nav'><span>LOGOUT</span></a>
                 </li>
               </ul>
             </li>
