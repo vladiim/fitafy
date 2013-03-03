@@ -243,12 +243,7 @@
 	}
 	.workout-holder:after{width:100%;}
 }
-@media only screen and (max-width: 980px){
-	.navbar .nav li:first-child,
-	.navbar .nav li{background:none;}
-	.navbar .nav li:before,
-	.navbar .nav li:after{display:none;}
-}
+
 @media only screen and (max-width: 767px){
 
 	.article-holder,

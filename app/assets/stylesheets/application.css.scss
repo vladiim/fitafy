@@ -5,7 +5,7 @@
 //-----------------------------------------
 // Variables come first
 //-----------------------------------------
-//@import "variables";
+@import "variables";
 
 //-----------------------------------------
 // Mixins
@@ -23,6 +23,7 @@
 @import 'workout_show';
 @import 'workout_exercise_list';
 @import 'user';
+@import 'header';
 @import 'footer';
 @import 'tags';
 

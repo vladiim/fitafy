@@ -1,8 +1,9 @@
 .navbar{
-	background:#323233 url(new_design/bg-nav.png);
+	background:#323233 url($navbar_background);
 	border-bottom:1px solid #676a6c;
 	margin:0;
 }
+
 .navbar-fixed-top{ height: 68px; }
 
 .navbar .nav li a.sub_nav {
@@ -24,43 +25,38 @@
 	float:left;
 	text-indent:-9999px;
 	overflow:hidden;
-	background:url(new_design/logo.png) no-repeat;
+	background:url($navbar_logo) no-repeat;
 	width:55px;
 	height:45px;
 	margin:13px 27px 10px;
 }
+
 .logo a{
 	display:block;
 	height:100%;
 }
+
 .nav{
 	text-transform:uppercase;
 	font: 18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
 }
-#header{
-	max-width:1000px;
-	width:100%;
-	margin:0 auto;
-}
-#header:after{
-	content:'';
-	display:block;
-	clear:both;
-}
+
 .navbar .nav li{
 	padding:0 2px 0 0;
 	position:relative;
-	background:url(new_design/sep01.png) 100% 0 no-repeat;
+	background:url($navbar_seperator) 100% 0 no-repeat;
 }
+
 .navbar .nav li:first-child{
 	padding-left:2px;
-	background:url(new_design/sep01.png) 100% 0 no-repeat, url(new_design/sep01.png) no-repeat;
+	background:url($navbar_seperator) 100% 0 no-repeat, url($navbar_seperator) no-repeat;
 }
+
 .navbar .nav li.active:after,
 .navbar .nav li.active:before,
 .navbar .nav li.hover:after,
 .navbar .nav li.hover:before{
-	background:url(new_design/sep01.png) no-repeat;
+	background:url($navbar_seperator) no-repeat;
 	top:0;
 	left:-2px;
 	height:100%;
@@ -68,12 +64,14 @@
 	position:absolute;
 	content:'';
 }
+
 .navbar .nav li:first-child.hover:before{left:0;}
 .navbar .nav li.active:after,
 .navbar .nav li.hover:after{
 	left:auto;
 	right:0;
 }
+
 .navbar .nav li a{
 	padding:0 9px;
 	height:48px;
@@ -82,12 +80,14 @@
 	background: rgba(0, 0, 0, 0.4) !important;
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
+
 .navbar .nav li span{
 	display:table-cell;
 	vertical-align:bottom;
 	width:100%;
 	padding:0 0 8px;
 }
+
 .nav li.active a,
 .nav li.hover a,
 .nav li a:hover{
@@ -126,6 +126,23 @@
 .nav-collapse.in.collapse .nav li:after{display:none;}
 
 //-------------------------------------
+// RESPONSIVE
+//-------------------------------------
+
+// Note
+
+// The responsive-navbar breakpoint is set in bootstrap-saas
+// `bundle open boostrap-saas` _reponsive-nav.css.scss
+
+
+//@media only screen and (max-width: 980px){
+//	.navbar .nav li:first-child,
+//	.navbar .nav li{background:none;}
+//	.navbar .nav li:before,
+//	.navbar .nav li:after{display:none;}
+//}
+
+//-------------------------------------
 // LINKS
 //-------------------------------------
 
@@ -141,6 +158,7 @@
 //		float: none;
 //	}
 //}
+
 //-------------------------------------
 // BUTTON
 //-------------------------------------
@@ -149,4 +167,20 @@
 	min-width: 20px;
 	min-height: 15px;
 	margin: 25px 40px 0 0;
+}
+
+
+//-------------------------------------
+// USER PROFILE
+//-------------------------------------
+@media (min-width: 640px) {
+	.navbar .nav.pull-right li {
+		margin-right: 50px;
+	}
+}
+
+@media (min-width: 550px) {
+	.navbar .nav.pull-right li {
+		margin-right: 50px !important;
+	}
 }
