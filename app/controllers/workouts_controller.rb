@@ -7,7 +7,7 @@ class WorkoutsController < ApplicationController
     @workouts  = Workout.filter_by_exercise_muscles(params[:muscles])
                         .offset_by_page(params[:page])
 
-    @renderer  = Workouts::Index.new
+    @renderer  = Workouts::Index.new(view_context)
     @muscles   = Workout.muscles
     @title     = "Latest Workouts" # could show muscles & pages here
 

@@ -115,14 +115,6 @@
 
 .workout_value.level { margin: 20px 0 -30px 0; }
 
-#workout_stats #profile {
-	width: 48px;
-	height: 60px;
-	margin: 0 0 15px 20px;
-}
-
-#workout_stats .show_workout_form { margin: 0 0 0 100px; }
-
 // -----------------------
 // BUTTONS
 // -----------------------
@@ -130,19 +122,39 @@
 	list-style: none;
 
 	a.btn {
-		padding: 5px 47.5px !important;
+		padding: 5px 87.5px !important;
 		margin: 10px 0 10px -15px !important;
 	}
 }
 
 @media only screen and (max-width: 980px) {
 	.workout_btns li a.btn {
-		padding: 5px 20px !important;
+		padding: 5px 50px !important;
 	}
 }
 
 @media only screen and (max-width: 640px) {
 	.workout_btns li a.btn {
 		
+	}
+}
+
+//----------------------------
+// PROFILE
+//----------------------------
+
+#main .profile p.username {
+	margin: 0 0 0 -30px;
+}
+
+#workout_stats #profile {
+	width: 48px;
+	height: 60px;
+	margin: 0 0 15px 20px;
+}
+
+@media only screen and (max-width: 767px) {
+	#main .profile p.username {
+		margin: 0 0 0 10px;
 	}
 }

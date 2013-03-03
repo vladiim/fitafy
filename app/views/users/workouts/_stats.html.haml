@@ -3,7 +3,7 @@
     #profile
       = image_tag @trainer.display_grayscale_avatar, class: 'grayscale', alt: @trainer.username
       = image_tag @trainer.display_avatar, class: 'hover', alt: @trainer.username
-    %p
+    %p.username
       CREATED BY
       %br
       = link_to @trainer.username.upcase, user_path(@trainer)

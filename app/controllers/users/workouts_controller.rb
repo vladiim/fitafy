@@ -4,7 +4,7 @@ class Users::WorkoutsController < ApplicationController
 
   def index
     @workouts = UserWorkoutsOrderer.new(current_user, params).get_workouts
-    @renderer = Workouts::Index.new
+    @renderer = Workouts::Index.new(view_context)
 
     respond_to do |format|
       format.json do

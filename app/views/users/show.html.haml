@@ -1,42 +1,48 @@
-%article.row.user_details
-  .span1.user_profile_pic
-    #profile= image_tag(@user.display_avatar)
+.container-fluid
+  .row-fluid
+    .span12
+      .row-fluid
+        .span8
+          %article.row.user_details.notes-holder
+            %header.heading-box.user_profile_details
+              %h2= @user.username
+              %span.note FITNESS FIRST MELBOURNE
 
-  .span5.user_profile_details.well
-    %header
-      %h5
-        / MY GYM -
-        / = @user.gym.upcase
+            = cl_image_tag "#{@user.username}.jpg", width: 75, height: 93, radius: 10, id: 'user_profile_pic', class: 'avatar', alt: @user.username
 
-    / %p= @user.bio.humanize
+            .text-holder
+              %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
 
-  .span3.user_stats.well
-    .span1.user_workouts_count
-      .user_stat= @user.workouts_count
-      %p WORKOUTS
-    .span1.user_favorite_workouts
-      .user_stat= @user.count_favorite_workouts
-      %p FAVORITES
+        .span4
+          .user-details.user_stats
+            .box
+              %strong.title WORKOUTS
+              %span.quantity= @user.workouts_count
 
-%section.user_workouts
+            .box
+              %strong.title FAVORITE WORKOUTS
+              %span.quantity= @user.count_favorite_workouts
+
+%header.user_workouts
   %h2
     = @user == current_user ? "YOUR WORKOUTS" : "#{@user.username.upcase}'S WORKOUTS"
 
   .row#user_show_tags_list{'data-url' => users_workouts_path(@user.username)}
     = render partial: "tags/list", locals: { width: 9 }
 
-  %ul#workout_list
+%section.user_workouts
+  .row-fluid
+    .span12
+      .workout-holder
+        %ul.workout-list#workout_list
 
-    - if @user == current_user
-      %li.workout_item.box_list.well.span2
-        = link_to "CREATE NEW WORKOUT", "  #new_workout_modal", 'data-toggle' => '  modal'
-        %br
-        %br
-        = link_to "+", "#new_workout_modal", 'data-toggle' => 'modal', class: 'new_workout_plus'
+          - if @user == current_user
+            %li.workout_item
+              = link_to "+", "#new_workout_modal", 'data-toggle' => 'modal', class: 'new_workout_plus'
 
-    - @workouts.each do |workout|
-      - @renderer.workout = workout
-      = @renderer.render.html_safe
+          - @workouts.each do |workout|
+            - @renderer.workout = workout
+            = @renderer.render.html_safe
 
-  .end_of_workouts.row.span12
-    %p
+        .end_of_workouts
+          %p.alert.alert-error.hidden No more workouts!

@@ -3,7 +3,7 @@ module Workouts
     include Rails.application.routes.url_helpers
     self.template_path = "app/assets/javascripts/app/templates"
   
-  	attr_accessor :workout
+  	attr_accessor :workout, :view_context
   
     delegate :muscles,         to: :@workout
     delegate :name,            to: :@workout
@@ -12,20 +12,36 @@ module Workouts
     delegate :client_level,    to: :@workout
     delegate :difficulty,      to: :@workout
   
+    def initialize(view_context)
+      @view_context = view_context
+    end
+
     def url
       users_workout_path(workout.username, workout)
     end
 
+    def gray_difficulty_icon
+      view_context.image_tag 'new_design/ico01.png', width: '66',
+                              height: '53', alt: name
+    end
+
+    def color_difficulty_icon
+      view_context.image_tag 'new_design/ico01-h.png', width: '66',
+                              height: '53', alt: name, class: 'hover'
+    end
+
     def render_json(workout, view_context)
-      @workout = workout
+      @workout, @view_context = workout, view_context
       {
-        muscles:         muscles,
-        url:             view_context.users_workout_path(username, @workout),
-        name:            name,
-        client_level:    client_level,
-        difficulty:      difficulty,
-        username:        username,
-        exercises_count: exercises_count
+        muscles:               muscles,
+        url:                   view_context.users_workout_path(username, @workout),
+        name:                  name,
+        client_level:          client_level,
+        difficulty:            difficulty,
+        username:              username,
+        exercises_count:       exercises_count,
+        gray_difficulty_icon:  gray_difficulty_icon,
+        color_difficulty_icon: color_difficulty_icon
       }
     end
   end

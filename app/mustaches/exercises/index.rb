@@ -6,7 +6,7 @@ module Exercises
   
   	attr_accessor :exercise, :view_context, :user, :workout
 
-    delegate :id,          to: :@exercise
+    delegate :id, to: :@exercise
 
     delegate :exercise_path,      to: :@view_context
     delegate :edit_exercise_path, to: :@view_context

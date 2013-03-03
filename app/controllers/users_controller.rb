@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user     = User.find(params[:id])
-    @renderer = Workouts::Index.new
+    @renderer = Workouts::Index.new(view_context)
     # @workouts = @user.my_workouts(params[:tags])
     @workouts = UserWorkoutsOrderer.new(@user, params).get_workouts
     @muscles  = Workout.muscles
