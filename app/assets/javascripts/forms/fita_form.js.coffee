@@ -2,28 +2,41 @@
 
   init: ->
     @initVariables()
-    @inputListener()
+    @focusListener()
 
   initVariables: ->
-    @form     = $('.fita_form')
-    @controls = @form.find('.controls')
+    @input_clicked    = false
+    @textarea_clicked = false
+    @form      = $('.fita_form')
+    @controls  = @form.find('.controls')
     @inputs    = @controls.find('input')
+    @textareas = @controls.find('textarea')
 
-  inputListener: ->
+  focusListener: ->
     @inputs.on 'focus', (event) =>
-      @input   = $(event.target)
-      @control = @input.parents('.controls')
-      console.log('focus'); FitaForm.focussed()
+      @input         = $(event.target)
+      @input_clicked = true
+      @control       = @input.parents('.controls')
+      FitaForm.focussed()
 
-  offInputListener: ->
-    @input.on 'blur', => FitaForm.unfocussed()
+    @textareas.on 'focus', (event) =>
+      @textarea = $(event.target)
+      @textarea_clicked = true
+      @control  = @textarea.parents('.controls')
+      FitaForm.focussed()
+
+  unfocusListener: ->
+    if @input_clicked then @input.on 'blur', => FitaForm.unfocussed()
+    if @textarea_clicked then @textarea.on 'blur', => FitaForm.unfocussed()
 
   focussed: ->
     @control.addClass('parent-focus')
     @control.addClass('parent-active')
-    @offInputListener()
+    @unfocusListener()
 
   unfocussed: ->
+    @input_clicked    = false
+    @textarea_clicked = false
     @control.removeClass('parent-focus')
     @control.removeClass('parent-active')
 

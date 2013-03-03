@@ -6,21 +6,21 @@
 
   formListener: ->
     @show_forms.on 'click', (event) =>
-      @show_form            = $( event.target )    
+      event.preventDefault()
+      @show_form               = $( event.target )    
       DynamicForm.collaborater = WorkoutDynamicForm
       DynamicForm.form_type    = 'workout'
       DynamicForm.hideCurrentForm()
       @storeVariables()
       @showForm()
-      event.preventDefault()
 
   storeVariables: ->
     DynamicForm.show_form     = @show_form
     DynamicForm.tag           = @show_form.data('tag')
     DynamicForm.url           = @show_form.attr('href')
-    DynamicForm.group         = $( ".workout_form_group.#{DynamicForm.tag}" )
+    # DynamicForm.group         = $( ".workout_form_group.#{DynamicForm.tag}" )
     DynamicForm.value         = if @onName() then $( 'h1' ) else @show_form.prev('p')
-    DynamicForm.form_node     = $( "div.workout_form.#{DynamicForm.tag}" )
+    DynamicForm.form_node     = $( ".workout_form.#{DynamicForm.tag}" )
     DynamicForm.input         = $( ".workout_form[data-tag=#{DynamicForm.tag}]")
     DynamicForm.update_button = $( "button.update_workout_form.#{DynamicForm.tag}")
     DynamicForm.hide_form     = $( "a.hide_workout_form[data-tag=#{DynamicForm.tag}]")

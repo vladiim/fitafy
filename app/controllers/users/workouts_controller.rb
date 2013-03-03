@@ -18,7 +18,7 @@ class Users::WorkoutsController < ApplicationController
     @workout_exercises = @workout.workout_exercises
     @exercise_renderer = WorkoutExercises::Show.new view_context, current_user
     @trainer           = User.find @workout.user_id
-    @workout_path      = users_workout_path(@trainer.username, @workout)
+    @workout_path      = user_workout_path(@trainer, @workout)
     @current_user      = current_user ? current_user : nil
   	@title             = @workout.name
     @snapz_confirm     = SnapzSayz::WorkoutSpeak.confirm_delete

@@ -23,8 +23,8 @@
 
   updateFormListener: ->
     @update_button.on 'click', (event) =>
-      if @input.val() is @initial_text then @sameText() else @updateValue()
       event.preventDefault()
+      if @input.val() is @initial_text then @sameText() else @updateValue()
 
   enterKeyListener: ->
     @input.on 'keydown', (event) =>

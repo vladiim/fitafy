@@ -41,15 +41,11 @@ describe 'WorkoutDynamicForm on name', ->
 
     it 'stores the url', ->
       expect(DynamicForm.url).toEqual('/workouts/1')
-
     it 'stores the h1 text_node', ->
       expect(DynamicForm.value).toBe(@h1)
 
-    it 'stores the group', ->
-      expect(DynamicForm.group).toBe($( '.workout_form_group.name' ))
-
     it 'stores the form node', ->
-      expect(DynamicForm.form_node).toBe($( 'div.workout_form.name' ))
+      expect(DynamicForm.form_node).toBe($( 'form.workout_form.name' ))
 
     it 'stores the update button', ->
       expect(DynamicForm.update_button).toEqual($( 'button.update_workout_form.name' ))

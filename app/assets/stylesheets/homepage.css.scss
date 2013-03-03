@@ -1,14 +1,15 @@
-.main-visual{
-	background:url(new_design/bg-main-visual.png) no-repeat;
+.main-visual {
+	background:url($logo_banner) no-repeat;
 	background-position:50% 0;
 	width:1022px;
 	min-height:444px;
-	margin:0 -45px 8px -37px;
+	margin: -50px -45px 8px 0;
 	padding:109px 0 30px 12.2%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
+
 .main-visual .text-holder{
 	padding:0 0 30px;
 	max-width:38%;
@@ -18,21 +19,10 @@
 
 
 //------------------------------
-// OLD
+// SIGN UP & LOGIN
 //------------------------------
 
-// hide the section title
-//h1 { display: none }
-
-//section#home_usp {
-//	width: 80%;
-//	p#usp_copy {
-//		margin: -40px 0 50px 0;
-//		font-size: 4em;
-//		line-height: 1.2em;
-//	}
-//}
-
-//header#trending { margin-bottom: 10px; }
-
-//aside ul#trending_workouts { margin-left: 5px; }
+.main-visual form,
+.main-visual aside.form_options {
+	margin-left: -100px;
+}

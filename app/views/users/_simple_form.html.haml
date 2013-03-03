@@ -1,4 +1,4 @@
-= simple_form_for @user, validate: true do |f|
+= simple_form_for @user, validate: true, html: { class: 'fita_form' } do |f|
   = f.error_notification
   = f.input :username
   = f.input :email

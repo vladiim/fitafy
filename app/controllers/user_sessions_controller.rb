@@ -3,6 +3,7 @@ class UserSessionsController < ApplicationController
   skip_filter :authorize
 
   def new
+    @title        = 'LOG IN'
   	@user_session = UserSession.new
   end
 

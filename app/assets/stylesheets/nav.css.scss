@@ -126,40 +126,6 @@
 .nav-collapse.in.collapse .nav li:after{display:none;}
 
 //-------------------------------------
-// RESPONSIVE
-//-------------------------------------
-
-// Note
-
-// The responsive-navbar breakpoint is set in bootstrap-saas
-// `bundle open boostrap-saas` _reponsive-nav.css.scss
-
-
-//@media only screen and (max-width: 980px){
-//	.navbar .nav li:first-child,
-//	.navbar .nav li{background:none;}
-//	.navbar .nav li:before,
-//	.navbar .nav li:after{display:none;}
-//}
-
-//-------------------------------------
-// LINKS
-//-------------------------------------
-
-//@media only screen and (max-width: 980px){
-//	.navbar .nav > li {
-//		display: block !important;
-//		float: left !important;
-//	}
-//}
-
-//@media only screen and (max-width: 767px){
-//	.navbar .nav > li {
-//		float: none;
-//	}
-//}
-
-//-------------------------------------
 // BUTTON
 //-------------------------------------
 
@@ -173,6 +139,10 @@
 //-------------------------------------
 // USER PROFILE
 //-------------------------------------
+.navbar .nav.pull-right li.login {
+	margin-right: 0 !important;
+}
+
 @media (min-width: 640px) {
 	.navbar .nav.pull-right li {
 		margin-right: 50px;

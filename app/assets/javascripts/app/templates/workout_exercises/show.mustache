@@ -33,14 +33,16 @@
 
       {{# own_workout}}
         <a href="{{url}}" class='show_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Edit</a>
-        <div class='hidden workout_exercise_form instructions'>
-          <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
-          <button class='update_workout_exercise_form instructions btn btn-primary btn-small' data-value="{{id}}">
-            UPDATE
-          </button>
+        <form class='hidden workout_exercise_form instructions'>
+          <div class='controls'>
+            <input class='string' type='text' data-tag='instructions' data-value="{{id}}">
+            <button class='update_workout_exercise_form instructions btn btn-primary btn-small' data-value="{{id}}">
+              UPDATE
+            </button>
 
-          <a href="{{url}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
-        </div>
+            <a href="{{url}}" class='hide_workout_exercise_form' data-tag='instructions' data-value="{{id}}">Cancel</a>
+          </div>
+        </form>
 
       {{/ own_workout}}
 

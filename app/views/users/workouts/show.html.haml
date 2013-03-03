@@ -6,8 +6,9 @@
     - if can? :manage, @workout
       = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'name'
 
-      .hidden.workout_form.name
-        %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
+      %form.hidden.workout_form.name.fita_form
+        .controls
+          %input.string.workout_form{'type' => 'text', 'data-tag' => 'name'}
         %button.update_workout_form.name.btn.btn-primary.btn-small UPDATE
         = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'name'
 
@@ -22,8 +23,9 @@
         %p= @workout.notes.humanize
         - if can? :manage, @workout
           = link_to "Edit", @workout_path, class: "show_workout_form", "data-tag" => 'notes'
-          .hidden.workout_form.notes
-            %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
+          %form.hidden.workout_form.notes.fita_form
+            .controls
+              %textarea.text.workout_form{'type' => 'text', 'data-tag' => 'notes'}
             %button.update_workout_form.notes.btn.btn-primary.btn-small UPDATE
             = link_to 'Cancel', @workout_path, class: 'hide_workout_form', 'data-tag' => 'notes'
 

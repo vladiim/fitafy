@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
   	@snapz 	  = SnapzSayz::Information
   	@workouts = Workout.trending
-    @renderer = Workouts::Index.new
+    @renderer = Workouts::Index.new(view_context)
   end
 
   def terms_of_service

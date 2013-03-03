@@ -2,6 +2,5 @@
 $( ".edit_workout" ).on("ajax:success", function() {
   $( '.workout_form.level' ).addClass('hidden');
   $( 'a.show_workout_form[data-tag=level]' ).removeClass('hidden');
-  $( '.workout_value.level > p' ).remove();
-  $( 'h5.level' ).after('<p>' + '<%= j @workout.level %>' + '</p>');
+  $( '.workout_value.level > p' ).removeClass('hidden').text('<%= j @workout.level %>');
 });

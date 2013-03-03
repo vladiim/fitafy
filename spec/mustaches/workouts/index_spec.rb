@@ -3,10 +3,14 @@ require 'spec_helper'
 describe Workouts::Index do
   let(:workout) { build :workout }
   let(:view)    { Object.new }
-  let(:index)   { Workouts::Index.new }
+  let(:index)   { Workouts::Index.new(view) }
 
   describe "render_json" do
-    before       { mock(view).users_workout_path(workout.username, workout) { "URL" } }
+    before do
+      mock(view).users_workout_path(workout.username, workout) { "URL" }
+      mock(view).image_tag(anything, anything).times(2) { true }
+    end
+
     let(:result) { index.render_json workout, view }
 
     it "sets the workout" do

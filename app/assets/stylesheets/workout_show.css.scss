@@ -1,6 +1,16 @@
-.workout_form_group.level {
-	margin: 20px 0 0 0;
-}
+// -----------------------
+// FORMS
+// -----------------------
+
+#main .workout_form_group a.show_workout_form { margin-left: 20px }
+
+#main .workout_form_group.notes { margin-bottom: 50px; }
+
+#main .workout_form.name a.hide_workout_form { margin-left: 110px; }
+
+#main .workout_form.notes a.hide_workout_form { margin-left: 240px; }
+
+#main .workout_form_group.level { margin: 20px 0 0 0; }
 
 // -----------------------
 // NOTES
@@ -113,7 +123,12 @@
 
 #workout_stats:hover { @include list-hover; }
 
-.workout_value.level { margin: 20px 0 -30px 0; }
+#workout_stats .workout_value.level { margin: 20px 0 -30px 0; }
+
+#workout_stats form .control-group {
+	label { font-size: 18px; }
+	select { width: 128px; }
+}
 
 // -----------------------
 // BUTTONS

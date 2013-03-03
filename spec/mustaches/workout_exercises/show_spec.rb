@@ -182,37 +182,37 @@ describe WorkoutExercises::Show do
     end
   end
 
-  describe '#render_json' do
-  	let(:workout_exercise) { create :workout_exercise, instructions: 'blah' }
-  	let(:user)             { workout_exercise.workout.user }
-    let(:renderer)         { WorkoutExercises::Show.new view_context, user }
-    let(:result)           { renderer.render_json workout_exercise }
+  # describe '#render_json' do
+  # 	let(:workout_exercise) { create :workout_exercise, instructions: 'blah' }
+  # 	let(:user)             { workout_exercise.workout.user }
+  #   let(:renderer)         { WorkoutExercises::Show.new view_context, user }
+  #   let(:result)           { renderer.render_json workout_exercise }
 
-    before do
-      mock(renderer).url              { 'URL' }
-      mock(renderer).exercise_url     { 'URL' }
-      mock(renderer).json_set_details { 'SET DETAILS' }
-      mock(renderer).set_details_url  { 'URL' }
-    end
+  #   before do
+  #     mock(renderer).url              { 'URL' }
+  #     mock(renderer).exercise_url     { 'URL' }
+  #     mock(renderer).json_set_details { 'SET DETAILS' }
+  #     mock(renderer).set_details_url  { 'URL' }
+  #   end
 
-    it 'returns all details as a hash' do
-      result_hash = {
-        id:              workout_exercise.id,
-        name:            workout_exercise.name.titleize,
-        set_details:     'SET DETAILS',
-        url:             'URL',
-        set_details_url: 'URL',
-        exercise_url:    'URL',
-        instructions:    workout_exercise.instructions.humanize,
-        sets:            workout_exercise.sets,
-        muscle:          workout_exercise.muscle.titleize,
-        equipment_name:  workout_exercise.equipment_name.titleize,
-        order:           workout_exercise.order_number,
-        up_link: nil,
-        down_link: nil,
-        own_workout:    true
-      }
-      result.should eq result_hash
-    end
-  end
+  #   it 'returns all details as a hash' do
+  #     result_hash = {
+  #       id:              workout_exercise.id,
+  #       name:            workout_exercise.name.titleize,
+  #       set_details:     'SET DETAILS',
+  #       url:             'URL',
+  #       set_details_url: 'URL',
+  #       exercise_url:    'URL',
+  #       instructions:    workout_exercise.instructions.humanize,
+  #       sets:            workout_exercise.sets,
+  #       muscle:          workout_exercise.muscle.titleize,
+  #       equipment_name:  workout_exercise.equipment_name.titleize,
+  #       order:           workout_exercise.order_number,
+  #       up_link: nil,
+  #       down_link: nil,
+  #       own_workout:    true
+  #     }
+  #     result.should eq result_hash
+  #   end
+  # end
 end
