@@ -75,7 +75,7 @@ describe 'WorkoutDynamicForm on name', ->
       expect(@h1).not.toHaveClass('hidden')
 
     it 'hides the form', ->
-      expect($( 'div.workout_form.name' )).toHaveClass('hidden')
+      expect($( '.workout_form.name' )).toHaveClass('hidden')
 
 describe 'WorkoutDynamicForm on notes', ->
   beforeEach ->

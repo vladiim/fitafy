@@ -111,7 +111,7 @@ describe 'DynamicForm', ->
 
   describe 'form', ->
     beforeEach ->
-      @form_node = $( 'div.workout_form.name' )
+      @form_node = $( '.workout_form.name' )
       DynamicForm.form_node    = @form_node
       DynamicForm.initial_text = 'INITIAL TEXT'
       sinon.spy(DynamicForm, 'enterKeyListener')

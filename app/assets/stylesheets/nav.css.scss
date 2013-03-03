@@ -126,6 +126,34 @@
 .nav-collapse.in.collapse .nav li:after{display:none;}
 
 //-------------------------------------
+// RESPONSIVE SUB-NAV
+//-------------------------------------
+
+@media only screen and (max-width: 640px){
+	.nav li a {
+		margin: 0 10px !important;
+		&:hover { background: none; }
+	}
+
+	.nav ul.dropdown-menu li a {
+		text-align: left;
+		margin: 0 10px !important;
+
+        span { color: #cd0000 !important; }
+
+		span:hover {
+			background: #cd0000;
+			color: white !important;
+		}
+	}
+}
+
+.navbar .nav-collapse {
+	background:#323233 url($navbar_background);
+	z-index: 1;
+}
+
+//-------------------------------------
 // BUTTON
 //-------------------------------------
 
