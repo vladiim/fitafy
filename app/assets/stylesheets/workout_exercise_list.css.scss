@@ -124,3 +124,18 @@ table.workout_exercise_set_details {
 }
 
 #main .exercise-list .delete_exercise { text-align: right; }
+
+//-----------------------------------
+// SEARCH
+//-----------------------------------
+
+header#add_exercises_title_and_search {
+	position: fixed;
+	background: white;
+	min-width: 300px;
+	margin-top: -15px;
+}
+
+article.exercise_list {
+	margin-top: 60px;
+}

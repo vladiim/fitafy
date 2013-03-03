@@ -6,6 +6,6 @@
     %h3 Create New Workout
 
   .modal-body
-    = simple_form_for new_workout do |f|
-      = f.input :name
+    = simple_form_for new_workout, html: { class: 'fita_form' } do |f|
+      = f.input :name, placeholder: 'Workout Name'
       = f.submit "CREATE WORKOUT", class: "btn btn-primary"

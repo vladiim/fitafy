@@ -5,30 +5,27 @@
     @inputListener()
 
   initVariables: ->
-    @block = $('form.fita_form > fieldset > div.block')
-    @label = @block.find('label')
-    @input = @block.find('input')
+    @form     = $('.fita_form')
+    @controls = @form.find('.controls')
+    @inputs    = @controls.find('input')
 
   inputListener: ->
-    @input.on 'focus', =>
-      FitaForm.focussed()
+    @inputs.on 'focus', (event) =>
+      @input   = $(event.target)
+      @control = @input.parents('.controls')
+      console.log('focus'); FitaForm.focussed()
 
   offInputListener: ->
-    @input.on 'blur', =>
-      FitaForm.unfocussed()
+    @input.on 'blur', => FitaForm.unfocussed()
 
   focussed: ->
-    @block.addClass('parent-focus')
-    @block.addClass('parent-active')
-    @label.addClass('label-focus')
-    @label.addClass('label-active')
+    @control.addClass('parent-focus')
+    @control.addClass('parent-active')
     @offInputListener()
 
   unfocussed: ->
-    @block.removeClass('parent-focus')
-    @block.removeClass('parent-active')
-    @label.removeClass('label-focus')
-    @label.removeClass('label-active')
+    @control.removeClass('parent-focus')
+    @control.removeClass('parent-active')
 
 ready = ->
   fita_form_present = $( '.fita_form' )
@@ -36,7 +33,7 @@ ready = ->
 
   document.body.addEventListener "DOMNodeInserted", (event) =>
     element = $( event.target )
-    if element.hasClass('fita_form') then FitaForm.init()
+    if element.hasClass('modal-backdrop') then FitaForm.init()
 
 # $(document).on 'page:load', ready
 $ -> ready()

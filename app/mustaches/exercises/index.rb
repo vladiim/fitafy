@@ -27,7 +27,7 @@ module Exercises
     end
 
     def description
-      truncate(@exercise.description.humanize, length: 70)
+      truncate(@exercise.description.humanize, length: 90)
     end
 
     def muscle
@@ -67,7 +67,7 @@ module Exercises
       link_to "ADD", '#',
               'data-exercise_id' => id,
               'data-workout_id' => @workout.id,
-              class: "add_exercise_to_workout_button btn btn-primary btn-mini"
+              class: "add_exercise_to_workout_button btn btn-primary btn-small"
     end
 
     def user_is_admin?
