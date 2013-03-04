@@ -1,31 +1,45 @@
 h1 {
-	color:#35302d;
-	margin:0 0 9px;
-	text-transform:uppercase;
-	font:45px/48px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+	color:          $h1_color;
+	margin:         0 0 9px;
+	text-transform: uppercase;
+	font:           45px/48px $h1_font;
+	font-family:    $h1_font !important;
+	font-size:      50px !important;
 }
 
 h2 {
-	color:#202020;
-	margin:0 0 10px;
-	font: 36px/40px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+	color:       $h2_color;
+	margin:      0 0 10px;
+	font:        36px/40px $h2_font;
+	font-family: $h2_font !important;
+	font-size:   40px !important;
+	line-height:    160% !important;
 }
 
 h3 {
-	font: 30px/34px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-	color:#35302d;
-	margin: 0 0 7px;
-	text-transform:uppercase;
+	font:           30px/40px $h3_font;
+	font-family:    $h3_font !important;
+	font-size:      28px !important;
+	line-height:    160% !important;
+	color:          $h3_color;
+	margin:         0 0 7px;
+	text-transform: uppercase;
 }
 
 h4 {
-	color:#373636;
-	margin:0 0 10px;
-	font: 25px/28px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+	color:       $h4_color;
+	margin:      0 0 10px;
+	font:        25px/28px $h4_font;
+	font-family: $h4_font !important;
+	font-size:   23px !important;
+	line-height:    160% !important;
 }
 
 h5 {
-	color:#404040;
-	margin:0 0 10px;
-	font: 18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+	color:       $h5_color;
+	margin:      0 0 10px;
+	font:        18px/22px  $h5_font;
+	font-family: $h5_font !important;
+	font-size:   20px !important;
+	line-height:    160% !important;
 }

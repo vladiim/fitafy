@@ -2,26 +2,47 @@
 // COLORS
 //----------------------------------------------
 
-$font_color:        #3c3c3c;
-$nav_color:         #545454;
-$nav_colapse_color: #323232;
-$link_color:        #cd0000;
-$background_color:  #efede4;
-$white_color:       #ffffff;
+$font_color:              #3c3c3c;
+$nav_color:               #545454;
+$nav_colapse_color:       #323232;
+$footer_background_color: #323232;
+$link_color:              #cd0000;
+$background_color:        #efede4;
+$white_color:             #ffffff;
+$highlighted_box_color:   #545454;
+$nav_background_color:    rgba(142, 20, 21, 0.9);
+$nav_background_shadow:   '0 0 0 #000';
+$tab_background_color:    rgb(138,138,136);
+$close_tab_color:         rgb(113,113,113);
+$close_tab_hover_color:   rgb(211,57,57);
+$user_details_color:      #545454;
+$exercise_list_color:     #545454;
+$exercise_list_color2:    #454545;
 
-$highlighted_box_color: #545454;
-
-$nav_background_color:  rgba(142, 20, 21, 0.9);
-$nav_background_shadow: '0 0 0 #000';
-
-$tab_background_color: rgb(138,138,136);
+$h1_color: #35302d;
+$h2_color: #202020;
+$h3_color: #35302d;
+$h4_color: #373636;
+$h5_color: #404040;
 
 //----------------------------------------------
 // FONT
 //----------------------------------------------
 
-$body_font: '13px/15px Helvetica, Arial, sans-serif';
-$nav_font:  "18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif";
+$h1_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+$h2_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+$h3_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+$h4_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+$h5_font: 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+
+
+$body_font: 13px/15px Helvetica, Arial, sans-serif;
+$form_font: 20px/24px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+$nav_font:  18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+$tab_font:  20px/24px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+
+$exercise_list_font:    55px/58px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+$exercise_list_h3_font: 25px/28px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
 
 $nav_font_shadow: '0 1px 1px rgba(0, 0, 0, 0.4)';
 
@@ -33,14 +54,18 @@ $navbar_seperator_image: 'new_design/sep01.png';
 $navbar_logo_image:      'new_design/logo.png';
 $navbar_background:      'new_design/bg-nav.png';
 $logo_banner:            'new_design/bg-main-visual.png';
+$tab_background_image:   'new_design/bg-tab-content.png';
 $tab_svg_image:          'url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzhhOGE4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NjU2NTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)';
+$button_close_image:     'new_design/btn-close.png';
 
 //----------------------------------------------
 // BORDERS
 //----------------------------------------------
 
-$light_grey_border: '1px solid #676a6c';
-
+$light_grey_border:    1px solid #676a6c;
+$fita_form_border:     1px solid #fdfdfc;
+$tab_border:           1px solid #fff;
+$exercise_list_border: 1px solid #dddbd5;
 
 //----------------------------------------------
 // RESPONSIVE DESIGN
@@ -51,6 +76,7 @@ $phone_media:        400px;
 $phablet_media:      550px;
 $fat_phablet_media:  600px;
 $small_tablet_media: 640px;
+$med_tablet_media:   767px;
 //// $mediaTablet:             768px !default;
 //// $mediaDesktop:            980px !default;
 //// $mediaLarge:              1200px !default; // and upper
