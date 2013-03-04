@@ -43,7 +43,7 @@
         - if @workout_exercises.empty?
           = link_to_add_exercise @workout
 
-    %aside.span2.offset2
+    %aside.cta_buttons.span2.offset2
       %ul.workout_btns= render "cta_buttons"
 
 = render partial: "workouts/add_exercise_modal"

@@ -15,11 +15,11 @@
 
         .span4
           .user-details.user_stats
-            .box
+            .box.user_workouts_count
               %strong.title WORKOUTS
               %span.quantity= @user.workouts_count
 
-            .box
+            .box.user_favorite_workouts
               %strong.title FAVORITE WORKOUTS
               %span.quantity= @user.count_favorite_workouts
 

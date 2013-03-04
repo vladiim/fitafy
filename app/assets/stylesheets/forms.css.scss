@@ -1,8 +1,14 @@
-.fita_form{
+input[type=text], input[type=password], input[type=file], input[type=submit], textarea{
+	-webkit-appearance:none;
+	-webkit-border-radius:0;
+}
+
+.fita_form {
 //	margin:0 0 0 19px;
 //	float:right;
 }
-.fita_form legend{
+
+.fita_form legend {
 	display:none;
 	font-size:0;
 	line-height:0;

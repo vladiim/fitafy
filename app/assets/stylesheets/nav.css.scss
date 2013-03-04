@@ -1,44 +1,46 @@
 .navbar{
-	background:#323233 url($navbar_background);
-	border-bottom:1px solid #676a6c;
-	margin:0;
+	background:    $font_color url($navbar_background);
+	border-bottom: $light_grey_border;
+	margin:        0;
 }
 
 .navbar-fixed-top{ height: 68px; }
 
 .navbar .nav li a.sub_nav {
 	background: transparent !important;
+
 	span {
-		color: #545454;
+		color:       $nav_color;
 		text-shadow: none;
 	}
 }
 
 .navbar .nav li a.sub_nav:hover {
 	background: transparent !important;
+
 	span {
-		color: #cd0000;
+		color: $link_color;
 	}
 }
 
-.logo{
-	float:left;
-	text-indent:-9999px;
-	overflow:hidden;
-	background:url($navbar_logo) no-repeat;
-	width:55px;
-	height:45px;
-	margin:13px 27px 10px;
+.logo {
+	float:       left;
+	text-indent: -9999px;
+	overflow:    hidden;
+	background:  url($navbar_logo_image) no-repeat;
+	width:       55px;
+	height:      45px;
+	margin:      13px 27px 10px;
 }
 
-.logo a{
+.logo a {
 	display:block;
 	height:100%;
 }
 
-.nav{
-	text-transform:uppercase;
-	font: 18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+.nav {
+	text-transform: uppercase;
+	font:           18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
 }
 
 .navbar .nav li{
@@ -129,23 +131,9 @@
 // RESPONSIVE SUB-NAV
 //-------------------------------------
 
-@media only screen and (max-width: 640px){
-	.nav li a {
-		margin: 0 10px !important;
-		&:hover { background: none; }
-	}
+@media only screen and (max-width: 600px) {
 
-	.nav ul.dropdown-menu li a {
-		text-align: left;
-		margin: 0 10px !important;
-
-        span { color: #cd0000 !important; }
-
-		span:hover {
-			background: #cd0000;
-			color: white !important;
-		}
-	}
+    .navbar ul.nav li.dropdown a { text-align: center; }
 }
 
 .navbar .nav-collapse {
