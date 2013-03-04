@@ -178,112 +178,6 @@ ALTER SEQUENCE favorite_workouts_id_seq OWNED BY favorite_workouts.id;
 
 
 --
--- Name: organisations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE organisations (
-    id integer NOT NULL,
-    name character varying(255),
-    street character varying(255),
-    suburb character varying(255),
-    city character varying(255),
-    state character varying(255),
-    country character varying(255),
-    postcode integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: organisations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE organisations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: organisations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE organisations_id_seq OWNED BY organisations.id;
-
-
---
--- Name: profile_organisations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE profile_organisations (
-    id integer NOT NULL,
-    profile_id integer,
-    organisation_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: profile_organisations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE profile_organisations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: profile_organisations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE profile_organisations_id_seq OWNED BY profile_organisations.id;
-
-
---
--- Name: profiles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE profiles (
-    id integer NOT NULL,
-    user_id integer,
-    first_name character varying(255),
-    last_name character varying(255),
-    hourly_rate integer,
-    url character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    country character varying(255) DEFAULT 'No country listed'::character varying,
-    experience text DEFAULT 'No experience listed'::text
-);
-
-
---
--- Name: profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE profiles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE profiles_id_seq OWNED BY profiles.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -341,6 +235,8 @@ CREATE TABLE users (
     avatar character varying(255),
     perishable_token character varying(255) DEFAULT ''::character varying,
     active boolean,
+    gym character varying(255) DEFAULT 'No gym listed'::character varying,
+    bio text DEFAULT 'No bio given.'::text,
     features hstore
 );
 
@@ -504,27 +400,6 @@ ALTER TABLE ONLY favorite_workouts ALTER COLUMN id SET DEFAULT nextval('favorite
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY organisations ALTER COLUMN id SET DEFAULT nextval('organisations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY profile_organisations ALTER COLUMN id SET DEFAULT nextval('profile_organisations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
@@ -586,30 +461,6 @@ ALTER TABLE ONLY facebook_users
 
 ALTER TABLE ONLY favorite_workouts
     ADD CONSTRAINT favorite_workouts_pkey PRIMARY KEY (id);
-
-
---
--- Name: organisations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY organisations
-    ADD CONSTRAINT organisations_pkey PRIMARY KEY (id);
-
-
---
--- Name: profile_organisations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY profile_organisations
-    ADD CONSTRAINT profile_organisations_pkey PRIMARY KEY (id);
-
-
---
--- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY profiles
-    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
 
 
 --
@@ -678,27 +529,6 @@ CREATE INDEX index_favorite_workouts_on_user_id ON favorite_workouts USING btree
 --
 
 CREATE INDEX index_favorite_workouts_on_workout_id ON favorite_workouts USING btree (workout_id);
-
-
---
--- Name: index_profile_organisations_on_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profile_organisations_on_organisation_id ON profile_organisations USING btree (organisation_id);
-
-
---
--- Name: index_profile_organisations_on_profile_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profile_organisations_on_profile_id ON profile_organisations USING btree (profile_id);
-
-
---
--- Name: index_profiles_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profiles_on_user_id ON profiles USING btree (user_id);
 
 
 --
@@ -824,8 +654,6 @@ INSERT INTO schema_migrations (version) VALUES ('20120923060134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120923093145');
 
-INSERT INTO schema_migrations (version) VALUES ('20121006013902');
-
 INSERT INTO schema_migrations (version) VALUES ('20121006014910');
 
 INSERT INTO schema_migrations (version) VALUES ('20121007074716');
@@ -883,19 +711,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130217020503');
 INSERT INTO schema_migrations (version) VALUES ('20130217020531');
 
 INSERT INTO schema_migrations (version) VALUES ('20130217032022');
-
-INSERT INTO schema_migrations (version) VALUES ('20130217102901');
-
-INSERT INTO schema_migrations (version) VALUES ('20130218084738');
-
-INSERT INTO schema_migrations (version) VALUES ('20130218090206');
-
-INSERT INTO schema_migrations (version) VALUES ('20130218092359');
-
-INSERT INTO schema_migrations (version) VALUES ('20130218104934');
-
-INSERT INTO schema_migrations (version) VALUES ('20130219081009');
-
-INSERT INTO schema_migrations (version) VALUES ('20130219081309');
-
-INSERT INTO schema_migrations (version) VALUES ('20130220095725');
