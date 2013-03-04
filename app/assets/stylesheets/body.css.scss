@@ -77,3 +77,23 @@ a:active { background-color: transparent; }
 		margin: -250px 0 0 5px;
 	}
 }
+
+//-------------------------------------
+// HIDDEN
+//-------------------------------------
+
+.hidden{
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+.hidden:focus{
+	position:static;
+	width:auto;
+	height:auto;
+}
+
