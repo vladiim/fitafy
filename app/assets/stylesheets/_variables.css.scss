@@ -2,10 +2,19 @@
 // COLORS
 //----------------------------------------------
 
-$font_color:       #3c3c3c;
-$nav_color:        #545454;
-$link_color:       #cd0000;
-$background_color: #efede4;
+$font_color:        #3c3c3c;
+$nav_color:         #545454;
+$nav_colapse_color: #323232;
+$link_color:        #cd0000;
+$background_color:  #efede4;
+$white_color:       #ffffff;
+
+$highlighted_box_color: #545454;
+
+$nav_background_color:  rgba(142, 20, 21, 0.9);
+$nav_background_shadow: '0 0 0 #000';
+
+$tab_background_color: rgb(138,138,136);
 
 //----------------------------------------------
 // FONT
@@ -14,15 +23,17 @@ $background_color: #efede4;
 $body_font: '13px/15px Helvetica, Arial, sans-serif';
 $nav_font:  "18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif";
 
+$nav_font_shadow: '0 1px 1px rgba(0, 0, 0, 0.4)';
+
 //----------------------------------------------
 // IMAGES
 //----------------------------------------------
 
-$navbar_seperator:  'new_design/sep01.png';
-$navbar_logo_image: 'new_design/logo.png';
-$navbar_background: 'new_design/bg-nav.png';
-$logo_banner:       'new_design/bg-main-visual.png';
-
+$navbar_seperator_image: 'new_design/sep01.png';
+$navbar_logo_image:      'new_design/logo.png';
+$navbar_background:      'new_design/bg-nav.png';
+$logo_banner:            'new_design/bg-main-visual.png';
+$tab_svg_image:          'url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzhhOGE4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NjU2NTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)';
 
 //----------------------------------------------
 // BORDERS
@@ -36,8 +47,10 @@ $light_grey_border: '1px solid #676a6c';
 //----------------------------------------------
 
 //// $mediaPhone:              480px !default;
-$phone_media:   400px;
-$phablet_media: 550px;
+$phone_media:        400px;
+$phablet_media:      550px;
+$fat_phablet_media:  600px;
+$small_tablet_media: 640px;
 //// $mediaTablet:             768px !default;
 //// $mediaDesktop:            980px !default;
 //// $mediaLarge:              1200px !default; // and upper

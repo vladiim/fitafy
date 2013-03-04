@@ -44,44 +44,11 @@
 @import "all";
 
 //-----------------------------------------
-// Imports
+// HTML5 BOILERPLATE
 //-----------------------------------------
-// @import "compass/css3"
 @import "h5bp";
-
-//-----------------------------------------
-// Prepend includes
-//-----------------------------------------
-//@include h5bp-normalize;
-
-//-----------------------------------------
-// Append includes
-//-----------------------------------------
 @include h5bp-helpers;
 @include h5bp-media;
-
-//-----------------------------------------
-// Old CSS Files
-//-----------------------------------------
-//@import "base";
-//@import "box_list";
-//@import "buttons";
-//@import "exercises";
-//@import "footer";
-//@import "forms";
-//@import "homepage";
-//@import "loading";
-//@import "navigation";
-//@import "tab_sort_by";
-//@import "tags";
-//@import "typography";
-//@import "workout_exercises";
-//@import "workouts";
-//@import "tables";
-
-//-----------------------------------------
-// Custom application partials
-//-----------------------------------------
 @import "application/chromeframe";
 @import "application/document";
 @import "application/media_queries"; // Media queries last
