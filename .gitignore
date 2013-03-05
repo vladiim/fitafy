@@ -13,3 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# This is the dump after postgres updates the db
+/db/structure.sql
