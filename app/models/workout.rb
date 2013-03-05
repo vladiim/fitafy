@@ -98,19 +98,19 @@ class Workout < ActiveRecord::Base
   end
 
   def increase_views
-    # self.workout_popularity.increase_views
+    self.workout_popularity.increase_views
   end
 
   def increase_copies
-    # self.workout_popularity.increase_copies
+    self.workout_popularity.increase_copies
   end
 
   def increase_favorites
-    # self.workout_popularity.increase_favorites
+    self.workout_popularity.increase_favorites
   end
 
   def increase_pdfs_downloaded
-    # self.workout_popularity.increase_pdfs_downloaded
+    self.workout_popularity.increase_pdfs_downloaded
   end
 
   def to_param
