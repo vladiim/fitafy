@@ -6,4 +6,14 @@ require File.expand_path('../config/application', __FILE__)
 
 Fitafy::Application.load_tasks
 
-Rake::Task["db:structure"].clear if Rails.env.production?
+if Rails.env.production?
+  Rake::Task["db:structure"].clear
+
+  namespace :db do
+    namespace :structure do
+      task :dump do
+      	print "-------OVERRIDING RAILS SO HEROKU DOESN'T BLOW UP"
+      end
+    end
+  end
+end
