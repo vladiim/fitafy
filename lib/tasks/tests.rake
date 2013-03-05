@@ -9,7 +9,7 @@ end
 
 desc "Runs all the jasmine tests"
 task :jasmine do
-  sh "guard-jasmine -e development"
+  # sh "guard-jasmine -e development"
 end
 
 # --------- ACCESSIBILITY TESTS --------- #

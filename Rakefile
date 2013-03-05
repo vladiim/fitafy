@@ -4,6 +4,11 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Rake::Task["db:structure:dump"].clear if Rails.env.production?
+if Rails.env.production?
+  Rake::Task["db:structure:dump"].clear
+  task 'db:structure:dump' do
+  	print '...overriding db:structure:dump in production due to bug in activerecord'
+  end
+end
 
 Fitafy::Application.load_tasks
