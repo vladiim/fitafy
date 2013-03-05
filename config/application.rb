@@ -53,7 +53,7 @@ module Fitafy
     # like if you have constraints or database-specific column types
 
     # This enables postgres hstore to work in test env
-    config.active_record.schema_format = :sql
+    # config.active_record.schema_format = :sql
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models
