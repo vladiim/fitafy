@@ -1,19 +1,29 @@
 class Exercise < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :name, :description, :tips, :muscle, :category, :equipment_id
+  attr_accessible :name,   :description, :tips, 
+                  :muscle, :category,    :equipment_id
 
-  MUSCLES    = %w(chest back shoulders legs quadriceps glutes hamstrings calves triceps biceps forearms core full_body neck torso)
-  CATEGORIES = %w(muscle plyometrics mobility stretch crossfit rehab plyometric)
+  MUSCLES    = %w(chest back shoulders legs quadriceps 
+                  glutes hamstrings calves triceps biceps
+                  forearms core full_body neck torso
+                  Chest Back Shoulders Legs Quadriceps 
+                  Glutes Hamstrings Calves Triceps Biceps
+                  Forearms Core Full_body Neck Torso)
+
+  CATEGORIES = %w(muscle plyometrics mobility stretch
+                  crossfit rehab plyometric
+                  Muscle Plyometrics Mobility Stretch
+                  Crossfit Rehab Plyometric)
 
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises, uniq: true
   belongs_to :equipment
 
   validates_presence_of :name, :description
-  validates :name, uniqueness: true
-  validates :muscle,   inclusion: { in: MUSCLES },    if: :muscle?
-  validates :category, inclusion: { in: CATEGORIES }, if: :category?
+  validates :name,      uniqueness: true
+  validates :muscle,    inclusion: { in: MUSCLES },    if: :muscle?
+  validates :category,  inclusion: { in: CATEGORIES }, if: :category?
 
   friendly_id :name, use: :slugged
 
