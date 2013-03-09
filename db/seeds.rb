@@ -1,10 +1,15 @@
 Dir[File.dirname(__FILE__) + '/seed_files/**/*.rb'].each { |file| require file }
 
-Workout.all.map(&:delete)
-Exercise.all.map(&:delete)
-WorkoutExercise.all.map(&:delete)
+# ----------------------------------
+# DELETE ALL
+# ----------------------------------
+# Workout.all.map(&:delete)
+# Exercise.all.map(&:delete)
+# WorkoutExercise.all.map(&:delete)
 
-# First create all the Exercises
+# ----------------------------------
+# UPDATE/CREATE EXERCISES
+# ----------------------------------
 create_chest
 create_back
 create_shoulders
@@ -21,9 +26,14 @@ create_full_body
 create_neck
 create_torso
 
-@fitafy = User.find_or_create_by_email "rob@fitafy.com", username: "fitafy", password: "password", password_confirmation: "password", terms_of_service: "true"
-@fitafy.role = "admin"
-@fitafy.save!
+# ----------------------------------
+# CREATE USER
+# ----------------------------------
+# @fitafy = User.find_or_create_by_email "rob@fitafy.com", username: "fitafy", password: "password", password_confirmation: "password", terms_of_service: "true"
+# @fitafy.role = "admin"
+# @fitafy.save!
 
-
-create_workouts
+# ----------------------------------
+# CREATE WORKOUTS
+# ----------------------------------
+# create_workouts
