@@ -6,15 +6,10 @@ class Exercise < ActiveRecord::Base
 
   MUSCLES    = %w(chest back shoulders legs quadriceps 
                   glutes hamstrings calves triceps biceps
-                  forearms core full_body neck torso
-                  Chest Back Shoulders Legs Quadriceps 
-                  Glutes Hamstrings Calves Triceps Biceps
-                  Forearms Core Full_body Neck Torso)
+                  forearms core full_body neck torso)
 
   CATEGORIES = %w(muscle plyometrics mobility stretch
-                  crossfit rehab plyometric
-                  Muscle Plyometrics Mobility Stretch
-                  Crossfit Rehab Plyometric)
+                  crossfit rehab plyometric)
 
   has_many :workout_exercises, dependent: :destroy
   has_many :workouts, through: :workout_exercises, uniq: true

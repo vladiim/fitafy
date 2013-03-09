@@ -27,7 +27,11 @@ module Exercises
     end
 
     def description
-      truncate(@exercise.description.humanize, length: 90)
+      if @exercise.description
+        truncate(@exercise.description.humanize, length: 90)
+      else
+        'No description...'
+      end
     end
 
     def muscle

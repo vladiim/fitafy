@@ -1,3 +1,12 @@
+@media only screen and (max-width: $med_desktop_media) {
+	.workout-holder:after { width:100%; }
+}
+
+@media only screen and (max-width: $med_tablet_media) {
+	#main .workout-holder h3 { @include list-heading; }
+}
+
+
 // -----------------------
 // FORMS
 // -----------------------

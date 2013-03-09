@@ -1,0 +1,16 @@
+.article-holder{
+	border:1px solid #d1d0cb;
+	border-width:1px 0;
+	color:#3c3c3c;
+	padding:11px 0 6px;
+	margin:0 0 11px;
+}
+.article-holder:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+
+@media only screen and (max-width: $med_tablet_media) {
+	.article-holder { @include list-heading; }
+}

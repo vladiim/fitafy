@@ -26,6 +26,12 @@ li.workout_exercise { padding: 10px !important; }
 	margin: 6px 20px 5px 6px;
 }
 
+@media only screen and (max-width: $med_tablet_media) {
+
+	.exercise-list li { @include list-heading; }
+}
+
+
 //-----------------------------------
 // ORDER NUMBER
 //-----------------------------------

@@ -211,3 +211,27 @@
 	left:auto;
 	right:13px;
 }
+
+@media only screen and (max-width: $med_tablet_media) {
+	.btns {
+		float:none;
+		margin:0 0 0 15px;
+	}
+}
+
+@media only screen and (max-width: $phablet_media) {
+
+	#main .btn,
+	#main .btn.alt { min-width:240px; }
+
+	.tab-content .btn-list {
+		float:none;
+		text-align:center;
+	}
+
+	.tab-content .btn-list li {
+		float:none;
+		width:100%;
+		margin: 0 0 4px;
+	}
+}
