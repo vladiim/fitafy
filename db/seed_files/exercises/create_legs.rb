@@ -141,8 +141,8 @@ def create_legs
   e.equipment_id = Equipment.find_or_create_by_name("Dumbbells").id
   e.category =    "muscle"
   e.category =   e.category.downcase
-  e.description =  "Hold two Dumbbells by your sides. Take a long step backwards with one leg and lower the knee towards the
-  e.ground = Push upwards with your front leg to return the rear leg back to a standing position. Repeat the process with the other leg forward.",
+  e.description =  "Hold two Dumbbells by your sides. Take a long step backwards with one leg and lower your knee towards the ground. Push upwards with your front leg to return the rear leg back to a standing position. Repeat the process with the other leg forward."
+  e.tips = "Push upwards with your front leg to return the rear leg back to a standing position. Repeat the process with the other leg forward."
   count += 1 if e.save!
      
   e = Exercise.find_or_create_by_name("Dynamic Lunge")
