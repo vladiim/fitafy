@@ -5,8 +5,8 @@ class Exercise < ActiveRecord::Base
                   :muscle, :category,    :equipment_id
 
   MUSCLES    = %w(chest back shoulders legs quadriceps 
-                  glutes hamstrings calves triceps biceps
-                  forearms core full_body neck torso)
+                  glutes calves triceps biceps
+                  forearms core full_body torso)
 
   CATEGORIES = %w(muscle plyometrics mobility stretch
                   crossfit rehab plyometric)
