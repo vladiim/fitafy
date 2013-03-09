@@ -661,8 +661,8 @@ def create_core
   e.equipment_id = Equipment.find_or_create_by_name("TRX").id
   e.category =    "muscle"
   e.category =   e.category.downcase
-  e.description =  "Start face-down and secure your feet in the TRX straps. Stretch forward and take your bodyweight into your hands. Extend your arms and raise
-  e.your =hips to create a straight line in your body. Elevate your hips as high as possible while maintaining straight legs. Pause briefly at the peak and slowly return to plank position.",
+  e.description =  "Start face-down and secure your feet in the TRX straps. Stretch forward and take your bodyweight into your hands. Extend your arms and raise your hips to create a straight line in your body. Elevate your hips as high as possible while maintaining straight legs. Pause briefly at the peak and slowly return to plank position."
+  e.tips = "None"
   count += 1 if e.save!
 
         
