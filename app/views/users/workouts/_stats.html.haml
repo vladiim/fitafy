@@ -9,8 +9,8 @@
       = link_to @trainer.username.upcase, user_path(@trainer)
 
   .box.workout_form_group.level
-    = image_tag 'new_design/ico01.png', width: '66', height: '53', class: 'grayscale'
-    = image_tag 'new_design/ico01-h.png', width: '66', height: '53', class: 'hover'
+    = image_tag regular_hard_grey_icon_image_url, width: '66', height: '53', class: 'grayscale'
+    = image_tag regular_hard_red_icon_image_url, width: '66', height: '53', class: 'hover'
     .workout_value.level
       %p= @workout.level
 
