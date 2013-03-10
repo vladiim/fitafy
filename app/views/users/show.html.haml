@@ -5,7 +5,6 @@
         .span8
           %article.row.user_details.notes-holder.hover_box
             %header.heading-box.user_profile_details
-              %h2= @user.username
               %span.note FITNESS FIRST MELBOURNE
 
             = cl_image_tag "#{@user.username}.jpg", width: 75, height: 93, radius: 10, id: 'user_profile_pic', class: 'avatar', alt: @user.username

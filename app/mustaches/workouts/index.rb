@@ -12,7 +12,7 @@ module Workouts
     delegate :client_level,    to: :@workout
     delegate :difficulty,      to: :@workout
   
-    delegate :regular_hard_red_icon_image_url, to: :@view_context
+    delegate :regular_hard_red_icon_image_url,  to: :@view_context
     delegate :regular_hard_grey_icon_image_url, to: :@view_context
 
     def initialize(view_context)

@@ -8,7 +8,8 @@ describe Workouts::Index do
   describe "render_json" do
     before do
       mock(view).users_workout_path(workout.username, workout) { "URL" }
-      mock(view).image_tag(anything, anything).times(2) { true }
+      mock(index).regular_hard_red_icon_image_url { true }
+      mock(index).regular_hard_grey_icon_image_url { true }
     end
 
     let(:result) { index.render_json workout, view }
