@@ -18,7 +18,7 @@
 
     %article.workout_form_group.notes.notes-holder.span8.hover_box
       .workout_value.notes.heading-box
-        = image_tag "new_design/bullet02.png", width: '20', height: '20', alt: 'fitafy star', class: 'ico'
+        = image_tag star2_icon_url, width: '20', height: '20', alt: 'fitafy star', class: 'ico'
         %h5 WORKOUT NOTES
         %p= @workout.notes.humanize
         - if can? :manage, @workout

@@ -12,6 +12,9 @@ module Workouts
     delegate :client_level,    to: :@workout
     delegate :difficulty,      to: :@workout
   
+    delegate :regular_hard_red_icon_image_url, to: :@view_context
+    delegate :regular_hard_grey_icon_image_url, to: :@view_context
+
     def initialize(view_context)
       @view_context = view_context
     end
@@ -40,8 +43,8 @@ module Workouts
         difficulty:            difficulty,
         username:              username,
         exercises_count:       exercises_count,
-        gray_difficulty_icon:  gray_difficulty_icon,
-        color_difficulty_icon: color_difficulty_icon
+        regular_hard_red_icon_image_url: regular_hard_red_icon_image_url,
+        regular_hard_grey_icon_image_url: regular_hard_grey_icon_image_url
       }
     end
   end

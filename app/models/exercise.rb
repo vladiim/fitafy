@@ -4,7 +4,7 @@ class Exercise < ActiveRecord::Base
   attr_accessible :name,   :description, :tips, 
                   :muscle, :category,    :equipment_id
 
-  MUSCLES    = %w(chest back shoulders legs quadriceps 
+  MUSCLES    = %w(chest back shoulders legs 
                   glutes calves triceps biceps hamstrings
                   forearms core full_body torso neck)
 

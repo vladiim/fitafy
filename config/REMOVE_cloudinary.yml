@@ -1,0 +1,14 @@
+test:
+  cloud_name: COUDINARY_CLOUD_NAME
+  api_key:    CLOUDINARY_API_KEY
+  api_secret: CLOUDINARY_API_SECRET
+
+development:
+  cloud_name: COUDINARY_CLOUD_NAME
+  api_key:    CLOUDINARY_API_KEY
+  api_secret: CLOUDINARY_API_SECRET
+
+production:
+  cloud_name: COUDINARY_CLOUD_NAME
+  api_key:    CLOUDINARY_API_KEY
+  api_secret: CLOUDINARY_API_SECRET
