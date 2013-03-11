@@ -8,16 +8,17 @@ When /^fill in my details$/ do
 end
 
 Then /^I should have a new account$/ do
-  user = User.last
-  user.username.should match "rza"
-  user.email.should match "bobby@bolders.com"
+  @user = User.last
+  @user.username.should match "rza"
+  @user.email.should match "bobby@bolders.com"
 end
 
-Then /^Snapz should have a message for creating an account$/ do
+Then /^I should be on my user page$/ do
   page.should have_content "Yea, yea, yea! Welcome to the fitification!"
+  current_path.should eq user_path(@user)
 end
 
-Then /^I should get a sign up email$/ do
+Then /^I should get a welcome up email$/ do
   last_email.to.should eq ["bobby@bolders.com"]
   last_email.subject.should eq SnapzSayz::EmailSpeak.sign_up_welcome_title
 end

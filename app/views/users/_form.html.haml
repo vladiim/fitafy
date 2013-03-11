@@ -12,13 +12,13 @@
 
   .span3.well
     = simple_form_for @user do |f|
-      = f.error_notification
+      / = f.error_notification
       / = f.input :gym
       / = f.input :bio, input_html: { rows: 8 }
-      = f.submit "SAVE CHANGES", class: "btn btn-primary"
+      / = f.submit "SAVE CHANGES", class: "btn btn-primary"
 
 %aside.row
   .span10.well
     %header
       %h5 DANGER BIT!
-    = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"  
+    = link_to "DELETE ACCOUNT", user_path(current_user), method: :delete,   data: { confirm: @delete_confirmation }, class: "btn btn-danger"

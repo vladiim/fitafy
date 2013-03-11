@@ -12,15 +12,15 @@ Feature: Trainer manages account
     When I click sign up
     And fill in my details
     Then I should have a new account
-    And Snapz should have a message for creating an account
-    And I should get a sign up email
+    And I should be on my user page
+    And I should get a welcome up email
 
-  Scenario: Trainer needs to confirm email
-    Given I'm not logged in
-    When I've created an account
-    When I try to log in
-    Then I get a message to confirm my email
-    And I can resend the email
+  # Scenario: Trainer needs to confirm email
+  #   Given I'm not logged in
+  #   When I've created an account
+  #   When I try to log in
+  #   Then I get a message to confirm my email
+  #   And I can resend the email
 
   Scenario: Trainer confirms email
     Given I've created an account

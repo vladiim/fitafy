@@ -9,9 +9,9 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
-  	if @user.save
+  	if @user.save && @user.activate!
       flash[:success] = SnapzSayz::UserSpeak.created_user
-      redirect_to new_activation_path
+      redirect_to user_path(@user)
     else
       flash[:error] = SnapzSayz::UserSpeak.create_user_fail
       render :new
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   def show
     @user     = User.find(params[:id])
     @renderer = Workouts::Index.new(view_context)
-    # @workouts = @user.my_workouts(params[:tags])
     @workouts = UserWorkoutsOrderer.new(@user, params).get_workouts
     @muscles  = Workout.muscles
     @title    = @user.username
