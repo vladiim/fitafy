@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container-fluid
   .row-fluid
     .span12
@@ -7,7 +8,7 @@
             %header.heading-box.user_profile_details
               %span.note FITNESS FIRST MELBOURNE
 
-            = cl_image_tag "#{@user.username}.jpg", width: 75, height: 93, crop: :fill, radius: 10, id: 'user_profile_pic', class: 'avatar', alt: @user.username
+            = cl_image_tag "#{@user.username}.jpg", width: 75, height: 93, radius: 10, id: 'user_profile_pic', class: 'avatar', alt: @user.username
 
             .text-holder
               %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -23,6 +24,28 @@
               %span.quantity= @user.count_favorite_workouts
 
 %header.user_workouts
+=======
+%article.row.user_details.vcard
+  .span1.user_profile_pic
+    #profile= image_tag(@user.avatar_url ? @user.avatar_url : "das_boot.png")
+
+  .span5.user_profile_details.well
+    %header
+      %h5.fn=  @user.name
+      %h5.org= @user.org_name
+
+    %p= @user.bio.humanize
+
+  .span3.user_stats.well
+    .span1.user_workouts_count
+      .user_stat= @user.workouts_count
+      %p WORKOUTS
+    .span1.user_favorite_workouts
+      .user_stat= @user.count_favorite_workouts
+      %p FAVORITES
+
+%section.user_workouts
+>>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
   %h2
     = @user == current_user ? "YOUR WORKOUTS" : "#{@user.username.upcase}'S WORKOUTS"
 

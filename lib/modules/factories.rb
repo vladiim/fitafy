@@ -5,6 +5,7 @@ FactoryGirl.define do
   sequence(:string) { |n| WuTangIpsum.generate }
 
   factory :user, class: User, aliases: [:trainer] do
+    profile
   	username              { "johnny #{ rand 10000 }" }
   	email                 { "tical-#{rand(10000)}@wu.com" }
   	password              "password"
@@ -13,7 +14,18 @@ FactoryGirl.define do
 
     factory :active_trainer do
       active true
+      # organisation
     end
+  end
+
+  factory :profile do
+    first_name    "Firstname"
+    last_name     "Lastname"
+    # bio           "blah blah"
+    # avatar        "AvatarUploader"
+    experience    4.5
+    hourly_rate   85
+    url           "http://www.fitnessfirst.com.au/gyms/gyms-in-sydney/club-sydney-cbd---bond-street/"
   end
 
   factory :facebook_user do
@@ -54,4 +66,14 @@ FactoryGirl.define do
     user
     workout
   end
+
+  # factory :organisation do
+  #   name          "Fitness First"
+  #   street        "20 Bond St"
+  #   suburb        "CBD"
+  #   city          "Sydney"
+  #   state         "NSW"
+  #   country       "Australia"
+  #   postcode      2000
+  # end
 end

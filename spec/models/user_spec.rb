@@ -3,10 +3,11 @@ require_relative '../spec_helper'
 describe User do
   subject { build_stubbed :user }
 
-  describe "#associations" do
+  describe "associations" do
     it { should have_many :workouts }
     it { should have_many :favorite_workouts }
     it { should belong_to :facebook_user }
+    it { should have_one  :profile}
   end
 
   describe "validations" do

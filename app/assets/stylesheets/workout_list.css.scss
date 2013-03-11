@@ -11,15 +11,27 @@
 }
 
 //----------------------------
+// WORKOUTS
+//----------------------------
+
+@media only screen and (max-width: $small_tablet_media) {
+	.workout-list li { margin: 2px !important; }
+}
+
+//----------------------------
 // 
 //----------------------------
 .workout-holder {
 	position: relative;
 	padding:  0 0 2px;
 	margin:   0 0 10px;
+
+	h3 { margin-left: 40px; }
 }
-.workout-list{
-	margin:         0 -21px 0 0;
+
+.workout-list {
+//	margin:         0 -21px 0 0;
+//    margin-left:    -70px;
 	padding:        0;
 	list-style:     none;
 	overflow:       hidden;
@@ -28,6 +40,13 @@
 	position:       relative;
 	text-align:     center;
 }
+
+@media only screen and (max-width: $med_desktop_media) {
+	.workout-list { margin-left: 0; }
+
+	.workout-holder h3 { margin-left: 0; }
+}
+
 .workout-holder:after{
 	position:   absolute;
 	bottom:     0;
@@ -41,7 +60,8 @@
 	background:         rgb(239,237,227);
 	border:             $workout_list_border;
 	border-radius:      2px;
-	margin:             0 19px 8px 0;
+//	margin:             0 19px 8px 0;
+    margin:             2px;
 	width:              141px;
 	text-align:         center;
 	letter-spacing:     0;

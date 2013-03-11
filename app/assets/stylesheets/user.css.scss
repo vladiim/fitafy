@@ -61,6 +61,12 @@
 	}
 }
 
+@media only screen and (max-width: $phablet_media){
+	#main .btn, #main .btn.alt.tag_link {
+		min-width: 53px !important;
+	}
+}
+
 //----------------------------
 // STATS
 //----------------------------
@@ -70,8 +76,19 @@
 // WORKOUTS
 //----------------------------
 
-#main header.user_workouts { margin-top: 20px; }
+#main header.user_workouts { 
+	margin: 20px 20px;
 
+	h2 { margin-left: 15px; }
+}
+
+@media only screen and (max-width: $med_tablet_media){
+#main header.user_workouts { 
+	margin: 20px 20px;
+
+	h2 { margin-left: 15px; }
+}
+}
 
 #main #workout_list .new_workout_plus {
 	font-size: 1000%;

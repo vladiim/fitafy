@@ -11,7 +11,14 @@
 // FORMS
 // -----------------------
 
-#main .workout_form_group a.show_workout_form { margin-left: 20px }
+#main .workout_form_group a.show_workout_form { margin-left: 50px }
+
+@media only screen and (max-width: $small_tablet_media) {
+	#main .box .workout_form_group .level a.show_workout_form,
+	#workout_stats .show_workout_form {
+		margin-left: 100px !important;
+	}
+}
 
 #main .workout_form_group.notes { margin-bottom: 50px; }
 
@@ -115,7 +122,7 @@
 		p { margin-left: 10px; }
 	}
 
-    #workout_stats .show_workout_form { margin: 0 !important; }
+//    #workout_stats .show_workout_form { margin: 0 !important; }
 }
 
 #workout_stats .box.workout_form_group { margin-left: 20px; }

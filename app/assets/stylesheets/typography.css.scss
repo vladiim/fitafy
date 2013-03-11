@@ -1,6 +1,7 @@
 h1 {
 	color:          $h1_color;
 	margin:         0 0 9px;
+	margin-left:    20px !important;
 	text-transform: uppercase;
 	font:           45px/48px $h1_font;
 	font-family:    $h1_font !important;
@@ -47,4 +48,10 @@ h5 {
 @mixin list-heading {
 	padding-left:15px;
 	padding-right:15px;
+}
+
+@media only screen and (max-width: $small_tablet_media) {
+	h1,
+	h2,
+	h3 { font-size: 300% !important; }
 }

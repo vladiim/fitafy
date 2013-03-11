@@ -17,6 +17,32 @@
 	color:#373636;
 }
 
+@media only screen and (max-width: $med_desktop_media){
+	.main-visual { 
+		margin: 0;
+		background-position: 30%;
+	}
+
+	.main-visual .text-holder {
+    	min-width: 300px !important;
+
+    	h1 { 
+    		line-height: 46px;
+    		margin-left: 0 !important;
+    	}
+	}
+}
+
+@media only screen and (max-width: $small_tablet_media){
+	.main-visual .text-holder {
+    	min-width: 200px !important;
+
+    	h1 { 
+    		line-height: 46px;
+    		margin-left: 0 !important;
+    	}
+	}
+}
 
 //------------------------------
 // SIGN UP & LOGIN

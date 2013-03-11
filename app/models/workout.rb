@@ -20,7 +20,12 @@ class Workout < ActiveRecord::Base
   validates :client_level, inclusion: { in: CLIENT_LEVELS }, if: :client_level?
   validates :difficulty, inclusion:   { in: DIFFICULTY },    if: :difficulty?
 
-  delegate :username, to: :user
+  delegate :username,                 to: :user
+  # delegate :increase_views,           to: :workout_popularity
+  # delegate :increase_copies,          to: :workout_popularity
+  # delegate :increase_favorites,       to: :workout_popularity
+  # delegate :increase_pdfs_downloaded, to: :workout_popularity
+
 
   scope :find_by_exercise_muscles, lambda { |muscles| Workout.joins(:exercises).where{{ exercises => ( muscle.like_any muscles ) }} }
   scope :offset_by_page, lambda { |page| self.limit(20).offset(page.to_i * 20) }

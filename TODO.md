@@ -29,8 +29,8 @@ workout show - mobile doesn't properly show modal
 * Increase Strength
 * Sport Performance
 * Learn a Skill
-* Event Preparation Preparation
-* Improve Co-ordination/Balance
+* Event Preparation
+* Co-ordination/Balance
 * Childrens Fitness
 * Older Adult Fitness
 
@@ -57,7 +57,6 @@ workout show - mobile doesn't properly show modal
 
 * Cert 3 in Fitness (AUS)
 * Cert 4 in Fitness (AUS)
-* Diploma 
 * ACSM Certification (US)
 * ISSA Certification (US)
 * NSCA Certification (US)
@@ -66,21 +65,11 @@ workout show - mobile doesn't properly show modal
 * REPs Level 3 (UK)
 * REPs Level 4 (UK)
 * REPs Level 5 (UK)
+* Diploma 
 * CHEK Practitioner
 * Bachelors Degree
 * Masters
 * Doctorate
-
-
-# up to
-
-* rake deploy
-	- tests
-	- continuous int
-	- AA
-	- stagging instructions
-	- speed
-
 
 # Notes
 * start redis: redis-server /usr/local/etc/redis.conf
