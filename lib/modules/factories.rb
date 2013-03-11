@@ -14,7 +14,6 @@ FactoryGirl.define do
 
     factory :active_trainer do
       active true
-      # organisation
     end
   end
 
@@ -67,13 +66,18 @@ FactoryGirl.define do
     workout
   end
 
-  # factory :organisation do
-  #   name          "Fitness First"
-  #   street        "20 Bond St"
-  #   suburb        "CBD"
-  #   city          "Sydney"
-  #   state         "NSW"
-  #   country       "Australia"
-  #   postcode      2000
-  # end
+  factory :organisation do
+    name     "Fitness First"
+    street   "20 Bond St"
+    suburb   "CBD"
+    city     "Sydney"
+    state    "NSW"
+    country  "Australia"
+    postcode 2000
+  end
+
+  factory :profile_organisation do
+    profile
+    organisation
+  end
 end

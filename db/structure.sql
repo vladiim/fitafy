@@ -255,6 +255,8 @@ CREATE TABLE profiles (
     user_id integer,
     first_name character varying(255),
     last_name character varying(255),
+    experience integer,
+    avatar character varying(255),
     hourly_rate integer,
     url character varying(255),
     created_at timestamp without time zone NOT NULL,
