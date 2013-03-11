@@ -22,10 +22,10 @@ Feature: Trainer manages account
   #   Then I get a message to confirm my email
   #   And I can resend the email
 
-  Scenario: Trainer confirms email
-    Given I've created an account
-    When I confirm my email
-    Then I'm signed in automagically
+  # Scenario: Trainer confirms email
+  #   Given I've created an account
+  #   When I confirm my email
+  #   Then I'm signed in automagically
 
   Scenario: Trainer has profile page
     Given I'm on the hompage
