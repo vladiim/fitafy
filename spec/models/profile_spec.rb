@@ -6,14 +6,9 @@ describe Profile do
 
   describe 'attributes' do
   	it { should have_db_column(:user_id) }
-<<<<<<< HEAD
-    # it { should have_db_column(:organisation_id) }
-=======
->>>>>>> Visitor sees the trainers organisation name
   	it { should have_db_column(:first_name) }
   	it { should have_db_column(:last_name) }
   	it { should have_db_column(:experience) }
-    # it { should have_db_column(:avatar) }
   	it { should have_db_column(:hourly_rate) }
   	it { should have_db_column(:url) }
   end
