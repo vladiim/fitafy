@@ -13,8 +13,8 @@ class Profile < ActiveRecord::Base
   	no_names
   end
 
-  def org_name
-    organisations? ? organisations_names : no_organisations_names
+  def orgs
+  	organisations? ? organisations : [EmptyOrganisation.new]
   end
 
   private
@@ -27,21 +27,21 @@ class Profile < ActiveRecord::Base
   	'No name on record'
   end
 
-  def organisations_names
-  	names = ''
-  	organisations.each { |org| names << "#{org.name.titleize}, " }
-  	names.sub(/, $/, '')
-  end
+  # def organisations_names
+  # 	names = ''
+  # 	organisations.each { |org| names << "#{org.name.titleize}, " }
+  # 	names.sub(/, $/, '')
+  # end
 
-  def no_organisations_names
-  	'No gym listed'
-  end
+  # def no_organisations_names
+  # 	'No gym listed'
+  # end
 
   def both_names?
   	first_name && last_name
   end
 
   def organisations?
-  	self.organisations
+  	self.organisations.count > 0
   end
 end

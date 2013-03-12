@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
   validates :password,         confirmation: true, on: :create # if: password?
   validates :terms_of_service, acceptance: { accept: 'true' }
 
-  delegate :name,     to: :profile
-  delegate :org_name, to: :profile
+  delegate :name, to: :profile
+  delegate :orgs, to: :profile
 
   # for authlogic gem
   acts_as_authentic { |c| c.login_field = "email" }
@@ -62,12 +62,13 @@ class User < ActiveRecord::Base
   end
 
   def build_workout params=nil
-    if params == nil
-      workouts.build user_id: self.id
-    else
-      params.merge user_id: self.id
-      self.workouts.build params
-    end
+    params == nil ? build_workout_no_params : build_workout_with_params(params)
+    # if params == nil
+    #   workouts.build user_id: self.id
+    # else
+    #   params.merge user_id: self.id
+    #   self.workouts.build params
+    # end
   end
 
   def copy_workout workout
@@ -94,12 +95,12 @@ class User < ActiveRecord::Base
   end
 
   def workouts_from_favorites favorite_workouts
-    workouts = []
-    favorite_workouts.each do |favorite_workout|
+    # workouts = []
+    favorite_workouts.each.inject([]) do |workouts, favorite_workout|
       workout = Workout.find(favorite_workout.workout_id)
       workouts << workout
     end
-    workouts
+    # workouts
   end
 
   def workout_in_favorites? workout

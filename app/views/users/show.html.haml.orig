@@ -22,8 +22,6 @@
             .box.user_favorite_workouts
               %strong.title FAVORITE WORKOUTS
               %span.quantity= @user.count_favorite_workouts
-
-%header.user_workouts
 =======
 %article.row.user_details.vcard
   .span1.user_profile_pic
@@ -32,8 +30,8 @@
   .span5.user_profile_details.well
     %header
       %h5.fn=  @user.name
-      %h5.org= @user.org_name
 
+    %p.hidden.nickname= @user.username
     %p= @user.bio.humanize
 
   .span3.user_stats.well
@@ -43,9 +41,14 @@
     .span1.user_favorite_workouts
       .user_stat= @user.count_favorite_workouts
       %p FAVORITES
+>>>>>>> Created ProfileOrganisation and EmptyOrganisation to change profile/organisation relationship
+
+  - @user.orgs.each do |organisation|
+    .span6.user_organisation_details.well
+      %header
+        %h5.org= organisation.name.titleize
 
 %section.user_workouts
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
   %h2
     = @user == current_user ? "YOUR WORKOUTS" : "#{@user.username.upcase}'S WORKOUTS"
 

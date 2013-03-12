@@ -7,8 +7,12 @@ Then /^I should see useful profile information$/ do
   # http://microformats.org/wiki/hcalendar
   # http://microformats.org/wiki/hresume#Microformats_Draft_Specification
   page.should have_css(".vcard")
-  page.should have_css('.fn',  text: @trainer.name)
-  page.should have_css('.org', text: @trainer.org_name)
+
+  page.should have_css('.fn',       text: @trainer.name)
+  page.should have_css('.nickname', text: @trainer.username)
+
+  page.should have_css('.org',            text: @trainer.orgs.first.name.titleize)
+  page.should have_css('.street-address', text: @trainer.orgs.first.street)
 
   # these come from orginisation
   # page.should have_css(class: 'org', content: @trainer.org)

@@ -56,25 +56,23 @@ describe Profile do
     end
   end
 
-  describe '#org_name' do
-    context "no organisations" do
-      let(:result) { profile.org_name }
-      before       { mock(profile).organisations { nil } }
+  describe '#orgs' do
+    let(:result) { profile.orgs }
 
-      it 'returns the organisation name' do
-        result.should eq 'No gym listed'
+    context "with organisations" do
+      let(:organisations) { ['ORGANISATIONS'] }
+      before { mock(profile).organisations { organisations } }
+
+      it 'returns the organisations' do
+        result.should eq ['ORGANISATIONS']
       end
     end
 
-    context "more than one organisation" do
-      let(:org)    { OpenStruct.new name: 'ORG 1' }
-      let(:org2)   { OpenStruct.new name: 'ORG 2' }
-      let(:orgs)   { [org, org2] }
-      let(:result) { profile.org_name }
-      before       { mock(profile).organisations.times(2) { orgs } }
+    context "without an organisation" do
+      let(:organisations) { [] }
 
-      it 'returns the organisation name' do
-        result.should eq 'Org 1, Org 2'
+      it 'returns an empty organisation' do
+        result.first.class.should eq EmptyOrganisation
       end
     end
   end
