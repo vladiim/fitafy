@@ -215,7 +215,6 @@ ALTER SEQUENCE organisations_id_seq OWNED BY organisations.id;
 
 
 --
-<<<<<<< HEAD
 -- Name: profile_organisations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -248,8 +247,6 @@ ALTER SEQUENCE profile_organisations_id_seq OWNED BY profile_organisations.id;
 
 
 --
-=======
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
 -- Name: profiles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -258,22 +255,12 @@ CREATE TABLE profiles (
     user_id integer,
     first_name character varying(255),
     last_name character varying(255),
-<<<<<<< HEAD
-    hourly_rate integer,
-    url character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    country character varying(255) DEFAULT 'No country listed'::character varying,
-    experience text DEFAULT 'No experience listed'::text
-=======
     experience integer,
-    organisation_id integer,
     avatar character varying(255),
     hourly_rate integer,
     url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
 );
 
 
@@ -524,7 +511,6 @@ ALTER TABLE ONLY organisations ALTER COLUMN id SET DEFAULT nextval('organisation
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-<<<<<<< HEAD
 ALTER TABLE ONLY profile_organisations ALTER COLUMN id SET DEFAULT nextval('profile_organisations_id_seq'::regclass);
 
 
@@ -532,8 +518,6 @@ ALTER TABLE ONLY profile_organisations ALTER COLUMN id SET DEFAULT nextval('prof
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-=======
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
 ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
 
 
@@ -613,7 +597,6 @@ ALTER TABLE ONLY organisations
 
 
 --
-<<<<<<< HEAD
 -- Name: profile_organisations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -622,8 +605,6 @@ ALTER TABLE ONLY profile_organisations
 
 
 --
-=======
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
 -- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -700,7 +681,6 @@ CREATE INDEX index_favorite_workouts_on_workout_id ON favorite_workouts USING bt
 
 
 --
-<<<<<<< HEAD
 -- Name: index_profile_organisations_on_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -712,12 +692,6 @@ CREATE INDEX index_profile_organisations_on_organisation_id ON profile_organisat
 --
 
 CREATE INDEX index_profile_organisations_on_profile_id ON profile_organisations USING btree (profile_id);
-=======
--- Name: index_profiles_on_organisation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_profiles_on_organisation_id ON profiles USING btree (organisation_id);
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
 
 
 --
@@ -912,20 +886,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130217032022');
 
 INSERT INTO schema_migrations (version) VALUES ('20130217102901');
 
-<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20130218084738');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218090206');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218092359');
-
-INSERT INTO schema_migrations (version) VALUES ('20130218104934');
-
-INSERT INTO schema_migrations (version) VALUES ('20130219081009');
-
-INSERT INTO schema_migrations (version) VALUES ('20130219081309');
-
-INSERT INTO schema_migrations (version) VALUES ('20130220095725');
-=======
-INSERT INTO schema_migrations (version) VALUES ('20130218084738');
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model

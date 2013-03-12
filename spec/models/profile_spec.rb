@@ -15,6 +15,8 @@ describe Profile do
 
   describe 'relationships' do
     it { should belong_to :user }
+    it { should have_many(:profile_organisations) }
+    it { should have_many(:organisations).through(:profile_organisations) }
   end
 
   describe '#name' do
@@ -55,12 +57,25 @@ describe Profile do
   end
 
   describe '#org_name' do
-    let(:org)    { OpenStruct.new name: 'ORG NAME' }
-    let(:result) { profile.org_name }
-    before       { mock(profile).organisation { org } }
+    context "no organisations" do
+      let(:result) { profile.org_name }
+      before       { mock(profile).organisations { nil } }
 
-    it 'returns the organisation name' do
-      result.should eq 'ORG NAME'
+      it 'returns the organisation name' do
+        result.should eq 'No gym listed'
+      end
+    end
+
+    context "more than one organisation" do
+      let(:org)    { OpenStruct.new name: 'ORG 1' }
+      let(:org2)   { OpenStruct.new name: 'ORG 2' }
+      let(:orgs)   { [org, org2] }
+      let(:result) { profile.org_name }
+      before       { mock(profile).organisations.times(2) { orgs } }
+
+      it 'returns the organisation name' do
+        result.should eq 'Org 1, Org 2'
+      end
     end
   end
 end
