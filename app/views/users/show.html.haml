@@ -22,7 +22,7 @@
               %strong.title FAVORITE WORKOUTS
               %span.quantity= @user.count_favorite_workouts
 
-%header.user_workouts
+%section.user_workouts
   %h2
     = @user == current_user ? "YOUR WORKOUTS" : "#{@user.username.upcase}'S WORKOUTS"
 
