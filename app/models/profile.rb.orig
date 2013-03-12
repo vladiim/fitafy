@@ -1,12 +1,10 @@
 class Profile < ActiveRecord::Base
   attr_accessible :hourly_rate, :avatar, :experience, :first_name,
-<<<<<<< HEAD
-                  :last_name, :url, :user_id
-=======
-                  :last_name, :organisation_id, :url, :user_id
->>>>>>> Visitor sees trainer name when they visit profile, created Organisation model
+                  :last_name, :url, :user_id, :country
 
   belongs_to :user
+  has_many   :profile_organisations
+  has_many   :organisations, through: :profile_organisations
 
   def name
   	return combined_names if both_names?
@@ -15,8 +13,13 @@ class Profile < ActiveRecord::Base
   	no_names
   end
 
+<<<<<<< HEAD
+  def orgs
+  	organisations? ? organisations : [EmptyOrganisation.new]
+=======
   def org_name
-  	organisation.name
+    organisations? ? organisations_names : no_organisations_names
+>>>>>>> e30c47f76b86b007831951120d0dd93197b56d81
   end
 
   private
@@ -29,7 +32,25 @@ class Profile < ActiveRecord::Base
   	'No name on record'
   end
 
+  def organisations_names
+  	names = ''
+  	organisations.each { |org| names << "#{org.name.titleize}, " }
+  	names.sub(/, $/, '')
+  end
+
+  def no_organisations_names
+  	'No gym listed'
+  end
+
   def both_names?
   	first_name && last_name
+  end
+
+  def organisations?
+<<<<<<< HEAD
+  	self.organisations.count > 0
+=======
+  	self.organisations
+>>>>>>> e30c47f76b86b007831951120d0dd93197b56d81
   end
 end

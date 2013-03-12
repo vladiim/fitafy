@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
   attr_accessible :hourly_rate, :avatar, :experience, :first_name,
-                  :last_name, :url, :user_id, :country
+                  :last_name, :url, :user_id
 
   belongs_to :user
   has_many   :profile_organisations
@@ -13,8 +13,8 @@ class Profile < ActiveRecord::Base
   	no_names
   end
 
-  def orgs
-  	organisations? ? organisations : [EmptyOrganisation.new]
+  def org_name
+    organisations? ? organisations_names : no_organisations_names
   end
 
   private
@@ -27,11 +27,21 @@ class Profile < ActiveRecord::Base
   	'No name on record'
   end
 
+  def organisations_names
+  	names = ''
+  	organisations.each { |org| names << "#{org.name.titleize}, " }
+  	names.sub(/, $/, '')
+  end
+
+  def no_organisations_names
+  	'No gym listed'
+  end
+
   def both_names?
   	first_name && last_name
   end
 
   def organisations?
-  	self.organisations.count > 0
+  	self.organisations
   end
 end
