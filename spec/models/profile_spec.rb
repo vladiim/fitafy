@@ -61,7 +61,7 @@ describe Profile do
 
     context "with organisations" do
       let(:organisations) { ['ORGANISATIONS'] }
-      before { mock(profile).organisations { organisations } }
+      before { mock(profile).organisations.times(2) { organisations } }
 
       it 'returns the organisations' do
         result.should eq ['ORGANISATIONS']

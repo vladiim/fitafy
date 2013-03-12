@@ -32,6 +32,7 @@
       %h5.fn=  @user.name
 
     %p.hidden.nickname= @user.username
+    %p.country-name= @user.country
     %p= @user.bio.humanize
 
   .span3.user_stats.well
@@ -41,12 +42,16 @@
     .span1.user_favorite_workouts
       .user_stat= @user.count_favorite_workouts
       %p FAVORITES
->>>>>>> Created ProfileOrganisation and EmptyOrganisation to change profile/organisation relationship
 
   - @user.orgs.each do |organisation|
     .span6.user_organisation_details.well
       %header
-        %h5.org= organisation.name.titleize
+        %h5.org=       organisation.name.titleize
+    %p.street-address= organisation.street
+    %p.locality=       organisation.city
+    %p.region=         organisation.state
+    %p.postal-code=    organisation.postcode      
+>>>>>>> User organisation information added as vcard
 
 %section.user_workouts
   %h2

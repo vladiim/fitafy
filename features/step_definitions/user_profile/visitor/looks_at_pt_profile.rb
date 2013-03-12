@@ -8,18 +8,16 @@ Then /^I should see useful profile information$/ do
   # http://microformats.org/wiki/hresume#Microformats_Draft_Specification
   page.should have_css(".vcard")
 
-  page.should have_css('.fn',       text: @trainer.name)
-  page.should have_css('.nickname', text: @trainer.username)
+  page.should have_css('.fn',           text: @trainer.name)
+  page.should have_css('.country-name', text: @trainer.orgs.first.country)
+  page.should have_css('.nickname',     text: @trainer.username)
+  # page.should have_css(class: 'category', content: @trainer.specialities)
 
   page.should have_css('.org',            text: @trainer.orgs.first.name.titleize)
   page.should have_css('.street-address', text: @trainer.orgs.first.street)
-
-  # these come from orginisation
-  # page.should have_css(class: 'org', content: @trainer.org)
-  # page.should have_css(class: 'street-address', content: @trainer.street)
-  # page.should have_css(class: 'locality', content: @trainer.city)
-  # page.should have_css(class: 'postal-code', content: @trainer.postcode)
-  # page.should have_css(class: 'category', content: @trainer.specialities)
+  page.should have_css('.locality',       text: @trainer.orgs.first.city)
+  page.should have_css('.region',         text: @trainer.orgs.first.state)
+  page.should have_css('.postal-code',    text: @trainer.orgs.first.postcode)
 
   # these come from user ::
   # page.should have_css(class: 'summary', content: @trainer.bio)

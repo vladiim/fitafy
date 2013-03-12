@@ -7,7 +7,7 @@ namespace 'test' do
   
   desc "Runs all the jasmine tests"
   task :jasmine do
-    # sh "guard-jasmine -e development"
+    sh "guard-jasmine -e development"
   end
   
   desc "Test for accessibility"
@@ -16,7 +16,7 @@ namespace 'test' do
   end
   
   desc "Runs all tests"
-  task all: [:rspec, :jasmine] do
+  task all: [:rspec] do
     sh "cucumber"
   end
 end

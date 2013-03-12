@@ -260,7 +260,8 @@ CREATE TABLE profiles (
     hourly_rate integer,
     url character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    country character varying(255) DEFAULT 'No country listed'::character varying
 );
 
 
@@ -891,3 +892,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130218084738');
 INSERT INTO schema_migrations (version) VALUES ('20130218090206');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218092359');
+
+INSERT INTO schema_migrations (version) VALUES ('20130218104934');

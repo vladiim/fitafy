@@ -26,8 +26,9 @@ class User < ActiveRecord::Base
   validates :password,         confirmation: true, on: :create # if: password?
   validates :terms_of_service, acceptance: { accept: 'true' }
 
-  delegate :name, to: :profile
-  delegate :orgs, to: :profile
+  delegate :name,    to: :profile
+  delegate :orgs,    to: :profile
+  delegate :country, to: :profile
 
   # for authlogic gem
   acts_as_authentic { |c| c.login_field = "email" }
@@ -63,12 +64,6 @@ class User < ActiveRecord::Base
 
   def build_workout params=nil
     params == nil ? build_workout_no_params : build_workout_with_params(params)
-    # if params == nil
-    #   workouts.build user_id: self.id
-    # else
-    #   params.merge user_id: self.id
-    #   self.workouts.build params
-    # end
   end
 
   def copy_workout workout
@@ -155,5 +150,15 @@ class User < ActiveRecord::Base
 
   def default_user_icon
    "https://d3jpl91pxevbkh.cloudfront.net/hdxvaer2w/image/upload/v1362912581/uq8duetx0tyt9mioie8q.png"
+  end
+
+
+  def build_workout_no_params
+    workouts.build user_id: self.id
+  end
+
+  def build_workout_with_params(params)
+    params.merge user_id: self.id
+    self.workouts.build params
   end
 end
