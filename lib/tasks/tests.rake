@@ -14,9 +14,12 @@ namespace 'test' do
   task :accessibility do
     # TODO
   end
-  
-  desc "Runs all tests"
-  task all: [:rspec] do
-    sh "cucumber"
+
+  desc "Runs all tests bar jasmine"
+  task production: [:rspec] do
+    sh 'cucumber'
   end
+
+  desc "Runs all tests"
+  task all: [:production, :jasmine]
 end

@@ -24,9 +24,9 @@ namespace 'deploy' do
   task :instructions do
     p '(1)  Ensure git status is clean'
     p '(2)  git push'
-    p '(3)  rake staging'
+    p '(3)  rake deploy:staging'
     p '(4)  go to https://rocky-river-7142.herokuapp.com/'
-    p '(5)  rake production'
+    p '(5)  rake deploy:production'
     p '(6)  go to https://www.fitafy.com'
     p '(7)  git branch -d <old branch>'
     p '(8)  git checkout -b <new branch>'
