@@ -1,6 +1,6 @@
 class Users::WorkoutsController < ApplicationController
 
-  skip_filter :authorize, only: :show
+  skip_filter :authorize
 
   def index
     @workouts = UserWorkoutsOrderer.new(current_user, params).get_workouts
