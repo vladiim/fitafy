@@ -4,7 +4,7 @@ namespace 'test' do
   task :rspec do
     sh "rspec spec"
   end
-  
+
   desc "Runs all the jasmine tests"
   task :jasmine do
     sh "guard-jasmine -e development"
