@@ -21,6 +21,7 @@ module Fitafy
     config.autoload_paths += %W(#{config.root}/lib/modules)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/mustaches)
+    config.autoload_paths += %W(#{config.root}/app/services)
 
     # always use ssl
     # config.force_ssl = true

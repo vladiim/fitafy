@@ -3,14 +3,24 @@
     .span12
       .row-fluid
         .span8
-          %article.row.user_details.notes-holder.hover_box
+          %article.row.user_details.notes-holder.hover_box.vcard
             %header.heading-box.user_profile_details
-              %span.note FITNESS FIRST MELBOURNE
+              %span.note.org= @profile.org_name.upcase
+              %span.note.fn= "#{@profile.name.upcase} | "
 
             = cl_image_tag "#{@user.username}.jpg", width: 75, height: 93, crop: :fill, radius: 10, id: 'user_profile_pic', class: 'avatar', alt: @user.username
 
+            .nickname.hidden= @user.username
+
             .text-holder
               %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+
+            .adr
+              %span.country-name= @profile.country
+              %span.street-address= @profile.street
+              %span.locality= @profile.city
+              %span.region= @profile.state
+              %span.postal-code= @profile.postcode
 
         .span4
           .user-details.user_stats

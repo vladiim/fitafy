@@ -26,10 +26,6 @@ class User < ActiveRecord::Base
   validates :password,         confirmation: true, on: :create # if: password?
   validates :terms_of_service, acceptance: { accept: 'true' }
 
-  delegate :name,    to: :profile
-  delegate :orgs,    to: :profile
-  delegate :country, to: :profile
-
   # for authlogic gem
   acts_as_authentic { |c| c.login_field = "email" }
 

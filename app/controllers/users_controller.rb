@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user     = User.find(params[:id])
+    @profile  = ProfileAttributes.new(@user.profile.id)
     @renderer = Workouts::Index.new(view_context)
     @workouts = UserWorkoutsOrderer.new(@user, params).get_workouts
     @muscles  = Workout.muscles
@@ -27,8 +28,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title               = "Edit Profile"
-    @user                = current_user
+    @title = "Edit Profile"
+    @user  = current_user
     @delete_confirmation = SnapzSayz::UserSpeak.delete_confirmation
   end
 
