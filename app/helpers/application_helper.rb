@@ -8,10 +8,6 @@ module ApplicationHelper
     end
   end
 
-  def logo
-  	image_tag 'logo.png', alt: 'fitafy', size: '30x30'
-  end
-
   def favicon_url
     "https://d3jpl91pxevbkh.cloudfront.net/hdxvaer2w/image/upload/v1362900687/kossw7tuu2yogyptdshg.png"
   end

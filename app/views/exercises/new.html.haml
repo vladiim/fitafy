@@ -1,9 +1,0 @@
-%section#snapz_sayz= @snapz
-
-%section
-  = simple_form_for @exercise, html: { class: 'fita_form' } do |f|
-    = f.error_notification
-
-    = render partial: "form", locals: { f: f }
-
-    = f.submit "CREATE EXERCISE", class: "btn btn-primary"

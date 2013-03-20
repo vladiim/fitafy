@@ -1,6 +1,0 @@
-// update workout level
-$( ".edit_workout" ).on("ajax:success", function() {
-  $( '.workout_form.level' ).addClass('hidden');
-  $( 'a.show_workout_form[data-tag=level]' ).removeClass('hidden');
-  $( '.workout_value.level > p' ).removeClass('hidden').text('<%= j @workout.level %>');
-});

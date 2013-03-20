@@ -1,3 +1,0 @@
-module SnapzSayz
-
-end

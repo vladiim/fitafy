@@ -1,7 +1,0 @@
-%p= @snapz
-
-%p Didn't get the email? No probs! Get it resent below.
-
-= simple_form_for @activation, url: activations_reset_path do |f|
-  = f.input :email
-  = f.submit "RESEND EMAIL", class: "btn btn-primary"

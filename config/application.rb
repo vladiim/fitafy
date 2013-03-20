@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'resque'
-require 'mustache/railtie'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -20,7 +19,6 @@ module Fitafy
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib/modules)
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/app/mustaches)
 
     # always use ssl
     # config.force_ssl = true
