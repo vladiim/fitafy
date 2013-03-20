@@ -255,13 +255,12 @@ CREATE TABLE profiles (
     user_id integer,
     first_name character varying(255),
     last_name character varying(255),
-    experience integer,
-    avatar character varying(255),
     hourly_rate integer,
     url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    country character varying(255) DEFAULT 'No country listed'::character varying
+    country character varying(255) DEFAULT 'No country listed'::character varying,
+    experience text DEFAULT 'No experience listed'::text
 );
 
 
@@ -894,3 +893,9 @@ INSERT INTO schema_migrations (version) VALUES ('20130218090206');
 INSERT INTO schema_migrations (version) VALUES ('20130218092359');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218104934');
+
+INSERT INTO schema_migrations (version) VALUES ('20130219081009');
+
+INSERT INTO schema_migrations (version) VALUES ('20130219081309');
+
+INSERT INTO schema_migrations (version) VALUES ('20130220095725');

@@ -1,146 +1,146 @@
-li.workout_exercise { padding: 10px !important; }
+//li.workout_exercise { padding: 10px !important; }
 
-.workout_exercises { margin-top: -50px !important; }
+//.workout_exercises { margin-top: -50px !important; }
 
-@media only screen and (max-width: $med_tablet_media) {
-	.workout_exercises { margin-top: 0 !important; }
-}
+//@media only screen and (max-width: $med_tablet_media) {
+//	.workout_exercises { margin-top: 0 !important; }
+//}
 
-.exercise-list {
-	padding:    0;
-	margin:     0;
-	list-style: none;
-}
-.exercise-list li {
-	border:       $exercise_list_border;
-	border-width: 1px 0;
-	padding:      10px 0;
-	margin:       0 0 15px;
-	overflow:     hidden;
-	line-height:  15px;
-	position:     relative;
-}
+//.exercise-list {
+//	padding:    0;
+//	margin:     0;
+//	list-style: none;
+//}
+//.exercise-list li {
+//	border:       $exercise_list_border;
+//	border-width: 1px 0;
+//	padding:      10px 0;
+//	margin:       0 0 15px;
+//	overflow:     hidden;
+//	line-height:  15px;
+//	position:     relative;
+//}
 
-.exercise-list .ico{
-	float:  left;
-	margin: 6px 20px 5px 6px;
-}
+//.exercise-list .ico{
+//	float:  left;
+//	margin: 6px 20px 5px 6px;
+//}
 
-@media only screen and (max-width: $med_tablet_media) {
-	.exercise-list li { @include list-heading; }
-}
+//@media only screen and (max-width: $med_tablet_media) {
+//	.exercise-list li { @include list-heading; }
+//}
 
 
-//-----------------------------------
-// ORDER NUMBER
-//-----------------------------------
+////-----------------------------------
+//// ORDER NUMBER
+////-----------------------------------
 
-.exercise-list .number {
-	float:     left;
-	min-width: 40px;
-    margin:    -50px 0 0 0;
-	color:     $exercise_list_color;
-	font:      $exercise_list_font;
+//.exercise-list .number {
+//	float:     left;
+//	min-width: 40px;
+//    margin:    -50px 0 0 0;
+//	color:     $exercise_list_color;
+//	font:      $exercise_list_font;
 
-    a.up i { margin: 50px 0 0 4px; }
-}
+//    a.up i { margin: 50px 0 0 4px; }
+//}
 
-.exercise-list .number.first { margin: 0; }
+//.exercise-list .number.first { margin: 0; }
 
-@media only screen and (max-width: $med_tablet_media) {
-	.exercise-list .number.first {
-		margin: 25px 0 0 0;
+//@media only screen and (max-width: $med_tablet_media) {
+//	.exercise-list .number.first {
+//		margin: 25px 0 0 0;
 
-		span.order_number { margin: 0; }
-	}
+//		span.order_number { margin: 0; }
+//	}
 
-	.exercise-list .number {
-		margin: 25px 0 0 0;
+//	.exercise-list .number {
+//		margin: 25px 0 0 0;
 
-		a.up i { margin: 0; }
+//		a.up i { margin: 0; }
 
-		span.order_number { margin: 0 0 0 -27.5px; }
-	}
-}
+//		span.order_number { margin: 0 0 0 -27.5px; }
+//	}
+//}
 
-.exercise-list .text-holder {
-	overflow: hidden;
-	padding:  2px 0 0;
-}
+//.exercise-list .text-holder {
+//	overflow: hidden;
+//	padding:  2px 0 0;
+//}
 
-//-----------------------------------
-// HEADING
-//-----------------------------------
+////-----------------------------------
+//// HEADING
+////-----------------------------------
 
-#main .exercise-list .heading-box {
-	overflow:  hidden;
-	position:  relative;
-	padding:   0 0 6px;
-}
+//#main .exercise-list .heading-box {
+//	overflow:  hidden;
+//	position:  relative;
+//	padding:   0 0 6px;
+//}
 
-#main .exercise-list h3{ 
-	color:          $link_color;
-	text-transform: capitalize;
-	margin:         0;
-	float:          left;
-	font:           $exercise_list_h3_font;
-}
+//#main .exercise-list h3{ 
+//	color:          $link_color;
+//	text-transform: capitalize;
+//	margin:         0;
+//	float:          left;
+//	font:           $exercise_list_h3_font;
+//}
 
-//-----------------------------------
-// NOTE
-//-----------------------------------
+////-----------------------------------
+//// NOTE
+////-----------------------------------
 
-#main .exercise-list .note{
-	float:          right;
-	color:          $h2_color;
-	margin:         0 0 0 10px;
-	text-transform: capitalize;
-	font:           $exercise_list_h3_font;
-}
-#main .exercise-list p { margin:0 0 11px; }
+//#main .exercise-list .note{
+//	float:          right;
+//	color:          $h2_color;
+//	margin:         0 0 0 10px;
+//	text-transform: capitalize;
+//	font:           $exercise_list_h3_font;
+//}
+//#main .exercise-list p { margin:0 0 11px; }
 
-//-----------------------------------
-// SETS
-//-----------------------------------
-#main .exercise-list .sets{
-	display: block;
-	color:   $exercise_list_color2;
-	font:    $exercise_list_h3_font;
-}
+////-----------------------------------
+//// SETS
+////-----------------------------------
+//#main .exercise-list .sets{
+//	display: block;
+//	color:   $exercise_list_color2;
+//	font:    $exercise_list_h3_font;
+//}
 
-#main .exercise-list tr.workout_exercise_set_details td { 
-	margin:    10px;
-	padding:   10px;
-	min-width: 40px !important;
-}
+//#main .exercise-list tr.workout_exercise_set_details td { 
+//	margin:    10px;
+//	padding:   10px;
+//	min-width: 40px !important;
+//}
 
-table.workout_exercise_set_details {
-	margin: 15px 0 0 -10px;
+//table.workout_exercise_set_details {
+//	margin: 15px 0 0 -10px;
 
-    td.add_set { min-width: 90px; }
+//    td.add_set { min-width: 90px; }
 
-	a.new_workout_exercise_set_details { margin: 10px; }
-}
+//	a.new_workout_exercise_set_details { margin: 10px; }
+//}
 
-@media only screen and (max-width: $phablet_media) {
-	#main .exercise-list tr.workout_exercise_set_details td a.delete_workout_exercise_set_details {
-		margin-left: -10px;
-	}
-}
+//@media only screen and (max-width: $phablet_media) {
+//	#main .exercise-list tr.workout_exercise_set_details td a.delete_workout_exercise_set_details {
+//		margin-left: -10px;
+//	}
+//}
 
-#main .exercise-list .delete_exercise {
-	text-align: right;
-}
+//#main .exercise-list .delete_exercise {
+//	text-align: right;
+//}
 
-//-----------------------------------
-// SEARCH
-//-----------------------------------
+////-----------------------------------
+//// SEARCH
+////-----------------------------------
 
-header#add_exercises_title_and_search {
-	position:    fixed;
-	background:  $white_color;
-	min-width:   300px;
-	margin-top:  -15px;
-}
+//header#add_exercises_title_and_search {
+//	position:    fixed;
+//	background:  $white_color;
+//	min-width:   300px;
+//	margin-top:  -15px;
+//}
 
-article.exercise_list { margin-top: 70px; }
+//article.exercise_list { margin-top: 70px; }

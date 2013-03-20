@@ -6,183 +6,181 @@ section.main_section {
 }
 
 body {
-	color:      $font_color;
-	background: $background_color;
 	padding:    0;
-	font:       $body_font;
+//	font:       $body_font;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust:     none;
-	min-width:  320px;
-	margin-top: 40px;
+//	min-width:  320px;
+//	margin-top: 40px;
 }
 
-#main {
-	width:    100%;
-	position: relative;
-	padding:  0 0 30px;
-}
+//#main {
+//	width:    100%;
+//	position: relative;
+//	padding:  0 0 30px;
+//}
 
-#main .main-holder p{margin: 0 0 12px;}
+//#main .main-holder p { margin: 0 0 12px; }
 
-#main .heading h2{
-	float:left;
-	margin:0;
-	text-transform:uppercase;
-}
+//#main .heading h2{
+//	float:left;
+//	margin:0;
+//	text-transform:uppercase;
+//}
 
-.main-holder .wrap{margin:-5px 0 0;}
+//.main-holder .wrap{margin:-5px 0 0;}
 
-#main .main-visual p { margin:0 0 26px; }
+//#main .main-visual p { margin:0 0 26px; }
 
-.main_section{ margin-top: 30px; }
+//.main_section{ margin-top: 30px; }
 
-@media only screen and (max-width: $phablet_media) {
-	body#main, 
-	section.main_section { margin-top: 0; }
-}
+//@media only screen and (max-width: $phablet_media) {
+//	body#main, 
+//	section.main_section { margin-top: 0; }
+//}
 
-@media only screen and (max-width: $med_desktop_media) {
+//@media only screen and (max-width: $med_desktop_media) {
 
-	.main-visual .text-holder { max-width:47%; }
+//	.main-visual .text-holder { max-width:47%; }
 
-	.main-visual {
-		max-width:100%;
-		margin:0;
-		width:100%;
-	}
-}
+//	.main-visual {
+//		max-width:100%;
+//		margin:0;
+//		width:100%;
+//	}
+//}
 
-@media only screen and (max-width: $small_tablet_media){
-	#main .heading h2{
-		float:none;
-		text-align:center;
-		margin:0 0 10px;
-	}
-	#main .heading .heading-btn{
-		float:none;
-		display:block;
-		margin:0 auto 10px;
-	}
+//@media only screen and (max-width: $small_tablet_media){
+//	#main .heading h2{
+//		float:none;
+//		text-align:center;
+//		margin:0 0 10px;
+//	}
+//	#main .heading .heading-btn{
+//		float:none;
+//		display:block;
+//		margin:0 auto 10px;
+//	}
 
-	.main-visual {
-		min-height:320px;
-		padding-top:30px;
-	}
-}
+//	.main-visual {
+//		min-height:320px;
+//		padding-top:30px;
+//	}
+//}
 
-@media only screen and (max-width: $phablet_media) {
-	.tabset li{
-		display:    block;
-		float:      none;
-		margin:     0 0 4px;
-		text-align: center;
-	}
+//@media only screen and (max-width: $phablet_media) {
+//	.tabset li{
+//		display:    block;
+//		float:      none;
+//		margin:     0 0 4px;
+//		text-align: center;
+//	}
 
-	.main-visual .text-holder { max-width:80%; }
+//	.main-visual .text-holder { max-width:80%; }
 
-	.tab-content .title {
-		display:block;
-		float:none;
-		text-align:center;
-		min-width:auto;
-		margin:0 0 5px;
-	}
+//	.tab-content .title {
+//		display:block;
+//		float:none;
+//		text-align:center;
+//		min-width:auto;
+//		margin:0 0 5px;
+//	}
 
-	.tab-content { padding-left: 0; }
+//	.tab-content { padding-left: 0; }
 
-	.main-visual {
-		background-position:-7px 100%;
-	}
-}
+//	.main-visual {
+//		background-position:-7px 100%;
+//	}
+//}
 
-.row-fluid {
-	max-width:940px;
-	margin:0 auto;
-}
+//.row-fluid {
+//	max-width:940px;
+//	margin:0 auto;
+//}
 
-//-------------------------------------
-// RETINA
-//-------------------------------------
+////-------------------------------------
+//// RETINA
+////-------------------------------------
 
-@media (-webkit-min-device-pixel-ratio: 1.5),
-	( min-resolution : 144dpi ){
-	.logo{
-		background-image: url($navbar_logo_retina_image);
-		background-size:  160px 83px;
-		width:            55px;
-		height:           45px;
-	}
+//@media (-webkit-min-device-pixel-ratio: 1.5),
+//	( min-resolution : 144dpi ){
+//	.logo{
+//		background-image: url($navbar_logo_retina_image);
+//		background-size:  160px 83px;
+//		width:            55px;
+//		height:           45px;
+//	}
 
-	#footer .logo{
-		background:      url($navbar_logo_retina_image) no-repeat -60px 0;
-		background-size: 160px 83px;
-		width:           100px;
-		height:          83px;
-	}
+//	#footer .logo{
+//		background:      url($navbar_logo_retina_image) no-repeat -60px 0;
+//		background-size: 160px 83px;
+//		width:           100px;
+//		height:          83px;
+//	}
 
-	.main-visual{
-		background-image: url($logo_retina_banner);
-		background-size:  1021px 444px;
-	}
-}
+//	.main-visual{
+//		background-image: url($logo_retina_banner);
+//		background-size:  1021px 444px;
+//	}
+//}
 
-//-------------------------------------
-// LINK
-//-------------------------------------
+////-------------------------------------
+//// LINK
+////-------------------------------------
 
-a {
-	text-decoration: none;
-	color:           $link_color;
-}
+//a {
+//	text-decoration: none;
+//	color:           $link_color;
+//}
 
-a:focus,
-a:hover {
-	text-decoration: underline;
-	color:           $link_color;
-}
+//a:focus,
+//a:hover {
+//	text-decoration: underline;
+//	color:           $link_color;
+//}
 
-a:active { background-color: transparent; }
+//a:active { background-color: transparent; }
 
-#wrapper {
-	width:    100%;
-	position: relative;
-	overflow: hidden;
-}
+//#wrapper {
+//	width:    100%;
+//	position: relative;
+//	overflow: hidden;
+//}
 
-//-------------------------------------
-// MODAL
-//-------------------------------------
+////-------------------------------------
+//// MODAL
+////-------------------------------------
 
-@media only screen and (max-width: $phablet_media) {
-  .modal {
-     width: 320px;
-     margin: -250px 0 0 40px;
-     position: fixed;
-     &.fade.in { top: 50% !important; }
- }
-}
+//@media only screen and (max-width: $phablet_media) {
+//  .modal {
+//     width: 320px;
+//     margin: -250px 0 0 40px;
+//     position: fixed;
+//     &.fade.in { top: 50% !important; }
+// }
+//}
 
-@media only screen and (max-width: $phone_media) {
-	.modal {
-		margin: -250px 0 0 5px;
-	}
-}
+//@media only screen and (max-width: $phone_media) {
+//	.modal {
+//		margin: -250px 0 0 5px;
+//	}
+//}
 
-//-------------------------------------
-// HIDDEN
-//-------------------------------------
+////-------------------------------------
+//// HIDDEN
+////-------------------------------------
 
-.hidden{
-	position:absolute;
-	left:-10000px;
-	top:auto;
-	width:1px;
-	height:1px;
-	overflow:hidden;
-}
+//.hidden{
+//	position:absolute;
+//	left:-10000px;
+//	top:auto;
+//	width:1px;
+//	height:1px;
+//	overflow:hidden;
+//}
 
-.hidden:focus{
-	position:static;
-	width:auto;
-	height:auto;
-}
+//.hidden:focus{
+//	position:static;
+//	width:auto;
+//	height:auto;
+//}

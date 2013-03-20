@@ -45,4 +45,4 @@ Fitafy::Application.configure do
   config.active_support.deprecation = :stderr
 end
 
-OmniAuth.config.test_mode = true
+# OmniAuth.config.test_mode = true

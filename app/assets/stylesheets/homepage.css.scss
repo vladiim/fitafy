@@ -1,54 +1,54 @@
-.main-visual {
-	background:url($logo_banner) no-repeat;
-	background-position:50% 0;
-	width:1022px;
-	min-height:444px;
-	margin: -50px -45px 8px 0;
-	padding:109px 0 30px 12.2%;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-}
+//.main-visual {
+//	background:url($logo_banner) no-repeat;
+//	background-position:50% 0;
+//	width:1022px;
+//	min-height:444px;
+//	margin: -50px -45px 8px 0;
+//	padding:109px 0 30px 12.2%;
+//	-moz-box-sizing:border-box;
+//	-webkit-box-sizing:border-box;
+//	box-sizing:border-box;
+//}
 
-.main-visual .text-holder{
-	padding:0 0 30px;
-	max-width:38%;
-	font: 25px/30px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-	color:#373636;
-}
+//.main-visual .text-holder{
+//	padding:0 0 30px;
+//	max-width:38%;
+//	font: 25px/30px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
+//	color:#373636;
+//}
 
-@media only screen and (max-width: $med_desktop_media){
-	.main-visual { 
-		margin: 0;
-		background-position: 30%;
-	}
+//@media only screen and (max-width: $med_desktop_media){
+//	.main-visual { 
+//		margin: 0;
+//		background-position: 30%;
+//	}
 
-	.main-visual .text-holder {
-    	min-width: 300px !important;
+//	.main-visual .text-holder {
+//    	min-width: 300px !important;
 
-    	h1 { 
-    		line-height: 46px;
-    		margin-left: 0 !important;
-    	}
-	}
-}
+//    	h1 { 
+//    		line-height: 46px;
+//    		margin-left: 0 !important;
+//    	}
+//	}
+//}
 
-@media only screen and (max-width: $small_tablet_media){
-	.main-visual .text-holder {
-    	min-width: 200px !important;
+//@media only screen and (max-width: $small_tablet_media){
+//	.main-visual .text-holder {
+//    	min-width: 200px !important;
 
-    	h1 { 
-    		line-height: 46px;
-    		margin-left: 0 !important;
-    	}
-	}
-}
+//    	h1 { 
+//    		line-height: 46px;
+//    		margin-left: 0 !important;
+//    	}
+//	}
+//}
 
-//------------------------------
-// SIGN UP & LOGIN
-//------------------------------
+////------------------------------
+//// SIGN UP & LOGIN
+////------------------------------
 
-.main-visual form,
-.main-visual aside.form_options {
-	margin-left: -100px;
-}
+//.main-visual form,
+//.main-visual aside.form_options {
+//	margin-left: -100px;
+//}

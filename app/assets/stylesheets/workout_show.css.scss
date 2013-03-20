@@ -1,186 +1,186 @@
-@media only screen and (max-width: $med_desktop_media) {
-	.workout-holder:after { width:100%; }
-}
+//@media only screen and (max-width: $med_desktop_media) {
+//	.workout-holder:after { width:100%; }
+//}
 
-@media only screen and (max-width: $med_tablet_media) {
-	#main .workout-holder h3 { @include list-heading; }
-}
+//@media only screen and (max-width: $med_tablet_media) {
+//	#main .workout-holder h3 { @include list-heading; }
+//}
 
 
-// -----------------------
-// FORMS
-// -----------------------
+//// -----------------------
+//// FORMS
+//// -----------------------
 
-#main .workout_form_group a.show_workout_form { margin-left: 50px }
+//#main .workout_form_group a.show_workout_form { margin-left: 50px }
 
-@media only screen and (max-width: $small_tablet_media) {
-	#main .box .workout_form_group .level a.show_workout_form,
-	#workout_stats .show_workout_form {
-		margin-left: 100px !important;
-	}
-}
+//@media only screen and (max-width: $small_tablet_media) {
+//	#main .box .workout_form_group .level a.show_workout_form,
+//	#workout_stats .show_workout_form {
+//		margin-left: 100px !important;
+//	}
+//}
 
-#main .workout_form_group.notes { margin-bottom: 50px; }
+//#main .workout_form_group.notes { margin-bottom: 50px; }
 
-#main .workout_form.name a.hide_workout_form { margin-left: 110px; }
+//#main .workout_form.name a.hide_workout_form { margin-left: 110px; }
 
-#main .workout_form.notes a.hide_workout_form { margin-left: 240px; }
+//#main .workout_form.notes a.hide_workout_form { margin-left: 240px; }
 
-#main .workout_form_group.level { margin: 20px 0 0 0; }
+//#main .workout_form_group.level { margin: 20px 0 0 0; }
 
-// -----------------------
-// NOTES
-// -----------------------
+//// -----------------------
+//// NOTES
+//// -----------------------
 
-.notes-holder {
-	overflow:      hidden;
-	position:      relative;
-	border:        1px solid #bbb9b4;
-	border-radius: 3px;
-	margin:        0 0 15px;
-	padding:       14px 20px 39px 25px;
-	min-height:    113px;
-	background: rgb(248,247,242);
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y4ZjdmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZmVkZTMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  rgba(248,247,242,1) 0%, rgba(239,237,227,1) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,247,242,1)), color-stop(100%,rgba(239,237,227,1)));
-	background: -webkit-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
-	background: -o-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
-	background: linear-gradient(to bottom,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
-}
+//.notes-holder {
+//	overflow:      hidden;
+//	position:      relative;
+//	border:        1px solid #bbb9b4;
+//	border-radius: 3px;
+//	margin:        0 0 15px;
+//	padding:       14px 20px 39px 25px;
+//	min-height:    113px;
+//	background: rgb(248,247,242);
+//	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y4ZjdmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZmVkZTMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+//	background: -moz-linear-gradient(top,  rgba(248,247,242,1) 0%, rgba(239,237,227,1) 100%);
+//	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,247,242,1)), color-stop(100%,rgba(239,237,227,1)));
+//	background: -webkit-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
+//	background: -o-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
+//	background: -ms-linear-gradient(top,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
+//	background: linear-gradient(to bottom,  rgba(248,247,242,1) 0%,rgba(239,237,227,1) 100%);
+//}
 
-.notes-holder .heading-box {
-	position: relative;
-	width:    100%;
-	padding:  0 0 8px;
-}
+//.notes-holder .heading-box {
+//	position: relative;
+//	width:    100%;
+//	padding:  0 0 8px;
+//}
 
-.notes-holder .heading-box:after {
-	content: '';
-	display: block;
-	clear:   both;
-}
+//.notes-holder .heading-box:after {
+//	content: '';
+//	display: block;
+//	clear:   both;
+//}
 
-.notes-holder .ico {
-	float:  left;
-	margin: 2px 5px 0 -2px;
-}
+//.notes-holder .ico {
+//	float:  left;
+//	margin: 2px 5px 0 -2px;
+//}
 
-#main .notes-holder .note,
-#main .notes-holder h2 {
-	margin: 0;
-	color:  #3a3a3a;
-	float:  left;
-	font:   22px/24px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
-}
+//#main .notes-holder .note,
+//#main .notes-holder h2 {
+//	margin: 0;
+//	color:  #3a3a3a;
+//	float:  left;
+//	font:   22px/24px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+//}
 
-#main .notes-holder .note {
-	float:  right;
-	margin: 0 -15px 0 0;
-}
+//#main .notes-holder .note {
+//	float:  right;
+//	margin: 0 -15px 0 0;
+//}
 
-#main .notes-holder .avatar{
-	float:left;
-	margin:4px 15px 0 -1px;
-}
+//#main .notes-holder .avatar{
+//	float:left;
+//	margin:4px 15px 0 -1px;
+//}
 
-// -----------------------
-// STATS
-// -----------------------
+//// -----------------------
+//// STATS
+//// -----------------------
 
-#workout_stats { @include smooth-box; }
+//#workout_stats { @include smooth-box; }
 
-#workout_stats .title {
-	display:     block;
-	font-weight: normal;
-	margin:      0 0 20px;
-}
-#workout_stats .box { @include internal-box; }
+//#workout_stats .title {
+//	display:     block;
+//	font-weight: normal;
+//	margin:      0 0 20px;
+//}
+//#workout_stats .box { @include internal-box; }
 
-#workout_stats .box .note{
-	position: absolute;
-	bottom:   0;
-	left:     0;
-	width:    100%;
-}
+//#workout_stats .box .note{
+//	position: absolute;
+//	bottom:   0;
+//	left:     0;
+//	width:    100%;
+//}
 
-#workout_stats .box:hover { text-decoration:none; }
+//#workout_stats .box:hover { text-decoration:none; }
 
-#workout_stats .box.profile { margin: 20px -20px 0 -10px; }
+//#workout_stats .box.profile { margin: 20px -20px 0 -10px; }
 
-@media only screen and (max-width: $med_desktop_media) {
-	#workout_stats #profile {
-		margin: 0 0 15px 10px !important;
-	}	
-}
+//@media only screen and (max-width: $med_desktop_media) {
+//	#workout_stats #profile {
+//		margin: 0 0 15px 10px !important;
+//	}	
+//}
 
-@media only screen and (max-width: $med_tablet_media) {
-	#workout_stats .box {
-		text-align: left;
+//@media only screen and (max-width: $med_tablet_media) {
+//	#workout_stats .box {
+//		text-align: left;
 
-		p { margin-left: 10px; }
-	}
+//		p { margin-left: 10px; }
+//	}
 
-//    #workout_stats .show_workout_form { margin: 0 !important; }
-}
+////    #workout_stats .show_workout_form { margin: 0 !important; }
+//}
 
-#workout_stats .box.workout_form_group { margin-left: 20px; }
+//#workout_stats .box.workout_form_group { margin-left: 20px; }
 
-#workout_stats:hover .hover,
-#workout_stats img {
-	display: block;
-	margin:  0 auto 4px;
-}
+//#workout_stats:hover .hover,
+//#workout_stats img {
+//	display: block;
+//	margin:  0 auto 4px;
+//}
 
-#workout_stats:hover img.grayscale,
-#workout_stats .hover { display:none; }
+//#workout_stats:hover img.grayscale,
+//#workout_stats .hover { display:none; }
 
-.hover_box:hover { @include list-hover; }
+//.hover_box:hover { @include list-hover; }
 
-#workout_stats:hover { @include list-hover; }
+//#workout_stats:hover { @include list-hover; }
 
-#workout_stats .workout_value.level { margin: 20px 0 -30px 0; }
+//#workout_stats .workout_value.level { margin: 20px 0 -30px 0; }
 
-#workout_stats form .control-group {
-	label { font-size: 18px; }
-	select { width: 128px; }
-}
+//#workout_stats form .control-group {
+//	label { font-size: 18px; }
+//	select { width: 128px; }
+//}
 
-// -----------------------
-// BUTTONS
-// -----------------------
-.workout_btns li {
-	list-style: none;
+//// -----------------------
+//// BUTTONS
+//// -----------------------
+//.workout_btns li {
+//	list-style: none;
 
-	a.btn {
-		padding: 5px 87.5px !important;
-		margin: 10px 0 10px -15px !important;
-	}
-}
+//	a.btn {
+//		padding: 5px 87.5px !important;
+//		margin: 10px 0 10px -15px !important;
+//	}
+//}
 
-@media only screen and (max-width: $med_desktop_media) {
-	.workout_btns li a.btn {
-		padding: 5px 50px !important;
-	}
-}
+//@media only screen and (max-width: $med_desktop_media) {
+//	.workout_btns li a.btn {
+//		padding: 5px 50px !important;
+//	}
+//}
 
-//----------------------------
-// PROFILE
-//----------------------------
+////----------------------------
+//// PROFILE
+////----------------------------
 
-#main .profile p.username {
-	margin: 0 0 0 -30px;
-}
+//#main .profile p.username {
+//	margin: 0 0 0 -30px;
+//}
 
-#workout_stats #profile {
-	width:  48px;
-	height: 60px;
-	margin: 0 0 15px 20px;
-}
+//#workout_stats #profile {
+//	width:  48px;
+//	height: 60px;
+//	margin: 0 0 15px 20px;
+//}
 
-@media only screen and (max-width: $med_desktop_media) {
-	#main .profile p.username {
-		margin: 0 0 0 10px;
-	}
-}
+//@media only screen and (max-width: $med_desktop_media) {
+//	#main .profile p.username {
+//		margin: 0 0 0 10px;
+//	}
+//}

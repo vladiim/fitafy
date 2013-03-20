@@ -1,96 +1,96 @@
-//----------------------------
-// DETAILS
-//----------------------------
+////----------------------------
+//// DETAILS
+////----------------------------
 
-#main .user-details:hover { @include list-hover; }
+//#main .user-details:hover { @include list-hover; }
 
-#main .user_details h2 { text-transform: uppercase; }
+//#main .user_details h2 { text-transform: uppercase; }
 
-#main .user_details { margin: 10px 0 0 0; }
+//#main .user_details { margin: 10px 0 0 0; }
 
-#main .user_details span.note { margin-right: 5px; }
+//#main .user_details span.note { margin-right: 5px; }
 
-//------------------------------
+////------------------------------
 
-.user-details { @include smooth-box; }
+//.user-details { @include smooth-box; }
 
-.user-details .title {
-	display:     block;
-	font-weight: normal;
-	margin:      0 0 20px;
-}
+//.user-details .title {
+//	display:     block;
+//	font-weight: normal;
+//	margin:      0 0 20px;
+//}
 
-.user-details .box { @include internal-box; }
+//.user-details .box { @include internal-box; }
 
-.user-details .box .note {
-	position: absolute;
-	bottom:   0;
-	left:     0;
-	width:   100%;
-}
+//.user-details .box .note {
+//	position: absolute;
+//	bottom:   0;
+//	left:     0;
+//	width:   100%;
+//}
 
-.user-details .box:hover { text-decoration: none; }
+//.user-details .box:hover { text-decoration: none; }
 
-.user-details:hover .hover,
-.user-details img {
-	display: block;
-	margin:  0 auto 4px;
-}
+//.user-details:hover .hover,
+//.user-details img {
+//	display: block;
+//	margin:  0 auto 4px;
+//}
 
-.user-details:hover img,
-.user-details .hover { display: none; }
+//.user-details:hover img,
+//.user-details .hover { display: none; }
 
-.user-details .box:first-child { margin: 0; }
+//.user-details .box:first-child { margin: 0; }
 
-.user-details .quantity {
-	font-size:    75px;
-	line-height:  78px;
-	color:        $user_details_color;
-	word-spacing: 1px;
-	display:      block;
-	margin:       -7px 0 0;
-	white-space:  nowrap;
-}
+//.user-details .quantity {
+//	font-size:    75px;
+//	line-height:  78px;
+//	color:        $user_details_color;
+//	word-spacing: 1px;
+//	display:      block;
+//	margin:       -7px 0 0;
+//	white-space:  nowrap;
+//}
 
-@media only screen and (max-width: $med_tablet_media){
-	.user-details {
-		float:    none;
-		display:  block;
-		margin:   0 auto 10px;
-		overflow: hidden;
-	}
-}
+//@media only screen and (max-width: $med_tablet_media){
+//	.user-details {
+//		float:    none;
+//		display:  block;
+//		margin:   0 auto 10px;
+//		overflow: hidden;
+//	}
+//}
 
-@media only screen and (max-width: $phablet_media){
-	#main .btn, #main .btn.alt.tag_link {
-		min-width: 53px !important;
-	}
-}
+//@media only screen and (max-width: $phablet_media){
+//	#main .btn, #main .btn.alt.tag_link {
+//		min-width: 53px !important;
+//	}
+//}
 
-//----------------------------
-// STATS
-//----------------------------
-#main .user-details.user_stats { margin-top: 10px; }
+////----------------------------
+//// STATS
+////----------------------------
+//#main .user-details.user_stats { margin-top: 10px; }
 
-//----------------------------
-// WORKOUTS
-//----------------------------
+////----------------------------
+//// WORKOUTS
+////----------------------------
 
-#main header.user_workouts { 
-	margin: 20px 20px;
+//#main header.user_workouts { 
+//	margin: 20px 20px;
 
-	h2 { margin-left: 15px; }
-}
+//	h2 { margin-left: 15px; }
+//}
 
-@media only screen and (max-width: $med_tablet_media){
-#main header.user_workouts { 
-	margin: 20px 20px;
+//@media only screen and (max-width: $med_tablet_media){
+//#main header.user_workouts { 
+//	margin: 20px 20px;
 
-	h2 { margin-left: 15px; }
-}
-}
+//	h2 { margin-left: 15px; }
+//}
+//}
 
-#main #workout_list .new_workout_plus {
-	font-size: 1000%;
-	margin:    65px 0 -65px 0;
-}
+//#main #workout_list .new_workout_plus {
+//	font-size: 1000%;
+//	margin:    65px 0 -65px 0;
+//}

@@ -92,6 +92,18 @@ $exercise_list_border: 1px solid #dddbd5;
 $workout_list_border:  1px solid #bab9b3;
 
 //----------------------------------------------
+// OVERRIDE BOOTSTRAP
+//----------------------------------------------
+
+// Colours
+
+$bodyBackground: $background_color;
+
+// Typography
+
+$baseFontFamily: $body_font;
+
+//----------------------------------------------
 // RESPONSIVE DESIGN
 //----------------------------------------------
 

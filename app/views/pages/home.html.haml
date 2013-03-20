@@ -3,21 +3,4 @@
     .span12
       .main-visual
         .logo_banner
-        .text-holder
-          %h1 DIGITAL WORKOUTS
-          %p= @snapz.usp
-          .btn-holder
-            = link_to "FIND WORKOUTS", workouts_path, class: "btn btn-primary"
-            = link_to_create_workout_button
-
-- unless @workouts.empty?
-  %aside.row-fluid
-    .span12
-      .workout-holder
-        %header
-          %h3 FEATURED WORKOUTS
-
-      %ul.workout-list
-        - @workouts.each do |workout|
-          - @renderer.workout = workout
-          = @renderer.render.html_safe
+          %h1 WE HELP PERSONAL TRAINERS GET NEW CLIENTS
