@@ -8,5 +8,5 @@ describe 'Visitor goes to homepage' do
 end
 
 def h1_title
-  'WE HELP PERSONAL TRAINERS GET NEW CLIENTS'
+  CopyGenerator::HomepageCopy.usp
 end
