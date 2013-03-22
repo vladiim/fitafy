@@ -1,57 +1,41 @@
 h1 {
-	color:          $h1_color;
-	margin:         0 0 9px;
-	margin-left:    20px !important;
-	text-transform: uppercase;
-	font:           45px/48px $h1_font;
 	font-family:    $h1_font !important;
-	font-size:      50px !important;
+	font-size:      2em;
+	color:          $h1_color;
+	text-transform: uppercase;
+	line-height:    120%;
+	margin:         0 0 9px;
 }
 
 h2 {
+	font:        $h2_font;
+	font-size:   1.8em !important;
 	color:       $h2_color;
 	margin:      0 0 10px;
-	font:        36px/40px $h2_font;
-	font-family: $h2_font !important;
-	font-size:   40px !important;
 	line-height: 160% !important;
 }
 
 h3 {
-	font:           30px/40px $h3_font;
 	font-family:    $h3_font !important;
-	font-size:      28px !important;
-	line-height:    160% !important;
+	font-size:      1.4em !important;
 	color:          $h3_color;
-	margin:         0 0 7px;
 	text-transform: uppercase;
+	line-height:    160% !important;
+	margin:         0 0 7px;
 }
 
 h4 {
+	font-family: $h4_font !important;
+	font-size:   1.2em !important;
 	color:       $h4_color;
 	margin:      0 0 10px;
-	font:        25px/28px $h4_font;
-	font-family: $h4_font !important;
-	font-size:   23px !important;
-	line-height:    160% !important;
+	line-height: 160% !important;
 }
 
 h5 {
+	font-family: $h5_font !important;
+	font-size:   1em !important;
 	color:       $h5_color;
 	margin:      0 0 10px;
-	font:        18px/22px  $h5_font;
-	font-family: $h5_font !important;
-	font-size:   20px !important;
-	line-height:    160% !important;
-}
-
-@mixin list-heading {
-	padding-left:15px;
-	padding-right:15px;
-}
-
-@media only screen and (max-width: $small_tablet_media) {
-	h1,
-	h2,
-	h3 { font-size: 300% !important; }
+	line-height: 160% !important;
 }

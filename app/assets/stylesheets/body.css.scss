@@ -1,15 +1,21 @@
-section.main_section {
-	margin:        50px 0 0 10px;
-	padding-right: 20px;
-	padding-left:  20px;
-	z-index:       -1;
+html {
+	font-size: 16px;
 }
 
+//section.main_section {
+//  margin:        50px 0 0 10px;
+//  padding-right: 20px;
+//  padding-left:  20px;
+//  z-index:       -1;
+//}
+
 body {
-	padding:    0;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 62.5%; /* 1em = 10px */
+//	padding:    0;
 //	font:       $body_font;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust:     none;
+//	-webkit-text-size-adjust: 100%;
+//	-ms-text-size-adjust:     none;
 //	min-width:  320px;
 //	margin-top: 40px;
 }

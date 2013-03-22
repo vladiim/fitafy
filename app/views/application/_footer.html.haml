@@ -1,12 +1,9 @@
-%footer#footer
-  %aside.container-fluid
-    .row-fluid
-      .span12
-        .footer-holder
-          %strong.logo
-            = link_to 'fitafy', root_path
-          %nav.footer-nav
-            %ul
-              %li fitafy, Copyright &copy; #{ Date.today.year }
-              / %li= link_to "Terms & Conditions", terms_of_service_url
-              / %li= link_to "Privacy Policy", privacy_url
+%footer
+  %aside
+    %strong.logo
+      = link_to 'fitafy', root_path
+    %nav.footer-nav
+      %ul
+        %li fitafy, Copyright &copy; #{ Date.today.year }
+        %li= link_to "Terms & Conditions", terms_of_service_url
+        %li= link_to "Privacy Policy", privacy_url

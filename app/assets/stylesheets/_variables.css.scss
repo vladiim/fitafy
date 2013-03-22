@@ -2,28 +2,31 @@
 // COLORS
 //----------------------------------------------
 
+$dark_grey_font_color: #35302d;
+$dark_grey_outline_color: #545454;
+
 $font_color:               #3c3c3c;
-$nav_color:                #545454;
+$nav_color:                $dark_grey_outline_color;
 $nav_colapse_color:        #323232;
 $footer_background_color:  #323232;
 $link_color:               #cd0000;
 $background_color:         #efede4;
 $white_color:              #ffffff;
-$highlighted_box_color:    #545454;
+$highlighted_box_color:    $dark_grey_outline_color;
 $nav_background_color:     rgba(142, 20, 21, 0.9);
 $nav_background_shadow:    '0 0 0 #000';
 $tab_background_color:     rgb(138,138,136);
 $close_tab_color:          rgb(113,113,113);
 $close_tab_hover_color:    rgb(211,57,57);
-$user_details_color:       #545454;
-$exercise_list_color:      #545454;
+$user_details_color:       $dark_grey_outline_color;
+$exercise_list_color:      $dark_grey_outline_color;
 $exercise_list_color2:     #454545;
 $workout_background_color: #d1d0cb;
-$workout_list_color:       #545454;
+$workout_list_color:       $dark_grey_outline_color;
 
-$h1_color: #35302d;
+$h1_color: $dark_grey_font_color;
 $h2_color: #202020;
-$h3_color: #35302d;
+$h3_color: $dark_grey_font_color;
 $h4_color: #373636;
 $h5_color: #404040;
 
@@ -31,21 +34,21 @@ $h5_color: #404040;
 // FONT
 //----------------------------------------------
 
-$rama_reg: 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+$rama_reg: 'MerriweatherSans', Arial, Helvetica, sans-serif;
 
-$h1_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-$h2_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-$h3_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-$h4_font: 'rama_gothic_elight', Arial, Helvetica, sans-serif;
-$h5_font: 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+$h1_font: 'MerriweatherSans', Arial, Helvetica, sans-serif;
+$h2_font: 'MerriweatherSans', Arial, Helvetica, sans-serif;
+$h3_font: 'MerriweatherSans', Arial, Helvetica, sans-serif;
+$h4_font: 'MerriweatherSans', Arial, Helvetica, sans-serif;
+$h5_font: 'MerriweatherSans', Arial, Helvetica, sans-serif;
 
 $body_font: 13px/15px Helvetica, Arial, sans-serif;
 $form_font: 20px/24px 'rama_gothic_elight', Arial, Helvetica, sans-serif;
 $nav_font:  18px/22px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
 $tab_font:  20px/24px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
 
-$exercise_list_font:    55px/58px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
-$exercise_list_h3_font: 25px/28px 'rama_gothic_e_regularregular', Arial, Helvetica, sans-serif;
+$exercise_list_font:    55px/58px 'MerriweatherSans', Arial, Helvetica, sans-serif;
+$exercise_list_h3_font: 25px/28px 'MerriweatherSans', Arial, Helvetica, sans-serif;
 
 $nav_font_shadow: '0 1px 1px rgba(0, 0, 0, 0.4)';
 

@@ -7,17 +7,16 @@
   %meta{ name: "description", content: "Personal Trainer client leads service" }/
   %meta{ name: "author", content: "Vlad Ivanovic" }/
 
-  %title
-    = section_title
+  %title= section_title
 
   %meta{ :name => "description", :content => "" }/
 
   -# Mobile viewport optimized: h5bp.com/viewport
   %meta{ :name => "viewport", :content => "width=device-width" }/
-  %link{ :type => "image/x-icon", :href => favicon_url, :rel => "icon" }/
-  %link{ :href => favicon_url, :rel => "shortcut icon" }/
 
-  / = render "stylesheets"
+  %link{ :type => "image/x-icon", :href => favicon_url, :rel => "icon" }/
+
+  %link{ :href => favicon_url, :rel => "shortcut icon" }/
 
   = stylesheet_link_tag "application"
 
