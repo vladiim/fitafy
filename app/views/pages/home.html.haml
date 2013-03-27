@@ -2,3 +2,9 @@
 
   %header
     %h1= @usp
+
+  .email_form
+    = simple_form_for @user do |f|
+      = f.error_notification
+      = f.input :email, label: false, placeholder: 'your@email.com', input_html: { class: 'fitaform cta' }
+      = f.submit 'SIGN UP', class: 'btn btn-primary fitasubmit'

@@ -6,8 +6,8 @@ namespace 'test' do
   end
 
   desc "Runs just the data model tests"
-  task :data_models do
-    sh "rspec spec/data_models"
+  task :services do
+    sh "rspec spec/services"
   end
 
   desc "Runs just the integration tests"

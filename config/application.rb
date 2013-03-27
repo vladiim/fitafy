@@ -19,6 +19,7 @@ module Fitafy
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib/modules)
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/validators)
 
     # always use ssl
     # config.force_ssl = true

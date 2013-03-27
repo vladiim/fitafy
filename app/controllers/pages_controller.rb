@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-  	@usp = CopyGenerator::HomepageCopy.usp
+  	@user = UserRecord.new
+  	@usp  = CopyGenerator::HomepageCopy.usp
   end
-
 end

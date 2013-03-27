@@ -1,5 +1,7 @@
 Fitafy::Application.routes.draw do
 
+  resources :user_records
+
 #---------- STATIC ----------#
 
   get "pages/home"
