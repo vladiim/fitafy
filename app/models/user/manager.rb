@@ -8,7 +8,12 @@ module User
   	end
 
     def add_to_database
-      record.save
+      record.save ? send_welcome_email : false
+    end
+
+    private
+
+    def send_welcome_email
       SignupMailer.welcome_email(record).deliver
     end
   end

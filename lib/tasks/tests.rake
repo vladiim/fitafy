@@ -10,11 +10,6 @@ namespace 'test' do
     sh "rspec spec/services"
   end
 
-  desc 'Runs just the mailer tests'
-  task :mailers do
-    sh "rspec spec/mailers"
-  end
-
   desc "Runs just the integration tests"
   task :integration do
     sh "rspec spec/integration"
