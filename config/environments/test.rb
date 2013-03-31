@@ -5,7 +5,7 @@ Fitafy::Application.configure do
   # it is here due to an error with rails 
   # http://stackoverflow.com/questions/12413306/error-when-doing-rake-dbmigrate-on-heroku
   # http://stackoverflow.com/questions/10248893/rake-dbstructuredump-fails-under-postgresql-rails-3-2
-  config.active_record.schema_format = :sql
+  # config.active_record.schema_format = :sql
 
   # dont' use ssl
   config.force_ssl = false

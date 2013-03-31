@@ -1,6 +1,6 @@
 Fitafy::Application.routes.draw do
 
-  resources :user_records
+  resources :user_records, only: [:create]
 
 #---------- STATIC ----------#
 

@@ -68,9 +68,6 @@ module Fitafy
 
     # Add the fonts path
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
-    # Precompile fonts
-    config.assets.precompile += %w( .svg .eot .woff .ttf )
   end
 end
 

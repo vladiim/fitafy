@@ -39,12 +39,6 @@ legend {
 	}
 }
 
-@media screen and (max-width: $phablet_media) {
-	input.fitasubmit[type="submit"] {
-		width: 210px
-	}
-}
-
 //.controls .fita_form select {
 //	padding:       0;
 //	border:        0;
@@ -72,8 +66,8 @@ textarea.fitaform {
 	-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.3) inset;
 }
 
-input[type="email"].fitaform.cta {
-	float: left;
+input.fitasubmit.cta[type="submit"] {
+	width: 210px
 }
 
 //.fita_form .input-placeholder-text,
