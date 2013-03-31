@@ -6,7 +6,7 @@ class UserRecordsController < ApplicationController
 
   	if @user.add_to_database
   	  flash[:success] = CopyGenerator::UserCopy.first_sign_up
-  	  redirect_to root_path
+  	  redirect_to invites_path
   	else
   	  @title          = ''
   	  @user           = UserRecord.new

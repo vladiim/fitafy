@@ -9,26 +9,27 @@ describe 'Visitor goes to homepage' do
   context 'signs up successfully' do
     before { sign_up }
 
-    it 'sends the user a welcome email' do
+    it 'signs up successfully' do
+      # sends the user a welcome email
       last_email.to.should eq [email]
       last_email.subject.should eq CopyGenerator::EmailCopy.signup_subject
-    end
 
-    it 'creates a new user with the email' do
+      # creates a new user with the email
       user_email.should eq email
-    end
 
-    it 'gives me a success message' do
+      # gives me a success message
       page.should have_content CopyGenerator::UserCopy.first_sign_up
-    end
 
-    it 'sends the unsubscribe link in the email' do
+      # sends the unsubscribe link in the email
       last_email.html_part.body.should =~ /#{unsubscribe_path(perishable_token: user_record.perishable_token)}/
+
+      # redircts to the invites_path
+      current_path.should eq invites_path
     end
   end
 
   context 'signs up twice' do
-    before { sign_up; sign_up }
+    before { sign_up; visit root_path; sign_up }
 
     it 'returns the UserRecord error' do
       page.should have_content CopyGenerator::UserCopy.error_first_sign_up
