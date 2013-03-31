@@ -45,7 +45,9 @@ CREATE TABLE user_records (
     id integer NOT NULL,
     email character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    subscribed boolean DEFAULT true,
+    perishable_token character varying(255)
 );
 
 
@@ -95,3 +97,5 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 INSERT INTO schema_migrations (version) VALUES ('20130322103353');
+
+INSERT INTO schema_migrations (version) VALUES ('20130331073937');

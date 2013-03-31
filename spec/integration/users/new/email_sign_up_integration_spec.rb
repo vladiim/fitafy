@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Visitor goes to homepage' do
-  let(:email)      { 'test@email.com' }
   let(:user_email) { UserRecord.last.email }
 
   before { visit root_path }
@@ -31,9 +30,4 @@ describe 'Visitor goes to homepage' do
       page.should have_content 'has already been taken'
     end
   end
-end
-
-def sign_up
-  fill_in 'user_record_email', with: email
-  click_button 'SIGN UP'
 end

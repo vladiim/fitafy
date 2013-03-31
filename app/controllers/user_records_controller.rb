@@ -11,7 +11,9 @@ class UserRecordsController < ApplicationController
   	  @title          = ''
   	  @user           = UserRecord.new
   	  @usp            = CopyGenerator::HomepageCopy.usp
+      @sub_heading    = CopyGenerator::HomepageCopy.sub_heading
       @error          = "'#{@record.email.upcase}' #{@record.errors.messages[:email][0]}!"
+      @features       = CopyGenerator::HomepageCopy.features
   	  flash[:error]   = CopyGenerator::UserCopy.error_first_sign_up
   	  render 'pages/home'
   	end

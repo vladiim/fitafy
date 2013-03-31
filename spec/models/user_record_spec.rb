@@ -4,6 +4,8 @@ describe UserRecord do
 
   context 'db' do
     it { should have_db_column(:email) }
+    it { should have_db_column(:subscribed) }
+    it { should have_db_column(:perishable_token) }
   end
 
   context 'validations' do

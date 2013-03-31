@@ -2,7 +2,7 @@ section#usp {
 	background:url($logo_banner) no-repeat;
 	background-position: 50% 0;
 	width:               100%;
-	height:              40em;
+	height:              45em;
 
     .usp_sign_up {
 		-moz-box-sizing:    border-box;
@@ -30,6 +30,10 @@ section#usp {
 			}
 		}
 	}
+}
+
+aside.box_list.homepage {
+	margin-top: 50px;
 }
 
 //.main-visual {
