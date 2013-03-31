@@ -14,7 +14,8 @@ module User
     private
 
     def send_welcome_email
-      SignupMailer.welcome_email(record).deliver
+      Resque.enqueue(SignupMailerSender, record.email)
+      # SignupMailer.welcome_email(record).deliver
     end
   end
 end

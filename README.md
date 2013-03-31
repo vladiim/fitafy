@@ -37,16 +37,21 @@ fitafy is a fitness app that gets personal trainers new clients.
 
 ## Running The Tests
 
-* Run unit tests:
-    - `guard` will run & watch rspec & jasmine tests
-    - You can also run each seperatley:
-    	* `rake test:rspec`
-    	* `rake test:jasmine`
-
-* Run all tests: `rake test:alls`
+* Test the models (slow): `rake test:models`
+* Test the services (fast): `rake test:services`
+* Integration test (slow): `rake test:integration`
+* Run all tests: `rake test:all`
 
 ## Deployment
 
 * `rake deploy:prep`
 * Let the tests run
 * Follow the instructions
+
+## Resque
+
+We user resque as the queing worker.
+
+* Start the redis server `redis-server`
+* Start working: `rake resque:work QUEUE='*'`
+* Web interface `resque-web`

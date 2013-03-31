@@ -4,50 +4,29 @@ section#usp {
 	width:               100%;
 	height:              40em;
 
-    .email_form,
-    header {
+    .usp_sign_up {
 		-moz-box-sizing:    border-box;
 		-webkit-box-sizing: border-box;
 		padding:            4em 8em;
+		width:              50em;
 
-		h1 {
-			margin: 0 12em 0 0;
+		p {
+			font-size: 1.5em;
 		}
 	}
-}
-
-@media screen and (max-width: $med_desktop_media) {
-	section#usp {
-
-       .email_form,
-		header {
-			padding: 4em;
-
-			h1 {
-				margin: 0 7em 0 0;
-			}
-		}
-	}	
 }
 
 @media screen and (max-width: $med_tablet_media) {
 	section#usp {
+		background-position: 45% 0;
 
-		header {
-			h1 {
-				margin: 0 5em 0 0;
-			}
-		}
-	}
-}
+		.usp_sign_up {
+			width:  30em;
+			margin: 0;
+			padding: 2em;
 
-@media screen and (max-width: $small_tablet_media) {
-	section#usp {
-		background-position: 15% 0;
-
-		header {
-			h1 {
-				margin: 0;
+			p {
+				margin: 0 35px 10px 0;
 			}
 		}
 	}

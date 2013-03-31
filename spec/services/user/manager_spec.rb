@@ -13,14 +13,11 @@ describe User::Manager do
     end
 
     describe '#add_to_database' do
-      class SignupMailer; end
-
       let(:result) { user.add_to_database }
 
       before do
         mock(record).save { true }
-        mock(SignupMailer).welcome_email(anything) { SignupMailer }
-        mock(SignupMailer).deliver { 'MAIL DELIVERED' }
+        mock(user).send_welcome_email { 'MAIL DELIVERED' }
       end
 
       it 'delivers the user an email' do
