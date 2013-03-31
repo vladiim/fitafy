@@ -34,8 +34,12 @@ h4 {
 
 h5 {
 	font-family: $h5_font !important;
-	font-size:   1em !important;
+	font-size:   1.5em !important;
 	color:       $h5_color;
 	margin:      0 0 10px;
 	line-height: 160% !important;
+}
+
+p {
+	font-size: 1.2em;
 }
