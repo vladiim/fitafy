@@ -10,7 +10,8 @@ describe 'Unsubscribe from email list' do
   	visit unsubscribe_path(perishable_token: @user.perishable_token)
   end
 
-  it 'gives an unsubscribe message on the page' do
+  it 'subscribes the user' do
+    # gives an unsubscribe message on the page
     page.should have_content CopyGenerator::EmailCopy.unsubscribe
   end
 end

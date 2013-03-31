@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe 'Visitor goes to homepage' do
-  let(:user_email) { UserRecord.last.email }
+  let(:user_record) { UserRecord.last }
+  let(:user_email)  { user_record.email }
 
   before { visit root_path }
 
@@ -19,6 +20,10 @@ describe 'Visitor goes to homepage' do
 
     it 'gives me a success message' do
       page.should have_content CopyGenerator::UserCopy.first_sign_up
+    end
+
+    it 'sends the unsubscribe link in the email' do
+      last_email.html_part.body.should =~ /#{unsubscribe_path(perishable_token: user_record.perishable_token)}/
     end
   end
 
