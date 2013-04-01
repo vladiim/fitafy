@@ -17,6 +17,9 @@ Fitafy::Application.configure do
   # For email urls
   config.action_mailer.default_url_options = { :host => "fitafy.com" }
 
+  # ember version
+  config.ember.variant = :production
+
   # Code is not reloaded between requests
   config.cache_classes = true
 

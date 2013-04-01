@@ -10,7 +10,7 @@
 			background:         rgb(239,237,227);
 			border:             $workout_list_border;
 			border-radius:      2px;
-    		margin:             0 19px 8px 0 !important;
+    		margin:             0 19px 8px 0;
     		margin:             2px;
 			width:              14.1em;
 			text-align:         center;
@@ -41,6 +41,10 @@
     		img {
     			margin: 10px;
     		}
+    	}
+
+    	li.contact_importer {
+    		margin: none;
     	}
     }
 }

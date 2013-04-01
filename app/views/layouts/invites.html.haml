@@ -1,0 +1,12 @@
+!!! 5
+%html
+  %head
+    %title FITAFY - INVITES
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = yield :javascript
+    = csrf_meta_tag
+
+  %body
+    #section#main
+      #container= yield

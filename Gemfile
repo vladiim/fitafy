@@ -33,6 +33,9 @@ group :assets do
   gem 'uglifier',     '~> 1.3.0'
 end
 
+gem 'handlebars-source', '1.0.0.rc3'
+# gem 'ember-rails',    '~> 0.11.1'
+gem 'ember-rails', git: "git://github.com/emberjs/ember-rails.git"
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'jquery-rails',   '~> 2.2.1'
 gem 'carrierwave',    '~> 0.8.0'
@@ -42,20 +45,12 @@ gem 'compass-rails',  '~> 1.0.3'
 gem 'compass-h5bp',   '~> 0.1.0'
 gem 'haml-rails',     '~> 0.4'
 gem 'html5-rails',    '~> 0.0.6'
-
-# ------------ FORMS ------------ #
-
-# note: order matters! simple_form, client_side_validations, then client_side_validations-simple_form
-gem 'simple_form', '~> 2.0.4'
-gem 'client_side_validations', '~> 3.2.2'
-gem 'client_side_validations-simple_form', '~> 2.0.1'
+gem 'simple_form',    '~> 2.0.4'
 
 # ------------ TEST SUITE ------------ #
 group :test do
-  gem 'capybara',                '~> 2.0.2'
   gem 'rr',                      '~> 1.0.4'
   gem 'turn', :require => false
-  gem 'database_cleaner',        '~> 0.9.1'
   gem 'factory_girl_rails',      '~> 4.2.1'
   gem 'shoulda',                 '~> 3.4.0'
 end
@@ -63,6 +58,7 @@ end
 group :development, :test do
   gem 'debugger',            '~> 1.5.0'
   gem 'rspec-rails',         '~> 2.13.0'
+  gem 'capybara',            '~> 2.0.2'
   gem 'guard-rspec',         '~> 2.5.1'
   gem 'rb-fsevent',          '~> 0.9.3'
   gem 'jasminerice',         '~> 0.0.10'
@@ -70,4 +66,5 @@ group :development, :test do
   gem 'sinon-rails',         '~> 1.4.2.1'
   gem 'jasmine-sinon-rails', '~> 1.3.4'
   gem 'poltergeist',         '~> 1.1.0'
+  gem 'database_cleaner',    '~> 0.9.1'
 end

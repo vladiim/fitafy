@@ -1,7 +1,9 @@
 Fitafy::Application.routes.draw do
 
   resources :user_records, only: [:create]
-  resources :invites, only: [:index, :create]
+  resources :invites,      only: [:index]
+
+  resources :contact_importer_records, only: [:index]
 
   #---------- SIMPLE ----------#
 

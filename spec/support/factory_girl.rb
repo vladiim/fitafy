@@ -18,4 +18,8 @@ FactoryGirl.define do
   #     active true
   #   end
   # end
+
+  factory :contact_importer_record do
+    name 'email'
+  end
 end

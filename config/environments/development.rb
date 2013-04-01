@@ -22,6 +22,9 @@ Fitafy::Application.configure do
   # http://stackoverflow.com/questions/10248893/rake-dbstructuredump-fails-under-postgresql-rails-3-2
   config.active_record.schema_format = :sql
 
+  # ember version
+  config.ember.variant = :development
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

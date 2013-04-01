@@ -3,7 +3,15 @@
 //= require h5bp
 //= require jquery-ui
 //= require bootstrap
-//= require rails.validations
-//= require rails.validations.simple_form
-
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
 //= require_tree .
+
+FitafyInvites = Ember.Application.create();
+
+FitafyInvites.Store = DS.Store.extend({
+  revision: 11,
+  adapter:  DS.RESTAdapter.create()
+});

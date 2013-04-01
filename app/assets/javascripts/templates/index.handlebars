@@ -1,0 +1,61 @@
+<section id='invites'>
+  <section id='intro'>
+    <header>
+      <h1>
+        Invite your peeps!
+      </h1>
+    </header>
+    <p>
+      If you have friends or colleagues that you think would be interested in fitafy, why not invite them?
+    </p>
+    <aside id='contacts_message'>
+      <header>
+        <h3>
+          Message to contacts
+        </h3>
+      </header>
+      <div>
+        <p>
+          Hi! I've just signed up to www.fitafy.com. It's a service that helps Personal Trainers get new clients. I thought you should check it out!
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <section id='contacts_adder' class='row-fluid'>
+    <aside id='email_and_contacts' class='span8'>
+      <form>
+        <input class="string email fitaform" id="invite_email" name="invite[email]" placeholder="Your_Friend's@Email.com" size="50" type="email">
+
+       <input class="btn cta" name="commit" type="submit" value="ADD">
+      </form>
+
+      <div class='contacts_list'>
+        {{#if selectedImporter}}
+          Importing your {{selectedImporter.name}} contacts
+        {{/if}}
+      </div>
+    </aside>
+
+    <aside id='contacts_importer' class='span4'>
+      <header>
+        <h2>
+          Import contacts
+        </h2>
+      </header>
+      <div class='box_list'>
+        <ul>
+          {{#each importer in controller}}
+            <li class='contact_importer'>
+              <header {{action selectImporter importer}}>
+                <h3>
+                  {{importer.name}}
+                </h3>
+              </header>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </aside>
+  </section>
+</section>
