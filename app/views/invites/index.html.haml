@@ -1,0 +1,42 @@
+#invites
+  %aside.row-fluid
+    .span12
+
+      %p We want as many fitness professional as possible to benefit from getting leads from fitafy.
+
+      %p If you have friends or colleagues you think would be interested why not spread the word?
+
+  %section.row-fluid
+
+    %section.span4
+      %header
+        %b Your Invite
+
+      %div
+        %p Hi! I just signed up to a new service that gets fitness professionals new clients. I thought you'd like to check it out!
+        %span.edit
+          %i.icon-pencil
+
+      %aside
+        %header
+          %b
+            Invited Friends
+            %span.badge.badge-info 5
+
+        .invited-friends-list
+          %form.css-form.add-friend{ 'name'=> 'form' }
+            %input{ 'type'=> 'text', 'placeholder'=> "Friend's Name" }
+            %input{ 'type'=> 'email', 'placeholder'=> "friends@email.com" }
+            %button.btn-success.add ADD INVITE
+
+          %li
+            %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
+            %b Club Ryno
+            %br
+            %small.muted ryno@bigballz.com
+            %span.delete
+              [
+              %a{ 'href'=> '' } X
+              ]
+
+        %button.btn.btn-primary.send SEND INVITES

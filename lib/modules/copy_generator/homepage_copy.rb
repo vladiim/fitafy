@@ -5,7 +5,7 @@ module CopyGenerator
   	extend ApplicationHelper
 
   	def self.usp
-  	  'We help personal trainers get new clients'
+  	  'We help fitness professionals get new clients'
   	end
 
     def self.sub_heading

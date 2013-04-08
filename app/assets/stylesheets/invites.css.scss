@@ -1,0 +1,61 @@
+#invites {
+  p {
+  	font-size: 1.3em;
+  }
+
+  b {
+  	font-size: 2em;
+  }
+
+  small {
+  	font-size: 100%;
+  }
+
+  span.edit {
+  	display: block;
+  	background: rgba(255,255,255, 0.5); // white with opacity
+  	width: 20px;
+  	border-radius: 0 0 4px 4px;
+  	position: absolute;
+  	margin: -70px 310px 0;
+  }
+
+  button.add {
+  	height: 25px;
+  	position: absolute;
+  	margin: 2px 5px;
+  	font-size: 80%;
+  }
+
+  button.send {
+    width: 20em;
+  }
+
+  .invited-friends-list {
+
+    input {
+    	width: 125px;
+    }
+
+  	li {
+  		list-style: none;
+  		padding-bottom: 15px;
+  		border-bottom: 1px dotted lightgray;
+  	}
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+    }
+
+    small {
+    	margin: -10px 0 0 46px;
+    	position: absolute;
+    }
+
+    span.delete {
+    	margin: -40px 0 0 250px;
+    	position: absolute;
+    }
+  }
+}

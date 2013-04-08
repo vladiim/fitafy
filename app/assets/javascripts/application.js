@@ -2,8 +2,8 @@
 //= require jquery_ujs
 //= require h5bp
 //= require jquery-ui
+//= require angular
+//= require angular-resource
 //= require bootstrap
-//= require rails.validations
-//= require rails.validations.simple_form
 
 //= require_tree .

@@ -5,3 +5,8 @@
 # Mime::Type.register_alias "text/html", :iphone
 
 # Mime::Type.register "application/pdf", :pdf
+
+Mime::Type.register 'application/x-font-woff', :woff
+Mime::Type.register 'application/vnd.ms-fontobject', :eot
+Mime::Type.register 'application/octet-stream', :otf
+Mime::Type.register 'application/x-font-ttf', :ttf

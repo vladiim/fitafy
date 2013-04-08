@@ -28,9 +28,10 @@ gem 'cancan',    '~> 1.6.9'
 # ------------ ASSETS ------------ #
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.6'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier',     '~> 1.3.0'
+  gem 'sass-rails',      '~> 3.2.6'
+  gem 'coffee-rails',    '~> 3.2.2'
+  gem 'uglifier',        '~> 1.3.0'
+  gem 'angularjs-rails', '~> 1.0.5'
 end
 
 gem 'bootstrap-sass', '~> 2.3.1.0'
@@ -45,10 +46,7 @@ gem 'html5-rails',    '~> 0.0.6'
 
 # ------------ FORMS ------------ #
 
-# note: order matters! simple_form, client_side_validations, then client_side_validations-simple_form
 gem 'simple_form', '~> 2.0.4'
-gem 'client_side_validations', '~> 3.2.2'
-gem 'client_side_validations-simple_form', '~> 2.0.1'
 
 # ------------ TEST SUITE ------------ #
 group :test do

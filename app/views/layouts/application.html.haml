@@ -3,7 +3,7 @@
 - html_tag :class => "no-js", :lang => "en" do
   = render "head"
 
-  %body{ :class => "#{ controller.controller_name }" }
+  %body{ :class => "#{ controller.controller_name } container-fluid" }
     %noscript You need to enable Javascript to get the most out of fitafy
 
     %a{ :accesskey => 's', :href => '#main', class: 'hidden' } skip to content

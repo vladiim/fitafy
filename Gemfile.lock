@@ -33,6 +33,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.3)
+    angularjs-rails (1.0.5)
     ansi (1.4.3)
     arel (3.0.2)
     authlogic (3.2.0)
@@ -63,10 +64,6 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.8)
-    client_side_validations (3.2.5)
-    client_side_validations-simple_form (2.0.1)
-      client_side_validations (~> 3.2.0)
-      simple_form (~> 2.0.3)
     cloudinary (1.0.52)
       aws_cf_signer
       rest-client
@@ -310,6 +307,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgres-hstore (~> 0.7.5)
+  angularjs-rails (~> 1.0.5)
   authlogic (~> 3.2.0)
   better_errors (~> 0.7.2)
   binding_of_caller (~> 0.7.1)
@@ -317,8 +315,6 @@ DEPENDENCIES
   cancan (~> 1.6.9)
   capybara (~> 2.0.2)
   carrierwave (~> 0.8.0)
-  client_side_validations (~> 3.2.2)
-  client_side_validations-simple_form (~> 2.0.1)
   cloudinary (~> 1.0.47)
   coffee-rails (~> 3.2.2)
   compass-h5bp (~> 0.1.0)
