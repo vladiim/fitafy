@@ -25,13 +25,13 @@
 
         .invited-friends-list
           %form.css-form.add-friend{ 'name'=> 'form' }
-            %input{ 'type'=> 'text', 'placeholder'=> "Friend's Name" }
-            %input{ 'type'=> 'email', 'placeholder'=> "friends@email.com" }
+            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name" }
+            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com" }
             %button.btn-success.add ADD INVITE
 
-          %li
+          %li.invited-friend
             %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
-            %b Club Ryno
+            %b.name Club Ryno
             %br
             %small.muted ryno@bigballz.com
             %span.delete

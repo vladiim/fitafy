@@ -4,7 +4,6 @@ gem 'rails', '~> 3.2.13'
 
 # ------------ INFRASTRUCTURE ------------ #
 
-gem 'pg',           '~> 0.14.1'
 gem 'heroku',       '~> 2.35.0'
 gem 'thin',         '~> 1.5.1'
 gem 'resque',       '~> 1.23.1'
@@ -13,11 +12,20 @@ gem 'sendgrid',     '~> 1.1.0'
 gem 'redis',        '~> 3.0.3'
 gem 'pry',          '~> 0.9.12'
 gem 'squeel',       '~> 1.0.18'
-gem 'activerecord-postgres-hstore', '~> 0.7.5'
 
 group :development do
   gem 'better_errors',     '~> 0.7.2'
   gem 'binding_of_caller', '~> 0.7.1'
+end
+
+# ------------ DB ------------ #
+
+group :production do
+  gem 'pg', '~> 0.14.1'
+end
+
+group :development, :test do
+  gem 'sqlite3'
 end
 
 # ------------ AUTH ------------ #

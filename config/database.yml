@@ -1,17 +1,29 @@
 development:
-  adapter: postgresql
-  encoding: utf8
-  database: fitafy_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  username: vladiim
-  password:
-  host: localhost
+  timeout: 5000
 
 test:
-  adapter: postgresql
-  encoding: utf8
-  database: fitafy_test
+  adapter: sqlite3
+  database: db/test.sqlite3
   pool: 5
-  username: vladiim
-  password:
-  host: localhost
+  timeout: 5000
+
+# development:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: fitafy_development
+#   pool: 5
+#   username: vladiim
+#   password:
+#   host: localhost
+
+# test:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: fitafy_test
+#   pool: 5
+#   username: vladiim
+#   password:
+#   host: localhost
