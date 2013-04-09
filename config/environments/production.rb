@@ -17,6 +17,9 @@ Fitafy::Application.configure do
   # For email urls
   config.action_mailer.default_url_options = { :host => "fitafy.com" }
 
+  # For Angularjs - don't screw up dependency names by minifying
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(mangle: false) }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 

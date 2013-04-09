@@ -7,3 +7,8 @@
 //= require bootstrap
 
 //= require_tree .
+
+//= require_tree ./angular/controllers
+//= require_tree ./angular/filters
+//= require_tree ./angular/services
+//= require_tree ./angular/widgets

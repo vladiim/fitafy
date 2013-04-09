@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Add friend to invite", js: true do
   before { visit invites_path }
 
-  context 'user email adder' do
+  context 'add name and email' do
   	before do
   	  within('.invited-friends-list') do
   	  	fill_in 'friends_name', with: 'NAME'

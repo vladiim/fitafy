@@ -17,7 +17,7 @@
         %span.edit
           %i.icon-pencil
 
-      %aside
+      %aside{ "ng-controller" => "InviteFriendsCtrl" }
         %header
           %b
             Invited Friends
@@ -25,18 +25,19 @@
 
         .invited-friends-list
           %form.css-form.add-friend{ 'name'=> 'form' }
-            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name" }
-            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com" }
-            %button.btn-success.add ADD INVITE
+            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name", "ng-model" => "friend.name" }
+            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com", "ng-model" => "friend.contact" }
+            %button.btn-success.add{ "ng-click" => "addFriend(friend)" } ADD FRIEND
 
-          %li.invited-friend
-            %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
-            %b.name Club Ryno
-            %br
-            %small.muted ryno@bigballz.com
-            %span.delete
-              [
-              %a{ 'href'=> '' } X
-              ]
+          %ul
+            %li.invited-friend{ "ng-repeat" => "friend in friends"}
+              %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
+              %b.name {{friend.name}}
+              %br
+              %small.muted {{friend.contact}}
+              %span.delete
+                [
+                %a{ 'href'=> '' } X
+                ]
 
         %button.btn.btn-primary.send SEND INVITES
