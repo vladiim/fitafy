@@ -8,26 +8,30 @@
 
   %section.row-fluid
 
-    %section.span4
+    %section.span4{ "ng-controller" => "InviteFriendsCtrl" }
       %header
         %b Your Invite
 
-      %div
-        %p Hi! I just signed up to a new service that gets fitness professionals new clients. I thought you'd like to check it out!
+      %div#invite_message
         %span.edit
-          %i.icon-pencil
+          %i.icon-pencil#edit_message{ "ng-click" => "editMessageMode()" }
+        %p{ "ng-hide" => "editMessage" } {{message}}
 
-      %aside{ "ng-controller" => "InviteFriendsCtrl" }
+        %form{ "ng-show" => "editMessage", "ng-submit" => "changeMessage(message)" }
+          %textarea#message_form{ "ng-model" => 'message' }
+          %button.btn-success SAVE
+
+      %aside
         %header
           %b
             Invited Friends
-            %span.badge.badge-info.friend-count 5
+            %span.badge.badge-info.friend-count {{friends.length}}
 
         .invited-friends-list
-          %form.css-form.add-friend{ 'name'=> 'form' }
-            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name", "ng-model" => "friend.name" }
-            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com", "ng-model" => "friend.contact" }
-            %button.btn-success.add{ "ng-click" => "addFriend(friend)" } ADD FRIEND
+          %form.css-form.add-friend{ "ng-submit" => "addFriend(friend)", 'name'=> 'form', "novalidate" => true }
+            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name", "ng-model" => "friend.name", "required" => true }
+            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com", "ng-model" => "friend.contact", "required" => true }
+            %button.btn-success.add{ "ng-disabled" => "form.$invalid" } ADD FRIEND
 
           %ul
             %li.invited-friend{ "ng-repeat" => "friend in friends"}

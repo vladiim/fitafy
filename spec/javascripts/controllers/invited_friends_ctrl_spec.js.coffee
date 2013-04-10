@@ -12,3 +12,13 @@ describe "InviteFriendsCtrl", ->
       friend = { "name": "NAME" }
       @scope.addFriend(friend)
       expect(@scope.friends[0]).toEqual(friend)
+
+  describe "changeMessage()", ->
+    it "changes the message", ->
+      @scope.changeMessage('MESSAGE')
+      expect(@scope.message).toBe('MESSAGE')
+
+  describe "editMessageMode()", ->
+    it "goes to edit mode", ->
+      @scope.editMessageMode()
+      expect(@scope.editMessage).toBe(true)
