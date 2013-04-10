@@ -14,6 +14,7 @@ describe "Add friend to invite", js: true do
 
 	  it 'adds the friend to the list' do
 		  page.should have_friend
+      page.should have_selector('span.friend-count', text: '1')
 	  end
 
     context 'click [x]' do
