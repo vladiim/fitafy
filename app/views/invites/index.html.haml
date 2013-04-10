@@ -37,7 +37,7 @@
               %small.muted {{friend.contact}}
               %span.delete
                 [
-                %a{ 'href'=> '' } X
+                %a{ 'href'=> '', "ng-click" => "removeFriend($index)" } X
                 ]
 
         %button.btn.btn-primary.send SEND INVITES
