@@ -339,6 +339,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.6)
   sendgrid (~> 1.1.0)
   shoulda (~> 3.4.0)
+  shoulda-matchers
   simple_form (~> 2.0.4)
   sinon-rails (~> 1.4.2.1)
   sqlite3

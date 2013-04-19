@@ -58,17 +58,14 @@ gem 'simple_form', '~> 2.0.4'
 
 # ------------ TEST SUITE ------------ #
 group :test do
+  gem 'rspec-rails',         '~> 2.13.0'
+  gem 'shoulda',                 '~> 3.4.0'
+  gem 'shoulda-matchers'
   gem 'capybara',                '~> 2.0.2'
   gem 'rr',                      '~> 1.0.4'
   gem 'turn', :require => false
   gem 'database_cleaner',        '~> 0.9.1'
   gem 'factory_girl_rails',      '~> 4.2.1'
-  gem 'shoulda',                 '~> 3.4.0'
-end
-
-group :development, :test do
-  gem 'debugger',            '~> 1.5.0'
-  gem 'rspec-rails',         '~> 2.13.0'
   gem 'guard-rspec',         '~> 2.5.1'
   gem 'rb-fsevent',          '~> 0.9.3'
   gem 'jasminerice',         '~> 0.0.10'
@@ -76,4 +73,8 @@ group :development, :test do
   gem 'sinon-rails',         '~> 1.4.2.1'
   gem 'jasmine-sinon-rails', '~> 1.3.4'
   gem 'poltergeist',         '~> 1.1.0'
+end
+
+group :development, :test do
+  gem 'debugger',            '~> 1.5.0'
 end

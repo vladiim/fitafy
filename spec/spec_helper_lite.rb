@@ -1,4 +1,4 @@
-require 'rspec/autorun'
+# require 'rspec/autorun'
 require 'ostruct'
 require 'rr'
 require 'cancan/matchers'
