@@ -16,3 +16,8 @@
 
   $scope.editMessageMode = ->
     if $scope.editMessage is true then $scope.editMessage = false else $scope.editMessage = true
+
+  $scope.addUser = (user) ->
+    $scope.inviteFrom = user.email
+    $scope.userAdded  = true
+    $scope.user       = {}

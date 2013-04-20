@@ -22,3 +22,11 @@ describe "InviteFriendsCtrl", ->
     it "goes to edit mode", ->
       @scope.editMessageMode()
       expect(@scope.editMessage).toBe(true)
+
+  describe "addUser()", ->
+    it "adds the user to the scope", ->
+      user = { email: 'EMAIL' }
+      @scope.addUser(user)
+      expect(@scope.inviteFrom).toEqual('EMAIL')
+      expect(@scope.userAdded).toBe(true)
+      expect(@scope.user).toEqual({})

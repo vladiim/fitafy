@@ -24,7 +24,7 @@
       %aside
         %header
           %b
-            Invited Friends
+            Invite To
             %span.badge.badge-info.friend-count {{friends.length}}
 
         .invited-friends-list
@@ -43,5 +43,22 @@
                 [
                 %a{ 'href'=> '', "ng-click" => "removeFriend($index)" } X
                 ]
+
+        #invite_from
+          %header
+            %b
+              Invite From
+
+          - if @user
+            .user_email= @user.email
+          - else
+            .user{ "ng-show" => "userAdded" }
+              %p {{inviteFrom}}
+            .no_user{ "ng-hide" => "userAdded" }
+              %p Before you can add friends you need to let us know who you are, if you haven't registered for updates from fitafy we'll add you now.
+
+              %form.users_email{ "name" => "userForm", "ng-submit" => "addUser(user)" }
+                %input#user_email{ "type" => "email", "placeholder" => "your@email.com", "ng-model" => "user.email", "required" => true }
+                %button.add{ "ng-disabled" => "userForm.$invalid" } ADD YOUR EMAIL
 
         %button.btn.btn-primary.send SEND INVITES
