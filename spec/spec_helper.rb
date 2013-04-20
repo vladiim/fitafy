@@ -7,6 +7,11 @@ require 'capybara/rails'
 require_relative 'spec_helper_lite'
 
 # ----------------------------------------------
+# SUPPORT FILES
+# ----------------------------------------------
+Dir[("#{Dir.pwd}/spec/support/*.rb")].each {|f| require f}
+
+# ----------------------------------------------
 # HEADLESS TESTING
 # ----------------------------------------------
 require 'capybara/poltergeist'

@@ -33,6 +33,34 @@ describe "Add friend to invite", js: true do
       end
     end
   end
+
+  describe "and sends the invites" do
+    it 'sends the invite', :focus do
+      visit root_path
+      sign_up
+      add_friend
+
+      # !!!!!!!!!!!!!!!!!!!!!!!!!
+      # fill_in_captcha
+      # !!!!!!!!!!!!!!!!!!!!!!!!!
+
+      click_button "SEND INVITES"
+
+      # sends the correct message
+      last_email.html_part.body.should =~ /Hi NAME! I just signed up/
+
+      # sends the email to the friend
+      last_email.to.should eq ['friend@email.com']
+
+      # shows the correct success flash message
+      page.should have_content CopyGenerator::InviteCopy.invites_sent(1)
+
+      # clears the friend's list
+      within('.invited-friends-list') do
+        page.should_not have_friends
+      end
+    end
+  end
 end
 
 def have_friend

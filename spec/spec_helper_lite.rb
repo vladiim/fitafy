@@ -1,4 +1,5 @@
-# require 'rspec/autorun'
+# require 'rspec/autorun' if ENV['SLOW_SPECS']
+
 require 'ostruct'
 require 'rr'
 require 'cancan/matchers'
@@ -11,7 +12,7 @@ Dir["#{Dir.pwd}/lib/modules/copy_generator/*.rb"].each { |f| require f }
 # ----------------------------------------------
 # SUPPORT FILES
 # ----------------------------------------------
-Dir[Rails.root.join("spec/support/*.rb")].each {|f| require f}
+require_relative './support/deferred_garbage_collection'
 
 # ----------------------------------------------
 # CONFIG

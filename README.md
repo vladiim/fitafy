@@ -25,22 +25,21 @@ fitafy is a fitness app that gets personal trainers new clients.
 * phantomjs                 `brew install phantomjs`
 * Heroku toolbelt
 
-## Set up
+## Set Up
 
 1. `cd fitafy`
 2. RVM should ask you if you wish to trust the .rvmrc file - `y` then hit return
 3. Install all the gems `bundle install`
 4. Create the Postgres database `rake create:db`
-5. Run the database migrations `rake db:migrate && rake db:test:prepare`
-6. If you want some seed data `rake db:seed`
-7. Fire up the server `rails s`
+5. Run the database migrations `rake db:update`
+6. Fire up the server `rails s`
 
-## Running The Tests
+## Running The Tests With Zeus
 
-* Test the models (slow): `rake test:models`
-* Test the services (fast): `rake test:services`
-* Integration test (slow): `rake test:integration`
-* Run all tests: `rake test:all`
+* `gem install zeus`
+* `zeus start`
+* `zeus test spec`
+* To run slow tests `SLOW_SPECS=true rspec spec`
 
 ## Deployment
 
