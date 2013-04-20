@@ -77,6 +77,6 @@ end
 
 group :development, :test do
   gem 'debugger',            '~> 1.5.0'
-  gem 'parallel_tests',      '~> 0.10.4'
-  gem 'zeus-parallel_tests', '~> 0.2.1'
+  # gem 'parallel_tests',      '~> 0.10.4'
+  # gem 'zeus-parallel_tests', '~> 0.2.1'
 end
