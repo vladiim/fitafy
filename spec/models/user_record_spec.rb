@@ -14,4 +14,8 @@ describe UserRecord do
     it { should allow_value('blah@email.com').for(:email) }
     it { should_not allow_value('blah@email').for(:email) }
   end
+
+  context "associations" do
+    it { should have_many(:invite_records) }
+  end
 end
