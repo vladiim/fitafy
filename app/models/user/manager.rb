@@ -3,7 +3,7 @@ module User
 
     attr_reader :record
 
-    delegate :perishable_token, to: :@record
+    # delegate :perishable_token, to: :@record  # DOESN'T WORK W/ ZEUS
 
   	def initialize(record)
       ensure_correct_class record
@@ -22,6 +22,10 @@ module User
 
     def subscribed?
       record.subscribed == true
+    end
+
+    def perishable_token
+      record.perishable_token
     end
 
     private

@@ -1,17 +1,19 @@
 require 'spec_helper'
 
-describe 'Visitor goes to homepage' do
-  before { visit root_path }
+describe 'Visitor goes to homepage', :slow do
 
   context 'and clicks the privacy link' do
-  	before do
-  	  within('footer') do
-  	  	click_link 'Privacy Policy'
-  	  end
-  	end
 
     it 'is on the privacy page' do
+      visit root_path
+      click_privacy_link
       current_path.should eq '/privacy'
     end
   end
+end
+
+def click_privacy_link
+  within('footer') do
+    click_link 'Privacy Policy'
+  end  
 end

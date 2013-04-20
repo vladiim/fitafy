@@ -57,15 +57,14 @@ gem 'html5-rails',    '~> 0.0.6'
 gem 'simple_form', '~> 2.0.4'
 
 # ------------ TEST SUITE ------------ #
-group :test do
+group :development, :test do
   gem 'rspec-rails',         '~> 2.13.0'
-  gem 'shoulda',                 '~> 3.4.0'
-  gem 'shoulda-matchers'
-  gem 'capybara',                '~> 2.0.2'
-  gem 'rr',                      '~> 1.0.4'
-  gem 'turn', :require => false
-  gem 'database_cleaner',        '~> 0.9.1'
-  gem 'factory_girl_rails',      '~> 4.2.1'
+  gem 'shoulda',             '~> 3.4.0'
+  gem 'shoulda-matchers',    '~> 1.5.6'
+  gem 'capybara',            '~> 2.0.2'
+  gem 'rr',                  '~> 1.0.4'
+  gem 'database_cleaner',    '~> 0.9.1'
+  gem 'factory_girl_rails',  '~> 4.2.1'
   gem 'guard-rspec',         '~> 2.5.1'
   gem 'rb-fsevent',          '~> 0.9.3'
   gem 'jasminerice',         '~> 0.0.10'
@@ -73,8 +72,11 @@ group :test do
   gem 'sinon-rails',         '~> 1.4.2.1'
   gem 'jasmine-sinon-rails', '~> 1.3.4'
   gem 'poltergeist',         '~> 1.1.0'
+  gem 'turn', :require => false
 end
 
 group :development, :test do
   gem 'debugger',            '~> 1.5.0'
+  gem 'parallel_tests',      '~> 0.10.4'
+  gem 'zeus-parallel_tests', '~> 0.2.1'
 end

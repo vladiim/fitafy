@@ -13,7 +13,7 @@ guard 'jasmine' do
   watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)$})  { |m| "spec/javascripts/#{m[1]}_spec.#{m[2]}" }
 end
 
-guard 'rspec', :version => 2 do
+guard 'rspec', all_on_start: false, all_after_pass: false, zeus: true, bundler: false, :version => 2 do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
