@@ -8,57 +8,15 @@
 
   %section.row-fluid
 
-    %section.span4{ "ng-controller" => "InviteFriendsCtrl" }
+    %section.span5{ "ng-controller" => "InviteFriendsCtrl" }
       %header
         %b Your Invite
 
-      %div#invite_message
-        %span.edit
-          %i.icon-pencil#edit_message{ "ng-click" => "editMessageMode()" }
-        %p{ "ng-hide" => "editMessage" } {{message}}
-
-        %form{ "ng-show" => "editMessage", "ng-submit" => "changeMessage(message)" }
-          %textarea#message_form{ "ng-model" => 'message' }
-          %button.btn-success SAVE
+      = render 'invite_message'
 
       %aside
-        %header
-          %b
-            Invite To
-            %span.badge.badge-info.friend-count {{friends.length}}
+        = render 'invite_to'
 
-        .invited-friends-list
-          %form.css-form.add-friend{ "ng-submit" => "addFriend(friend)", 'name'=> 'form', "novalidate" => true }
-            %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name", "ng-model" => "friend.name", "required" => true }
-            %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com", "ng-model" => "friend.contact", "required" => true }
-            %button.btn-success.add{ "ng-disabled" => "form.$invalid" } ADD FRIEND
-
-          %ul
-            %li.invited-friend{ "ng-repeat" => "friend in friends"}
-              %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
-              %b.name {{friend.name}}
-              %br
-              %small.muted {{friend.contact}}
-              %span.delete
-                [
-                %a{ 'href'=> '', "ng-click" => "removeFriend($index)" } X
-                ]
-
-        #invite_from
-          %header
-            %b
-              Invite From
-
-          - if @user
-            .user_email= @user.email
-          - else
-            .user{ "ng-show" => "userAdded" }
-              %p {{inviteFrom}}
-            .no_user{ "ng-hide" => "userAdded" }
-              %p Before you can add friends you need to let us know who you are, if you haven't registered for updates from fitafy we'll add you now.
-
-              %form.users_email{ "name" => "userForm", "ng-submit" => "addUser(user)" }
-                %input#user_email{ "type" => "email", "placeholder" => "your@email.com", "ng-model" => "user.email", "required" => true }
-                %button.add{ "ng-disabled" => "userForm.$invalid" } ADD YOUR EMAIL
+        = render 'invite_from'
 
         %button.btn.btn-primary.send SEND INVITES

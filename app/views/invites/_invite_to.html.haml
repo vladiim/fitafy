@@ -1,0 +1,21 @@
+%header
+  %b
+    Invite To
+    %span.badge.badge-info.friend-count {{friends.length}}
+
+.invited-friends-list
+  %form.css-form.add-friend{ "ng-submit" => "addFriend(friend)", 'name'=> 'form', "novalidate" => true }
+    %input#friends_name{ 'type'=> 'text', 'placeholder'=> "Friend's Name", "ng-model" => "friend.name", "required" => true }
+    %input#friends_email{ 'type'=> 'email', 'placeholder'=> "friends@email.com", "ng-model" => "friend.contact", "required" => true }
+    %button.btn-success.add{ "ng-disabled" => "form.$invalid" } ADD FRIEND
+
+  %ul
+    %li.invited-friend{ "ng-repeat" => "friend in friends"}
+      %img.profile-pic{ 'src'=> "http://static.bleacherreport.net/images/redesign/avatars/default-user-icon-profile.png"}
+      %b.name {{friend.name}}
+      %br
+      %small.muted {{friend.contact}}
+      %span.delete
+        [
+        %a{ 'href'=> '', "ng-click" => "removeFriend($index)" } X
+        ]

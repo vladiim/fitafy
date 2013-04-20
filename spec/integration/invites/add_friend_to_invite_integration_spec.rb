@@ -11,6 +11,7 @@ describe "Add friend to invite", js: true do
       within('.user') do
         page.should have_content 'name@email.com'
       end
+      
     end
   end
 
