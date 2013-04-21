@@ -1,7 +1,7 @@
 describe "InviteFriendsCtrl", ->
   beforeEach ->
-    @scope = {}
-    @ctrl  = new InviteFriendsCtrl(@scope)
+    @scope  = {}
+    @ctrl   = new InviteFriendsCtrl(@scope)
 
   describe "friends", ->
     it "defaults to an empty friend list", ->
@@ -39,3 +39,20 @@ describe "InviteFriendsCtrl", ->
       expect(@scope.editSenderEmailMode).toBe(false)
       @scope.editSenderEmail()
       expect(@scope.editSenderEmailMode).toBe(true)
+
+  describe "sendInvite()", ->
+    beforeEach ->
+      @scope.inviteFrom = "FROM"
+      @scope.friends    = "FRIENDS"
+      @scope.message    = "MESSAGE"
+      @invite = { $save: -> true }
+      sinon.stub(@invite, "$save")
+      @scope.sendInvite(@invite)
+
+    it "sets up the new invite", ->
+      expect(@invite.from).toEqual("FROM")
+      expect(@invite.friends).toEqual("FRIENDS")
+      expect(@invite.message).toEqual("MESSAGE")
+
+    it "saves the invite", ->
+      expect(@invite.$save).toHaveBeenCalled()

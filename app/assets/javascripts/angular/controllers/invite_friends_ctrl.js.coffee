@@ -1,4 +1,4 @@
-@InviteFriendsCtrl = ($scope) ->
+@InviteFriendsCtrl = ($scope, Invite) ->
   $scope.friends     = []
   $scope.message     = "Hi! I just signed up to a new service that gets fitness professionals new clients. I thought you'd like to check it out!"
   $scope.editMessage = false
@@ -24,3 +24,9 @@
 
   $scope.editSenderEmail = ->
     if $scope.editSenderEmailMode is true then $scope.editSenderEmailMode = false else $scope.editSenderEmailMode = true
+
+  $scope.sendInvite = (invite = new Invite()) ->
+    invite.from    = $scope.inviteFrom
+    invite.friends = $scope.friends
+    invite.message = $scope.message
+    invite.$save()
