@@ -20,6 +20,12 @@ module User
       update_perishable_token! if record.save
     end
 
+    alias_method :save_invited_user, :unsubscribe
+
+    def save_invite_sending_user
+      record.id ? true : add_to_database
+    end
+
     def subscribed?
       record.subscribed == true
     end

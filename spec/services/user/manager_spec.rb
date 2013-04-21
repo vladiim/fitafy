@@ -59,5 +59,28 @@ describe User::Manager do
         record.perishable_token.should_not eq 'FAKE'
       end
     end
+
+    describe "#save_invite_sending_user" do
+      let(:result) { user.save_invite_sending_user }
+
+      context "existing user" do
+        before { mock(record).id { 1 } }
+
+        it "does nothing" do
+          result.should be
+        end
+      end
+
+      context "new user" do
+        before do
+          mock(record).id { nil }
+          mock(user).add_to_database { true }
+        end
+
+        it "adds the user to the database" do
+          result.should be
+        end
+      end
+    end
   end
 end
