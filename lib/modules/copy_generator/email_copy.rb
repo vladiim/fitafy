@@ -7,5 +7,9 @@ module CopyGenerator
     def self.unsubscribe
       "We're sorry to see you've unsubscribed from our emails."
     end
+
+    def self.invite_subject(email)
+      "#{email}: Fitafy Invite"
+    end
   end
 end

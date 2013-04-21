@@ -18,6 +18,7 @@ module User
     def unsubscribe
       record.subscribed = false
       update_perishable_token! if record.save
+      record
     end
 
     alias_method :save_invited_user, :unsubscribe

@@ -1,11 +1,13 @@
 development:
   adapter: sqlite3
+  prepared_statements: false
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
 test:
   adapter: sqlite3
+  prepared_statements: false
   database: db/test<%= ENV['TEST_ENV_NUMBER'] %>
   pool: 5
   timeout: 5000

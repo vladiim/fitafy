@@ -13,11 +13,16 @@ module Invite
       records.each { |record| invite_mailer_sender(record.id) }
     end
 
+    def count
+      records.length
+    end
+
     private
 
     def create_and_add_sender(email)
-      record = UserRecord.find_or_create_by_email(email)
-      @sender = User::Manager.new(record).save_invite_sending_user
+      # debugger
+      @sender = UserRecord.find_or_create_by_email(email)
+      User::Manager.new(sender).save_invite_sending_user
     end
 
     def create_and_add_receivers(receivers)
@@ -36,13 +41,11 @@ module Invite
 
     def create_and_add_records
       @records = []
-      receivers.each { |receiver| @records << create_invite_record(receiver) }
+      receivers.each { |receiver| create_invite_record(receiver) }
     end
 
     def create_invite_record(receiver)
-      InviteRecord.create(sender_id:   sender.id,
-      	                  receiver_id: receiver.id,
-      	                  message:     message)
+      records << InviteRecord.create(sender_id: sender.id, receiver_id: receiver.id, message: message)
     end
 
     def user_record(contact)

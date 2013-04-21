@@ -3,6 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'capybara/rails'
+require 'database_cleaner'
 
 require_relative 'spec_helper_lite'
 
@@ -28,4 +29,16 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.include Capybara::DSL
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

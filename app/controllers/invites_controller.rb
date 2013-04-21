@@ -8,7 +8,8 @@ class InvitesController < ApplicationController
   def create
   	invite = Invite::Manager.new(params)
   	if invite.send_messages
-  	  respond_with json: { message: invite_sent_message(invite.count) }
+  	  flash[:success] = invite_sent_message(invite.count)
+  	  redirect_to index
   	end
   end
 
