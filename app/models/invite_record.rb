@@ -1,6 +1,6 @@
 class InviteRecord < ActiveRecord::Base
-  attr_accessible :from_id, :to_id, :message
+  attr_accessible :sender_id, :receiver_id, :message
 
-  belongs_to :from, class_name: 'UserRecord'
-  belongs_to :to,   class_name: 'UserRecord'
+  belongs_to :sender,   class_name: 'UserRecord'
+  belongs_to :receiver, class_name: 'UserRecord'
 end

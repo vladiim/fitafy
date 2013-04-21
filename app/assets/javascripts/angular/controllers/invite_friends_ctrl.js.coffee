@@ -26,7 +26,7 @@
     if $scope.editSenderEmailMode is true then $scope.editSenderEmailMode = false else $scope.editSenderEmailMode = true
 
   $scope.sendInvite = (invite = new Invite()) ->
-    invite.from    = $scope.inviteFrom
-    invite.friends = $scope.friends
-    invite.message = $scope.message
+    invite.sender    = $scope.inviteFrom
+    invite.receivers = $scope.friends
+    invite.message   = $scope.message
     invite.$save()

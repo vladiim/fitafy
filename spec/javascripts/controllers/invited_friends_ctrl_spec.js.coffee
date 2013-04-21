@@ -50,8 +50,8 @@ describe "InviteFriendsCtrl", ->
       @scope.sendInvite(@invite)
 
     it "sets up the new invite", ->
-      expect(@invite.from).toEqual("FROM")
-      expect(@invite.friends).toEqual("FRIENDS")
+      expect(@invite.sender).toEqual("FROM")
+      expect(@invite.receivers).toEqual("FRIENDS")
       expect(@invite.message).toEqual("MESSAGE")
 
     it "saves the invite", ->

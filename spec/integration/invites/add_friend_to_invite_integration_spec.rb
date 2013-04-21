@@ -47,7 +47,7 @@ describe "Add friend to invite", js: true do
     end
   end
 
-  describe "and sends the invites" do
+  describe "and sends the invites", :slow do
     it 'sends the invite' do
       visit root_path
       sign_up
