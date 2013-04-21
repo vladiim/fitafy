@@ -5,12 +5,16 @@
 
   - if @user
     .user_email= @user.email
+
   - else
-    .user{ "ng-show" => "userAdded" }
+    .user{ "ng-hide" => "editSenderEmailMode" }
+      %span.edit
+        %i.icon-pencil#edit-my-email{ "ng-click" => "editSenderEmail()" }
       %p {{inviteFrom}}
-    .no_user{ "ng-hide" => "userAdded" }
+
+    .no_user{ "ng-show" => "editSenderEmailMode" }
       %p Before you can add friends you need to let us know who you are, if you haven't registered for updates from fitafy we'll add you now.
 
-      %form.users_email{ "name" => "userForm", "ng-submit" => "addUser(user)" }
-        %input#user_email{ "type" => "email", "placeholder" => "your@email.com", "ng-model" => "user.email", "required" => true }
-        %button.add{ "ng-disabled" => "userForm.$invalid" } ADD YOUR EMAIL
+      %form.users_email{ "name" => "senderForm", "ng-submit" => "addSenderEmail(sender)" }
+        %input#user_email{ "type" => "email", "placeholder" => "your@email.com", "ng-model" => "sender.email", "required" => true }
+        %button.add{ "ng-disabled" => "senderForm.$invalid" } ADD YOUR EMAIL

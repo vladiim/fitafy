@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe "Add friend to invite", js: true do
 
-  context 'from direct visit', :focus do
+  context 'from direct visit', :slow do
 
-    it 'prompts the user to add their email', focus: true do
+    it 'prompts the user to add their email' do
       visit invites_path
-      fill_in 'user_email', with: 'name@email.com'
-      click_button 'ADD YOUR EMAIL'
+      add_my_email
       within('.user') do
         page.should have_content 'name@email.com'
+        find("#edit-my-email").click
       end
-      
+      add_my_email
     end
   end
 
@@ -98,4 +98,9 @@ def add_friend
     fill_in 'friends_email', with: 'friend@email.com'
     click_button 'ADD FRIEND'
   end
+end
+
+def add_my_email
+  fill_in 'user_email', with: 'name@email.com'
+  click_button 'ADD YOUR EMAIL'
 end

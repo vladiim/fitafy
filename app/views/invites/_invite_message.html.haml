@@ -3,6 +3,6 @@
     %i.icon-pencil#edit_message{ "ng-click" => "editMessageMode()" }
   %p{ "ng-hide" => "editMessage" } {{message}}
 
-%form{ "ng-show" => "editMessage", "ng-submit" => "changeMessage(message)" }
-  %textarea#message_form{ "ng-model" => 'message' }
-  %button.btn-success SAVE
+  %form{ "ng-show" => "editMessage", "ng-submit" => "changeMessage(message)" }
+    %textarea#message_form{ "ng-model" => 'message' }
+    %button.btn-success SAVE

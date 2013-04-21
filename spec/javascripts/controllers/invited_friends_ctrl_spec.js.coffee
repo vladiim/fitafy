@@ -23,10 +23,19 @@ describe "InviteFriendsCtrl", ->
       @scope.editMessageMode()
       expect(@scope.editMessage).toBe(true)
 
-  describe "addUser()", ->
+  describe "addSenderEmail()", ->
+    it "defaults to editing the sender's email", ->
+      expect(@scope.editSenderEmailMode).toBe(true)
+
     it "adds the user to the scope", ->
-      user = { email: 'EMAIL' }
-      @scope.addUser(user)
+      sender = { email: 'EMAIL' }
+      @scope.addSenderEmail(sender)
       expect(@scope.inviteFrom).toEqual('EMAIL')
-      expect(@scope.userAdded).toBe(true)
-      expect(@scope.user).toEqual({})
+      expect(@scope.editSenderEmailMode).toBe(false)
+
+  describe "editSenderEmail()", ->
+    it 'changes the editSenderEmailMode', ->
+      @scope.editSenderEmail()
+      expect(@scope.editSenderEmailMode).toBe(false)
+      @scope.editSenderEmail()
+      expect(@scope.editSenderEmailMode).toBe(true)

@@ -11,16 +11,16 @@
   	font-size: 100%;
   }
 
-  #invite_message {
+  span.edit {
+    display: block;
+    background: rgba(255,255,255, 0.5); // white with opacity
+    width: 20px;
+    border-radius: 0 0 4px 4px;
+    position: absolute;
+    margin: 0 310px 0;
+  }
 
-    span.edit {
-      display: block;
-      background: rgba(255,255,255, 0.5); // white with opacity
-      width: 20px;
-      border-radius: 0 0 4px 4px;
-      position: absolute;
-      margin: 0 310px 0;
-    }
+  #invite_message {
 
     textarea {
       width: 280px;
