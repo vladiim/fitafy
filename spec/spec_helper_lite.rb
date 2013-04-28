@@ -28,6 +28,6 @@ RSpec.configure do |config|
 
   # config.before(:each) { GC.disable }
   # config.after(:each) { GC.enable }
-  config.before(:all) { DeferredGarbageCollection.start }
-  config.after(:all) { DeferredGarbageCollection.reconsider }
+  # config.before(:all) { DeferredGarbageCollection.start }
+  # config.after(:all) { DeferredGarbageCollection.reconsider }
 end

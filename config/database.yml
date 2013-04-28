@@ -1,31 +1,33 @@
 development:
   adapter: sqlite3
-  prepared_statements: false
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
 test:
   adapter: sqlite3
-  prepared_statements: false
-  database: db/test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: db/test.sqlite3
   pool: 5
   timeout: 5000
 
 # development:
 #   adapter: postgresql
 #   encoding: utf8
-#   database: fitafy_development
+#   database: fitafy_dev_db
 #   pool: 5
-#   username: vladiim
+#   port: 5432
+#   username: vlad
 #   password:
 #   host: localhost
+#   reconnect: true
 
 # test:
 #   adapter: postgresql
 #   encoding: utf8
-#   database: fitafy_test
+#   database: fitafy_test_db
 #   pool: 5
-#   username: vladiim
+#   port: 5432
+#   username: vlad
 #   password:
 #   host: localhost
+#   reconnect: true

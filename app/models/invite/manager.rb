@@ -20,14 +20,13 @@ module Invite
     private
 
     def create_and_add_sender(email)
-      # debugger
       @sender = UserRecord.find_or_create_by_email(email)
       User::Manager.new(sender).save_invite_sending_user
     end
 
-    def create_and_add_receivers(receivers)
+    def create_and_add_receivers(receiver_details)
       @receivers = []
-      receivers.each { |receiver| create_and_add_receiver receiver }
+      receiver_details.each { |receiver| create_and_add_receiver receiver }
     end
 
     def create_and_add_receiver(receiver)

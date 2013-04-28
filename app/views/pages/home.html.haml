@@ -3,9 +3,9 @@
   .usp_sign_up
 
     %header
-      %h1= @usp
+      %h1= @copy.usp
 
-    %p= @sub_heading
+    %p= @copy.sub_heading
 
     .email_form
       = simple_form_for @user, validate: true do |f|
@@ -17,7 +17,7 @@
 
 %aside.box_list.homepage
   %ul
-    - @features.each do |f|
+    - @copy.features.each do |f|
       %li.homepage_features
         %header
           %h3= f.title

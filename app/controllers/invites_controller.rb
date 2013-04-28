@@ -7,9 +7,10 @@ class InvitesController < ApplicationController
 
   def create
   	invite = Invite::Manager.new(params)
+
   	if invite.send_messages
   	  flash[:success] = invite_sent_message(invite.count)
-  	  redirect_to index
+  	  redirect_to invites_path
   	end
   end
 

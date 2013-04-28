@@ -7,15 +7,20 @@ class UserRecordsController < ApplicationController
   	if @user.add_to_database
   	  flash[:success] = CopyGenerator::UserCopy.first_sign_up
   	  redirect_to invites_path
+
   	else
-  	  @title          = ''
-  	  @user           = UserRecord.new
-  	  @usp            = CopyGenerator::HomepageCopy.usp
-      @sub_heading    = CopyGenerator::HomepageCopy.sub_heading
-      @error          = "'#{@record.email.upcase}' #{@record.errors.messages[:email][0]}!"
-      @features       = CopyGenerator::HomepageCopy.features
-  	  flash[:error]   = CopyGenerator::UserCopy.error_first_sign_up
-  	  render 'pages/home'
+      rerender_homepage
   	end
+  end
+
+  private
+
+  def rerender_homepage
+    @title        = ''
+    @user         = UserRecord.new
+    @copy         = CopyGenerator::HomepageCopy
+    @error        = "'#{@record.email.upcase}' #{@record.errors.messages[:email][0]}!"
+    flash[:error] = CopyGenerator::UserCopy.error_first_sign_up
+    render 'pages/home'
   end
 end

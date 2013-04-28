@@ -34,17 +34,6 @@ describe "Add friend to invite", js: true do
 		  page.should have_friend
       page.should have_friends_count
 	  end
-
-    describe 'click [x]' do
-      it 'removes the friend from the list' do
-        visit invites_path
-        add_friend
-        within('.invited-friends-list') do
-          click_link 'X'
-          page.should_not have_friend
-        end
-      end
-    end
   end
 
   describe "and sends the invites", :focus do
