@@ -1,7 +1,7 @@
 describe "InviteFriendsCtrl", ->
   beforeEach ->
-    @scope  = {}
-    @ctrl   = new InviteFriendsCtrl(@scope)
+    @scope    = {}
+    @ctrl     = new InviteFriendsCtrl(@scope)
 
   describe "friends", ->
     it "defaults to an empty friend list", ->
@@ -42,10 +42,12 @@ describe "InviteFriendsCtrl", ->
 
   describe "sendInvite()", ->
     beforeEach ->
-      @scope.inviteFrom = "FROM"
-      @scope.friends    = "FRIENDS"
-      @scope.message    = "MESSAGE"
-      @invite = { $save: -> true }
+      angular.element = sinon.stub()
+      htmlEl          = { text: -> 'FROM' }
+      @scope.friends  = "FRIENDS"
+      @scope.message  = "MESSAGE"
+      @invite         = { $save: -> true }
+      angular.element.withArgs('p.user_email').returns(htmlEl)
       sinon.stub(@invite, "$save")
       @scope.sendInvite(@invite)
 

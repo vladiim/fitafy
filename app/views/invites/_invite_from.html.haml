@@ -3,14 +3,14 @@
     %b
       Invite From
 
-  - if @user
-    .user_email= @user.email
+  - if @user_email
+    %p.user_email= @user_email
 
   - else
     .user{ "ng-hide" => "editSenderEmailMode" }
       %span.edit
         %i.icon-pencil#edit-my-email{ "ng-click" => "editSenderEmail()" }
-      %p {{inviteFrom}}
+      %p.user_email {{inviteFrom}}
 
     .no_user{ "ng-show" => "editSenderEmailMode" }
       %p Before you can add friends you need to let us know who you are, if you haven't registered for updates from fitafy we'll add you now.

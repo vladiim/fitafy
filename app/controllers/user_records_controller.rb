@@ -3,17 +3,15 @@ class UserRecordsController < ApplicationController
   def create
   	@record = UserRecord.new(params[:user_record])
     @user   = User::Manager.new(@record)
-
-  	if @user.add_to_database
-  	  flash[:success] = CopyGenerator::UserCopy.first_sign_up
-  	  redirect_to invites_path
-
-  	else
-      rerender_homepage
-  	end
+  	@user.add_to_database ? redirect_to_invites : rerender_homepage
   end
 
   private
+
+  def redirect_to_invites
+    flash[:success] = CopyGenerator::UserCopy.first_sign_up
+    redirect_to controller: 'invites', action: 'index', user_email: @user.email
+  end
 
   def rerender_homepage
     @title        = ''

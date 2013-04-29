@@ -1,22 +1,20 @@
 class InvitesController < ApplicationController
-  respond_to :json, only: :create
+  # respond_to :json, only: :create
 
   def index
   	@title = 'Invite Your Friends To Fitafy'
+    @user_email = params[:user_email] if params[:user_email]
   end
 
   def create
   	invite = Invite::Manager.new(params)
-
-  	if invite.send_messages
-  	  flash[:success] = invite_sent_message(invite.count)
-  	  redirect_to invites_path
-  	end
+    invite.send_messages
+    respond_to { |format| format.json { return true } }
   end
 
   private
 
-  def invite_sent_message(count)
+  def invite_sent_copy(count)
   	CopyGenerator::InviteCopy.invites_sent(count)
   end
 end

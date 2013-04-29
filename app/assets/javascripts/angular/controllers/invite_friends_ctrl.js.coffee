@@ -25,8 +25,13 @@
   $scope.editSenderEmail = ->
     if $scope.editSenderEmailMode is true then $scope.editSenderEmailMode = false else $scope.editSenderEmailMode = true
 
+  $scope.sendersEmail = ->
+    angular.element('p.user_email').text()
+
   $scope.sendInvite = (invite = new Invite()) ->
-    invite.sender    = $scope.inviteFrom
-    invite.receivers = $scope.friends
-    invite.message   = $scope.message
+    $scope.invitesSent = true
+    invite.sender      = $scope.sendersEmail()
+    invite.receivers   = $scope.friends
+    invite.message     = $scope.message
+    $scope.friends = []
     invite.$save()

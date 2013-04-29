@@ -15,31 +15,17 @@ describe "Add friend to invite", js: true do
     end
   end
 
-  describe "change the message", :slow do
-
-    it "updates and shows the new message" do
-      visit invites_path
-      change_message
-      within("#invite_message") do
-        page.should have_content "NEW MESSAGE"
-      end
-    end
-  end
-
-  describe 'add name and email', :slow do
-
-	  it 'adds the friend to the list' do
-      visit invites_path
-      add_friend
-		  page.should have_friend
-      page.should have_friends_count
-	  end
-  end
-
   describe "and sends the invites", :focus do
     it 'sends the invite' do
       visit root_path
       sign_up
+
+      # changes message
+      change_message
+      within("#invite_message") do
+        page.should have_content "NEW MESSAGE"
+      end
+
       add_friend
 
       # !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -49,7 +35,7 @@ describe "Add friend to invite", js: true do
       click_button "SEND INVITES"
 
       # sends the correct message
-      last_email.html_part.body.should =~ /Hi NAME! I just signed up/
+      last_email.html_part.body.should =~ /NEW MESSAGE/
 
       # sends the email to the friend
       last_email.to.should eq ['friend@email.com']
@@ -57,10 +43,8 @@ describe "Add friend to invite", js: true do
       # shows the correct success flash message
       page.should have_content CopyGenerator::InviteCopy.invites_sent(1)
 
-      # clears the friend's list
-      within('.invited-friends-list') do
-        page.should_not have_friends
-      end
+      # redirects to root path
+      current_path.should eq root_path
     end
   end
 end
