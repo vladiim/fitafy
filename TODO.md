@@ -1,3 +1,9 @@
+#recaptcha keys:
+
+* https://bitbucket.org/mml/ruby-recaptcha/wiki/Home
+* public: 6LfzmeASAAAAAAC9EXKCtRtLX0hpbKvv9YufunEJ
+* private: 6LfzmeASAAAAAOd6_AYWsTFfV0v66KM4OjRcIGkI
+
 # Up to:
 
 workout show - mobile doesn't properly show modal

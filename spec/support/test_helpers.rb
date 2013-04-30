@@ -9,6 +9,10 @@ module TestHelpers
   end
 
   def email
-  	'test@email.com'
+  	"test#{random}@email.com"
+  end
+
+  def random
+    Digest::MD5.hexdigest(Time.now.to_s)    
   end
 end

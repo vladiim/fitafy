@@ -2,6 +2,8 @@
   $scope.friends     = []
   $scope.message     = "Hi! I just signed up to a new service that gets fitness professionals new clients. I thought you'd like to check it out!"
   $scope.editMessage = false
+  $scope.ctaMessage  = "SEND INVITES"
+  $scope.buttonClass = "btn btn-primary send"
   $scope.editSenderEmailMode = true
 
   $scope.addFriend = (friend) ->
@@ -29,9 +31,10 @@
     angular.element('p.user_email').text()
 
   $scope.sendInvite = (invite = new Invite()) ->
-    $scope.invitesSent = true
     invite.sender      = $scope.sendersEmail()
+    $scope.buttonClass = "btn send disabled"
     invite.receivers   = $scope.friends
     invite.message     = $scope.message
     $scope.friends = []
+    $scope.ctaMessage  = "SENT - THANKS!"
     invite.$save()

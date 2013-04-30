@@ -1,15 +1,14 @@
 require 'spec_helper'
 
-describe 'Visitor goes to homepage' do
+describe 'Visitor goes to homepage', :slow do
   let(:user_record) { UserRecord.last }
   let(:user_email)  { user_record.email }
 
-  before { visit root_path }
-
   context 'signs up successfully' do
-    before { sign_up }
 
     it 'signs up successfully' do
+      visit root_path
+      sign_up
       # sends the user a welcome email
       last_email.to.should eq [email]
       last_email.subject.should eq CopyGenerator::EmailCopy.signup_subject
@@ -29,9 +28,9 @@ describe 'Visitor goes to homepage' do
   end
 
   context 'signs up twice' do
-    before { sign_up; visit root_path; sign_up }
 
     it 'returns the UserRecord error' do
+      visit root_path; sign_up; visit root_path; sign_up
       page.should have_content CopyGenerator::UserCopy.error_first_sign_up
       page.should have_content 'has already been taken'
     end

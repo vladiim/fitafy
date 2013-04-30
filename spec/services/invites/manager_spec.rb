@@ -50,7 +50,7 @@ describe Invite::Manager do
 end
 
 def stub_creating_user
-  stub(UserRecord).find_or_create_by_email(anything) { true }
+  stub(UserRecord).find_or_create_by_email(anything) { sender }
   stub(User::Manager).new(anything) { user_manager }
   stub(user_manager).save_invited_user { receiver }
   stub(user_manager).save_invite_sending_user { sender }
